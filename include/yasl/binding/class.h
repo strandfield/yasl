@@ -1,0 +1,596 @@
+// Copyright (C) 2018 Vincent Chambrin
+// This file is part of the Yasl project
+// For conditions of distribution and use, see copyright notice in LICENSE
+
+#ifndef YASL_BINDING_CLASS_H
+#define YASL_BINDING_CLASS_H
+
+#include "yasl/binding/constructor_wrapper.h"
+#include "yasl/binding/destructor_wrapper.h"
+#include "yasl/binding/function_wrapper.h"
+#include "yasl/binding/member_wrapper.h"
+#include "yasl/binding/operator_wrapper.h"
+
+#include <script/class.h>
+#include <script/functionbuilder.h>
+
+namespace binding
+{
+
+template<typename T, typename SizeTag = typename tag_resolver<T>::tag_type >
+class ClassConstructor;
+
+template<typename T>
+class ClassConstructor<T, small_object_tag>
+{
+public:
+  script::Class class_;
+
+  script::Function add_default()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T>::wrap).create();
+  }
+
+  script::Function add_copy()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, const T&>::wrap)
+      .params(script::Type::cref(make_type<T>()))
+      .create();
+  }
+
+  template<typename A1>
+  script::Function add()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1>::wrap)
+      .params(make_type<A1>())
+      .create();
+  }
+
+  template<typename A1, typename A2>
+  script::Function add()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2>::wrap)
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+  }
+
+  template<typename A1, typename A2, typename A3>
+  script::Function add()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4>
+  script::Function add()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5>
+  script::Function add()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4, A5>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
+      .create();
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
+  script::Function add()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4, A5, A6>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
+      .create();
+  }
+};
+
+template<typename T>
+class ClassConstructor<T, large_object_tag>
+{
+public:
+  script::Class class_;
+
+  script::Function add_default()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T>::wrap).create();
+  }
+
+  template<typename A1>
+  script::Function add()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, A1>::wrap)
+      .params(make_type<A1>())
+      .create();
+  }
+
+  template<typename A1, typename A2>
+  script::Function add()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2>::wrap)
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+  }
+};
+
+
+
+template<typename T, typename SizeTag = typename tag_resolver<T>::tag_type >
+class ClassDestructor;
+
+template<typename T>
+class ClassDestructor<T, small_object_tag>
+{
+public:
+  script::Class class_;
+
+  script::Function add()
+  {
+    return class_.newDestructor(destructor_wrapper_small_object_t<T>::wrap);
+  }
+};
+
+template<typename T>
+class ClassDestructor<T, large_object_tag>
+{
+public:
+  script::Class class_;
+
+  script::Function add_default()
+  {
+    return class_.newDestructor(destructor_wrapper_large_object_t<T>::wrap);
+  }
+};
+
+
+template<typename T>
+class ClassOperator
+{
+public:
+  script::Class class_;
+
+  template<typename ReturnType, typename RHS>
+  script::Function add()
+  {
+    return class_.Operation(script::Operator::AdditionOperator, add_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename ReturnType, typename RHS>
+  script::Function sub()
+  {
+    return class_.Operation(script::Operator::SubstractionOperator, sub_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function assign()
+  {
+    return class_.Operation(script::Operator::AssignmentOperator, assign_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function add_assign()
+  {
+    return class_.Operation(script::Operator::AdditionAssignmentOperator, add_assign_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function sub_assign()
+  {
+    return class_.Operation(script::Operator::AdditionAssignmentOperator, sub_assign_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function mul_assign()
+  {
+    return class_.Operation(script::Operator::MultiplicationAssignmentOperator, mul_assign_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function div_assign()
+  {
+    return class_.Operation(script::Operator::DivisionAssignmentOperator, div_assign_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function eq()
+  {
+    return class_.Operation(script::Operator::EqualOperator, eq_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(script::Type::Boolean)
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function neq()
+  {
+    return class_.Operation(script::Operator::InequalOperator, neq_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(script::Type::Boolean)
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function less()
+  {
+    return class_.Operation(script::Operator::LessOperator, less_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(script::Type::Boolean)
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function leq()
+  {
+    return class_.Operation(script::Operator::LessEqualOperator, leq_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(script::Type::Boolean)
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function greater()
+  {
+    return class_.Operation(script::Operator::GreaterOperator, greater_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(script::Type::Boolean)
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function geq()
+  {
+    return class_.Operation(script::Operator::GreaterEqualOperator, geq_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(script::Type::Boolean)
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename ReturnType, typename RHS>
+  script::Function and()
+  {
+    return class_.Operation(script::Operator::BitwiseAndOperator, and_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename ReturnType, typename RHS>
+  script::Function or()
+  {
+    return class_.Operation(script::Operator::BitwiseOrOperator, or_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function and_assign()
+  {
+    return class_.Operation(script::Operator::BitwiseAndAssignmentOperator, and_assign_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename RHS>
+  script::Function or_assign()
+  {
+    return class_.Operation(script::Operator::BitwiseOrAssignmentOperator, or_assign_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+  }
+
+  template<typename ReturnType, typename IndexType>
+  script::Function subscript()
+  {
+    return class_.Operation(script::Operator::SubscriptOperator, subscript_wrapper<ReturnType, const T&, IndexType>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<IndexType>())
+      .create();
+  }
+};
+
+
+template<typename T>
+class Class
+{
+public:
+  script::Class class_;
+
+  ClassConstructor<T> ctors() const { return ClassConstructor<T>{class_}; }
+
+  void add_dtor()
+  {
+    ClassDestructor<T>{class_}.add();
+  }
+
+  void add(script::FunctionBuilder & builder)
+  {
+    builder.create();
+  }
+
+
+  /****************************************************************
+  Zero-arg member functions
+  ****************************************************************/
+
+
+  template<typename ReturnType, ReturnType(T::*fun)()const>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .create();
+  }
+
+  template<typename ReturnType, ReturnType(T::*fun)()>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .create();
+  }
+
+  template<void(T::*fun)()>
+  script::Function add_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .create();
+  }
+
+  template<typename ReturnType, ReturnType(*fun)(), typename FunType = decltype(fun)>
+  script::Function add_static(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .create();
+  }
+
+  /****************************************************************
+  1-arg member functions
+  ****************************************************************/
+
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)const>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>())
+      .create();
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>())
+      .create();
+  }
+
+  template<typename A1, void(T::*fun)(A1)>
+  script::Function add_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>())
+      .create();
+  }
+
+  template<typename A1, T&(T::*fun)(A1)>
+  script::Function add_chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>())
+      .create();
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(*fun)(A1), typename FunType = decltype(fun)>
+  script::Function add_static(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>())
+      .create();
+  }
+
+  /****************************************************************
+  2-arg member functions
+  ****************************************************************/
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)const>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+  }
+
+  template<typename A1, typename A2, void(T::*fun)(A1, A2)>
+  script::Function add_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+  }
+
+  template<typename A1, typename A2, T&(T::*fun)(A1, A2)>
+  script::Function add_chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2), typename FunType = decltype(fun)>
+  script::Function add_static(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+  }
+
+  /****************************************************************
+  3-arg member functions
+  ****************************************************************/
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)const>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+  }
+
+  template<typename A1, typename A2, typename A3, void(T::*fun)(A1, A2, A3)>
+  script::Function add_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+  }
+
+  template<typename A1, typename A2, typename A3, T&(T::*fun)(A1, A2, A3)>
+  script::Function add_chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
+  script::Function add_static(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+  }
+
+  /****************************************************************
+  4-arg member functions
+  ****************************************************************/
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)const>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
+  script::Function add_fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, void(T::*fun)(A1, A2, A3, A4)>
+  script::Function add_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, T&(T::*fun)(A1, A2, A3, A4)>
+  script::Function add_chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
+  script::Function add_static(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+  }
+
+  /****************************************************************
+  Operators
+  ****************************************************************/
+
+  ClassOperator<T> operators() { return ClassOperator<T>{class_}; }
+};
+
+
+} // namespace binding
+
+#endif // YASL_BINDING_CLASS_H

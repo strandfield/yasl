@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="QString">
+    <DisplayString IncludeView="nq">{((reinterpret_cast&lt;unsigned short*&gt;(d)) + d->offset / 2),sub}</DisplayString>
+    <DisplayString ExcludeView="nq">"{((reinterpret_cast&lt;unsigned short*&gt;(d)) + d->offset / 2),sub}"</DisplayString>
+    <StringView>((reinterpret_cast&lt;unsigned short*&gt;(d)) + d->offset / 2),sub</StringView>
+    <Expand HideRawView="true">
+      <Item ExcludeView="simple" Name="[size]">d-&gt;size</Item>
+      <Item ExcludeView="simple" Name="[referenced]">d-&gt;ref.atomic._q_value</Item>
+      <ArrayItems ExcludeView="simple">
+        <Size>d-&gt;size</Size>
+        <ValuePointer>((reinterpret_cast&lt;unsigned short*&gt;(d)) + d->offset / 2),c</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+</AutoVisualizer>
