@@ -119,12 +119,12 @@ bool ValueImpl::is_lambda() const
   return !data.builtin.lambda.isNull();
 }
 
-const LambdaObject & ValueImpl::get_lambda() const
+const Lambda & ValueImpl::get_lambda() const
 {
   return data.builtin.lambda;
 }
 
-void ValueImpl::set_lambda(const LambdaObject & lval)
+void ValueImpl::set_lambda(const Lambda & lval)
 {
   if(!type.testFlag(Type::BuiltInStorageFlag))
   {

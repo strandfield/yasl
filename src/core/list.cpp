@@ -715,21 +715,21 @@ script::Class list_template_instantiate(script::ClassTemplate list_template, con
 
 
   // bool operator!=(const QList<T> &other) const
-  list.Operation(Operator::InequalOperator, callbacks::op_neq)
+  list.Operation(InequalOperator, callbacks::op_neq)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(list.id())).create();
   // QList<T> operator+(const QList<T> &other) const
-  list.Operation(Operator::AdditionOperator, callbacks::op_add)
+  list.Operation(AdditionOperator, callbacks::op_add)
     .setConst()
     .returns(list.id())
     .params(Type::cref(list.id())).create();
   // QList<T> & operator+=(const QList<T> &other)
-  list.Operation(Operator::AdditionAssignmentOperator, callbacks::op_add_assign)
+  list.Operation(AdditionAssignmentOperator, callbacks::op_add_assign)
     .returns(Type::ref(list.id()))
     .params(Type::cref(list.id())).create();
   // QList<T> & operator+=(const T &value)
-  list.Operation(Operator::AdditionAssignmentOperator, callbacks::op_add_assign_value)
+  list.Operation(AdditionAssignmentOperator, callbacks::op_add_assign_value)
     .returns(Type::ref(list.id()))
     .params(Type::cref(element_type)).create();
   // QList<T> & operator<<(const QList<T> &other)
@@ -737,22 +737,22 @@ script::Class list_template_instantiate(script::ClassTemplate list_template, con
   // QList<T> & operator<<(const T &value)
   /// TODO !!!
   // QList<T> & operator=(const QList<T> &other)
-  list.Operation(Operator::AssignmentOperator, callbacks::op_assign)
+  list.Operation(AssignmentOperator, callbacks::op_assign)
     .returns(Type::ref(list.id()))
     .params(Type::cref(list.id())).create();
   // QList & operator=(QList<T> &&other)
   /// TODO !!!
   // bool operator==(const QList<T> &other) const
-  list.Operation(Operator::EqualOperator, callbacks::op_eq)
+  list.Operation(EqualOperator, callbacks::op_eq)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(list.id())).create();
   // T & operator[](int i)
-  list.Operation(Operator::SubscriptOperator, callbacks::op_subscript)
+  list.Operation(SubscriptOperator, callbacks::op_subscript)
     .returns(Type::ref(element_type))
     .params(Type::Int).create();
   // const T & operator[](int i) const
-  list.Operation(Operator::SubscriptOperator, callbacks::at)
+  list.Operation(SubscriptOperator, callbacks::at)
     .setConst()
     .returns(Type::cref(element_type))
     .params(Type::Int).create();

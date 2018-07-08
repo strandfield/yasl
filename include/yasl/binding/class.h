@@ -154,7 +154,7 @@ public:
   template<typename ReturnType, typename RHS>
   script::Function add()
   {
-    return class_.Operation(script::Operator::AdditionOperator, add_wrapper<const T&, RHS>)
+    return class_.Operation(script::AdditionOperator, add_wrapper<const T&, RHS>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
@@ -164,7 +164,7 @@ public:
   template<typename ReturnType, typename RHS>
   script::Function sub()
   {
-    return class_.Operation(script::Operator::SubstractionOperator, sub_wrapper<const T&, RHS>)
+    return class_.Operation(script::SubstractionOperator, sub_wrapper<const T&, RHS>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
@@ -174,7 +174,7 @@ public:
   template<typename RHS>
   script::Function assign()
   {
-    return class_.Operation(script::Operator::AssignmentOperator, assign_wrapper<T&, RHS>)
+    return class_.Operation(script::AssignmentOperator, assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
@@ -183,7 +183,7 @@ public:
   template<typename RHS>
   script::Function add_assign()
   {
-    return class_.Operation(script::Operator::AdditionAssignmentOperator, add_assign_wrapper<T&, RHS>)
+    return class_.Operation(script::AdditionAssignmentOperator, add_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
@@ -192,7 +192,7 @@ public:
   template<typename RHS>
   script::Function sub_assign()
   {
-    return class_.Operation(script::Operator::AdditionAssignmentOperator, sub_assign_wrapper<T&, RHS>)
+    return class_.Operation(script::AdditionAssignmentOperator, sub_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
@@ -201,7 +201,7 @@ public:
   template<typename RHS>
   script::Function mul_assign()
   {
-    return class_.Operation(script::Operator::MultiplicationAssignmentOperator, mul_assign_wrapper<T&, RHS>)
+    return class_.Operation(script::MultiplicationAssignmentOperator, mul_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
@@ -210,7 +210,7 @@ public:
   template<typename RHS>
   script::Function div_assign()
   {
-    return class_.Operation(script::Operator::DivisionAssignmentOperator, div_assign_wrapper<T&, RHS>)
+    return class_.Operation(script::DivisionAssignmentOperator, div_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
@@ -219,7 +219,7 @@ public:
   template<typename RHS>
   script::Function eq()
   {
-    return class_.Operation(script::Operator::EqualOperator, eq_wrapper<const T&, RHS>)
+    return class_.Operation(script::EqualOperator, eq_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
@@ -229,7 +229,7 @@ public:
   template<typename RHS>
   script::Function neq()
   {
-    return class_.Operation(script::Operator::InequalOperator, neq_wrapper<const T&, RHS>)
+    return class_.Operation(script::InequalOperator, neq_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
@@ -239,7 +239,7 @@ public:
   template<typename RHS>
   script::Function less()
   {
-    return class_.Operation(script::Operator::LessOperator, less_wrapper<const T&, RHS>)
+    return class_.Operation(script::LessOperator, less_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
@@ -249,7 +249,7 @@ public:
   template<typename RHS>
   script::Function leq()
   {
-    return class_.Operation(script::Operator::LessEqualOperator, leq_wrapper<const T&, RHS>)
+    return class_.Operation(script::LessEqualOperator, leq_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
@@ -259,7 +259,7 @@ public:
   template<typename RHS>
   script::Function greater()
   {
-    return class_.Operation(script::Operator::GreaterOperator, greater_wrapper<const T&, RHS>)
+    return class_.Operation(script::GreaterOperator, greater_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
@@ -269,7 +269,7 @@ public:
   template<typename RHS>
   script::Function geq()
   {
-    return class_.Operation(script::Operator::GreaterEqualOperator, geq_wrapper<const T&, RHS>)
+    return class_.Operation(script::GreaterEqualOperator, geq_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
@@ -279,7 +279,7 @@ public:
   template<typename ReturnType, typename RHS>
   script::Function and()
   {
-    return class_.Operation(script::Operator::BitwiseAndOperator, and_wrapper<const T&, RHS>)
+    return class_.Operation(script::BitwiseAndOperator, and_wrapper<const T&, RHS>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
@@ -289,7 +289,7 @@ public:
   template<typename ReturnType, typename RHS>
   script::Function or()
   {
-    return class_.Operation(script::Operator::BitwiseOrOperator, or_wrapper<const T&, RHS>)
+    return class_.Operation(script::BitwiseOrOperator, or_wrapper<const T&, RHS>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
@@ -299,7 +299,7 @@ public:
   template<typename RHS>
   script::Function and_assign()
   {
-    return class_.Operation(script::Operator::BitwiseAndAssignmentOperator, and_assign_wrapper<T&, RHS>)
+    return class_.Operation(script::BitwiseAndAssignmentOperator, and_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
@@ -308,7 +308,7 @@ public:
   template<typename RHS>
   script::Function or_assign()
   {
-    return class_.Operation(script::Operator::BitwiseOrAssignmentOperator, or_assign_wrapper<T&, RHS>)
+    return class_.Operation(script::BitwiseOrAssignmentOperator, or_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
@@ -317,7 +317,7 @@ public:
   template<typename ReturnType, typename IndexType>
   script::Function subscript()
   {
-    return class_.Operation(script::Operator::SubscriptOperator, subscript_wrapper<ReturnType, const T&, IndexType>)
+    return class_.Operation(script::SubscriptOperator, subscript_wrapper<ReturnType, const T&, IndexType>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<IndexType>())

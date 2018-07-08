@@ -92,7 +92,7 @@ void register_ptr_specialization(script::ClassTemplate ptr_template, int *type_i
   ptr_type.newDestructor(callbacks::ptr::dtor);
 
   // void operator=(const T & value);
-  ptr_type.Operation(Operator::AssignmentOperator, callbacks::ptr::assign<T>)
+  ptr_type.Operation(AssignmentOperator, callbacks::ptr::assign<T>)
     .params(Type::cref(element_type)).create();
 
   // operator T() const;

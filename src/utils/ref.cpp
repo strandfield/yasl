@@ -171,7 +171,7 @@ script::Class ref_template(script::ClassTemplate ref, const std::vector<script::
     .returns(Type::Boolean)
     .create();
 
-  result.Operation(Operator::AssignmentOperator, callbacks::assign)
+  result.Operation(AssignmentOperator, callbacks::assign)
     .returns(Type::ref(result.id()))
     .params(Type::cref(result.id())).create();
 
