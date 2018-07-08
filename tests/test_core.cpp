@@ -23,10 +23,10 @@ TEST(CoreModule, size) {
   ASSERT_EQ(s.globals().size(), 2);
 
   script::Value s1 = s.globals().front();
-  ASSERT_EQ(s1.type(), get_qsize_type());
+  ASSERT_EQ(s1.type(), script::Type::QSize);
 
   script::Value s2 = s.globals().back();
-  ASSERT_EQ(s2.type(), get_qsize_type());
+  ASSERT_EQ(s2.type(), script::Type::QSize);
 
   QSize & s2_val = binding::value_cast<QSize &>(s2);
   ASSERT_EQ(s2_val, QSize(30, 20));

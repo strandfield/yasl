@@ -7,14 +7,12 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
-static int qpoint_type_id = 0;
 
 void register_qpoint(script::Namespace n)
 {
   using namespace script;
 
-  Class point = n.newClass(ClassBuilder::New("Point").setFinal());
-  qpoint_type_id = point.id();
+  Class point = n.newClass(ClassBuilder::New("Point").setId(Type::QPoint).setFinal());
 
   binding::Class<QPoint> p{ point };
 
@@ -100,9 +98,4 @@ void register_qpoint(script::Namespace n)
   ns.operators().eq<const QPoint &, const QPoint &>();
   // QDataStream & operator>>(QDataStream &stream, QPoint &point);
   /// TODO : QDataStream output
-}
-
-script::Type get_qpoint_type()
-{
-  return qpoint_type_id;
 }

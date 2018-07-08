@@ -79,7 +79,7 @@ script::Value cast(script::FunctionCall *c)
 
 static script::Class get_qobject_class(script::Engine *e)
 {
-  return e->getClass(get_qobject_type());
+  return e->getClass(script::Type::QObject);
 }
 
 static script::ClassTemplate get_ref_template(script::Engine *e)
@@ -95,15 +95,15 @@ static script::ClassTemplate get_ref_template(script::Engine *e)
   throw std::runtime_error{ "Could not find Ref class template" };
 }
 
-static script::Class get_ref_instance(const script::Class & c)
+static script::Class get_ref_instance(const script::Class & qobjectclass)
 {
   using namespace script;
-  ClassTemplate ct = get_ref_template(c.engine());
+
+  ClassTemplate ct = get_ref_template(qobjectclass.engine());
   std::vector<TemplateArgument> args;
-  args.push_back(TemplateArgument{ Type{c.id()} });
+  args.push_back(TemplateArgument{ Type{ qobjectclass.id() } });
   return ct.getInstance(args);
 }
-
 
 static void inject_conversions(script::Class & ref, const script::Class & src)
 {
@@ -125,6 +125,44 @@ static void inject_conversions_recursively(script::Class & ref, const script::Cl
 
   inject_conversions_recursively(ref, src.parent(), qobject);
 }
+
+
+static void fill_ref_instance(script::Class & instance, const script::Class & qclass)
+{
+  using namespace script;
+
+  instance.Constructor(callbacks::default_ctor).create();
+  instance.Constructor(callbacks::copy_ctor).params(Type::cref(instance.id())).create();
+  instance.Constructor(callbacks::copy_ctor).params(Type::cref(qclass.id())).create();
+
+  instance.newDestructor(callbacks::dtor);
+
+  instance.Method("get", callbacks::get)
+    .setConst()
+    .returns(Type::ref(qclass.id()))
+    .create();
+
+  instance.Method("isNull", callbacks::is_null)
+    .setConst()
+    .returns(Type::Boolean)
+    .create();
+
+  instance.Method("isValid", callbacks::is_valid)
+    .setConst()
+    .returns(Type::Boolean)
+    .create();
+
+  instance.Operation(AssignmentOperator, callbacks::assign)
+    .returns(Type::ref(instance.id()))
+    .params(Type::cref(instance.id())).create();
+
+  instance.Conversion(Type::ref(qclass.id()), callbacks::get)
+    .setConst()
+    .create();
+
+  inject_conversions_recursively(instance, qclass, get_qobject_class(qclass.engine()));
+}
+
 
 script::Class ref_template(script::ClassTemplate ref, const std::vector<script::TemplateArgument> & targs)
 {
@@ -150,36 +188,7 @@ script::Class ref_template(script::ClassTemplate ref, const std::vector<script::
 
   Class result = ref.build(builder, targs);
 
-  result.Constructor(callbacks::default_ctor).create();
-  result.Constructor(callbacks::copy_ctor).params(Type::cref(result.id())).create();
-  result.Constructor(callbacks::copy_ctor).params(Type::cref(qclass.id())).create();
-
-  result.newDestructor(callbacks::dtor);
-
-  result.Method("get", callbacks::get)
-    .setConst()
-    .returns(Type::ref(qclass.id()))
-    .create();
-  
-  result.Method("isNull", callbacks::is_null)
-    .setConst()
-    .returns(Type::Boolean)
-    .create();
-
-  result.Method("isValid", callbacks::is_valid)
-    .setConst()
-    .returns(Type::Boolean)
-    .create();
-
-  result.Operation(AssignmentOperator, callbacks::assign)
-    .returns(Type::ref(result.id()))
-    .params(Type::cref(result.id())).create();
-
-  result.Conversion(Type::ref(qclass.id()), callbacks::get)
-    .setConst()
-    .create();
-
-  inject_conversions_recursively(result, qclass, qobject_class);
+  fill_ref_instance(result, qclass);
 
   return result;
 }
@@ -193,6 +202,27 @@ void register_ref_template(script::Namespace ns)
   params.push_back(TemplateParameter{ TemplateParameter::TypeParameter{}, "T" });
   ns.addTemplate(ns.engine()->newClassTemplate("Ref", std::move(params), Scope{ ns }, ref_template));
 
+}
+
+script::Class register_ref_specialization(script::Engine *e, script::Type object_type, script::Type::BuiltInType type_id)
+{
+  using namespace script;
+ 
+  auto ref_template = get_ref_template(e);
+
+  ClassBuilder builder = ClassBuilder::New(std::string{})
+    .setId(type_id)
+    .setFinal();
+
+  std::vector<TemplateArgument> targs{
+    TemplateArgument{ object_type },
+  };
+
+  Class ref_type = ref_template.addSpecialization(targs, builder);
+
+  fill_ref_instance(ref_type, e->getClass(object_type));
+
+  return ref_type;
 }
 
 script::Value make_ref(script::Engine *e, const script::Type & ref_type, QObject *value)

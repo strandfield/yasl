@@ -21,12 +21,6 @@ script::ClassTemplate get_ptr_template();
 void* get_ptr(const script::Value & val);
 script::Value make_ptr(script::Engine *e, const script::Type & ptr_type, void *value);
 
-script::Type get_ptr_bool_type();
-script::Type get_ptr_char_type();
-script::Type get_ptr_int_type();
-script::Type get_ptr_float_type();
-script::Type get_ptr_double_type();
-
 template<typename T>
 struct Ptr
 {
@@ -72,19 +66,21 @@ script::Value assign(script::FunctionCall *c)
 
 
 template<typename T>
-void register_ptr_specialization(script::ClassTemplate ptr_template, int *type_id)
+void register_ptr_specialization(script::ClassTemplate ptr_template, script::Type::BuiltInType type_id)
 {
   using namespace script;
 
   const script::Type element_type = binding::make_type<T>();
 
-  ClassBuilder builder = ClassBuilder::New(std::string{}).setFinal();
+  ClassBuilder builder = ClassBuilder::New(std::string{})
+    .setId(type_id)
+    .setFinal();
+
   std::vector<TemplateArgument> targs{
     TemplateArgument{ element_type },
   };
 
   Class ptr_type = ptr_template.addSpecialization(targs, builder);
-  *type_id = ptr_type.id();
 
   // Ptr(const Ptr<T> & other);
   ptr_type.Constructor(callbacks::ptr::copy_ctor).params(Type::cref(ptr_type.id())).create();
@@ -102,11 +98,11 @@ void register_ptr_specialization(script::ClassTemplate ptr_template, int *type_i
 
 namespace binding
 {
-template<> struct make_type_t<Ptr<bool>> { inline static script::Type get() { return get_ptr_bool_type(); } };
-template<> struct make_type_t<Ptr<char>> { inline static script::Type get() { return get_ptr_char_type(); } };
-template<> struct make_type_t<Ptr<int>> { inline static script::Type get() { return get_ptr_int_type(); } };
-template<> struct make_type_t<Ptr<float>> { inline static script::Type get() { return get_ptr_float_type(); } };
-template<> struct make_type_t<Ptr<double>> { inline static script::Type get() { return get_ptr_double_type(); } };
+template<> struct make_type_t<Ptr<bool>> { inline static script::Type get() { return script::Type::Ptrbool; } };
+template<> struct make_type_t<Ptr<char>> { inline static script::Type get() { return script::Type::Ptrchar; } };
+template<> struct make_type_t<Ptr<int>> { inline static script::Type get() { return script::Type::Ptrint; } };
+template<> struct make_type_t<Ptr<float>> { inline static script::Type get() { return script::Type::Ptrfloat; } };
+template<> struct make_type_t<Ptr<double>> { inline static script::Type get() { return script::Type::Ptrdouble; } };
 
 template<> inline Ptr<bool> value_cast<Ptr<bool>>(const script::Value & v) { return static_cast<bool*>(get_ptr(v)); }
 template<> inline Ptr<char> value_cast<Ptr<char>>(const script::Value & v) { return static_cast<char*>(get_ptr(v)); }

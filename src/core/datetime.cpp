@@ -14,19 +14,11 @@
 
 #include <script/engine.h>
 
-static int datetime_type_id = 0;
-
-script::Type get_datetime_type()
-{
-  return script::Type{ datetime_type_id };
-}
-
 void register_datetime_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class datetime = ns.newClass(ClassBuilder::New("DateTime").setFinal());
-  datetime_type_id = datetime.id();
+  Class datetime = ns.newClass(ClassBuilder::New("DateTime").setId(Type::QDateTime).setFinal());
 
   binding::Class<QDateTime> binder{ datetime };
 

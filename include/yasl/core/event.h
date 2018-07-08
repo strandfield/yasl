@@ -14,19 +14,16 @@
 #include <QEvent>
 
 void register_qevent(script::Namespace n);
-script::Type get_qevent_type();
 script::Value make_event(QEvent *event, script::Engine *engine);
 script::Value make_event(QEvent *event, const script::Type & event_type, script::Engine *engine);
 void clear_event(script::Value & value);
 QEvent * get_event(const script::Value & val);
 
-script::Type get_qeventtype_type();
-
 namespace binding
 {
 
-template<> struct make_type_t<QEvent> { inline static script::Type get() { return get_qevent_type(); } };
-template<> struct make_type_t<QEvent::Type> { inline static script::Type get() { return get_qeventtype_type(); } };
+template<> struct make_type_t<QEvent> { inline static script::Type get() { return script::Type::QEvent; } };
+template<> struct make_type_t<QEvent::Type> { inline static script::Type get() { return script::Type::QEventType; } };
 
 template<> inline script::Value make_value<QEvent>(QEvent *event, script::Engine *engine) { return make_event(event, engine); }
 

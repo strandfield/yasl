@@ -12,10 +12,6 @@
 
 #include <script/classtemplate.h>
 
-static int qlist_int_type_id = 0;
-static int qlist_float_type_id = 0;
-static int qlist_double_type_id = 0;
-
 
 static script::Value make_list(const QList<ContainerValue> & val, const script::Type & list_type, script::Engine *e)
 {
@@ -772,9 +768,9 @@ void register_qlist_template(script::Namespace n)
   n.addTemplate(list_template);
 
   // Registering full specializations
-  register_list_specialization<int>(list_template, &qlist_int_type_id);
-  register_list_specialization<float>(list_template, &qlist_float_type_id);
-  register_list_specialization<double>(list_template, &qlist_double_type_id);
+  register_list_specialization<int>(list_template, Type::QListint);
+  register_list_specialization<float>(list_template, Type::QListfloat);
+  register_list_specialization<double>(list_template, Type::QListdouble);
 
   qApp->setListTemplate(list_template);
 }
@@ -782,19 +778,4 @@ void register_qlist_template(script::Namespace n)
 script::ClassTemplate get_qlist_template()
 {
   return qApp->getListTemplate();
-}
-
-script::Type get_qlist_int_type()
-{
-  return qlist_int_type_id;
-}
-
-script::Type get_qlist_float_type()
-{
-  return qlist_float_type_id;
-}
-
-script::Type get_qlist_double_type()
-{
-  return qlist_double_type_id;
 }

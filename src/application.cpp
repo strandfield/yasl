@@ -51,6 +51,9 @@ Application::Application(int & argc, char **argv)
 {
   mEngine.setup();
 
+  mEngine.reserveTypeRange(script::Type::FirstEnumType, script::Type::LastEnumType);
+  mEngine.reserveTypeRange(script::Type::FirstClassType, script::Type::LastClassType);
+
   register_ref_template(mEngine.rootNamespace());
 
   register_core_module(&mEngine);

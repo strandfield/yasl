@@ -8,8 +8,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qshowevent_type_id = 0;
-
 namespace callbacks
 {
 
@@ -32,18 +30,11 @@ void register_qshowevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class showevent = root.newClass(ClassBuilder::New("ShowEvent").setParent(event).setFinal());
-  qshowevent_type_id = showevent.id();
+  const Class event = root.engine()->getClass(Type::QEvent);
+  Class showevent = root.newClass(ClassBuilder::New("ShowEvent").setId(Type::QShowEvent).setParent(event).setFinal());
   
   // QShowEvent();
   showevent.Constructor(callbacks::showevent::ctor).create();
   // ~QShowEvent();
   showevent.newDestructor(event.destructor().native_callback());
 }
-
-script::Type get_qshowevent_type()
-{
-  return script::Type{ qshowevent_type_id };
-}
-

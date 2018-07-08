@@ -9,8 +9,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qkeyevent_type_id = 0;
-
 namespace callbacks
 {
 
@@ -41,9 +39,8 @@ void register_qkeyevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class keyevent = root.newClass(ClassBuilder::New("KeyEvent").setParent(event).setFinal());
-  qkeyevent_type_id = keyevent.id();
+  const Class event = root.engine()->getClass(script::Type::QEvent);
+  Class keyevent = root.newClass(ClassBuilder::New("KeyEvent").setId(Type::QKeyEvent).setParent(event).setFinal());
   
   binding::Class<QKeyEvent> q{ keyevent };
 
@@ -73,9 +70,3 @@ void register_qkeyevent(script::Namespace root)
   // QString text() const
   q.add_fun<QString, &QKeyEvent::text>("text");
 }
-
-script::Type get_qkeyevent_type()
-{
-  return script::Type{ qkeyevent_type_id };
-}
-

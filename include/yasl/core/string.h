@@ -10,15 +10,12 @@
 
 #include <QStringList>
 
-script::Type get_ptr_string_type();
-script::Type get_stringlist_type();
-
 namespace binding
 {
 
-template<> struct make_type_t<Ptr<QString>> { inline static script::Type get() { return get_ptr_string_type(); } };
-template<> struct make_type_t<QList<QString>> { inline static script::Type get() { return get_stringlist_type(); } };
-template<> struct make_type_t<QStringList> { inline static script::Type get() { return get_stringlist_type(); } };
+template<> struct make_type_t<Ptr<QString>> { inline static script::Type get() { return script::Type::PtrQString; } };
+template<> struct make_type_t<QList<QString>> { inline static script::Type get() { return script::Type::QListQString; } };
+template<> struct make_type_t<QStringList> { inline static script::Type get() { return script::Type::QStringList; } };
 
 } // namespace binding
 

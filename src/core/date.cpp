@@ -10,19 +10,11 @@
 
 #include <script/engine.h>
 
-static int date_type_id = 0;
-
-script::Type get_date_type()
-{
-  return script::Type{ date_type_id };
-}
-
 void register_date_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class date = ns.newClass(ClassBuilder::New("Date").setFinal());
-  date_type_id = date.id();
+  Class date = ns.newClass(ClassBuilder::New("Date").setId(Type::QDate).setFinal());
 
   binding::Class<QDate> binder{ date };
 

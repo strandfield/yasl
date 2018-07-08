@@ -12,11 +12,10 @@
 #include <QDate>
 
 void register_date_class(script::Namespace n);
-script::Type get_date_type();
 
 namespace binding
 {
-template<> struct make_type_t<QDate> { inline static script::Type get() { return get_date_type(); } };
+template<> struct make_type_t<QDate> { inline static script::Type get() { return script::Type::QDate; } };
 } // namespace binding
 
 #endif // YASL_CORE_DATE_H

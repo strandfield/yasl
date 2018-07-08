@@ -14,10 +14,6 @@
 #include <QWidget>
 
 void register_qwidget(script::Namespace n);
-script::Type get_qwidget_type();
-script::Type get_ref_qwidget_type();
-script::Type get_ptr_qwidget_type();
-script::Type get_qlist_qwidget_type();
 void register_new_widget_template(script::Namespace n);
 script::Value make_widget(QWidget *widget, script::Engine *e);
 
@@ -90,10 +86,10 @@ public:
 namespace binding
 {
 
-template<> struct make_type_t<QWidget*> { inline static script::Type get() { return get_ref_qwidget_type(); } };
-template<> struct make_type_t<Widget*> { inline static script::Type get() { return get_ref_qwidget_type(); } };
-template<> struct make_type_t<QList<QWidget*>> { inline static script::Type get() { return get_qlist_qwidget_type(); } };
-template<> struct make_type_t<Ptr<QWidget*>> { inline static script::Type get() { return get_ptr_qwidget_type(); } };
+template<> struct make_type_t<QWidget*> { inline static script::Type get() { return script::Type::QWidgetStar; } };
+template<> struct make_type_t<Widget*> { inline static script::Type get() { return script::Type::QWidgetStar; } };
+template<> struct make_type_t<QList<QWidget*>> { inline static script::Type get() { return script::Type::QListQWidget; } };
+template<> struct make_type_t<Ptr<QWidget*>> { inline static script::Type get() { return script::Type::PtrQWidget; } };
 
 template<> inline QWidget* value_cast<QWidget*>(const script::Value & val)
 {

@@ -12,12 +12,11 @@
 #include <QPoint>
 
 void register_qpoint(script::Namespace n);
-script::Type get_qpoint_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QPoint> { inline static script::Type get() { return get_qpoint_type(); } };
+template<> struct make_type_t<QPoint> { inline static script::Type get() { return script::Type::QPoint; } };
 
 } // namespace binding
 

@@ -11,21 +11,13 @@
 
 #include <script/engine.h>
 
-static int file_type_id = 0;
-
-script::Type get_file_type()
-{
-  return script::Type{ file_type_id };
-}
-
 void register_file_class(script::Namespace n)
 {
   using namespace script;
 
-  Class filedevice = n.engine()->getClass(get_filedevice_type());
+  Class filedevice = n.engine()->getClass(script::Type::QFileDevice);
 
-  Class file = n.newClass(ClassBuilder::New("File").setParent(filedevice));
-  file_type_id = file.id();
+  Class file = n.newClass(ClassBuilder::New("File").setId(Type::QFile).setParent(filedevice));
 
   binding::QClass<QFile> binder{ file };
 

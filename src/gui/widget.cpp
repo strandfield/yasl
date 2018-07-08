@@ -33,11 +33,6 @@
 
 #include <QWidget>
 
-static int qwidget_type_id = 0;
-static int ref_qwidget_type_id = 0;
-static int ptr_qwidget_type_id = 0;
-static int qlist_qwidget_type_id = 0;
-
 void register_new_widget_template(script::Namespace n);
 
 namespace callbacks
@@ -72,13 +67,6 @@ static script::Value new_widget_window_title(script::FunctionCall *c)
   expose(widget, v);
   v.impl()->type = v.impl()->type.withoutFlag(Type::UninitializedFlag);
   return v;
-}
-
-static script::Value parent_widget(script::FunctionCall *c)
-{
-  using namespace script;
-  QWidget *parent = binding::value_cast<QWidget*>(c->arg(0))->parentWidget();
-  return make_ref(c->engine(), c->callee().returnType(), parent);
 }
 
 static script::Value close_event(script::FunctionCall *c)
@@ -188,52 +176,24 @@ static script::Value wheel_event(script::FunctionCall *c)
 
 } // namespace callbacks
 
-script::Type get_qwidget_type()
-{
-  return script::Type{ qwidget_type_id };
-}
-
-script::Type get_ref_qwidget_type()
-{
-  return script::Type{ ref_qwidget_type_id };
-}
-
-script::Type get_ptr_qwidget_type()
-{
-  return script::Type{ ptr_qwidget_type_id };
-}
-
-script::Type get_qlist_qwidget_type()
-{
-  return script::Type{ qlist_qwidget_type_id };
-}
-
 void register_qwidget(script::Namespace n)
 {
   using namespace script;
 
-  Class qobject_class = n.engine()->getClass(get_qobject_type());
+  Class qobject_class = n.engine()->getClass(script::Type::QObject);
 
-  Class qwidget_class = n.newClass(ClassBuilder::New("Widget").setParent(qobject_class));
+  Class qwidget_class = n.newClass(ClassBuilder::New("Widget").setId(Type::QWidget).setParent(qobject_class));
   Type widget_type = qwidget_class.id();
-  qwidget_type_id = widget_type.data();
 
-  Type ref_widget_type = Type{ get_ref_type(n.engine(), widget_type).id() };
-  ref_qwidget_type_id = ref_widget_type.data();
-
-  register_ptr_specialization<QWidget*>(get_ptr_template(), &ptr_qwidget_type_id);
-  register_list_specialization<QWidget*>(get_qlist_template(), &qlist_qwidget_type_id);
+  register_ref_specialization(n.engine(), Type::QWidget, Type::QWidgetStar);
+  register_ptr_specialization<QWidget*>(get_ptr_template(), Type::PtrQWidget);
+  register_list_specialization<QWidget*>(get_qlist_template(), Type::QListQWidget);
 
   auto widget = binding::QClass<QWidget>{ qwidget_class };
   qwidget_class.Constructor(callbacks::widget_ctor).create();
   widget.add_dtor();
 
-  // QWidget * parentWidget() const -> Ref<Widget> parentWidget() const
-  qwidget_class.Method("parentWidget_BACK", callbacks::parent_widget)
-    .setConst()
-    .returns(ref_widget_type)
-    .create();
-
+  // QWidget * parentWidget() const
   widget.add_fun<QWidget*, &QWidget::parentWidget>("parentWidget");
   widget.add_void_fun<QWidget*, &QWidget::setParent>("setParent");
 
@@ -730,26 +690,26 @@ void fill_callbacks(Widget::Callbacks & cbs, const script::Class & c)
 {
   using namespace script;
 
-  if (c.id() == get_qwidget_type().data())
+  if (c.id() == Type::QWidget)
     return;
 
   for (const auto & f : c.memberFunctions())
   {
-    assign_callback(cbs.close, f, "closeEvent", Type::ref(get_qevent_type()));
-    assign_callback(cbs.enter, f, "enterEvent", Type::ref(get_qevent_type()));
-    assign_callback(cbs.hide, f, "hideEvent", Type::ref(get_qhideevent_type()));
-    assign_callback(cbs.keyPress, f, "keyPressEvent", Type::ref(get_qkeyevent_type()));
-    assign_callback(cbs.keyRelease, f, "keyReleaseEvent", Type::ref(get_qkeyevent_type()));
-    assign_callback(cbs.leave, f, "leaveEvent", Type::ref(get_qevent_type()));
-    assign_callback(cbs.mouseDoubleClick, f, "mouseDoubleClickEvent", Type::ref(get_qmouseevent_type()));
-    assign_callback(cbs.mouseMove, f, "mouseMoveEvent", Type::ref(get_qmouseevent_type()));
-    assign_callback(cbs.mousePress, f, "mousePressEvent", Type::ref(get_qmouseevent_type()));
-    assign_callback(cbs.mouseRelease, f, "mouseReleaseEvent", Type::ref(get_qmouseevent_type()));
-    assign_callback(cbs.move, f, "mouseReleaseEvent", Type::ref(get_qmouseevent_type()));
-    assign_callback(cbs.paint, f, "paintEvent", Type::ref(get_qpaintevent_type()));
-    assign_callback(cbs.resize, f, "resizeEvent", Type::ref(get_qresizeevent_type()));
-    assign_callback(cbs.show, f, "showEvent", Type::ref(get_qevent_type()));
-    assign_callback(cbs.wheel, f, "wheelEvent", Type::ref(get_qwheelevent_type()));
+    assign_callback(cbs.close, f, "closeEvent", Type::ref(script::Type::QEvent));
+    assign_callback(cbs.enter, f, "enterEvent", Type::ref(script::Type::QEvent));
+    assign_callback(cbs.hide, f, "hideEvent", Type::ref(script::Type::QHideEvent));
+    assign_callback(cbs.keyPress, f, "keyPressEvent", Type::ref(script::Type::QKeyEvent));
+    assign_callback(cbs.keyRelease, f, "keyReleaseEvent", Type::ref(script::Type::QKeyEvent));
+    assign_callback(cbs.leave, f, "leaveEvent", Type::ref(script::Type::QEvent));
+    assign_callback(cbs.mouseDoubleClick, f, "mouseDoubleClickEvent", Type::ref(script::Type::QMouseEvent));
+    assign_callback(cbs.mouseMove, f, "mouseMoveEvent", Type::ref(script::Type::QMouseEvent));
+    assign_callback(cbs.mousePress, f, "mousePressEvent", Type::ref(script::Type::QMouseEvent));
+    assign_callback(cbs.mouseRelease, f, "mouseReleaseEvent", Type::ref(script::Type::QMouseEvent));
+    assign_callback(cbs.move, f, "mouseReleaseEvent", Type::ref(script::Type::QMouseEvent));
+    assign_callback(cbs.paint, f, "paintEvent", Type::ref(script::Type::QPaintEvent));
+    assign_callback(cbs.resize, f, "resizeEvent", Type::ref(script::Type::QResizeEvent));
+    assign_callback(cbs.show, f, "showEvent", Type::ref(script::Type::QEvent));
+    assign_callback(cbs.wheel, f, "wheelEvent", Type::ref(script::Type::QWheelEvent));
   }
 
   fill_callbacks(cbs, c.parent());
@@ -791,7 +751,7 @@ void register_new_widget_template(script::Namespace n)
 
 script::Value make_widget(QWidget *widget, script::Engine *e)
 {
-  return make_ref(e, get_ref_qwidget_type(), widget);
+  return make_ref(e, script::Type::QWidgetStar, widget);
 }
 
 Widget::Widget()

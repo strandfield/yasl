@@ -9,8 +9,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qwheelevent_type_id = 0;
-
 namespace callbacks
 {
 
@@ -26,9 +24,8 @@ void register_qwheelevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class wheelevent = root.newClass(ClassBuilder::New("WheelEvent").setParent(event).setFinal());
-  qwheelevent_type_id = wheelevent.id();
+  const Class event = root.engine()->getClass(Type::QEvent);
+  Class wheelevent = root.newClass(ClassBuilder::New("WheelEvent").setId(Type::QWheelEvent).setParent(event).setFinal());
   
   binding::Class<QWheelEvent> qwheelevent{ wheelevent };
   // QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers)
@@ -70,9 +67,3 @@ void register_qwheelevent(script::Namespace root)
   // int y() const
   qwheelevent.add_fun<int, &QWheelEvent::y>("x");
 }
-
-script::Type get_qwheelevent_type()
-{
-  return script::Type{ qwheelevent_type_id };
-}
-

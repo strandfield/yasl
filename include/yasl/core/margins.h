@@ -12,12 +12,11 @@
 #include <QMargins>
 
 void register_qmargins(script::Namespace n);
-script::Type get_qmargins_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QMargins> { inline static script::Type get() { return get_qmargins_type(); } };
+template<> struct make_type_t<QMargins> { inline static script::Type get() { return script::Type::QMargins; } };
 
 } // namespace binding
 

@@ -8,9 +8,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qevent_type_id = 0;
-static int qeventtype_type_id = 0;
-
 namespace callbacks
 {
 
@@ -40,11 +37,9 @@ void register_qevent(script::Namespace root)
 {
   using namespace script;
 
-  Class event = root.newClass(ClassBuilder::New("Event"));
-  qevent_type_id = event.id();
+  Class event = root.newClass(ClassBuilder::New("Event").setId(Type::QEvent));
   
-  Enum type = event.newEnum("Type");
-  qeventtype_type_id = type.id();
+  Enum type = event.newEnum("Type", Type::QEventType);
 
   type.addValue("None", QEvent::None);
   type.addValue("Timer", QEvent::Timer);
@@ -90,7 +85,7 @@ void register_qevent(script::Namespace root)
    
   binding::Class<QEvent> qevent{ event };
   // QEvent(QEvent::Type);
-  event.Constructor(callbacks::ctor).params(Type{ qeventtype_type_id }).create();
+  event.Constructor(callbacks::ctor).params(Type{ Type::QEventType }).create();
   // ~QEvent();
   event.newDestructor(callbacks::dtor);
   // void accept();
@@ -107,19 +102,9 @@ void register_qevent(script::Namespace root)
   qevent.add_fun<QEvent::Type, &QEvent::type>("type");
 }
 
-script::Type get_qevent_type()
-{
-  return script::Type{ qevent_type_id };
-}
-
-script::Type get_qeventtype_type()
-{
-  return script::Type{ qeventtype_type_id };
-}
-
 script::Value make_event(QEvent *event, script::Engine *engine)
 {
-  return make_event(event, get_qevent_type(), engine);
+  return make_event(event, script::Type::QEvent, engine);
 }
 
 script::Value make_event(QEvent *event, const script::Type & event_type, script::Engine *engine)

@@ -10,14 +10,12 @@
 #include "yasl/core/point.h"
 #include "yasl/core/size.h"
 
-static int qrect_type_id = 0;
 
 void register_qrect(script::Namespace n)
 {
   using namespace script;
 
-  Class rect = n.newClass(ClassBuilder::New("Rect").setFinal());
-  qrect_type_id = rect.id();
+  Class rect = n.newClass(ClassBuilder::New("Rect").setId(Type::QRect).setFinal());
 
   binding::Class<QRect> r{ rect };
 
@@ -189,9 +187,4 @@ void register_qrect(script::Namespace n)
   // QDataStream & operator>>(QDataStream &stream, QRect &rectangle)
   /// TODO !!!
 
-}
-
-script::Type get_qrect_type()
-{
-  return qrect_type_id;
 }

@@ -8,7 +8,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qcloseevent_type_id = 0;
 
 namespace callbacks
 {
@@ -32,18 +31,11 @@ void register_qcloseevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class closeevent = root.newClass(ClassBuilder::New("CloseEvent").setParent(event).setFinal());
-  qcloseevent_type_id = closeevent.id();
+  const Class event = root.engine()->getClass(script::Type::QEvent);
+  Class closeevent = root.newClass(ClassBuilder::New("CloseEvent").setId(Type::QCloseEvent).setParent(event).setFinal());
  
   // QCloseEvent();
   closeevent.Constructor(callbacks::closeevent::ctor).create();
   // ~QCloseEvent();
   closeevent.newDestructor(event.destructor().native_callback());
 }
-
-script::Type get_qcloseevent_type()
-{
-  return script::Type{ qcloseevent_type_id };
-}
-

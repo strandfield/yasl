@@ -8,8 +8,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qhideevent_type_id = 0;
-
 namespace callbacks
 {
 
@@ -32,18 +30,11 @@ void register_qhideevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class hideevent = root.newClass(ClassBuilder::New("HideEvent").setParent(event).setFinal());
-  qhideevent_type_id = hideevent.id();
+  const Class event = root.engine()->getClass(script::Type::QEvent);
+  Class hideevent = root.newClass(ClassBuilder::New("HideEvent").setId(Type::QHideEvent).setParent(event).setFinal());
   
   // QHideEvent();
   hideevent.Constructor(callbacks::hideevent::ctor).create();
   // ~QHideEvent();
   hideevent.newDestructor(event.destructor().native_callback());
 }
-
-script::Type get_qhideevent_type()
-{
-  return script::Type{ qhideevent_type_id };
-}
-

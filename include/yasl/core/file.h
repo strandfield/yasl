@@ -10,12 +10,11 @@
 #include <QFile>
 
 void register_file_class(script::Namespace n);
-script::Type get_file_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QFile> { inline static script::Type get() { return get_file_type(); } };
+template<> struct make_type_t<QFile> { inline static script::Type get() { return script::Type::QFile; } };
 
 template<> inline QFile* value_cast<QFile*>(const script::Value & val)
 {

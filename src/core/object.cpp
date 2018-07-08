@@ -23,12 +23,6 @@
 
 #include <QObject>
 
-static int qobject_type_id = 0;
-static int ref_qobject_type_id = 0;
-static int qlist_qobject_type_id = 0;
-static int ptr_qobject_type_id = 0;
-
-
 namespace binding
 {
 
@@ -136,6 +130,7 @@ void connect_template_substitute(script::FunctionBuilder & builder, script::Func
   FunctionType signal_type = e->getFunctionType(targs.front().type);
   FunctionType slot_type = e->getFunctionType(targs.back().type);
 
+  builder.setStatic();
   builder.returns(Type::Void);
   builder.addParam(Type::ref(signal_type.prototype().at(0).baseType()));
   builder.addParam(signal_type.type());
@@ -197,7 +192,6 @@ void emit_template_substitute(script::FunctionBuilder & builder, script::Functio
   FunctionType signal_type = e->getFunctionType(targs.front().type);
 
   builder.returns(Type::Void);
-  builder.addParam(Type::ref(signal_type.prototype().at(0).baseType()).withFlag(Type::ThisFlag));
   builder.addParam(signal_type.type());
   for (size_t i(1); i < signal_type.prototype().count(); ++i)
   {
@@ -216,18 +210,12 @@ void register_qobject(script::Namespace n)
 {
   using namespace script;
 
-  if (qobject_type_id != 0 && n.engine()->hasType(Type{ qobject_type_id }))
-    return;
-
-  Class qobject_class = n.newClass(ClassBuilder::New("Object"));
+  Class qobject_class = n.newClass(ClassBuilder::New("Object").setId(Type::QObject));
   Type object_type = qobject_class.id();
-  qobject_type_id = object_type.data();
 
-  Type ref_widget_type = Type{ get_ref_type(n.engine(), object_type).id() };
-  ref_qobject_type_id = ref_widget_type.data();
-
-  register_ptr_specialization<QObject*>(get_ptr_template(), &ptr_qobject_type_id);
-  register_list_specialization<QObject*>(get_qlist_template(), &qlist_qobject_type_id);
+  register_ref_specialization(n.engine(), Type::QObject, Type::QObjectStar);
+  register_ptr_specialization<QObject*>(get_ptr_template(), Type::PtrQObject);
+  register_list_specialization<QObject*>(get_qlist_template(), Type::QListQObject);
 
   auto qobject = binding::QClass<QObject>{ qobject_class };
   qobject.ctors().add_default();
@@ -301,26 +289,6 @@ void register_qobject(script::Namespace n)
 QObject* get_qobject(const script::Value & val)
 {
   return val.impl()->data.builtin.qobject;
-}
-
-script::Type get_qobject_type()
-{
-  return script::Type{ qobject_type_id };
-}
-
-script::Type get_ref_qobject_type()
-{
-  return script::Type{ ref_qobject_type_id };
-}
-
-script::Type get_qlist_qobject_type()
-{
-  return script::Type{ qlist_qobject_type_id };
-}
-
-script::Type get_ptr_qobject_type()
-{
-  return ptr_qobject_type_id;
 }
 
 script::Value make_object(script::Engine *e, script::Type object_type, QObject *value)

@@ -12,11 +12,10 @@
 #include <QTime>
 
 void register_time_class(script::Namespace n);
-script::Type get_time_type();
 
 namespace binding
 {
-template<> struct make_type_t<QTime> { inline static script::Type get() { return get_time_type(); } };
+template<> struct make_type_t<QTime> { inline static script::Type get() { return script::Type::QTime; } };
 } // namespace binding
 
 #endif // YASL_CORE_TIME_H

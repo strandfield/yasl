@@ -11,21 +11,12 @@
 
 #include <script/engine.h>
 
-static int filedevice_type_id = 0;
-static int fileerror_type_id = 0;
-static int filehandleflag_type_id = 0;
-static int filehandleflags_type_id = 0;
-static int filedevice_filetime_type_id = 0;
-static int filedevice_memorymapflags_type_id = 0;
-static int filedevice_permission_type_id = 0;
-static int filedevice_permissions_type_id = 0;
 
 void register_file_error_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum file_error = filedevice.newEnum("FileError");
-  fileerror_type_id = file_error.id();
+  Enum file_error = filedevice.newEnum("FileError", Type::QFileDeviceFileError);
 
   file_error.addValue("NoError", QFileDevice::NoError);
   file_error.addValue("ReadError", QFileDevice::ReadError);
@@ -44,48 +35,25 @@ void register_file_error_enum(script::Class filedevice)
   file_error.addValue("CopyError", QFileDevice::CopyError);
 }
 
-script::Type get_filedevice_fileerror_type()
-{
-  return script::Type{ fileerror_type_id };
-}
-
 
 void register_file_handle_flag_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum file_handle_flag = filedevice.newEnum("FileHandleFlag");
-  filehandleflag_type_id = file_handle_flag.id();
+  Enum file_handle_flag = filedevice.newEnum("FileHandleFlag", Type::QFileDeviceFileHandleFlag);
 
   file_handle_flag.addValue("AutoCloseHandle", QFileDevice::AutoCloseHandle);
   file_handle_flag.addValue("DontCloseHandle", QFileDevice::DontCloseHandle);
 
-  Class file_handle_flags = register_qflags_type<QFileDevice::FileHandleFlag>(filedevice, "FileHandleFlags");
-  filehandleflags_type_id = file_handle_flags.id();
+  Class file_handle_flags = register_qflags_type<QFileDevice::FileHandleFlag>(filedevice, "FileHandleFlags", script::Type::QFileDeviceFileHandleFlags);
 }
 
-script::Type get_filedevice_filehandleflag_type()
-{
-  return script::Type{ filehandleflag_type_id };
-}
-
-script::Type get_filedevice_filehandleflags_type()
-{
-  return script::Type{ filehandleflags_type_id };
-}
-
-
-script::Type get_filedevice_filetime_type()
-{
-  return script::Type{ filedevice_filetime_type_id };
-}
 
 void register_filetime_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum filetime = filedevice.newEnum("FileTime");
-  filedevice_filetime_type_id = filetime.id();
+  Enum filetime = filedevice.newEnum("FileTime", Type::QFileDeviceFileTime);
 
   filetime.addValue("FileAccessTime", QFileDevice::FileAccessTime);
   filetime.addValue("FileBirthTime", QFileDevice::FileBirthTime);
@@ -94,39 +62,22 @@ void register_filetime_enum(script::Class filedevice)
 }
 
 
-script::Type get_filedevice_memorymapflags_type()
-{
-  return script::Type{ filedevice_memorymapflags_type_id };
-}
-
 void register_memorymapflags_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum memorymapflags = filedevice.newEnum("MemoryMapFlags");
-  filedevice_memorymapflags_type_id = memorymapflags.id();
+  Enum memorymapflags = filedevice.newEnum("MemoryMapFlags", Type::QFileDeviceMemoryMapFlags);
 
   memorymapflags.addValue("NoOptions", QFileDevice::NoOptions);
   memorymapflags.addValue("MapPrivateOption", QFileDevice::MapPrivateOption);
 }
 
 
-script::Type get_filedevice_permission_type()
-{
-  return script::Type{ filedevice_permission_type_id };
-}
-
-script::Type get_filedevice_permissions_type()
-{
-  return script::Type{ filedevice_permissions_type_id };
-}
-
 void register_permission_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum permission = filedevice.newEnum("Permission");
-  filedevice_permission_type_id = permission.id();
+  Enum permission = filedevice.newEnum("Permission", Type::QFileDevicePermission);
 
   permission.addValue("ReadOwner", QFileDevice::ReadOwner);
   permission.addValue("WriteOwner", QFileDevice::WriteOwner);
@@ -144,25 +95,17 @@ void register_permission_enum(script::Class filedevice)
   permission.addValue("PermissionsError", QFileDevice::PermissionsError);
   permission.addValue("CopyError", QFileDevice::CopyError);
 
-  Class permissions = register_qflags_type<QFileDevice::Permission>(filedevice, "Permissions");
-  filedevice_permissions_type_id = permissions.id();
+  Class permissions = register_qflags_type<QFileDevice::Permission>(filedevice, "Permissions", Type::QFileDevicePermissions);
 }
 
-
-
-script::Type get_filedevice_type()
-{
-  return script::Type{ filedevice_type_id };
-}
 
 void register_filedevice_class(script::Namespace n)
 {
   using namespace script;
 
-  Class iodevice = n.engine()->getClass(get_iodevice_type());
+  Class iodevice = n.engine()->getClass(Type::QIODevice);
 
-  Class filedevice = n.newClass(ClassBuilder::New("FileDevice").setParent(iodevice));
-  filedevice_type_id = filedevice.id();
+  Class filedevice = n.newClass(ClassBuilder::New("FileDevice").setId(Type::QFileDevice).setParent(iodevice));
 
   register_file_error_enum(filedevice);
   register_file_handle_flag_enum(filedevice);

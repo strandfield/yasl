@@ -9,8 +9,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qpaintevent_type_id = 0;
-
 namespace callbacks
 {
 
@@ -33,9 +31,8 @@ void register_qpaintevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class paintevent = root.newClass(ClassBuilder::New("PaintEvent").setParent(event).setFinal());
-  qpaintevent_type_id = paintevent.id();
+  const Class event = root.engine()->getClass(script::Type::QEvent);
+  Class paintevent = root.newClass(ClassBuilder::New("PaintEvent").setId(Type::QPaintEvent).setParent(event).setFinal());
   
   binding::Class<QPaintEvent> qpaintevent{ paintevent };
   // QPaintEvent(const QRect & rect);
@@ -46,10 +43,5 @@ void register_qpaintevent(script::Namespace root)
   paintevent.newDestructor(event.destructor().native_callback());
   // const QRect & rect() const;
   qpaintevent.add_fun<const QRect &, &QPaintEvent::rect>("rect");
-}
-
-script::Type get_qpaintevent_type()
-{
-  return script::Type{ qpaintevent_type_id };
 }
 

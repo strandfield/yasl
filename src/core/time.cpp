@@ -10,19 +10,11 @@
 
 #include <script/engine.h>
 
-static int time_type_id = 0;
-
-script::Type get_time_type()
-{
-  return script::Type{ time_type_id };
-}
-
 void register_time_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class time = ns.newClass(ClassBuilder::New("Time").setFinal());
-  time_type_id = time.id();
+  Class time = ns.newClass(ClassBuilder::New("Time").setId(Type::QTime).setFinal());
 
   binding::Class<QTime> binder{ time };
 

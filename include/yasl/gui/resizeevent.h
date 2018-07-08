@@ -10,14 +10,13 @@
 #include <QResizeEvent>
 
 void register_qresizeevent(script::Namespace n);
-script::Type get_qresizeevent_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QResizeEvent> { inline static script::Type get() { return get_qresizeevent_type(); } };
+template<> struct make_type_t<QResizeEvent> { inline static script::Type get() { return script::Type::QResizeEvent; } };
 
-template<> inline script::Value make_value<QResizeEvent>(QResizeEvent *event, script::Engine *engine) { return make_event(event, get_qresizeevent_type(), engine); }
+template<> inline script::Value make_value<QResizeEvent>(QResizeEvent *event, script::Engine *engine) { return make_event(event, script::Type::QResizeEvent, engine); }
 
 template<> inline QResizeEvent* value_cast<QResizeEvent*>(const script::Value & val) { return static_cast<QResizeEvent*>(get_event(val)); }
 template<> inline QResizeEvent& value_cast<QResizeEvent&>(const script::Value & val) { return *static_cast<QResizeEvent*>(get_event(val)); }

@@ -10,14 +10,13 @@
 #include <QShowEvent>
 
 void register_qshowevent(script::Namespace n);
-script::Type get_qshowevent_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QShowEvent> { inline static script::Type get() { return get_qshowevent_type(); } };
+template<> struct make_type_t<QShowEvent> { inline static script::Type get() { return script::Type::QShowEvent; } };
 
-template<> inline script::Value make_value<QShowEvent>(QShowEvent *event, script::Engine *engine) { return make_event(event, get_qshowevent_type(), engine); }
+template<> inline script::Value make_value<QShowEvent>(QShowEvent *event, script::Engine *engine) { return make_event(event, script::Type::QShowEvent, engine); }
 
 template<> inline QShowEvent* value_cast<QShowEvent*>(const script::Value & val) { return static_cast<QShowEvent*>(get_event(val)); }
 template<> inline QShowEvent& value_cast<QShowEvent&>(const script::Value & val) { return *static_cast<QShowEvent*>(get_event(val)); }

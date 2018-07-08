@@ -10,14 +10,13 @@
 #include <QCloseEvent>
 
 void register_qcloseevent(script::Namespace n);
-script::Type get_qcloseevent_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QCloseEvent> { inline static script::Type get() { return get_qcloseevent_type(); } };
+template<> struct make_type_t<QCloseEvent> { inline static script::Type get() { return script::Type::QCloseEvent; } };
 
-template<> inline script::Value make_value<QCloseEvent>(QCloseEvent *event, script::Engine *engine) { return make_event(event, get_qcloseevent_type(), engine); }
+template<> inline script::Value make_value<QCloseEvent>(QCloseEvent *event, script::Engine *engine) { return make_event(event, script::Type::QCloseEvent, engine); }
 
 template<> inline QCloseEvent* value_cast<QCloseEvent*>(const script::Value & val) { return static_cast<QCloseEvent*>(get_event(val)); }
 template<> inline QCloseEvent& value_cast<QCloseEvent&>(const script::Value & val) { return *static_cast<QCloseEvent*>(get_event(val)); }

@@ -9,8 +9,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qresizeevent_type_id = 0;
-
 namespace callbacks
 {
 
@@ -28,9 +26,8 @@ void register_qresizeevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class resizeevent = root.newClass(ClassBuilder::New("ResizeEvent").setParent(event).setFinal());
-  qresizeevent_type_id = resizeevent.id();
+  const Class event = root.engine()->getClass(script::Type::QEvent);
+  Class resizeevent = root.newClass(ClassBuilder::New("ResizeEvent").setId(Type::QResizeEvent).setParent(event).setFinal());
   
   binding::Class<QResizeEvent> qresizeevent{ resizeevent };
   // QResizeEvent(const QSize & size, const QSize & oldSize);
@@ -44,9 +41,3 @@ void register_qresizeevent(script::Namespace root)
   // const QSize & size() const;
   qresizeevent.add_fun<const QSize &, &QResizeEvent::size>("size");
 }
-
-script::Type get_qresizeevent_type()
-{
-  return script::Type{ qresizeevent_type_id };
-}
-

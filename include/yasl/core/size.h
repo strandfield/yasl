@@ -12,11 +12,10 @@
 #include <QSize>
 
 void register_qsize(script::Namespace n);
-script::Type get_qsize_type();
 
 namespace binding
 {
-template<> struct make_type_t<QSize> { inline static script::Type get() { return get_qsize_type(); } };
+template<> struct make_type_t<QSize> { inline static script::Type get() { return script::Type::QSize; } };
 } // namespace binding
 
 #endif // YASL_CORE_SIZE_H

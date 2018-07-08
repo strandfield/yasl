@@ -7,14 +7,11 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
-static int qmargins_type_id = 0;
-
 void register_qmargins(script::Namespace n)
 {
   using namespace script;
 
-  Class margins = n.newClass(ClassBuilder::New("Margins").setFinal());
-  qmargins_type_id = margins.id();
+  Class margins = n.newClass(ClassBuilder::New("Margins").setId(Type::QMargins).setFinal());
 
   binding::Class<QMargins> m{ margins };
 
@@ -100,9 +97,4 @@ void register_qmargins(script::Namespace n)
   ns.operators().eq<const QMargins &, const QMargins &>();
   // QDataStream & operator>>(QDataStream &stream, QMargins &m)
   /// TODO !!!
-}
-
-script::Type get_qmargins_type()
-{
-  return qmargins_type_id;
 }

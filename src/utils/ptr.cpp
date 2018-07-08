@@ -14,13 +14,6 @@
 #include <script/private/function_p.h>
 #include <script/private/value_p.h>
 
-static int ptr_bool_type_id = 0;
-static int ptr_char_type_id = 0;
-static int ptr_int_type_id = 0;
-static int ptr_float_type_id = 0;
-static int ptr_double_type_id = 0;
-
-
 namespace callbacks
 {
 
@@ -62,11 +55,11 @@ void register_ptr_template(script::Namespace ns)
 
   ClassTemplate ptr = ns.engine()->newClassTemplate("Ptr", std::move(params), Scope{ ns }, ptr_template_instantiate);
 
-  register_ptr_specialization<bool>(ptr, &ptr_bool_type_id);
-  register_ptr_specialization<char>(ptr, &ptr_char_type_id);
-  register_ptr_specialization<int>(ptr, &ptr_int_type_id);
-  register_ptr_specialization<float>(ptr, &ptr_float_type_id);
-  register_ptr_specialization<double>(ptr, &ptr_double_type_id);
+  register_ptr_specialization<bool>(ptr, Type::Ptrbool);
+  register_ptr_specialization<char>(ptr, Type::Ptrchar);
+  register_ptr_specialization<int>(ptr, Type::Ptrint);
+  register_ptr_specialization<float>(ptr, Type::Ptrfloat);
+  register_ptr_specialization<double>(ptr, Type::Ptrdouble);
   
   qApp->setPtrTemplate(ptr);
 }
@@ -87,29 +80,4 @@ script::Value make_ptr(script::Engine *e, const script::Type & ptr_type, void *v
   ret.impl()->data.ptr = value;
   ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
   return ret;
-}
-
-script::Type get_ptr_bool_type()
-{
-  return ptr_bool_type_id;
-}
-
-script::Type get_ptr_char_type()
-{
-  return ptr_char_type_id;
-}
-
-script::Type get_ptr_int_type()
-{
-  return ptr_int_type_id;
-}
-
-script::Type get_ptr_float_type()
-{
-  return ptr_float_type_id;
-}
-
-script::Type get_ptr_double_type()
-{
-  return ptr_double_type_id;
 }

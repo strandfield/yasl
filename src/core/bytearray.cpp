@@ -16,33 +16,15 @@
 
 #include <QByteArray>
 
-static int qbytearray_type_id = 0;
-static int ptr_bytearray_type_id = 0;
-static int list_bytearray_type_id = 0;
-
-script::Type get_ptr_bytearray_type()
-{
-  return ptr_bytearray_type_id;
-}
-
-script::Type get_list_bytearray_type()
-{
-  return list_bytearray_type_id;
-}
-
 void register_qbytearray(script::Namespace ns)
 {
   using namespace script;
 
-  if (qbytearray_type_id != 0)
-    return;
-
-  Class qbytearray_class = ns.newClass(ClassBuilder::New("ByteArray").setFinal());
+  Class qbytearray_class = ns.newClass(ClassBuilder::New("ByteArray").setFinal().setId(Type::QByteArray));
   Type bytearray_type = qbytearray_class.id();
-  qbytearray_type_id = bytearray_type.data();
 
-  register_ptr_specialization<QByteArray>(get_ptr_template(), &ptr_bytearray_type_id);
-  register_list_specialization<QByteArray>(get_qlist_template(), &list_bytearray_type_id);
+  register_ptr_specialization<QByteArray>(get_ptr_template(), Type::PtrQByteArray);
+  register_list_specialization<QByteArray>(get_qlist_template(), Type::QListQByteArray);
 
   auto ba = binding::Class<QByteArray>{ qbytearray_class };
   ba.ctors().add_default();
@@ -292,8 +274,3 @@ void register_qbytearray(script::Namespace ns)
 //  self = ba;
 //  return val;
 //}
-
-script::Type get_qbytearray_type()
-{
-  return script::Type{ qbytearray_type_id };
-}

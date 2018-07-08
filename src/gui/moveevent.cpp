@@ -9,8 +9,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qmoveevent_type_id = 0;
-
 namespace callbacks
 {
 
@@ -28,9 +26,8 @@ void register_qmoveevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class moveevent = root.newClass(ClassBuilder::New("MoveEvent").setParent(event).setFinal());
-  qmoveevent_type_id = moveevent.id();
+  const Class event = root.engine()->getClass(script::Type::QEvent);
+  Class moveevent = root.newClass(ClassBuilder::New("MoveEvent").setId(Type::QMoveEvent).setParent(event).setFinal());
   
   binding::Class<QMoveEvent> qmoveevent{ moveevent };
   // QMoveEvent(const QPoint & pos, const QPoint & oldPos);
@@ -42,10 +39,5 @@ void register_qmoveevent(script::Namespace root)
   qmoveevent.add_fun<const QPoint &, &QMoveEvent::oldPos>("oldPos");
   // const QPoint & pos() const;
   qmoveevent.add_fun<const QPoint &, &QMoveEvent::pos>("pos");
-}
-
-script::Type get_qmoveevent_type()
-{
-  return script::Type{ qmoveevent_type_id };
 }
 

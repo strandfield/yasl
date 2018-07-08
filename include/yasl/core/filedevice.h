@@ -10,26 +10,18 @@
 #include <QFileDevice>
 
 void register_filedevice_class(script::Namespace n);
-script::Type get_filedevice_type();
-script::Type get_filedevice_fileerror_type();
-script::Type get_filedevice_filehandleflag_type();
-script::Type get_filedevice_filehandleflags_type();
-script::Type get_filedevice_filetime_type();
-script::Type get_filedevice_memorymapflags_type();
-script::Type get_filedevice_permission_type();
-script::Type get_filedevice_permissions_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QFileDevice> { inline static script::Type get() { return get_filedevice_type(); } };
-template<> struct make_type_t<QFileDevice::FileError> { inline static script::Type get() { return get_filedevice_fileerror_type(); } };
-template<> struct make_type_t<QFileDevice::FileHandleFlag> { inline static script::Type get() { return get_filedevice_filehandleflag_type(); } };
-template<> struct make_type_t<QFileDevice::FileHandleFlags> { inline static script::Type get() { return get_filedevice_filehandleflags_type(); } };
-template<> struct make_type_t<QFileDevice::FileTime> { inline static script::Type get() { return get_filedevice_filetime_type(); } };
-template<> struct make_type_t<QFileDevice::MemoryMapFlags> { inline static script::Type get() { return get_filedevice_memorymapflags_type(); } };
-template<> struct make_type_t<QFileDevice::Permission> { inline static script::Type get() { return get_filedevice_permission_type(); } };
-template<> struct make_type_t<QFileDevice::Permissions> { inline static script::Type get() { return get_filedevice_permissions_type(); } };
+template<> struct make_type_t<QFileDevice> { inline static script::Type get() { return script::Type::QFile; } };
+template<> struct make_type_t<QFileDevice::FileError> { inline static script::Type get() { return script::Type::QFileDeviceFileError; } };
+template<> struct make_type_t<QFileDevice::FileHandleFlag> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlag; } };
+template<> struct make_type_t<QFileDevice::FileHandleFlags> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlags; } };
+template<> struct make_type_t<QFileDevice::FileTime> { inline static script::Type get() { return script::Type::QFileDeviceFileTime; } };
+template<> struct make_type_t<QFileDevice::MemoryMapFlags> { inline static script::Type get() { return script::Type::QFileDeviceMemoryMapFlags; } };
+template<> struct make_type_t<QFileDevice::Permission> { inline static script::Type get() { return script::Type::QFileDevicePermission; } };
+template<> struct make_type_t<QFileDevice::Permissions> { inline static script::Type get() { return script::Type::QFileDevicePermissions; } };
 
 
 template<> inline QFileDevice* value_cast<QFileDevice*>(const script::Value & val)

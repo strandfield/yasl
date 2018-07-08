@@ -12,12 +12,11 @@
 #include <QRect>
 
 void register_qrect(script::Namespace n);
-script::Type get_qrect_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QRect> { inline static script::Type get() { return get_qrect_type(); } };
+template<> struct make_type_t<QRect> { inline static script::Type get() { return script::Type::QRect; } };
 
 } // namespace binding
 

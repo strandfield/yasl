@@ -10,14 +10,13 @@
 #include <QMoveEvent>
 
 void register_qmoveevent(script::Namespace n);
-script::Type get_qmoveevent_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QMoveEvent> { inline static script::Type get() { return get_qmoveevent_type(); } };
+template<> struct make_type_t<QMoveEvent> { inline static script::Type get() { return script::Type::QMoveEvent; } };
 
-template<> inline script::Value make_value<QMoveEvent>(QMoveEvent *event, script::Engine *engine) { return make_event(event, get_qmoveevent_type(), engine); }
+template<> inline script::Value make_value<QMoveEvent>(QMoveEvent *event, script::Engine *engine) { return make_event(event, script::Type::QMoveEvent, engine); }
 
 template<> inline QMoveEvent* value_cast<QMoveEvent*>(const script::Value & val) { return static_cast<QMoveEvent*>(get_event(val)); }
 template<> inline QMoveEvent& value_cast<QMoveEvent&>(const script::Value & val) { return *static_cast<QMoveEvent*>(get_event(val)); }

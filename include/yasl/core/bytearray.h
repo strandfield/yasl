@@ -14,16 +14,13 @@
 class QByteArray;
 
 void register_qbytearray(script::Namespace n);
-script::Type get_qbytearray_type();
-script::Type get_ptr_bytearray_type();
-script::Type get_list_bytearray_type();
 
 namespace binding
 {
 //template<> inline script::Value make_value<QByteArray>(const QByteArray & ba, script::Engine *e) { return make_bytearray(ba, e); }
-template<> struct make_type_t<QByteArray> { inline static script::Type get() { return get_qbytearray_type(); } };
-template<> struct make_type_t<Ptr<QByteArray>> { inline static script::Type get() { return get_ptr_bytearray_type(); } };
-template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return get_list_bytearray_type(); } };
+template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
+template<> struct make_type_t<Ptr<QByteArray>> { inline static script::Type get() { return script::Type::PtrQByteArray; } };
+template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
 
 } // namespace binding
 

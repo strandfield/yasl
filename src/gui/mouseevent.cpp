@@ -9,8 +9,6 @@
 
 #include <script/interpreter/executioncontext.h>
 
-static int qmouseevent_type_id = 0;
-
 namespace callbacks
 {
 
@@ -26,9 +24,8 @@ void register_qmouseevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(get_qevent_type());
-  Class mouseevent = root.newClass(ClassBuilder::New("MouseEvent").setParent(event).setFinal());
-  qmouseevent_type_id = mouseevent.id();
+  const Class event = root.engine()->getClass(script::Type::QEvent);
+  Class mouseevent = root.newClass(ClassBuilder::New("MouseEvent").setId(Type::QMouseEvent).setParent(event).setFinal());
   
   binding::Class<QMouseEvent> qmouseevent{ mouseevent };
   // QMouseEvent(QEvent::Type type, const QPointF &localPos, Qt::MouseButton button, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers)
@@ -68,9 +65,3 @@ void register_qmouseevent(script::Namespace root)
   // int y() const
   qmouseevent.add_fun<int, &QMouseEvent::y>("x");
 }
-
-script::Type get_qmouseevent_type()
-{
-  return script::Type{ qmouseevent_type_id };
-}
-

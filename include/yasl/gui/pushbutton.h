@@ -10,12 +10,9 @@
 #include <QPushButton>
 
 void register_qpushbutton(script::Namespace n);
-script::Type get_qpushbutton_type();
 
 namespace binding
 {
-
-template<> struct make_type_t<QPushButton*> { inline static script::Type get() { return get_qpushbutton_type(); } };
 
 template<> inline QAbstractButton* value_cast<QAbstractButton*>(const script::Value & val)
 {

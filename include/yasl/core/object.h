@@ -7,6 +7,7 @@
 
 #include "yasl/binding/utils.h"
 #include "yasl/utils/ptr.h"
+#include "yasl/utils/ref.h"
 
 #include <script/namespace.h>
 #include <script/value.h>
@@ -15,10 +16,6 @@ class QObject;
 
 void register_qobject(script::Namespace n);
 QObject* get_qobject(const script::Value & val);
-script::Type get_qobject_type();
-script::Type get_ref_qobject_type();
-script::Type get_ptr_qobject_type();
-script::Type get_qlist_qobject_type();
 script::Value make_object(script::Engine *e, script::Type object_type, QObject *value);
 
 namespace callbacks
@@ -31,9 +28,9 @@ script::Value connect(script::FunctionCall *c);
 namespace binding
 {
 
-template<> struct make_type_t<QObject*> { inline static script::Type get() { return get_ref_qobject_type(); } };
-template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return get_qlist_qobject_type(); } };
-template<> struct make_type_t<Ptr<QObject*>> { inline static script::Type get() { return get_ptr_qobject_type(); } };
+template<> struct make_type_t<QObject*> { inline static script::Type get() { return script::Type::QObjectStar; } };
+template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
+template<> struct make_type_t<Ptr<QObject*>> { inline static script::Type get() { return script::Type::PtrQObject; } };
 
 //template<> inline QObject* value_cast(const script::Value & val)
 //{
@@ -42,7 +39,7 @@ template<> struct make_type_t<Ptr<QObject*>> { inline static script::Type get() 
 
 template<> inline script::Value make_value(QObject *obj, script::Engine *e)
 {
-  return make_object(e, get_qobject_type(), obj);
+  return make_ref(e, script::Type::QObjectStar, obj);
 }
 
 extern template QObject* value_cast(const script::Value & val);

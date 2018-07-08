@@ -10,17 +10,13 @@
 #include <QIODevice>
 
 void register_iodevice_class(script::Namespace n);
-script::Type get_iodevice_type();
-
-script::Type get_iodevice_open_mode_flag_type();
-script::Type get_iodevice_open_mode_type();
 
 namespace binding
 {
 
-template<> struct make_type_t<QIODevice> { inline static script::Type get() { return get_iodevice_type(); } };
-template<> struct make_type_t<QIODevice::OpenModeFlag> { inline static script::Type get() { return get_iodevice_open_mode_flag_type(); } };
-template<> struct make_type_t<QIODevice::OpenMode> { inline static script::Type get() { return get_iodevice_open_mode_type(); } };
+template<> struct make_type_t<QIODevice> { inline static script::Type get() { return script::Type::QIODevice; } };
+template<> struct make_type_t<QIODevice::OpenModeFlag> { inline static script::Type get() { return script::Type::QIODeviceOpenModeFlag; } };
+template<> struct make_type_t<QIODevice::OpenMode> { inline static script::Type get() { return script::Type::QIODeviceOpenMode; } };
 
 template<> inline QIODevice* value_cast<QIODevice*>(const script::Value & val)
 {

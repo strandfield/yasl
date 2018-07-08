@@ -13,8 +13,6 @@
 #include <script/interpreter/executioncontext.h>
 #include <script/value.h>
 
-static int qpushbutton_type_id = 0;
-
 namespace callbacks
 {
 
@@ -50,20 +48,15 @@ static script::Value new_pushbutton_text_parent(script::FunctionCall *c)
 
 } // namespace callbacks
 
-script::Type get_qpushbutton_type()
-{
-  return script::Type{ qpushbutton_type_id };
-}
 
 void register_qpushbutton(script::Namespace n)
 {
   using namespace script;
 
-  Class widget = n.engine()->getClass(get_qwidget_type());
+  Class widget = n.engine()->getClass(script::Type::QWidget);
 
-  Class pushbutton = n.newClass(ClassBuilder::New("PushButton").setParent(widget));
+  Class pushbutton = n.newClass(ClassBuilder::New("PushButton").setId(Type::QPushButton).setParent(widget));
   Type pushbutton_type = pushbutton.id();
-  qpushbutton_type_id = pushbutton_type.data();
 
   auto qpushbutton = binding::QClass<QPushButton>{ pushbutton };
   qpushbutton.ctors().add_default();

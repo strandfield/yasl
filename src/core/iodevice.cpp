@@ -15,16 +15,11 @@
 #include <script/interpreter/executioncontext.h>
 #include <script/value.h>
 
-static int iodevice_type_id = 0;
-static int iodevice_open_mode_flag_type_id = 0;
-static int iodevice_open_mode_type_id = 0;
-
 void register_iodevice_open_mode(script::Class iodevice)
 {
   using namespace script;
 
-  Enum open_mode_flag = iodevice.newEnum("OpenModeFlag");
-  iodevice_open_mode_flag_type_id = open_mode_flag.id();
+  Enum open_mode_flag = iodevice.newEnum("OpenModeFlag", Type::QIODeviceOpenModeFlag);
 
   open_mode_flag.addValue("NotOpen", QIODevice::NotOpen);
   open_mode_flag.addValue("ReadOnly", QIODevice::ReadOnly);
@@ -37,33 +32,17 @@ void register_iodevice_open_mode(script::Class iodevice)
   //open_mode_flag.addValue("NewOnly", QIODevice::NewOnly);
   //open_mode_flag.addValue("ExistingOnly", QIODevice::ExistingOnly);
 
-  Class open_mode = register_qflags_type<QIODevice::OpenModeFlag>(iodevice, "OpenMode");
-  iodevice_open_mode_type_id = open_mode.id();
+  Class open_mode = register_qflags_type<QIODevice::OpenModeFlag>(iodevice, "OpenMode", Type::QIODeviceOpenMode);
 }
 
-script::Type get_iodevice_open_mode_flag_type()
-{
-  return script::Type{ iodevice_open_mode_flag_type_id };
-}
-
-script::Type get_iodevice_open_mode_type()
-{
-  return script::Type{ iodevice_open_mode_type_id };
-}
-
-script::Type get_iodevice_type()
-{
-  return script::Type{ iodevice_type_id };
-}
 
 void register_iodevice_class(script::Namespace n)
 {
   using namespace script;
 
-  Class object = n.engine()->getClass(get_qobject_type());
+  Class object = n.engine()->getClass(Type::QObject);
 
-  Class iodevice = n.newClass(ClassBuilder::New("IODevice").setParent(object));
-  iodevice_type_id = iodevice.id();
+  Class iodevice = n.newClass(ClassBuilder::New("IODevice").setId(Type::QIODevice).setParent(object));
 
   register_iodevice_open_mode(iodevice);
 

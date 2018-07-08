@@ -75,21 +75,21 @@ script::Class register_qflags_type_impl(script::Class flags)
 }
 
 template<typename T>
-script::Class register_qflags_type(script::Namespace root, const std::string & name)
+script::Class register_qflags_type(script::Namespace root, const std::string & name, int type_id)
 {
   using namespace script;
 
-  Class flags = root.newClass(ClassBuilder::New(name).setFinal());
+  Class flags = root.newClass(ClassBuilder::New(name).setFinal().setId(type_id));
   register_qflags_type_impl<T>(flags);
   return flags;
 }
 
 template<typename T>
-script::Class register_qflags_type(script::Class c, const std::string & name)
+script::Class register_qflags_type(script::Class c, const std::string & name, int type_id)
 {
   using namespace script;
 
-  Class flags = c.newClass(ClassBuilder::New(name).setFinal());
+  Class flags = c.newClass(ClassBuilder::New(name).setFinal().setId(type_id));
   register_qflags_type_impl<T>(flags);
   return flags;
 }

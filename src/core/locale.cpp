@@ -17,33 +17,11 @@
 #include <script/classtemplate.h>
 #include <script/engine.h>
 
-static int locale_type_id = 0;
-static int ptr_locale_type_id = 0;
-static int list_locale_type_id = 0;
-static int country_type_id = 0;
-static int currency_symbol_format_type_id = 0;
-static int data_size_format_type_id = 0;
-static int data_size_formats_type_id = 0;
-static int floating_point_precision_option_type_id = 0;
-static int format_type_type_id = 0;
-static int language_type_id = 0;
-static int measurement_system_type_id = 0;
-static int number_option_type_id = 0;
-static int number_options_type_id = 0;
-static int quotation_style_type_id = 0;
-static int script_type_id = 0;
-
-script::Type get_country_type()
-{
-  return country_type_id;
-}
-
 static void register_country_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum country = locale.newEnum("Country");
-  country_type_id = country.id();
+  Enum country = locale.newEnum("Country", Type::QLocaleCountry);
 
   country.addValue("AnyCountry", QLocale::AnyCountry);
   country.addValue("Afghanistan", QLocale::Afghanistan);
@@ -315,93 +293,57 @@ static void register_country_enum(script::Class locale)
   country.addValue("SintMaarten", QLocale::SintMaarten);
 }
 
-script::Type get_currency_symbol_format_type()
-{
-  return currency_symbol_format_type_id;
-}
-
 static void register_currency_symbol_format_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum currency_symbol_format = locale.newEnum("CurrencySymbolFormat");
-  currency_symbol_format_type_id = currency_symbol_format.id();
+  Enum currency_symbol_format = locale.newEnum("CurrencySymbolFormat", Type::QLocaleCurrencySymbolFormat);
 
   currency_symbol_format.addValue("CurrencyIsoCode", QLocale::CurrencyIsoCode);
   currency_symbol_format.addValue("CurrencySymbol", QLocale::CurrencySymbol);
   currency_symbol_format.addValue("CurrencyDisplayName", QLocale::CurrencyDisplayName);
 }
 
-script::Type get_data_size_format_type()
-{
-  return data_size_format_type_id;
-}
-
-script::Type get_data_size_formats_type()
-{
-  return data_size_formats_type_id;
-}
-
-
 static void register_data_size_format_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum data_size_format = locale.newEnum("DataSizeFormat");
-  data_size_format_type_id = data_size_format.id();
+  Enum data_size_format = locale.newEnum("DataSizeFormat", Type::QLocaleDataSizeFormat);
 
   data_size_format.addValue("DataSizeIecFormat", QLocale::DataSizeIecFormat);
   data_size_format.addValue("DataSizeTraditionalFormat", QLocale::DataSizeTraditionalFormat);
   data_size_format.addValue("DataSizeSIFormat", QLocale::DataSizeSIFormat);
 
-  Class data_size_formats = register_qflags_type<QLocale::DataSizeFormat>(locale, "DataSizeFormats");
-  data_size_formats_type_id = data_size_formats.id();
+  Class data_size_formats = register_qflags_type<QLocale::DataSizeFormat>(locale, "DataSizeFormats", Type::QLocaleDataSizeFormats);
 }
 
-
-script::Type get_floating_point_precision_option_type()
-{
-  return floating_point_precision_option_type_id;
-}
 
 static void register_floating_point_precision_option_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum floating_point_precision_option = locale.newEnum("FloatingPointPrecisionOption");
-  floating_point_precision_option_type_id = floating_point_precision_option.id();
+  Enum floating_point_precision_option = locale.newEnum("FloatingPointPrecisionOption", Type::QLocaleFloatingPointPrecisionOption);
 
   floating_point_precision_option.addValue("FloatingPointShortest", QLocale::FloatingPointShortest);
-}
-
-script::Type get_format_type_type()
-{
-  return format_type_type_id;
 }
 
 static void register_format_type_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum format_type = locale.newEnum("FormatType");
-  format_type_type_id = format_type.id();
+  Enum format_type = locale.newEnum("FormatType", Type::QLocaleFormatType);
 
   format_type.addValue("LongFormat", QLocale::LongFormat);
   format_type.addValue("ShortFormat", QLocale::ShortFormat);
   format_type.addValue("NarrowFormat", QLocale::NarrowFormat);
 }
 
-script::Type get_language_type()
-{
-  return language_type_id;
-}
 
 static void register_language_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum language = locale.newEnum("Language");
-  language_type_id = language.id();
+  Enum language = locale.newEnum("Language", Type::QLocaleLanguage);
 
   language.addValue("AnyLanguage", QLocale::AnyLanguage);
   language.addValue("C", QLocale::C);
@@ -785,17 +727,12 @@ static void register_language_enum(script::Class locale)
   language.addValue("UncodedLanguages", QLocale::UncodedLanguages);
 }
 
-script::Type get_measurement_system_type()
-{
-  return measurement_system_type_id;
-}
 
 static void register_measurement_system_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum measurement_system = locale.newEnum("MeasurementSystem");
-  measurement_system_type_id = measurement_system.id();
+  Enum measurement_system = locale.newEnum("MeasurementSystem", Type::QLocaleMeasurementSystem);
 
   measurement_system.addValue("MetricSystem", QLocale::MetricSystem);
   measurement_system.addValue("ImperialUSSystem", QLocale::ImperialUSSystem);
@@ -803,22 +740,12 @@ static void register_measurement_system_enum(script::Class locale)
   measurement_system.addValue("ImperialSystem", QLocale::ImperialSystem);
 }
 
-script::Type get_number_option_type()
-{
-  return number_option_type_id;
-}
-
-script::Type get_number_options_type()
-{
-  return number_options_type_id;
-}
 
 static void register_number_option_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum number_option = locale.newEnum("NumberOption");
-  number_option_type_id = number_option.id();
+  Enum number_option = locale.newEnum("NumberOption", Type::QLocaleNumberOption);
 
   number_option.addValue("DefaultNumberOptions", QLocale::DefaultNumberOptions);
   number_option.addValue("OmitGroupSeparator", QLocale::OmitGroupSeparator);
@@ -828,38 +755,25 @@ static void register_number_option_enum(script::Class locale)
   number_option.addValue("IncludeTrailingZeroesAfterDot", QLocale::IncludeTrailingZeroesAfterDot);
   number_option.addValue("RejectTrailingZeroesAfterDot", QLocale::RejectTrailingZeroesAfterDot);
 
-  Class number_options = register_qflags_type<QLocale::NumberOption>(locale, "NumberOptions");
-  number_options_type_id = number_options.id();
+  Class number_options = register_qflags_type<QLocale::NumberOption>(locale, "NumberOptions", Type::QLocaleNumberOptions);
 }
 
-
-script::Type get_quotation_style_type()
-{
-  return quotation_style_type_id;
-}
 
 static void register_quotation_style_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum quotation_style = locale.newEnum("QuotationStyle");
-  quotation_style_type_id = quotation_style.id();
+  Enum quotation_style = locale.newEnum("QuotationStyle", Type::QLocaleQuotationStyle);
 
   quotation_style.addValue("StandardQuotation", QLocale::StandardQuotation);
   quotation_style.addValue("AlternateQuotation", QLocale::AlternateQuotation);
-}
-
-script::Type get_script_type()
-{
-  return script_type_id;
 }
 
 static void register_script_enum(script::Class locale)
 {
   using namespace script;
 
-  Enum script = locale.newEnum("Script");
-  script_type_id = script.id();
+  Enum script = locale.newEnum("Script", Type::QLocaleScript);
 
   script.addValue("AnyScript", QLocale::AnyScript);
   script.addValue("AdlamScript", QLocale::AdlamScript);
@@ -1009,30 +923,14 @@ static void register_script_enum(script::Class locale)
 
 
 
-script::Type get_locale_type()
-{
-  return script::Type{ locale_type_id };
-}
-
-script::Type get_ptr_locale_type()
-{
-  return ptr_locale_type_id;
-}
-
-script::Type get_list_locale_type()
-{
-  return list_locale_type_id;
-}
-
 void register_locale_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class locale = ns.newClass(ClassBuilder::New("Locale").setFinal());
-  locale_type_id = locale.id();
+  Class locale = ns.newClass(ClassBuilder::New("Locale").setFinal().setId(Type::QLocale));
 
-  register_ptr_specialization<QLocale>(get_ptr_template(), &ptr_locale_type_id);
-  register_list_specialization<QLocale>(get_qlist_template(), &list_locale_type_id);
+  register_ptr_specialization<QLocale>(get_ptr_template(), Type::PtrQLocale);
+  register_list_specialization<QLocale>(get_qlist_template(), Type::QListQLocale);
 
   register_country_enum(locale);
   register_currency_symbol_format_enum(locale);

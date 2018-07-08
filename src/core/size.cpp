@@ -8,14 +8,12 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/core/enums.h"
 
-static int qsize_type_id = 0;
 
 void register_qsize(script::Namespace n)
 {
   using namespace script;
 
-  Class size_class = n.newClass(ClassBuilder::New("Size").setFinal());
-  qsize_type_id = size_class.id();
+  Class size_class = n.newClass(ClassBuilder::New("Size").setId(Type::QSize).setFinal());
 
   binding::Class<QSize> s{ size_class };
 
@@ -91,7 +89,3 @@ void register_qsize(script::Namespace n)
   // QDataStream & operator>>(QDataStream &stream, QSize &size)
 }
 
-script::Type get_qsize_type()
-{
-  return qsize_type_id;
-}

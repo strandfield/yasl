@@ -18,10 +18,6 @@
 void register_qlist_template(script::Namespace n);
 script::ClassTemplate get_qlist_template();
 
-script::Type get_qlist_int_type();
-script::Type get_qlist_float_type();
-script::Type get_qlist_double_type();
-
 namespace callbacks
 {
 
@@ -41,7 +37,7 @@ script::Value generic_back(script::FunctionCall *c)
 
 
 template<typename T>
-void register_list_specialization(script::ClassTemplate list_template, int *type_id)
+void register_list_specialization(script::ClassTemplate list_template, script::Type::BuiltInType type_id)
 {
   using namespace script;
 
@@ -49,10 +45,11 @@ void register_list_specialization(script::ClassTemplate list_template, int *type
     TemplateArgument{ binding::make_type<T>() }
   };
 
-  ClassBuilder builder = ClassBuilder::New(std::string{}).setFinal();
+  ClassBuilder builder = ClassBuilder::New(std::string{})
+    .setId(type_id)
+    .setFinal();
 
   Class list = list_template.addSpecialization(targs, builder);
-  *type_id = list.id();
 
   binding::Class<QList<T>> l{ list };
 
@@ -229,9 +226,9 @@ void register_list_specialization(script::ClassTemplate list_template, int *type
 namespace binding
 {
 
-template<> struct make_type_t<QList<int>> { inline static script::Type get() { return get_qlist_int_type(); } };
-template<> struct make_type_t<QList<float>> { inline static script::Type get() { return get_qlist_float_type(); } };
-template<> struct make_type_t<QList<double>> { inline static script::Type get() { return get_qlist_double_type(); } };
+template<> struct make_type_t<QList<int>> { inline static script::Type get() { return script::Type::QListint; } };
+template<> struct make_type_t<QList<float>> { inline static script::Type get() { return script::Type::QListfloat; } };
+template<> struct make_type_t<QList<double>> { inline static script::Type get() { return script::Type::QListdouble; } };
 
 } // namespace binding
 

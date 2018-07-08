@@ -13,23 +13,12 @@
 
 #include <script/engine.h>
 
-static int timezone_type_id = 0;
-static int name_type_type_id = 0;
-static int time_type_type_id = 0;
-static int anonymous_type_id = 0;
-
-
-script::Type get_name_type_type()
-{
-  return name_type_type_id;
-}
 
 static void register_name_type_enum(script::Class timezone)
 {
   using namespace script;
 
-  Enum name_type = timezone.newEnum("NameType");
-  name_type_type_id = name_type.id();
+  Enum name_type = timezone.newEnum("NameType", Type::QTimeZoneNameType);
 
   name_type.addValue("DefaultName", QTimeZone::DefaultName);
   name_type.addValue("LongName", QTimeZone::LongName);
@@ -38,17 +27,11 @@ static void register_name_type_enum(script::Class timezone)
 }
 
 
-script::Type get_time_type_type()
-{
-  return time_type_type_id;
-}
-
 static void register_time_type_enum(script::Class timezone)
 {
   using namespace script;
 
-  Enum time_type = timezone.newEnum("TimeType");
-  time_type_type_id = time_type.id();
+  Enum time_type = timezone.newEnum("TimeType", Type::QTimeZoneTimeType);
 
   time_type.addValue("StandardTime", QTimeZone::StandardTime);
   time_type.addValue("DaylightTime", QTimeZone::DaylightTime);
@@ -56,34 +39,22 @@ static void register_time_type_enum(script::Class timezone)
 }
 
 
-script::Type get_anonymous_type()
-{
-  return anonymous_type_id;
-}
-
 static void register_anonymous_enum(script::Class timezone)
 {
   using namespace script;
 
-  Enum anonymous = timezone.newEnum("anonymous");
-  anonymous_type_id = anonymous.id();
+  Enum anonymous = timezone.newEnum("MinMaxUtcOffsetSecs", Type::QTimeZoneMinUtcOffsetSecs);
 
   anonymous.addValue("MinUtcOffsetSecs", QTimeZone::MinUtcOffsetSecs);
   anonymous.addValue("MaxUtcOffsetSecs", QTimeZone::MaxUtcOffsetSecs);
 }
 
 
-script::Type get_timezone_type()
-{
-  return script::Type{ timezone_type_id };
-}
-
 void register_timezone_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class timezone = ns.newClass(ClassBuilder::New("TimeZone").setFinal());
-  timezone_type_id = timezone.id();
+  Class timezone = ns.newClass(ClassBuilder::New("TimeZone").setId(Type::QTimeZone).setFinal());
 
   register_name_type_enum(timezone);
   register_time_type_enum(timezone);

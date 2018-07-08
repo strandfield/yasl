@@ -10,3 +10,4 @@
 #define LIBSCRIPT_CONFIG_STRING_HEADER "string.header"
 #define LIBSCRIPT_CONFIG_STRING_IMPL_HEADER "string.impl.header"
 #define LIBSCRIPT_CONFIG_STRING_SOURCE "string.src"
+#define LIBSCRIPT_CONFIG_INJECTED_BUILTIN_TYPES "types.injected"
