@@ -54,8 +54,24 @@ struct tag_resolver
 namespace binding
 {
 
+#if defined(YASL_BINDING_COMPILE_TIME_CHECK)
 template<typename T>
-struct make_type_t;
+struct make_type_t
+{
+  inline static script::Type get() = delete;
+};
+#else
+struct UnknownTypeException {};
+template<typename T>
+struct make_type_t
+{
+  inline static script::Type get()
+  {
+    throw UnknownTypeException{};
+  }
+};
+#endif // defined(YASL_BINDING_COMPILE_TIME_CHECK)
+
 
 template<typename T>
 struct make_type_t<T&>
@@ -149,9 +165,19 @@ template<> struct make_type_t<ushort> { inline static script::Type get() { retur
 namespace binding
 {
 
-
+#if defined(YASL_BINDING_COMPILE_TIME_CHECK)
 template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
 struct make_value_t;
+#else
+template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
+struct make_value_t
+{
+  static script::Value make(const T & input, script::Engine *e)
+  {
+    throw std::runtime_error{ "Cannot create value of an unknown type..." };
+  }
+};
+#endif // defined(YASL_BINDING_COMPILE_TIME_CHECK)
 
 template<typename T>
 struct make_value_t<T, small_object_tag>

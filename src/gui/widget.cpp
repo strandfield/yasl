@@ -209,6 +209,7 @@ void register_qwidget(script::Namespace n)
   // void activateWindow();
   widget.add_void_fun<&QWidget::activateWindow>("activateWindow");
   // void addAction(QAction *action);
+  /// widget.add_void_fun<QAction*, &QWidget::addAction>("addAction");
   // void addActions(QList<QAction *> actions);
   // void adjustSize();
   widget.add_void_fun<&QWidget::adjustSize>("adjustSize");

@@ -14,6 +14,14 @@
 #include <script/class.h>
 #include <script/functionbuilder.h>
 
+#if !defined(YASL_BINDING_COMPILE_TIME_CHECK)
+#define YASL_BINDING_BEGIN_RUNTIME_CHECK try {
+#define YASL_BINDING_END_RUNTIME_CHECK } catch(UnknownTypeException &) { return script::Function{}; }
+#else
+#define YASL_BINDING_BEGIN_RUNTIME_CHECK 
+#define YASL_BINDING_END_RUNTIME_CHECK
+#endif // !defined(YASL_BINDING_COMPILE_TIME_CHECK)
+
 namespace binding
 {
 
@@ -154,174 +162,210 @@ public:
   template<typename ReturnType, typename RHS>
   script::Function add()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::AdditionOperator, add_wrapper<const T&, RHS>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename RHS>
   script::Function sub()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::SubstractionOperator, sub_wrapper<const T&, RHS>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function assign()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::AssignmentOperator, assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function add_assign()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::AdditionAssignmentOperator, add_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function sub_assign()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::AdditionAssignmentOperator, sub_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function mul_assign()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::MultiplicationAssignmentOperator, mul_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function div_assign()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::DivisionAssignmentOperator, div_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function eq()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::EqualOperator, eq_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function neq()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::InequalOperator, neq_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function less()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::LessOperator, less_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function leq()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::LessEqualOperator, leq_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function greater()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::GreaterOperator, greater_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function geq()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::GreaterEqualOperator, geq_wrapper<const T&, RHS>)
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename RHS>
   script::Function and()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::BitwiseAndOperator, and_wrapper<const T&, RHS>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename RHS>
   script::Function or()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::BitwiseOrOperator, or_wrapper<const T&, RHS>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function and_assign()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::BitwiseAndAssignmentOperator, and_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename RHS>
   script::Function or_assign()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::BitwiseOrAssignmentOperator, or_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename IndexType>
   script::Function subscript()
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::SubscriptOperator, subscript_wrapper<ReturnType, const T&, IndexType>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<IndexType>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 };
 
@@ -353,34 +397,42 @@ public:
   template<typename ReturnType, ReturnType(T::*fun)()const>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
       .returns(make_return_type<ReturnType>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, ReturnType(T::*fun)()>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<void(T::*fun)()>
   script::Function add_void_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, ReturnType(*fun)(), typename FunType = decltype(fun)>
   script::Function add_static(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   /****************************************************************
@@ -390,47 +442,57 @@ public:
   template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)const>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename A1, void(T::*fun)(A1)>
   script::Function add_void_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename A1, T&(T::*fun)(A1)>
   script::Function add_chainable(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename A1, ReturnType(*fun)(A1), typename FunType = decltype(fun)>
   script::Function add_static(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   /****************************************************************
@@ -440,47 +502,57 @@ public:
   template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)const>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename A1, typename A2, void(T::*fun)(A1, A2)>
   script::Function add_void_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename A1, typename A2, T&(T::*fun)(A1, A2)>
   script::Function add_chainable(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>(), make_type<A2>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2), typename FunType = decltype(fun)>
   script::Function add_static(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   /****************************************************************
@@ -490,47 +562,57 @@ public:
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)const>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename A1, typename A2, typename A3, void(T::*fun)(A1, A2, A3)>
   script::Function add_void_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename A1, typename A2, typename A3, T&(T::*fun)(A1, A2, A3)>
   script::Function add_chainable(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
   script::Function add_static(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   /****************************************************************
@@ -540,47 +622,57 @@ public:
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)const>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
   script::Function add_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename A1, typename A2, typename A3, typename A4, void(T::*fun)(A1, A2, A3, A4)>
   script::Function add_void_fun(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename A1, typename A2, typename A3, typename A4, T&(T::*fun)(A1, A2, A3, A4)>
   script::Function add_chainable(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
   script::Function add_static(const std::string & name)
   {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
       .create();
+    YASL_BINDING_END_RUNTIME_CHECK
   }
 
   /****************************************************************
@@ -592,5 +684,8 @@ public:
 
 
 } // namespace binding
+
+#undef YASL_BINDING_BEGIN_RUNTIME_CHECK 
+#undef YASL_BINDING_END_RUNTIME_CHECK
 
 #endif // YASL_BINDING_CLASS_H

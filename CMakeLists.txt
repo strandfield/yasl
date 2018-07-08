@@ -28,6 +28,11 @@ target_include_directories(libyasl PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(libyasl Qt5::Core)
 target_link_libraries(libyasl Qt5::Widgets)
 
+set(YASL_BINDING_COMPILE_TIME_CHECK FALSE CACHE BOOL "Set to true if you want the binding to be checked at compile-time")
+if(${YASL_BINDING_COMPILE_TIME_CHECK})
+  target_compile_definitions(libyasl PRIVATE -DYASL_BINDING_COMPILE_TIME_CHECK)
+endif()
+
 add_executable(yasl "src/main.cpp")
 target_link_libraries(yasl libyasl)
 
