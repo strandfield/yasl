@@ -24,13 +24,6 @@ public:
 
   static void registerObjectType(const QMetaObject *mo, const script::Type & type);
   static script::Value expose(QObject *obj);
-
-public:
-  script::ClassTemplate getListTemplate() const;
-  void setListTemplate(const script::ClassTemplate & list);
-
-  script::ClassTemplate getPtrTemplate() const;
-  void setPtrTemplate(const script::ClassTemplate & ptr);
   
 protected:
   script::Type get_type(const QMetaObject *mo);
@@ -38,8 +31,6 @@ protected:
 private:
   script::Engine mEngine;
   QMap<const QMetaObject*, script::Type> mTypeMap;
-  script::ClassTemplate mListTemplate;
-  script::ClassTemplate mPtrTemplate;
 
 };
 

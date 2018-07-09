@@ -1,0 +1,14 @@
+
+public:
+
+struct list_template_t {};
+static const list_template_t ListTemplate;
+ClassTemplate getTemplate(list_template_t) const;
+
+struct ptr_template_t {};
+static const ptr_template_t PtrTemplate;
+ClassTemplate getTemplate(ptr_template_t) const;
+
+struct ref_template_t {};
+static const ref_template_t RefTemplate;
+ClassTemplate getTemplate(ref_template_t) const;

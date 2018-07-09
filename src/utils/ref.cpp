@@ -13,6 +13,7 @@
 #include <script/functionbuilder.h>
 #include <script/functiontemplate.h>
 #include <script/namespace.h>
+#include <script/private/engine_p.h>
 #include <script/private/function_p.h>
 #include <script/private/value_p.h>
 
@@ -82,24 +83,11 @@ static script::Class get_qobject_class(script::Engine *e)
   return e->getClass(script::Type::QObject);
 }
 
-static script::ClassTemplate get_ref_template(script::Engine *e)
-{
-  const std::string Ref = "Ref";
-  const auto & tmplts = e->rootNamespace().templates();
-  for (const auto & t : tmplts)
-  {
-    if (t.name() == Ref)
-      return t.asClassTemplate();
-  }
-
-  throw std::runtime_error{ "Could not find Ref class template" };
-}
-
 static script::Class get_ref_instance(const script::Class & qobjectclass)
 {
   using namespace script;
 
-  ClassTemplate ct = get_ref_template(qobjectclass.engine());
+  ClassTemplate ct = qobjectclass.engine()->getTemplate(Engine::RefTemplate);
   std::vector<TemplateArgument> args;
   args.push_back(TemplateArgument{ Type{ qobjectclass.id() } });
   return ct.getInstance(args);
@@ -200,15 +188,16 @@ void register_ref_template(script::Namespace ns)
 
   std::vector<TemplateParameter> params;
   params.push_back(TemplateParameter{ TemplateParameter::TypeParameter{}, "T" });
-  ns.addTemplate(ns.engine()->newClassTemplate("Ref", std::move(params), Scope{ ns }, ref_template));
-
+  ClassTemplate ref = ns.engine()->newClassTemplate("Ref", std::move(params), Scope{ ns }, ref_template);
+  ns.addTemplate(ref);
+  ns.engine()->implementation()->ref_template_ = ref;
 }
 
 script::Class register_ref_specialization(script::Engine *e, script::Type object_type, script::Type::BuiltInType type_id)
 {
   using namespace script;
  
-  auto ref_template = get_ref_template(e);
+  auto ref_template = e->getTemplate(Engine::RefTemplate);
 
   ClassBuilder builder = ClassBuilder::New(std::string{})
     .setId(type_id)

@@ -186,8 +186,8 @@ void register_qwidget(script::Namespace n)
   Type widget_type = qwidget_class.id();
 
   register_ref_specialization(n.engine(), Type::QWidget, Type::QWidgetStar);
-  register_ptr_specialization<QWidget*>(get_ptr_template(), Type::PtrQWidget);
-  register_list_specialization<QWidget*>(get_qlist_template(), Type::QListQWidget);
+  register_ptr_specialization<QWidget*>(n.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQWidget);
+  register_list_specialization<QWidget*>(n.engine()->getTemplate(Engine::ListTemplate), Type::QListQWidget);
 
   auto widget = binding::QClass<QWidget>{ qwidget_class };
   qwidget_class.Constructor(callbacks::widget_ctor).create();

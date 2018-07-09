@@ -214,8 +214,8 @@ void register_qobject(script::Namespace n)
   Type object_type = qobject_class.id();
 
   register_ref_specialization(n.engine(), Type::QObject, Type::QObjectStar);
-  register_ptr_specialization<QObject*>(get_ptr_template(), Type::PtrQObject);
-  register_list_specialization<QObject*>(get_qlist_template(), Type::QListQObject);
+  register_ptr_specialization<QObject*>(n.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQObject);
+  register_list_specialization<QObject*>(n.engine()->getTemplate(Engine::ListTemplate), Type::QListQObject);
 
   auto qobject = binding::QClass<QObject>{ qobject_class };
   qobject.ctors().add_default();

@@ -929,8 +929,8 @@ void register_locale_class(script::Namespace ns)
 
   Class locale = ns.newClass(ClassBuilder::New("Locale").setFinal().setId(Type::QLocale));
 
-  register_ptr_specialization<QLocale>(get_ptr_template(), Type::PtrQLocale);
-  register_list_specialization<QLocale>(get_qlist_template(), Type::QListQLocale);
+  register_ptr_specialization<QLocale>(ns.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQLocale);
+  register_list_specialization<QLocale>(ns.engine()->getTemplate(Engine::ListTemplate), Type::QListQLocale);
 
   register_country_enum(locale);
   register_currency_symbol_format_enum(locale);

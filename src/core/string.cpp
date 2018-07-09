@@ -13,6 +13,6 @@ void register_stringlist_class(script::Namespace n)
 {
   using namespace script;
 
-  register_ptr_specialization<QString>(get_ptr_template(), Type::PtrQString);
-  register_list_specialization<QString>(get_qlist_template(), Type::QStringList);
+  register_ptr_specialization<QString>(n.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQString);
+  register_list_specialization<QString>(n.engine()->getTemplate(Engine::ListTemplate), Type::QStringList);
 }

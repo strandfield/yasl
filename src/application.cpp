@@ -122,26 +122,6 @@ script::Value Application::expose(QObject *obj)
   return ret;
 }
 
-script::ClassTemplate Application::getListTemplate() const
-{
-  return mListTemplate;
-}
-
-void Application::setListTemplate(const script::ClassTemplate & list)
-{
-  mListTemplate = list;
-}
-
-script::ClassTemplate Application::getPtrTemplate() const
-{
-  return mPtrTemplate;
-}
-
-void Application::setPtrTemplate(const script::ClassTemplate & ptr)
-{
-  mPtrTemplate = ptr;
-}
-
 script::Type Application::get_type(const QMetaObject *mo)
 {
   if (mo == nullptr)

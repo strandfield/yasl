@@ -11,6 +11,7 @@
 
 
 #include <script/classtemplate.h>
+#include <script/private/engine_p.h>
 
 
 static script::Value make_list(const QList<ContainerValue> & val, const script::Type & list_type, script::Engine *e)
@@ -766,16 +767,10 @@ void register_qlist_template(script::Namespace n)
   ClassTemplate list_template = n.engine()->newClassTemplate("List", std::move(params), Scope{ n }, list_template_instantiate);
 
   n.addTemplate(list_template);
+  n.engine()->implementation()->list_template_ = list_template;
 
   // Registering full specializations
   register_list_specialization<int>(list_template, Type::QListint);
   register_list_specialization<float>(list_template, Type::QListfloat);
   register_list_specialization<double>(list_template, Type::QListdouble);
-
-  qApp->setListTemplate(list_template);
-}
-
-script::ClassTemplate get_qlist_template()
-{
-  return qApp->getListTemplate();
 }

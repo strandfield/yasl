@@ -11,6 +11,7 @@
 #include <script/interpreter/executioncontext.h>
 #include <script/functionbuilder.h>
 #include <script/namespace.h>
+#include <script/private/engine_p.h>
 #include <script/private/function_p.h>
 #include <script/private/value_p.h>
 
@@ -61,13 +62,9 @@ void register_ptr_template(script::Namespace ns)
   register_ptr_specialization<float>(ptr, Type::Ptrfloat);
   register_ptr_specialization<double>(ptr, Type::Ptrdouble);
   
-  qApp->setPtrTemplate(ptr);
+  ns.engine()->implementation()->ptr_template_ = ptr;
 }
 
-script::ClassTemplate get_ptr_template()
-{
-  return qApp->getPtrTemplate();
-}
 
 void* get_ptr(const script::Value & val)
 {

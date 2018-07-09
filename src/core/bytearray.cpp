@@ -23,8 +23,8 @@ void register_qbytearray(script::Namespace ns)
   Class qbytearray_class = ns.newClass(ClassBuilder::New("ByteArray").setFinal().setId(Type::QByteArray));
   Type bytearray_type = qbytearray_class.id();
 
-  register_ptr_specialization<QByteArray>(get_ptr_template(), Type::PtrQByteArray);
-  register_list_specialization<QByteArray>(get_qlist_template(), Type::QListQByteArray);
+  register_ptr_specialization<QByteArray>(ns.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQByteArray);
+  register_list_specialization<QByteArray>(ns.engine()->getTemplate(Engine::ListTemplate), Type::QListQByteArray);
 
   auto ba = binding::Class<QByteArray>{ qbytearray_class };
   ba.ctors().add_default();

@@ -15,7 +15,6 @@
 #include <QList>
 
 void register_qlist_template(script::Namespace n);
-script::ClassTemplate get_qlist_template();
 
 namespace callbacks
 {
