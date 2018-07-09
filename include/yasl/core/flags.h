@@ -7,7 +7,7 @@
 
 #include "yasl/binding/class.h"
 #include "yasl/binding/utils.h"
-#include "yasl/binding/wraputils.h"
+#include "yasl/binding/macros.h"
 
 #include <script/namespace.h>
 

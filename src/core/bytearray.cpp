@@ -6,7 +6,7 @@
 
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
-#include "yasl/binding/wraputils.h"
+#include "yasl/binding/macros.h"
 #include "yasl/core/list.h"
 
 #include <script/classtemplate.h>

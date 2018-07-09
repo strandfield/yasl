@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_BINDING_WRAPUTILS_H
-#define YASL_BINDING_WRAPUTILS_H
+#ifndef YASL_BINDING_MACROS_H
+#define YASL_BINDING_MACROS_H
 
 #include "yasl/binding/utils.h"
 
@@ -229,4 +229,4 @@
     .returns(Type::ref(binding::make_type<ClassType>()))
 
 
-#endif // YASL_BINDING_WRAPUTILS_H
+#endif // YASL_BINDING_MACROS_H
