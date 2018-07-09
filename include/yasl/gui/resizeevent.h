@@ -9,8 +9,6 @@
 
 #include <QResizeEvent>
 
-void register_qresizeevent(script::Namespace n);
-
 namespace binding
 {
 

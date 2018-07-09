@@ -7,11 +7,7 @@
 
 #include "yasl/binding/types.h"
 
-#include <script/namespace.h>
-
 #include <QTimeZone>
-
-void register_timezone_class(script::Namespace n);
 
 namespace binding
 {

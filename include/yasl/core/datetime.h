@@ -7,11 +7,7 @@
 
 #include "yasl/binding/types.h"
 
-#include <script/namespace.h>
-
 #include <QDateTime>
-
-void register_datetime_class(script::Namespace n);
 
 namespace binding
 {

@@ -9,8 +9,6 @@
 
 #include <QMouseEvent>
 
-void register_qmouseevent(script::Namespace n);
-
 namespace binding
 {
 

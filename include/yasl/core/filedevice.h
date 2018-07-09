@@ -9,8 +9,6 @@
 
 #include <QFileDevice>
 
-void register_filedevice_class(script::Namespace n);
-
 namespace binding
 {
 

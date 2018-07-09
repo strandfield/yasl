@@ -9,8 +9,6 @@
 
 #include <QHideEvent>
 
-void register_qhideevent(script::Namespace n);
-
 namespace binding
 {
 

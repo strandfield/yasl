@@ -9,8 +9,6 @@
 
 #include <QIODevice>
 
-void register_iodevice_class(script::Namespace n);
-
 namespace binding
 {
 

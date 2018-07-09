@@ -9,8 +9,6 @@
 
 #include <QKeyEvent>
 
-void register_qkeyevent(script::Namespace n);
-
 namespace binding
 {
 

@@ -9,8 +9,6 @@
 
 #include <QPaintEvent>
 
-void register_qpaintevent(script::Namespace n);
-
 namespace binding
 {
 

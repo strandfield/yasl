@@ -7,11 +7,7 @@
 
 #include "yasl/binding/types.h"
 
-#include <script/namespace.h>
-
 #include <QSize>
-
-void register_qsize(script::Namespace n);
 
 namespace binding
 {

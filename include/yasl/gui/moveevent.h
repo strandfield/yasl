@@ -9,8 +9,6 @@
 
 #include <QMoveEvent>
 
-void register_qmoveevent(script::Namespace n);
-
 namespace binding
 {
 

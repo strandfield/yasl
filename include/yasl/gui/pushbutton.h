@@ -9,8 +9,6 @@
 
 #include <QPushButton>
 
-void register_qpushbutton(script::Namespace n);
-
 namespace binding
 {
 

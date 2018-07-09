@@ -9,8 +9,6 @@
 
 #include <QShowEvent>
 
-void register_qshowevent(script::Namespace n);
-
 namespace binding
 {
 

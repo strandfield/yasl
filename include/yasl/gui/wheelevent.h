@@ -9,8 +9,6 @@
 
 #include <QWheelEvent>
 
-void register_qwheelevent(script::Namespace n);
-
 namespace binding
 {
 

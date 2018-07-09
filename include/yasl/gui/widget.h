@@ -9,12 +9,8 @@
 #include "yasl/core/object.h"
 #include "yasl/utils/ptr.h"
 
-#include <script/namespace.h>
-
 #include <QWidget>
 
-void register_qwidget(script::Namespace n);
-void register_new_widget_template(script::Namespace n);
 script::Value make_widget(QWidget *widget, script::Engine *e);
 
 class Widget : public QWidget

@@ -9,8 +9,6 @@
 
 #include <QFile>
 
-void register_file_class(script::Namespace n);
-
 namespace binding
 {
 

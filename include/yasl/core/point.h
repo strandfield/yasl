@@ -7,11 +7,7 @@
 
 #include "yasl/binding/types.h"
 
-#include <script/namespace.h>
-
 #include <QPoint>
-
-void register_qpoint(script::Namespace n);
 
 namespace binding
 {

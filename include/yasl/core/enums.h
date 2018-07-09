@@ -6,14 +6,10 @@
 #define YASL_CORE_ENUMS_H
 
 #include "yasl/binding/types.h"
-
 #include "yasl/binding/enum.h"
-
-#include <script/namespace.h>
 
 #include <Qt>
 
-void register_core_enums(script::Namespace n);
 
 namespace binding
 {

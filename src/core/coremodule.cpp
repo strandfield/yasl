@@ -4,26 +4,30 @@
 
 #include "yasl/core/coremodule.h"
 
-#include "yasl/core/bytearray.h"
-#include "yasl/core/enums.h"
-#include "yasl/core/event.h"
-#include "yasl/core/date.h"
-#include "yasl/core/datetime.h"
-#include "yasl/core/file.h"
 #include "yasl/core/list.h"
-#include "yasl/core/locale.h"
-#include "yasl/core/margins.h"
-#include "yasl/core/object.h"
-#include "yasl/core/point.h"
-#include "yasl/core/rect.h"
-#include "yasl/core/size.h"
-#include "yasl/core/time.h"
-#include "yasl/core/timezone.h"
 #include "yasl/utils/ptr.h"
 
 #include <script/module.h>
 
+
+void register_core_enums(script::Namespace n); // defined in enums.cpp
+void register_date_class(script::Namespace n); // defined in date.cpp
+void register_datetime_class(script::Namespace n); // defined in datetime.cpp
+void register_file_class(script::Namespace n); // defined in file.cpp
+void register_filedevice_class(script::Namespace n); // defined in filedevice.cpp
+void register_iodevice_class(script::Namespace n); // defined in iodevice.cpp
+void register_locale_class(script::Namespace n); // defined in locale.cpp
 void register_stringlist_class(script::Namespace n); // defined in string.cpp
+void register_qbytearray(script::Namespace n); // defined in bytearray.cpp
+void register_qevent(script::Namespace n); // defined in event.cpp
+void register_qmargins(script::Namespace n); // defined in margins.cpp
+void register_qobject(script::Namespace n); // defined in object.cpp
+void register_qpoint(script::Namespace n); // defined in point.cpp
+void register_qrect(script::Namespace n); // defined in rect.cpp
+void register_qsize(script::Namespace n); // defined in size.cpp
+void register_time_class(script::Namespace n); // defined in time.cpp
+void register_timezone_class(script::Namespace n); // defined in timezone.cpp
+
 
 void load_core_module(script::Module core)
 {

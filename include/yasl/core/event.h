@@ -6,14 +6,10 @@
 #define YASL_CORE_EVENT_H
 
 #include "yasl/binding/values.h"
-
 #include "yasl/binding/enum.h"
-
-#include <script/namespace.h>
 
 #include <QEvent>
 
-void register_qevent(script::Namespace n);
 script::Value make_event(QEvent *event, script::Engine *engine);
 script::Value make_event(QEvent *event, const script::Type & event_type, script::Engine *engine);
 void clear_event(script::Value & value);

@@ -4,19 +4,20 @@
 
 #include "yasl/gui/guimodule.h"
 
-#include "yasl/gui/closeevent.h"
-#include "yasl/gui/hideevent.h"
-#include "yasl/gui/keyevent.h"
-#include "yasl/gui/mouseevent.h"
-#include "yasl/gui/moveevent.h"
-#include "yasl/gui/pushbutton.h"
-#include "yasl/gui/resizeevent.h"
-#include "yasl/gui/showevent.h"
-#include "yasl/gui/widget.h"
-#include "yasl/gui/wheelevent.h"
-
+#include <script/engine.h>
 #include <script/module.h>
 
+void register_qcloseevent(script::Namespace n); // defined in closeevent.cpp
+void register_qhideevent(script::Namespace n); // defined in hideevent.cpp
+void register_qkeyevent(script::Namespace n); // defined in keyevent.cpp
+void register_qmouseevent(script::Namespace n); // defined in mouseevent.cpp
+void register_qmoveevent(script::Namespace n); // defined in moveevent.cpp
+void register_qpaintevent(script::Namespace n); // defined in paintevent.cpp
+void register_qpushbutton(script::Namespace n); // defined in pushbutton.cpp
+void register_qresizeevent(script::Namespace n); // defined in resizeevent.cpp
+void register_qshowevent(script::Namespace n); // defined in showevent.cpp
+void register_qwheelevent(script::Namespace n); // defined in wheelevent.cpp
+void register_qwidget(script::Namespace n); // defined in widget.cpp
 
 void load_gui_module(script::Module gui)
 {

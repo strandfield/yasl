@@ -7,11 +7,7 @@
 
 #include "yasl/binding/types.h"
 
-#include <script/namespace.h>
-
 #include <QMargins>
-
-void register_qmargins(script::Namespace n);
 
 namespace binding
 {

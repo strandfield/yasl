@@ -6,14 +6,9 @@
 #define YASL_CORE_BYTEARRAY_H
 
 #include "yasl/binding/types.h"
-
 #include "yasl/utils/ptr.h"
 
-#include <script/namespace.h>
-
-class QByteArray;
-
-void register_qbytearray(script::Namespace n);
+#include <QByteArray>
 
 namespace binding
 {

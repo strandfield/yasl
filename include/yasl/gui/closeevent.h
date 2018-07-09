@@ -9,8 +9,6 @@
 
 #include <QCloseEvent>
 
-void register_qcloseevent(script::Namespace n);
-
 namespace binding
 {
 

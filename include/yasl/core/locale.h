@@ -6,14 +6,10 @@
 #define YASL_CORE_LOCALE_H
 
 #include "yasl/binding/types.h"
-
 #include "yasl/utils/ptr.h"
-
-#include <script/namespace.h>
 
 #include <QLocale>
 
-void register_locale_class(script::Namespace n);
 
 namespace binding
 {

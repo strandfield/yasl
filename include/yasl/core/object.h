@@ -9,12 +9,8 @@
 #include "yasl/utils/ptr.h"
 #include "yasl/utils/ref.h"
 
-#include <script/namespace.h>
-#include <script/value.h>
-
 class QObject;
 
-void register_qobject(script::Namespace n);
 QObject* get_qobject(const script::Value & val);
 script::Value make_object(script::Engine *e, script::Type object_type, QObject *value);
 

@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 
 #include "yasl/application.h"
+#include "yasl/binding/values.h"
 #include "yasl/core/coremodule.h"
 #include "yasl/core/size.h"
 

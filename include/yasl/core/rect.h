@@ -7,11 +7,7 @@
 
 #include "yasl/binding/types.h"
 
-#include <script/namespace.h>
-
 #include <QRect>
-
-void register_qrect(script::Namespace n);
 
 namespace binding
 {
