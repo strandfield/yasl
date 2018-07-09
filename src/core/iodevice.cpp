@@ -8,7 +8,6 @@
 #include "yasl/binding/qsignal.h"
 #include "yasl/core/bytearray.h"
 #include "yasl/core/flags.h"
-#include "yasl/utils/typeregistration.h"
 
 #include <script/engine.h>
 #include <script/functionbuilder.h>
@@ -154,5 +153,5 @@ void register_iodevice_class(script::Namespace n)
 
   /* MetaObject resgistration */
 
-  register_object_type(&QIODevice::staticMetaObject, Type{ iodevice.id() });
+  n.engine()->registerQtType(&QIODevice::staticMetaObject, Type{ iodevice.id() });
 }

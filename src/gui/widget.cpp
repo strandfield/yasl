@@ -16,9 +16,7 @@
 #include "yasl/gui/resizeevent.h"
 #include "yasl/gui/showevent.h"
 #include "yasl/gui/wheelevent.h"
-#include "yasl/utils/expose.h"
 #include "yasl/utils/ref.h"
-#include "yasl/utils/typeregistration.h"
 
 #include <script/classtemplate.h>
 #include <script/engine.h>
@@ -614,8 +612,8 @@ void register_qwidget(script::Namespace n)
 
   register_new_widget_template(n);
 
-  register_object_type(&QWidget::staticMetaObject, widget_type);
-  register_object_type(&Widget::staticMetaObject, widget_type);
+  n.engine()->registerQtType(&QWidget::staticMetaObject, widget_type);
+  n.engine()->registerQtType(&Widget::staticMetaObject, widget_type);
 }
 
 

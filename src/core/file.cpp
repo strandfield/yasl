@@ -7,7 +7,6 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/qclass.h"
 #include "yasl/core/bytearray.h"
-#include "yasl/utils/typeregistration.h"
 
 #include <script/engine.h>
 
@@ -75,5 +74,5 @@ void register_file_class(script::Namespace n)
 
   /* MetaObject resgistration */
 
-  register_object_type(&QFile::staticMetaObject, Type{ file.id() });
+  n.engine()->registerQtType(&QFile::staticMetaObject, Type{ file.id() });
 }

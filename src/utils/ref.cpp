@@ -5,7 +5,6 @@
 #include "yasl/utils/ref.h"
 
 #include "yasl/core/object.h"
-#include "yasl/utils/expose.h"
 
 #include <script/classtemplate.h>
 #include <script/engine.h>

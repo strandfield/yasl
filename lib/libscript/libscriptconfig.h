@@ -13,3 +13,4 @@
 #define LIBSCRIPT_CONFIG_INJECTED_BUILTIN_TYPES "types.injected"
 #define LIBSCRIPT_CONFIG_ENGINE_IMPL_INJECTED_HEADERS "engine.impl.header.injected"
 #define LIBSCRIPT_CONFIG_ENGINE_IMPL_INJECTED_MEMBERS "engine.impl.members.injected"
+#define LIBSCRIPT_CONFIG_ENGINE_INJECTED_HEADERS "engine.header.injected"

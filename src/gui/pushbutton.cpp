@@ -6,7 +6,6 @@
 
 #include "yasl/binding/qclass.h"
 #include "yasl/binding/qsignal.h"
-#include "yasl/utils/typeregistration.h"
 
 #include <script/engine.h>
 #include <script/functionbuilder.h>
@@ -142,6 +141,6 @@ void register_qpushbutton(script::Namespace n)
     .params(binding::make_type<const QString &>(), binding::make_type<QWidget*>())
     .create();
 
-  register_object_type(&QPushButton::staticMetaObject, pushbutton_type);
+  n.engine()->registerQtType(&QPushButton::staticMetaObject, pushbutton_type);
 }
 

@@ -7,7 +7,6 @@
 #include "yasl/core/coremodule.h"
 #include "yasl/core/object.h"
 #include "yasl/gui/guimodule.h"
-#include "yasl/utils/expose.h"
 #include "yasl/utils/ref.h"
 
 #include <script/functionbuilder.h>
@@ -72,11 +71,6 @@ Application::Application(int & argc, char **argv)
     .params(script::Type::cref(script::Type::String)).create();
 }
 
-void Application::registerObjectType(const QMetaObject *mo, const script::Type & type)
-{
-  qApp->mTypeMap.insert(mo, type);
-}
-
 void Application::run(const script::SourceFile & src)
 {
   script::Script s = mEngine.newScript(src);
@@ -106,30 +100,4 @@ void Application::interactive()
     else
       mEngine.eval(command);
   }
-}
-
-script::Value Application::expose(QObject *obj)
-{
-  QVariant binding_data = obj->property("_yasl_data_");
-  if (binding_data.isValid())
-    return binding_data.value<binding::BindingData>().value;
-
-  script::Type t = qApp->get_type(obj->metaObject());
-  script::Value ret = qApp->scriptEngine()->uninitialized(t);
-  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  ret.impl()->set_qobject(obj);
-  obj->setProperty("_yasl_data_", QVariant::fromValue(binding::BindingData{ ret }));
-  return ret;
-}
-
-script::Type Application::get_type(const QMetaObject *mo)
-{
-  if (mo == nullptr)
-    return script::Type::Null; /// TODO : throw ?
-
-  script::Type t = mTypeMap.value(mo, script::Type::Null);
-  if (!t.isNull())
-    return t;
-
-  return get_type(mo->superClass());
 }

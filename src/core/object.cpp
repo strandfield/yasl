@@ -6,10 +6,8 @@
 
 #include "yasl/binding/qclass.h"
 #include "yasl/core/list.h"
-#include "yasl/utils/expose.h"
 #include "yasl/utils/ref.h"
 #include "yasl/utils/signals.h"
-#include "yasl/utils/typeregistration.h"
 
 #include <script/classtemplate.h>
 #include <script/engine.h>
@@ -283,7 +281,7 @@ void register_qobject(script::Namespace n)
     qobject_class.addTemplate(emit_template);
   }
 
-  register_object_type(&QObject::staticMetaObject, object_type);
+  n.engine()->registerQtType(&QObject::staticMetaObject, object_type);
 }
 
 QObject* get_qobject(const script::Value & val)

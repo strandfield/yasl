@@ -21,17 +21,9 @@ public:
 
   void run(const script::SourceFile & src);
   void interactive();
-
-  static void registerObjectType(const QMetaObject *mo, const script::Type & type);
-  static script::Value expose(QObject *obj);
   
-protected:
-  script::Type get_type(const QMetaObject *mo);
-
 private:
   script::Engine mEngine;
-  QMap<const QMetaObject*, script::Type> mTypeMap;
-
 };
 
 #if defined(qApp)

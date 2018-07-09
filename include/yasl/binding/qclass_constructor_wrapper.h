@@ -7,8 +7,6 @@
 
 #include "yasl/binding/values.h"
 
-#include "yasl/utils/expose.h"
-
 #include <script/interpreter/executioncontext.h>
 #include <script/private/value_p.h>
 

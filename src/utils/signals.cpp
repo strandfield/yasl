@@ -5,7 +5,6 @@
 #include "yasl/utils/signals.h"
 
 #include "yasl/core/object.h"
-#include "yasl/utils/expose.h"
 
 #include <script/class.h>
 #include <script/engine.h>
@@ -74,37 +73,37 @@ std::shared_ptr<SignalTableClassData> SignalMapper::get_table(script::Class & c)
 
 void SignalMapper::activate()
 {
-  invoke(this->slot, expose(this->receiver), {});
+  invoke(this->slot, this->slot.engine()->expose(this->receiver), {});
 }
 
 void SignalMapper::activate(bool arg)
 {
   script::Engine *e = this->slot.engine();
-  invoke(this->slot, expose(this->receiver), { binding::make_value(arg, e) });
+  invoke(this->slot, e->expose(this->receiver), { binding::make_value(arg, e) });
 }
 
 void SignalMapper::activate(int arg)
 {
   script::Engine *e = this->slot.engine();
-  invoke(this->slot, expose(this->receiver), { binding::make_value(arg, e) });
+  invoke(this->slot, e->expose(this->receiver), { binding::make_value(arg, e) });
 }
 
 void SignalMapper::activate(int a1, qint64 a2)
 {
   script::Engine *e = this->slot.engine();
-  invoke(this->slot, expose(this->receiver), { binding::make_value(a1, e), binding::make_value(a2, e) });
+  invoke(this->slot, e->expose(this->receiver), { binding::make_value(a1, e), binding::make_value(a2, e) });
 }
 
 void SignalMapper::activate(const QString & arg)
 {
   script::Engine *e = this->slot.engine();
-  invoke(this->slot, expose(this->receiver), { binding::make_value(arg, e) });
+  invoke(this->slot, e->expose(this->receiver), { binding::make_value(arg, e) });
 }
 
 void SignalMapper::activate(qint64 arg)
 {
   script::Engine *e = this->slot.engine();
-  invoke(this->slot, expose(this->receiver), { binding::make_value(arg, e) });
+  invoke(this->slot, e->expose(this->receiver), { binding::make_value(arg, e) });
 }
 
 
@@ -135,7 +134,7 @@ void emit_signal(const script::Value & object, const script::Function & sig, con
     if (c.receiver.isNull())
       continue;
 
-    invoke_args[0] = expose(c.receiver.data());
+    invoke_args[0] = e->expose(c.receiver.data());
     script::Value result = e->invoke(c.slot, invoke_args);
     if (!c.slot.returnType().isReference())
       e->destroy(result);
@@ -159,7 +158,7 @@ void emit_signal(const std::vector<script::Value> & args)
     if (c.receiver.isNull())
       continue;
 
-    invoke_args[0] = expose(c.receiver.data());
+    invoke_args[0] = e->expose(c.receiver.data());
     script::Value result = e->invoke(c.slot, invoke_args);
     if (!c.slot.returnType().isReference())
       e->destroy(result);

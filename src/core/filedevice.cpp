@@ -7,7 +7,6 @@
 #include "yasl/binding/qclass.h"
 #include "yasl/core/datetime.h"
 #include "yasl/core/flags.h"
-#include "yasl/utils/typeregistration.h"
 
 #include <script/engine.h>
 
@@ -145,5 +144,5 @@ void register_filedevice_class(script::Namespace n)
 
   /* MetaObject resgistration */
 
-  register_object_type(&QFileDevice::staticMetaObject, Type{ filedevice.id() });
+  n.engine()->registerQtType(&QFileDevice::staticMetaObject, Type{ filedevice.id() });
 }
