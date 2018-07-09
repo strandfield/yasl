@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_LOCALE_H
 #define YASL_CORE_LOCALE_H
 
-#include "yasl/binding/utils.h"
+#include "yasl/binding/types.h"
 
 #include "yasl/utils/ptr.h"
 

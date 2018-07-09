@@ -5,7 +5,6 @@
 #ifndef YASL_BINDING_NAMESPACE_H
 #define YASL_BINDING_NAMESPACE_H
 
-#include "yasl/binding/utils.h"
 #include "yasl/binding/function_wrapper.h"
 
 #include <script/functionbuilder.h>

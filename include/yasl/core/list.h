@@ -7,7 +7,6 @@
 
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
-#include "yasl/binding/utils.h"
 #include "yasl/utils/ptr.h"
 
 #include <script/namespace.h>

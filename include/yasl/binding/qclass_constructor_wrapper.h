@@ -5,7 +5,7 @@
 #ifndef YASL_BINDING_QCLASS_CONSTRUCTOR_WRAPPER_H
 #define YASL_BINDING_QCLASS_CONSTRUCTOR_WRAPPER_H
 
-#include "yasl/binding/utils.h"
+#include "yasl/binding/values.h"
 
 #include "yasl/utils/expose.h"
 

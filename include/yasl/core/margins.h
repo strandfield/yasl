@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_MARGINS_H
 #define YASL_CORE_MARGINS_H
 
-#include "yasl/binding/utils.h"
+#include "yasl/binding/types.h"
 
 #include <script/namespace.h>
 

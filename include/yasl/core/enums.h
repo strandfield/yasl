@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_ENUMS_H
 #define YASL_CORE_ENUMS_H
 
-#include "yasl/binding/utils.h"
+#include "yasl/binding/types.h"
 
 #include "yasl/binding/enum.h"
 

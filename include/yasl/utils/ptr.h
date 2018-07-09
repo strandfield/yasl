@@ -5,7 +5,7 @@
 #ifndef YASL_UTILS_PTR_H
 #define YASL_UTILS_PTR_H
 
-#include "yasl/binding/utils.h"
+#include "yasl/binding/values.h"
 
 namespace script
 {

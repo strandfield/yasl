@@ -5,7 +5,7 @@
 #ifndef YASL_BINDING_MACROS_H
 #define YASL_BINDING_MACROS_H
 
-#include "yasl/binding/utils.h"
+#include "yasl/binding/values.h"
 
 #define _YASL_LAMBDA_FUNCTION_WRAPPER_0(func) [](script::FunctionCall *c) -> script::Value { \
     return binding::make_value(func(), c->engine()); \

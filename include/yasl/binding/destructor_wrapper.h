@@ -5,8 +5,6 @@
 #ifndef YASL_BINDING_DESTRUCTOR_WRAPPER_H
 #define YASL_BINDING_DESTRUCTOR_WRAPPER_H
 
-#include "yasl/binding/utils.h"
-
 #include <script/interpreter/executioncontext.h>
 
 namespace binding

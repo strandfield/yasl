@@ -6,7 +6,6 @@
 #define YASL_CORE_FLAGS_H
 
 #include "yasl/binding/class.h"
-#include "yasl/binding/utils.h"
 #include "yasl/binding/macros.h"
 
 #include <script/namespace.h>

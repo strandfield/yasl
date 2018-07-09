@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_STRING_H
 #define YASL_CORE_STRING_H
 
-#include "yasl/binding/utils.h"
+#include "yasl/binding/types.h"
 #include "yasl/utils/ptr.h"
 
 #include <QStringList>

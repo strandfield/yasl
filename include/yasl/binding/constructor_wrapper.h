@@ -5,7 +5,7 @@
 #ifndef YASL_BINDING_CONSTRUCTOR_WRAPPER_H
 #define YASL_BINDING_CONSTRUCTOR_WRAPPER_H
 
-#include "yasl/binding/utils.h"
+#include "yasl/binding/values.h"
 
 #include <script/interpreter/executioncontext.h>
 
