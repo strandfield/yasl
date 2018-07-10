@@ -28,22 +28,27 @@
 }
 
 
-#define YASL_FUNCTION_0(ns_, name, ReturnType, func) ns_.Function(name, _YASL_LAMBDA_FUNCTION_WRAPPER_0(func)) \
+#define YASL_FUNCTION_0(ns_, name, ReturnType, func) ns_.Function(name) \
+    .setCallback(_YASL_LAMBDA_FUNCTION_WRAPPER_0(func)) \
     .returns(binding::make_type<ReturnType>())
 
-#define YASL_FUNCTION_1(ns_, name, ReturnType, func, A1) ns_.Function(name, _YASL_LAMBDA_FUNCTION_WRAPPER_1(func, A1)) \
+#define YASL_FUNCTION_1(ns_, name, ReturnType, func, A1) ns_.Function(name) \
+    .setCallback(_YASL_LAMBDA_FUNCTION_WRAPPER_1(func, A1)) \
     .params(binding::make_type<A1>()) \
     .returns(binding::make_type<ReturnType>())
 
-#define YASL_FUNCTION_2(ns_, name, ReturnType, func, A1, A2) ns_.Function(name, _YASL_LAMBDA_FUNCTION_WRAPPER_2(func, A1, A2)) \
+#define YASL_FUNCTION_2(ns_, name, ReturnType, func, A1, A2) ns_.Function(name) \
+    .setCallback(_YASL_LAMBDA_FUNCTION_WRAPPER_2(func, A1, A2)) \
     .params(binding::make_type<A1>(), binding::make_type<A2>()) \
     .returns(binding::make_type<ReturnType>())
 
-#define YASL_FUNCTION_3(ns_, name, ReturnType, func, A1, A2, A3) ns_.Function(name, _YASL_LAMBDA_FUNCTION_WRAPPER_3(func, A1, A2, A3)) \
+#define YASL_FUNCTION_3(ns_, name, ReturnType, func, A1, A2, A3) ns_.Function(name) \
+    .setCallback(_YASL_LAMBDA_FUNCTION_WRAPPER_3(func, A1, A2, A3)) \
     .params(binding::make_type<A1>(), binding::make_type<A2>(), binding::make_type<A3>()) \
     .returns(binding::make_type<ReturnType>())
 
-#define YASL_FUNCTION_4(ns_, name, ReturnType, ClassType, func, A1, A2, A3, A4) ns_.Function(name, _YASL_LAMBDA_FUNCTION_WRAPPER_4(func, A1, A2, A3, A4)) \
+#define YASL_FUNCTION_4(ns_, name, ReturnType, ClassType, func, A1, A2, A3, A4) ns_.Function(name) \
+    .setCallback(_YASL_LAMBDA_FUNCTION_WRAPPER_4(func, A1, A2, A3, A4)) \
     .params(binding::make_type<A1>(), binding::make_type<A2>(), binding::make_type<A3>(),  binding::make_type<A4>()) \
     .returns(binding::make_type<ReturnType>())
 
