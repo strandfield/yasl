@@ -135,6 +135,28 @@ public:
       .create();
     YASL_BINDING_END_RUNTIME_CHECK
   }
+
+  template<typename ReturnType, typename LHS, typename RHS>
+  script::Function left_shift()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return namespace_.Operation(script::LeftShiftOperator, left_shift_wrapper<LHS, RHS>)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<LHS>(), make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename LHS, typename RHS>
+  script::Function right_shift()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return namespace_.Operation(script::RightShiftOperator, right_shift_wrapper<LHS, RHS>)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<LHS>(), make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 };
 
 
