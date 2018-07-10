@@ -152,4 +152,10 @@ void ValueImpl::set_enum_value(const EnumValue & evval)
 }
 
 
+
+QObject* Value::toQObject() const
+{
+  return d->data.builtin.qobject;
+}
+
 } // namespace script

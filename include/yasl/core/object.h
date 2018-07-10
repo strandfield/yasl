@@ -11,7 +11,6 @@
 
 class QObject;
 
-QObject* get_qobject(const script::Value & val);
 script::Value make_object(script::Engine *e, script::Type object_type, QObject *value);
 
 namespace callbacks
@@ -28,17 +27,12 @@ template<> struct make_type_t<QObject*> { inline static script::Type get() { ret
 template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
 template<> struct make_type_t<Ptr<QObject*>> { inline static script::Type get() { return script::Type::PtrQObject; } };
 
-//template<> inline QObject* value_cast(const script::Value & val)
-//{
-//  return get_qobject(val);
-//}
-
 template<> inline script::Value make_value(QObject *obj, script::Engine *e)
 {
   return make_ref(e, script::Type::QObjectStar, obj);
 }
 
-extern template QObject* value_cast(const script::Value & val);
+template<> inline QObject* value_cast<QObject*>(const script::Value & val) { return val.toQObject(); }
 template<> inline Ptr<QObject*> value_cast<Ptr<QObject*>>(const script::Value & v) { return static_cast<QObject**>(get_ptr(v)); }
 
 } // namespace binding

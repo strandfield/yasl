@@ -17,7 +17,6 @@ class Value;
 } // namespace script
 
 void register_ptr_template(script::Namespace ns);
-script::ClassTemplate get_ptr_template();
 void* get_ptr(const script::Value & val);
 script::Value make_ptr(script::Engine *e, const script::Type & ptr_type, void *value);
 

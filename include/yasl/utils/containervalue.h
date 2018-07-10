@@ -8,6 +8,7 @@
 #include <script/value.h>
 #include <script/userdata.h>
 
+/// TODO : rename to yasl::ValueTypeInfo ?
 struct ContainerData : public script::UserData
 {
   script::Type element_type;
@@ -18,6 +19,7 @@ struct ContainerData : public script::UserData
   static std::shared_ptr<ContainerData> get(const script::Function & f);
 };
 
+/// TODO : rename to yasl::Value ?
 // gives value semantic to a script::Value
 struct ContainerValue
 {

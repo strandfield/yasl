@@ -21,16 +21,6 @@
 
 #include <QObject>
 
-namespace binding
-{
-
-template<> QObject* value_cast(const script::Value & val)
-{
-  return get_qobject(val);
-}
-
-} // namespace binding
-
 
 namespace callbacks
 {
@@ -282,11 +272,6 @@ void register_qobject(script::Namespace n)
   }
 
   n.engine()->registerQtType(&QObject::staticMetaObject, object_type);
-}
-
-QObject* get_qobject(const script::Value & val)
-{
-  return val.impl()->data.builtin.qobject;
 }
 
 script::Value make_object(script::Engine *e, script::Type object_type, QObject *value)
