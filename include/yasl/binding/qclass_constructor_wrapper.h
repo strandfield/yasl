@@ -8,7 +8,6 @@
 #include "yasl/binding/values.h"
 
 #include <script/interpreter/executioncontext.h>
-#include <script/private/value_p.h>
 
 namespace binding
 {
@@ -25,8 +24,7 @@ struct qclass_constructor_wrapper_t<T> {
   static script::Value wrap(script::FunctionCall *c) {
     script::Value self = c->thisObject();
     T *obj = new T;
-    self.impl()->set_qobject(obj);
-    expose(obj, self);
+    c->engine()->bind(self, obj);
     return self;
   }
 };
@@ -36,8 +34,7 @@ struct qclass_constructor_wrapper_t<T, A1> {
   static script::Value wrap(script::FunctionCall *c) {
     script::Value self = c->thisObject();
     T *obj = new T(value_cast<A1>(c->arg(0)));
-    self.impl()->set_qobject(obj);
-    expose(obj, self);
+    c->engine()->bind(self, obj);
     return self;
   }
 };
@@ -47,8 +44,7 @@ struct qclass_constructor_wrapper_t<T, A1, A2> {
   static script::Value wrap(script::FunctionCall *c) {
     script::Value self = c->thisObject();
     T *obj = new T(value_cast<A1>(c->arg(0)), value_cast<A2>(c->arg(1)));
-    self.impl()->set_qobject(obj);
-    expose(obj, self);
+    c->engine()->bind(self, obj);
     return self;
   }
 };

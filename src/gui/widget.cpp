@@ -40,8 +40,7 @@ static script::Value widget_ctor(script::FunctionCall *c)
 {
   script::Value self = c->thisObject();
   Widget *obj = new Widget();
-  self.impl()->set_qobject(obj);
-  expose(obj, self);
+  c->engine()->bind(self, obj);
   return self;
 }
 
@@ -62,7 +61,7 @@ static script::Value new_widget_window_title(script::FunctionCall *c)
   QWidget *widget = new QWidget;
   widget->setWindowTitle(binding::value_cast<QString>(c->arg(0)));
   v.impl()->set_qobject(widget);
-  expose(widget, v);
+  c->engine()->bind(v, widget);
   v.impl()->type = v.impl()->type.withoutFlag(Type::UninitializedFlag);
   return v;
 }

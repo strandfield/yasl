@@ -11,12 +11,6 @@ void binding::BindingData::set(QObject *obj, const BindingData & d)
   obj->setProperty("_yasl_data_", QVariant::fromValue(d));
 }
 
-void expose(QObject *obj, script::Value val)
-{
-  obj->setProperty("_yasl_data_", QVariant::fromValue(binding::BindingData{ val }));
-}
-
-
 namespace script
 {
 
@@ -70,10 +64,14 @@ Value Engine::expose(QObject *obj)
   script::Type t = get_qt_type(obj->metaObject(), d->qt_type_map);
   script::Value ret = this->uninitialized(t);
   ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  ret.impl()->set_qobject(obj);
-  obj->setProperty("_yasl_data_", QVariant::fromValue(binding::BindingData{ ret }));
+  bind(ret, obj);
   return ret;
 }
 
+void Engine::bind(const Value & val, QObject *obj)
+{
+  val.impl()->set_qobject(obj);
+  obj->setProperty("_yasl_data_", QVariant::fromValue(binding::BindingData{ val }));
+}
 
 } // namespace script

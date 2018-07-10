@@ -277,8 +277,7 @@ void register_qobject(script::Namespace n)
 script::Value make_object(script::Engine *e, script::Type object_type, QObject *value)
 {
   script::Value v = e->uninitialized(object_type);
-  v.impl()->set_qobject(value);
-  expose(value, v);
+  e->bind(v, value);
   v.impl()->type = v.impl()->type.withoutFlag(script::Type::UninitializedFlag);
   return v;
 }
