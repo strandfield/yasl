@@ -45,6 +45,7 @@ endforeach()
 
 add_subdirectory(lib)
 add_subdirectory(tests)
+add_subdirectory(tools)
 #add_subdirectory(examples)
 
 # Copy examples to build directory
