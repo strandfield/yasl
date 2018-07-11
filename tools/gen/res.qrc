@@ -1,0 +1,10 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>assets/class.png</file>
+    <file>assets/enum.png</file>
+	<file>assets/enumerator.png</file>
+	<file>assets/func.png</file>
+	<file>assets/namespace.png</file>
+	<file>assets/var.png</file>
+</qresource>
+</RCC>
