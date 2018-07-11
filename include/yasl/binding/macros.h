@@ -162,24 +162,19 @@
     ref.func(binding::value_cast<A1>(c->arg(1)), binding::value_cast<A2>(c->arg(2)), binding::value_cast<A3>(c->arg(3)), binding::value_cast<A4>(c->arg(4))); return script::Value::Void; \
 }
 
-#define YASL_VOID_METHOD_0(class_, name, ReturnType, ClassType, func) class_.Method(name, _YASL_LAMBDA_VOID_METHOD_WRAPPER_0(ClassType, func)) \
-    .returns(binding::make_type<ReturnType>())
+#define YASL_VOID_METHOD_0(class_, name, ReturnType, ClassType, func) class_.Method(name, _YASL_LAMBDA_VOID_METHOD_WRAPPER_0(ClassType, func))
 
 #define YASL_VOID_METHOD_1(class_, name, ReturnType, ClassType, func, A1) class_.Method(name, _YASL_LAMBDA_VOID_METHOD_WRAPPER_1(ClassType, func, A1)) \
-    .params(binding::make_type<A1>()) \
-    .returns(binding::make_type<ReturnType>())
+    .params(binding::make_type<A1>()) 
 
 #define YASL_VOID_METHOD_2(class_, name, ReturnType, ClassType, func, A1, A2) class_.Method(name, _YASL_LAMBDA_VOID_METHOD_WRAPPER_2(ClassType, func, A1, A2)) \
-    .params(binding::make_type<A1>(), binding::make_type<A2>()) \
-    .returns(binding::make_type<ReturnType>())
+    .params(binding::make_type<A1>(), binding::make_type<A2>())
 
 #define YASL_VOID_METHOD_3(class_, name, ReturnType, ClassType, func, A1, A2, A3) class_.Method(name, _YASL_LAMBDA_VOID_METHOD_WRAPPER_3(ClassType, func, A1, A2, A3)) \
-    .params(binding::make_type<A1>(), binding::make_type<A2>(), binding::make_type<A3>()) \
-    .returns(binding::make_type<ReturnType>())
+    .params(binding::make_type<A1>(), binding::make_type<A2>(), binding::make_type<A3>())
 
 #define YASL_VOID_METHOD_4(class_, name, ReturnType, ClassType, func, A1, A2, A3, A4) class_.Method(name, _YASL_LAMBDA_VOID_METHOD_WRAPPER_4(ClassType, func, A1, A2, A3, A4)) \
-    .params(binding::make_type<A1>(), binding::make_type<A2>(), binding::make_type<A3>(),  binding::make_type<A4>()) \
-    .returns(binding::make_type<ReturnType>())
+    .params(binding::make_type<A1>(), binding::make_type<A2>(), binding::make_type<A3>(),  binding::make_type<A4>())
 
 
 
