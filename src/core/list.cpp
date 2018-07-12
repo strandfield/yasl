@@ -669,7 +669,7 @@ script::Class list_template_instantiate(script::ClassTemplate list_template, con
   list.Method("reserve", callbacks::reserve)
     .params(Type::Int).create();
   // int size() const
-  list.Method("reserve", callbacks::count)
+  list.Method("size", callbacks::count)
     .setConst()
     .returns(Type::Int).create();
   // bool startsWith(const T &value) const
