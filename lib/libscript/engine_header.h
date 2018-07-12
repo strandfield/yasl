@@ -34,4 +34,3 @@ struct LIBSCRIPT_API BindingData
 
 Q_DECLARE_METATYPE(binding::BindingData);
 
-LIBSCRIPT_API void expose(QObject *obj, script::Value val);
