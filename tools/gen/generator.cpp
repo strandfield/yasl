@@ -162,6 +162,7 @@ void Generator::generate(gen::FileRef file)
 
   source_stream << "#include \"yasl/binding/class.h\"" << endl;
   source_stream << "#include \"yasl/binding/enum.h\"" << endl;
+  source_stream << "#include \"yasl/binding/macros.h\"" << endl;
   source_stream << "#include \"yasl/binding/namespace.h\"" << endl;
 
   source_stream << endl;
@@ -286,6 +287,14 @@ void Generator::generate(QTextStream & out, gen::FunctionRef fun)
 
   out << "  // " << fun->displayedName() << endl;
 
+  if (fun->useBindingMacros)
+    generateWithMacros(out, fun);
+  else
+    generateWithTemplates(out, fun);
+}
+
+void Generator::generateWithTemplates(QTextStream & out, gen::FunctionRef fun)
+{
   if (fun->is<gen::Constructor>())
   {
     if (fun->parameters.isEmpty())
@@ -342,6 +351,52 @@ void Generator::generate(QTextStream & out, gen::FunctionRef fun)
 
     out << "&" << nameQualification() << fun->name << ">(\"" << fun->name << "\");" << endl;
   }
+}
+
+void Generator::generateWithMacros(QTextStream & out, gen::FunctionRef fun)
+{
+  auto get_format = [&]() -> QString {
+    if (isMember() && !fun->isStatic)
+    {
+      if (fun->returnType == "void")
+        return "YASL_VOID_METHOD___nb_params__(__script_symbol__, \"__name__\", void, __cpp_class__, __func_name____parameters__)";
+      else if (fun->returnType == enclosingName() + " &")
+        return "YASL_CHAINABLE_METHOD___nb_params__(__script_symbol__, \"__name__\", __return_type__, __cpp_class__, __func_name____parameters__)";
+      else
+        return "YASL_METHOD___nb_params__(__script_symbol__, \"__name__\", __return_type__, __cpp_class__, __func_name____parameters__)";
+    }
+    else
+    {
+      if (fun->returnType == "void")
+        return "YASL_VOID_FUN___nb_params__(__script_symbol__, \"__name__\", void, __func_name____parameters__)";
+      else
+        return "YASL_FUNCTION___nb_params__(__script_symbol__, \"__name__\", __return_type__, __func_name____parameters__)";
+    }
+  };
+
+  if (fun->name.startsWith("operator"))
+  {
+    OperatorSymbol sym = getOperatorSymbol(fun->name);
+    if (sym != Invalid)
+    {
+      out << "  /// TODO !!!" << endl;
+      return;
+    }
+  }
+
+  QString result = get_format()
+    .replace("__nb_params__", QString::number(fun->parameters.size()))
+    .replace("__parameters__", fun->parameters.isEmpty() ? "" : ", " + fun->parameters.join(", "))
+    .replace("__script_symbol__", isMember() ? "binder.class_" : "binder.namespace_")
+    .replace("__name__", fun->name)
+    .replace("__return_type__", fun->returnType)
+    .replace("__cpp_class__", enclosingName())
+    .replace("__func_name__", isMember() && !fun->isStatic ? fun->name : nameQualification() + fun->name)
+    .append(fun->isConst ? ".setConst()" : "")
+    .append(fun->isStatic ? ".setStatic()" : "")
+    .append(".create()");
+
+  out << "  " << result << ";" << endl;
 }
 
 void Generator::generateOperator(QTextStream & out, gen::FunctionRef fun, OperatorSymbol op)

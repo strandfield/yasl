@@ -74,6 +74,8 @@ private:
   void generate(QTextStream & out, gen::FileRef file);
   void generate(QTextStream & out, gen::ClassRef cla);
   void generate(QTextStream & out, gen::FunctionRef fun);
+  void generateWithTemplates(QTextStream & out, gen::FunctionRef fun);
+  void generateWithMacros(QTextStream & out, gen::FunctionRef fun);
   void generateOperator(QTextStream & out, gen::FunctionRef fun, OperatorSymbol op);
   void generate(QTextStream & out, gen::EnumRef enm);
   void generate(QTextStream & out, gen::NamespaceRef ns);

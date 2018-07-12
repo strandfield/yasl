@@ -72,6 +72,7 @@ struct Function : public Node
   bool isStatic;
   bool isConst;
   bool isDeleted;
+  bool useBindingMacros;
 
   QString displayedName() const override;
 };

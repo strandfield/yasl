@@ -30,8 +30,8 @@ GeneratePage::GeneratePage()
   hl->addWidget(importSettingsButton);
 
   selectionTreeWidget = new QTreeWidget();
-  selectionTreeWidget->setColumnCount(1);
-  selectionTreeWidget->setHeaderLabels(QStringList{ QString{ "Symbol" } });
+  selectionTreeWidget->setColumnCount(2);
+  selectionTreeWidget->setHeaderLabels(QStringList{ QString{ "Symbol" }, "Macro" });
   l->addWidget(selectionTreeWidget);
 
   connect(selectionTreeWidget, SIGNAL(itemChanged(QTreeWidgetItem *, int)), this, SLOT(updateItem(QTreeWidgetItem*, int)));
@@ -130,6 +130,7 @@ void GeneratePage::fillTreeWidget(QTreeWidgetItem *parent, gen::NodeRef node)
   else if (node->is<gen::Function>() || node->is<gen::Constructor>())
   {
     item->setIcon(0, QIcon(":/assets/func.png"));
+    item->setCheckState(1, node->as<gen::Function>().useBindingMacros ? Qt::Checked : Qt::Unchecked);
   }
   else if (node->is<gen::Enum>())
   {
@@ -154,6 +155,12 @@ void GeneratePage::updateItem(QTreeWidgetItem *item, int column)
     return;
 
   node->checkState = item->checkState(0);
+  
+  if (node->is<gen::Function>())
+  {
+    node->as<gen::Function>().useBindingMacros = item->checkState(1) == Qt::Checked;
+  }
+
   updateCheckState(item);
 }
 

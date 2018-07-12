@@ -40,6 +40,7 @@ Function::Function(const QString & n)
   , isStatic(false)
   , isConst(false)
   , isDeleted(false)
+  , useBindingMacros(false)
 {
 
 }
@@ -291,6 +292,10 @@ static CXChildVisitResult class_visitor(CXCursor cursor, CXCursor parent, CXClie
 
     auto type = clang_getCursorType(cursor);
     func->returnType = convert(clang_getTypeSpelling(clang_getResultType(type)));
+
+    CXCallingConv calling_convention = clang_getFunctionTypeCallingConv(type);
+    if (calling_convention == CXCallingConv_X86FastCall)
+      func->useBindingMacros = true;
 
     const int num_args = clang_Cursor_getNumArguments(cursor);
     for (int i = 0; i < num_args; ++i)
