@@ -453,6 +453,16 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<void(*fun)(), typename FunType = decltype(fun)>
+  script::Function add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   /****************************************************************
   1-arg member functions
   ****************************************************************/
@@ -508,6 +518,17 @@ public:
     return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, void(*fun)(A1), typename FunType = decltype(fun)>
+  script::Function add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
       .params(make_type<A1>())
       .create();
     YASL_BINDING_END_RUNTIME_CHECK
@@ -573,6 +594,17 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename A1, typename A2, void(*fun)(A1, A2), typename FunType = decltype(fun)>
+  script::Function add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   /****************************************************************
   3-arg member functions
   ****************************************************************/
@@ -633,6 +665,17 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename A1, typename A2, typename A3, void(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
+  script::Function add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   /****************************************************************
   4-arg member functions
   ****************************************************************/
@@ -688,6 +731,17 @@ public:
     return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, void(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
+  script::Function add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
       .create();
     YASL_BINDING_END_RUNTIME_CHECK
