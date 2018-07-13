@@ -153,6 +153,21 @@ struct void_member_wrapper_t<void(ClassType::*)(A1, A2, A3, A4), f> {
   }
 };
 
+/****************************************************************
+const void member functions
+****************************************************************/
+
+template<typename MemberType, MemberType f>
+struct const_void_member_wrapper_t;
+
+template<typename ClassType, void(ClassType::*f)()const>
+struct const_void_member_wrapper_t<void(ClassType::*)()const, f> {
+  static script::Value wrap(script::FunctionCall *c) {
+    ClassType & ref = *value_cast<ClassType*>(c->arg(0));
+    ((ref).*(f))();
+    return script::Value::Void;
+  }
+};
 
 /****************************************************************
 "chainable" member functions

@@ -433,6 +433,16 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<void(T::*fun)() const>
+  script::Function add_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+    return class_.Method(name, const_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   template<void(T::*fun)()>
   script::Function add_void_fun(const std::string & name)
   {
