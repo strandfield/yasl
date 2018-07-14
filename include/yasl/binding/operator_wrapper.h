@@ -148,7 +148,7 @@ script::Value left_shift_wrapper(script::FunctionCall *c)
 template<typename LHS, typename RHS>
 script::Value right_shift_wrapper(script::FunctionCall *c)
 {
-  return make_value(value_cast<LHS>(c->arg(0)) << value_cast<RHS>(c->arg(1)), c->engine());
+  return make_value(value_cast<LHS>(c->arg(0)) >> value_cast<RHS>(c->arg(1)), c->engine());
 }
 
 } // namespace binding
