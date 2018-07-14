@@ -151,6 +151,20 @@ script::Value right_shift_wrapper(script::FunctionCall *c)
   return make_value(value_cast<LHS>(c->arg(0)) >> value_cast<RHS>(c->arg(1)), c->engine());
 }
 
+template<typename LHS, typename RHS>
+script::Value put_to_wrapper(script::FunctionCall *c)
+{
+  value_cast<LHS>(c->arg(0)) << value_cast<RHS>(c->arg(1));
+  return c->arg(0);
+}
+
+template<typename LHS, typename RHS>
+script::Value read_from_wrapper(script::FunctionCall *c)
+{
+  value_cast<LHS>(c->arg(0)) >> value_cast<RHS>(c->arg(1));
+  return c->arg(0);
+}
+
 } // namespace binding
 
 #endif // YASL_BINDING_OPERATOR_WRAPPER_H
