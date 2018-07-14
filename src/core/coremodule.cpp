@@ -17,6 +17,7 @@ void register_date_class(script::Namespace n); // defined in date.cpp
 void register_datetime_class(script::Namespace n); // defined in datetime.cpp
 void register_file_class(script::Namespace n); // defined in file.cpp
 void register_filedevice_class(script::Namespace n); // defined in filedevice.cpp
+void register_fileinfo_file(script::Namespace root); // defined in fileinfo.cpp
 void register_iodevice_class(script::Namespace n); // defined in iodevice.cpp
 void register_locale_class(script::Namespace n); // defined in locale.cpp
 void register_stringlist_class(script::Namespace n); // defined in string.cpp
@@ -56,6 +57,7 @@ void load_core_module(script::Module core)
   register_iodevice_class(core.root());
   register_filedevice_class(core.root());
   register_file_class(core.root());
+  register_fileinfo_file(core.root());
 }
 
 void cleanup_core_module(script::Module core)
