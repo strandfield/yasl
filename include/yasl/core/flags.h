@@ -27,6 +27,8 @@ script::Class register_qflags_type_impl(script::Class flags)
   f.ctors().add<int>();
   // QFlags(std::initializer_list<T> flags)
   /// TODO !!
+  // ~QFlags();
+  f.add_dtor();
 
   // QFlags<T> & setFlag(T flag, bool on = true);
   //f.add_chainable<T, bool, &QFlags<T>::setFlag>("setFlag");
