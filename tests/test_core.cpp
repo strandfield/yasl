@@ -62,7 +62,8 @@ TEST(CoreModule, all) {
   using namespace script;
 
   QStringList files;
-  files << "../char.y" << "../dir.y" << "../fileinfo.y" << "../line.y";
+  files << "../char.y" << "../dir.y" << "../fileinfo.y" << "../line.y"
+    << "../regularexpression.y";
 
   for (const auto & f : files)
   {
