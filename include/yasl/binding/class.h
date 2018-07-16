@@ -510,6 +510,16 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename A1, void(T::*fun)(A1) const>
+  script::Function add_const_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, const_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   template<typename A1, T&(T::*fun)(A1)>
   script::Function add_chainable(const std::string & name)
   {
