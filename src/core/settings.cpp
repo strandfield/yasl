@@ -10,6 +10,8 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
+#include "yasl/core/variant.h"
+
 #include <QTextCodec>
 
 static void register_settings_format_enum(script::Class settings)
