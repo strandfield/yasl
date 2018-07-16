@@ -9,6 +9,7 @@
 #include <script/function.h>
 #include <script/literals.h>
 #include <script/name.h>
+#include <script/operator.h>
 
 #include <QDebug>
 #include <QJsonArray>
