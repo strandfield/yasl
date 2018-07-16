@@ -73,7 +73,9 @@ static void register_settings_class(script::Namespace ns)
   register_settings_status_enum(settings);
   binding::QClass<QSettings> binder{ settings };
   binding::Class<QSettings> static_binder{ settings };
-
+  
+  // ~QSettings();
+  binder.add_dtor();
   // QSettings(const QString &, const QString &, QObject *);
   binder.ctors().add<const QString &, const QString &, QObject *>();
   // QSettings(QSettings::Scope, const QString &, const QString &, QObject *);
