@@ -30,6 +30,7 @@ void register_qobject(script::Namespace n); // defined in object.cpp
 void register_qpoint(script::Namespace n); // defined in point.cpp
 void register_qrect(script::Namespace n); // defined in rect.cpp
 void register_qsize(script::Namespace n); // defined in size.cpp
+void register_settings_file(script::Namespace n); // defined in settings.cpp
 void register_time_class(script::Namespace n); // defined in time.cpp
 void register_timezone_class(script::Namespace n); // defined in timezone.cpp
 
@@ -62,6 +63,7 @@ void load_core_module(script::Module core)
   register_file_class(core.root());
   register_fileinfo_file(core.root());
   register_line_file(core.root());
+  register_settings_file(core.root());
 }
 
 void cleanup_core_module(script::Module core)
