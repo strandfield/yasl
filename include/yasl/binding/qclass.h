@@ -56,6 +56,33 @@ public:
       .params(make_type<A1>(), make_type<A2>()).create();
     YASL_BINDING_END_RUNTIME_CHECK
   }
+
+  template<typename A1, typename A2, typename A3>
+  void add()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      class_.Constructor(qclass_constructor_wrapper_t<T, A1, A2, A3>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>()).create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4>
+  void add()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      class_.Constructor(qclass_constructor_wrapper_t<T, A1, A2, A3, A4>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>()).create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5>
+  void add()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      class_.Constructor(qclass_constructor_wrapper_t<T, A1, A2, A3, A4, A5>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>()).create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 };
 
 template<typename T>
