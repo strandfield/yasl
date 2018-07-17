@@ -15,6 +15,7 @@
 #include <script/private/engine_p.h>
 #include <script/private/function_p.h>
 #include <script/private/value_p.h>
+#include <script/templatebuilder.h>
 
 #include <QObject>
 
@@ -187,8 +188,13 @@ void register_ref_template(script::Namespace ns)
 
   std::vector<TemplateParameter> params;
   params.push_back(TemplateParameter{ TemplateParameter::TypeParameter{}, "T" });
-  ClassTemplate ref = ns.engine()->newClassTemplate("Ref", std::move(params), Scope{ ns }, ref_template);
-  ns.addTemplate(ref);
+
+  ClassTemplate ref = Symbol{ ns }.ClassTemplate("Ref")
+    .setParams(std::move(params))
+    .setScope(Scope{ ns })
+    .setCallback(ref_template)
+    .get();
+
   ns.engine()->implementation()->ref_template_ = ref;
 }
 

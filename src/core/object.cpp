@@ -16,6 +16,7 @@
 #include <script/functiontype.h>
 #include <script/interpreter/executioncontext.h>
 #include <script/templateargumentdeduction.h>
+#include <script/templatebuilder.h>
 #include <script/value.h>
 #include <script/private/value_p.h>
 
@@ -254,10 +255,11 @@ void register_qobject(script::Namespace n)
       TemplateParameter{ TemplateParameter::TypeParameter{}, "SlotType" },
     };
 
-    FunctionTemplate connect_template = n.engine()->newFunctionTemplate("connect", std::move(params), Scope{ n },
-      connect_template_deduce, connect_template_substitute, connect_template_instantiate);
-
-    qobject_class.addTemplate(connect_template);
+    Symbol{ qobject_class }.FunctionTemplate("connect")
+      .setParams(std::move(params))
+      .setScope(Scope{ n })
+      .deduce(connect_template_deduce).substitute(connect_template_substitute).instantiate(connect_template_instantiate)
+      .create();
   }
 
   {
@@ -265,10 +267,11 @@ void register_qobject(script::Namespace n)
       TemplateParameter{ TemplateParameter::TypeParameter{}, "SignalType" },
     };
 
-    FunctionTemplate emit_template = n.engine()->newFunctionTemplate("emit", std::move(params), Scope{ n },
-      emit_template_deduce, emit_template_substitute, emit_template_instantiate);
-
-    qobject_class.addTemplate(emit_template);
+    Symbol{ qobject_class }.FunctionTemplate("emit")
+      .setParams(std::move(params))
+      .setScope(Scope{ n })
+      .deduce(emit_template_deduce).substitute(emit_template_substitute).instantiate(emit_template_instantiate)
+      .create();
   }
 
   n.engine()->registerQtType(&QObject::staticMetaObject, object_type);

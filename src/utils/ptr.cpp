@@ -14,6 +14,7 @@
 #include <script/private/engine_p.h>
 #include <script/private/function_p.h>
 #include <script/private/value_p.h>
+#include <script/templatebuilder.h>
 
 namespace callbacks
 {
@@ -54,7 +55,11 @@ void register_ptr_template(script::Namespace ns)
     TemplateParameter{TemplateParameter::TypeParameter{}, "T"}
   };
 
-  ClassTemplate ptr = ns.engine()->newClassTemplate("Ptr", std::move(params), Scope{ ns }, ptr_template_instantiate);
+  ClassTemplate ptr = Symbol{ ns }.ClassTemplate("Ptr")
+    .setParams(std::move(params))
+    .setScope(Scope{ ns })
+    .setCallback(ptr_template_instantiate)
+    .get();
 
   register_ptr_specialization<bool>(ptr, Type::Ptrbool);
   register_ptr_specialization<char>(ptr, Type::Ptrchar);

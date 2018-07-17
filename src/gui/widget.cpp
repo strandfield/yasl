@@ -25,6 +25,7 @@
 #include <script/interpreter/executioncontext.h>
 #include <script/overloadresolution.h>
 #include <script/templateargumentdeduction.h>
+#include <script/templatebuilder.h>
 #include <script/userdata.h>
 #include <script/value.h>
 #include <script/private/value_p.h>
@@ -743,8 +744,12 @@ void register_new_widget_template(script::Namespace n)
   std::vector<TemplateParameter> params;
   params.push_back(TemplateParameter{ TemplateParameter::TypeParameter{}, "T" });
   params.push_back(TemplateParameter{ TemplateParameter::TypeParameter{}, TemplateParameter::ParameterPack{}, "Args" });
-  FunctionTemplate new_widget = n.engine()->newFunctionTemplate("newWidget", std::move(params), Scope{ n }, new_widget_deduce, new_widget_substitute, new_widget_instantitate);
-  n.addTemplate(new_widget);
+
+  FunctionTemplate new_widget = Symbol{ n }.FunctionTemplate("newWidget")
+    .setParams(std::move(params))
+    .setScope(Scope{ n })
+    .deduce(new_widget_deduce).substitute(new_widget_substitute).instantiate(new_widget_instantitate)
+    .get();
 }
 
 script::Value make_widget(QWidget *widget, script::Engine *e)

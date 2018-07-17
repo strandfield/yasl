@@ -12,7 +12,7 @@
 
 #include <script/classtemplate.h>
 #include <script/private/engine_p.h>
-
+#include <script/templatebuilder.h>
 
 static script::Value make_list(const QList<ContainerValue> & val, const script::Type & list_type, script::Engine *e)
 {
@@ -764,9 +764,13 @@ void register_qlist_template(script::Namespace n)
   std::vector<TemplateParameter> params{
     TemplateParameter{TemplateParameter::TypeParameter{}, "T"},
   };
-  ClassTemplate list_template = n.engine()->newClassTemplate("List", std::move(params), Scope{ n }, list_template_instantiate);
 
-  n.addTemplate(list_template);
+  ClassTemplate list_template = Symbol{ n }.ClassTemplate("List")
+    .setParams(std::move(params))
+    .setScope(Scope{ n })
+    .setCallback(list_template_instantiate)
+    .get();
+
   n.engine()->implementation()->list_template_ = list_template;
 
   // Registering full specializations
