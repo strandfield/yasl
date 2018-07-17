@@ -17,6 +17,7 @@
 #include "yasl/core/rect.h"
 #include "yasl/core/regularexpression.h"
 #include "yasl/core/size.h"
+#include "yasl/core/url.h"
 
 #include <QBitArray>
 #include <QDataStream>
@@ -28,7 +29,6 @@
 #include <QJsonValue>
 #include <QModelIndex>
 #include <QPersistentModelIndex>
-#include <QUrl>
 #include <QUuid>
 
 static void register_variant_type_enum(script::Class variant)

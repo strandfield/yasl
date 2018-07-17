@@ -63,7 +63,7 @@ TEST(CoreModule, all) {
 
   QStringList files;
   files << "../char.y" << "../dir.y" << "../fileinfo.y" << "../line.y"
-    << "../regularexpression.y" << "../variant.y";
+    << "../regularexpression.y" << "../variant.y" << "../url.y";
 
   for (const auto & f : files)
   {
