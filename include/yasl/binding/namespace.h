@@ -201,6 +201,28 @@ public:
       .create();
     YASL_BINDING_END_RUNTIME_CHECK
   }
+
+  template<typename LHS, typename RHS>
+  script::Function or_assign()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return namespace_.Operation(script::BitwiseOrAssignmentOperator, or_assign_wrapper<LHS, RHS>)
+      .returns(make_type<LHS&>())
+      .params(make_type<LHS>(), make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename LHS, typename RHS>
+  script::Function and_assign()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return namespace_.Operation(script::BitwiseAndAssignmentOperator, and_assign_wrapper<LHS, RHS>)
+      .returns(make_type<LHS&>())
+      .params(make_type<LHS>(), make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 };
 
 
