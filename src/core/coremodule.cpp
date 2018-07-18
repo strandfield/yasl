@@ -34,6 +34,7 @@ void register_settings_file(script::Namespace n); // defined in settings.cpp
 void register_time_class(script::Namespace n); // defined in time.cpp
 void register_timezone_class(script::Namespace n); // defined in timezone.cpp
 void register_url_file(script::Namespace n); // defined in url.cpp
+void register_urlquery_file(script::Namespace n); // defined urlquery.cpp
 void register_variant_file(script::Namespace n); // defined in variant.cpp
 
 
@@ -67,6 +68,7 @@ void load_core_module(script::Module core)
   register_line_file(core.root());
   register_settings_file(core.root());
   register_url_file(core.root());
+  register_urlquery_file(core.root());
   register_variant_file(core.root());
 }
 

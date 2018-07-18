@@ -11,10 +11,10 @@
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/flags.h"
+#include "yasl/core/urlquery.h"
 
 #include <QDataStream>
 #include <QDebug>
-#include <QUrlQuery>
 
 static void register_url_component_formatting_option_enum(script::Class url)
 {
