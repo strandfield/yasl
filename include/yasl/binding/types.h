@@ -40,11 +40,29 @@ struct make_type_t<T&>
 };
 
 template<typename T>
+struct make_type_t<const T>
+{
+  inline static script::Type get()
+  {
+    return make_type_t<T>::get().withFlag(script::Type::ConstFlag);
+  }
+};
+
+template<typename T>
 struct make_type_t<const T&>
 {
   inline static script::Type get()
   {
     return script::Type::cref(make_type_t<T>::get());
+  }
+};
+
+template<typename T>
+struct make_type_t<const T*>
+{
+  inline static script::Type get()
+  {
+    return make_type_t<T*>::get().withFlag(script::Type::ConstFlag);
   }
 };
 
