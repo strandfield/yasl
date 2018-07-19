@@ -33,6 +33,7 @@ template<> inline script::Value make_value(QObject *obj, script::Engine *e)
 }
 
 template<> inline QObject* value_cast<QObject*>(const script::Value & val) { return val.toQObject(); }
+template<> inline const QObject* value_cast<const QObject*>(const script::Value & val) { return val.toQObject(); }
 template<> inline Ptr<QObject*> value_cast<Ptr<QObject*>>(const script::Value & v) { return static_cast<QObject**>(get_ptr(v)); }
 
 } // namespace binding
