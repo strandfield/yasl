@@ -18,6 +18,7 @@
 #include "yasl/gui/wheelevent.h"
 #include "yasl/utils/ref.h"
 
+#include <script/classbuilder.h>
 #include <script/classtemplate.h>
 #include <script/engine.h>
 #include <script/functionbuilder.h>
@@ -180,7 +181,7 @@ void register_qwidget(script::Namespace n)
 
   Class qobject_class = n.engine()->getClass(script::Type::QObject);
 
-  Class qwidget_class = n.newClass(ClassBuilder::New("Widget").setId(Type::QWidget).setParent(qobject_class));
+  Class qwidget_class = n.Class("Widget").setId(Type::QWidget).setBase(qobject_class).get();
   Type widget_type = qwidget_class.id();
 
   register_ref_specialization(n.engine(), Type::QWidget, Type::QWidgetStar);

@@ -12,13 +12,14 @@
 #include "yasl/core/time.h"
 #include "yasl/core/timezone.h"
 
+#include <script/classbuilder.h>
 #include <script/engine.h>
 
 void register_datetime_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class datetime = ns.newClass(ClassBuilder::New("DateTime").setId(Type::QDateTime).setFinal());
+  Class datetime = ns.Class("DateTime").setId(Type::QDateTime).setFinal().get();
 
   binding::Class<QDateTime> binder{ datetime };
 

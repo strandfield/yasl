@@ -8,13 +8,14 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/core/enums.h"
 
+#include <script/classbuilder.h>
 #include <script/engine.h>
 
 void register_time_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class time = ns.newClass(ClassBuilder::New("Time").setId(Type::QTime).setFinal());
+  Class time = ns.Class("Time").setId(Type::QTime).setFinal().get();
 
   binding::Class<QTime> binder{ time };
 

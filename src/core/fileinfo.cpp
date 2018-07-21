@@ -9,6 +9,8 @@
 #include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
+#include <script/classbuilder.h>
+
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
@@ -17,7 +19,7 @@ static void register_file_info_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class file_info = ns.newClass(ClassBuilder::New("FileInfo").setId(script::Type::QFileInfo));
+  Class file_info = ns.Class("FileInfo").setId(script::Type::QFileInfo).get();
 
   binding::Class<QFileInfo> binder{ file_info };
 

@@ -8,7 +8,7 @@
 
 #include <script/engine.h>
 #include <script/class.h>
-
+#include <script/classbuilder.h>
 
 int bar()
 {
@@ -61,7 +61,7 @@ TEST(BindingTests, class_1) {
   Engine e;
   e.setup();
 
-  Class point_class = e.rootNamespace().newClass(ClassBuilder::New("Point"));
+  Class point_class = e.rootNamespace().Class("Point").get();
 
   auto point = binding::Class<Point>{ point_class };
   point.ctors().add_default();

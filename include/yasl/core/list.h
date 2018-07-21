@@ -43,11 +43,10 @@ void register_list_specialization(script::ClassTemplate list_template, script::T
     TemplateArgument{ binding::make_type<T>() }
   };
 
-  ClassBuilder builder = ClassBuilder::New(std::string{})
+  Class list = list_template.Specialization(std::move(targs))
     .setId(type_id)
-    .setFinal();
-
-  Class list = list_template.addSpecialization(targs, builder);
+    .setFinal()
+    .get();
 
   binding::Class<QList<T>> l{ list };
 

@@ -8,13 +8,14 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/core/enums.h"
 
+#include <script/classbuilder.h>
 #include <script/engine.h>
 
 void register_date_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class date = ns.newClass(ClassBuilder::New("Date").setId(Type::QDate).setFinal());
+  Class date = ns.Class("Date").setId(Type::QDate).setFinal().get();
 
   binding::Class<QDate> binder{ date };
 

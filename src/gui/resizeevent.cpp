@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/core/size.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -27,7 +28,7 @@ void register_qresizeevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class resizeevent = root.newClass(ClassBuilder::New("ResizeEvent").setId(Type::QResizeEvent).setParent(event).setFinal());
+  Class resizeevent = root.Class("ResizeEvent").setId(Type::QResizeEvent).setBase(event).setFinal().get();
   
   binding::Class<QResizeEvent> qresizeevent{ resizeevent };
   // QResizeEvent(const QSize & size, const QSize & oldSize);

@@ -7,6 +7,7 @@
 #include "yasl/core/object.h"
 
 #include <script/classtemplate.h>
+#include <script/classtemplateinstancebuilder.h>
 #include <script/engine.h>
 #include <script/interpreter/executioncontext.h>
 #include <script/functionbuilder.h>
@@ -152,29 +153,27 @@ static void fill_ref_instance(script::Class & instance, const script::Class & qc
 }
 
 
-script::Class ref_template(script::ClassTemplate ref, const std::vector<script::TemplateArgument> & targs)
+script::Class ref_template(script::ClassTemplateInstanceBuilder & builder)
 {
   /// TODO: should we throw on failure
 
   using namespace script;
 
-  if (targs.size() != 1 || targs.at(0).kind != TemplateArgument::TypeArgument)
+  if (builder.arguments().size() != 1 || builder.arguments().at(0).kind != TemplateArgument::TypeArgument)
     return Class{}; 
 
-  Type T = targs.front().type;
+  Type T = builder.arguments().front().type;
   if (!T.isObjectType() || T.isReference() || T.isRefRef())
     return Class{};
 
-  Engine *e = ref.engine();
+  Engine *e = builder.getTemplate().engine();
 
   Class qobject_class = get_qobject_class(e);
   Class qclass = e->getClass(T);
   if (!qclass.inherits(qobject_class))
     return Class{};
 
-  ClassBuilder builder{ std::string{} };
-
-  Class result = ref.build(builder, targs);
+  Class result = builder.get();
 
   fill_ref_instance(result, qclass);
 
@@ -204,15 +203,13 @@ script::Class register_ref_specialization(script::Engine *e, script::Type object
  
   auto ref_template = e->getTemplate(Engine::RefTemplate);
 
-  ClassBuilder builder = ClassBuilder::New(std::string{})
-    .setId(type_id)
-    .setFinal();
-
   std::vector<TemplateArgument> targs{
     TemplateArgument{ object_type },
   };
 
-  Class ref_type = ref_template.addSpecialization(targs, builder);
+  Class ref_type = ref_template.Specialization(std::move(targs))
+    .setId(type_id)
+    .setFinal().get();
 
   fill_ref_instance(ref_type, e->getClass(object_type));
 

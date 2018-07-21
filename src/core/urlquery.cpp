@@ -12,11 +12,13 @@
 #include "yasl/core/char.h"
 #include "yasl/core/url.h"
 
+#include <script/classbuilder.h>
+
 static void register_url_query_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class url_query = ns.newClass(ClassBuilder::New("UrlQuery").setId(script::Type::QUrlQuery));
+  Class url_query = ns.Class("UrlQuery").setId(script::Type::QUrlQuery).get();
 
   binding::Class<QUrlQuery> binder{ url_query };
 

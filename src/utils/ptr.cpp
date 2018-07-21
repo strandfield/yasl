@@ -41,7 +41,7 @@ script::Value dtor(script::FunctionCall *c)
 
 
 
-script::Class ptr_template_instantiate(script::ClassTemplate, const std::vector<script::TemplateArgument> &)
+script::Class ptr_template_instantiate(script::ClassTemplateInstanceBuilder &)
 {
   throw script::TemplateInstantiationError{ "Ptr template cannot be instantiated" };
 }

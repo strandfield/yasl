@@ -9,7 +9,9 @@
 #include "yasl/core/bytearray.h"
 #include "yasl/core/flags.h"
 
+#include <script/classbuilder.h>
 #include <script/engine.h>
+#include <script/enumbuilder.h>
 #include <script/functionbuilder.h>
 #include <script/interpreter/executioncontext.h>
 #include <script/value.h>
@@ -18,7 +20,7 @@ void register_iodevice_open_mode(script::Class iodevice)
 {
   using namespace script;
 
-  Enum open_mode_flag = iodevice.newEnum("OpenModeFlag", Type::QIODeviceOpenModeFlag);
+  Enum open_mode_flag = iodevice.Enum("OpenModeFlag").setId(Type::QIODeviceOpenModeFlag).get();
 
   open_mode_flag.addValue("NotOpen", QIODevice::NotOpen);
   open_mode_flag.addValue("ReadOnly", QIODevice::ReadOnly);
@@ -41,7 +43,7 @@ void register_iodevice_class(script::Namespace n)
 
   Class object = n.engine()->getClass(Type::QObject);
 
-  Class iodevice = n.newClass(ClassBuilder::New("IODevice").setId(Type::QIODevice).setParent(object));
+  Class iodevice = n.Class("IODevice").setId(Type::QIODevice).setBase(object).get();
 
   register_iodevice_open_mode(iodevice);
 

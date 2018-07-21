@@ -6,6 +6,7 @@
 
 #include "yasl/binding/class.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -31,7 +32,7 @@ void register_qshowevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(Type::QEvent);
-  Class showevent = root.newClass(ClassBuilder::New("ShowEvent").setId(Type::QShowEvent).setParent(event).setFinal());
+  Class showevent = root.Class("ShowEvent").setId(Type::QShowEvent).setBase(event).setFinal().get();
   
   // QShowEvent();
   showevent.Constructor(callbacks::showevent::ctor).create();

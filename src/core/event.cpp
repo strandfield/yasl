@@ -6,6 +6,8 @@
 
 #include "yasl/binding/class.h"
 
+#include <script/classbuilder.h>
+#include <script/enumbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -37,9 +39,9 @@ void register_qevent(script::Namespace root)
 {
   using namespace script;
 
-  Class event = root.newClass(ClassBuilder::New("Event").setId(Type::QEvent));
+  Class event = root.Class("Event").setId(Type::QEvent).get();
   
-  Enum type = event.newEnum("Type", Type::QEventType);
+  Enum type = event.Enum("Type").setId(Type::QEventType).get();
 
   type.addValue("None", QEvent::None);
   type.addValue("Timer", QEvent::Timer);

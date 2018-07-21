@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/core/enums.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -40,7 +41,7 @@ void register_qkeyevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class keyevent = root.newClass(ClassBuilder::New("KeyEvent").setId(Type::QKeyEvent).setParent(event).setFinal());
+  Class keyevent = root.Class("KeyEvent").setId(Type::QKeyEvent).setBase(event).setFinal().get();
   
   binding::Class<QKeyEvent> q{ keyevent };
 

@@ -9,6 +9,7 @@
 #include "yasl/utils/ref.h"
 #include "yasl/utils/signals.h"
 
+#include <script/classbuilder.h>
 #include <script/classtemplate.h>
 #include <script/engine.h>
 #include <script/functionbuilder.h>
@@ -199,7 +200,7 @@ void register_qobject(script::Namespace n)
 {
   using namespace script;
 
-  Class qobject_class = n.newClass(ClassBuilder::New("Object").setId(Type::QObject));
+  Class qobject_class = n.Class("Object").setId(Type::QObject).get();
   Type object_type = qobject_class.id();
 
   register_ref_specialization(n.engine(), Type::QObject, Type::QObjectStar);

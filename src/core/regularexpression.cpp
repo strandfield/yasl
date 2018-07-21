@@ -9,6 +9,9 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/core/flags.h"
 
+#include <script/classbuilder.h>
+#include <script/enumbuilder.h>
+
 #include <QDataStream>
 #include <QDebug>
 
@@ -16,7 +19,7 @@ static void register_regular_expression_match_option_enum(script::Class regular_
 {
   using namespace script;
 
-  Enum match_option = regular_expression.newEnum("MatchOption", script::Type::QRegularExpressionMatchOption);
+  Enum match_option = regular_expression.Enum("MatchOption").setId(script::Type::QRegularExpressionMatchOption).get();
 
   match_option.addValue("AnchoredMatchOption", QRegularExpression::AnchoredMatchOption);
   match_option.addValue("DontCheckSubjectStringMatchOption", QRegularExpression::DontCheckSubjectStringMatchOption);
@@ -29,7 +32,7 @@ static void register_regular_expression_match_type_enum(script::Class regular_ex
 {
   using namespace script;
 
-  Enum match_type = regular_expression.newEnum("MatchType", script::Type::QRegularExpressionMatchType);
+  Enum match_type = regular_expression.Enum("MatchType").setId(script::Type::QRegularExpressionMatchType).get();
 
   match_type.addValue("NoMatch", QRegularExpression::NoMatch);
   match_type.addValue("NormalMatch", QRegularExpression::NormalMatch);
@@ -41,7 +44,7 @@ static void register_regular_expression_pattern_option_enum(script::Class regula
 {
   using namespace script;
 
-  Enum pattern_option = regular_expression.newEnum("PatternOption", script::Type::QRegularExpressionPatternOption);
+  Enum pattern_option = regular_expression.Enum("PatternOption").setId(script::Type::QRegularExpressionPatternOption).get();
 
   pattern_option.addValue("CaseInsensitiveOption", QRegularExpression::CaseInsensitiveOption);
   pattern_option.addValue("DontAutomaticallyOptimizeOption", QRegularExpression::DontAutomaticallyOptimizeOption);
@@ -61,7 +64,7 @@ static void register_regular_expression_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class regular_expression = ns.newClass(ClassBuilder::New("RegularExpression").setId(script::Type::QRegularExpression));
+  Class regular_expression = ns.Class("RegularExpression").setId(script::Type::QRegularExpression).get();
 
   register_regular_expression_match_option_enum(regular_expression);
   register_regular_expression_match_type_enum(regular_expression);
@@ -122,7 +125,7 @@ static void register_regular_expression_match_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class regular_expression_match = ns.newClass(ClassBuilder::New("RegularExpressionMatch").setId(script::Type::QRegularExpressionMatch));
+  Class regular_expression_match = ns.Class("RegularExpressionMatch").setId(script::Type::QRegularExpressionMatch).get();
 
   binding::Class<QRegularExpressionMatch> binder{ regular_expression_match };
 
@@ -194,7 +197,7 @@ static void register_regular_expression_match_iterator_class(script::Namespace n
 {
   using namespace script;
 
-  Class regular_expression_match_iterator = ns.newClass(ClassBuilder::New("RegularExpressionMatchIterator").setId(script::Type::QRegularExpressionMatchIterator));
+  Class regular_expression_match_iterator = ns.Class("RegularExpressionMatchIterator").setId(script::Type::QRegularExpressionMatchIterator).get();
 
   binding::Class<QRegularExpressionMatchIterator> binder{ regular_expression_match_iterator };
 

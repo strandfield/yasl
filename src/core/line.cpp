@@ -9,6 +9,9 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/core/point.h"
 
+#include <script/classbuilder.h>
+#include <script/enumbuilder.h>
+
 #include <QDataStream>
 #include <QDebug>
 
@@ -16,7 +19,7 @@ static void register_line_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class line = ns.newClass(ClassBuilder::New("Line").setId(script::Type::QLine));
+  Class line = ns.Class("Line").setId(script::Type::QLine).get();
 
   binding::Class<QLine> binder{ line };
 
@@ -72,7 +75,7 @@ static void register_line_f_intersect_type_enum(script::Class line_f)
 {
   using namespace script;
 
-  Enum intersect_type = line_f.newEnum("IntersectType", script::Type::QLineFIntersectType);
+  Enum intersect_type = line_f.Enum("IntersectType").setId(script::Type::QLineFIntersectType).get();
 
   intersect_type.addValue("BoundedIntersection", QLineF::BoundedIntersection);
   intersect_type.addValue("NoIntersection", QLineF::NoIntersection);
@@ -83,7 +86,7 @@ static void register_line_f_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class line_f = ns.newClass(ClassBuilder::New("LineF").setId(script::Type::QLineF));
+  Class line_f = ns.Class("LineF").setId(script::Type::QLineF).get();
 
   register_line_f_intersect_type_enum(line_f);
   binding::Class<QLineF> binder{ line_f };

@@ -7,11 +7,13 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include <script/classbuilder.h>
+
 void register_qmargins(script::Namespace n)
 {
   using namespace script;
 
-  Class margins = n.newClass(ClassBuilder::New("Margins").setId(Type::QMargins).setFinal());
+  Class margins = n.Class("Margins").setId(Type::QMargins).setFinal().get();
 
   binding::Class<QMargins> m{ margins };
 

@@ -13,6 +13,8 @@
 #include "yasl/core/enums.h"
 #include "yasl/core/object.h"
 
+#include <script/classbuilder.h>
+
 // Cannot bind if 'static'
 void single_shot(int time, const QObject *obj, const QString & name)
 {
@@ -45,8 +47,8 @@ static void register_timer_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class timer = ns.newClass(ClassBuilder::New("Timer").setId(script::Type::QTimer)
-  .setParent(ns.engine()->getClass(script::Type::QObject)));
+  Class timer = ns.Class("Timer").setId(script::Type::QTimer)
+  .setBase(script::Type::QObject).get();
 
   binding::QClass<QTimer> binder{ timer };
   binding::Class<QTimer> static_binder{ timer };

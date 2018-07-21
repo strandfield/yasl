@@ -11,6 +11,7 @@
 
 
 #include <script/classtemplate.h>
+#include <script/classtemplateinstancebuilder.h>
 #include <script/private/engine_p.h>
 #include <script/templatebuilder.h>
 
@@ -482,14 +483,14 @@ static script::Value op_subscript(script::FunctionCall *c)
 
 } // namespace callbacks
 
-script::Class list_template_instantiate(script::ClassTemplate list_template, const std::vector<script::TemplateArgument> & targs)
+script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & builder)
 {
   using namespace script;
 
-  ClassBuilder builder = ClassBuilder::New(std::string{}).setFinal();
-  const Type element_type = targs.front().type;
+  builder.setFinal();
+  const Type element_type = builder.arguments().front().type;
 
-  Class list = list_template.build(builder, targs);
+  Class list = builder.get();
 
   // QList<T>();
   list.Constructor(callbacks::default_ctor).create();

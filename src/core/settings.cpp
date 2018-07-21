@@ -12,13 +12,16 @@
 
 #include "yasl/core/variant.h"
 
+#include <script/classbuilder.h>
+#include <script/enumbuilder.h>
+
 #include <QTextCodec>
 
 static void register_settings_format_enum(script::Class settings)
 {
   using namespace script;
 
-  Enum format = settings.newEnum("Format", script::Type::QSettingsFormat);
+  Enum format = settings.Enum("Format").setId(script::Type::QSettingsFormat).get();
 
   format.addValue("CustomFormat1", QSettings::CustomFormat1);
   format.addValue("CustomFormat10", QSettings::CustomFormat10);
@@ -47,7 +50,7 @@ static void register_settings_scope_enum(script::Class settings)
 {
   using namespace script;
 
-  Enum scope = settings.newEnum("Scope", script::Type::QSettingsScope);
+  Enum scope = settings.Enum("Scope").setId(script::Type::QSettingsScope).get();
 
   scope.addValue("SystemScope", QSettings::SystemScope);
   scope.addValue("UserScope", QSettings::UserScope);
@@ -57,7 +60,7 @@ static void register_settings_status_enum(script::Class settings)
 {
   using namespace script;
 
-  Enum status = settings.newEnum("Status", script::Type::QSettingsStatus);
+  Enum status = settings.Enum("Status").setId(script::Type::QSettingsStatus).get();
 
   status.addValue("AccessError", QSettings::AccessError);
   status.addValue("FormatError", QSettings::FormatError);
@@ -68,7 +71,7 @@ static void register_settings_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class settings = ns.newClass(ClassBuilder::New("Settings").setId(script::Type::QSettings));
+  Class settings = ns.Class("Settings").setId(script::Type::QSettings).get();
 
   register_settings_format_enum(settings);
   register_settings_scope_enum(settings);

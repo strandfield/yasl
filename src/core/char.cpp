@@ -9,13 +9,16 @@
 #include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
+#include <script/classbuilder.h>
+#include <script/enumbuilder.h>
+
 #include <QDataStream>
 
 static void register_char_category_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum category = qchar.newEnum("Category", script::Type::QCharCategory);
+  Enum category = qchar.Enum("Category").setId(script::Type::QCharCategory).get();
 
   category.addValue("Letter_Lowercase", QChar::Letter_Lowercase);
   category.addValue("Letter_Modifier", QChar::Letter_Modifier);
@@ -53,7 +56,7 @@ static void register_char_combining_class_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum combining_class = qchar.newEnum("CombiningClass", script::Type::QCharCombiningClass);
+  Enum combining_class = qchar.Enum("CombiningClass").setId(script::Type::QCharCombiningClass).get();
 
   combining_class.addValue("Combining_Above", QChar::Combining_Above);
   combining_class.addValue("Combining_AboveAttached", QChar::Combining_AboveAttached);
@@ -80,7 +83,7 @@ static void register_char_decomposition_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum decomposition = qchar.newEnum("Decomposition", script::Type::QCharDecomposition);
+  Enum decomposition = qchar.Enum("Decomposition").setId(script::Type::QCharDecomposition).get();
 
   decomposition.addValue("Canonical", QChar::Canonical);
   decomposition.addValue("Circle", QChar::Circle);
@@ -106,7 +109,7 @@ static void register_char_direction_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum direction = qchar.newEnum("Direction", script::Type::QCharDirection);
+  Enum direction = qchar.Enum("Direction").setId(script::Type::QCharDirection).get();
 
   direction.addValue("DirAL", QChar::DirAL);
   direction.addValue("DirAN", QChar::DirAN);
@@ -137,7 +140,7 @@ static void register_char_joining_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum joining = qchar.newEnum("Joining", script::Type::QCharJoining);
+  Enum joining = qchar.Enum("Joining").setId(script::Type::QCharJoining).get();
 
   joining.addValue("Center", QChar::Center);
   joining.addValue("Dual", QChar::Dual);
@@ -149,7 +152,7 @@ static void register_char_joining_type_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum joining_type = qchar.newEnum("JoiningType", script::Type::QCharJoiningType);
+  Enum joining_type = qchar.Enum("JoiningType").setId(script::Type::QCharJoiningType).get();
 
   joining_type.addValue("Joining_Causing", QChar::Joining_Causing);
   joining_type.addValue("Joining_Dual", QChar::Joining_Dual);
@@ -163,7 +166,7 @@ static void register_char_script_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum script = qchar.newEnum("Script", script::Type::QCharScript);
+  Enum script = qchar.Enum("Script").setId(script::Type::QCharScript).get();
 
   script.addValue("ScriptCount", QChar::ScriptCount);
   script.addValue("Script_Ahom", QChar::Script_Ahom);
@@ -304,7 +307,7 @@ static void register_char_special_character_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum special_character = qchar.newEnum("SpecialCharacter", script::Type::QCharSpecialCharacter);
+  Enum special_character = qchar.Enum("SpecialCharacter").setId(script::Type::QCharSpecialCharacter).get();
 
   special_character.addValue("ByteOrderMark", QChar::ByteOrderMark);
   special_character.addValue("ByteOrderSwapped", QChar::ByteOrderSwapped);
@@ -326,7 +329,7 @@ static void register_char_unicode_version_enum(script::Class qchar)
 {
   using namespace script;
 
-  Enum unicode_version = qchar.newEnum("UnicodeVersion", script::Type::QCharUnicodeVersion);
+  Enum unicode_version = qchar.Enum("UnicodeVersion").setId(script::Type::QCharUnicodeVersion).get();
 
   unicode_version.addValue("Unicode_1_1", QChar::Unicode_1_1);
   unicode_version.addValue("Unicode_2_0", QChar::Unicode_2_0);
@@ -352,7 +355,7 @@ static void register_char_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class qchar = ns.newClass(ClassBuilder::New("Char").setId(script::Type::QChar));
+  Class qchar = ns.Class("Char").setId(script::Type::QChar).get();
 
   register_char_category_enum(qchar);
   register_char_combining_class_enum(qchar);

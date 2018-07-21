@@ -8,14 +8,15 @@
 #include "yasl/core/datetime.h"
 #include "yasl/core/flags.h"
 
+#include <script/classbuilder.h>
 #include <script/engine.h>
-
+#include <script/enumbuilder.h>
 
 void register_file_error_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum file_error = filedevice.newEnum("FileError", Type::QFileDeviceFileError);
+  Enum file_error = filedevice.Enum("FileError").setId(Type::QFileDeviceFileError).get();
 
   file_error.addValue("NoError", QFileDevice::NoError);
   file_error.addValue("ReadError", QFileDevice::ReadError);
@@ -39,7 +40,7 @@ void register_file_handle_flag_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum file_handle_flag = filedevice.newEnum("FileHandleFlag", Type::QFileDeviceFileHandleFlag);
+  Enum file_handle_flag = filedevice.Enum("FileHandleFlag").setId(Type::QFileDeviceFileHandleFlag).get();
 
   file_handle_flag.addValue("AutoCloseHandle", QFileDevice::AutoCloseHandle);
   file_handle_flag.addValue("DontCloseHandle", QFileDevice::DontCloseHandle);
@@ -52,7 +53,7 @@ void register_filetime_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum filetime = filedevice.newEnum("FileTime", Type::QFileDeviceFileTime);
+  Enum filetime = filedevice.Enum("FileTime").setId(Type::QFileDeviceFileTime).get();
 
   filetime.addValue("FileAccessTime", QFileDevice::FileAccessTime);
   filetime.addValue("FileBirthTime", QFileDevice::FileBirthTime);
@@ -65,7 +66,7 @@ void register_memorymapflags_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum memorymapflags = filedevice.newEnum("MemoryMapFlags", Type::QFileDeviceMemoryMapFlags);
+  Enum memorymapflags = filedevice.Enum("MemoryMapFlags").setId(Type::QFileDeviceMemoryMapFlags).get();
 
   memorymapflags.addValue("NoOptions", QFileDevice::NoOptions);
   memorymapflags.addValue("MapPrivateOption", QFileDevice::MapPrivateOption);
@@ -76,7 +77,7 @@ void register_permission_enum(script::Class filedevice)
 {
   using namespace script;
 
-  Enum permission = filedevice.newEnum("Permission", Type::QFileDevicePermission);
+  Enum permission = filedevice.Enum("Permission").setId(Type::QFileDevicePermission).get();
 
   permission.addValue("ReadOwner", QFileDevice::ReadOwner);
   permission.addValue("WriteOwner", QFileDevice::WriteOwner);
@@ -104,7 +105,7 @@ void register_filedevice_class(script::Namespace n)
 
   Class iodevice = n.engine()->getClass(Type::QIODevice);
 
-  Class filedevice = n.newClass(ClassBuilder::New("FileDevice").setId(Type::QFileDevice).setParent(iodevice));
+  Class filedevice = n.Class("FileDevice").setId(Type::QFileDevice).setBase(iodevice).get();
 
   register_file_error_enum(filedevice);
   register_file_handle_flag_enum(filedevice);

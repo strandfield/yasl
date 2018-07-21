@@ -19,6 +19,9 @@
 #include "yasl/core/size.h"
 #include "yasl/core/url.h"
 
+#include <script/classbuilder.h>
+#include <script/enumbuilder.h>
+
 #include <QBitArray>
 #include <QDataStream>
 #include <QDebug>
@@ -35,7 +38,7 @@ static void register_variant_type_enum(script::Class variant)
 {
   using namespace script;
 
-  Enum type = variant.newEnum("Type", script::Type::QVariantType);
+  Enum type = variant.Enum("Type").setId(script::Type::QVariantType).get();
 
   type.addValue("BitArray", QVariant::BitArray);
   type.addValue("Bitmap", QVariant::Bitmap);
@@ -105,7 +108,7 @@ static void register_variant_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class variant = ns.newClass(ClassBuilder::New("Variant").setId(script::Type::QVariant));
+  Class variant = ns.Class("Variant").setId(script::Type::QVariant).get();
 
   register_variant_type_enum(variant);
   binding::Class<QVariant> binder{ variant };

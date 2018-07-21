@@ -7,6 +7,8 @@
 
 #include "yasl/binding/values.h"
 
+#include <script/classtemplatespecializationbuilder.h>
+
 namespace script
 {
 class Class;
@@ -71,15 +73,14 @@ void register_ptr_specialization(script::ClassTemplate ptr_template, script::Typ
 
   const script::Type element_type = binding::make_type<T>();
 
-  ClassBuilder builder = ClassBuilder::New(std::string{})
-    .setId(type_id)
-    .setFinal();
-
   std::vector<TemplateArgument> targs{
     TemplateArgument{ element_type },
   };
 
-  Class ptr_type = ptr_template.addSpecialization(targs, builder);
+  Class ptr_type = ptr_template.Specialization(std::move(targs))
+    .setId(type_id)
+    .setFinal()
+    .get();
 
   // Ptr(const Ptr<T> & other);
   ptr_type.Constructor(callbacks::ptr::copy_ctor).params(Type::cref(ptr_type.id())).create();

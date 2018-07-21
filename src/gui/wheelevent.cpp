@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/core/point.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -25,7 +26,7 @@ void register_qwheelevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(Type::QEvent);
-  Class wheelevent = root.newClass(ClassBuilder::New("WheelEvent").setId(Type::QWheelEvent).setParent(event).setFinal());
+  Class wheelevent = root.Class("WheelEvent").setId(Type::QWheelEvent).setBase(event).setFinal().get();
   
   binding::Class<QWheelEvent> qwheelevent{ wheelevent };
   // QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers)

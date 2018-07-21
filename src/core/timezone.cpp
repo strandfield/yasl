@@ -11,14 +11,16 @@
 #include "yasl/core/enums.h"
 #include "yasl/core/locale.h"
 
+#include <script/classbuilder.h>
 #include <script/engine.h>
+#include <script/enumbuilder.h>
 
 
 static void register_name_type_enum(script::Class timezone)
 {
   using namespace script;
 
-  Enum name_type = timezone.newEnum("NameType", Type::QTimeZoneNameType);
+  Enum name_type = timezone.Enum("NameType").setId(Type::QTimeZoneNameType).get();
 
   name_type.addValue("DefaultName", QTimeZone::DefaultName);
   name_type.addValue("LongName", QTimeZone::LongName);
@@ -31,7 +33,7 @@ static void register_time_type_enum(script::Class timezone)
 {
   using namespace script;
 
-  Enum time_type = timezone.newEnum("TimeType", Type::QTimeZoneTimeType);
+  Enum time_type = timezone.Enum("TimeType").setId(Type::QTimeZoneTimeType).get();
 
   time_type.addValue("StandardTime", QTimeZone::StandardTime);
   time_type.addValue("DaylightTime", QTimeZone::DaylightTime);
@@ -43,7 +45,7 @@ static void register_anonymous_enum(script::Class timezone)
 {
   using namespace script;
 
-  Enum anonymous = timezone.newEnum("MinMaxUtcOffsetSecs", Type::QTimeZoneMinUtcOffsetSecs);
+  Enum anonymous = timezone.Enum("MinMaxUtcOffsetSecs").setId(Type::QTimeZoneMinUtcOffsetSecs).get();
 
   anonymous.addValue("MinUtcOffsetSecs", QTimeZone::MinUtcOffsetSecs);
   anonymous.addValue("MaxUtcOffsetSecs", QTimeZone::MaxUtcOffsetSecs);
@@ -54,7 +56,7 @@ void register_timezone_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class timezone = ns.newClass(ClassBuilder::New("TimeZone").setId(Type::QTimeZone).setFinal());
+  Class timezone = ns.Class("TimeZone").setId(Type::QTimeZone).setFinal().get();
 
   register_name_type_enum(timezone);
   register_time_type_enum(timezone);

@@ -8,6 +8,7 @@
 #include "yasl/binding/qclass.h"
 #include "yasl/core/bytearray.h"
 
+#include <script/classbuilder.h>
 #include <script/engine.h>
 
 void register_file_class(script::Namespace n)
@@ -16,7 +17,7 @@ void register_file_class(script::Namespace n)
 
   Class filedevice = n.engine()->getClass(script::Type::QFileDevice);
 
-  Class file = n.newClass(ClassBuilder::New("File").setId(Type::QFile).setParent(filedevice));
+  Class file = n.Class("File").setId(Type::QFile).setBase(filedevice).get();
 
   binding::QClass<QFile> binder{ file };
 

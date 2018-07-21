@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/core/point.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -25,7 +26,7 @@ void register_qmouseevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class mouseevent = root.newClass(ClassBuilder::New("MouseEvent").setId(Type::QMouseEvent).setParent(event).setFinal());
+  Class mouseevent = root.Class("MouseEvent").setId(Type::QMouseEvent).setBase(event).setFinal().get();
   
   binding::Class<QMouseEvent> qmouseevent{ mouseevent };
   // QMouseEvent(QEvent::Type type, const QPointF &localPos, Qt::MouseButton button, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers)

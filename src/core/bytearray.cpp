@@ -9,6 +9,7 @@
 #include "yasl/binding/macros.h"
 #include "yasl/core/list.h"
 
+#include <script/classbuilder.h>
 #include <script/classtemplate.h>
 #include <script/engine.h>
 #include <script/functionbuilder.h>
@@ -20,7 +21,7 @@ void register_qbytearray(script::Namespace ns)
 {
   using namespace script;
 
-  Class qbytearray_class = ns.newClass(ClassBuilder::New("ByteArray").setFinal().setId(Type::QByteArray));
+  Class qbytearray_class = ns.Class("ByteArray").setFinal().setId(Type::QByteArray).get();
   Type bytearray_type = qbytearray_class.id();
 
   register_ptr_specialization<QByteArray>(ns.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQByteArray);

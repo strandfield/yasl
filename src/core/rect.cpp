@@ -10,12 +10,13 @@
 #include "yasl/core/point.h"
 #include "yasl/core/size.h"
 
+#include <script/classbuilder.h>
 
 void register_qrect(script::Namespace n)
 {
   using namespace script;
 
-  Class rect = n.newClass(ClassBuilder::New("Rect").setId(Type::QRect).setFinal());
+  Class rect = n.Class("Rect").setId(Type::QRect).setFinal().get();
 
   binding::Class<QRect> r{ rect };
 

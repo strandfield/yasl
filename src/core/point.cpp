@@ -7,12 +7,13 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include <script/classbuilder.h>
 
 void register_qpoint(script::Namespace n)
 {
   using namespace script;
 
-  Class point = n.newClass(ClassBuilder::New("Point").setId(Type::QPoint).setFinal());
+  Class point = n.Class("Point").setId(Type::QPoint).setFinal().get();
 
   binding::Class<QPoint> p{ point };
 

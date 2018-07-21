@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/core/point.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -27,7 +28,7 @@ void register_qmoveevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class moveevent = root.newClass(ClassBuilder::New("MoveEvent").setId(Type::QMoveEvent).setParent(event).setFinal());
+  Class moveevent = root.Class("MoveEvent").setId(Type::QMoveEvent).setBase(event).setFinal().get();
   
   binding::Class<QMoveEvent> qmoveevent{ moveevent };
   // QMoveEvent(const QPoint & pos, const QPoint & oldPos);

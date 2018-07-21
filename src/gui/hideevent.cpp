@@ -6,6 +6,7 @@
 
 #include "yasl/binding/class.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -31,7 +32,7 @@ void register_qhideevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class hideevent = root.newClass(ClassBuilder::New("HideEvent").setId(Type::QHideEvent).setParent(event).setFinal());
+  Class hideevent = root.Class("HideEvent").setId(Type::QHideEvent).setBase(event).setFinal().get();
   
   // QHideEvent();
   hideevent.Constructor(callbacks::hideevent::ctor).create();

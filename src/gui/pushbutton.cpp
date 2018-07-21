@@ -7,6 +7,7 @@
 #include "yasl/binding/qclass.h"
 #include "yasl/binding/qsignal.h"
 
+#include <script/classbuilder.h>
 #include <script/engine.h>
 #include <script/functionbuilder.h>
 #include <script/interpreter/executioncontext.h>
@@ -54,7 +55,7 @@ void register_qpushbutton(script::Namespace n)
 
   Class widget = n.engine()->getClass(script::Type::QWidget);
 
-  Class pushbutton = n.newClass(ClassBuilder::New("PushButton").setId(Type::QPushButton).setParent(widget));
+  Class pushbutton = n.Class("PushButton").setId(Type::QPushButton).setBase(widget).get();
   Type pushbutton_type = pushbutton.id();
 
   auto qpushbutton = binding::QClass<QPushButton>{ pushbutton };

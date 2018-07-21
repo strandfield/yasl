@@ -8,12 +8,13 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/core/enums.h"
 
+#include <script/classbuilder.h>
 
 void register_qsize(script::Namespace n)
 {
   using namespace script;
 
-  Class size_class = n.newClass(ClassBuilder::New("Size").setId(Type::QSize).setFinal());
+  Class size_class = n.Class("Size").setId(Type::QSize).setFinal().get();
 
   binding::Class<QSize> s{ size_class };
 

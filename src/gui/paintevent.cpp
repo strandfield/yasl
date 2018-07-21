@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/core/rect.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks
@@ -32,7 +33,7 @@ void register_qpaintevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class paintevent = root.newClass(ClassBuilder::New("PaintEvent").setId(Type::QPaintEvent).setParent(event).setFinal());
+  Class paintevent = root.Class("PaintEvent").setId(Type::QPaintEvent).setBase(event).setFinal().get();
   
   binding::Class<QPaintEvent> qpaintevent{ paintevent };
   // QPaintEvent(const QRect & rect);

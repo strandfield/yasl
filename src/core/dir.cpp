@@ -9,6 +9,9 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/core/flags.h"
 
+#include <script/classbuilder.h>
+#include <script/enumbuilder.h>
+
 #include <QChar>
 #include <QDebug>
 
@@ -16,7 +19,7 @@ static void register_dir_filter_enum(script::Class dir)
 {
   using namespace script;
 
-  Enum filter = dir.newEnum("Filter", script::Type::QDirFilter);
+  Enum filter = dir.Enum("Filter").setId(script::Type::QDirFilter).get();
 
   filter.addValue("AccessMask", QDir::AccessMask);
   filter.addValue("AllDirs", QDir::AllDirs);
@@ -46,7 +49,7 @@ static void register_dir_sort_flag_enum(script::Class dir)
 {
   using namespace script;
 
-  Enum sort_flag = dir.newEnum("SortFlag", script::Type::QDirSortFlag);
+  Enum sort_flag = dir.Enum("SortFlag").setId(script::Type::QDirSortFlag).get();
 
   sort_flag.addValue("DirsFirst", QDir::DirsFirst);
   sort_flag.addValue("DirsLast", QDir::DirsLast);
@@ -66,7 +69,7 @@ static void register_dir_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class dir = ns.newClass(ClassBuilder::New("Dir").setId(script::Type::QDir));
+  Class dir = ns.Class("Dir").setId(script::Type::QDir).get();
 
   register_dir_filter_enum(dir);
   register_dir_sort_flag_enum(dir);

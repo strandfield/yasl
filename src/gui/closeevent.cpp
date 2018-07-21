@@ -6,8 +6,8 @@
 
 #include "yasl/binding/class.h"
 
+#include <script/classbuilder.h>
 #include <script/interpreter/executioncontext.h>
-
 
 namespace callbacks
 {
@@ -32,8 +32,8 @@ void register_qcloseevent(script::Namespace root)
   using namespace script;
 
   const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class closeevent = root.newClass(ClassBuilder::New("CloseEvent").setId(Type::QCloseEvent).setParent(event).setFinal());
- 
+  Class closeevent = root.Class("CloseEvent").setId(Type::QCloseEvent).setBase(event).setFinal().get();
+
   // QCloseEvent();
   closeevent.Constructor(callbacks::closeevent::ctor).create();
   // ~QCloseEvent();
