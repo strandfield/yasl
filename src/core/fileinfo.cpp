@@ -9,11 +9,13 @@
 #include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datetime.h"
+#include "yasl/core/dir.h"
+#include "yasl/core/file.h"
+
 #include <script/classbuilder.h>
 
-#include <QDateTime>
 #include <QDebug>
-#include <QDir>
 
 static void register_file_info_class(script::Namespace ns)
 {

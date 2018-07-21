@@ -9,14 +9,17 @@
 #include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/bytearray.h"
 #include "yasl/core/char.h"
 #include "yasl/core/date.h"
 #include "yasl/core/datetime.h"
 #include "yasl/core/line.h"
 #include "yasl/core/locale.h"
+#include "yasl/core/point.h"
 #include "yasl/core/rect.h"
 #include "yasl/core/regularexpression.h"
 #include "yasl/core/size.h"
+#include "yasl/core/time.h"
 #include "yasl/core/url.h"
 
 #include <script/classbuilder.h>

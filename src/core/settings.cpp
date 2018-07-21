@@ -10,6 +10,7 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
+#include "yasl/core/object.h"
 #include "yasl/core/variant.h"
 
 #include <script/classbuilder.h>

@@ -7,12 +7,13 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+
+#include "yasl/core/char.h"
 #include "yasl/core/flags.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
-#include <QChar>
 #include <QDebug>
 
 static void register_dir_filter_enum(script::Class dir)
