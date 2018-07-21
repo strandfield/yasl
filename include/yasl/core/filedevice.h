@@ -21,11 +21,8 @@ template<> struct make_type_t<QFileDevice::MemoryMapFlags> { inline static scrip
 template<> struct make_type_t<QFileDevice::Permission> { inline static script::Type get() { return script::Type::QFileDevicePermission; } };
 template<> struct make_type_t<QFileDevice::Permissions> { inline static script::Type get() { return script::Type::QFileDevicePermissions; } };
 
-
-template<> inline QFileDevice* value_cast<QFileDevice*>(const script::Value & val)
-{
-  return qobject_cast<QFileDevice*>(value_cast<QObject*>(val));
-}
+template<> struct storage_type<QFileDevice> { typedef QFileDevice* type; };
+template<> inline QFileDevice* get<QFileDevice>(const script::Value & val) { return qobject_cast<QFileDevice*>(val.toQObject()); }
 
 template<> inline script::Value make_value(QFileDevice *f, script::Engine *e) = delete;
 

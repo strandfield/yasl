@@ -126,106 +126,201 @@ template<> inline script::Value make_value<qint64>(const qint64 & x, script::Eng
 
 } // namespace binding
 
-
-
 namespace binding
 {
 
-static const int small_type_tag = 1;
-static const int small_reference_tag = 2;
-static const int small_pointer_tag = 3;
-static const int small_enum_tag = 4;
-static const int large_type_tag = 5;
-
 template<typename T>
-struct is_small_type
+struct buffer_storage
 {
-  constexpr static const bool value = (sizeof(T) <= sizeof(script::ValueImpl::BuiltIn))
-    && std::is_same<std::remove_reference_t<T>, T>::value
-    && std::is_same<std::remove_pointer_t<T>, T>::value
-    && !std::is_enum<T>::value;
+  typedef T& type;
 };
 
 template<typename T>
-struct is_small_reference
+struct heap_storage
 {
-  constexpr static const bool value = (sizeof(T) <= sizeof(script::ValueImpl::BuiltIn))
-    && std::is_reference<T>::value
-    && !std::is_enum<T>::value;
+  typedef T* type;
+};
+
+template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
+struct storage_type_default_impl;
+
+template<typename T>
+struct storage_type_default_impl<T, small_object_tag> : buffer_storage<T> { };
+
+template<typename T>
+struct storage_type_default_impl<T, large_object_tag> : heap_storage<T> { };
+
+template<typename T>
+struct storage_type_default_impl<T, enum_tag> 
+{
+  typedef T type;
 };
 
 template<typename T>
-struct is_small_pointer
+struct storage_type
 {
-  constexpr static const bool value = (sizeof(T) <= sizeof(script::ValueImpl::BuiltIn))
-    && std::is_pointer<T>::value;
-};
-
-template<typename T>
-struct is_large_type
-{
-  constexpr static const bool value = (sizeof(script::ValueImpl::BuiltIn) < sizeof(T));
+  typedef typename storage_type_default_impl<T>::type type;
 };
 
 
-template<typename T>
-struct value_cast_tag_resolver
-{
-  constexpr static const int value = 
-    is_small_type<T>::value * small_type_tag
-    + is_small_reference<T>::value * small_reference_tag
-    + is_small_pointer<T>::value * small_pointer_tag
-    + std::is_enum<T>::value * small_enum_tag
-    + is_large_type<T>::value * small_pointer_tag;
-};
-
-template<typename T, int Tag = value_cast_tag_resolver<T>::value>
-struct value_cast_helper;
+template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
+struct get_helper;
 
 template<typename T>
-struct value_cast_helper<T, small_type_tag>
+struct get_helper<T, small_object_tag>
 {
-  static T impl(const script::Value & val)
+  static T& get(const script::Value & val)
   {
     return *reinterpret_cast<T*>(&val.impl()->data.memory);
   }
 };
 
 template<typename T>
-struct value_cast_helper<T, small_reference_tag>
+struct get_helper<T, large_object_tag>
 {
-  static T impl(const script::Value & val)
+  static T* get(const script::Value & val)
   {
-    using U = std::remove_reference_t<T>;
-    return *reinterpret_cast<U*>(&val.impl()->data.memory);
+    return static_cast<T*>(val.impl()->data.ptr);
   }
 };
 
 template<typename T>
-struct value_cast_helper<T, small_pointer_tag>
+struct get_helper<T, enum_tag>
 {
-  static T impl(const script::Value & val)
+  static T get(const script::Value & val)
   {
-    return reinterpret_cast<T>(&val.impl()->data.memory);
+    return static_cast<T>(val.toEnumValue().value());
   }
 };
 
 template<typename T>
-struct value_cast_helper<T, small_enum_tag>
+typename storage_type<T>::type get(const script::Value & val)
+{
+  return get_helper<T>::get(val);
+}
+
+template<> inline bool& get<bool>(const script::Value & val) { return val.impl()->data.boolean; }
+template<> inline char& get<char>(const script::Value & val) { return val.impl()->data.character; }
+template<> inline int& get<int>(const script::Value & val) { return val.impl()->data.integer; }
+template<> inline float& get<float>(const script::Value & val) { return val.impl()->data.realf; }
+template<> inline double& get<double>(const script::Value & val) { return val.impl()->data.reald; }
+template<> inline script::String& get<script::String>(const script::Value & v) { return v.impl()->data.builtin.string; }
+
+template<> struct storage_type<qint64> { typedef qint64 type; };
+template<> inline qint64 get<qint64>(const script::Value & v) { return v.impl()->data.integer; }
+
+template<> struct storage_type<qulonglong> { typedef qulonglong type; };
+template<> inline qulonglong get<qulonglong>(const script::Value & v) { return v.impl()->data.integer; }
+
+template<> struct storage_type<short> { typedef short type; };
+template<> inline short get<short>(const script::Value & v) { return v.impl()->data.integer; }
+
+template<> struct storage_type<uint> { typedef uint type; };
+template<> inline uint get<uint>(const script::Value & v) { return v.impl()->data.integer; }
+
+template<> struct storage_type<ushort> { typedef ushort type; };
+template<> inline ushort get<ushort>(const script::Value & v) { return v.impl()->data.integer; }
+
+template<typename T>
+struct decay
+{
+  typedef typename std::decay<typename std::remove_pointer<T>::type>::type type;
+};
+
+
+#if defined(YASL_BINDING_COMPILE_TIME_CHECK)
+template<typename T, typename StorageType = typename storage_type<decay<T>::type>::type>
+struct value_cast_helper;
+#else
+template<typename T, typename StorageType = typename storage_type<decay<T>::type>::type>
+struct value_cast_helper
 {
   static T impl(const script::Value & val)
   {
-    return static_cast<T>(val.impl()->get_enum_value().value());
+    throw std::runtime_error{ "Could not convert from actual type to desired type" };
+  }
+};
+#endif // defined(YASL_BINDING_COMPILE_TIME_CHECK)
+
+template<typename T>
+struct value_cast_helper<T, T>
+{
+  static T impl(const script::Value & val)
+  {
+    return get<typename decay<T>::type>(val);
+  }
+};
+
+template<typename T>
+struct value_cast_helper<T, T&>
+{
+  static T impl(const script::Value & val)
+  {
+    return get<T>(val);
+  }
+};
+
+template<typename T>
+struct value_cast_helper<T*, T&>
+{
+  static T* impl(const script::Value & val)
+  {
+    return std::addressof(get<T>(val));
+  }
+};
+
+template<typename T>
+struct value_cast_helper<const T*, T&>
+{
+  static const T* impl(const script::Value & val)
+  {
+    return std::addressof(get<T>(val));
   }
 };
 
 
 template<typename T>
-struct value_cast_helper<T, large_type_tag>
+struct value_cast_helper<const T, T>
 {
-  static T impl(const script::Value & val)
+  static const T impl(const script::Value & val)
   {
-    return *reinterpret_cast<T*>(val.impl()->data.ptr);
+    return get<T>(val);
+  }
+};
+
+template<typename T>
+struct value_cast_helper<T&&, T&>
+{
+  static T&& impl(const script::Value & val)
+  {
+    return std::move(get<T>(val));
+  }
+};
+
+template<typename T>
+struct value_cast_helper<const T&, T&>
+{
+  static const T& impl(const script::Value & val)
+  {
+    return get<T>(val);
+  }
+};
+
+template<typename T>
+struct value_cast_helper<T&, T*>
+{
+  static T& impl(const script::Value & val)
+  {
+    return *get<T>(val);
+  }
+};
+
+template<typename T>
+struct value_cast_helper<const T*, T*>
+{
+  static const T* impl(const script::Value & val)
+  {
+    return get<T>(val);
   }
 };
 
@@ -235,37 +330,6 @@ T value_cast(const script::Value & val)
 {
   return value_cast_helper<T>::impl(val);
 }
-
-template<> inline bool value_cast<bool>(const script::Value & v) { return v.impl()->data.boolean; }
-template<> inline bool& value_cast<bool&>(const script::Value & v) { return v.impl()->data.boolean; }
-template<> inline const bool& value_cast<const bool&>(const script::Value & v) { return v.impl()->data.boolean; }
-
-template<> inline char value_cast<char>(const script::Value & v) { return v.impl()->data.character; }
-template<> inline char& value_cast<char&>(const script::Value & v) { return v.impl()->data.character; }
-template<> inline const char& value_cast<const char&>(const script::Value & v) { return v.impl()->data.character; }
-
-template<> inline int value_cast<int>(const script::Value & v) { return v.impl()->data.integer; }
-template<> inline int& value_cast<int&>(const script::Value & v) { return v.impl()->data.integer; }
-template<> inline const int& value_cast<const int&>(const script::Value & v) { return v.impl()->data.integer; }
-
-template<> inline float value_cast<float>(const script::Value & v) { return v.impl()->data.realf; }
-template<> inline float& value_cast<float&>(const script::Value & v) { return v.impl()->data.realf; }
-template<> inline const float& value_cast<const float&>(const script::Value & v) { return v.impl()->data.realf; }
-
-template<> inline double value_cast<double>(const script::Value & v) { return v.impl()->data.reald; }
-template<> inline double& value_cast<double&>(const script::Value & v) { return v.impl()->data.reald; }
-template<> inline const double& value_cast<const double&>(const script::Value & v) { return v.impl()->data.reald; }
-
-template<> inline script::String value_cast<script::String>(const script::Value & v) { return v.impl()->data.builtin.string; }
-template<> inline script::String& value_cast<script::String&>(const script::Value & v) { return v.impl()->data.builtin.string; }
-template<> inline const script::String& value_cast<const script::String&>(const script::Value & v) { return v.impl()->data.builtin.string; }
-
-/// TODO !!!
-template<> inline qint64 value_cast<qint64>(const script::Value & v) { return v.impl()->data.integer; }
-template<> inline qulonglong value_cast<qulonglong>(const script::Value & v) { return v.impl()->data.integer; }
-template<> inline short value_cast<short>(const script::Value & v) { return v.impl()->data.integer; }
-template<> inline uint value_cast<uint>(const script::Value & v) { return v.impl()->data.integer; }
-template<> inline ushort value_cast<ushort>(const script::Value & v) { return v.impl()->data.integer; }
 
 } // namespace binding
 

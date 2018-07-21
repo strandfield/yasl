@@ -16,10 +16,8 @@ template<> struct make_type_t<QIODevice> { inline static script::Type get() { re
 template<> struct make_type_t<QIODevice::OpenModeFlag> { inline static script::Type get() { return script::Type::QIODeviceOpenModeFlag; } };
 template<> struct make_type_t<QIODevice::OpenMode> { inline static script::Type get() { return script::Type::QIODeviceOpenMode; } };
 
-template<> inline QIODevice* value_cast<QIODevice*>(const script::Value & val)
-{
-  return qobject_cast<QIODevice*>(value_cast<QObject*>(val));
-}
+template<> struct storage_type<QIODevice> { typedef QIODevice* type; };
+template<> inline QIODevice* get<QIODevice>(const script::Value & val) { return qobject_cast<QIODevice*>(val.toQObject()); }
 
 template<> inline script::Value make_value(QIODevice *dev, script::Engine *e) = delete;
 

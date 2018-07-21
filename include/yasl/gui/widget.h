@@ -87,9 +87,9 @@ template<> struct make_type_t<Widget*> { inline static script::Type get() { retu
 template<> struct make_type_t<QList<QWidget*>> { inline static script::Type get() { return script::Type::QListQWidget; } };
 template<> struct make_type_t<Ptr<QWidget*>> { inline static script::Type get() { return script::Type::PtrQWidget; } };
 
-template<> inline QWidget* value_cast<QWidget*>(const script::Value & val)
-{
-  return qobject_cast<QWidget*>(value_cast<QObject*>(val));
+template<> struct storage_type<QWidget> { typedef QWidget* type; };
+template<> inline QWidget* get<QWidget>(const script::Value & val) { 
+  return qobject_cast<QWidget*>(val.toQObject());
 }
 
 template<> inline Widget* value_cast<Widget*>(const script::Value & val)

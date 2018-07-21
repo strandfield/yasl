@@ -32,8 +32,8 @@ template<> inline script::Value make_value(QObject *obj, script::Engine *e)
   return make_ref(e, script::Type::QObjectStar, obj);
 }
 
-template<> inline QObject* value_cast<QObject*>(const script::Value & val) { return val.toQObject(); }
-template<> inline const QObject* value_cast<const QObject*>(const script::Value & val) { return val.toQObject(); }
+template<> struct storage_type<QObject> { typedef QObject* type; };
+template<> inline QObject* get<QObject>(const script::Value & val) { return val.toQObject(); }
 template<> inline Ptr<QObject*> value_cast<Ptr<QObject*>>(const script::Value & v) { return static_cast<QObject**>(get_ptr(v)); }
 
 } // namespace binding

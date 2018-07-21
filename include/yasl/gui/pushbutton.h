@@ -12,16 +12,11 @@
 namespace binding
 {
 
-template<> inline QAbstractButton* value_cast<QAbstractButton*>(const script::Value & val)
-{
-  return qobject_cast<QAbstractButton*>(value_cast<QObject*>(val));
-}
+template<> struct storage_type<QAbstractButton> { typedef QAbstractButton* type; };
+template<> inline QAbstractButton* get<QAbstractButton>(const script::Value & val) { return qobject_cast<QAbstractButton*>(val.toQObject()); }
 
-template<> inline QPushButton* value_cast<QPushButton*>(const script::Value & val)
-{
-  return qobject_cast<QPushButton*>(value_cast<QObject*>(val));
-}
-
+template<> struct storage_type<QPushButton> { typedef QPushButton* type; };
+template<> inline QPushButton* get<QPushButton>(const script::Value & val) { return qobject_cast<QPushButton*>(val.toQObject()); }
 
 } // namespace binding
 
