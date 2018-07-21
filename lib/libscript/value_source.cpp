@@ -3,6 +3,18 @@
 namespace script
 {
 
+ValueImpl::ValueImpl(Type t, Engine *e) : ref(0), type(t), engine(e)
+{
+  const int size = sizeof(BuiltIn);
+  std::memset(data.memory, 0, size);
+}
+
+ValueImpl::BuiltIn::BuiltIn()
+  : qobject(nullptr)
+{
+
+}
+
 ValueImpl::Data::Data()
 {
   ptr = 0;

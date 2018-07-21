@@ -21,7 +21,7 @@ struct LIBSCRIPT_API CharRef
 
 struct LIBSCRIPT_API ValueImpl
 {
-  ValueImpl(Type t, Engine *e) : ref(0), type(t), engine(e) { }
+  ValueImpl(Type t, Engine *e);
   ValueImpl(const ValueImpl &);
   ~ValueImpl();
 
@@ -31,6 +31,8 @@ struct LIBSCRIPT_API ValueImpl
 
   struct BuiltIn
   {
+    BuiltIn();
+
 	String string;
 	QObject *qobject;
     Object object;
