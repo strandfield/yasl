@@ -10,6 +10,7 @@
 
 #include <script/classbuilder.h>
 #include <script/engine.h>
+#include <script/namespace.h>
 
 void register_file_class(script::Namespace n)
 {

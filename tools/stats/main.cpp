@@ -5,10 +5,13 @@
 #include "yasl/application.h"
 
 #include <script/cast.h>
+#include <script/class.h>
 #include <script/enum.h>
 #include <script/function.h>
 #include <script/literals.h>
+#include <script/module.h>
 #include <script/name.h>
+#include <script/namespace.h>
 #include <script/operator.h>
 
 #include <QDebug>

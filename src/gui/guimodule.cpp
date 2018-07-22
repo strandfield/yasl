@@ -6,6 +6,7 @@
 
 #include <script/engine.h>
 #include <script/module.h>
+#include <script/namespace.h>
 
 void register_qcloseevent(script::Namespace n); // defined in closeevent.cpp
 void register_qhideevent(script::Namespace n); // defined in hideevent.cpp

@@ -8,6 +8,7 @@
 #include "yasl/core/enums.h"
 
 #include <script/classbuilder.h>
+#include <script/namespace.h>
 #include <script/interpreter/executioncontext.h>
 
 namespace callbacks

@@ -20,6 +20,7 @@
 
 #include <script/classbuilder.h>
 #include <script/classtemplate.h>
+#include <script/conversions.h>
 #include <script/engine.h>
 #include <script/functionbuilder.h>
 #include <script/functiontemplate.h>

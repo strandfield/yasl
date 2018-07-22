@@ -1,4 +1,6 @@
 
+#include "script/value.h"
+
 #include <QPointer>
 #include <QVariant>
 

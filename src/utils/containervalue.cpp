@@ -4,6 +4,7 @@
 
 #include "yasl/utils/containervalue.h"
 
+#include <script/class.h>
 #include <script/engine.h>
 #include <script/function.h>
 

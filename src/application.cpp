@@ -10,6 +10,9 @@
 #include "yasl/utils/ref.h"
 
 #include <script/functionbuilder.h>
+#include <script/namespace.h>
+#include <script/script.h>
+
 #include <script/interpreter/executioncontext.h>
 
 #include <QDebug>
