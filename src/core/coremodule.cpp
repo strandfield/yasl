@@ -12,7 +12,7 @@
 
 void register_qchar_file(script::Namespace); // defined in char.cpp
 void register_qdir_file(script::Namespace); // defined in dir.cpp
-void register_core_enums(script::Namespace n); // defined in enums.cpp
+void register_qnamespace_file(script::Namespace n); // defined in enums.cpp
 void register_date_class(script::Namespace n); // defined in date.cpp
 void register_datetime_class(script::Namespace n); // defined in datetime.cpp
 void register_file_class(script::Namespace n); // defined in file.cpp
@@ -46,7 +46,7 @@ void load_core_module(script::Module core)
 
   register_stringlist_class(core.root());
 
-  register_core_enums(core.root());
+  register_qnamespace_file(core.root());
   register_qchar_file(core.root());
   register_qdir_file(core.root());
   register_qevent(core.root());

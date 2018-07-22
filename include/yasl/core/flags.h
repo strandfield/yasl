@@ -11,7 +11,7 @@
 #include <script/classbuilder.h>
 #include <script/namespace.h>
 
-#include <Qt>
+#include <QFlags>
 
 template<typename T>
 script::Class register_qflags_type_impl(script::Class flags)
