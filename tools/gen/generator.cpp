@@ -164,6 +164,11 @@ void Generator::generate(gen::FileRef file)
   source_stream << "#include \"yasl/binding/enum.h\"" << endl;
   source_stream << "#include \"yasl/binding/macros.h\"" << endl;
   source_stream << "#include \"yasl/binding/namespace.h\"" << endl;
+  source_stream << endl;
+  source_stream << "#include <script/class.h>" << endl;
+  source_stream << "#include <script/classbuilder.h>" << endl;
+  source_stream << "#include <script/enumbuilder.h>" << endl;
+  source_stream << "#include <script/namespace.h>" << endl;
 
   source_stream << endl;
 
@@ -244,7 +249,12 @@ void Generator::generate(QTextStream & out, gen::ClassRef cla)
   out << "{" << endl;
   out << "  using namespace script;" << endl;
   out << endl;
-  out << "  Class " << snake << " = " << enclosing_snake << ".newClass(ClassBuilder::New(\"" << cla->name << "\").setId(script::Type::" << QString(nameQualification()).remove("::") << "));" << endl;
+  out << "  Class " << snake << " = " << enclosing_snake;
+  if (enclosing_entity == "Namespace")
+    out << "Class";
+  else
+    out << "NestedClass";
+  out << "(\"" << cla->name << "\").setId(script::Type::" << QString(nameQualification()).remove("::") << ").get();" << endl;
   out << endl;
 
   {
@@ -324,20 +334,24 @@ void Generator::generateWithTemplates(QTextStream & out, gen::FunctionRef fun)
 
     if (fun->returnType == "void")
     {
-      out << "  binder.add_void_fun<";
+      if(fun->isStatic)
+        out << "  binder.add_static_void_fun<";
+      else if(fun->isConst)
+        out << "  binder.add_const_void_fun<";
+      else
+        out << "  binder.add_void_fun<";
     }
-    else if (fun->isStatic)
-    {
-      out << "  binder.add_static<";
-      out << fun->returnType << ", ";
-    }
-    else if (fun->returnType == enclosingName() + " &")
+    else if(fun->returnType == enclosingName() + " &")
     {
       out << "  binder.add_chainable<";
     }
     else
     {
-      out << "  binder.add_fun<";
+      if (fun->isStatic)
+        out << "  binder.add_static<";
+      else
+        out << "  binder.add_fun<";
+
       out << fun->returnType << ", ";
     }
 
@@ -425,6 +439,19 @@ void Generator::generateOperator(QTextStream & out, gen::FunctionRef fun, Operat
   }
   else
   {
+    if (!isMember() && (op == LeftShift || op == RightShift))
+    {
+      if (fun->returnType == fun->parameters.at(0))
+      {
+        out << (op == LeftShift ? "put_to" : "read_from") << "<";
+        QStringList targs;
+        targs << fun->parameters.first() << fun->parameters.at(1);
+        out << targs.join(", ");
+        out << ">();" << endl;
+        return;
+      }
+    }
+
     const int implicit_arg_count = isMember() ? 1 : 0;
 
     out << static_operator_infos[op].short_name << "<";
@@ -466,7 +493,7 @@ void Generator::generate(QTextStream & out, gen::NamespaceRef ns)
   out << "{" << endl;
   out << "  using namespace script;" << endl;
   out << endl;
-  out << "  Namespace " << snake << " = " << enclosing_snake << ".getNamespace(\"" << ns->name << "\"));" << endl;
+  out << "  Namespace " << snake << " = " << enclosing_snake << ".getNamespace(\"" << ns->name << "\");" << endl;
   out << endl;
 
   {
@@ -514,7 +541,7 @@ void Generator::generate(QTextStream & out, gen::EnumRef enm)
   out << "{" << endl;
   out << "  using namespace script;" << endl;
   out << endl;
-  out << "  Enum " << snake << " = " << enclosing_snake_name() << ".newEnum(\"" << enm->name << "\", script::Type::" << QString(nameQualification() + enm->name).remove("::") << ");" << endl;
+  out << "  Enum " << snake << " = " << enclosing_snake_name() << ".Enum(\"" << enm->name << "\").setId(script::Type::" << QString(nameQualification() + enm->name).remove("::") << ").get();" << endl;
   out << endl;
 
   for (const auto & v : enm->values)
