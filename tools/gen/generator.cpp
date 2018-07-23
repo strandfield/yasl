@@ -251,9 +251,9 @@ void Generator::generate(QTextStream & out, gen::ClassRef cla)
   out << endl;
   out << "  Class " << snake << " = " << enclosing_snake;
   if (enclosing_entity == "Namespace")
-    out << "Class";
+    out << ".Class";
   else
-    out << "NestedClass";
+    out << ".NestedClass";
   out << "(\"" << cla->name << "\").setId(script::Type::" << QString(nameQualification()).remove("::") << ").get();" << endl;
   out << endl;
 
