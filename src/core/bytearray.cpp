@@ -15,8 +15,6 @@
 #include <script/functionbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
-#include <QByteArray>
-
 void register_qbytearray(script::Namespace ns)
 {
   using namespace script;

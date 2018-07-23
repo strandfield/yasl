@@ -7,12 +7,13 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+
+#include "yasl/core/datastream.h"
 #include "yasl/core/point.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
-#include <QDataStream>
 #include <QDebug>
 
 static void register_line_class(script::Namespace ns)

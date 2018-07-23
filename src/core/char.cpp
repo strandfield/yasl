@@ -9,10 +9,10 @@
 #include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
+
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-
-#include <QDataStream>
 
 static void register_char_category_enum(script::Class qchar)
 {

@@ -9,8 +9,10 @@
 #include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/bitarray.h"
 #include "yasl/core/bytearray.h"
 #include "yasl/core/char.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/date.h"
 #include "yasl/core/datetime.h"
 #include "yasl/core/line.h"
@@ -21,12 +23,11 @@
 #include "yasl/core/size.h"
 #include "yasl/core/time.h"
 #include "yasl/core/url.h"
+#include "yasl/core/uuid.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
-#include <QBitArray>
-#include <QDataStream>
 #include <QDebug>
 #include <QEasingCurve>
 #include <QJsonArray>
@@ -35,7 +36,6 @@
 #include <QJsonValue>
 #include <QModelIndex>
 #include <QPersistentModelIndex>
-#include <QUuid>
 
 static void register_variant_type_enum(script::Class variant)
 {

@@ -7,12 +7,12 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/flags.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
-#include <QDataStream>
 #include <QDebug>
 
 static void register_regular_expression_match_option_enum(script::Class regular_expression)

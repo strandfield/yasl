@@ -10,13 +10,13 @@
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/flags.h"
 #include "yasl/core/urlquery.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
-#include <QDataStream>
 #include <QDebug>
 
 static void register_url_component_formatting_option_enum(script::Class url)
