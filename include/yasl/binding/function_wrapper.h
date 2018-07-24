@@ -58,10 +58,17 @@ struct function_wrapper_t<R(*)(A1, A2, A3, A4), f> {
   }
 };
 
+template<typename R, typename A1, typename A2, typename A3, typename A4, typename A5, R(*f)(A1, A2, A3, A4, A5)>
+struct function_wrapper_t<R(*)(A1, A2, A3, A4, A5), f> {
+  static script::Value wrap(script::FunctionCall *c) {
+    return make_value<R>(f(value_cast<A1>(c->arg(0)), value_cast<A2>(c->arg(1)), value_cast<A3>(c->arg(2)), value_cast<A4>(c->arg(3)), value_cast<A5>(c->arg(4))), c->engine());
+  }
+};
+
+
 /****************************************************************
 Function returning void
 ****************************************************************/
-
 
 template<typename FuncType, FuncType f>
 struct void_function_wrapper_t;
@@ -102,6 +109,14 @@ template<typename A1, typename A2, typename A3, typename A4, void(*f)(A1, A2, A3
 struct void_function_wrapper_t<void(*)(A1, A2, A3, A4), f> {
   static script::Value wrap(script::FunctionCall *c) {
     f(value_cast<A1>(c->arg(0)), value_cast<A2>(c->arg(1)), value_cast<A3>(c->arg(2)), value_cast<A4>(c->arg(3)));
+    return script::Value::Void;
+  }
+};
+
+template<typename A1, typename A2, typename A3, typename A4, typename A5, void(*f)(A1, A2, A3, A4, A5)>
+struct void_function_wrapper_t<void(*)(A1, A2, A3, A4, A5), f> {
+  static script::Value wrap(script::FunctionCall *c) {
+    f(value_cast<A1>(c->arg(0)), value_cast<A2>(c->arg(1)), value_cast<A3>(c->arg(2)), value_cast<A4>(c->arg(3)), value_cast<A5>(c->arg(4)));
     return script::Value::Void;
   }
 };

@@ -768,6 +768,77 @@ public:
   }
 
   /****************************************************************
+  5-arg member functions
+  ****************************************************************/
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)const>
+  script::Function add_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)>
+  script::Function add_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, void(T::*fun)(A1, A2, A3, A4, A5)>
+  script::Function add_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, T&(T::*fun)(A1, A2, A3, A4, A5)>
+  script::Function add_chainable(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
+  script::Function add_static(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, void(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
+  script::Function add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  /****************************************************************
   Operators
   ****************************************************************/
 
