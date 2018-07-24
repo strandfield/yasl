@@ -8,6 +8,7 @@
 #include <script/module.h>
 #include <script/namespace.h>
 
+void register_color_file(script::Namespace n); // defined in color.cpp
 void register_qcloseevent(script::Namespace n); // defined in closeevent.cpp
 void register_qhideevent(script::Namespace n); // defined in hideevent.cpp
 void register_qkeyevent(script::Namespace n); // defined in keyevent.cpp
@@ -23,6 +24,8 @@ void register_qwidget(script::Namespace n); // defined in widget.cpp
 void load_gui_module(script::Module gui)
 {
   gui.engine()->getModule("core").load();
+
+  register_color_file(gui.root());
 
   // Event classes
   register_qcloseevent(gui.root());

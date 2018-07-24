@@ -129,6 +129,9 @@ QUrlUserInputResolutionOption,
 QUuidVariant,
 QUuidVersion,
 QVariantType,
+/* Qt Gui */
+QColorNameFormat,
+QColorSpec,
 LastEnumType,
 
 /* Classes */
@@ -225,6 +228,8 @@ QUrlUserInputResolutionOptions,
 QUrlQuery,
 QUuid,
 QVariant,
+/* Qt Gui */
+QColor,
 QWheelEvent,
 QWidget,
 QWidgetStar,
