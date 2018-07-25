@@ -201,6 +201,30 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename ReturnType, typename RHS>
+  script::Function mul()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Operation(script::MultiplicationOperator, mul_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename RHS>
+  script::Function div()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Operation(script::DivisionOperator, div_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   template<typename RHS>
   script::Function assign()
   {
