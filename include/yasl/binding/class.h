@@ -164,7 +164,7 @@ class ClassDestructor<T, large_object_tag>
 public:
   script::Class class_;
 
-  script::Function add_default()
+  script::Function add()
   {
     return class_.newDestructor(destructor_wrapper_large_object_t<T>::wrap);
   }
