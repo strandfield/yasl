@@ -132,6 +132,7 @@ QVariantType,
 /* Qt Gui */
 QColorNameFormat,
 QColorSpec,
+QTransformTransformationType,
 LastEnumType,
 
 /* Classes */
@@ -230,6 +231,7 @@ QUuid,
 QVariant,
 /* Qt Gui */
 QColor,
+QTransform,
 QWheelEvent,
 QWidget,
 QWidgetStar,
