@@ -10,6 +10,8 @@
 #include <QRegion>
 
 namespace binding {
+template<> struct make_type_t<QRegion> { inline static script::Type get() { return script::Type::QRegion; } };
+template<> struct make_type_t<QRegion::RegionType> { inline static script::Type get() { return script::Type::QRegionRegionType; } };
 } // namespace binding
 
 #endif // YASL_GUI_REGION_H
