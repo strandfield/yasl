@@ -376,6 +376,18 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename ReturnType, typename RHS>
+  script::Function xor()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Operation(script::BitwiseXorOperator, xor_wrapper<const T&, RHS>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   template<typename RHS>
   script::Function and_assign()
   {
@@ -392,6 +404,17 @@ public:
   {
     YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::BitwiseOrAssignmentOperator, or_assign_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename RHS>
+  script::Function xor_assign()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Operation(script::BitwiseXorAssignmentOperator, xor_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
       .create();

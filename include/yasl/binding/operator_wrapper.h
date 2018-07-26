@@ -120,6 +120,12 @@ script::Value or_wrapper(script::FunctionCall *c)
 }
 
 template<typename LHS, typename RHS>
+script::Value xor_wrapper(script::FunctionCall *c)
+{
+  return make_value(value_cast<LHS>(c->arg(0)) ^ value_cast<RHS>(c->arg(1)), c->engine());
+}
+
+template<typename LHS, typename RHS>
 script::Value and_assign_wrapper(script::FunctionCall *c)
 {
   value_cast<LHS>(c->arg(0)) &= value_cast<RHS>(c->arg(1));
@@ -130,6 +136,13 @@ template<typename LHS, typename RHS>
 script::Value or_assign_wrapper(script::FunctionCall *c)
 {
   value_cast<LHS>(c->arg(0)) |= value_cast<RHS>(c->arg(1));
+  return c->arg(0);
+}
+
+template<typename LHS, typename RHS>
+script::Value xor_assign_wrapper(script::FunctionCall *c)
+{
+  value_cast<LHS>(c->arg(0)) ^= value_cast<RHS>(c->arg(1));
   return c->arg(0);
 }
 
