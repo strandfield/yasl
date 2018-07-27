@@ -232,6 +232,7 @@ QUuid,
 QVariant,
 /* Qt Gui */
 QColor,
+QPixmap,
 QRegion,
 QTransform,
 QWheelEvent,
