@@ -11,6 +11,7 @@
 #include "yasl/core/size.h"
 
 #include <script/functionbuilder.h>
+#include <script/script.h>
 
 TEST(CoreModule, size) {
   using namespace script;

@@ -8,6 +8,8 @@
 #include "yasl/core/object.h"
 #include "yasl/gui/widget.h"
 
+#include <script/script.h>
+
 TEST(Widgets, test1) {
   using namespace script;
 
