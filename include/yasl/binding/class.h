@@ -432,6 +432,17 @@ public:
       .create();
     YASL_BINDING_END_RUNTIME_CHECK
   }
+
+  template<typename ReturnType>
+  script::Function logical_not()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Operation(script::LogicalNotOperator, logical_not_wrapper<ReturnType, const T&>)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 };
 
 

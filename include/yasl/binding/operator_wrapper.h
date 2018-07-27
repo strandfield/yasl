@@ -146,6 +146,12 @@ script::Value xor_assign_wrapper(script::FunctionCall *c)
   return c->arg(0);
 }
 
+template<typename ReturnType, typename LHS>
+script::Value logical_not_wrapper(script::FunctionCall *c)
+{
+  return make_value<ReturnType>(!value_cast<LHS>(c->arg(0)), c->engine());
+}
+
 template<typename ReturnType, typename LHS, typename RHS>
 script::Value subscript_wrapper(script::FunctionCall *c)
 {
