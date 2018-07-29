@@ -544,7 +544,7 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
     .returns(Type::Boolean)
     .params(Type::cref(element_type)).create();
   // int count(const T &value) const
-  list.Method("contains", callbacks::count_element)
+  list.Method("count", callbacks::count_element)
     .setConst()
     .returns(Type::Int)
     .params(Type::cref(element_type)).create();
@@ -650,11 +650,9 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
   list.Method("removeAt", callbacks::remove_at)
     .params(Type::Int).create();
   // void removeFirst()
-  list.Method("removeFirst", callbacks::remove_first)
-    .params(Type::Int, Type::Int).create();
+  list.Method("removeFirst", callbacks::remove_first).create();
   // void removeLast()
-  list.Method("removeLast", callbacks::remove_last)
-    .params(Type::Int, Type::Int).create();
+  list.Method("removeLast", callbacks::remove_last).create();
   // bool removeOne(const T &value)
   list.Method("removeOne", callbacks::remove_one)
     .returns(Type::Boolean)
