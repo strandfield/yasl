@@ -10,6 +10,9 @@
 #include <QImage>
 
 namespace binding {
+template<> struct make_type_t<QImage> { inline static script::Type get() { return script::Type::QImage; } };
+template<> struct make_type_t<QImage::Format> { inline static script::Type get() { return script::Type::QImageFormat; } };
+template<> struct make_type_t<QImage::InvertMode> { inline static script::Type get() { return script::Type::QImageInvertMode; } };
 } // namespace binding
 
 #endif // YASL_GUI_IMAGE_H
