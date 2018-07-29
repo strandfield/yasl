@@ -3,6 +3,7 @@
 #include "script/array.h"
 #include "script/enumvalue.h"
 #include "script/function.h"
+#include "script/initializerlist.h"
 #include "script/lambda.h"
 #include "script/object.h"
 #include "script/string.h"
@@ -33,29 +34,31 @@ struct LIBSCRIPT_API ValueImpl
   {
     BuiltIn();
 
-	String string;
-	QObject *qobject;
+    String string;
+    QObject *qobject;
     Object object;
     Array array;
     Function function;
     Lambda lambda;
-	EnumValue enum_value;
-	CharRef charref;
+    EnumValue enum_value;
+    CharRef charref;
+    Value* valueptr;
+    InitializerList initializer_list;
   };
 
   union Data
   {
     BuiltIn builtin;
-	bool boolean;
-	char character;
-	int integer;
-	float realf;
-	double reald;
+    bool boolean;
+    char character;
+    int integer;
+    float realf;
+    double reald;
     void *ptr;
-	char memory[sizeof(BuiltIn)];
+    char memory[sizeof(BuiltIn)];
 
-	Data();
-	~Data();
+    Data();
+    ~Data();
   };
   Data data;
 
@@ -74,11 +77,11 @@ struct LIBSCRIPT_API ValueImpl
   inline String & get_string() { return data.builtin.string; }
   inline void set_string(const String & sval)
   {
-    if(!type.testFlag(Type::BuiltInStorageFlag))
-	{
-	  new (&data.builtin) BuiltIn;
-	  type = type.withFlag(Type::BuiltInStorageFlag);
-	}
+    if (!type.testFlag(Type::BuiltInStorageFlag))
+    {
+      new (&data.builtin) BuiltIn;
+      type = type.withFlag(Type::BuiltInStorageFlag);
+    }
 
     data.builtin.string = sval;
   }
@@ -101,14 +104,17 @@ struct LIBSCRIPT_API ValueImpl
   void set_lambda(const Lambda & lval);
   const EnumValue & get_enum_value() const;
   void set_enum_value(const EnumValue & evval);
+  bool is_initializer_list() const;
+  InitializerList get_initializer_list() const;
+  void set_initializer_list(const InitializerList & il);
 
   void clear()
   {
-    if(type.testFlag(Type::BuiltInStorageFlag))
-	{
-	  data.builtin.~BuiltIn();
-	  type = type.withoutFlag(Type::BuiltInStorageFlag);
-	}
+    if (type.testFlag(Type::BuiltInStorageFlag))
+    {
+      data.builtin.~BuiltIn();
+      type = type.withoutFlag(Type::BuiltInStorageFlag);
+    }
   }
 };
 

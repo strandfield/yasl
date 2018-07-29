@@ -11,6 +11,7 @@ ValueImpl::ValueImpl(Type t, Engine *e) : ref(0), type(t), engine(e)
 
 ValueImpl::BuiltIn::BuiltIn()
   : qobject(nullptr)
+  , valueptr(nullptr)
 {
 
 }
@@ -163,6 +164,29 @@ void ValueImpl::set_enum_value(const EnumValue & evval)
   data.builtin.enum_value = evval;
 }
 
+bool ValueImpl::is_initializer_list() const
+{
+  if (!type.testFlag(Type::BuiltInStorageFlag))
+    return false;
+
+  return data.builtin.initializer_list.begin() != nullptr;
+}
+
+InitializerList ValueImpl::get_initializer_list() const
+{
+  return data.builtin.initializer_list;
+}
+
+void ValueImpl::set_initializer_list(const InitializerList & il)
+{
+  if (!type.testFlag(Type::BuiltInStorageFlag))
+  {
+    new (&data.builtin) BuiltIn;
+    type = type.withFlag(Type::BuiltInStorageFlag);
+  }
+
+  data.builtin.initializer_list = il;
+}
 
 
 QObject* Value::toQObject() const

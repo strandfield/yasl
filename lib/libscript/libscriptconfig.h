@@ -4,7 +4,7 @@
 
 #define LIBSCRIPT_CONFIG_ENGINE_INJECTED_METHODS "engine_members.h"
 #define LIBSCRIPT_CONFIG_ENGINE_INJECTED_SOURCE "engine_source.cpp"
-#define LIBSCRIPT_CONFIG_VALUEIMPL_HEADER "valueimpl.header"
+#define LIBSCRIPT_CONFIG_VALUEIMPL_HEADER "valueimpl_header.h"
 #define LIBSCRIPT_CONFIG_INJECTED_TYPE_FLAGS "typeflags.injected"
 #define LIBSCRIPT_CONFIG_VALUE_INJECTED_SOURCE "value_source.cpp"
 #define LIBSCRIPT_CONFIG_STRING_HEADER "string.header"
