@@ -235,6 +235,7 @@ QUrlQuery,
 QUuid,
 QVariant,
 /* Qt Gui */
+QBitmap,
 QColor,
 QIcon,
 QImage,

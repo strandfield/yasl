@@ -10,7 +10,7 @@
 #include <QBitmap>
 
 namespace binding {
-
+template<> struct make_type_t<QBitmap> { inline static script::Type get() { return script::Type::QBitmap; } };
 } // namespace binding
 
 #endif // YASL_GUI_BITMAP_H

@@ -8,6 +8,7 @@
 #include <script/module.h>
 #include <script/namespace.h>
 
+void register_bitmap_file(script::Namespace n); // defined in bitmap.cpp
 void register_color_file(script::Namespace n); // defined in color.cpp
 void register_icon_file(script::Namespace n); // defined in icon.cpp
 void register_image_file(script::Namespace n); // defined in image.cpp
@@ -30,6 +31,7 @@ void load_gui_module(script::Module gui)
 {
   gui.engine()->getModule("core").load();
 
+  register_bitmap_file(gui.root());
   register_color_file(gui.root());
   register_icon_file(gui.root());
   register_image_file(gui.root());
