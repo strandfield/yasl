@@ -9,6 +9,7 @@
 #include <script/namespace.h>
 
 void register_color_file(script::Namespace n); // defined in color.cpp
+void register_icon_file(script::Namespace n); // defined in icon.cpp
 void register_image_file(script::Namespace n); // defined in image.cpp
 void register_pixmap_file(script::Namespace n); // defined in pixmap.cpp
 void register_region_file(script::Namespace n); // defined in region.cpp
@@ -30,6 +31,7 @@ void load_gui_module(script::Module gui)
   gui.engine()->getModule("core").load();
 
   register_color_file(gui.root());
+  register_icon_file(gui.root());
   register_image_file(gui.root());
   register_pixmap_file(gui.root());
   register_region_file(gui.root());
