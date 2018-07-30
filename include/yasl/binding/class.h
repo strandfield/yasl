@@ -466,6 +466,27 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename RHS>
+  script::Function put_to()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Operation(script::LeftShiftOperator, put_to_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename RHS>
+  script::Function read_from()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Operation(script::RightShiftOperator, read_from_wrapper<T&, RHS>)
+      .returns(make_type<T&>())
+      .params(make_type<RHS>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 };
 
 
