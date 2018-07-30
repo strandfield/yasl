@@ -10,6 +10,9 @@
 #include <QPainterPath>
 
 namespace binding {
+template<> struct make_type_t<QPainterPath> { inline static script::Type get() { return script::Type::QPainterPath; } };
+template<> struct make_type_t<QPainterPath::ElementType> { inline static script::Type get() { return script::Type::QPainterPathElementType; } };
+template<> struct make_type_t<QPainterPathStroker> { inline static script::Type get() { return script::Type::QPainterPathStroker; } };
 } // namespace binding
 
 #endif // YASL_GUI_PAINTERPATH_H
