@@ -170,6 +170,18 @@ script::Value right_shift_wrapper(script::FunctionCall *c)
   return make_value(value_cast<LHS>(c->arg(0)) >> value_cast<RHS>(c->arg(1)), c->engine());
 }
 
+template<typename T>
+script::Value unary_plus_wrapper(script::FunctionCall *c)
+{
+  return make_value(+value_cast<T>(c->arg(0)), c->engine());
+}
+
+template<typename T>
+script::Value unary_minus_wrapper(script::FunctionCall *c)
+{
+  return make_value(-value_cast<T>(c->arg(0)), c->engine());
+}
+
 template<typename LHS, typename RHS>
 script::Value put_to_wrapper(script::FunctionCall *c)
 {
