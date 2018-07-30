@@ -10,6 +10,7 @@
 
 void register_bitmap_file(script::Namespace n); // defined in bitmap.cpp
 void register_color_file(script::Namespace n); // defined in color.cpp
+void register_cursor_file(script::Namespace n); // defined in cursor.cpp
 void register_icon_file(script::Namespace n); // defined in icon.cpp
 void register_image_file(script::Namespace n); // defined in image.cpp
 void register_pixmap_file(script::Namespace n); // defined in pixmap.cpp
@@ -33,6 +34,7 @@ void load_gui_module(script::Module gui)
 
   register_bitmap_file(gui.root());
   register_color_file(gui.root());
+  register_cursor_file(gui.root());
   register_icon_file(gui.root());
   register_image_file(gui.root());
   register_pixmap_file(gui.root());

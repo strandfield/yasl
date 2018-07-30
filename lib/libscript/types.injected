@@ -237,6 +237,7 @@ QVariant,
 /* Qt Gui */
 QBitmap,
 QColor,
+QCursor,
 QIcon,
 QImage,
 QPixmap,
