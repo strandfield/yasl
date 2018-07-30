@@ -15,6 +15,7 @@ void register_cursor_file(script::Namespace n); // defined in cursor.cpp
 void register_icon_file(script::Namespace n); // defined in icon.cpp
 void register_image_file(script::Namespace n); // defined in image.cpp
 void register_painterpath_file(script::Namespace n); // defined in painterpath.cpp
+void register_pen_file(script::Namespace n); // defined in pen.cpp
 void register_pixmap_file(script::Namespace n); // defined in pixmap.cpp
 void register_region_file(script::Namespace n); // defined in region.cpp
 void register_transform_file(script::Namespace n); // defined in transform.cpp
@@ -41,6 +42,7 @@ void load_gui_module(script::Module gui)
   register_icon_file(gui.root());
   register_image_file(gui.root());
   register_painterpath_file(gui.root());
+  register_pen_file(gui.root());
   register_pixmap_file(gui.root());
   register_region_file(gui.root());
   register_transform_file(gui.root());
