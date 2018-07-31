@@ -14,6 +14,7 @@ void register_clipboard_file(script::Namespace n); // defined in clipboard.cpp
 void register_color_file(script::Namespace n); // defined in color.cpp
 void register_cursor_file(script::Namespace n); // defined in cursor.cpp
 void register_font_file(script::Namespace n); // defined in font.cpp
+void register_fontdatabase_file(script::Namespace n); // defined in fontdatabase.cpp
 void register_fontinfo_file(script::Namespace n); // defined in fontinfo.cpp
 void register_fontmetrics_file(script::Namespace n); // defined in fontmetrics.cpp
 void register_icon_file(script::Namespace n); // defined in icon.cpp
@@ -46,6 +47,7 @@ void load_gui_module(script::Module gui)
   register_color_file(gui.root());
   register_cursor_file(gui.root());
   register_font_file(gui.root());
+  register_fontdatabase_file(gui.root());
   register_fontinfo_file(gui.root());
   register_fontmetrics_file(gui.root());
   register_icon_file(gui.root());
