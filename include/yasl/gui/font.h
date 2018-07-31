@@ -10,6 +10,16 @@
 #include <QFont>
 
 namespace binding {
+template<> struct make_type_t<QFont> { inline static script::Type get() { return script::Type::QFont; } };
+template<> struct make_type_t<QFont::Capitalization> { inline static script::Type get() { return script::Type::QFontCapitalization; } };
+template<> struct make_type_t<QFont::HintingPreference> { inline static script::Type get() { return script::Type::QFontHintingPreference; } };
+template<> struct make_type_t<QFont::ResolveProperties> { inline static script::Type get() { return script::Type::QFontResolveProperties; } };
+template<> struct make_type_t<QFont::SpacingType> { inline static script::Type get() { return script::Type::QFontSpacingType; } };
+template<> struct make_type_t<QFont::Stretch> { inline static script::Type get() { return script::Type::QFontStretch; } };
+template<> struct make_type_t<QFont::Style> { inline static script::Type get() { return script::Type::QFontStyle; } };
+template<> struct make_type_t<QFont::StyleHint> { inline static script::Type get() { return script::Type::QFontStyleHint; } };
+template<> struct make_type_t<QFont::StyleStrategy> { inline static script::Type get() { return script::Type::QFontStyleStrategy; } };
+template<> struct make_type_t<QFont::Weight> { inline static script::Type get() { return script::Type::QFontWeight; } };
 } // namespace binding
 
 #endif // YASL_GUI_FONT_H
