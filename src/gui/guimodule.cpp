@@ -15,6 +15,7 @@ void register_color_file(script::Namespace n); // defined in color.cpp
 void register_cursor_file(script::Namespace n); // defined in cursor.cpp
 void register_font_file(script::Namespace n); // defined in font.cpp
 void register_fontinfo_file(script::Namespace n); // defined in fontinfo.cpp
+void register_fontmetrics_file(script::Namespace n); // defined in fontmetrics.cpp
 void register_icon_file(script::Namespace n); // defined in icon.cpp
 void register_image_file(script::Namespace n); // defined in image.cpp
 void register_painterpath_file(script::Namespace n); // defined in painterpath.cpp
@@ -46,6 +47,7 @@ void load_gui_module(script::Module gui)
   register_cursor_file(gui.root());
   register_font_file(gui.root());
   register_fontinfo_file(gui.root());
+  register_fontmetrics_file(gui.root());
   register_icon_file(gui.root());
   register_image_file(gui.root());
   register_painterpath_file(gui.root());
