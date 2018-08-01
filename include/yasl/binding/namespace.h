@@ -224,6 +224,28 @@ public:
       .create();
     YASL_BINDING_END_RUNTIME_CHECK
   }
+
+  template<typename ReturnType, typename Arg>
+  script::Function unary_plus()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return namespace_.Operation(script::UnaryPlusOperator, unary_plus_wrapper<Arg>)
+      .returns(make_type<ReturnType>())
+      .params(make_type<Arg>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename Arg>
+  script::Function unary_minus()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return namespace_.Operation(script::UnaryMinusOperator, unary_minus_wrapper<Arg>)
+      .returns(make_type<ReturnType>())
+      .params(make_type<Arg>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 };
 
 
