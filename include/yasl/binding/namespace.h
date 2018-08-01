@@ -6,6 +6,7 @@
 #define YASL_BINDING_NAMESPACE_H
 
 #include "yasl/binding/function_wrapper.h"
+#include "yasl/binding/operator_wrapper.h"
 
 #include <script/functionbuilder.h>
 #include <script/namespace.h>
