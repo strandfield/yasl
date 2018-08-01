@@ -183,6 +183,16 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename A1, void(T::*fun)(A1) const>
+  void add_const_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, qclass_const_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>());
+
+    builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 
   /****************************************************************
   2-arg member functions
