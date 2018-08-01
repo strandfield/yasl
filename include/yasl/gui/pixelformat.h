@@ -10,7 +10,14 @@
 #include <QPixelFormat>
 
 namespace binding {
-
+template<> struct make_type_t<QPixelFormat> { inline static script::Type get() { return script::Type::QPixelFormat; } };
+template<> struct make_type_t<QPixelFormat::AlphaPosition> { inline static script::Type get() { return script::Type::QPixelFormatAlphaPosition; } };
+template<> struct make_type_t<QPixelFormat::AlphaPremultiplied> { inline static script::Type get() { return script::Type::QPixelFormatAlphaPremultiplied; } };
+template<> struct make_type_t<QPixelFormat::AlphaUsage> { inline static script::Type get() { return script::Type::QPixelFormatAlphaUsage; } };
+template<> struct make_type_t<QPixelFormat::ByteOrder> { inline static script::Type get() { return script::Type::QPixelFormatByteOrder; } };
+template<> struct make_type_t<QPixelFormat::ColorModel> { inline static script::Type get() { return script::Type::QPixelFormatColorModel; } };
+template<> struct make_type_t<QPixelFormat::TypeInterpretation> { inline static script::Type get() { return script::Type::QPixelFormatTypeInterpretation; } };
+template<> struct make_type_t<QPixelFormat::YUVLayout> { inline static script::Type get() { return script::Type::QPixelFormatYUVLayout; } };
 } // namespace binding
 
 #endif // YASL_GUI_PIXELFORMAT_H

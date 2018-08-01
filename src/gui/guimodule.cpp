@@ -23,6 +23,7 @@ void register_painterpath_file(script::Namespace n); // defined in painterpath.c
 void register_palette_file(script::Namespace n); // defined in palette.cpp
 void register_pen_file(script::Namespace n); // defined in pen.cpp
 void register_picture_file(script::Namespace n); // defined in picture.cpp
+void register_pixelformat_file(script::Namespace n); // defined in pixelformat.cpp
 void register_pixmap_file(script::Namespace n); // defined in pixmap.cpp
 void register_quaternion_file(script::Namespace n); // defined in quaternion.cpp
 void register_region_file(script::Namespace n); // defined in region.cpp
@@ -59,6 +60,7 @@ void load_gui_module(script::Module gui)
   register_palette_file(gui.root());
   register_pen_file(gui.root());
   register_picture_file(gui.root());
+  register_pixelformat_file(gui.root());
   register_pixmap_file(gui.root());
   register_quaternion_file(gui.root());
   register_region_file(gui.root());
