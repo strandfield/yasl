@@ -19,6 +19,7 @@ void register_fontinfo_file(script::Namespace n); // defined in fontinfo.cpp
 void register_fontmetrics_file(script::Namespace n); // defined in fontmetrics.cpp
 void register_icon_file(script::Namespace n); // defined in icon.cpp
 void register_image_file(script::Namespace n); // defined in image.cpp
+void register_painter_file(script::Namespace n); // defined in painter.cpp
 void register_painterpath_file(script::Namespace n); // defined in painterpath.cpp
 void register_palette_file(script::Namespace n); // defined in palette.cpp
 void register_pen_file(script::Namespace n); // defined in pen.cpp
@@ -56,6 +57,7 @@ void load_gui_module(script::Module gui)
   register_fontmetrics_file(gui.root());
   register_icon_file(gui.root());
   register_image_file(gui.root());
+  register_painter_file(gui.root());
   register_painterpath_file(gui.root());
   register_palette_file(gui.root());
   register_pen_file(gui.root());
