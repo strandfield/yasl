@@ -30,6 +30,8 @@ void register_quaternion_file(script::Namespace n); // defined in quaternion.cpp
 void register_region_file(script::Namespace n); // defined in region.cpp
 void register_transform_file(script::Namespace n); // defined in transform.cpp
 void register_validator_file(script::Namespace n); // defined in validator.cpp
+void register_window_file(script::Namespace n); // defined in window.cpp
+
 void register_qcloseevent(script::Namespace n); // defined in closeevent.cpp
 void register_qhideevent(script::Namespace n); // defined in hideevent.cpp
 void register_qkeyevent(script::Namespace n); // defined in keyevent.cpp
@@ -68,6 +70,7 @@ void load_gui_module(script::Module gui)
   register_region_file(gui.root());
   register_transform_file(gui.root());
   register_validator_file(gui.root());
+  register_window_file(gui.root());
 
   // Event classes
   register_qcloseevent(gui.root());
