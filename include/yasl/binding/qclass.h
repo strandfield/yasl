@@ -315,6 +315,45 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  /****************************************************************
+  5-arg member functions
+  ****************************************************************/
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)const>
+  void add_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+
+    builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)>
+  void add_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+
+    builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, void(T::*fun)(A1, A2, A3, A4, A5)>
+  void add_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, qclass_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+
+    builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 };
 
 
