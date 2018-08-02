@@ -8,6 +8,7 @@
 #include "yasl/binding/types.h"
 
 #include <QGenericMatrix>
+#include <QMatrix4x4>
 
 namespace binding {
 } // namespace binding
