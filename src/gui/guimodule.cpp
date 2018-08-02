@@ -32,6 +32,7 @@ void register_transform_file(script::Namespace n); // defined in transform.cpp
 void register_validator_file(script::Namespace n); // defined in validator.cpp
 void register_vector2d_file(script::Namespace n); // defined in vector2d.cpp
 void register_vector3d_file(script::Namespace n); // defined in vector3d.cpp
+void register_vector4d_file(script::Namespace n); // defined in vector4d.cpp
 void register_window_file(script::Namespace n); // defined in window.cpp
 
 void register_qcloseevent(script::Namespace n); // defined in closeevent.cpp
@@ -74,6 +75,7 @@ void load_gui_module(script::Module gui)
   register_validator_file(gui.root());
   register_vector2d_file(gui.root());
   register_vector3d_file(gui.root());
+  register_vector4d_file(gui.root());
   register_window_file(gui.root());
 
   // Event classes

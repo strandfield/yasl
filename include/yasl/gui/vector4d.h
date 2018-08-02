@@ -10,6 +10,7 @@
 #include <QVector4D>
 
 namespace binding {
+template<> struct make_type_t<QVector4D> { inline static script::Type get() { return script::Type::QVector4D; } };
 } // namespace binding
 
 #endif // YASL_GUI_VECTOR_4D_H
