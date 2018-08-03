@@ -10,7 +10,8 @@
 #include <QStaticText>
 
 namespace binding {
-
+template<> struct make_type_t<QStaticText> { inline static script::Type get() { return script::Type::QStaticText; } };
+template<> struct make_type_t<QStaticText::PerformanceHint> { inline static script::Type get() { return script::Type::QStaticTextPerformanceHint; } };
 } // namespace binding
 
 #endif // YASL_GUI_STATIC_TEXT_H
