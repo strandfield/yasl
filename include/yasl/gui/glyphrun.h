@@ -10,7 +10,8 @@
 #include <QGlyphRun>
 
 namespace binding {
-
+template<> struct make_type_t<QGlyphRun> { inline static script::Type get() { return script::Type::QGlyphRun; } };
+template<> struct make_type_t<QGlyphRun::GlyphRunFlag> { inline static script::Type get() { return script::Type::QGlyphRunGlyphRunFlag; } };
 } // namespace binding
 
 #endif // YASL_GUI_GLYPH_RUN_H
