@@ -38,12 +38,14 @@ void register_url_file(script::Namespace n); // defined in url.cpp
 void register_urlquery_file(script::Namespace n); // defined urlquery.cpp
 void register_uuid_file(script::Namespace n); // defined in uuid.cpp
 void register_variant_file(script::Namespace n); // defined in variant.cpp
+void register_vector_template(script::Namespace n); // defined in vector.cpp
 
 
 void load_core_module(script::Module core)
 {
   register_ptr_template(core.root());
   register_qlist_template(core.root());
+  register_vector_template(core.root());
 
   register_stringlist_class(core.root());
 
