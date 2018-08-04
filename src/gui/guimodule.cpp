@@ -30,6 +30,7 @@ void register_pixelformat_file(script::Namespace n); // defined in pixelformat.c
 void register_pixmap_file(script::Namespace n); // defined in pixmap.cpp
 void register_quaternion_file(script::Namespace n); // defined in quaternion.cpp
 void register_region_file(script::Namespace n); // defined in region.cpp
+void register_screen_file(script::Namespace n); // defined in screen.cpp
 void register_statictext_file(script::Namespace n); // defined in statictext.cpp
 void register_textoption_file(script::Namespace n); // defined in textoption.cpp
 void register_transform_file(script::Namespace n); // defined in transform.cpp
@@ -77,6 +78,7 @@ void load_gui_module(script::Module gui)
   register_pixmap_file(gui.root());
   register_quaternion_file(gui.root());
   register_region_file(gui.root());
+  register_screen_file(gui.root());
   register_statictext_file(gui.root());
   register_textoption_file(gui.root());
   register_transform_file(gui.root());

@@ -10,6 +10,7 @@
 #include <QScreen>
 
 namespace binding {
+template<> struct make_type_t<QScreen> { inline static script::Type get() { return script::Type::QScreen; } };
 } // namespace binding
 
 #endif // YASL_GUI_SCREEN_H
