@@ -1,2 +1,2 @@
-add_subdirectory(gen)
+add_subdirectory(meta)
 add_subdirectory(stats)
