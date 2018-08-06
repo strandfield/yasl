@@ -31,6 +31,7 @@ protected:
 
 protected:
   void removeSelectedRows();
+  void moveSelectedRow(int k);
 
 protected:
   void fillTreeWidget(const ProjectRef & pro);

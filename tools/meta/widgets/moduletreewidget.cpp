@@ -78,6 +78,8 @@ void ModuleTreeWidget::keyPressEvent(QKeyEvent *e)
 {
   if (e->key() == Qt::Key_Delete || e->key() == Qt::Key_Backspace)
     removeSelectedRows();
+  else if ((e->key() == Qt::Key_Up || e->key() == Qt::Key_Down) && e->modifiers() == Qt::CTRL)
+    moveSelectedRow(e->key());
   else
     QTreeWidget::keyPressEvent(e);
 }
@@ -120,6 +122,59 @@ void ModuleTreeWidget::removeSelectedRows()
     }
 
     parent->removeChild(item);
+  }
+}
+
+void ModuleTreeWidget::moveSelectedRow(int k)
+{
+  const QList<QTreeWidgetItem*> selecteds = selectedItems();
+  if (selecteds.size() != 1)
+    return;
+
+  QTreeWidgetItem *item = selecteds.first();
+  QTreeWidgetItem *parent = item->parent();
+  const int item_index = parent->indexOfChild(item);
+
+  if (item_index == 0 && k == Qt::Key_Up)
+    return;
+  else if (item_index == parent->childCount() - 1 && k == Qt::Key_Down)
+    return;
+
+  NodeRef node = parent->data(0, ProjectNodeRole).value<NodeRef>();
+  if (node == nullptr)
+    return;
+
+  if (k == Qt::Key_Up)
+  {
+    if (node->is<Class>())
+      node->as<Class>().elements.swap(item_index, item_index - 1);
+    else if (node->is<Namespace>())
+      node->as<Namespace>().elements.swap(item_index, item_index - 1);
+    else if (node->is<Module>())
+      node->as<Module>().elements.swap(item_index, item_index - 1);
+    else if (node->is<Enum>())
+      node->as<Enum>().enumerators.swap(item_index, item_index - 1);
+    else
+      throw std::runtime_error{ "ModuleTreeWidget::moveSelectedRow : Not implemented" };
+
+    QTreeWidgetItem *sibling = parent->takeChild(item_index - 1);
+    parent->insertChild(item_index, sibling);
+  }
+  else if (k == Qt::Key_Down)
+  {
+    if (node->is<Class>())
+      node->as<Class>().elements.swap(item_index, item_index + 1);
+    else if (node->is<Namespace>())
+      node->as<Namespace>().elements.swap(item_index, item_index + 1);
+    else if (node->is<Module>())
+      node->as<Module>().elements.swap(item_index, item_index + 1);
+    else if (node->is<Enum>())
+      node->as<Enum>().enumerators.swap(item_index, item_index + 1);
+    else
+      throw std::runtime_error{ "ModuleTreeWidget::moveSelectedRow : Not implemented" };
+
+    QTreeWidgetItem *sibling = parent->takeChild(item_index + 1);
+    parent->insertChild(item_index, sibling);
   }
 }
 
