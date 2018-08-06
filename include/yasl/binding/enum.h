@@ -7,14 +7,14 @@
 
 #include <script/engine.h>
 #include <script/value.h>
-#include <script/enumvalue.h>
+#include <script/enumerator.h>
 
 namespace binding
 {
 
 inline script::Value make_enum(script::Engine *e, const script::Type &enum_type, int val)
 {
-  return script::Value::fromEnumValue(script::EnumValue{ e->getEnum(enum_type), val });
+  return script::Value::fromEnumerator(script::Enumerator{ e->getEnum(enum_type), val });
 }
 
 } // namespace binding

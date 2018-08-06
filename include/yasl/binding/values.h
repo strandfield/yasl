@@ -189,7 +189,7 @@ struct get_helper<T, enum_tag>
 {
   static T get(const script::Value & val)
   {
-    return static_cast<T>(val.toEnumValue().value());
+    return static_cast<T>(val.toEnumerator().value());
   }
 };
 

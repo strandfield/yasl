@@ -1,7 +1,7 @@
 
 
 #include "script/array.h"
-#include "script/enumvalue.h"
+#include "script/enumerator.h"
 #include "script/function.h"
 #include "script/initializerlist.h"
 #include "script/lambda.h"
@@ -40,7 +40,7 @@ struct LIBSCRIPT_API ValueImpl
     Array array;
     Function function;
     Lambda lambda;
-    EnumValue enum_value;
+    Enumerator enumerator;
     CharRef charref;
     Value* valueptr;
     InitializerList initializer_list;
@@ -102,8 +102,8 @@ struct LIBSCRIPT_API ValueImpl
   bool is_lambda() const;
   const Lambda & get_lambda() const;
   void set_lambda(const Lambda & lval);
-  const EnumValue & get_enum_value() const;
-  void set_enum_value(const EnumValue & evval);
+  const Enumerator & get_enumerator() const;
+  void set_enumerator(const Enumerator & en);
   bool is_initializer_list() const;
   InitializerList get_initializer_list() const;
   void set_initializer_list(const InitializerList & il);

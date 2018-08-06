@@ -148,12 +148,12 @@ void ValueImpl::set_lambda(const Lambda & lval)
   data.builtin.lambda = lval;
 }
 
-const EnumValue & ValueImpl::get_enum_value() const
+const Enumerator & ValueImpl::get_enumerator() const
 {
-  return data.builtin.enum_value;
+  return data.builtin.enumerator;
 }
 
-void ValueImpl::set_enum_value(const EnumValue & evval)
+void ValueImpl::set_enumerator(const Enumerator & en)
 {
   if(!type.testFlag(Type::BuiltInStorageFlag))
   {
@@ -161,7 +161,7 @@ void ValueImpl::set_enum_value(const EnumValue & evval)
     type = type.withFlag(Type::BuiltInStorageFlag);
   }
   
-  data.builtin.enum_value = evval;
+  data.builtin.enumerator = en;
 }
 
 bool ValueImpl::is_initializer_list() const
