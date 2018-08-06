@@ -113,7 +113,7 @@ void register_filedevice_class(script::Namespace n)
   register_memorymapflags_enum(filedevice);
   register_permission_enum(filedevice);
 
-  binding::QClass<QFileDevice> binder{ filedevice };
+  binding::QClass<QFileDevice> binder{ filedevice, &QFileDevice::staticMetaObject };
 
   /* Public functions */
 

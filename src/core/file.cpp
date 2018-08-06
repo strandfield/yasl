@@ -20,7 +20,7 @@ void register_file_class(script::Namespace n)
 
   Class file = n.Class("File").setId(Type::QFile).setBase(filedevice).get();
 
-  binding::QClass<QFile> binder{ file };
+  binding::QClass<QFile> binder{ file, &QFile::staticMetaObject };
 
   /* Public functions */
 

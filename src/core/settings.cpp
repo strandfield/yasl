@@ -77,7 +77,7 @@ static void register_settings_class(script::Namespace ns)
   register_settings_format_enum(settings);
   register_settings_scope_enum(settings);
   register_settings_status_enum(settings);
-  binding::QClass<QSettings> binder{ settings };
+  binding::QClass<QSettings> binder{ settings, &QSettings::staticMetaObject };
   binding::Class<QSettings> static_binder{ settings };
   
   // ~QSettings();

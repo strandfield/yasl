@@ -27,7 +27,7 @@ static void register_screen_class(script::Namespace ns)
   Class screen = ns.Class("Screen").setId(script::Type::QScreen)
     .setBase(script::Type::QObject).get();
 
-  binding::QClass<QScreen> binder{ screen };
+  binding::QClass<QScreen> binder{ screen, &QScreen::staticMetaObject };
 
   // QString name() const;
   binder.add_fun<QString, &QScreen::name>("name");
@@ -99,26 +99,24 @@ static void register_screen_class(script::Namespace ns)
   binder.add_fun<qreal, &QScreen::refreshRate>("refreshRate");
   
   /* Signals */
-
-  binding::QSignal sigs{ screen, &QScreen::staticMetaObject };
   // void geometryChanged(const QRect &);
-  sigs.add<const QRect &>("geometryChanged", "geometryChanged(const QRect &)");
+  binder.sigs().add<const QRect &>("geometryChanged", "geometryChanged(const QRect &)");
   // void availableGeometryChanged(const QRect &);
-  sigs.add<const QRect &>("availableGeometryChanged", "availableGeometryChanged(const QRect &)");
+  binder.sigs().add<const QRect &>("availableGeometryChanged", "availableGeometryChanged(const QRect &)");
   // void physicalSizeChanged(const QSizeF &);
-  /// TODO: sigs.add<const QSizeF &>("physicalSizeChanged", "physicalSizeChanged(const QSizeF &)");
+  /// TODO: binder.sigs().add<const QSizeF &>("physicalSizeChanged", "physicalSizeChanged(const QSizeF &)");
   // void physicalDotsPerInchChanged(qreal);
-  sigs.add<qreal>("physicalDotsPerInchChanged", "physicalDotsPerInchChanged(qreal)");
+  binder.sigs().add<qreal>("physicalDotsPerInchChanged", "physicalDotsPerInchChanged(qreal)");
   // void logicalDotsPerInchChanged(qreal);
-  sigs.add<qreal>("logicalDotsPerInchChanged", "logicalDotsPerInchChanged(qreal)");
+  binder.sigs().add<qreal>("logicalDotsPerInchChanged", "logicalDotsPerInchChanged(qreal)");
   // void virtualGeometryChanged(const QRect &);
-  sigs.add<const QRect &>("virtualGeometryChanged", "virtualGeometryChanged(const QRect &)");
+  binder.sigs().add<const QRect &>("virtualGeometryChanged", "virtualGeometryChanged(const QRect &)");
   // void primaryOrientationChanged(Qt::ScreenOrientation);
-  sigs.add<Qt::ScreenOrientation>("primaryOrientationChanged", "primaryOrientationChanged(Qt::ScreenOrientation)");
+  binder.sigs().add<Qt::ScreenOrientation>("primaryOrientationChanged", "primaryOrientationChanged(Qt::ScreenOrientation)");
   // void orientationChanged(Qt::ScreenOrientation);
-  sigs.add<Qt::ScreenOrientation>("orientationChanged", "orientationChanged(Qt::ScreenOrientation)");
+  binder.sigs().add<Qt::ScreenOrientation>("orientationChanged", "orientationChanged(Qt::ScreenOrientation)");
   // void refreshRateChanged(qreal);
-  sigs.add<qreal>("refreshRateChanged", "refreshRateChanged(qreal)");
+  binder.sigs().add<qreal>("refreshRateChanged", "refreshRateChanged(qreal)");
 
 
   ns.engine()->registerQtType(&QScreen::staticMetaObject, screen.id());

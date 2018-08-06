@@ -8,6 +8,7 @@
 #include "yasl/binding/qclass_constructor_wrapper.h"
 #include "yasl/binding/qclass_destructor_wrapper.h"
 #include "yasl/binding/qclass_member_wrapper.h"
+#include "yasl/binding/qsignal.h"
 
 #include <script/class.h>
 #include <script/engine.h>
@@ -24,6 +25,8 @@
 #define YASL_BINDING_BEGIN_RUNTIME_CHECK 
 #define YASL_BINDING_END_RUNTIME_CHECK
 #endif // !defined(YASL_BINDING_COMPILE_TIME_CHECK)
+
+struct QMetaObject;
 
 namespace binding
 {
@@ -90,15 +93,18 @@ class QClass
 {
 public:
   script::Class class_;
+  const QMetaObject *meta_;
 
-
-  QClass(const script::Class c)
+  QClass(const script::Class c, const QMetaObject *m)
     : class_(c)
+    , meta_(m)
   {
 
   }
 
   QClassConstructor<T> ctors() const { return QClassConstructor<T>{class_}; }
+
+  QSignal sigs() const { return QSignal{ class_, meta_ }; }
 
   void add_dtor()
   {

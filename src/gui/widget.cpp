@@ -189,7 +189,7 @@ void register_qwidget(script::Namespace n)
   register_ptr_specialization<QWidget*>(n.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQWidget);
   register_list_specialization<QWidget*>(n.engine()->getTemplate(Engine::ListTemplate), Type::QListQWidget);
 
-  auto widget = binding::QClass<QWidget>{ qwidget_class };
+  auto widget = binding::QClass<QWidget>{ qwidget_class, &QWidget::staticMetaObject };
   qwidget_class.Constructor(callbacks::widget_ctor).create();
   widget.add_dtor();
 
@@ -517,13 +517,12 @@ void register_qwidget(script::Namespace n)
   widget.add_void_fun<&QWidget::update>("update");
 
   /* Signals */
-  binding::QSignal qwidget_signals{ qwidget_class, &QWidget::staticMetaObject };
   // void customContextMenuRequested(const QPoint &pos);
-  //qwidget_signals.add<const QPoint &>("customContextMenuRequested", Q_SIGNAL("customContextMenuRequested(const QPoint &)"));
+  //widget.sigs().add<const QPoint &>("customContextMenuRequested", Q_SIGNAL("customContextMenuRequested(const QPoint &)"));
   // void windowIconChanged(const QIcon &icon);
-  //qwidget_signals.add<const QIcon &>("windowIconChanged", Q_SIGNAL("windowIconChanged(const QIcon &)"));
+  //widget.sigs().add<const QIcon &>("windowIconChanged", Q_SIGNAL("windowIconChanged(const QIcon &)"));
   // void windowTitleChanged(const QString &title);
-  qwidget_signals.add<const QString &>("windowTitleChanged", "windowTitleChanged(const QString &)");
+  widget.sigs().add<const QString &>("windowTitleChanged", "windowTitleChanged(const QString &)");
 
   /* Events */
   qwidget_class.Method("closeEvent", callbacks::close_event)

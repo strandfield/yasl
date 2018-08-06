@@ -50,7 +50,7 @@ static void register_timer_class(script::Namespace ns)
   Class timer = ns.Class("Timer").setId(script::Type::QTimer)
   .setBase(script::Type::QObject).get();
 
-  binding::QClass<QTimer> binder{ timer };
+  binding::QClass<QTimer> binder{ timer, &QTimer::staticMetaObject };
   binding::Class<QTimer> static_binder{ timer };
 
   // ~QTimer();
@@ -103,9 +103,8 @@ static void register_timer_class(script::Namespace ns)
   /// ignore: binder.add_void_fun<std::chrono::milliseconds, &QTimer::start>("start");
 
   /* Signals */
-  binding::QSignal sigs{ timer, &QTimer::staticMetaObject };
   // void timeout();
-  sigs.add("timeout", "timeout()");
+  binder.sigs().add("timeout", "timeout()");
 
   auto new_timer = ns.Function("newTimer", callbacks::new_timer)
     .returns(Type::ref(Type::QTimer))

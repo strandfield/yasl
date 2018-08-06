@@ -40,7 +40,7 @@ static void register_clipboard_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_clipboard_mode_enum(clipboard);
-  binding::QClass<QClipboard> binder{ clipboard };
+  binding::QClass<QClipboard> binder{ clipboard, &QClipboard::staticMetaObject };
 
   // ~QClipboard();
   /// ignore: QClipboard destructor is private !
@@ -80,15 +80,14 @@ static void register_clipboard_class(script::Namespace ns)
   binder.add_void_fun<const QPixmap &, QClipboard::Mode, &QClipboard::setPixmap>("setPixmap");
 
   /* Signals */
-  binding::QSignal sigs{ clipboard, &QClipboard::staticMetaObject };
   // void changed(QClipboard::Mode);
-  sigs.add<QClipboard::Mode>("changed", "changed(QClipboard::Mode)");
+  binder.sigs().add<QClipboard::Mode>("changed", "changed(QClipboard::Mode)");
   // void selectionChanged();
-  sigs.add("selectionChanged", "selectionChanged()");
+  binder.sigs().add("selectionChanged", "selectionChanged()");
   // void findBufferChanged();
-  sigs.add("findBufferChanged", "findBufferChanged()");
+  binder.sigs().add("findBufferChanged", "findBufferChanged()");
   // void dataChanged();
-  sigs.add("dataChanged", "dataChanged()");
+  binder.sigs().add("dataChanged", "dataChanged()");
 
   ns.engine()->registerQtType(&QClipboard::staticMetaObject, clipboard.id());
 }

@@ -58,7 +58,7 @@ void register_qpushbutton(script::Namespace n)
   Class pushbutton = n.Class("PushButton").setId(Type::QPushButton).setBase(widget).get();
   Type pushbutton_type = pushbutton.id();
 
-  auto qpushbutton = binding::QClass<QPushButton>{ pushbutton };
+  auto qpushbutton = binding::QClass<QPushButton>{ pushbutton, &QPushButton::staticMetaObject };
   qpushbutton.ctors().add_default();
   qpushbutton.ctors().add<QWidget*>();
   qpushbutton.ctors().add<const QString &>();
@@ -66,7 +66,7 @@ void register_qpushbutton(script::Namespace n)
   qpushbutton.add_dtor();
 
   /* Inherited from QAbstractButton */
-  auto qabstractbutton = binding::QClass<QAbstractButton>{ pushbutton };
+  auto qabstractbutton = binding::QClass<QAbstractButton>{ pushbutton, &QAbstractButton::staticMetaObject };
   // bool autoExclusive() const
   qabstractbutton.add_fun<bool, &QAbstractButton::autoExclusive>("autoExclusive");
   // bool autoRepeat() const
@@ -120,8 +120,7 @@ void register_qpushbutton(script::Namespace n)
   qpushbutton.add_void_fun<bool, &QPushButton::setFlat>("setFlat");
   // void setMenu(QMenu *menu)
 
-  binding::QSignal qpushbutton_signals{ pushbutton, &QPushButton::staticMetaObject };
-  qpushbutton_signals.add("clicked", Q_SIGNAL("clicked()"));
+  qpushbutton.sigs().add("clicked", Q_SIGNAL("clicked()"));
 
   n.Function("newPushButton", callbacks::new_pushbutton)
     .returns(Type::ref(pushbutton_type))

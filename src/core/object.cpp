@@ -207,7 +207,7 @@ void register_qobject(script::Namespace n)
   register_ptr_specialization<QObject*>(n.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQObject);
   register_list_specialization<QObject*>(n.engine()->getTemplate(Engine::ListTemplate), Type::QListQObject);
 
-  auto qobject = binding::QClass<QObject>{ qobject_class };
+  auto qobject = binding::QClass<QObject>{ qobject_class, &QObject::staticMetaObject };
   qobject.ctors().add_default();
   qobject.add_dtor();
   qobject.add_fun<bool, bool, &QObject::blockSignals>("blockSignals");

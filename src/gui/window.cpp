@@ -65,7 +65,7 @@ static void register_window_class(script::Namespace ns)
 
   register_ref_specialization(ns.engine(), Type::QWindow, Type::QWindowStar);
 
-  binding::QClass<QWindow> binder{ window };
+  binding::QClass<QWindow> binder{ window, &QWindow::staticMetaObject };
 
   // ~QWindow();
   binder.add_dtor();
@@ -291,43 +291,42 @@ static void register_window_class(script::Namespace ns)
   binder.add_void_fun<&QWindow::requestUpdate>("requestUpdate");
 
   /* Signals */
-  binding::QSignal sigs{ window, &QWindow::staticMetaObject };
   // void screenChanged(QScreen *);
-  /// TODO: sigs.add<QScreen*>("screenChanged", "screenChanged(QScreen*)");
+  /// TODO: binder.sigs().add<QScreen*>("screenChanged", "screenChanged(QScreen*)");
   // void modalityChanged(Qt::WindowModality);
-  sigs.add<Qt::WindowModality>("modalityChanged", "modalityChanged(Qt::WindowModality)");
+  binder.sigs().add<Qt::WindowModality>("modalityChanged", "modalityChanged(Qt::WindowModality)");
   // void windowStateChanged(Qt::WindowState);
-  sigs.add<Qt::WindowState>("windowStateChanged", "windowStateChanged(Qt::WindowState)");
+  binder.sigs().add<Qt::WindowState>("windowStateChanged", "windowStateChanged(Qt::WindowState)");
   // void windowTitleChanged(const QString &);
-  sigs.add<const QString &>("windowTitleChanged", "windowTitleChanged(const QString &)");
+  binder.sigs().add<const QString &>("windowTitleChanged", "windowTitleChanged(const QString &)");
   // void xChanged(int);
-  sigs.add<int>("xChanged", "xChanged(int)");
+  binder.sigs().add<int>("xChanged", "xChanged(int)");
   // void yChanged(int);
-  sigs.add<int>("yChanged", "yChanged(int)");
+  binder.sigs().add<int>("yChanged", "yChanged(int)");
   // void widthChanged(int);
-  sigs.add<int>("widthChanged", "widthChanged(int)");
+  binder.sigs().add<int>("widthChanged", "widthChanged(int)");
   // void heightChanged(int);
-  sigs.add<int>("heightChanged", "heightChanged(int)");
+  binder.sigs().add<int>("heightChanged", "heightChanged(int)");
   // void minimumWidthChanged(int);
-  sigs.add<int>("minimumWidthChanged", "minimumWidthChanged(int)");
+  binder.sigs().add<int>("minimumWidthChanged", "minimumWidthChanged(int)");
   // void minimumHeightChanged(int);
-  sigs.add<int>("minimumHeightChanged", "minimumHeightChanged(int)");
+  binder.sigs().add<int>("minimumHeightChanged", "minimumHeightChanged(int)");
   // void maximumWidthChanged(int);
-  sigs.add<int>("maximumWidthChanged", "maximumWidthChanged(int)");
+  binder.sigs().add<int>("maximumWidthChanged", "maximumWidthChanged(int)");
   // void maximumHeightChanged(int);
-  sigs.add<int>("maximumHeightChanged", "maximumHeightChanged(int)");
+  binder.sigs().add<int>("maximumHeightChanged", "maximumHeightChanged(int)");
   // void visibleChanged(bool);
-  sigs.add<bool>("visibleChanged", "visibleChanged(bool)");
+  binder.sigs().add<bool>("visibleChanged", "visibleChanged(bool)");
   // void visibilityChanged(QWindow::Visibility);
-  sigs.add<QWindow::Visibility>("visibilityChanged", "visibilityChanged(QWindow::Visibility)");
+  binder.sigs().add<QWindow::Visibility>("visibilityChanged", "visibilityChanged(QWindow::Visibility)");
   // void activeChanged();
-  sigs.add("activeChanged", "activeChanged()");  
+  binder.sigs().add("activeChanged", "activeChanged()");
   // void contentOrientationChanged(Qt::ScreenOrientation);
-  sigs.add<Qt::ScreenOrientation>("contentOrientationChanged", "contentOrientationChanged(Qt::ScreenOrientation)");
+  binder.sigs().add<Qt::ScreenOrientation>("contentOrientationChanged", "contentOrientationChanged(Qt::ScreenOrientation)");
   // void focusObjectChanged(QObject *);
-  sigs.add<QObject *>("focusObjectChanged", "focusObjectChanged(QObject *)");
+  binder.sigs().add<QObject *>("focusObjectChanged", "focusObjectChanged(QObject *)");
   // void opacityChanged(qreal);
-  sigs.add<qreal>("opacityChanged", "opacityChanged(qreal)");
+  binder.sigs().add<qreal>("opacityChanged", "opacityChanged(qreal)");
 
   ns.engine()->registerQtType(&QWindow::staticMetaObject, window.id());
 }

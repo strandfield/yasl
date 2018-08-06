@@ -47,7 +47,7 @@ void register_iodevice_class(script::Namespace n)
 
   register_iodevice_open_mode(iodevice);
 
-  binding::QClass<QIODevice> binder{ iodevice };
+  binding::QClass<QIODevice> binder{ iodevice, &QIODevice::staticMetaObject };
 
 
   /* Public functions */
@@ -143,14 +143,12 @@ void register_iodevice_class(script::Namespace n)
 
 
   /* Signals */
-
-  binding::QSignal sigs{ iodevice, &QIODevice::staticMetaObject };
-  sigs.add("aboutToClose", "aboutToClose()");
-  sigs.add("bytesWritten", "bytesWritten(qint64)");
-  sigs.add("channelBytesWritten", "channelBytesWritten(int, qint64)");
-  sigs.add("channelReadyRead", "channelReadyRead(int)");
-  sigs.add("readChannelFinished", "readChannelFinished()");
-  sigs.add("readyRead", "readyRead()");
+  binder.sigs().add("aboutToClose", "aboutToClose()");
+  binder.sigs().add("bytesWritten", "bytesWritten(qint64)");
+  binder.sigs().add("channelBytesWritten", "channelBytesWritten(int, qint64)");
+  binder.sigs().add("channelReadyRead", "channelReadyRead(int)");
+  binder.sigs().add("readChannelFinished", "readChannelFinished()");
+  binder.sigs().add("readyRead", "readyRead()");
 
 
   /* MetaObject resgistration */

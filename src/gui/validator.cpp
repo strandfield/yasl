@@ -36,7 +36,7 @@ static void register_double_validator_class(script::Namespace ns)
     .setBase(script::Type::QValidator).get();
 
   register_double_validator_notation_enum(double_validator);
-  binding::QClass<QDoubleValidator> binder{ double_validator };
+  binding::QClass<QDoubleValidator> binder{ double_validator, &QDoubleValidator::staticMetaObject };
 
   // ~QDoubleValidator();
   binder.add_dtor();
@@ -83,7 +83,7 @@ static void register_int_validator_class(script::Namespace ns)
   Class int_validator = ns.Class("IntValidator").setId(script::Type::QIntValidator)
     .setBase(script::Type::QValidator).get();
 
-  binding::QClass<QIntValidator> binder{ int_validator };
+  binding::QClass<QIntValidator> binder{ int_validator, &QIntValidator::staticMetaObject };
 
   // ~QIntValidator();
   binder.add_dtor();
@@ -120,7 +120,7 @@ static void register_regular_expression_validator_class(script::Namespace ns)
   Class regular_expression_validator = ns.Class("RegularExpressionValidator")
     .setBase(script::Type::QValidator).setId(script::Type::QRegularExpressionValidator).get();
 
-  binding::QClass<QRegularExpressionValidator> binder{ regular_expression_validator };
+  binding::QClass<QRegularExpressionValidator> binder{ regular_expression_validator, &QRegularExpressionValidator::staticMetaObject };
 
   // ~QRegularExpressionValidator();
   binder.add_dtor();
@@ -159,7 +159,7 @@ static void register_validator_class(script::Namespace ns)
     .setBase(Type::QObject).get();
 
   register_validator_state_enum(validator);
-  binding::QClass<QValidator> binder{ validator };
+  binding::QClass<QValidator> binder{ validator, &QValidator::staticMetaObject };
 
   // ~QValidator();
   binder.add_dtor();
@@ -175,9 +175,8 @@ static void register_validator_class(script::Namespace ns)
   binder.add_const_void_fun<QString &, &QValidator::fixup>("fixup");
 
   /* Signals */
-  binding::QSignal sigs{ validator, &QValidator::staticMetaObject };
   // void changed();
-  sigs.add("changed", "changed()");
+  binder.sigs().add("changed", "changed()");
 
   ns.engine()->registerQtType(&QValidator::staticMetaObject, validator.id());
 }
