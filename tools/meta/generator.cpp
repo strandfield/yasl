@@ -579,6 +579,12 @@ void Generator::generate(ClassRef cla)
   out += "(\"" + claname + "\").setId(script::Type::" + class_info.id + ").get();" + endl;
   out += endl;
 
+  if (!class_info.starid.isEmpty())
+  {
+    currentSource().bindingIncludes.insert("yasl/utils/ref.h");
+    const QString format = "register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
+    out += format.arg(snake, class_info.id, class_info.starid);
+  }
 
   for (const auto n : cla->elements)
   {
