@@ -291,6 +291,7 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
   {
     item->setIcon(0, QIcon(":/assets/func.png"));
     item->setText(1, Function::serialize(node->as<Function>().bindingMethod));
+    item->setText(2, node->as<Function>().rename);
   }
 
   handle_checkboxes(item, mShowCheckboxes);
@@ -320,6 +321,7 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
   if (node->is<Function>())
   {
     node->as<Function>().bindingMethod = Function::deserialize<Function::BindingMethod>(item->text(1));
+    node->as<Function>().rename = item->text(2);
   }
 
   updateCheckState(item);
