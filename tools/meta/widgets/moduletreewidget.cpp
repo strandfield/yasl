@@ -19,6 +19,8 @@ ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
 {
   setColumnCount(6);
   setHeaderHidden(true);
+  setSelectionBehavior(QAbstractItemView::SelectRows);
+  setSelectionMode(QAbstractItemView::ExtendedSelection);
 
   if(pro != nullptr)
     fillTreeWidget(pro);
