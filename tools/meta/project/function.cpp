@@ -52,6 +52,8 @@ QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
 {
   auto ret = FunctionRef::create(obj.value("name").toString(), json::readCheckState(obj));
 
+  ret->rename = obj.value("rename").toString();
+
   ret->returnType = obj.value("returns").toString();
 
   QJsonArray parameters = obj.value("parameters").toArray();

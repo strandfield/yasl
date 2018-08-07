@@ -12,6 +12,23 @@
 #include "project/namespace.h"
 
 #include <QKeyEvent>
+#include <QStyledItemDelegate>
+
+class ItemDelegate : public QStyledItemDelegate
+{
+public:
+  ItemDelegate(QObject* parent = nullptr) : QStyledItemDelegate(parent) {}
+
+  virtual QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+  {
+    QTreeWidgetItem *item = static_cast<QTreeWidgetItem*>(index.internalPointer());
+    NodeRef node = item->data(0, ModuleTreeWidget::ProjectNodeRole).value<NodeRef>();
+    if (node->is<Function>() && index.column() == 0)
+      return nullptr;
+    return QStyledItemDelegate::createEditor(parent, option, index);
+  }
+};
+
 
 ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   : mProject(pro)
@@ -21,6 +38,7 @@ ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   setHeaderHidden(true);
   setSelectionBehavior(QAbstractItemView::SelectRows);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
+  setItemDelegate(new ItemDelegate(this));
 
   if(pro != nullptr)
     fillTreeWidget(pro);
@@ -289,6 +307,8 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
   }
   else if (node->is<Function>())
   {
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+
     item->setIcon(0, QIcon(":/assets/func.png"));
     item->setText(1, Function::serialize(node->as<Function>().bindingMethod));
     item->setText(2, node->as<Function>().rename);
