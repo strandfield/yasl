@@ -407,18 +407,19 @@ QString Generator::generateWithMacros(FunctionRef fun)
 
 QString Generator::generateSignal(FunctionRef fun)
 {
+  const QString funname = fun->rename.isEmpty() ? fun->name : fun->rename;
   const QString signature = fun->name + "(" + fun->parameters.join(",") + ")";
 
   if (fun->parameters.size() == 0)
   {
     QString format = "binder.sigs().add(\"%1\", \"%2\");";
-    return format.arg(fun->name, signature);
+    return format.arg(funname, signature);
   }
   else
   {
     QString format = "binder.sigs().add<%1>(\"%2\", \"%3\");";
     const QString params = fun->parameters.join(", ");
-    return format.arg(params, fun->name, signature);
+    return format.arg(params, funname, signature);
   }
 }
 
