@@ -17,7 +17,7 @@ Function::Function(const QString & n, Qt::CheckState c)
   , isStatic(false)
   , isConst(false)
   , isDeleted(false)
-  , useBindingMacros(false)
+  , bindingMethod(Function::AutoBinding)
 {
 
 }
@@ -45,8 +45,7 @@ void Function::fillJson(QJsonObject & obj) const
     obj["const"] = isConst;
   if(isDeleted)
     obj["deleted"] = isDeleted;
-  if(useBindingMacros)
-    obj["macros"] = useBindingMacros;
+  json::writeBindingMethod(obj, bindingMethod);
 }
 
 QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
@@ -64,7 +63,7 @@ QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
   ret->isStatic = obj.contains("static") ? obj.value("static").toBool() : false;
   ret->isConst = obj.contains("const") ? obj.value("const").toBool() : false;
   ret->isDeleted = obj.contains("deleted") ? obj.value("deleted").toBool() : false;
-  ret->useBindingMacros = obj.contains("macros") ? obj.value("macros").toBool() : false;
+  ret->bindingMethod = json::readBindingMethod(obj);
 
   return ret;
 }
@@ -123,7 +122,7 @@ QSharedPointer<Node> Constructor::fromJson(const QJsonObject & obj)
   ret->isStatic = obj.value("static").toBool();
   ret->isConst = obj.value("const").toBool();
   ret->isDeleted = obj.value("deleted").toBool();
-  ret->useBindingMacros = obj.value("macros").toBool();
+  ret->bindingMethod = json::readBindingMethod(obj);
 
   return ret;
 }
@@ -192,3 +191,23 @@ QString Destructor::displayedName() const
   result += ";";
   return result;
 }
+
+namespace json
+{
+
+Function::BindingMethod readBindingMethod(const QJsonObject & obj)
+{
+  if (!obj.contains("binding"))
+    return Function::AutoBinding;
+  return Function::deserialize<Function::BindingMethod>(obj.value("binding").toString());
+}
+
+void writeBindingMethod(QJsonObject &obj, Function::BindingMethod bm)
+{
+  if (bm == Function::AutoBinding)
+    return;
+
+  obj["binding"] = Function::serialize(bm);
+}
+
+} // namespace json

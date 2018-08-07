@@ -10,6 +10,14 @@
 class Function : public Node
 {
 public:
+  enum BindingMethod{
+    AutoBinding,
+    TemplateBinding,
+    MacroBinding,
+    SignalBinding,
+  };
+
+public:
   QString rename;
   QString returnType;
   QStringList parameters;
@@ -17,7 +25,7 @@ public:
   bool isStatic;
   bool isConst;
   bool isDeleted;
-  bool useBindingMacros;
+  BindingMethod bindingMethod;
 
 public:
   Function(const QString & n, Qt::CheckState c = Qt::Checked);
@@ -31,6 +39,43 @@ public:
   QString typeCode() const override { return staticTypeCode; }
 
   QString displayedName() const override;
+
+  inline static QString serialize(BindingMethod bm)
+  {
+    switch (bm)
+    {
+    case Function::AutoBinding:
+      break;
+    case Function::TemplateBinding:
+      return "templates";
+      break;
+    case Function::MacroBinding:
+      return "macros";
+      break;
+    case Function::SignalBinding:
+      return "signals";
+      break;
+    default:
+      break;
+    }
+
+    return "auto";
+  }
+
+  template<typename T>
+  static T deserialize(const QString & str);
+
+  template<>
+  static BindingMethod deserialize<BindingMethod>(const QString & str)
+  {
+    if (str == "templates")
+      return TemplateBinding;
+    else if (str == "macros")
+      return MacroBinding;
+    else if (str == "signals")
+      return SignalBinding;
+    return AutoBinding;
+  }
 };
 typedef QSharedPointer<Function> FunctionRef;
 
@@ -69,5 +114,11 @@ struct Destructor : public Function
 };
 typedef QSharedPointer<Destructor> DestructorRef;
 
+
+namespace json
+{
+Function::BindingMethod readBindingMethod(const QJsonObject & obj);
+void writeBindingMethod(QJsonObject &obj, Function::BindingMethod bm);
+}
 
 #endif // YASL_META_FUNCTION_H

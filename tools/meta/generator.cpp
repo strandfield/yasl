@@ -294,8 +294,10 @@ void Generator::generate(FileRef file)
 
 QString Generator::generate(FunctionRef fun)
 {
-  if (fun->useBindingMacros)
+  if (fun->bindingMethod == Function::MacroBinding)
     return generateWithMacros(fun);
+  else if (fun->bindingMethod == Function::SignalBinding)
+    return generateSignal(fun);
   else
     return generateWithTemplates(fun);
 }
@@ -401,6 +403,23 @@ QString Generator::generateWithMacros(FunctionRef fun)
     .append(".create()");
 
   return result + ";";
+}
+
+QString Generator::generateSignal(FunctionRef fun)
+{
+  const QString signature = fun->name + "(" + fun->parameters.join(",") + ")";
+
+  if (fun->parameters.size() == 0)
+  {
+    QString format = "binder.sigs().add(\"%1\", \"%2\");";
+    return format.arg(fun->name, signature);
+  }
+  else
+  {
+    QString format = "binder.sigs().add<%1>(\"%2\", \"%3\");";
+    const QString params = fun->parameters.join(", ");
+    return format.arg(params, fun->name, signature);
+  }
 }
 
 QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)

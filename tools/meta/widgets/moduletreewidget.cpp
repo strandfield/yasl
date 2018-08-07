@@ -290,7 +290,7 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
   else if (node->is<Function>())
   {
     item->setIcon(0, QIcon(":/assets/func.png"));
-    item->setCheckState(1, node->as<Function>().useBindingMacros ? Qt::Checked : Qt::Unchecked);
+    item->setText(1, Function::serialize(node->as<Function>().bindingMethod));
   }
 
   handle_checkboxes(item, mShowCheckboxes);
@@ -319,7 +319,7 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
 
   if (node->is<Function>())
   {
-    node->as<Function>().useBindingMacros = item->checkState(1) == Qt::Checked;
+    node->as<Function>().bindingMethod = Function::deserialize<Function::BindingMethod>(item->text(1));
   }
 
   updateCheckState(item);
