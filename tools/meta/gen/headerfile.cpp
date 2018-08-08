@@ -38,6 +38,12 @@ void HeaderFile::write()
 
   out << "#include \"yasl/binding/types.h\"" << endl;
 
+  bool includeValuesHeader = false;
+  QStringList bindings = generateBindingDefinitions(includeValuesHeader);
+  if(includeValuesHeader)
+    out << "#include \"yasl/binding/values.h\"" << endl;
+
+
   out << endl;
 
   for (const auto inc : generalIncludes)
@@ -50,21 +56,41 @@ void HeaderFile::write()
   if(!generalIncludes.isEmpty())
     out << endl;
 
-  if (!types.isEmpty())
-  {
-    out << "namespace binding {" << endl;
-    for (const auto & t : types)
-    {
-      out << "template<> struct make_type_t<" << t.name << "> { inline static script::Type get() { return script::Type::" << t.id << "; } };" << endl;
-      if(!t.starid.isEmpty())
-        out << "template<> struct make_type_t<" << t.name << "*> { inline static script::Type get() { return script::Type::" << t.starid << "; } };" << endl;
+  for (const auto & l : bindings)
+    out << l << endl;
 
-    }
-    out << "} // namespace binding" << endl;
-    out << endl;
-  }
+  out << endl;
 
   out << "#endif // " << header_guard << endl;
   out.flush();
   f.close();
+}
+
+QStringList HeaderFile::generateBindingDefinitions(bool &includeValuesHeader)
+{
+  includeValuesHeader = false;
+
+  if (types.empty())
+    return QStringList{};
+
+  QStringList out;
+  out << "namespace binding {";
+  for (const auto & t : types)
+  {
+    out << ("template<> struct make_type_t<" + t.name + "> { inline static script::Type get() { return script::Type::" + t.id + "; } };");
+    if (!t.starid.isEmpty())
+      out << ("template<> struct make_type_t<" + t.name + "*> { inline static script::Type get() { return script::Type::" + t.starid + "; } };");
+
+
+    if (!t.storage.isEmpty() && t.storage != "default")
+    {
+      includeValuesHeader = true;
+
+      out << ("template<> struct storage_type<" + t.id + "> { typedef " + t.storage + " type; };");
+      out << ("template<> inline " + t.storage + " get<" + t.id + ">(const script::Value & val) { static_assert(false); }");
+    }
+  }
+  out << "} // namespace binding";
+
+  return out;
 }

@@ -29,6 +29,9 @@ public:
   void write();
 
   static void writeCopyrightMessage(QTextStream & out);
+
+protected:
+  QStringList generateBindingDefinitions(bool &includeValuesHeader);
 };
 
 #endif // YASL_META_HEADERFILE_H
