@@ -27,6 +27,7 @@ public:
       return nullptr;
     return QStyledItemDelegate::createEditor(parent, option, index);
   }
+
 };
 
 
@@ -35,7 +36,8 @@ ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   , mShowCheckboxes(false)
 {
   setColumnCount(6);
-  setHeaderHidden(true);
+  setHeaderHidden(false);
+  clearHeaders();
   setSelectionBehavior(QAbstractItemView::SelectRows);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   setItemDelegate(new ItemDelegate(this));
@@ -48,6 +50,8 @@ ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(updateItem(QTreeWidgetItem*, int)));
   connect(this, SIGNAL(collapsed(const QModelIndex&)), this, SLOT(resizeColumnsAuto()));
   connect(this, SIGNAL(expanded(const QModelIndex&)), this, SLOT(resizeColumnsAuto()));
+  connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(updateHeaders(QTreeWidgetItem*, int)));
+  connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(clearHeaders()));
 }
 
 static void handle_checkboxes(QTreeWidgetItem *item, bool on)
@@ -397,4 +401,40 @@ void ModuleTreeWidget::resizeColumnsAuto()
 {
   for (int i(0); i < columnCount(); ++i)
     resizeColumnToContents(i);
+}
+
+void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
+{
+  if (item == nullptr)
+    return clearHeaders();
+
+  NodeRef node = item->data(0, ProjectNodeRole).value<NodeRef>();
+  if (item == nullptr)
+    return clearHeaders();
+
+  if (node->is<Function>())
+  {
+    setHeaderLabels(QStringList() << "Function" << "binding" << "rename" << "" << "" << "");
+  }
+  else if (node->is<Class>())
+  {
+    setHeaderLabels(QStringList() << "Name" << "" << "" << "" << "" << "");
+  }
+  else if (node->is<Enum>())
+  {
+    setHeaderLabels(QStringList() << "Name" << "" << "" << "" << "" << "");
+  }
+  else if (node->is<Module>())
+  {
+    setHeaderLabels(QStringList() << "Name" << "" << "" << "" << "" << "");
+  }
+  else if (node->is<File>())
+  {
+    setHeaderLabels(QStringList() << "Name" << "" << "" << "" << "" << "");
+  }
+}
+
+void ModuleTreeWidget::clearHeaders()
+{
+  setHeaderLabels(QStringList() << "" << "" << "" << "" << "" << "");
 }
