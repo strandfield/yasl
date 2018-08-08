@@ -11,6 +11,7 @@ const QString Class::staticTypeCode = "class";
 Class::Class(const QString & n, Qt::CheckState c)
   : Node(n, c)
   , derivedFromQObject(false)
+  , isFinal(false)
 {
 
 }
@@ -27,6 +28,9 @@ void Class::fillJson(QJsonObject & obj) const
 
   if (!base.isEmpty())
     obj["base"] = base;
+
+  if (isFinal)
+    obj["final"] = isFinal;
 }
 
 QSharedPointer<Node> Class::fromJson(const QJsonObject & obj)
@@ -39,6 +43,11 @@ QSharedPointer<Node> Class::fromJson(const QJsonObject & obj)
     ret->elements.push_back(Node::fromJson(item.toObject()));
 
   ret->base = obj.value("base").toString();
+
+  if (!obj.contains("final"))
+    ret->isFinal = false;
+  else
+    ret->isFinal = obj.value("final").toBool();
 
   return ret;
 }

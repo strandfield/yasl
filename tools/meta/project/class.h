@@ -13,6 +13,7 @@ public:
   QList<NodeRef> elements;
   bool derivedFromQObject;
   QString base;
+  bool isFinal;
 
 public:
   Class(const QString & n, Qt::CheckState c = Qt::Checked);
