@@ -576,7 +576,13 @@ void Generator::generate(ClassRef cla)
     out += ".Class";
   else
     out += ".NestedClass";
-  out += "(\"" + claname + "\").setId(script::Type::" + class_info.id + ").get();" + endl;
+  out += "(\"" + claname + "\").setId(script::Type::" + class_info.id + ")";
+  if (!cla->base.isEmpty()) 
+  {
+    Type base_class_info = typeinfo(cla->base);
+    out += endl + ".setBase(script::Type::" + base_class_info.id + ")";
+  }
+  out += ".get();" + endl;
   out += endl;
 
   if (!class_info.starid.isEmpty())

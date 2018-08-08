@@ -293,6 +293,7 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
 
     item->setIcon(0, QIcon(":/assets/class.png"));
     Class & c = node->as<Class>();
+    item->setText(1, c.base);
     for (const auto & n : c.elements)
       item->addChild(createItem(n));
   }
@@ -346,6 +347,11 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
   {
     node->as<Function>().bindingMethod = Function::deserialize<Function::BindingMethod>(item->text(1));
     node->as<Function>().rename = item->text(2);
+  }
+  else if (node->is<Class>())
+  {
+    Class & c = node->as<Class>();
+    c.base = item->text(1);
   }
 
   updateCheckState(item);
@@ -418,7 +424,7 @@ void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
   }
   else if (node->is<Class>())
   {
-    setHeaderLabels(QStringList() << "Name" << "" << "" << "" << "" << "");
+    setHeaderLabels(QStringList() << "Name" << "Base" << "" << "" << "" << "");
   }
   else if (node->is<Enum>())
   {

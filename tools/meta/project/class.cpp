@@ -24,6 +24,9 @@ void Class::fillJson(QJsonObject & obj) const
     elems.append(e->toJson());
 
   obj["elements"] = elems;
+
+  if (!base.isEmpty())
+    obj["base"] = base;
 }
 
 QSharedPointer<Node> Class::fromJson(const QJsonObject & obj)
@@ -34,6 +37,8 @@ QSharedPointer<Node> Class::fromJson(const QJsonObject & obj)
   ret->elements.reserve(elements.size());
   for (const auto & item : elements)
     ret->elements.push_back(Node::fromJson(item.toObject()));
+
+  ret->base = obj.value("base").toString();
 
   return ret;
 }

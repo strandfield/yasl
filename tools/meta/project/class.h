@@ -12,6 +12,7 @@ class Class : public Node
 public:
   QList<NodeRef> elements;
   bool derivedFromQObject;
+  QString base;
 
 public:
   Class(const QString & n, Qt::CheckState c = Qt::Checked);
