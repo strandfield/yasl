@@ -36,6 +36,7 @@ QSharedPointer<Node> Enumerator::fromJson(const QJsonObject & obj)
 
 Enum::Enum(const QString & n, Qt::CheckState c)
   : Node(n, c)
+  , isEnumClass(false)
 {
 
 }
@@ -50,6 +51,9 @@ void Enum::fillJson(QJsonObject & obj) const
     enms.append(e->toJson());
   }
   obj["enumerators"] = enms;
+
+  if (isEnumClass)
+    obj["enumclass"] = isEnumClass;
 }
 
 QSharedPointer<Node> Enum::fromJson(const QJsonObject & obj)
@@ -59,6 +63,11 @@ QSharedPointer<Node> Enum::fromJson(const QJsonObject & obj)
   QJsonArray enumerators = obj.value("enumerators").toArray();
   for (const auto & item : enumerators)
     ret->enumerators.push_back(qSharedPointerCast<Enumerator>(Enumerator::fromJson(item.toObject())));
+
+  if (!obj.contains("enumclass"))
+    ret->isEnumClass = false;
+  else
+    ret->isEnumClass = obj.value("enumclass").toBool();
 
   return ret;
 }

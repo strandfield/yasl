@@ -30,6 +30,7 @@ class Enum : public Node
 {
 public:
   QList<EnumeratorRef> enumerators;
+  bool isEnumClass;
 
 public:
   Enum(const QString & n, Qt::CheckState c = Qt::Checked);

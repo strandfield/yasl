@@ -658,7 +658,10 @@ void Generator::generate(EnumRef enm)
   out += "{" + endl;
   out += "  using namespace script;" + endl;
   out += endl;
-  out += "  Enum " + snake + " = " + enclosing_snake_name() + ".Enum(\"" + enmname + "\").setId(script::Type::" + enum_info.id + ").get();" + endl;
+  out += "  Enum " + snake + " = " + enclosing_snake_name() + ".Enum(\"" + enmname + "\").setId(script::Type::" + enum_info.id + ")";
+  if (enm->isEnumClass)
+    out += endl + ".setEnumClass()";
+  out += ".get();" + endl;
   out += endl;
 
   for (const auto & v : enm->enumerators)

@@ -303,6 +303,8 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
 
     item->setIcon(0, QIcon(":/assets/enum.png"));
     auto e = qSharedPointerCast<Enum>(node);
+    if (e->isEnumClass)
+      item->setText(1, "true");
     for (const auto & n : e->enumerators)
       item->addChild(createItem(n));
   }
@@ -352,6 +354,11 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
   {
     Class & c = node->as<Class>();
     c.base = item->text(1);
+  }
+  else if (node->is<Enum>())
+  {
+    Enum & enm = node->as<Enum>();
+    enm.isEnumClass = item->text(1).toLower() == "true";
   }
 
   updateCheckState(item);
@@ -428,7 +435,7 @@ void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
   }
   else if (node->is<Enum>())
   {
-    setHeaderLabels(QStringList() << "Name" << "" << "" << "" << "" << "");
+    setHeaderLabels(QStringList() << "Name" << "Enum class ?" << "" << "" << "" << "");
   }
   else if (node->is<Module>())
   {
