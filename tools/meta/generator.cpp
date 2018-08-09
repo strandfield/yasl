@@ -606,7 +606,7 @@ void Generator::generate(ClassRef cla)
 
 
   if (cla->derivedFromQObject)
-    out += "  binding::QClass<" + cla->name + "> binder{ " + snake + " };" + endl;
+    out += "  binding::QClass<" + cla->name + "> binder{ " + snake + ", &" + cla->name + "::staticMetaObject };" + endl;
   else
     out += "  binding::Class<" + cla->name + "> binder{ " + snake + " };" + endl;
 
