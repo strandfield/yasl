@@ -379,7 +379,7 @@ QString Generator::generateWithMacros(FunctionRef fun)
     }
   }
 
-  QString result = get_format()
+  QString result = "  " + get_format()
     .replace("__nb_params__", QString::number(fun->parameters.size()))
     .replace("__parameters__", fun->parameters.isEmpty() ? "" : ", " + fparams(fun))
     .replace("__script_symbol__", isMember() ? "binder.class_" : "binder.namespace_")
@@ -390,6 +390,8 @@ QString Generator::generateWithMacros(FunctionRef fun)
     .append(fun->isConst ? ".setConst()" : "")
     .append(fun->isStatic ? ".setStatic()" : "")
     .append(".create()");
+
+  currentSource().bindingIncludes.insert("yasl/binding/macros.h");
 
   return result + ";";
 }
@@ -635,11 +637,11 @@ void Generator::generate(ClassRef cla)
   if (!class_info.ptrid.isEmpty())
   {
     currentSource().bindingIncludes.insert("yasl/utils/ptr.h");
-    const QString format = "register_ptr_specialization<%1>(%2.engine()->getTemplate(Engine::PtrTemplate), script::Type::%3);" + endl;
+    const QString format = "  register_ptr_specialization<%1>(%2.engine()->getTemplate(Engine::PtrTemplate), script::Type::%3);" + endl;
     if (cla->derivedFromQObject)
-      out += format.arg(class_info.name + "*", snake, class_info.starid);
+      out += format.arg(class_info.name + "*", snake, class_info.ptrid);
     else
-      out += format.arg(class_info.name, snake, class_info.starid);
+      out += format.arg(class_info.name, snake, class_info.ptrid);
   }
 
   for (const auto n : cla->elements)
@@ -742,7 +744,7 @@ void Generator::generate(NamespaceRef ns)
 
   StateGuard guard{ this, ns };
 
-  QString snake = to_snake_case(ns->name);
+  QString snake = ns->is<File>() ? "ns" : to_snake_case(ns->name);
 
   for (const auto n : ns->elements)
   {
@@ -758,7 +760,10 @@ void Generator::generate(NamespaceRef ns)
   out += "{" + endl;
   out += "  using namespace script;" + endl;
   out += endl;
-  out += "  Namespace " + snake + " = " + enclosing_snake + ".getNamespace(\"" + ns->name + "\");" + endl;
+  if(ns->is<File>())
+    out += "  Namespace " + snake + " = " + enclosing_snake + ";" + endl;
+  else
+    out += "  Namespace " + snake + " = " + enclosing_snake + ".getNamespace(\"" + ns->name + "\");" + endl;
   out += endl;
 
   for (const auto n : ns->elements)
@@ -859,7 +864,7 @@ QString Generator::enclosingName() const
 
 QString Generator::enclosing_snake_name() const
 {
-  if (mProcessingStack.isEmpty())
+  if (mProcessingStack.isEmpty() || mProcessingStack.top()->is<File>())
     return "ns";
 
   return to_snake_case(mProcessingStack.top()->name);
