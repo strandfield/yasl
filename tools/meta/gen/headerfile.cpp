@@ -82,7 +82,7 @@ QStringList HeaderFile::generateBindingDefinitions(bool &includeValuesHeader)
       out << ("template<> struct make_type_t<" + t.name + "*> { inline static script::Type get() { return script::Type::" + t.starid + "; } };");
 
 
-    if (!t.storage.isEmpty() && t.storage != "default")
+    if (!t.storage.isEmpty())
     {
       includeValuesHeader = true;
 

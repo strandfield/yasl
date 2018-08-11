@@ -8,7 +8,7 @@ Type::Type(const QString & n, const QString & id)
   : name(n)
   , id(id)
 {
-  storage = "default";
+
 }
 
 QJsonObject Type::toJson() const
