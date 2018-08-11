@@ -78,6 +78,9 @@ struct Point {
   int x() const { return x_; }
   int y() const { return y_; }
 
+  int & rx() { return x_; }
+  int & ry() { return y_; }
+
   int get2X() const { return 2 * x_; }
 
   static Point max(const Point & a, const Point & b)
@@ -96,7 +99,7 @@ struct Point {
 
 namespace binding
 {
-template<> struct make_type_t<Point> { inline static script::Type get() { return 66 | script::Type::ObjectFlag; } };
+template<> struct make_type_t<Point> { inline static script::Type get() { return script::Type::QPoint; } };
 } // namespace binding
 
 TEST(BindingTests, prototypes_member_functions) {
@@ -132,6 +135,14 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(x.returnType(), Type::Int);
   ASSERT_EQ(x.prototype().size(), 1);
   ASSERT_TRUE(x.isConst());
+
+  Function rx = binder.add_ref_mem<int&, &Point::rx>("rx");
+  ASSERT_TRUE(rx.isMemberFunction());
+  ASSERT_EQ(rx.memberOf(), pt);
+  ASSERT_EQ(rx.name(), "rx");
+  ASSERT_EQ(rx.returnType(), Type::Ptrint);
+  ASSERT_EQ(rx.prototype().size(), 1);
+  ASSERT_FALSE(rx.isConst());
 
   Function max = binder.add_static<Point, const Point &, const Point &, &Point::max>("max");
   ASSERT_TRUE(max.isMemberFunction());

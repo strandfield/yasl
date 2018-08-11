@@ -10,6 +10,7 @@
 #include "yasl/binding/function_wrapper.h"
 #include "yasl/binding/member_wrapper.h"
 #include "yasl/binding/operator_wrapper.h"
+#include "yasl/binding/reference_member_wrapper.h"
 
 #include <script/class.h>
 #include <script/functionbuilder.h>
@@ -575,6 +576,31 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename ReturnType, ReturnType(T::*fun)()const>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, ReturnType(T::*fun)()>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   /****************************************************************
   1-arg member functions
   ****************************************************************/
@@ -656,6 +682,33 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)const>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   /****************************************************************
   2-arg member functions
   ****************************************************************/
@@ -722,6 +775,33 @@ public:
     YASL_BINDING_BEGIN_RUNTIME_CHECK
       return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)const>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>())
       .create();
     YASL_BINDING_END_RUNTIME_CHECK
@@ -798,6 +878,33 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)const>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   /****************************************************************
   4-arg member functions
   ****************************************************************/
@@ -864,6 +971,34 @@ public:
     YASL_BINDING_BEGIN_RUNTIME_CHECK
       return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)const>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
+  script::Function add_ref_mem(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
       .create();
     YASL_BINDING_END_RUNTIME_CHECK

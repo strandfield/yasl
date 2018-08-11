@@ -16,23 +16,6 @@
 
 void register_qlist_template(script::Namespace n);
 
-namespace callbacks
-{
-
-namespace list
-{
-
-template<typename T>
-script::Value generic_back(script::FunctionCall *c)
-{
-  QList<T> & self = binding::value_cast<QList<T> &>(c->thisObject());
-  return make_ptr(c->engine(), c->callee().returnType(), &self.back());
-}
-
-} // namespace list
-
-} // namespace callbacks
-
 
 template<typename T>
 void register_list_specialization(script::ClassTemplate list_template, script::Type::BuiltInType type_id)
@@ -64,8 +47,7 @@ void register_list_specialization(script::ClassTemplate list_template, script::T
   // const T & at(int i) const
   l.add_fun<const T &, int, &QList<T>::at>("at");
   // T & back()
-  list.Method("back", callbacks::list::generic_back<T>)
-    .returns(binding::make_type<Ptr<T>>()).create();
+  l.add_ref_mem<T&, &QList<T>::back>("back");
   // const T & back() const
   l.add_fun<const T &, &QList<T>::back>("back");
   // iterator begin()
@@ -113,7 +95,7 @@ void register_list_specialization(script::ClassTemplate list_template, script::T
   // const T & first() const
   l.add_fun<const T &, &QList<T>::first>("first");
   // T & front()
-  /// TODO !!!
+  l.add_ref_mem<T&, &QList<T>::front>("front");
   // const T & front() const
   l.add_fun<const T &, &QList<T>::front>("front");
   // int indexOf(const T &value, int from = 0) const
