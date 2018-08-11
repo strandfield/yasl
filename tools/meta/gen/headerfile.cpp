@@ -16,6 +16,19 @@ void HeaderFile::writeCopyrightMessage(QTextStream & out)
   out << "// For conditions of distribution and use, see copyright notice in LICENSE" << endl;
 }
 
+void HeaderFile::writeInclude(QTextStream & out, const QString & inc)
+{
+  if (inc.startsWith("<") || inc.startsWith("\""))
+    out << "#include " << inc << endl;
+  else
+    out << "#include \"" << inc << "\"" << endl;
+}
+
+HeaderFile::HeaderFile()
+{
+  bindingIncludes.insert("yasl/binding/types.h");
+}
+
 void HeaderFile::write()
 {
   QFile f{ this->file.absoluteFilePath() };
@@ -36,23 +49,14 @@ void HeaderFile::write()
 
   out << endl;
 
-  out << "#include \"yasl/binding/types.h\"" << endl;
+  QStringList bindings = generateBindingDefinitions();
 
-  bool includeValuesHeader = false;
-  QStringList bindings = generateBindingDefinitions(includeValuesHeader);
-  if(includeValuesHeader)
-    out << "#include \"yasl/binding/values.h\"" << endl;
-
-
+  for (const auto & inc : bindingIncludes)
+    writeInclude(out, inc);
   out << endl;
 
   for (const auto inc : generalIncludes)
-  {
-    if (inc.startsWith("<") || inc.startsWith("\""))
-      out << "#include " << inc << endl;
-    else
-      out << "#include \"" << inc << "\"" << endl;
-  }
+    writeInclude(out, inc);
   if(!generalIncludes.isEmpty())
     out << endl;
 
@@ -66,10 +70,8 @@ void HeaderFile::write()
   f.close();
 }
 
-QStringList HeaderFile::generateBindingDefinitions(bool &includeValuesHeader)
+QStringList HeaderFile::generateBindingDefinitions()
 {
-  includeValuesHeader = false;
-
   if (types.empty())
     return QStringList{};
 
@@ -82,16 +84,18 @@ QStringList HeaderFile::generateBindingDefinitions(bool &includeValuesHeader)
       out << ("template<> struct make_type_t<" + t.name + "*> { inline static script::Type get() { return script::Type::" + t.starid + "; } };");
     if (!t.ptrid.isEmpty())
     {
+      bindingIncludes.insert("yasl/utils/ptr.h");
+
       if(!t.starid.isEmpty())
-        out << ("template<> struct make_type_t<Ptr" + t.name + "*>> { inline static script::Type get() { return script::Type::" + t.ptrid + "; } };");
+        out << ("template<> struct make_type_t<Ptr<" + t.name + "*>> { inline static script::Type get() { return script::Type::" + t.ptrid + "; } };");
       else
-        out << ("template<> struct make_type_t<Ptr" + t.name + ">> { inline static script::Type get() { return script::Type::" + t.ptrid + "; } };");
+        out << ("template<> struct make_type_t<Ptr<" + t.name + ">> { inline static script::Type get() { return script::Type::" + t.ptrid + "; } };");
     }
 
 
     if (!t.storage.isEmpty())
     {
-      includeValuesHeader = true;
+      bindingIncludes.insert("yasl/binding/values.h");
 
       out << ("template<> struct storage_type<" + t.id + "> { typedef " + t.storage + " type; };");
       out << ("template<> inline " + t.storage + " get<" + t.id + ">(const script::Value & val) { static_assert(false); }");

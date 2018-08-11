@@ -10,7 +10,8 @@
 class File : public Namespace
 {
 public:
-  QStringList includes;
+  QStringList hincludes;
+  QStringList cppincludes;
 
 public:
   File(const QString & n, Qt::CheckState c = Qt::Checked);

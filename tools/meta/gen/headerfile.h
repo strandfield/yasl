@@ -25,13 +25,15 @@ public:
   QMap<QString, Type> types;
 
 public:
+  HeaderFile();
 
   void write();
 
   static void writeCopyrightMessage(QTextStream & out);
+  static void writeInclude(QTextStream & out, const QString & inc);
 
 protected:
-  QStringList generateBindingDefinitions(bool &includeValuesHeader);
+  QStringList generateBindingDefinitions();
 };
 
 #endif // YASL_META_HEADERFILE_H

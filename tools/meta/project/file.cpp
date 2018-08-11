@@ -19,8 +19,11 @@ void File::fillJson(QJsonObject & obj) const
 {
   Namespace::fillJson(obj);
 
-  if (!includes.empty())
-    obj["includes"] = includes.join(",");
+  if (!hincludes.empty())
+    obj["hincludes"] = hincludes.join(",");
+
+  if (!cppincludes.empty())
+    obj["cppincludes"] = cppincludes.join(",");
 }
 
 QSharedPointer<Node> File::fromJson(const QJsonObject & obj)
@@ -32,8 +35,11 @@ QSharedPointer<Node> File::fromJson(const QJsonObject & obj)
   for (const auto & item : elements)
     ret->elements.push_back(Node::fromJson(item.toObject()));
 
-  if (obj.contains("includes"))
-    ret->includes = obj.value("includes").toString().split(",", QString::SkipEmptyParts);
+  if (obj.contains("hincludes"))
+    ret->hincludes = obj.value("hincludes").toString().split(",", QString::SkipEmptyParts);
+
+  if (obj.contains("cppincludes"))
+    ret->cppincludes = obj.value("cppincludes").toString().split(",", QString::SkipEmptyParts);
 
   return ret;
 }
