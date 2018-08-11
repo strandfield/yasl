@@ -101,7 +101,7 @@ private:
   void generate(ModuleRef mod);
   void generate(FileRef file);
   QString generate(FunctionRef fun);
-  QString generateWithTemplates(FunctionRef fun);
+  QString generate(FunctionRef fun, Function::BindingMethod bm);
   QString generateWithMacros(FunctionRef fun);
   QString generateSignal(FunctionRef fun);
   QString generateOperator(FunctionRef fun, OperatorSymbol op);
@@ -114,6 +114,9 @@ private:
   QString fparam(const QString & p);
   QString fparams(const QStringList & params);
   QString fparams(const FunctionRef fun);
+  QString fparamscomma(const FunctionRef fun);
+  Function::BindingMethod getBindingMethod(FunctionRef fun) const;
+  Function::BindingMethod guessBindingMethod(FunctionRef fun) const;
 
 private:
   QString prefix() const;

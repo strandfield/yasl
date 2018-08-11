@@ -12,9 +12,17 @@ class Function : public Node
 public:
   enum BindingMethod{
     AutoBinding,
-    TemplateBinding,
     MacroBinding,
     SignalBinding,
+    ChainableBinding,
+    ReferenceBinding,
+    StaticVoidBinding,
+    ConstVoidBinding,
+    VoidBinding,
+    StaticBinding,
+    SimpleBinding,
+    ConstructorBinding,
+    OperatorBinding,
   };
 
 public:
@@ -46,15 +54,28 @@ public:
     {
     case Function::AutoBinding:
       break;
-    case Function::TemplateBinding:
-      return "templates";
-      break;
     case Function::MacroBinding:
       return "macros";
-      break;
     case Function::SignalBinding:
       return "signals";
-      break;
+    case Function::ChainableBinding:
+      return "chainable";
+    case Function::ReferenceBinding:
+      return "reference";
+    case Function::StaticVoidBinding:
+      return "static-void";
+    case Function::ConstVoidBinding:
+      return "const-void";
+    case Function::VoidBinding:
+      return "void";
+    case Function::StaticBinding:
+      return "static";
+    case Function::SimpleBinding:
+      return "simple";
+    case Function::ConstructorBinding:
+      return "ctor";
+    case Function::OperatorBinding:
+      return "op";
     default:
       break;
     }
@@ -68,12 +89,28 @@ public:
   template<>
   static BindingMethod deserialize<BindingMethod>(const QString & str)
   {
-    if (str == "templates")
-      return TemplateBinding;
-    else if (str == "macros")
+    if (str == "macros")
       return MacroBinding;
     else if (str == "signals")
       return SignalBinding;
+    else if (str == "chainable")
+      return ChainableBinding;
+    else if (str == "reference")
+      return ReferenceBinding;
+    else if (str == "static-void")
+      return StaticVoidBinding;
+    else if (str == "const-void")
+      return ConstVoidBinding;
+    else if (str == "void")
+      return VoidBinding;
+    else if (str == "static")
+      return StaticBinding;
+    else if (str == "simple")
+      return SimpleBinding;
+    else if (str == "ctor")
+      return ConstructorBinding;
+    else if (str == "op")
+      return OperatorBinding;
     return AutoBinding;
   }
 };

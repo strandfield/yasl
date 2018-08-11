@@ -97,7 +97,6 @@ QString Function::displayedName() const
   return result;
 }
 
-
 Constructor::Constructor(const QString & n, Qt::CheckState cs)
   : Function(n, cs)
 {

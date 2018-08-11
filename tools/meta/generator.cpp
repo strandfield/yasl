@@ -294,67 +294,51 @@ void Generator::generate(FileRef file)
 
 QString Generator::generate(FunctionRef fun)
 {
-  if (fun->bindingMethod == Function::MacroBinding)
-    return generateWithMacros(fun);
-  else if (fun->bindingMethod == Function::SignalBinding)
-    return generateSignal(fun);
-  else
-    return generateWithTemplates(fun);
+  return generate(fun, getBindingMethod(fun));
 }
 
-QString Generator::generateWithTemplates(FunctionRef fun)
+QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 {
-  if (fun->is<Constructor>())
+  if (bm == Function::ConstructorBinding)
   {
     if (fun->parameters.isEmpty())
-    {
       return "  binder.ctors().add_default();";
-    }
     else
-    {
       return "  binder.ctors().add<" + fparams(fun->parameters) + ">();";
-    }
   }
-  else
+  else if (bm == Function::OperatorBinding)
   {
-    if (fun->name.startsWith("operator"))
-    {
-      OperatorSymbol sym = getOperatorSymbol(fun->name);
-      if (sym != Invalid)
-        return generateOperator(fun, sym);
-    }
-
-    QString method;
-
-    if (fun->returnType == "void")
-    {
-      if (fun->isStatic)
-        method = "  binder.add_static_void_fun<";
-      else if (fun->isConst)
-        method = "  binder.add_const_void_fun<";
-      else
-        method = "  binder.add_void_fun<";
-    }
-    else if (fun->returnType == enclosingName() + " &")
-    {
-      method =  "  binder.add_chainable<";
-    }
-    else
-    {
-      if (fun->isStatic)
-        method = "  binder.add_static<";
-      else
-        method = "  binder.add_fun<";
-
-      method += fun->returnType + ", ";
-    }
-
-    QString funname = fun->rename.isEmpty() ? fun->name : fun->rename;
-    QString params = fparams(fun);
-    if (!params.isEmpty())
-      params += ", ";
-    return method + params + "&" + nameQualification() + fun->name + ">(\"" + funname + "\");";
+    return generateOperator(fun, getOperatorSymbol(fun->name));
   }
+  else if (fun->bindingMethod == Function::MacroBinding)
+  {
+    return generateWithMacros(fun);
+  }
+  else if (fun->bindingMethod == Function::SignalBinding)
+  {
+    return generateSignal(fun);
+  }
+
+  const QString funname = fun->rename.isEmpty() ? fun->name : fun->rename;
+  const QString params = fparamscomma(fun);
+  const QString funaddr = "&" + nameQualification() + fun->name;
+
+  if (bm == Function::StaticVoidBinding)
+    return QString("  binder.add_static_void_fun<%1%2>(\"%3\");").arg(params, funaddr, funname);
+  else if(bm == Function::ConstVoidBinding)
+    return QString("  binder.add_const_void<%2%3>(\"%4\");").arg(params, funaddr, funname);
+  else if (bm == Function::VoidBinding)
+    return QString("  binder.add_void_fun<%2%3>(\"%4\");").arg(params, funaddr, funname);
+  else if (bm == Function::ChainableBinding)
+    return QString("  binder.add_chainable<%2%3>(\"%4\");").arg(params, funaddr, funname);
+  else if (bm == Function::StaticBinding)
+    return QString("  binder.add_static<%1, %2%3>(\"%4\");").arg(fun->returnType, params, funaddr, funname);
+  else if (bm == Function::SimpleBinding)
+    return QString("  binder.add_fun<%1, %2%3>(\"%4\");").arg(fun->returnType, params, funaddr, funname);
+  else if (bm == Function::ReferenceBinding)
+    return QString("  binder.add_ref_mem<%1, %2%3>(\"%4\");").arg(fun->returnType, params, funaddr, funname);
+
+  throw std::runtime_error{ "Unsupported bind method !" };
 }
 
 QString Generator::generateWithMacros(FunctionRef fun)
@@ -538,6 +522,51 @@ QString Generator::fparams(const QStringList & params)
 QString Generator::fparams(const FunctionRef fun)
 {
   return fparams(fun->parameters);
+}
+
+QString Generator::fparamscomma(const FunctionRef fun)
+{
+  QString ret = fparams(fun);
+  if (!ret.isEmpty())
+    return ret + ", ";
+  return ret;
+}
+
+Function::BindingMethod Generator::getBindingMethod(FunctionRef fun) const
+{
+  if (fun->bindingMethod == Function::AutoBinding)
+    return guessBindingMethod(fun);
+  return fun->bindingMethod;
+}
+
+Function::BindingMethod Generator::guessBindingMethod(FunctionRef fun) const
+{
+  if (fun->returnType == "void")
+  {
+    if (fun->isStatic)
+      return Function::StaticVoidBinding;
+    else if (fun->isConst)
+      return Function::ConstVoidBinding;
+    else
+      return Function::VoidBinding;
+  }
+  else if (fun->returnType == enclosingName() + " &")
+  {
+    return Function::ChainableBinding;
+  }
+  
+  
+  if (fun->name.startsWith("operator"))
+  {
+    OperatorSymbol sym = getOperatorSymbol(fun->name);
+    if (sym != Invalid)
+      return Function::OperatorBinding;
+  }
+
+  if (fun->isStatic)
+    return Function::StaticBinding;
+  else
+    return Function::SimpleBinding;
 }
 
 void Generator::generate(ClassRef cla)
