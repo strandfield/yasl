@@ -324,6 +324,7 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
   const QString funname = fun->rename.isEmpty() ? fun->name : fun->rename;
   const QString params = fparamscomma(fun);
   const QString funaddr = "&" + nameQualification() + fun->name;
+  const QString fret = fparam(fun->returnType);
 
   if (bm == Function::StaticVoidBinding)
     return QString("  binder.add_static_void_fun<%1%2>(\"%3\");").arg(params, funaddr, funname);
@@ -334,11 +335,11 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
   else if (bm == Function::ChainableBinding)
     return QString("  binder.add_chainable<%2%3>(\"%4\");").arg(params, funaddr, funname);
   else if (bm == Function::StaticBinding)
-    return QString("  binder.add_static<%1, %2%3>(\"%4\");").arg(fun->returnType, params, funaddr, funname);
+    return QString("  binder.add_static<%1, %2%3>(\"%4\");").arg(fret, params, funaddr, funname);
   else if (bm == Function::SimpleBinding)
-    return QString("  binder.add_fun<%1, %2%3>(\"%4\");").arg(fun->returnType, params, funaddr, funname);
+    return QString("  binder.add_fun<%1, %2%3>(\"%4\");").arg(fret, params, funaddr, funname);
   else if (bm == Function::ReferenceBinding)
-    return QString("  binder.add_ref_mem<%1, %2%3>(\"%4\");").arg(fun->returnType, params, funaddr, funname);
+    return QString("  binder.add_ref_mem<%1, %2%3>(\"%4\");").arg(fret, params, funaddr, funname);
 
   throw std::runtime_error{ "Unsupported bind method !" };
 }
@@ -427,7 +428,7 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
     out += static_operator_infos[op].short_name + QString("<");
     QStringList targs;
     if (static_operator_infos[op].print_return_type)
-      targs << fun->returnType;
+      targs << fparam(fun->returnType);
     for (int i(0); i < fun->parameters.size(); ++i)
       targs << fparam(fun, i);
     out += targs.join(", ");
