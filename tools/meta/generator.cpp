@@ -280,6 +280,8 @@ void Generator::generate(FileRef file)
   SourceFile source;
   source.file = QFileInfo{ currentSourceDirectory() + "/" + file->name + ".cpp" };
   source.header = "yasl/" + QString{ mCurrentModule }.replace(".", "/") +"/" + file->name + ".h";
+  for (const auto & inc : file->includes)
+    source.generalIncludes.insert(inc);
 
   mCurrentSource = &source;
   mCurrentHeader = &header;

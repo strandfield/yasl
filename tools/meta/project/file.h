@@ -10,6 +10,9 @@
 class File : public Namespace
 {
 public:
+  QStringList includes;
+
+public:
   File(const QString & n, Qt::CheckState c = Qt::Checked);
   ~File() = default;
 

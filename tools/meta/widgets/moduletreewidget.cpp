@@ -275,6 +275,7 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
 
     item->setIcon(0, QIcon(":/assets/namespace.png"));
     File & f = node->as<File>();
+    item->setText(1, f.includes.join(","));
     for (const auto & n : f.elements)
       item->addChild(createItem(n));
   }
@@ -362,6 +363,11 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
     Enum & enm = node->as<Enum>();
     enm.isEnumClass = item->text(1).toLower() == "true";
   }
+  else if (node->is<File>())
+  {
+    File & f = node->as<File>();
+    f.includes = item->text(1).split(",", QString::SkipEmptyParts);
+  }
 
   updateCheckState(item);
 }
@@ -445,7 +451,7 @@ void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
   }
   else if (node->is<File>())
   {
-    setHeaderLabels(QStringList() << "Name" << "" << "" << "" << "" << "");
+    setHeaderLabels(QStringList() << "Name" << "Includes" << "" << "" << "" << "");
   }
 }
 
