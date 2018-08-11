@@ -17,6 +17,7 @@ public:
   QString rename;
   QString header;
   QString storage;
+  QString ptrid;
 
 public:
   Type() = default;

@@ -30,6 +30,7 @@ protected:
     HeaderColumn,
     StorageColumn,
     StarIdColumn,
+    PtrIdColumn,
   };
 
   QList<Type> & getTypeList(QTreeWidgetItem *item);

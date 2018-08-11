@@ -25,6 +25,8 @@ QJsonObject Type::toJson() const
     ret["header"] = header;
   if (!storage.isEmpty())
     ret["storage"] = storage;
+  if (!ptrid.isEmpty())
+    ret["ptrid"] = ptrid;
 
   return ret;
 }
@@ -36,5 +38,6 @@ Type Type::fromJson(const QJsonObject & obj)
   ret.header = obj.value("header").toString();
   ret.starid = obj.value("starid").toString();
   ret.storage = obj.value("storage").toString();
+  ret.ptrid = obj.value("ptrid").toString();
   return ret;
 }

@@ -11,9 +11,9 @@
 TypeTreeWidget::TypeTreeWidget(const ProjectRef & pro)
   : mProject(pro)
 {
-  setColumnCount(6);
+  setColumnCount(7);
   setHeaderLabels(QStringList() << "C++ type" << "Yasl name"
-    << "Id" << "Header" << "Storage type" << "Star id");
+    << "Id" << "Header" << "Storage type" << "Star id" << "Ptr id");
 
   fillTreeWidget(pro);
 
@@ -75,6 +75,8 @@ QString & TypeTreeWidget::getField(Type & t, int col)
     return t.storage;
   case StarIdColumn:
     return t.starid;
+  case PtrIdColumn:
+    return t.ptrid;
   }
 
   throw std::runtime_error{ "TypeTreeWidget::getField() : invalid column" };
@@ -185,5 +187,6 @@ QTreeWidgetItem* TypeTreeWidget::createItem(const Type & t)
   item->setText(HeaderColumn, t.header);
   item->setText(StorageColumn, t.storage);
   item->setText(StarIdColumn, t.starid);
+  item->setText(PtrIdColumn, t.ptrid);
   return item;
 }

@@ -627,6 +627,16 @@ void Generator::generate(ClassRef cla)
     out += format.arg(snake, class_info.id, class_info.starid);
   }
 
+  if (!class_info.ptrid.isEmpty())
+  {
+    currentSource().bindingIncludes.insert("yasl/utils/ptr.h");
+    const QString format = "register_ptr_specialization<%1>(%2.engine()->getTemplate(Engine::PtrTemplate), script::Type::%3);" + endl;
+    if (cla->derivedFromQObject)
+      out += format.arg(class_info.name + "*", snake, class_info.starid);
+    else
+      out += format.arg(class_info.name, snake, class_info.starid);
+  }
+
   for (const auto n : cla->elements)
   {
     if (n->is<Enum>())

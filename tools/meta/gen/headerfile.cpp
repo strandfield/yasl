@@ -80,6 +80,13 @@ QStringList HeaderFile::generateBindingDefinitions(bool &includeValuesHeader)
     out << ("template<> struct make_type_t<" + t.name + "> { inline static script::Type get() { return script::Type::" + t.id + "; } };");
     if (!t.starid.isEmpty())
       out << ("template<> struct make_type_t<" + t.name + "*> { inline static script::Type get() { return script::Type::" + t.starid + "; } };");
+    if (!t.ptrid.isEmpty())
+    {
+      if(!t.starid.isEmpty())
+        out << ("template<> struct make_type_t<Ptr" + t.name + "*>> { inline static script::Type get() { return script::Type::" + t.ptrid + "; } };");
+      else
+        out << ("template<> struct make_type_t<Ptr" + t.name + ">> { inline static script::Type get() { return script::Type::" + t.ptrid + "; } };");
+    }
 
 
     if (!t.storage.isEmpty())
