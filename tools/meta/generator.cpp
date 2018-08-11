@@ -183,11 +183,11 @@ static const OperatorInfo static_operator_infos[]{
   { "greater", false, 2 },
   { "geq", false, 2 },
   { "invalid", false, 0 }, // plus
-  { "add", true, 2 },
   { "unary_plus", true, 1 },
+  { "add", true, 2 },
   { "invalid", false, 0 }, // minus
-  { "sub", true, 2 },
   { "unary_minus", true, 1 },
+  { "sub", true, 2 },
   { "mul", true, 2 },
   { "div", true, 2 },
   { "mod", true, 2 },
@@ -414,14 +414,16 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
 {
   QString out = "  binder.operators().";
 
+  const int implicit_param_count = isMember() ? 1 : 0;
+
   if (op == Plus)
-    op = fun->parameters.count() == 0 ? UnaryPlus : Add;
+    op = fun->parameters.count() + implicit_param_count == 1 ? UnaryPlus : Add;
   else if (op == Minus)
-    op = fun->parameters.count() == 0 ? UnaryMinus : Sub;
+    op = fun->parameters.count() + implicit_param_count == 1 ? UnaryMinus : Sub;
   else if (op == PlusPlus)
-    op = fun->parameters.count() == 0 ? PreIncrement : PostIncrement;
+    op = fun->parameters.count() + implicit_param_count == 1 ? PreIncrement : PostIncrement;
   else if (op == MinusMinus)
-    op = fun->parameters.count() == 0 ? PreDecrement : PostDecrement;
+    op = fun->parameters.count() + implicit_param_count == 1 ? PreDecrement : PostDecrement;
 
   if (op == FunctionCall)
   {
@@ -450,15 +452,13 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
       }
     }
 
-    const int implicit_arg_count = isMember() ? 1 : 0;
-
     out += static_operator_infos[op].short_name + QString("<");
     QStringList targs;
     if (static_operator_infos[op].print_return_type)
       targs << fparam(fun->returnType);
-    if (static_operator_infos[op].nargs - implicit_arg_count == 1)
+    if (static_operator_infos[op].nargs - implicit_param_count == 1)
       targs << fparam(fun->parameters.first());
-    else if (static_operator_infos[op].nargs - implicit_arg_count == 2)
+    else if (static_operator_infos[op].nargs - implicit_param_count == 2)
       targs << fparam(fun->parameters.first()) << fparam(fun->parameters.at(1));
     out += targs.join(", ");
     out += ">();";
