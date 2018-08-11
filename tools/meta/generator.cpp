@@ -543,6 +543,16 @@ Function::BindingMethod Generator::getBindingMethod(FunctionRef fun) const
 
 Function::BindingMethod Generator::guessBindingMethod(FunctionRef fun) const
 {
+  if (fun->is<Constructor>())
+    return Function::ConstructorBinding;
+
+  if (fun->name.startsWith("operator"))
+  {
+    OperatorSymbol sym = getOperatorSymbol(fun->name);
+    if (sym != Invalid)
+      return Function::OperatorBinding;
+  }
+
   if (fun->returnType == "void")
   {
     if (fun->isStatic)
@@ -555,14 +565,6 @@ Function::BindingMethod Generator::guessBindingMethod(FunctionRef fun) const
   else if (fun->returnType == enclosingName() + " &")
   {
     return Function::ChainableBinding;
-  }
-  
-  
-  if (fun->name.startsWith("operator"))
-  {
-    OperatorSymbol sym = getOperatorSymbol(fun->name);
-    if (sym != Invalid)
-      return Function::OperatorBinding;
   }
 
   if (fun->isStatic)
