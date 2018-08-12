@@ -747,6 +747,22 @@ void Generator::generate(EnumRef enm)
   out += ".get();" + endl;
   out += endl;
 
+
+  Links links = extractLinks(enum_info.links);
+  for (const auto & l : links)
+  {
+    if (l.first == "flags")
+    {
+      Type flags_info = typeinfo(l.second);
+      const QString flagname = flags_info.rename.isEmpty() ? flags_info.name : flags_info.rename;
+      currentSource().bindingIncludes.insert("yasl/core/flags.h");
+      const QString format = "register_qflags_type<%1>(%2, \"%3\", script::Type::%4);" + endl;
+      out += format.arg(enum_info.name, enclosing_snake_name(), flagname, flags_info.id);
+      recordGeneratedClass(flags_info.name);
+    }
+  }
+
+
   for (const auto & v : enm->enumerators)
   {
     if (v->checkState == Qt::Unchecked)
