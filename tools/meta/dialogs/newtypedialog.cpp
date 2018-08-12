@@ -20,19 +20,19 @@ NewTypeDialog::NewTypeDialog(QWidget *parent)
 
   mNameLineEdit = new QLineEdit();
   mIdLineEdit = new QLineEdit();
-  mStaridLineEdit = new QLineEdit();
   mRenameLineEdit = new QLineEdit();
   mHeaderLineEdit = new QLineEdit();
   mStorageLineEdit = new QLineEdit();
+  mLinksLineEdit = new QLineEdit();
 
   auto *form = new QFormLayout();
   form->addRow("Category:", mTypeCategoryComboBox);
   form->addRow("C++ type:", mNameLineEdit);
   form->addRow("Rename:", mRenameLineEdit);
   form->addRow("Id:", mIdLineEdit);
-  form->addRow("Star id:", mStaridLineEdit);
   form->addRow("Header:", mHeaderLineEdit);
   form->addRow("Storage:", mStorageLineEdit);
+  form->addRow("Links:", mLinksLineEdit);
 
   auto *okButton = new QPushButton("OK");
   connect(okButton, SIGNAL(clicked()), this, SLOT(accept()));
@@ -55,8 +55,8 @@ Type NewTypeDialog::getType() const
 {
   Type ret{ mNameLineEdit->text(), mIdLineEdit->text() };
   ret.header = mHeaderLineEdit->text();
-  ret.starid = mStaridLineEdit->text();
   ret.rename = mRenameLineEdit->text();
   ret.storage = mStorageLineEdit->text();
+  ret.links = mLinksLineEdit->text();
   return ret;
 }

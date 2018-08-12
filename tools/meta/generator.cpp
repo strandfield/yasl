@@ -481,7 +481,6 @@ QString Generator::fparam(const QString & p)
 
   bool is_const = false;
   bool is_ref = false;
-  bool is_ptr = false;
   bool is_refref = false;
 
   if (pp.startsWith("const "))
@@ -499,18 +498,10 @@ QString Generator::fparam(const QString & p)
     is_ref = true;
     pp.chop(1);
   }
-  if (pp.endsWith("*"))
-  {
-    is_ptr = true;
-    pp.chop(1);
-  }
 
   pp = pp.simplified();
 
   const Type & info = typeinfo(pp);
-
-  if (is_ptr && info.starid.isEmpty())
-    throw UnsupportedType{ p };
 
   if (!info.header.isEmpty())
     currentSource().generalIncludes.insert(info.header);
@@ -647,23 +638,6 @@ void Generator::generate(ClassRef cla)
   out += ".get();" + endl;
   out += endl;
 
-  if (!class_info.starid.isEmpty())
-  {
-    currentSource().bindingIncludes.insert("yasl/utils/ref.h");
-    const QString format = "register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
-    out += format.arg(snake, class_info.id, class_info.starid);
-  }
-
-  if (!class_info.ptrid.isEmpty())
-  {
-    currentSource().bindingIncludes.insert("yasl/utils/ptr.h");
-    const QString format = "  register_ptr_specialization<%1>(%2.engine()->getTemplate(Engine::PtrTemplate), script::Type::%3);" + endl;
-    if (cla->derivedFromQObject)
-      out += format.arg(class_info.name + "*", snake, class_info.ptrid);
-    else
-      out += format.arg(class_info.name, snake, class_info.ptrid);
-  }
-
   Links links = extractLinks(class_info.links);
   for (const auto & l : links)
   {
@@ -673,26 +647,29 @@ void Generator::generate(ClassRef cla)
       currentSource().bindingIncludes.insert("yasl/utils/ref.h");
       const QString format = "register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
       out += format.arg(snake, class_info.id, ref_info.id);
+      recordGeneratedClass(ref_info.name);
     }
     else if (l.first == "ptr")
     {
       Type ptr_info = typeinfo(l.second);
-      currentSource().bindingIncludes.insert("yasl/utils/ptr.h");
+      currentHeader().bindingIncludes.insert("yasl/utils/ptr.h");
       const QString format = "  register_ptr_specialization<%1>(%2.engine()->getTemplate(Engine::PtrTemplate), script::Type::%3);" + endl;
       QString ptrelem = ptr_info.name;
       ptrelem.chop(QString(">").length());
       ptrelem.remove(0, QString("Ptr<").length());
       out += format.arg(ptrelem, snake, ptr_info.id);
+      recordGeneratedClass(ptr_info.name);
     }
     else if (l.first == "list")
     {
       Type list_info = typeinfo(l.second);
-      currentSource().bindingIncludes.insert("yasl/core/list.h");
+      currentHeader().bindingIncludes.insert("yasl/core/list.h");
       const QString format = "  register_list_specialization<%1>(%2.engine()->getTemplate(Engine::ListTemplate), script::Type::%3);" + endl;
       QString listelement = list_info.name;
       listelement.chop(QString(">").length());
       listelement.remove(0, QString("QList<").length());
       out += format.arg(listelement, snake, list_info.id);
+      recordGeneratedClass(list_info.name);
     }
   }
 

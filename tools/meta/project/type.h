@@ -13,11 +13,9 @@ class Type
 public:
   QString name;
   QString id;
-  QString starid;
   QString rename;
   QString header;
   QString storage;
-  QString ptrid;
   QString links;
 
 public:
