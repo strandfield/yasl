@@ -15,6 +15,11 @@
 #include <script/functionbuilder.h>
 #include <script/interpreter/executioncontext.h>
 
+QByteArray ba_simplified(const QByteArray & ba)
+{
+  return ba.simplified();
+}
+
 void register_qbytearray(script::Namespace ns)
 {
   using namespace script;
@@ -172,7 +177,7 @@ void register_qbytearray(script::Namespace ns)
   ba.add_void_fun<&QByteArray::shrink_to_fit>("shrink_to_fit");
   // QByteArray simplified() const
   /// TODO : somehow this is not working : ba.add_fun<QByteArray, static_cast<QByteArray(QByteArray::*)()>(&QByteArray::simplified)>("simplified");
-  YASL_METHOD_0(qbytearray_class, "simplified", QByteArray, QByteArray, simplified).setConst().create();
+  ba.add_fun<QByteArray, &ba_simplified>("simplified");
   // int size() const
   ba.add_fun<int, &QByteArray::size>("size");
   // QList<QByteArray> split(char sep) const

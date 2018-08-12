@@ -97,6 +97,11 @@ struct Point {
   Point & operator=(const Point &) = default;
 };
 
+int point_y(const Point & pt)
+{
+  return pt.y();
+}
+
 namespace binding
 {
 template<> struct make_type_t<Point> { inline static script::Type get() { return script::Type::QPoint; } };
@@ -135,6 +140,14 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(x.returnType(), Type::Int);
   ASSERT_EQ(x.prototype().size(), 1);
   ASSERT_TRUE(x.isConst());
+
+  Function y = binder.add_fun<int, &point_y>("y");
+  ASSERT_TRUE(y.isMemberFunction());
+  ASSERT_EQ(y.memberOf(), pt);
+  ASSERT_EQ(y.name(), "y");
+  ASSERT_EQ(y.returnType(), Type::Int);
+  ASSERT_EQ(y.prototype().size(), 1);
+  ASSERT_TRUE(y.isConst());
 
   Function rx = binder.add_ref_mem<int&, &Point::rx>("rx");
   ASSERT_TRUE(rx.isMemberFunction());
