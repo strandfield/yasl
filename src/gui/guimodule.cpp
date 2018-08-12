@@ -52,6 +52,8 @@ void register_qshowevent(script::Namespace n); // defined in showevent.cpp
 void register_qwheelevent(script::Namespace n); // defined in wheelevent.cpp
 void register_qwidget(script::Namespace n); // defined in widget.cpp
 
+void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
+
 void load_gui_module(script::Module gui)
 {
   gui.engine()->getModule("core").load();
@@ -100,6 +102,8 @@ void load_gui_module(script::Module gui)
 
   register_qwidget(gui.root());
   register_qpushbutton(gui.root());
+
+  register_newwidget_file(gui.root());
 }
 
 void cleanup_gui_module(script::Module gui)
