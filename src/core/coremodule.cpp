@@ -42,6 +42,9 @@ void register_variant_file(script::Namespace n); // defined in variant.cpp
 void register_vector_template(script::Namespace n); // defined in vector.cpp
 void register_qlist_template(script::Namespace n); // defined in list.cpp
 
+void register_newobject_file(script::Namespace n); // defined in newobject.cpp
+void register_signals_file(script::Namespace n); // defined in signals.cpp
+
 void load_core_module(script::Module core)
 {
   register_ptr_template(core.root());
@@ -77,6 +80,9 @@ void load_core_module(script::Module core)
   register_urlquery_file(core.root());
   register_uuid_file(core.root());
   register_variant_file(core.root());
+
+  register_newobject_file(core.root());
+  register_signals_file(core.root());
 }
 
 void cleanup_core_module(script::Module core)

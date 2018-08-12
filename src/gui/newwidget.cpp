@@ -396,8 +396,6 @@ void register_newwidget_file(script::Namespace core)
 {
   using namespace script;
 
-  /* Non-members */
-
   core.Function("newWidget", callbacks::new_widget)
     .returns(Type::ref(Type::QWidget))
     .create();

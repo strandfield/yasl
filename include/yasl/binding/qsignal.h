@@ -5,7 +5,7 @@
 #ifndef YASL_BINDING_QSIGNAL_H
 #define YASL_BINDING_QSIGNAL_H
 
-#include "yasl/utils/signals.h"
+#include "yasl/core/signals.h"
 
 #include <script/class.h>
 #include <script/engine.h>
@@ -22,7 +22,7 @@ struct QSignal
 
   void register_qsignal(const script::Function & f, const std::string & signature)
   {
-    SignalMapper::register_signal(class_, meta_, f, signature);
+    register_signal(class_, meta_, f, signature);
   }
 
   
