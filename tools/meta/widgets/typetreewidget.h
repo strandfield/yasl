@@ -29,8 +29,6 @@ protected:
     IdColumn,
     HeaderColumn,
     StorageColumn,
-    StarIdColumn,
-    PtrIdColumn,
     LinksColumn,
   };
 
