@@ -1,0 +1,41 @@
+{
+    "modules": [
+    ],
+    "types": {
+        "classes": [
+        ],
+        "enums": [
+        ],
+        "fundamentals": [
+            {
+                "id": "Void",
+                "name": "void"
+            },
+            {
+                "id": "Boolean",
+                "name": "bool"
+            },
+            {
+                "id": "Char",
+                "name": "char"
+            },
+            {
+                "id": "Int",
+                "name": "int"
+            },
+            {
+                "id": "Float",
+                "name": "float"
+            },
+            {
+                "id": "Double",
+                "name": "double"
+            },
+            {
+                "id": "String",
+                "name": "QString",
+                "rename": "String"
+            }
+        ]
+    }
+}
