@@ -11,7 +11,8 @@ class Function : public Node
 {
 public:
   enum BindingMethod{
-    AutoBinding,
+    FirstBindingMethod = 0,
+    AutoBinding = FirstBindingMethod,
     MacroBinding,
     SignalBinding,
     ChainableBinding,
@@ -24,6 +25,7 @@ public:
     ConstructorBinding,
     OperatorBinding,
     FreeFunctionBinding,
+    LastBindingMethod = FreeFunctionBinding,
   };
 
 public:

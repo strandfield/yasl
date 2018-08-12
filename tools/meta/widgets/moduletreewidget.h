@@ -32,11 +32,14 @@ protected:
 protected:
   void removeSelectedRows();
   void moveSelectedRow(int k);
+  void processCtrlE();
+  void processCtrlN();
 
 protected:
   void fillTreeWidget(const ProjectRef & pro);
   void fill(QTreeWidgetItem *parent, const NodeRef & node);
   QTreeWidgetItem* createItem(const NodeRef & node);
+  void refreshItem(QTreeWidgetItem* item);
   void fetchNewNodes(QTreeWidgetItem *item);
 
 protected Q_SLOTS:

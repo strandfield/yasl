@@ -343,7 +343,7 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
   else if (bm == Function::ReferenceBinding)
     return QString("  binder.add_ref_mem<%1, %2%3>(\"%4\");").arg(fret, params, funaddr, funname);
   else if (bm == Function::FreeFunctionBinding)
-    return QString("  binder.add_fun<%1, %2%3>(\"%4\");").arg(fret, params, fun->name, funname);
+    return QString("  binder.add_fun<%1, %2%3>(\"%4\");").arg(fret, params, "&" + fun->name, funname);
 
   throw std::runtime_error{ "Unsupported bind method !" };
 }
@@ -1009,6 +1009,9 @@ void Generator::buildTypeInfo()
 
 Generator::TypeInfo & Generator::typeinfo(const QString & t)
 {
+  if (t.isEmpty())
+    throw UnsupportedType{ t };
+
   auto it = mTypeInfos.find(t);
   if (it == mTypeInfos.end()) 
     throw UnsupportedType{ t };

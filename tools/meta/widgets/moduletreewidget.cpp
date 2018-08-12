@@ -4,6 +4,8 @@
 
 #include "moduletreewidget.h"
 
+#include "dialogs/newfunctiondialog.h"
+
 #include "project/class.h"
 #include "project/enum.h"
 #include "project/file.h"
@@ -104,6 +106,10 @@ void ModuleTreeWidget::keyPressEvent(QKeyEvent *e)
     removeSelectedRows();
   else if ((e->key() == Qt::Key_Up || e->key() == Qt::Key_Down) && e->modifiers() == Qt::CTRL)
     moveSelectedRow(e->key());
+  else if (e->key() == Qt::Key_N && e->modifiers() == Qt::CTRL)
+    processCtrlN();
+  else if (e->key() == Qt::Key_E && e->modifiers() == Qt::CTRL)
+    processCtrlE();
   else
     QTreeWidget::keyPressEvent(e);
 }
@@ -199,6 +205,103 @@ void ModuleTreeWidget::moveSelectedRow(int k)
 
     QTreeWidgetItem *sibling = parent->takeChild(item_index + 1);
     parent->insertChild(item_index, sibling);
+  }
+}
+
+void ModuleTreeWidget::processCtrlE()
+{
+  const QList<QTreeWidgetItem*> selecteds = selectedItems();
+  if (selecteds.size() != 1)
+    return;
+
+  QTreeWidgetItem *item = selecteds.first();
+
+  NodeRef node = item->data(0, ProjectNodeRole).value<NodeRef>();
+  if (node == nullptr)
+    return;
+
+  if (!node->is<Function>())
+    return;
+
+  auto *dialog = new NewFunctionDialog(qSharedPointerCast<Function>(node), this);
+  int result = dialog->exec();
+  dialog->deleteLater();
+  if (result != QDialog::Accepted)
+    return;
+
+  dialog->sync();
+
+  refreshItem(item);
+}
+
+void ModuleTreeWidget::processCtrlN()
+{
+  const QList<QTreeWidgetItem*> selecteds = selectedItems();
+  if (selecteds.size() != 1)
+    return;
+
+  QTreeWidgetItem *item = selecteds.first();
+
+  NodeRef node = item->data(0, ProjectNodeRole).value<NodeRef>();
+  if (node == nullptr)
+    return;
+
+  if (!node->is<Class>())
+    return;
+
+  auto *dialog = new NewFunctionDialog(this);
+  int result = dialog->exec();
+  dialog->deleteLater();
+  if (result != QDialog::Accepted)
+    return;
+
+  dialog->sync();
+  node->as<Class>().elements.append(dialog->function());
+
+  fetchNewNodes();
+}
+
+void ModuleTreeWidget::refreshItem(QTreeWidgetItem* item)
+{
+  NodeRef node = item->data(0, ProjectNodeRole).value<NodeRef>();
+  if (node == nullptr)
+    return;
+
+  if (node->is<Module>())
+  {
+    Module & m = node->as<Module>();
+  }
+  else if (node->is<File>())
+  {
+    File & f = node->as<File>();
+    item->setText(1, f.hincludes.join(","));
+    item->setText(2, f.cppincludes.join(","));
+  }
+  else if (node->is<Namespace>())
+  {
+    Namespace & ns = node->as<Namespace>();
+  }
+  else if (node->is<Class>())
+  {
+    Class & c = node->as<Class>();
+    item->setText(1, c.base);
+    item->setText(2, c.isFinal ? QString{ "true" } : QString{});
+    item->setCheckState(3, c.derivedFromQObject ? Qt::Checked : Qt::Unchecked);
+  }
+  else if (node->is<Enum>())
+  {
+    Enum & enm = node->as<Enum>();
+
+  }
+  else if (node->is<Enumerator>())
+  {
+  }
+  else if (node->is<Function>())
+  {
+    Function & fun = node->as<Function>();
+    item->setText(0, fun.displayedName());
+    item->setText(1, Function::serialize(fun.bindingMethod));
+    item->setText(2, fun.rename);
   }
 }
 
