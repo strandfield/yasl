@@ -578,6 +578,26 @@ Function::BindingMethod Generator::guessBindingMethod(FunctionRef fun) const
     return Function::SimpleBinding;
 }
 
+QList<QPair<QString, QString>> Generator::extractLinks(const QString & str)
+{
+  QList<QPair<QString, QString>> ret;
+
+  QStringList links = str.split(";", QString::SkipEmptyParts);
+  for (auto lstr : links)
+  {
+    const int at_index = lstr.indexOf("@");
+    if (at_index == -1)
+      continue;
+
+    QPair<QString, QString> link;
+    link.first = lstr.mid(0, at_index).simplified();
+    link.second = lstr.mid(at_index + 1).simplified();
+    ret.append(link);
+  }
+
+  return ret;
+}
+
 void Generator::generate(ClassRef cla)
 {
   if (cla->checkState == Qt::Unchecked)
@@ -642,6 +662,38 @@ void Generator::generate(ClassRef cla)
       out += format.arg(class_info.name + "*", snake, class_info.ptrid);
     else
       out += format.arg(class_info.name, snake, class_info.ptrid);
+  }
+
+  Links links = extractLinks(class_info.links);
+  for (const auto & l : links)
+  {
+    if (l.first == "ref")
+    {
+      Type ref_info = typeinfo(l.second);
+      currentSource().bindingIncludes.insert("yasl/utils/ref.h");
+      const QString format = "register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
+      out += format.arg(snake, class_info.id, ref_info.id);
+    }
+    else if (l.first == "ptr")
+    {
+      Type ptr_info = typeinfo(l.second);
+      currentSource().bindingIncludes.insert("yasl/utils/ptr.h");
+      const QString format = "  register_ptr_specialization<%1>(%2.engine()->getTemplate(Engine::PtrTemplate), script::Type::%3);" + endl;
+      QString ptrelem = ptr_info.name;
+      ptrelem.chop(QString(">").length());
+      ptrelem.remove(0, QString("Ptr<").length());
+      out += format.arg(ptrelem, snake, ptr_info.id);
+    }
+    else if (l.first == "list")
+    {
+      Type list_info = typeinfo(l.second);
+      currentSource().bindingIncludes.insert("yasl/core/list.h");
+      const QString format = "  register_list_specialization<%1>(%2.engine()->getTemplate(Engine::ListTemplate), script::Type::%3);" + endl;
+      QString listelement = list_info.name;
+      listelement.chop(QString(">").length());
+      listelement.remove(0, QString("QList<").length());
+      out += format.arg(listelement, snake, list_info.id);
+    }
   }
 
   for (const auto n : cla->elements)

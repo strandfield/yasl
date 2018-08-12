@@ -118,6 +118,10 @@ private:
   Function::BindingMethod getBindingMethod(FunctionRef fun) const;
   Function::BindingMethod guessBindingMethod(FunctionRef fun) const;
 
+  typedef QPair<QString, QString> Link;
+  typedef QList<Link> Links;
+  static Links extractLinks(const QString & str);
+
 private:
   QString prefix() const;
   QString enclosingEntity() const; // returns Namespace or Class

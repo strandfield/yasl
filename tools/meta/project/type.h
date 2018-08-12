@@ -18,6 +18,7 @@ public:
   QString header;
   QString storage;
   QString ptrid;
+  QString links;
 
 public:
   Type() = default;

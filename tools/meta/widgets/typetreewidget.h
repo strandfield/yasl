@@ -31,6 +31,7 @@ protected:
     StorageColumn,
     StarIdColumn,
     PtrIdColumn,
+    LinksColumn,
   };
 
   QList<Type> & getTypeList(QTreeWidgetItem *item);
