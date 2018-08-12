@@ -28,13 +28,6 @@ int main(int argc, char *argv[])
   Node::registerDeserializer(Module::staticTypeCode, Module::fromJson);
   Node::registerDeserializer(Namespace::staticTypeCode, Namespace::fromJson);
 
-  ProjectRef pro = Project::load("yasl.json");
-  if (pro == nullptr)
-  {
-    qDebug() << "Could not load project";
-    return 1;
-  }
-
   MainWindow w;
   w.show();
 
