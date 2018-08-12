@@ -8,6 +8,7 @@
 #include "yasl/utils/ptr.h"
 
 #include <script/module.h>
+#include <script/namespace.h>
 
 
 void register_qchar_file(script::Namespace); // defined in char.cpp
@@ -39,7 +40,7 @@ void register_urlquery_file(script::Namespace n); // defined urlquery.cpp
 void register_uuid_file(script::Namespace n); // defined in uuid.cpp
 void register_variant_file(script::Namespace n); // defined in variant.cpp
 void register_vector_template(script::Namespace n); // defined in vector.cpp
-
+void register_qlist_template(script::Namespace n); // defined in list.cpp
 
 void load_core_module(script::Module core)
 {

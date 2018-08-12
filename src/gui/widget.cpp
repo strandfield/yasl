@@ -8,9 +8,12 @@
 #include "yasl/core/size.h"
 #include "yasl/utils/ref.h"
 
+#include "yasl/core/listspecializations.h"
+
 #include <script/classbuilder.h>
 #include <script/engine.h>
 #include <script/functionbuilder.h>
+#include <script/namespace.h>
 
 void register_qwidget(script::Namespace n)
 {
@@ -23,7 +26,7 @@ void register_qwidget(script::Namespace n)
 
   register_ref_specialization(n.engine(), Type::QWidget, Type::QWidgetStar);
   register_ptr_specialization<QWidget*>(n.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQWidget);
-  register_list_specialization<QWidget*>(n.engine()->getTemplate(Engine::ListTemplate), Type::QListQWidget);
+  register_list_specialization<QWidget*>(n.engine(), Type::QListQWidget);
 
   auto widget = binding::QClass<QWidget>{ qwidget_class, &QWidget::staticMetaObject };
   widget.add_dtor();

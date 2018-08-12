@@ -25,6 +25,7 @@
 #include <script/functionbuilder.h>
 #include <script/functiontemplate.h>
 #include <script/interpreter/executioncontext.h>
+#include <script/namespace.h>
 #include <script/overloadresolution.h>
 #include <script/templateargumentdeduction.h>
 #include <script/templatebuilder.h>

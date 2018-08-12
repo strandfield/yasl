@@ -3,12 +3,11 @@
 // For conditions of distribution and use, see copyright notice in LICENSE
 
 #include "yasl/core/list.h"
+#include "yasl/core/listspecializations.h"
 
-#include "yasl/application.h"
 #include "yasl/core/object.h"
 #include "yasl/core/enums.h"
 #include "yasl/utils/containervalue.h"
-
 
 #include <script/classtemplate.h>
 #include <script/classtemplateinstancebuilder.h>
@@ -773,7 +772,7 @@ void register_qlist_template(script::Namespace n)
   n.engine()->implementation()->list_template_ = list_template;
 
   // Registering full specializations
-  register_list_specialization<int>(list_template, Type::QListint);
-  register_list_specialization<float>(list_template, Type::QListfloat);
-  register_list_specialization<double>(list_template, Type::QListdouble);
+  register_list_specialization<int>(n.engine(), Type::QListint);
+  register_list_specialization<float>(n.engine(), Type::QListfloat);
+  register_list_specialization<double>(n.engine(), Type::QListdouble);
 }

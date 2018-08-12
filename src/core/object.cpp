@@ -5,7 +5,7 @@
 #include "yasl/core/object.h"
 
 #include "yasl/binding/qclass.h"
-#include "yasl/core/list.h"
+#include "yasl/core/listspecializations.h"
 #include "yasl/utils/ref.h"
 #include "yasl/utils/signals.h"
 
@@ -16,6 +16,7 @@
 #include <script/functiontemplate.h>
 #include <script/functiontype.h>
 #include <script/interpreter/executioncontext.h>
+#include <script/namespace.h>
 #include <script/templateargumentdeduction.h>
 #include <script/templatebuilder.h>
 #include <script/value.h>
@@ -205,7 +206,7 @@ void register_qobject(script::Namespace n)
 
   register_ref_specialization(n.engine(), Type::QObject, Type::QObjectStar);
   register_ptr_specialization<QObject*>(n.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQObject);
-  register_list_specialization<QObject*>(n.engine()->getTemplate(Engine::ListTemplate), Type::QListQObject);
+  register_list_specialization<QObject*>(n.engine(), Type::QListQObject);
 
   auto qobject = binding::QClass<QObject>{ qobject_class, &QObject::staticMetaObject };
   qobject.ctors().add_default();

@@ -10,7 +10,7 @@
 #include "yasl/core/datetime.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/flags.h"
-#include "yasl/core/list.h"
+#include "yasl/core/listspecializations.h"
 #include "yasl/core/string.h"
 #include "yasl/core/time.h"
 
@@ -931,7 +931,7 @@ void register_locale_class(script::Namespace ns)
   Class locale = ns.Class("Locale").setFinal().setId(Type::QLocale).get();
 
   register_ptr_specialization<QLocale>(ns.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQLocale);
-  register_list_specialization<QLocale>(ns.engine()->getTemplate(Engine::ListTemplate), Type::QListQLocale);
+  register_list_specialization<QLocale>(ns.engine(), Type::QListQLocale);
 
   register_country_enum(locale);
   register_currency_symbol_format_enum(locale);

@@ -7,7 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/macros.h"
-#include "yasl/core/list.h"
+#include "yasl/core/listspecializations.h"
 
 #include <script/classbuilder.h>
 #include <script/classtemplate.h>
@@ -28,7 +28,7 @@ void register_qbytearray(script::Namespace ns)
   Type bytearray_type = qbytearray_class.id();
 
   register_ptr_specialization<QByteArray>(ns.engine()->getTemplate(Engine::PtrTemplate), Type::PtrQByteArray);
-  register_list_specialization<QByteArray>(ns.engine()->getTemplate(Engine::ListTemplate), Type::QListQByteArray);
+  register_list_specialization<QByteArray>(ns.engine(), Type::QListQByteArray);
 
   auto ba = binding::Class<QByteArray>{ qbytearray_class };
   ba.ctors().add_default();
