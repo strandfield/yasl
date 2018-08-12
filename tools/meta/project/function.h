@@ -23,6 +23,7 @@ public:
     SimpleBinding,
     ConstructorBinding,
     OperatorBinding,
+    FreeFunctionBinding,
   };
 
 public:
@@ -76,6 +77,8 @@ public:
       return "ctor";
     case Function::OperatorBinding:
       return "op";
+    case Function::FreeFunctionBinding:
+      return "free";
     default:
       break;
     }
@@ -111,6 +114,8 @@ public:
       return ConstructorBinding;
     else if (str == "op")
       return OperatorBinding;
+    else if (str == "free")
+      return FreeFunctionBinding;
     return AutoBinding;
   }
 };
