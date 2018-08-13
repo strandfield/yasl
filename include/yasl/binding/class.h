@@ -426,7 +426,18 @@ public:
   script::Function subscript()
   {
     YASL_BINDING_BEGIN_RUNTIME_CHECK
-    return class_.Operation(script::SubscriptOperator, subscript_wrapper<ReturnType, const T&, IndexType>)
+    return class_.Operation(script::SubscriptOperator, subscript_wrapper<ReturnType, T&, IndexType>)
+      .returns(make_type<ReturnType>())
+      .params(make_type<IndexType>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename IndexType>
+  script::Function const_subscript()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Operation(script::SubscriptOperator, subscript_wrapper<ReturnType, const T&, IndexType>)
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<IndexType>())
