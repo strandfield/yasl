@@ -801,7 +801,7 @@ void Generator::generate(NamespaceRef ns)
 
   QString out;
   if(ns->is<File>())
-    out +=  "void register_" + pre + snake + "_file(script::Namespace " + enclosing_snake + ")" + endl;
+    out +=  "void register_" + pre + to_snake_case(ns->name) + "_file(script::Namespace " + enclosing_snake + ")" + endl;
   else
     out += "static void register_" + pre + snake + "_namespace(script::Namespace " + enclosing_snake + ")" + endl;
   out += "{" + endl;
