@@ -23,6 +23,7 @@ public:
     StaticBinding,
     SimpleBinding,
     ConstructorBinding,
+    DestructorBinding,
     OperatorBinding,
     FreeFunctionBinding,
     LastBindingMethod = FreeFunctionBinding,
@@ -77,6 +78,8 @@ public:
       return "simple";
     case Function::ConstructorBinding:
       return "ctor";
+    case Function::DestructorBinding:
+      return "dtor";
     case Function::OperatorBinding:
       return "op";
     case Function::FreeFunctionBinding:
@@ -114,6 +117,8 @@ public:
       return SimpleBinding;
     else if (str == "ctor")
       return ConstructorBinding;
+    else if (str == "dtor")
+      return DestructorBinding;
     else if (str == "op")
       return OperatorBinding;
     else if (str == "free")

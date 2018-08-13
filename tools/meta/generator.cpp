@@ -310,6 +310,10 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
     else
       return "  binder.ctors().add<" + fparams(fun->parameters) + ">();";
   }
+  else if (bm == Function::DestructorBinding)
+  {
+    return "  binder.add_dtor();";
+  }
   else if (bm == Function::OperatorBinding)
   {
     return generateOperator(fun, getOperatorSymbol(fun->name));
@@ -550,6 +554,9 @@ Function::BindingMethod Generator::guessBindingMethod(FunctionRef fun) const
     if (sym != Invalid)
       return Function::OperatorBinding;
   }
+
+  if (fun->name == "~" + enclosingName())
+    return Function::DestructorBinding;
 
   if (fun->returnType == "void")
   {
