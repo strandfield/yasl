@@ -647,7 +647,7 @@ void Generator::generate(ClassRef cla)
     {
       Type ref_info = typeinfo(l.second);
       currentSource().bindingIncludes.insert("yasl/utils/ref.h");
-      const QString format = "register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
+      const QString format = "  register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
       out += format.arg(snake, class_info.id, ref_info.id);
       recordGeneratedClass(ref_info.name);
     }
@@ -756,7 +756,7 @@ void Generator::generate(EnumRef enm)
       Type flags_info = typeinfo(l.second);
       const QString flagname = flags_info.rename.isEmpty() ? flags_info.name : flags_info.rename;
       currentSource().bindingIncludes.insert("yasl/core/flags.h");
-      const QString format = "register_qflags_type<%1>(%2, \"%3\", script::Type::%4);" + endl;
+      const QString format = "  register_qflags_type<%1>(%2, \"%3\", script::Type::%4);" + endl;
       out += format.arg(enum_info.name, enclosing_snake_name(), flagname, flags_info.id);
       recordGeneratedClass(flags_info.name);
     }
