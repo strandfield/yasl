@@ -665,7 +665,7 @@ void Generator::generate(ClassRef cla)
     else if (l.first == "list")
     {
       Type list_info = typeinfo(l.second);
-      currentHeader().bindingIncludes.insert("yasl/core/listspecializations.h");
+      currentSource().bindingIncludes.insert("yasl/core/listspecializations.h");
       const QString format = "  register_list_specialization<%1>(%2.engine(), script::Type::%3);" + endl;
       QString listelement = list_info.name;
       listelement.chop(QString(">").length());
