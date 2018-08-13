@@ -1,7 +1,8 @@
 /* Enums */
 FirstEnumType = Type::EnumFlag | 1,
 /** Qt Core **/
-QCharCategory = FirstEnumType,
+QByteArrayBase64Option = FirstEnumType,
+QCharCategory,
 QCharCombiningClass,
 QCharDecomposition,
 QCharDirection,
@@ -195,6 +196,8 @@ PtrQObject,
 PtrQString,
 PtrQWidget,
 QByteArray,
+QByteArrayBase64Options,
+QByteRef,
 QChar,
 QCloseEvent,
 QDate,

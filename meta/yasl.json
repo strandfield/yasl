@@ -1,10 +1,1598 @@
 {
     "modules": [
+        {
+            "checked": 1,
+            "elements": [
+                {
+                    "checked": 1,
+                    "cppincludes": "yasl/core/bytearray-functions.h",
+                    "elements": [
+                        {
+                            "name": "qstrcmp",
+                            "parameters": [
+                                "const QByteArray &",
+                                "const QByteArray &"
+                            ],
+                            "rename": "strcmp",
+                            "returns": "int",
+                            "type": "function"
+                        },
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Base64Encoding"
+                                        },
+                                        {
+                                            "name": "Base64UrlEncoding"
+                                        },
+                                        {
+                                            "name": "KeepTrailingEquals"
+                                        },
+                                        {
+                                            "name": "OmitTrailingEquals"
+                                        }
+                                    ],
+                                    "name": "Base64Option",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QByteArray",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QByteArray",
+                                    "parameters": [
+                                        "int",
+                                        "char"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QByteArray",
+                                    "parameters": [
+                                        "int",
+                                        "Qt::Initialization"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QByteArray",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QByteArray",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QByteArray",
+                                    "parameters": [
+                                        "QByteArray &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QByteArray &&"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QByteArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resize",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fill",
+                                    "parameters": [
+                                        "char",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capacity",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reserve",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "squeeze",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "detach",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSharedWith",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "at",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "char",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "char",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "char",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QByteRef",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "QByteRef",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "front",
+                                    "parameters": [
+                                    ],
+                                    "returns": "char",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "front",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteRef",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "back",
+                                    "parameters": [
+                                    ],
+                                    "returns": "char",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "back",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteRef",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "indexOf",
+                                    "parameters": [
+                                        "char",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "indexOf",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lastIndexOf",
+                                    "parameters": [
+                                        "char",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lastIndexOf",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "left",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "right",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mid",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "chopped",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "startsWith",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "startsWith",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "endsWith",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "endsWith",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "truncate",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "chop",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "toLower",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "toLower",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "ba_toLower",
+                                    "parameters": [
+                                    ],
+                                    "rename": "toLower",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "toUpper",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "toUpper",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "ba_toUpper",
+                                    "parameters": [
+                                    ],
+                                    "rename": "toUpper",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "trimmed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "trimmed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "ba_trimmed",
+                                    "parameters": [
+                                    ],
+                                    "rename": "trimmed",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "simplified",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "ba_simplified",
+                                    "parameters": [
+                                    ],
+                                    "rename": "simplified",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "leftJustified",
+                                    "parameters": [
+                                        "int",
+                                        "char",
+                                        "bool"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rightJustified",
+                                    "parameters": [
+                                        "int",
+                                        "char",
+                                        "bool"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "prepend",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "prepend",
+                                    "parameters": [
+                                        "int",
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "prepend",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "append",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "append",
+                                    "parameters": [
+                                        "int",
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "append",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "int",
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "int",
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "remove",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "replace",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "replace",
+                                    "parameters": [
+                                        "char",
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "replace",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "replace",
+                                    "parameters": [
+                                        "char",
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "split",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "repeated",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "append",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "replace",
+                                    "parameters": [
+                                        "char",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "replace",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "indexOf",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lastIndexOf",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<=",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>=",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toShort",
+                                    "parameters": [
+                                        "bool *",
+                                        "int"
+                                    ],
+                                    "returns": "short",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUShort",
+                                    "parameters": [
+                                        "bool *",
+                                        "int"
+                                    ],
+                                    "returns": "ushort",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toInt",
+                                    "parameters": [
+                                        "bool *",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUInt",
+                                    "parameters": [
+                                        "bool *",
+                                        "int"
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLong",
+                                    "parameters": [
+                                        "bool *",
+                                        "int"
+                                    ],
+                                    "returns": "long",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toULong",
+                                    "parameters": [
+                                        "bool *",
+                                        "int"
+                                    ],
+                                    "returns": "ulong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLongLong",
+                                    "parameters": [
+                                        "bool *",
+                                        "int"
+                                    ],
+                                    "returns": "qlonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toULongLong",
+                                    "parameters": [
+                                        "bool *",
+                                        "int"
+                                    ],
+                                    "returns": "qulonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toFloat",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDouble",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toBase64",
+                                    "parameters": [
+                                        "QByteArray::Base64Options"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toBase64",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toHex",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toHex",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toPercentEncoding",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "const QByteArray &",
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "short",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "ushort",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "uint",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "qlonglong",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "qulonglong",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "float",
+                                        "char",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "double",
+                                        "char",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "setRawData",
+                                    "parameters": [
+                                        "const char *",
+                                        "uint"
+                                    ],
+                                    "returns": "QByteArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "number",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "number",
+                                    "parameters": [
+                                        "uint",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "number",
+                                    "parameters": [
+                                        "qlonglong",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "number",
+                                    "parameters": [
+                                        "qulonglong",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "number",
+                                    "parameters": [
+                                        "double",
+                                        "char",
+                                        "int"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromBase64",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "QByteArray::Base64Options"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromBase64",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromHex",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromPercentEncoding",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "char"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "begin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "begin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cbegin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "constBegin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "end",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "end",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cend",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "constEnd",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rbegin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rend",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rbegin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rend",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "crbegin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "crend",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray::const_reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "push_back",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "push_back",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "push_front",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "push_front",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "shrink_to_fit",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "length",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QByteArray",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QByteArray::Base64Options::enum_type",
+                                "QByteArray::Base64Options::enum_type"
+                            ],
+                            "returns": "QFlags<QByteArray::Base64Options::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QByteArray::Base64Options::enum_type",
+                                "QFlags<QByteArray::Base64Options::enum_type>"
+                            ],
+                            "returns": "QFlags<QByteArray::Base64Options::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QByteArray::Base64Options::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QByteArray &",
+                                "const QByteArray &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QByteArray &",
+                                "const QByteArray &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<",
+                            "parameters": [
+                                "const QByteArray &",
+                                "const QByteArray &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<=",
+                            "parameters": [
+                                "const QByteArray &",
+                                "const QByteArray &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>",
+                            "parameters": [
+                                "const QByteArray &",
+                                "const QByteArray &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>=",
+                            "parameters": [
+                                "const QByteArray &",
+                                "const QByteArray &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QByteArray &",
+                                "const QByteArray &"
+                            ],
+                            "returns": "const QByteArray",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QByteArray &",
+                                "char"
+                            ],
+                            "returns": "const QByteArray",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "char",
+                                "const QByteArray &"
+                            ],
+                            "returns": "const QByteArray",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QByteArray &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QByteArray &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qCompress",
+                            "parameters": [
+                                "const QByteArray &",
+                                "int"
+                            ],
+                            "returns": "QByteArray",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qUncompress",
+                            "parameters": [
+                                "const QByteArray &"
+                            ],
+                            "returns": "QByteArray",
+                            "type": "function"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QByteArray &",
+                                "QByteArray &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "QByteRef &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QByteRef &"
+                                    ],
+                                    "returns": "QByteRef &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>=",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<=",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QByteRef",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QByteArray>",
+                    "name": "bytearray",
+                    "type": "file"
+                }
+            ],
+            "name": "core",
+            "type": "module"
+        }
     ],
     "types": {
         "classes": [
+            {
+                "header": "yasl/core/bytearray.h",
+                "id": "QByteArray",
+                "links": "ptr@Ptr<QByteArray>;list@QList<QByteArray>",
+                "name": "QByteArray",
+                "rename": "ByteArray"
+            },
+            {
+                "header": "yasl/core/bytearray.h",
+                "id": "PtrQByteArray",
+                "name": "Ptr<QByteArray>"
+            },
+            {
+                "header": "yasl/core/bytearray.h",
+                "id": "QListQByteArray",
+                "name": "QList<QByteArray>"
+            },
+            {
+                "header": "yasl/core/bytearray.h",
+                "id": "QByteArrayBase64Options",
+                "name": "QByteArray::Base64Options",
+                "rename": "Base64Options"
+            },
+            {
+                "header": "yasl/core/bytearray.h",
+                "id": "QByteRef",
+                "name": "QByteRef",
+                "rename": "ByteRef"
+            }
         ],
         "enums": [
+            {
+                "header": "yasl/core/bytearray.h",
+                "id": "QByteArrayBase64Option",
+                "links": "flags@QByteArray::Base64Options",
+                "name": "QByteArray::Base64Option"
+            }
         ],
         "fundamentals": [
             {

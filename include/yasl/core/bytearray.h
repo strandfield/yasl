@@ -5,18 +5,18 @@
 #ifndef YASL_CORE_BYTEARRAY_H
 #define YASL_CORE_BYTEARRAY_H
 
-#include "yasl/binding/types.h"
 #include "yasl/utils/ptr.h"
+#include "yasl/binding/types.h"
 
 #include <QByteArray>
 
-namespace binding
-{
-//template<> inline script::Value make_value<QByteArray>(const QByteArray & ba, script::Engine *e) { return make_bytearray(ba, e); }
-template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
+namespace binding {
 template<> struct make_type_t<Ptr<QByteArray>> { inline static script::Type get() { return script::Type::PtrQByteArray; } };
+template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
+template<> struct make_type_t<QByteArray::Base64Option> { inline static script::Type get() { return script::Type::QByteArrayBase64Option; } };
+template<> struct make_type_t<QByteArray::Base64Options> { inline static script::Type get() { return script::Type::QByteArrayBase64Options; } };
+template<> struct make_type_t<QByteRef> { inline static script::Type get() { return script::Type::QByteRef; } };
 template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
-
 } // namespace binding
 
 #endif // YASL_CORE_BYTEARRAY_H
