@@ -32,7 +32,7 @@ HeaderFile::HeaderFile()
 void HeaderFile::write()
 {
   QFile f{ this->file.absoluteFilePath() };
-  if (!f.open(QIODevice::WriteOnly))
+  if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
   {
     qDebug() << "Error while opening file " << this->file.absoluteFilePath() << " for writing";
     return;

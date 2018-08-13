@@ -14,7 +14,7 @@
 
 #include <QDebug>
 
-const QString Generator::endl = "\r\n";
+const QString Generator::endl = "\n";
 const QString Generator::ClassBinderInclude = "yasl/binding/class.h";
 const QString Generator::EnumBinderInclude = "yasl/binding/enum.h";;
 const QString Generator::NamespaceBinderInclude = "yasl/binding/namespace.h";;
