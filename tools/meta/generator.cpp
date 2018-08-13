@@ -837,6 +837,8 @@ void Generator::generate(NamespaceRef ns)
       out += "  register_" + prefix() + to_snake_case(n->name) + "_enum(" + snake + ");" + endl;
     else if (n->is<Class>())
       out += "  register_" + prefix() + to_snake_case(n->name) + "_class(" + snake + ");" + endl;
+    else if (n->is<Namespace>())
+      out += "  register_" + prefix() + to_snake_case(n->name) + "_namespace(" + snake + ");" + endl;
   }
 
   out += "  binding::Namespace binder{ " + snake + " };" + endl;
