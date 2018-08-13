@@ -346,6 +346,9 @@ void ModuleTreeWidget::fetchNewNodes(QTreeWidgetItem *item)
     for (int i(item->childCount()); i < e.enumerators.size(); ++i)
       item->addChild(createItem(e.enumerators.at(i)));
   }
+
+  for (int i(0); i < item->childCount(); ++i)
+    fetchNewNodes(item->child(i));
 }
 
 void ModuleTreeWidget::fillTreeWidget(const ProjectRef & pro)
