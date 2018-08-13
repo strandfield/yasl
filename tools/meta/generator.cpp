@@ -447,6 +447,14 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
     out += ">();";
     return out;
   }
+  else if (op == Subscript)
+  {
+    // operator[] cannot be non-member
+    if (fun->isConst)
+      return QString("  binder.operators().const_subscript<%1, %2>();").arg(fparam(fun->returnType), fparam(fun, 0));
+    else
+      return QString("  binder.operators().subscript<%1, %2>();").arg(fparam(fun->returnType), fparam(fun, 0));
+  }
   else
   {
     if (!isMember() && (op == LeftShift || op == RightShift))
