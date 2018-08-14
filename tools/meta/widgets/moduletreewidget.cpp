@@ -415,6 +415,7 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
     auto e = qSharedPointerCast<Enum>(node);
     if (e->isEnumClass)
       item->setText(1, "true");
+    item->setCheckState(2, e->isCppEnumClass ? Qt::Checked : Qt::Unchecked);
     for (const auto & n : e->enumerators)
       item->addChild(createItem(n));
   }
@@ -471,6 +472,7 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
   {
     Enum & enm = node->as<Enum>();
     enm.isEnumClass = item->text(1).toLower() == "true";
+    enm.isCppEnumClass = item->checkState(2) == Qt::Checked;
   }
   else if (node->is<File>())
   {
@@ -553,7 +555,7 @@ void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
   }
   else if (node->is<Enum>())
   {
-    setHeaderLabels(QStringList() << "Name" << "Enum class ?" << "" << "" << "" << "");
+    setHeaderLabels(QStringList() << "Name" << "Enum class ?" << " Cpp enum class" << "" << "" << "");
   }
   else if (node->is<Module>())
   {

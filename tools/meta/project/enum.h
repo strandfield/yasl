@@ -30,6 +30,7 @@ class Enum : public Node
 {
 public:
   QList<EnumeratorRef> enumerators;
+  bool isCppEnumClass;
   bool isEnumClass;
 
 public:

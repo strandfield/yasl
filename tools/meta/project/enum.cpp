@@ -54,6 +54,9 @@ void Enum::fillJson(QJsonObject & obj) const
 
   if (isEnumClass)
     obj["enumclass"] = isEnumClass;
+
+  if (isCppEnumClass)
+    obj["cppenumclass"] = isCppEnumClass;
 }
 
 QSharedPointer<Node> Enum::fromJson(const QJsonObject & obj)
@@ -68,6 +71,11 @@ QSharedPointer<Node> Enum::fromJson(const QJsonObject & obj)
     ret->isEnumClass = false;
   else
     ret->isEnumClass = obj.value("enumclass").toBool();
+
+  if (!obj.contains("cppenumclass"))
+    ret->isCppEnumClass = false;
+  else
+    ret->isCppEnumClass = obj.value("cppenumclass").toBool();
 
   return ret;
 }

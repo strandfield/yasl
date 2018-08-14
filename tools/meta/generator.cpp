@@ -758,7 +758,7 @@ void Generator::generate(EnumRef enm)
   out += endl;
   out += "  Enum " + snake + " = " + enclosing_snake_name() + ".Enum(\"" + enmname + "\").setId(script::Type::" + enum_info.id + ")";
   if (enm->isEnumClass)
-    out += endl + ".setEnumClass()";
+    out += endl + "    .setEnumClass()";
   out += ".get();" + endl;
   out += endl;
 
@@ -777,13 +777,18 @@ void Generator::generate(EnumRef enm)
     }
   }
 
+  QString format;
+  if (enm->isCppEnumClass)
+    format = "  %1.addValue(\"%2\", static_cast<int>(%3));";
+  else
+    format = "  %1.addValue(\"%2\", %3);";
 
   for (const auto & v : enm->enumerators)
   {
     if (v->checkState == Qt::Unchecked)
       continue;
 
-    out += "  " + snake + ".addValue(\"" + v->name + "\", " + nameQualification() + v->name + ");" + endl;
+    out += format.arg(snake, v->name, nameQualification() + v->name) + endl;
   }
 
   out += "}" + endl;
