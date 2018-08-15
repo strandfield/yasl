@@ -412,11 +412,10 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
     item->setFlags(item->flags() | Qt::ItemIsEditable);
 
     item->setIcon(0, QIcon(":/assets/enum.png"));
-    auto e = qSharedPointerCast<Enum>(node);
-    if (e->isEnumClass)
-      item->setText(1, "true");
-    item->setCheckState(2, e->isCppEnumClass ? Qt::Checked : Qt::Unchecked);
-    for (const auto & n : e->enumerators)
+    Enum & enm = node->as<Enum>();
+    item->setCheckState(1, enm.isEnumClass ? Qt::Checked : Qt::Unchecked);
+    item->setCheckState(2, enm.isCppEnumClass ? Qt::Checked : Qt::Unchecked);
+    for (const auto & n : enm.enumerators)
       item->addChild(createItem(n));
   }
   else if (node->is<Enumerator>())
@@ -471,7 +470,7 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
   else if (node->is<Enum>())
   {
     Enum & enm = node->as<Enum>();
-    enm.isEnumClass = item->text(1).toLower() == "true";
+    enm.isEnumClass = item->checkState(1) == Qt::Checked;
     enm.isCppEnumClass = item->checkState(2) == Qt::Checked;
   }
   else if (node->is<File>())
