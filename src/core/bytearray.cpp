@@ -4,14 +4,15 @@
 
 #include "yasl/core/bytearray.h"
 
+#include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
+#include "yasl/core/listspecializations.h"
 #include "yasl/core/flags.h"
 #include "yasl/binding/namespace.h"
-#include "yasl/core/listspecializations.h"
-#include "yasl/binding/class.h"
 
-#include "yasl/core/bytearray-functions.h"
+#include "yasl/core/enums.h"
 #include "yasl/core/bytearray.h"
+#include "yasl/core/bytearray-functions.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -46,7 +47,7 @@ static void register_byte_array_class(script::Namespace ns)
   // QByteArray(int, char);
   binder.ctors().add<int, char>();
   // QByteArray(int, Qt::Initialization);
-  /// TODO: QByteArray(int, Qt::Initialization);
+  binder.ctors().add<int, Qt::Initialization>();
   // QByteArray(const QByteArray &);
   binder.ctors().add<const QByteArray &>();
   // ~QByteArray();
