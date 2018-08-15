@@ -9,11 +9,9 @@
 
 #include <QPoint>
 
-namespace binding
-{
-
+namespace binding {
 template<> struct make_type_t<QPoint> { inline static script::Type get() { return script::Type::QPoint; } };
-
+template<> struct make_type_t<QPointF> { inline static script::Type get() { return script::Type::QPointF; } };
 } // namespace binding
 
 #endif // YASL_CORE_POINT_H

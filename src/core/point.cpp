@@ -7,96 +7,169 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/point.h"
+
 #include <script/classbuilder.h>
 
-void register_qpoint(script::Namespace n)
+static void register_point_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class point = n.Class("Point").setId(Type::QPoint).setFinal().get();
+  Class point = ns.Class("Point").setId(script::Type::QPoint).get();
 
-  binding::Class<QPoint> p{ point };
+  binding::Class<QPoint> binder{ point };
 
   // QPoint();
-  p.ctors().add_default();
-  // QPoint(const QPoint &);
-  p.ctors().add_copy();
-  // QPoint(int xpos, int ypos);
-  p.ctors().add<int, int>();
+  binder.ctors().add_default();
+  // QPoint(int, int);
+  binder.ctors().add<int, int>();
   // ~QPoint();
-  p.add_dtor();
+  binder.add_dtor();
   // bool isNull() const;
-  p.add_fun<bool, &QPoint::isNull>("isNull");
-  // int manhattanLength() const;
-  p.add_fun<int, &QPoint::manhattanLength>("manhattanLength");
-  // int & rx();
-  // int & ry();
-  // void setX(int x);
-  p.add_void_fun<int, &QPoint::setX>("setX");
-  // void setY(int y);
-  p.add_void_fun<int, &QPoint::setY>("setY");
-  // CGPoint toCGPoint() const;
+  binder.add_fun<bool, &QPoint::isNull>("isNull");
   // int x() const;
-  p.add_fun<int, &QPoint::x>("x");
+  binder.add_fun<int, &QPoint::x>("x");
   // int y() const;
-  p.add_fun<int, &QPoint::y>("y");
-  // QPoint & operator=(const QPoint &);
-  p.operators().assign<const QPoint &>();
-  // QPoint & operator*=(float factor);
-  p.operators().mul_assign<float>();
-  // QPoint & operator*=(double factor);
-  p.operators().mul_assign<double>();
-  // QPoint & operator*=(int factor);
-  p.operators().mul_assign<int>();
-  // QPoint & operator+=(const QPoint &point);
-  p.operators().add_assign<const QPoint &>();
-  // QPoint & operator-=(const QPoint &point);
-  p.operators().sub_assign<const QPoint &>();
-  // QPoint & operator/=(qreal divisor);
-  p.operators().div_assign<qreal>();
-
-
-  /* Public static members */
-
-  // int dotProduct(const QPoint &p1, const QPoint &p2);
-  //p.add_static<int, const QPoint &, const QPoint &, &QPoint::dotProduct>("dotProduct");
-  point.Method("dotProduct", binding::function_wrapper_t<decltype(&QPoint::dotProduct), &QPoint::dotProduct>::wrap)
-    .setStatic()
-    .returns(Type::Int)
-    .params(binding::make_type<const QPoint &>(), binding::make_type<const QPoint &>())
-    .create();
-
-
-  /* Non members */
-  binding::Namespace ns{ n };
-  // bool operator!=(const QPoint &p1, const QPoint &p2);
-  ns.operators().neq<const QPoint &, const QPoint &>();
-  // const QPoint operator*(const QPoint &point, float factor);
-  ns.operators().mul<const QPoint, const QPoint &, float>();
-  // const QPoint operator*(const QPoint &point, double factor);
-  ns.operators().mul<const QPoint, const QPoint &, double>();
-  // const QPoint operator*(const QPoint &point, int factor);
-  ns.operators().mul<const QPoint, const QPoint &, int>();
-  // const QPoint operator*(float factor, const QPoint &point);
-  ns.operators().mul<const QPoint, float, const QPoint &>();
-  // const QPoint operator*(double factor, const QPoint &point);
-  ns.operators().mul<const QPoint, double, const QPoint &>();
-  // const QPoint operator*(int factor, const QPoint &point);
-  ns.operators().mul<const QPoint, int, const QPoint &>();
-  // const QPoint operator+(const QPoint &p1, const QPoint &p2);
-  ns.operators().add<const QPoint, const QPoint &, const QPoint &>();
-  // const QPoint operator+(const QPoint &point);
-  /// TODO : operator unary plus
-  // const QPoint operator-(const QPoint &p1, const QPoint &p2);
-  ns.operators().sub<const QPoint, const QPoint &, const QPoint &>();
-  // const QPoint operator-(const QPoint &point);
-  /// TODO : operator unary minus
-  // const QPoint operator/(const QPoint &point, qreal divisor);
-  ns.operators().div<const QPoint, const QPoint &, qreal>();
-  // QDataStream & operator<<(QDataStream &stream, const QPoint &point);
-  /// TODO : QDataStream output
-  // bool operator==(const QPoint &p1, const QPoint &p2);
-  ns.operators().eq<const QPoint &, const QPoint &>();
-  // QDataStream & operator>>(QDataStream &stream, QPoint &point);
-  /// TODO : QDataStream output
+  binder.add_fun<int, &QPoint::y>("y");
+  // void setX(int);
+  binder.add_void_fun<int, &QPoint::setX>("setX");
+  // void setY(int);
+  binder.add_void_fun<int, &QPoint::setY>("setY");
+  // int manhattanLength() const;
+  binder.add_fun<int, &QPoint::manhattanLength>("manhattanLength");
+  // int & rx();
+  binder.add_ref_mem<int &, &QPoint::rx>("rx");
+  // int & ry();
+  binder.add_ref_mem<int &, &QPoint::ry>("ry");
+  // QPoint & operator+=(const QPoint &);
+  binder.operators().add_assign<const QPoint &>();
+  // QPoint & operator-=(const QPoint &);
+  binder.operators().sub_assign<const QPoint &>();
+  // QPoint & operator*=(float);
+  binder.operators().mul_assign<float>();
+  // QPoint & operator*=(double);
+  binder.operators().mul_assign<double>();
+  // QPoint & operator*=(int);
+  binder.operators().mul_assign<int>();
+  // QPoint & operator/=(qreal);
+  binder.operators().div_assign<qreal>();
+  // static int dotProduct(const QPoint &, const QPoint &);
+  binder.add_static<int, const QPoint &, const QPoint &, &QPoint::dotProduct>("dotProduct");
 }
+
+
+static void register_point_f_class(script::Namespace ns)
+{
+  using namespace script;
+
+  Class point_f = ns.Class("PointF").setId(script::Type::QPointF).get();
+
+  binding::Class<QPointF> binder{ point_f };
+
+  // QPointF();
+  binder.ctors().add_default();
+  // QPointF(const QPoint &);
+  binder.ctors().add<const QPoint &>();
+  // QPointF(qreal, qreal);
+  binder.ctors().add<qreal, qreal>();
+  // ~QPointF();
+  binder.add_dtor();
+  // qreal manhattanLength() const;
+  binder.add_fun<qreal, &QPointF::manhattanLength>("manhattanLength");
+  // bool isNull() const;
+  binder.add_fun<bool, &QPointF::isNull>("isNull");
+  // qreal x() const;
+  binder.add_fun<qreal, &QPointF::x>("x");
+  // qreal y() const;
+  binder.add_fun<qreal, &QPointF::y>("y");
+  // void setX(qreal);
+  binder.add_void_fun<qreal, &QPointF::setX>("setX");
+  // void setY(qreal);
+  binder.add_void_fun<qreal, &QPointF::setY>("setY");
+  // qreal & rx();
+  binder.add_ref_mem<qreal &, &QPointF::rx>("rx");
+  // qreal & ry();
+  binder.add_ref_mem<qreal &, &QPointF::ry>("ry");
+  // QPointF & operator+=(const QPointF &);
+  binder.operators().add_assign<const QPointF &>();
+  // QPointF & operator-=(const QPointF &);
+  binder.operators().sub_assign<const QPointF &>();
+  // QPointF & operator*=(qreal);
+  binder.operators().mul_assign<qreal>();
+  // QPointF & operator/=(qreal);
+  binder.operators().div_assign<qreal>();
+  // static qreal dotProduct(const QPointF &, const QPointF &);
+  binder.add_static<qreal, const QPointF &, const QPointF &, &QPointF::dotProduct>("dotProduct");
+  // QPoint toPoint() const;
+  binder.add_fun<QPoint, &QPointF::toPoint>("toPoint");
+}
+
+
+void register_point_file(script::Namespace core)
+{
+  using namespace script;
+
+  Namespace ns = core;
+
+  register_point_class(ns);
+  register_point_f_class(ns);
+  binding::Namespace binder{ ns };
+
+  // QDataStream & operator<<(QDataStream &, const QPoint &);
+  /// TODO: QDataStream & operator<<(QDataStream &, const QPoint &);
+  // QDataStream & operator>>(QDataStream &, QPoint &);
+  /// TODO: QDataStream & operator>>(QDataStream &, QPoint &);
+  // bool operator==(const QPoint &, const QPoint &);
+  binder.operators().eq<const QPoint &, const QPoint &>();
+  // bool operator!=(const QPoint &, const QPoint &);
+  binder.operators().neq<const QPoint &, const QPoint &>();
+  // const QPoint operator+(const QPoint &, const QPoint &);
+  binder.operators().add<const QPoint, const QPoint &, const QPoint &>();
+  // const QPoint operator-(const QPoint &, const QPoint &);
+  binder.operators().sub<const QPoint, const QPoint &, const QPoint &>();
+  // const QPoint operator*(const QPoint &, float);
+  binder.operators().mul<const QPoint, const QPoint &, float>();
+  // const QPoint operator*(const QPoint &, double);
+  binder.operators().mul<const QPoint, const QPoint &, double>();
+  // const QPoint operator*(const QPoint &, int);
+  binder.operators().mul<const QPoint, const QPoint &, int>();
+  // const QPoint operator*(float, const QPoint &);
+  binder.operators().mul<const QPoint, float, const QPoint &>();
+  // const QPoint operator*(double, const QPoint &);
+  binder.operators().mul<const QPoint, double, const QPoint &>();
+  // const QPoint operator*(int, const QPoint &);
+  binder.operators().mul<const QPoint, int, const QPoint &>();
+  // const QPoint operator+(const QPoint &);
+  binder.operators().unary_plus<const QPoint, const QPoint &>();
+  // const QPoint operator-(const QPoint &);
+  binder.operators().unary_minus<const QPoint, const QPoint &>();
+  // const QPoint operator/(const QPoint &, qreal);
+  binder.operators().div<const QPoint, const QPoint &, qreal>();
+  // QDebug operator<<(QDebug, const QPoint &);
+  /// TODO: QDebug operator<<(QDebug, const QPoint &);
+  // QDataStream & operator<<(QDataStream &, const QPointF &);
+  /// TODO: QDataStream & operator<<(QDataStream &, const QPointF &);
+  // QDataStream & operator>>(QDataStream &, QPointF &);
+  /// TODO: QDataStream & operator>>(QDataStream &, QPointF &);
+  // bool operator==(const QPointF &, const QPointF &);
+  binder.operators().eq<const QPointF &, const QPointF &>();
+  // bool operator!=(const QPointF &, const QPointF &);
+  binder.operators().neq<const QPointF &, const QPointF &>();
+  // const QPointF operator+(const QPointF &, const QPointF &);
+  binder.operators().add<const QPointF, const QPointF &, const QPointF &>();
+  // const QPointF operator-(const QPointF &, const QPointF &);
+  binder.operators().sub<const QPointF, const QPointF &, const QPointF &>();
+  // const QPointF operator*(const QPointF &, qreal);
+  binder.operators().mul<const QPointF, const QPointF &, qreal>();
+  // const QPointF operator*(qreal, const QPointF &);
+  binder.operators().mul<const QPointF, qreal, const QPointF &>();
+  // const QPointF operator+(const QPointF &);
+  binder.operators().unary_plus<const QPointF, const QPointF &>();
+  // const QPointF operator-(const QPointF &);
+  binder.operators().unary_minus<const QPointF, const QPointF &>();
+  // const QPointF operator/(const QPointF &, qreal);
+  binder.operators().div<const QPointF, const QPointF &, qreal>();
+  // QDebug operator<<(QDebug, const QPointF &);
+  /// TODO: QDebug operator<<(QDebug, const QPointF &);
+}
+

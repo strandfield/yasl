@@ -7483,6 +7483,557 @@
                     "hincludes": "<Qt>",
                     "name": "enums",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QPoint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPoint",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPoint",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setX",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setY",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "manhattanLength",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "reference",
+                                    "name": "rx",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int &",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "reference",
+                                    "name": "ry",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QPoint &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QPoint &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "QPoint &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "QPoint &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QPoint &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QPoint &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "dotProduct",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPoint",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QPoint &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QPoint &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QPoint &",
+                                "const QPoint &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QPoint &",
+                                "const QPoint &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QPoint &",
+                                "const QPoint &"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QPoint &",
+                                "const QPoint &"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPoint &",
+                                "float"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPoint &",
+                                "double"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPoint &",
+                                "int"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "float",
+                                "const QPoint &"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "double",
+                                "const QPoint &"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "int",
+                                "const QPoint &"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QPoint &"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QPoint &"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QPoint &",
+                                "qreal"
+                            ],
+                            "returns": "const QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QPoint &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QPointF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPointF",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPointF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPointF",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "manhattanLength",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setX",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setY",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "reference",
+                                    "name": "rx",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal &",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "reference",
+                                    "name": "ry",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "dotProduct",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "qreal",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toPoint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPointF",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QPointF &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QPointF &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QPointF &",
+                                "const QPointF &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QPointF &",
+                                "const QPointF &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QPointF &",
+                                "const QPointF &"
+                            ],
+                            "returns": "const QPointF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QPointF &",
+                                "const QPointF &"
+                            ],
+                            "returns": "const QPointF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPointF &",
+                                "qreal"
+                            ],
+                            "returns": "const QPointF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "qreal",
+                                "const QPointF &"
+                            ],
+                            "returns": "const QPointF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QPointF &"
+                            ],
+                            "returns": "const QPointF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QPointF &"
+                            ],
+                            "returns": "const QPointF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QPointF &",
+                                "qreal"
+                            ],
+                            "returns": "const QPointF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QPointF &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QPoint>",
+                    "name": "point",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -7498,6 +8049,7 @@
                 "rename": "ImageConversionFlags"
             },
             {
+                "header": "yasl/core/enums.h",
                 "id": "QtKeyboardModifiers",
                 "name": "Qt::KeyboardModifiers",
                 "rename": "KeyboardModifiers"
@@ -7530,6 +8082,18 @@
                 "id": "QByteRef",
                 "name": "QByteRef",
                 "rename": "ByteRef"
+            },
+            {
+                "header": "yasl/core/point.h",
+                "id": "QPoint",
+                "name": "QPoint",
+                "rename": "Point"
+            },
+            {
+                "header": "yasl/core/point.h",
+                "id": "QPointF",
+                "name": "QPointF",
+                "rename": "PointF"
             }
         ],
         "enums": [
@@ -8001,6 +8565,10 @@
                 "id": "String",
                 "name": "QString",
                 "rename": "String"
+            },
+            {
+                "id": "",
+                "name": "qreal"
             }
         ]
     }

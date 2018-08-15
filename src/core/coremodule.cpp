@@ -28,7 +28,7 @@ void register_bytearray_file(script::Namespace n); // defined in bytearray.cpp
 void register_qevent(script::Namespace n); // defined in event.cpp
 void register_qmargins(script::Namespace n); // defined in margins.cpp
 void register_qobject(script::Namespace n); // defined in object.cpp
-void register_qpoint(script::Namespace n); // defined in point.cpp
+void register_point_file(script::Namespace n); // defined in point.cpp
 void register_qrect(script::Namespace n); // defined in rect.cpp
 void register_qsize(script::Namespace n); // defined in size.cpp
 void register_settings_file(script::Namespace n); // defined in settings.cpp
@@ -57,7 +57,7 @@ void load_core_module(script::Module core)
   register_qchar_file(core.root());
   register_qdir_file(core.root());
   register_qevent(core.root());
-  register_qpoint(core.root());
+  register_point_file(core.root());
   register_qmargins(core.root());
   register_qsize(core.root());
   register_qrect(core.root());
