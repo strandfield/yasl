@@ -23,6 +23,9 @@ void Namespace::fillJson(QJsonObject & obj) const
     elems.append(e->toJson());
 
   obj["elements"] = elems;
+
+  if (!rename.isEmpty())
+    obj["rename"] = rename;
 }
 
 QSharedPointer<Node> Namespace::fromJson(const QJsonObject & obj)
@@ -33,6 +36,8 @@ QSharedPointer<Node> Namespace::fromJson(const QJsonObject & obj)
   ret->elements.reserve(elements.size());
   for (const auto & item : elements)
     ret->elements.push_back(Node::fromJson(item.toObject()));
+
+  ret->rename = obj.value("rename").toString();
 
   return ret;
 }

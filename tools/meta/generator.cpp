@@ -827,10 +827,19 @@ void Generator::generate(NamespaceRef ns)
   out += "{" + endl;
   out += "  using namespace script;" + endl;
   out += endl;
-  if(ns->is<File>())
+  if (ns->is<File>())
+  {
     out += "  Namespace " + snake + " = " + enclosing_snake + ";" + endl;
+  }
   else
-    out += "  Namespace " + snake + " = " + enclosing_snake + ".getNamespace(\"" + ns->name + "\");" + endl;
+  {
+    const QString name = ns->rename.isEmpty() ? ns->name : ns->rename;
+
+    if(name == "@")
+      out += "  Namespace " + snake + " = " + enclosing_snake + ";" + endl;
+    else
+      out += "  Namespace " + snake + " = " + enclosing_snake + ".getNamespace(\"" + name + "\");" + endl;
+  }
   out += endl;
 
   for (const auto n : ns->elements)

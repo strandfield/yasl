@@ -11,6 +11,7 @@ class Namespace : public Node
 {
 public:
   QList<NodeRef> elements;
+  QString rename;
 
 public:
   Namespace(const QString & n, Qt::CheckState c = Qt::Checked);

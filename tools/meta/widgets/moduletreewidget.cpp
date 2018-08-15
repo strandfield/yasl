@@ -392,6 +392,7 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
 
     item->setIcon(0, QIcon(":/assets/namespace.png"));
     Namespace & ns = node->as<Namespace>();
+    item->setText(1, ns.rename);
     for (const auto & n : ns.elements)
       item->addChild(createItem(n));
   }
@@ -479,6 +480,11 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
     f.hincludes = item->text(1).split(",", QString::SkipEmptyParts);
     f.cppincludes = item->text(2).split(",", QString::SkipEmptyParts);
   }
+  else if (node->is<Namespace>())
+  {
+    Namespace & ns = node->as<Namespace>();
+    ns.rename = item->text(1);
+  }
 
   updateCheckState(item);
 }
@@ -563,6 +569,10 @@ void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
   else if (node->is<File>())
   {
     setHeaderLabels(QStringList() << "Name" << ".h include" << ".cpp include" << "" << "" << "");
+  }
+  else if (node->is<Namespace>())
+  {
+    setHeaderLabels(QStringList() << "Name" << "Rename");
   }
 }
 
