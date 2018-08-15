@@ -5,8 +5,8 @@
 #ifndef YASL_CORE_BYTEARRAY_H
 #define YASL_CORE_BYTEARRAY_H
 
-#include "yasl/utils/ptr.h"
 #include "yasl/binding/types.h"
+#include "yasl/utils/ptr.h"
 
 #include <QByteArray>
 

@@ -5,8 +5,7 @@
 #ifndef YASL_META_SOURCEFILE_H
 #define YASL_META_SOURCEFILE_H
 
-#include <QFileInfo>
-#include <QSet>
+#include "headerfile.h"
 
 class SourceFile
 {
@@ -15,9 +14,9 @@ public:
 
   QString header;
 
-  QSet<QString> bindingIncludes;
-  QSet<QString> generalIncludes;
-  QSet<QString> libscriptIncludes;
+  Includes bindingIncludes;
+  Includes generalIncludes;
+  Includes libscriptIncludes;
 
   QStringList functions;
 

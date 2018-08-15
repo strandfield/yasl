@@ -35,7 +35,7 @@ void SourceFile::write()
 
   out << endl;
 
-  for (const auto inc : bindingIncludes)
+  for (const auto inc : bindingIncludes.get())
   {
     if (inc.startsWith("<") || inc.startsWith("\""))
       out << "#include " << inc << endl;
@@ -45,7 +45,7 @@ void SourceFile::write()
   if (!bindingIncludes.isEmpty())
     out << endl;
 
-  for (const auto inc : generalIncludes)
+  for (const auto inc : generalIncludes.get())
   {
     if (inc.startsWith("<") || inc.startsWith("\""))
       out << "#include " << inc << endl;
@@ -56,7 +56,7 @@ void SourceFile::write()
     out << endl;
 
 
-  for (const auto inc : libscriptIncludes)
+  for (const auto inc : libscriptIncludes.get())
   {
     if (inc.startsWith("<") || inc.startsWith("\""))
       out << "#include " << inc << endl;

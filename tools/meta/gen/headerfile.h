@@ -7,11 +7,21 @@
 
 #include <QFileInfo>
 #include <QMap>
-#include <QSet>
 
 #include "project/type.h"
 
 class QTextStream;
+
+class Includes
+{
+public:
+  QMap<QString, bool> data;
+
+  void insert(const QString & inc);
+  void remove(const QString & inc);
+  QStringList get() const;
+  inline bool isEmpty() const { return data.isEmpty(); }
+};
 
 class HeaderFile
 {
@@ -19,8 +29,8 @@ public:
   QFileInfo file;
 
   QString moduleName;
-  QSet<QString> bindingIncludes;
-  QSet<QString> generalIncludes;
+  Includes bindingIncludes;
+  Includes generalIncludes;
 
   QMap<QString, Type> types;
 

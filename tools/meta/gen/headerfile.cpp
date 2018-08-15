@@ -9,6 +9,27 @@
 
 #include <QDebug>
 
+void Includes::insert(const QString & inc)
+{
+  data[inc] = true;
+}
+
+void Includes::remove(const QString & inc)
+{
+  data.remove(inc);
+}
+
+QStringList Includes::get() const
+{
+  QStringList result;
+  for (auto it = data.begin(); it != data.end(); ++it)
+  {
+    if (it.value())
+      result.append(it.key());
+  }
+  return result;
+}
+
 void HeaderFile::writeCopyrightMessage(QTextStream & out)
 {
   out << "// Copyright (C) 2018 Vincent Chambrin" << endl;
@@ -51,11 +72,11 @@ void HeaderFile::write()
 
   QStringList bindings = generateBindingDefinitions();
 
-  for (const auto & inc : bindingIncludes)
+  for (const auto & inc : bindingIncludes.get())
     writeInclude(out, inc);
   out << endl;
 
-  for (const auto inc : generalIncludes)
+  for (const auto inc : generalIncludes.get())
     writeInclude(out, inc);
   if(!generalIncludes.isEmpty())
     out << endl;

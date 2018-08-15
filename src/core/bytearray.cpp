@@ -6,13 +6,13 @@
 
 #include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
-#include "yasl/core/listspecializations.h"
-#include "yasl/core/flags.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/core/flags.h"
+#include "yasl/core/listspecializations.h"
 
-#include "yasl/core/enums.h"
-#include "yasl/core/bytearray.h"
 #include "yasl/core/bytearray-functions.h"
+#include "yasl/core/bytearray.h"
+#include "yasl/core/enums.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
