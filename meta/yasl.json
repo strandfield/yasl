@@ -213,6 +213,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
                                     "name": "operator[]",
                                     "parameters": [
@@ -230,6 +231,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "operator[]",
                                     "parameters": [
                                         "uint"
@@ -996,6 +998,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "setNum",
                                     "parameters": [
                                         "uint",
@@ -1063,6 +1066,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "number",
                                     "parameters": [
                                         "uint",
@@ -8569,6 +8573,10 @@
             {
                 "id": "",
                 "name": "qreal"
+            },
+            {
+                "id": "",
+                "name": "uint"
             }
         ]
     }

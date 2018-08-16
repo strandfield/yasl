@@ -86,12 +86,8 @@ static void register_byte_array_class(script::Namespace ns)
   binder.add_fun<char, int, &QByteArray::at>("at");
   // char operator[](int) const;
   binder.operators().const_subscript<char, int>();
-  // char operator[](uint) const;
-  /// TODO: char operator[](uint) const;
   // QByteRef operator[](int);
   binder.operators().subscript<QByteRef, int>();
-  // QByteRef operator[](uint);
-  /// TODO: QByteRef operator[](uint);
   // char front() const;
   binder.add_fun<char, &QByteArray::front>("front");
   // QByteRef front();
@@ -246,8 +242,6 @@ static void register_byte_array_class(script::Namespace ns)
   /// TODO: QByteArray & setNum(ushort, int);
   // QByteArray & setNum(int, int);
   binder.add_chainable<int, int, &QByteArray::setNum>("setNum");
-  // QByteArray & setNum(uint, int);
-  /// TODO: QByteArray & setNum(uint, int);
   // QByteArray & setNum(qlonglong, int);
   /// TODO: QByteArray & setNum(qlonglong, int);
   // QByteArray & setNum(qulonglong, int);
@@ -258,8 +252,6 @@ static void register_byte_array_class(script::Namespace ns)
   binder.add_chainable<double, char, int, &QByteArray::setNum>("setNum");
   // static QByteArray number(int, int);
   binder.add_static<QByteArray, int, int, &QByteArray::number>("number");
-  // static QByteArray number(uint, int);
-  /// TODO: static QByteArray number(uint, int);
   // static QByteArray number(qlonglong, int);
   /// TODO: static QByteArray number(qlonglong, int);
   // static QByteArray number(qulonglong, int);
