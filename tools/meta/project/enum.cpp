@@ -37,6 +37,7 @@ QSharedPointer<Node> Enumerator::fromJson(const QJsonObject & obj)
 Enum::Enum(const QString & n, Qt::CheckState c)
   : Node(n, c)
   , isEnumClass(false)
+  , isCppEnumClass(false)
 {
 
 }
