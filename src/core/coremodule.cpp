@@ -11,7 +11,7 @@
 #include <script/namespace.h>
 
 
-void register_qchar_file(script::Namespace); // defined in char.cpp
+void register_char__file(script::Namespace); // defined in char.cpp
 void register_qdir_file(script::Namespace); // defined in dir.cpp
 void register_enums_file(script::Namespace n); // defined in enums.cpp
 void register_date_class(script::Namespace n); // defined in date.cpp
@@ -54,7 +54,7 @@ void load_core_module(script::Module core)
   register_stringlist_class(core.root());
 
   register_enums_file(core.root());
-  register_qchar_file(core.root());
+  register_char__file(core.root());
   register_qdir_file(core.root());
   register_qevent(core.root());
   register_point_file(core.root());

@@ -8038,6 +8038,1846 @@
                     "hincludes": "<QPoint>",
                     "name": "point",
                     "type": "file"
+                },
+                {
+                    "cppincludes": "yasl/core/char-functions.h",
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "binding": "dtor",
+                                    "name": "~Char",
+                                    "parameters": [
+                                    ],
+                                    "returns": "",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Null"
+                                        },
+                                        {
+                                            "name": "Tabulation"
+                                        },
+                                        {
+                                            "name": "LineFeed"
+                                        },
+                                        {
+                                            "name": "CarriageReturn"
+                                        },
+                                        {
+                                            "name": "Space"
+                                        },
+                                        {
+                                            "name": "Nbsp"
+                                        },
+                                        {
+                                            "name": "SoftHyphen"
+                                        },
+                                        {
+                                            "name": "ReplacementCharacter"
+                                        },
+                                        {
+                                            "name": "ObjectReplacementCharacter"
+                                        },
+                                        {
+                                            "name": "ByteOrderMark"
+                                        },
+                                        {
+                                            "name": "ByteOrderSwapped"
+                                        },
+                                        {
+                                            "name": "ParagraphSeparator"
+                                        },
+                                        {
+                                            "name": "LineSeparator"
+                                        },
+                                        {
+                                            "name": "LastValidCodePoint"
+                                        }
+                                    ],
+                                    "name": "SpecialCharacter",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "ushort"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "uchar",
+                                        "uchar"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "short"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "QChar::SpecialCharacter"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "QLatin1Char"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "char16_t"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "wchar_t"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QChar",
+                                    "parameters": [
+                                        "uchar"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Mark_NonSpacing"
+                                        },
+                                        {
+                                            "name": "Mark_SpacingCombining"
+                                        },
+                                        {
+                                            "name": "Mark_Enclosing"
+                                        },
+                                        {
+                                            "name": "Number_DecimalDigit"
+                                        },
+                                        {
+                                            "name": "Number_Letter"
+                                        },
+                                        {
+                                            "name": "Number_Other"
+                                        },
+                                        {
+                                            "name": "Separator_Space"
+                                        },
+                                        {
+                                            "name": "Separator_Line"
+                                        },
+                                        {
+                                            "name": "Separator_Paragraph"
+                                        },
+                                        {
+                                            "name": "Other_Control"
+                                        },
+                                        {
+                                            "name": "Other_Format"
+                                        },
+                                        {
+                                            "name": "Other_Surrogate"
+                                        },
+                                        {
+                                            "name": "Other_PrivateUse"
+                                        },
+                                        {
+                                            "name": "Other_NotAssigned"
+                                        },
+                                        {
+                                            "name": "Letter_Uppercase"
+                                        },
+                                        {
+                                            "name": "Letter_Lowercase"
+                                        },
+                                        {
+                                            "name": "Letter_Titlecase"
+                                        },
+                                        {
+                                            "name": "Letter_Modifier"
+                                        },
+                                        {
+                                            "name": "Letter_Other"
+                                        },
+                                        {
+                                            "name": "Punctuation_Connector"
+                                        },
+                                        {
+                                            "name": "Punctuation_Dash"
+                                        },
+                                        {
+                                            "name": "Punctuation_Open"
+                                        },
+                                        {
+                                            "name": "Punctuation_Close"
+                                        },
+                                        {
+                                            "name": "Punctuation_InitialQuote"
+                                        },
+                                        {
+                                            "name": "Punctuation_FinalQuote"
+                                        },
+                                        {
+                                            "name": "Punctuation_Other"
+                                        },
+                                        {
+                                            "name": "Symbol_Math"
+                                        },
+                                        {
+                                            "name": "Symbol_Currency"
+                                        },
+                                        {
+                                            "name": "Symbol_Modifier"
+                                        },
+                                        {
+                                            "name": "Symbol_Other"
+                                        }
+                                    ],
+                                    "name": "Category",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Script_Unknown"
+                                        },
+                                        {
+                                            "name": "Script_Inherited"
+                                        },
+                                        {
+                                            "name": "Script_Common"
+                                        },
+                                        {
+                                            "name": "Script_Latin"
+                                        },
+                                        {
+                                            "name": "Script_Greek"
+                                        },
+                                        {
+                                            "name": "Script_Cyrillic"
+                                        },
+                                        {
+                                            "name": "Script_Armenian"
+                                        },
+                                        {
+                                            "name": "Script_Hebrew"
+                                        },
+                                        {
+                                            "name": "Script_Arabic"
+                                        },
+                                        {
+                                            "name": "Script_Syriac"
+                                        },
+                                        {
+                                            "name": "Script_Thaana"
+                                        },
+                                        {
+                                            "name": "Script_Devanagari"
+                                        },
+                                        {
+                                            "name": "Script_Bengali"
+                                        },
+                                        {
+                                            "name": "Script_Gurmukhi"
+                                        },
+                                        {
+                                            "name": "Script_Gujarati"
+                                        },
+                                        {
+                                            "name": "Script_Oriya"
+                                        },
+                                        {
+                                            "name": "Script_Tamil"
+                                        },
+                                        {
+                                            "name": "Script_Telugu"
+                                        },
+                                        {
+                                            "name": "Script_Kannada"
+                                        },
+                                        {
+                                            "name": "Script_Malayalam"
+                                        },
+                                        {
+                                            "name": "Script_Sinhala"
+                                        },
+                                        {
+                                            "name": "Script_Thai"
+                                        },
+                                        {
+                                            "name": "Script_Lao"
+                                        },
+                                        {
+                                            "name": "Script_Tibetan"
+                                        },
+                                        {
+                                            "name": "Script_Myanmar"
+                                        },
+                                        {
+                                            "name": "Script_Georgian"
+                                        },
+                                        {
+                                            "name": "Script_Hangul"
+                                        },
+                                        {
+                                            "name": "Script_Ethiopic"
+                                        },
+                                        {
+                                            "name": "Script_Cherokee"
+                                        },
+                                        {
+                                            "name": "Script_CanadianAboriginal"
+                                        },
+                                        {
+                                            "name": "Script_Ogham"
+                                        },
+                                        {
+                                            "name": "Script_Runic"
+                                        },
+                                        {
+                                            "name": "Script_Khmer"
+                                        },
+                                        {
+                                            "name": "Script_Mongolian"
+                                        },
+                                        {
+                                            "name": "Script_Hiragana"
+                                        },
+                                        {
+                                            "name": "Script_Katakana"
+                                        },
+                                        {
+                                            "name": "Script_Bopomofo"
+                                        },
+                                        {
+                                            "name": "Script_Han"
+                                        },
+                                        {
+                                            "name": "Script_Yi"
+                                        },
+                                        {
+                                            "name": "Script_OldItalic"
+                                        },
+                                        {
+                                            "name": "Script_Gothic"
+                                        },
+                                        {
+                                            "name": "Script_Deseret"
+                                        },
+                                        {
+                                            "name": "Script_Tagalog"
+                                        },
+                                        {
+                                            "name": "Script_Hanunoo"
+                                        },
+                                        {
+                                            "name": "Script_Buhid"
+                                        },
+                                        {
+                                            "name": "Script_Tagbanwa"
+                                        },
+                                        {
+                                            "name": "Script_Coptic"
+                                        },
+                                        {
+                                            "name": "Script_Limbu"
+                                        },
+                                        {
+                                            "name": "Script_TaiLe"
+                                        },
+                                        {
+                                            "name": "Script_LinearB"
+                                        },
+                                        {
+                                            "name": "Script_Ugaritic"
+                                        },
+                                        {
+                                            "name": "Script_Shavian"
+                                        },
+                                        {
+                                            "name": "Script_Osmanya"
+                                        },
+                                        {
+                                            "name": "Script_Cypriot"
+                                        },
+                                        {
+                                            "name": "Script_Braille"
+                                        },
+                                        {
+                                            "name": "Script_Buginese"
+                                        },
+                                        {
+                                            "name": "Script_NewTaiLue"
+                                        },
+                                        {
+                                            "name": "Script_Glagolitic"
+                                        },
+                                        {
+                                            "name": "Script_Tifinagh"
+                                        },
+                                        {
+                                            "name": "Script_SylotiNagri"
+                                        },
+                                        {
+                                            "name": "Script_OldPersian"
+                                        },
+                                        {
+                                            "name": "Script_Kharoshthi"
+                                        },
+                                        {
+                                            "name": "Script_Balinese"
+                                        },
+                                        {
+                                            "name": "Script_Cuneiform"
+                                        },
+                                        {
+                                            "name": "Script_Phoenician"
+                                        },
+                                        {
+                                            "name": "Script_PhagsPa"
+                                        },
+                                        {
+                                            "name": "Script_Nko"
+                                        },
+                                        {
+                                            "name": "Script_Sundanese"
+                                        },
+                                        {
+                                            "name": "Script_Lepcha"
+                                        },
+                                        {
+                                            "name": "Script_OlChiki"
+                                        },
+                                        {
+                                            "name": "Script_Vai"
+                                        },
+                                        {
+                                            "name": "Script_Saurashtra"
+                                        },
+                                        {
+                                            "name": "Script_KayahLi"
+                                        },
+                                        {
+                                            "name": "Script_Rejang"
+                                        },
+                                        {
+                                            "name": "Script_Lycian"
+                                        },
+                                        {
+                                            "name": "Script_Carian"
+                                        },
+                                        {
+                                            "name": "Script_Lydian"
+                                        },
+                                        {
+                                            "name": "Script_Cham"
+                                        },
+                                        {
+                                            "name": "Script_TaiTham"
+                                        },
+                                        {
+                                            "name": "Script_TaiViet"
+                                        },
+                                        {
+                                            "name": "Script_Avestan"
+                                        },
+                                        {
+                                            "name": "Script_EgyptianHieroglyphs"
+                                        },
+                                        {
+                                            "name": "Script_Samaritan"
+                                        },
+                                        {
+                                            "name": "Script_Lisu"
+                                        },
+                                        {
+                                            "name": "Script_Bamum"
+                                        },
+                                        {
+                                            "name": "Script_Javanese"
+                                        },
+                                        {
+                                            "name": "Script_MeeteiMayek"
+                                        },
+                                        {
+                                            "name": "Script_ImperialAramaic"
+                                        },
+                                        {
+                                            "name": "Script_OldSouthArabian"
+                                        },
+                                        {
+                                            "name": "Script_InscriptionalParthian"
+                                        },
+                                        {
+                                            "name": "Script_InscriptionalPahlavi"
+                                        },
+                                        {
+                                            "name": "Script_OldTurkic"
+                                        },
+                                        {
+                                            "name": "Script_Kaithi"
+                                        },
+                                        {
+                                            "name": "Script_Batak"
+                                        },
+                                        {
+                                            "name": "Script_Brahmi"
+                                        },
+                                        {
+                                            "name": "Script_Mandaic"
+                                        },
+                                        {
+                                            "name": "Script_Chakma"
+                                        },
+                                        {
+                                            "name": "Script_MeroiticCursive"
+                                        },
+                                        {
+                                            "name": "Script_MeroiticHieroglyphs"
+                                        },
+                                        {
+                                            "name": "Script_Miao"
+                                        },
+                                        {
+                                            "name": "Script_Sharada"
+                                        },
+                                        {
+                                            "name": "Script_SoraSompeng"
+                                        },
+                                        {
+                                            "name": "Script_Takri"
+                                        },
+                                        {
+                                            "name": "Script_CaucasianAlbanian"
+                                        },
+                                        {
+                                            "name": "Script_BassaVah"
+                                        },
+                                        {
+                                            "name": "Script_Duployan"
+                                        },
+                                        {
+                                            "name": "Script_Elbasan"
+                                        },
+                                        {
+                                            "name": "Script_Grantha"
+                                        },
+                                        {
+                                            "name": "Script_PahawhHmong"
+                                        },
+                                        {
+                                            "name": "Script_Khojki"
+                                        },
+                                        {
+                                            "name": "Script_LinearA"
+                                        },
+                                        {
+                                            "name": "Script_Mahajani"
+                                        },
+                                        {
+                                            "name": "Script_Manichaean"
+                                        },
+                                        {
+                                            "name": "Script_MendeKikakui"
+                                        },
+                                        {
+                                            "name": "Script_Modi"
+                                        },
+                                        {
+                                            "name": "Script_Mro"
+                                        },
+                                        {
+                                            "name": "Script_OldNorthArabian"
+                                        },
+                                        {
+                                            "name": "Script_Nabataean"
+                                        },
+                                        {
+                                            "name": "Script_Palmyrene"
+                                        },
+                                        {
+                                            "name": "Script_PauCinHau"
+                                        },
+                                        {
+                                            "name": "Script_OldPermic"
+                                        },
+                                        {
+                                            "name": "Script_PsalterPahlavi"
+                                        },
+                                        {
+                                            "name": "Script_Siddham"
+                                        },
+                                        {
+                                            "name": "Script_Khudawadi"
+                                        },
+                                        {
+                                            "name": "Script_Tirhuta"
+                                        },
+                                        {
+                                            "name": "Script_WarangCiti"
+                                        },
+                                        {
+                                            "name": "Script_Ahom"
+                                        },
+                                        {
+                                            "name": "Script_AnatolianHieroglyphs"
+                                        },
+                                        {
+                                            "name": "Script_Hatran"
+                                        },
+                                        {
+                                            "name": "Script_Multani"
+                                        },
+                                        {
+                                            "name": "Script_OldHungarian"
+                                        },
+                                        {
+                                            "name": "Script_SignWriting"
+                                        },
+                                        {
+                                            "name": "ScriptCount"
+                                        }
+                                    ],
+                                    "name": "Script",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DirL"
+                                        },
+                                        {
+                                            "name": "DirR"
+                                        },
+                                        {
+                                            "name": "DirEN"
+                                        },
+                                        {
+                                            "name": "DirES"
+                                        },
+                                        {
+                                            "name": "DirET"
+                                        },
+                                        {
+                                            "name": "DirAN"
+                                        },
+                                        {
+                                            "name": "DirCS"
+                                        },
+                                        {
+                                            "name": "DirB"
+                                        },
+                                        {
+                                            "name": "DirS"
+                                        },
+                                        {
+                                            "name": "DirWS"
+                                        },
+                                        {
+                                            "name": "DirON"
+                                        },
+                                        {
+                                            "name": "DirLRE"
+                                        },
+                                        {
+                                            "name": "DirLRO"
+                                        },
+                                        {
+                                            "name": "DirAL"
+                                        },
+                                        {
+                                            "name": "DirRLE"
+                                        },
+                                        {
+                                            "name": "DirRLO"
+                                        },
+                                        {
+                                            "name": "DirPDF"
+                                        },
+                                        {
+                                            "name": "DirNSM"
+                                        },
+                                        {
+                                            "name": "DirBN"
+                                        },
+                                        {
+                                            "name": "DirLRI"
+                                        },
+                                        {
+                                            "name": "DirRLI"
+                                        },
+                                        {
+                                            "name": "DirFSI"
+                                        },
+                                        {
+                                            "name": "DirPDI"
+                                        }
+                                    ],
+                                    "name": "Direction",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoDecomposition"
+                                        },
+                                        {
+                                            "name": "Canonical"
+                                        },
+                                        {
+                                            "name": "Font"
+                                        },
+                                        {
+                                            "name": "NoBreak"
+                                        },
+                                        {
+                                            "name": "Initial"
+                                        },
+                                        {
+                                            "name": "Medial"
+                                        },
+                                        {
+                                            "name": "Final"
+                                        },
+                                        {
+                                            "name": "Isolated"
+                                        },
+                                        {
+                                            "name": "Circle"
+                                        },
+                                        {
+                                            "name": "Super"
+                                        },
+                                        {
+                                            "name": "Sub"
+                                        },
+                                        {
+                                            "name": "Vertical"
+                                        },
+                                        {
+                                            "name": "Wide"
+                                        },
+                                        {
+                                            "name": "Narrow"
+                                        },
+                                        {
+                                            "name": "Small"
+                                        },
+                                        {
+                                            "name": "Square"
+                                        },
+                                        {
+                                            "name": "Compat"
+                                        },
+                                        {
+                                            "name": "Fraction"
+                                        }
+                                    ],
+                                    "name": "Decomposition",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Joining_None"
+                                        },
+                                        {
+                                            "name": "Joining_Causing"
+                                        },
+                                        {
+                                            "name": "Joining_Dual"
+                                        },
+                                        {
+                                            "name": "Joining_Right"
+                                        },
+                                        {
+                                            "name": "Joining_Left"
+                                        },
+                                        {
+                                            "name": "Joining_Transparent"
+                                        }
+                                    ],
+                                    "name": "JoiningType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "OtherJoining"
+                                        },
+                                        {
+                                            "name": "Dual"
+                                        },
+                                        {
+                                            "name": "Right"
+                                        },
+                                        {
+                                            "name": "Center"
+                                        }
+                                    ],
+                                    "name": "Joining",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Combining_BelowLeftAttached"
+                                        },
+                                        {
+                                            "name": "Combining_BelowAttached"
+                                        },
+                                        {
+                                            "name": "Combining_BelowRightAttached"
+                                        },
+                                        {
+                                            "name": "Combining_LeftAttached"
+                                        },
+                                        {
+                                            "name": "Combining_RightAttached"
+                                        },
+                                        {
+                                            "name": "Combining_AboveLeftAttached"
+                                        },
+                                        {
+                                            "name": "Combining_AboveAttached"
+                                        },
+                                        {
+                                            "name": "Combining_AboveRightAttached"
+                                        },
+                                        {
+                                            "name": "Combining_BelowLeft"
+                                        },
+                                        {
+                                            "name": "Combining_Below"
+                                        },
+                                        {
+                                            "name": "Combining_BelowRight"
+                                        },
+                                        {
+                                            "name": "Combining_Left"
+                                        },
+                                        {
+                                            "name": "Combining_Right"
+                                        },
+                                        {
+                                            "name": "Combining_AboveLeft"
+                                        },
+                                        {
+                                            "name": "Combining_Above"
+                                        },
+                                        {
+                                            "name": "Combining_AboveRight"
+                                        },
+                                        {
+                                            "name": "Combining_DoubleBelow"
+                                        },
+                                        {
+                                            "name": "Combining_DoubleAbove"
+                                        },
+                                        {
+                                            "name": "Combining_IotaSubscript"
+                                        }
+                                    ],
+                                    "name": "CombiningClass",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Unicode_Unassigned"
+                                        },
+                                        {
+                                            "name": "Unicode_1_1"
+                                        },
+                                        {
+                                            "name": "Unicode_2_0"
+                                        },
+                                        {
+                                            "name": "Unicode_2_1_2"
+                                        },
+                                        {
+                                            "name": "Unicode_3_0"
+                                        },
+                                        {
+                                            "name": "Unicode_3_1"
+                                        },
+                                        {
+                                            "name": "Unicode_3_2"
+                                        },
+                                        {
+                                            "name": "Unicode_4_0"
+                                        },
+                                        {
+                                            "name": "Unicode_4_1"
+                                        },
+                                        {
+                                            "name": "Unicode_5_0"
+                                        },
+                                        {
+                                            "name": "Unicode_5_1"
+                                        },
+                                        {
+                                            "name": "Unicode_5_2"
+                                        },
+                                        {
+                                            "name": "Unicode_6_0"
+                                        },
+                                        {
+                                            "name": "Unicode_6_1"
+                                        },
+                                        {
+                                            "name": "Unicode_6_2"
+                                        },
+                                        {
+                                            "name": "Unicode_6_3"
+                                        },
+                                        {
+                                            "name": "Unicode_7_0"
+                                        },
+                                        {
+                                            "name": "Unicode_8_0"
+                                        }
+                                    ],
+                                    "name": "UnicodeVersion",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "category",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar::Category",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "direction",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar::Direction",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "joiningType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar::JoiningType",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "joining",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar::Joining",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "combiningClass",
+                                    "parameters": [
+                                    ],
+                                    "returns": "unsigned char",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mirroredChar",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasMirrored",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "decomposition",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "decompositionTag",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar::Decomposition",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "digitValue",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLower",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUpper",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toTitleCase",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCaseFolded",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "script",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar::Script",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "unicodeVersion",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar::UnicodeVersion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLatin1",
+                                    "parameters": [
+                                    ],
+                                    "returns": "char",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "unicode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "ushort",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "unicode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "ushort &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromLatin1",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "QChar",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isPrint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSpace",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isMark",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isPunct",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSymbol",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isLetter",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNumber",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isLetterOrNumber",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDigit",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isLower",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isUpper",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTitleCase",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNonCharacter",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isHighSurrogate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isLowSurrogate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSurrogate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cell",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "row",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCell",
+                                    "parameters": [
+                                        "uchar"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRow",
+                                    "parameters": [
+                                        "uchar"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isNonCharacter",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isHighSurrogate",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isLowSurrogate",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isSurrogate",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "requiresSurrogates",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "surrogateToUcs4",
+                                    "parameters": [
+                                        "ushort",
+                                        "ushort"
+                                    ],
+                                    "returns": "uint",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "surrogateToUcs4",
+                                    "parameters": [
+                                        "QChar",
+                                        "QChar"
+                                    ],
+                                    "returns": "uint",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "highSurrogate",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "ushort",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "lowSurrogate",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "ushort",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_category",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "category",
+                                    "returns": "QChar::Category",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_direction",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "direction",
+                                    "returns": "QChar::Direction",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_joiningType",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "joiningType",
+                                    "returns": "QChar::JoiningType",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_joining",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "joining",
+                                    "returns": "QChar::Joining",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_combiningClass",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "combiningClass",
+                                    "returns": "unsigned char",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_mirroredChar",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "mirroredChar",
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_hasMirrored",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "hasMirrored",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_decomposition",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "decomposition",
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_decompositionTag",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "decompositionTag",
+                                    "returns": "QChar::Decomposition",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_digitValue",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "digitValue",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_toLower",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "toLower",
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_toUpper",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "toUpper",
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_toTitleCase",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "toTitleCase",
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_toCaseFolded",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "toCaseFolded",
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_script",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "script",
+                                    "returns": "QChar::Script",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_unicodeVersion",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "unicodeVersion",
+                                    "returns": "QChar::UnicodeVersion",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_currentUnicodeVersion",
+                                    "parameters": [
+                                    ],
+                                    "rename": "currentUnicodeVersion",
+                                    "returns": "QChar::UnicodeVersion",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_isPrint",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "isPrint",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isSpace",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_isMark",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "isMark",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_isPunct",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "isPunct",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "freestatic",
+                                    "name": "qchar_isSymbol",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "rename": "isSymbol",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isLetter",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isNumber",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isLetterOrNumber",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isDigit",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isLower",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isUpper",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isTitleCase",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QChar",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "QChar",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<",
+                            "parameters": [
+                                "QChar",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "QChar",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>=",
+                            "parameters": [
+                                "QChar",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>",
+                            "parameters": [
+                                "QChar",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<=",
+                            "parameters": [
+                                "QChar",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "QChar",
+                                "std::nullptr_t"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<",
+                            "parameters": [
+                                "QChar",
+                                "std::nullptr_t"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "std::nullptr_t",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<",
+                            "parameters": [
+                                "std::nullptr_t",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "QChar",
+                                "std::nullptr_t"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>=",
+                            "parameters": [
+                                "QChar",
+                                "std::nullptr_t"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>",
+                            "parameters": [
+                                "QChar",
+                                "std::nullptr_t"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<=",
+                            "parameters": [
+                                "QChar",
+                                "std::nullptr_t"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "std::nullptr_t",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>=",
+                            "parameters": [
+                                "std::nullptr_t",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>",
+                            "parameters": [
+                                "std::nullptr_t",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<=",
+                            "parameters": [
+                                "std::nullptr_t",
+                                "QChar"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "QChar"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QChar &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QChar>",
+                    "name": "char",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -8098,6 +9938,12 @@
                 "id": "QPointF",
                 "name": "QPointF",
                 "rename": "PointF"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QChar",
+                "name": "QChar",
+                "rename": "Char"
             }
         ],
         "enums": [
@@ -8538,6 +10384,51 @@
                 "header": "yasl/core/enums.h",
                 "id": "QtChecksumType",
                 "name": "Qt::ChecksumType"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharSpecialCharacter",
+                "name": "QChar::SpecialCharacter"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharCategory",
+                "name": "QChar::Category"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharScript",
+                "name": "QChar::Script"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharDirection",
+                "name": "QChar::Direction"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharDecomposition",
+                "name": "QChar::Decomposition"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharJoiningType",
+                "name": "QChar::JoiningType"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharJoining",
+                "name": "QChar::Joining"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharCombiningClass",
+                "name": "QChar::CombiningClass"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharUnicodeVersion",
+                "name": "QChar::UnicodeVersion"
             }
         ],
         "fundamentals": [
