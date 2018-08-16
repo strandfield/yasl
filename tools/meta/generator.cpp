@@ -124,6 +124,8 @@ QString Generator::to_snake_case(const QString & camelCaseName)
     result.remove(0, 1);
   if (result.startsWith("q_"))
     result.remove(0, 2);
+  if (result == "class" || result == "char")
+    result += '_';
 
   return result;
 }
