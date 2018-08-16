@@ -267,6 +267,8 @@ void ModuleTreeWidget::refreshItem(QTreeWidgetItem* item)
   if (node == nullptr)
     return;
 
+  blockSignals(true);
+
   if (node->is<Module>())
   {
     Module & m = node->as<Module>();
@@ -303,6 +305,8 @@ void ModuleTreeWidget::refreshItem(QTreeWidgetItem* item)
     item->setText(1, Function::serialize(fun.bindingMethod));
     item->setText(2, fun.rename);
   }
+
+  blockSignals(false);
 }
 
 void ModuleTreeWidget::fetchNewNodes(QTreeWidgetItem *item)
