@@ -26,7 +26,8 @@ public:
     DestructorBinding,
     OperatorBinding,
     FreeFunctionBinding,
-    LastBindingMethod = FreeFunctionBinding,
+    FreeFunctionAsStaticBinding,
+    LastBindingMethod = FreeFunctionAsStaticBinding,
   };
 
 public:
@@ -84,6 +85,8 @@ public:
       return "op";
     case Function::FreeFunctionBinding:
       return "free";
+    case Function::FreeFunctionAsStaticBinding:
+      return "freestatic";
     default:
       break;
     }
@@ -123,6 +126,8 @@ public:
       return OperatorBinding;
     else if (str == "free")
       return FreeFunctionBinding;
+    else if (str == "freestatic")
+      return FreeFunctionAsStaticBinding;
     return AutoBinding;
   }
 };

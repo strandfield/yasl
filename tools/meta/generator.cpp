@@ -348,6 +348,8 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
     return QString("  binder.add_ref_mem<%1, %2%3>(\"%4\");").arg(fret, params, funaddr, funname);
   else if (bm == Function::FreeFunctionBinding)
     return QString("  binder.add_fun<%1, %2%3>(\"%4\");").arg(fret, params, "&" + fun->name, funname);
+  else if (bm == Function::FreeFunctionAsStaticBinding)
+    return QString("  binder.add_static<%1, %2%3>(\"%4\");").arg(fret, params, "&" + fun->name, funname);
 
   throw std::runtime_error{ "Unsupported bind method !" };
 }
