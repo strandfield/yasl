@@ -10503,6 +10503,1484 @@
                     "hincludes": "<QSize>",
                     "name": "size",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRect",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QRect",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QRect",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRect",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "left",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "top",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "right",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottom",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "normalized",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLeft",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTop",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottom",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setX",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setY",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTopLeft",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottomRight",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTopRight",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottomLeft",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "topLeft",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottomRight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "topRight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottomLeft",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "center",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveLeft",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTop",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveRight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveBottom",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTopLeft",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveBottomRight",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTopRight",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveBottomLeft",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveCenter",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transposed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTo",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTo",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getRect",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCoords",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getCoords",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "adjust",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "adjusted",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "height",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHeight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSize",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator|",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator&",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator|=",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRect &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator&=",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRect &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "bool"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "bool"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "bool"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "united",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersected",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersects",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "marginsAdded",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "marginsRemoved",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "QRect &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "QRect &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QRect",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QRect &",
+                                "const QRect &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QRect &",
+                                "const QRect &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QRect &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QRect &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QRect &",
+                                "const QRect &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QRect &",
+                                "const QRect &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QRect &",
+                                "const QMargins &"
+                            ],
+                            "returns": "QRect",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QMargins &",
+                                "const QRect &"
+                            ],
+                            "returns": "QRect",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QRect &",
+                                "const QMargins &"
+                            ],
+                            "returns": "QRect",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QRect &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QRectF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRectF",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QRectF",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QRectF",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QSizeF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRectF",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRectF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRectF",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "normalized",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "left",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "top",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "right",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottom",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLeft",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTop",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRight",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottom",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setX",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setY",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "topLeft",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottomRight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "topRight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottomLeft",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "center",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTopLeft",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottomRight",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTopRight",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottomLeft",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveLeft",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTop",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveRight",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveBottom",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTopLeft",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveBottomRight",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTopRight",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveBottomLeft",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveCenter",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transposed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTo",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTo",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRect",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getRect",
+                                    "parameters": [
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCoords",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getCoords",
+                                    "parameters": [
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "adjust",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "adjusted",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSizeF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "height",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWidth",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHeight",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSize",
+                                    "parameters": [
+                                        "const QSizeF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator|",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator&",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator|=",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "QRectF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator&=",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "QRectF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "united",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersected",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersects",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "marginsAdded",
+                                    "parameters": [
+                                        "const QMarginsF &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "marginsRemoved",
+                                    "parameters": [
+                                        "const QMarginsF &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QMarginsF &"
+                                    ],
+                                    "returns": "QRectF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QMarginsF &"
+                                    ],
+                                    "returns": "QRectF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toAlignedRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QRectF",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QRectF &",
+                                "const QRectF &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QRectF &",
+                                "const QRectF &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QRectF &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QRectF &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QRectF &",
+                                "const QRectF &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QRectF &",
+                                "const QRectF &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QRectF &",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QRectF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "const QRectF &"
+                            ],
+                            "returns": "QRectF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QRectF &",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QRectF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QRectF &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QRect>",
+                    "name": "rect",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -10553,6 +12031,12 @@
                 "rename": "ByteRef"
             },
             {
+                "header": "yasl/core/char.h",
+                "id": "QChar",
+                "name": "QChar",
+                "rename": "Char"
+            },
+            {
                 "header": "yasl/core/point.h",
                 "id": "QPoint",
                 "name": "QPoint",
@@ -10565,10 +12049,16 @@
                 "rename": "PointF"
             },
             {
-                "header": "yasl/core/char.h",
-                "id": "QChar",
-                "name": "QChar",
-                "rename": "Char"
+                "header": "yasl/core/rect.h",
+                "id": "QRect",
+                "name": "QRect",
+                "rename": "Rect"
+            },
+            {
+                "header": "yasl/core/rect.h",
+                "id": "QRectF",
+                "name": "QRectF",
+                "rename": "RectF"
             },
             {
                 "header": "yasl/core/size.h",

@@ -9,11 +9,9 @@
 
 #include <QRect>
 
-namespace binding
-{
-
+namespace binding {
 template<> struct make_type_t<QRect> { inline static script::Type get() { return script::Type::QRect; } };
-
+template<> struct make_type_t<QRectF> { inline static script::Type get() { return script::Type::QRectF; } };
 } // namespace binding
 
 #endif // YASL_CORE_RECT_H
