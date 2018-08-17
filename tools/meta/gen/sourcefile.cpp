@@ -13,7 +13,7 @@
 
 void SourceFile::write()
 {
-  QFile f{ this->file.absoluteFilePath() };
+  QFile f{ this->file.absoluteFilePath() + "gen" };
   if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
   {
     qDebug() << "Error while opening file " << this->file.absoluteFilePath() << " for writing";
@@ -73,4 +73,6 @@ void SourceFile::write()
 
   out.flush();
   f.close();
+
+  HeaderFile::validate(this->file);
 }

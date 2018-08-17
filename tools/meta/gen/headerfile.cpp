@@ -50,9 +50,40 @@ HeaderFile::HeaderFile()
   bindingIncludes.insert("yasl/binding/types.h");
 }
 
+QByteArray HeaderFile::readall(const QString & filepath)
+{
+  QFile f{ filepath };
+  if (!f.open(QIODevice::ReadOnly))
+    return QByteArray{};
+
+  QByteArray ret = f.readAll();
+  f.close();
+  return ret;
+}
+
+void HeaderFile::validate(const QFileInfo & finfo)
+{
+  if (!finfo.exists())
+  {
+    QFile::rename(finfo.absoluteFilePath() + "gen", finfo.absoluteFilePath());
+    return;
+  }
+
+  QByteArray old = HeaderFile::readall(finfo.absoluteFilePath());
+  QByteArray last = HeaderFile::readall(finfo.absoluteFilePath() + "gen");
+  if (old == last)
+  {
+    QFile::remove(finfo.absoluteFilePath() + "gen");
+    return;
+  }
+  
+  QFile::remove(finfo.absoluteFilePath());
+  QFile::rename(finfo.absoluteFilePath() + "gen", finfo.absoluteFilePath());
+}
+
 void HeaderFile::write()
 {
-  QFile f{ this->file.absoluteFilePath() };
+  QFile f{ this->file.absoluteFilePath() + "gen" };
   if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
   {
     qDebug() << "Error while opening file " << this->file.absoluteFilePath() << " for writing";
@@ -89,6 +120,8 @@ void HeaderFile::write()
   out << "#endif // " << header_guard << endl;
   out.flush();
   f.close();
+
+  validate(this->file);
 }
 
 QStringList HeaderFile::generateBindingDefinitions()

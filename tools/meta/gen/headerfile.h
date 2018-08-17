@@ -42,6 +42,9 @@ public:
   static void writeCopyrightMessage(QTextStream & out);
   static void writeInclude(QTextStream & out, const QString & inc);
 
+  static QByteArray readall(const QString & filepath);
+  static void validate(const QFileInfo & finfo);
+
 protected:
   QStringList generateBindingDefinitions();
 };
