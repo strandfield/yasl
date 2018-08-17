@@ -12626,6 +12626,1419 @@
                     "hincludes": "<QMargins>",
                     "name": "margins",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DateFormat"
+                                        },
+                                        {
+                                            "name": "StandaloneFormat"
+                                        }
+                                    ],
+                                    "name": "MonthNameType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QDate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDate",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDate",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QDate",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "year",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "month",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "day",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dayOfWeek",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dayOfYear",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "daysInMonth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "daysInYear",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "weekNumber",
+                                    "parameters": [
+                                        "int *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "shortMonthName",
+                                    "parameters": [
+                                        "int",
+                                        "QDate::MonthNameType"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "shortDayName",
+                                    "parameters": [
+                                        "int",
+                                        "QDate::MonthNameType"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "longMonthName",
+                                    "parameters": [
+                                        "int",
+                                        "QDate::MonthNameType"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "longDayName",
+                                    "parameters": [
+                                        "int",
+                                        "QDate::MonthNameType"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "Qt::DateFormat"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDate",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getDate",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getDate",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addDays",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addMonths",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addYears",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "daysTo",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "QDate &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<=",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>=",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "currentDate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDate",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "Qt::DateFormat"
+                                    ],
+                                    "returns": "QDate",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QDate",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isValid",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isLeapYear",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromJulianDay",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QDate",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toJulianDay",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDate",
+                            "type": "class"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTime",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QTime",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QTime",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hour",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minute",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "second",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "msec",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "Qt::DateFormat"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHMS",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addSecs",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "secsTo",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addMSecs",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "msecsTo",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "QTime &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<=",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>=",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromMSecsSinceStartOfDay",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "msecsSinceStartOfDay",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "currentTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "Qt::DateFormat"
+                                    ],
+                                    "returns": "QTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isValid",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "start",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "restart",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "elapsed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTime",
+                            "type": "class"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QDateTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTime",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTime",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "const QTime &",
+                                        "Qt::TimeSpec"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTime",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "const QTime &",
+                                        "Qt::TimeSpec",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTime",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "const QTime &",
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTime",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTime",
+                                    "parameters": [
+                                        "QDateTime &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDateTime",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QDateTime &&"
+                                    ],
+                                    "returns": "QDateTime &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QDateTime &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QDateTime &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "date",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "time",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "timeSpec",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::TimeSpec",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "offsetFromUtc",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "timeZone",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTimeZone",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "timeZoneAbbreviation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDaylightTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toMSecsSinceEpoch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toSecsSinceEpoch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDate",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTime",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTimeSpec",
+                                    "parameters": [
+                                        "Qt::TimeSpec"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOffsetFromUtc",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTimeZone",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMSecsSinceEpoch",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSecsSinceEpoch",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "Qt::DateFormat"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addDays",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addMonths",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addYears",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addSecs",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "addMSecs",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toTimeSpec",
+                                    "parameters": [
+                                        "Qt::TimeSpec"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLocalTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUTC",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toOffsetFromUtc",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toTimeZone",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "daysTo",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "secsTo",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "msecsTo",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<=",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>=",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUtcOffset",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "utcOffset",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "currentDateTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "currentDateTimeUtc",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "Qt::DateFormat"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toTime_t",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTime_t",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromTime_t",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromTime_t",
+                                    "parameters": [
+                                        "uint",
+                                        "Qt::TimeSpec",
+                                        "int"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromTime_t",
+                                    "parameters": [
+                                        "uint",
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromMSecsSinceEpoch",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromMSecsSinceEpoch",
+                                    "parameters": [
+                                        "qint64",
+                                        "Qt::TimeSpec",
+                                        "int"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromSecsSinceEpoch",
+                                    "parameters": [
+                                        "qint64",
+                                        "Qt::TimeSpec",
+                                        "int"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromMSecsSinceEpoch",
+                                    "parameters": [
+                                        "qint64",
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromSecsSinceEpoch",
+                                    "parameters": [
+                                        "qint64",
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "currentMSecsSinceEpoch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "currentSecsSinceEpoch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDateTime",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QDateTime &",
+                                "QDateTime &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QDate &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QDate &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QTime &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QTime &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QDateTime &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QDateTime &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QDate &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QTime &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QDateTime &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QDateTime &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QDate &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QTime &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QDateTime>",
+                    "name": "datetime",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -12682,6 +14095,18 @@
                 "rename": "Char"
             },
             {
+                "header": "yasl/core/datetime.h",
+                "id": "QDate",
+                "name": "QDate",
+                "rename": "Date"
+            },
+            {
+                "header": "yasl/core/datetime.h",
+                "id": "QDateTime",
+                "name": "QDateTime",
+                "rename": "DateTime"
+            },
+            {
                 "header": "yasl/core/margins.h",
                 "id": "QMargins",
                 "name": "QMargins",
@@ -12728,6 +14153,12 @@
                 "id": "QSizeF",
                 "name": "QSizeF",
                 "rename": "SizeF"
+            },
+            {
+                "header": "yasl/core/datetime.h",
+                "id": "QTime",
+                "name": "QTime",
+                "rename": "Time"
             }
         ],
         "enums": [
@@ -13213,6 +14644,11 @@
                 "header": "yasl/core/char.h",
                 "id": "QCharUnicodeVersion",
                 "name": "QChar::UnicodeVersion"
+            },
+            {
+                "header": "yasl/core/datetime.h",
+                "id": "QDateMonthNameType",
+                "name": "QDate::MonthNameType"
             }
         ],
         "fundamentals": [

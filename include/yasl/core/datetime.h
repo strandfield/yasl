@@ -9,9 +9,11 @@
 
 #include <QDateTime>
 
-namespace binding
-{
+namespace binding {
+template<> struct make_type_t<QDate> { inline static script::Type get() { return script::Type::QDate; } };
+template<> struct make_type_t<QDate::MonthNameType> { inline static script::Type get() { return script::Type::QDateMonthNameType; } };
 template<> struct make_type_t<QDateTime> { inline static script::Type get() { return script::Type::QDateTime; } };
+template<> struct make_type_t<QTime> { inline static script::Type get() { return script::Type::QTime; } };
 } // namespace binding
 
 #endif // YASL_CORE_DATETIME_H

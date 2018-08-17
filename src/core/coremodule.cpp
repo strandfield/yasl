@@ -14,8 +14,7 @@
 void register_char__file(script::Namespace); // defined in char.cpp
 void register_qdir_file(script::Namespace); // defined in dir.cpp
 void register_enums_file(script::Namespace n); // defined in enums.cpp
-void register_date_class(script::Namespace n); // defined in date.cpp
-void register_datetime_class(script::Namespace n); // defined in datetime.cpp
+void register_datetime_file(script::Namespace n); // defined in datetime.cpp
 void register_file_class(script::Namespace n); // defined in file.cpp
 void register_filedevice_class(script::Namespace n); // defined in filedevice.cpp
 void register_fileinfo_file(script::Namespace root); // defined in fileinfo.cpp
@@ -32,7 +31,6 @@ void register_point_file(script::Namespace n); // defined in point.cpp
 void register_rect_file(script::Namespace n); // defined in rect.cpp
 void register_size_file(script::Namespace n); // defined in size.cpp
 void register_settings_file(script::Namespace n); // defined in settings.cpp
-void register_time_class(script::Namespace n); // defined in time.cpp
 void register_timer_file(script::Namespace n); // defined in timer.cpp
 void register_timezone_class(script::Namespace n); // defined in timezone.cpp
 void register_url_file(script::Namespace n); // defined in url.cpp
@@ -61,11 +59,9 @@ void load_core_module(script::Module core)
   register_margins_file(core.root());
   register_size_file(core.root());
   register_rect_file(core.root());
-  register_date_class(core.root());
-  register_time_class(core.root());
   register_timer_file(core.root());
   register_timezone_class(core.root());
-  register_datetime_class(core.root());
+  register_datetime_file(core.root());
   register_locale_class(core.root());
   register_regularexpression_file(core.root());
   register_bytearray_file(core.root());
