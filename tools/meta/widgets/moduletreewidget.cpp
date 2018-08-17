@@ -13,7 +13,9 @@
 #include "project/module.h"
 #include "project/namespace.h"
 
+#include <QAction>
 #include <QKeyEvent>
+#include <QMenu>
 #include <QStyledItemDelegate>
 
 class ItemDelegate : public QStyledItemDelegate
@@ -43,6 +45,9 @@ ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   setSelectionBehavior(QAbstractItemView::SelectRows);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   setItemDelegate(new ItemDelegate(this));
+  setContextMenuPolicy(Qt::CustomContextMenu);
+
+  createContextMenus();
 
   if(pro != nullptr)
     fillTreeWidget(pro);
@@ -54,6 +59,7 @@ ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   connect(this, SIGNAL(expanded(const QModelIndex&)), this, SLOT(resizeColumnsAuto()));
   connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(updateHeaders(QTreeWidgetItem*, int)));
   connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(clearHeaders()));
+  connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayContextMenu(const QPoint &)));
 }
 
 static void handle_checkboxes(QTreeWidgetItem *item, bool on)
@@ -583,4 +589,69 @@ void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
 void ModuleTreeWidget::clearHeaders()
 {
   setHeaderLabels(QStringList() << "" << "" << "" << "" << "" << "");
+}
+
+void ModuleTreeWidget::displayContextMenu(const QPoint & p)
+{
+  QTreeWidgetItem *item = itemAt(p);
+  if (item == nullptr)
+    return;
+
+  NodeRef node = getNode(item);
+  if (node == nullptr)
+    return;
+
+  QMenu *menu = nullptr;
+
+  if (node->is<Class>())
+    menu = mClassMenu;
+
+  if (menu == nullptr)
+    return;
+
+  QAction *act = menu->exec(this->mapToGlobal(p));
+  execAction(item, node, act);
+}
+
+NodeRef ModuleTreeWidget::getNode(QTreeWidgetItem *item)
+{
+  return item->data(0, ModuleTreeWidget::ProjectNodeRole).value<NodeRef>();
+}
+
+void ModuleTreeWidget::createContextMenus()
+{
+  mClassMenu = new QMenu(this);
+
+  mAddCopyCtorAction = mClassMenu->addAction("Add copy constructor");
+  mAddDestructorAction = mClassMenu->addAction("Add destructor");
+  mAddAssignmentAction = mClassMenu->addAction("Add assignment");
+}
+
+void ModuleTreeWidget::execAction(QTreeWidgetItem *item, NodeRef node, QAction *act)
+{
+  if (node->is<Class>())
+  {
+    Class & cla = node->as<Class>();
+    
+    if (act == mAddCopyCtorAction)
+    {
+      ConstructorRef ctor = ConstructorRef::create(cla.name);
+      ctor->parameters.append("const " + cla.name + " &");
+      cla.elements.append(ctor);
+    }
+    else if (act == mAddDestructorAction)
+    {
+      DestructorRef dtor = DestructorRef::create("~" + cla.name);
+      cla.elements.append(dtor);
+    }
+    else if (act == mAddAssignmentAction)
+    {
+      FunctionRef assign = FunctionRef::create("operator=");
+      assign->returnType = cla.name + " &";
+      assign->parameters.append("const " + cla.name + " &");
+      cla.elements.append(assign);
+    }
+  }
+
+  fetchNewNodes(item);
 }

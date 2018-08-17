@@ -9,6 +9,9 @@
 
 #include "project.h"
 
+class QAction;
+class QMenu;
+
 class ModuleTreeWidget : public QTreeWidget
 {
   Q_OBJECT
@@ -48,10 +51,20 @@ protected Q_SLOTS:
   void resizeColumnsAuto();
   void updateHeaders(QTreeWidgetItem *item, int column);
   void clearHeaders();
+  void displayContextMenu(const QPoint & p);
+
+private:
+  static NodeRef getNode(QTreeWidgetItem *item);
+  void createContextMenus();
+  void execAction(QTreeWidgetItem *item, NodeRef node, QAction *act);
 
 private:
   ProjectRef mProject;
   bool mShowCheckboxes;
+  QMenu *mClassMenu;
+  QAction *mAddCopyCtorAction;
+  QAction *mAddDestructorAction;
+  QAction *mAddAssignmentAction;
 };
 
 #endif // YASL_META_MODULETREEWIDGET_H
