@@ -30,7 +30,7 @@ void register_qmargins(script::Namespace n); // defined in margins.cpp
 void register_qobject(script::Namespace n); // defined in object.cpp
 void register_point_file(script::Namespace n); // defined in point.cpp
 void register_qrect(script::Namespace n); // defined in rect.cpp
-void register_qsize(script::Namespace n); // defined in size.cpp
+void register_size_file(script::Namespace n); // defined in size.cpp
 void register_settings_file(script::Namespace n); // defined in settings.cpp
 void register_time_class(script::Namespace n); // defined in time.cpp
 void register_timer_file(script::Namespace n); // defined in timer.cpp
@@ -59,7 +59,7 @@ void load_core_module(script::Module core)
   register_qevent(core.root());
   register_point_file(core.root());
   register_qmargins(core.root());
-  register_qsize(core.root());
+  register_size_file(core.root());
   register_qrect(core.root());
   register_date_class(core.root());
   register_time_class(core.root());

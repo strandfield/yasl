@@ -9,9 +9,9 @@
 
 #include <QSize>
 
-namespace binding
-{
+namespace binding {
 template<> struct make_type_t<QSize> { inline static script::Type get() { return script::Type::QSize; } };
+template<> struct make_type_t<QSizeF> { inline static script::Type get() { return script::Type::QSizeF; } };
 } // namespace binding
 
 #endif // YASL_CORE_SIZE_H
