@@ -9,11 +9,9 @@
 
 #include <QMargins>
 
-namespace binding
-{
-
+namespace binding {
 template<> struct make_type_t<QMargins> { inline static script::Type get() { return script::Type::QMargins; } };
-
+template<> struct make_type_t<QMarginsF> { inline static script::Type get() { return script::Type::QMarginsF; } };
 } // namespace binding
 
 #endif // YASL_CORE_MARGINS_H

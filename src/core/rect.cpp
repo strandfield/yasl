@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/margins.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"
@@ -162,13 +163,13 @@ static void register_rect_class(script::Namespace ns)
   // bool intersects(const QRect &) const;
   binder.add_fun<bool, const QRect &, &QRect::intersects>("intersects");
   // QRect marginsAdded(const QMargins &) const;
-  /// TODO: QRect marginsAdded(const QMargins &) const;
+  binder.add_fun<QRect, const QMargins &, &QRect::marginsAdded>("marginsAdded");
   // QRect marginsRemoved(const QMargins &) const;
-  /// TODO: QRect marginsRemoved(const QMargins &) const;
+  binder.add_fun<QRect, const QMargins &, &QRect::marginsRemoved>("marginsRemoved");
   // QRect & operator+=(const QMargins &);
-  /// TODO: QRect & operator+=(const QMargins &);
+  binder.operators().add_assign<const QMargins &>();
   // QRect & operator-=(const QMargins &);
-  /// TODO: QRect & operator-=(const QMargins &);
+  binder.operators().sub_assign<const QMargins &>();
 }
 
 
@@ -321,13 +322,13 @@ static void register_rect_f_class(script::Namespace ns)
   // bool intersects(const QRectF &) const;
   binder.add_fun<bool, const QRectF &, &QRectF::intersects>("intersects");
   // QRectF marginsAdded(const QMarginsF &) const;
-  /// TODO: QRectF marginsAdded(const QMarginsF &) const;
+  binder.add_fun<QRectF, const QMarginsF &, &QRectF::marginsAdded>("marginsAdded");
   // QRectF marginsRemoved(const QMarginsF &) const;
-  /// TODO: QRectF marginsRemoved(const QMarginsF &) const;
+  binder.add_fun<QRectF, const QMarginsF &, &QRectF::marginsRemoved>("marginsRemoved");
   // QRectF & operator+=(const QMarginsF &);
-  /// TODO: QRectF & operator+=(const QMarginsF &);
+  binder.operators().add_assign<const QMarginsF &>();
   // QRectF & operator-=(const QMarginsF &);
-  /// TODO: QRectF & operator-=(const QMarginsF &);
+  binder.operators().sub_assign<const QMarginsF &>();
   // QRect toRect() const;
   binder.add_fun<QRect, &QRectF::toRect>("toRect");
   // QRect toAlignedRect() const;
@@ -358,11 +359,11 @@ void register_rect_file(script::Namespace core)
   // bool operator!=(const QRect &, const QRect &);
   binder.operators().neq<const QRect &, const QRect &>();
   // QRect operator+(const QRect &, const QMargins &);
-  /// TODO: QRect operator+(const QRect &, const QMargins &);
+  binder.operators().add<QRect, const QRect &, const QMargins &>();
   // QRect operator+(const QMargins &, const QRect &);
-  /// TODO: QRect operator+(const QMargins &, const QRect &);
+  binder.operators().add<QRect, const QMargins &, const QRect &>();
   // QRect operator-(const QRect &, const QMargins &);
-  /// TODO: QRect operator-(const QRect &, const QMargins &);
+  binder.operators().sub<QRect, const QRect &, const QMargins &>();
   // QDebug operator<<(QDebug, const QRect &);
   /// TODO: QDebug operator<<(QDebug, const QRect &);
   // bool operator==(const QRectF &, const QRectF &);
@@ -378,11 +379,11 @@ void register_rect_file(script::Namespace core)
   // bool operator!=(const QRectF &, const QRectF &);
   binder.operators().neq<const QRectF &, const QRectF &>();
   // QRectF operator+(const QRectF &, const QMarginsF &);
-  /// TODO: QRectF operator+(const QRectF &, const QMarginsF &);
+  binder.operators().add<QRectF, const QRectF &, const QMarginsF &>();
   // QRectF operator+(const QMarginsF &, const QRectF &);
-  /// TODO: QRectF operator+(const QMarginsF &, const QRectF &);
+  binder.operators().add<QRectF, const QMarginsF &, const QRectF &>();
   // QRectF operator-(const QRectF &, const QMarginsF &);
-  /// TODO: QRectF operator-(const QRectF &, const QMarginsF &);
+  binder.operators().sub<QRectF, const QRectF &, const QMarginsF &>();
   // QDebug operator<<(QDebug, const QRectF &);
   /// TODO: QDebug operator<<(QDebug, const QRectF &);
 }

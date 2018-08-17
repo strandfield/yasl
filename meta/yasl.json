@@ -11981,6 +11981,651 @@
                     "hincludes": "<QRect>",
                     "name": "rect",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QMargins",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMargins",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QMargins",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QMargins",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "left",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "top",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "right",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottom",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLeft",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTop",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottom",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "QMargins &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "QMargins &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QMargins &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QMargins &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QMargins &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QMargins &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QMargins &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QMargins &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QMargins",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QMargins &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QMargins &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QMargins &",
+                                "const QMargins &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QMargins &",
+                                "const QMargins &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QMargins &",
+                                "const QMargins &"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QMargins &",
+                                "const QMargins &"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QMargins &",
+                                "int"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "int",
+                                "const QMargins &"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QMargins &",
+                                "int"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QMargins &",
+                                "int"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "int",
+                                "const QMargins &"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QMargins &",
+                                "qreal"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "qreal",
+                                "const QMargins &"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QMargins &",
+                                "int"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QMargins &",
+                                "qreal"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QMargins &"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QMargins &"
+                            ],
+                            "returns": "QMargins",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QMargins &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QMarginsF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMargins",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QMarginsF",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QMarginsF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMarginsF",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "left",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "top",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "right",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottom",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLeft",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTop",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRight",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottom",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QMarginsF &"
+                                    ],
+                                    "returns": "QMarginsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QMarginsF &"
+                                    ],
+                                    "returns": "QMarginsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QMarginsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QMarginsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QMarginsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QMarginsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toMargins",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QMargins",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QMarginsF",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QMarginsF &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "qreal"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "qreal",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "qreal"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "qreal"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "qreal",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QMarginsF &",
+                                "qreal"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QMarginsF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QMarginsF &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QMargins>",
+                    "name": "margins",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -12035,6 +12680,18 @@
                 "id": "QChar",
                 "name": "QChar",
                 "rename": "Char"
+            },
+            {
+                "header": "yasl/core/margins.h",
+                "id": "QMargins",
+                "name": "QMargins",
+                "rename": "Margins"
+            },
+            {
+                "header": "yasl/core/margins.h",
+                "id": "QMarginsF",
+                "name": "QMarginsF",
+                "rename": "MarginsF"
             },
             {
                 "header": "yasl/core/point.h",
