@@ -518,6 +518,12 @@ QString Generator::fparam(const QString & p)
     pp.chop(1);
   }
 
+  if (pp.endsWith(" *"))
+  {
+    pp.chop(2);
+    pp.append(QChar('*'));
+  }
+
   pp = pp.simplified();
 
   const Type & info = typeinfo(pp);
