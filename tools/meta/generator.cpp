@@ -696,6 +696,9 @@ void Generator::generate(ClassRef cla)
 
   for (const auto n : cla->elements)
   {
+    if (n->checkState == Qt::Unchecked)
+      continue;
+
     if (n->is<Enum>())
       out += "  register_" + prefix() + to_snake_case(n->name) + "_enum(" + snake + ");" + endl;
     else if(n->is<Class>())
