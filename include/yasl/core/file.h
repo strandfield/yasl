@@ -13,8 +13,8 @@ namespace binding
 {
 
 template<> struct make_type_t<QFile> { inline static script::Type get() { return script::Type::QFile; } };
-template<> struct storage_type<QFile> { typedef QFile* type; };
-template<> inline QFile* get<QFile>(const script::Value & val) { return qobject_cast<QFile*>(val.toQObject()); }
+//template<> struct storage_type<QFile> { typedef QFile* type; };
+//template<> inline QFile* get<QFile>(const script::Value & val) { return qobject_cast<QFile*>(val.toQObject()); }
 template<> inline script::Value make_value(QFile *f, script::Engine *e) = delete;
 
 } // namespace binding

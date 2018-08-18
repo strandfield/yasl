@@ -25,13 +25,7 @@ template<> struct make_type_t<QObject*> { inline static script::Type get() { ret
 template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
 template<> struct make_type_t<Ptr<QObject*>> { inline static script::Type get() { return script::Type::PtrQObject; } };
 
-template<> inline script::Value make_value(QObject *obj, script::Engine *e)
-{
-  return make_ref(e, script::Type::QObjectStar, obj);
-}
-
-template<> struct storage_type<QObject> { typedef QObject* type; };
-template<> inline QObject* get<QObject>(const script::Value & val) { return val.toQObject(); }
+static_assert(std::is_same<binding::storage_type<QObject>::type, QObject*>::value, "QObject must be stored as QObject*");
 
 } // namespace binding
 
