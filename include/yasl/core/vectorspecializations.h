@@ -26,14 +26,14 @@ template<typename T>
 script::Value back(script::FunctionCall *c)
 {
   QVector<T> & self = binding::value_cast<QVector<T> &>(c->thisObject());
-  return make_ptr(c->engine(), c->callee().returnType(), &self.back());
+  return c->engine()->newPtr(c->callee().returnType(), &self.back());
 }
 
 template<typename T>
 script::Value first(script::FunctionCall *c)
 {
   QVector<T> & self = binding::value_cast<QVector<T> &>(c->thisObject());
-  return make_ptr(c->engine(), c->callee().returnType(), &self.first());
+  return c->engine()->newPtr(c->callee().returnType(), &self.first());
 }
 
 template<typename T>
@@ -41,7 +41,7 @@ script::Value subscript(script::FunctionCall *c)
 {
   QVector<T> & self = binding::value_cast<QVector<T> &>(c->thisObject());
   const int index = c->arg(1).toInt();
-  return make_ptr(c->engine(), c->callee().returnType(), &self[index]);
+  return c->engine()->newPtr(c->callee().returnType(), &self[index]);
 }
 
 } // namespace list

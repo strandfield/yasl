@@ -70,16 +70,3 @@ void register_ptr_template(script::Namespace ns)
   ns.engine()->implementation()->ptr_template_ = ptr;
 }
 
-
-void* get_ptr(const script::Value & val)
-{
-  return val.impl()->data.ptr;
-}
-
-script::Value make_ptr(script::Engine *e, const script::Type & ptr_type, void *value)
-{
-  script::Value ret = e->uninitialized(ptr_type);
-  ret.impl()->data.ptr = value;
-  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  return ret;
-}

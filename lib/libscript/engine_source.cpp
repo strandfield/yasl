@@ -74,4 +74,12 @@ void Engine::bind(const Value & val, QObject *obj)
   obj->setProperty("_yasl_data_", QVariant::fromValue(binding::BindingData{ val }));
 }
 
+Value Engine::newPtr(const script::Type & ptr_type, void *value)
+{
+  script::Value ret = this->uninitialized(ptr_type);
+  ret.impl()->data.ptr = value;
+  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
+  return ret;
+}
+
 } // namespace script

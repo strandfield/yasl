@@ -19,8 +19,6 @@ class Value;
 } // namespace script
 
 void register_ptr_template(script::Namespace ns);
-void* get_ptr(const script::Value & val);
-script::Value make_ptr(script::Engine *e, const script::Type & ptr_type, void *value);
 
 template<typename T>
 struct Ptr
@@ -49,15 +47,15 @@ script::Value dtor(script::FunctionCall *c);
 template<typename T>
 script::Value get(script::FunctionCall *c)
 {
-  Ptr<T> ptr = binding::value_cast<Ptr<T>>(c->thisObject());
-  return binding::make_value(ptr.get(), c->engine());
+  T* ptr = static_cast<T*>(c->thisObject().getPtr());
+  return binding::make_value(*ptr, c->engine());
 }
 
 template<typename T>
 script::Value assign(script::FunctionCall *c)
 {
-  Ptr<T> ptr = binding::value_cast<Ptr<T>>(c->thisObject());
-  ptr.get() = binding::value_cast<const T &>(c->arg(1));
+  T* ptr = static_cast<T*>(c->thisObject().getPtr());
+  *ptr = binding::value_cast<const T &>(c->arg(1));
   return script::Value::Void;
 }
 
@@ -103,12 +101,6 @@ template<> struct make_type_t<Ptr<char>> { inline static script::Type get() { re
 template<> struct make_type_t<Ptr<int>> { inline static script::Type get() { return script::Type::Ptrint; } };
 template<> struct make_type_t<Ptr<float>> { inline static script::Type get() { return script::Type::Ptrfloat; } };
 template<> struct make_type_t<Ptr<double>> { inline static script::Type get() { return script::Type::Ptrdouble; } };
-
-template<> inline Ptr<bool> value_cast<Ptr<bool>>(const script::Value & v) { return static_cast<bool*>(get_ptr(v)); }
-template<> inline Ptr<char> value_cast<Ptr<char>>(const script::Value & v) { return static_cast<char*>(get_ptr(v)); }
-template<> inline Ptr<int> value_cast<Ptr<int>>(const script::Value & v) { return static_cast<int*>(get_ptr(v)); }
-template<> inline Ptr<float> value_cast<Ptr<float>>(const script::Value & v) { return static_cast<float*>(get_ptr(v)); }
-template<> inline Ptr<double> value_cast<Ptr<double>>(const script::Value & v) { return static_cast<double*>(get_ptr(v)); }
 
 } // namespace binding
 

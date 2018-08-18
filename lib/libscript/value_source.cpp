@@ -194,4 +194,9 @@ QObject* Value::toQObject() const
   return d->data.builtin.qobject;
 }
 
+void* Value::getPtr() const
+{
+  return d->data.ptr;
+}
+
 } // namespace script
