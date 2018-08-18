@@ -44,6 +44,7 @@ private:
   static const QString endl;
 
   static const QString ClassBinderInclude;
+  static const QString QClassBinderInclude;
   static const QString EnumBinderInclude;
   static const QString NamespaceBinderInclude;
   static const QString ClassBuilderInclude;

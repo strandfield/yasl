@@ -16,6 +16,7 @@
 
 const QString Generator::endl = "\n";
 const QString Generator::ClassBinderInclude = "yasl/binding/class.h";
+const QString Generator::QClassBinderInclude = "yasl/binding/qclass.h";
 const QString Generator::EnumBinderInclude = "yasl/binding/enum.h";;
 const QString Generator::NamespaceBinderInclude = "yasl/binding/namespace.h";;
 const QString Generator::ClassBuilderInclude = "<script/classbuilder.h>";;
@@ -616,7 +617,6 @@ void Generator::generate(ClassRef cla)
     return;
 
   currentSource().libscriptIncludes.insert(ClassBuilderInclude);
-  currentSource().bindingIncludes.insert(ClassBinderInclude);
 
   const QString pre = prefix();
   const QString enclosing_snake = enclosing_snake_name();
@@ -707,9 +707,16 @@ void Generator::generate(ClassRef cla)
 
 
   if (cla->derivedFromQObject)
+  {
+    currentSource().bindingIncludes.insert(QClassBinderInclude);
     out += "  binding::QClass<" + cla->name + "> binder{ " + snake + ", &" + cla->name + "::staticMetaObject };" + endl;
+
+  }
   else
+  {
+    currentSource().bindingIncludes.insert(ClassBinderInclude);
     out += "  binding::Class<" + cla->name + "> binder{ " + snake + " };" + endl;
+  }
 
   out += endl;
 
