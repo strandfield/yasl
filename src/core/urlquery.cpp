@@ -5,12 +5,11 @@
 #include "yasl/core/urlquery.h"
 
 #include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/char.h"
 #include "yasl/core/url.h"
+#include "yasl/core/urlquery.h"
 
 #include <script/classbuilder.h>
 
@@ -22,8 +21,6 @@ static void register_url_query_class(script::Namespace ns)
 
   binding::Class<QUrlQuery> binder{ url_query };
 
-  // ~QUrlQuery();
-  binder.add_dtor();
   // QUrlQuery();
   binder.ctors().add_default();
   // QUrlQuery(const QUrl &);
@@ -35,7 +32,9 @@ static void register_url_query_class(script::Namespace ns)
   // QUrlQuery & operator=(const QUrlQuery &);
   binder.operators().assign<const QUrlQuery &>();
   // QUrlQuery & operator=(QUrlQuery &&);
-  /// TODO: binder.operators().assign<QUrlQuery &&>();
+  binder.operators().assign<QUrlQuery &&>();
+  // ~QUrlQuery();
+  binder.add_dtor();
   // bool operator==(const QUrlQuery &) const;
   binder.operators().eq<const QUrlQuery &>();
   // bool operator!=(const QUrlQuery &) const;
@@ -61,9 +60,9 @@ static void register_url_query_class(script::Namespace ns)
   // QChar queryPairDelimiter() const;
   binder.add_fun<QChar, &QUrlQuery::queryPairDelimiter>("queryPairDelimiter");
   // void setQueryItems(const QList<QPair<QString, QString> > &);
-  binder.add_void_fun<const QList<QPair<QString, QString> > &, &QUrlQuery::setQueryItems>("setQueryItems");
+  /// TODO: void setQueryItems(const QList<QPair<QString, QString> > &);
   // QList<QPair<QString, QString> > queryItems(QUrl::ComponentFormattingOptions) const;
-  binder.add_fun<QList<QPair<QString, QString> >, QUrl::ComponentFormattingOptions, &QUrlQuery::queryItems>("queryItems");
+  /// TODO: QList<QPair<QString, QString> > queryItems(QUrl::ComponentFormattingOptions) const;
   // bool hasQueryItem(const QString &) const;
   binder.add_fun<bool, const QString &, &QUrlQuery::hasQueryItem>("hasQueryItem");
   // void addQueryItem(const QString &, const QString &);
@@ -73,7 +72,7 @@ static void register_url_query_class(script::Namespace ns)
   // QString queryItemValue(const QString &, QUrl::ComponentFormattingOptions) const;
   binder.add_fun<QString, const QString &, QUrl::ComponentFormattingOptions, &QUrlQuery::queryItemValue>("queryItemValue");
   // QStringList allQueryItemValues(const QString &, QUrl::ComponentFormattingOptions) const;
-  binder.add_fun<QStringList, const QString &, QUrl::ComponentFormattingOptions, &QUrlQuery::allQueryItemValues>("allQueryItemValues");
+  /// TODO: QStringList allQueryItemValues(const QString &, QUrl::ComponentFormattingOptions) const;
   // void removeAllQueryItems(const QString &);
   binder.add_void_fun<const QString &, &QUrlQuery::removeAllQueryItems>("removeAllQueryItems");
   // static QChar defaultQueryValueDelimiter();
@@ -81,15 +80,18 @@ static void register_url_query_class(script::Namespace ns)
   // static QChar defaultQueryPairDelimiter();
   binder.add_static<QChar, &QUrlQuery::defaultQueryPairDelimiter>("defaultQueryPairDelimiter");
   // QUrlQuery::DataPtr & data_ptr();
-  /// ignore: binder.add_fun<QUrlQuery::DataPtr &, &QUrlQuery::data_ptr>("data_ptr");
+  /// TODO: QUrlQuery::DataPtr & data_ptr();
 }
 
-void register_urlquery_file(script::Namespace root)
+
+void register_urlquery_file(script::Namespace core)
 {
   using namespace script;
 
-  register_url_query_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = core;
+
+  register_url_query_class(ns);
+  binding::Namespace binder{ ns };
 
   // uint qHash(const QUrlQuery &, uint);
   binder.add_fun<uint, const QUrlQuery &, uint, &qHash>("qHash");

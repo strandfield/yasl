@@ -11,6 +11,7 @@
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/url.h"
+#include "yasl/core/urlquery.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -176,7 +177,7 @@ static void register_url_class(script::Namespace ns)
   // void setQuery(const QString &, QUrl::ParsingMode);
   binder.add_void_fun<const QString &, QUrl::ParsingMode, &QUrl::setQuery>("setQuery");
   // void setQuery(const QUrlQuery &);
-  /// TODO: void setQuery(const QUrlQuery &);
+  binder.add_void_fun<const QUrlQuery &, &QUrl::setQuery>("setQuery");
   // QString query(QUrl::ComponentFormattingOptions) const;
   binder.add_fun<QString, QUrl::ComponentFormattingOptions, &QUrl::query>("query");
   // bool hasFragment() const;
