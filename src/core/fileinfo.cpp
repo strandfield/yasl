@@ -9,6 +9,7 @@
 
 #include "yasl/core/datetime.h"
 #include "yasl/core/dir.h"
+#include "yasl/core/fileinfo.h"
 
 #include <script/classbuilder.h>
 

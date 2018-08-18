@@ -8,13 +8,11 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
+#include "yasl/core/line.h"
 #include "yasl/core/point.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-
-#include <QDebug>
 
 static void register_line_class(script::Namespace ns)
 {
@@ -26,6 +24,10 @@ static void register_line_class(script::Namespace ns)
 
   // QLine();
   binder.ctors().add_default();
+  // QLine(const QLine &);
+  binder.ctors().add<const QLine &>();
+  // ~QLine();
+  binder.add_dtor();
   // QLine(const QPoint &, const QPoint &);
   binder.ctors().add<const QPoint &, const QPoint &>();
   // QLine(int, int, int, int);
@@ -66,11 +68,14 @@ static void register_line_class(script::Namespace ns)
   binder.add_void_fun<const QPoint &, const QPoint &, &QLine::setPoints>("setPoints");
   // void setLine(int, int, int, int);
   binder.add_void_fun<int, int, int, int, &QLine::setLine>("setLine");
+  // QLine & operator=(const QLine &);
+  binder.operators().assign<const QLine &>();
   // bool operator==(const QLine &) const;
   binder.operators().eq<const QLine &>();
   // bool operator!=(const QLine &) const;
   binder.operators().neq<const QLine &>();
 }
+
 
 static void register_line_f_intersect_type_enum(script::Class line_f)
 {
@@ -78,10 +83,11 @@ static void register_line_f_intersect_type_enum(script::Class line_f)
 
   Enum intersect_type = line_f.Enum("IntersectType").setId(script::Type::QLineFIntersectType).get();
 
-  intersect_type.addValue("BoundedIntersection", QLineF::BoundedIntersection);
   intersect_type.addValue("NoIntersection", QLineF::NoIntersection);
+  intersect_type.addValue("BoundedIntersection", QLineF::BoundedIntersection);
   intersect_type.addValue("UnboundedIntersection", QLineF::UnboundedIntersection);
 }
+
 
 static void register_line_f_class(script::Namespace ns)
 {
@@ -94,6 +100,10 @@ static void register_line_f_class(script::Namespace ns)
 
   // QLineF();
   binder.ctors().add_default();
+  // QLineF(const QLineF &);
+  binder.ctors().add<const QLineF &>();
+  // ~QLineF();
+  binder.add_dtor();
   // QLineF(const QPointF &, const QPointF &);
   binder.ctors().add<const QPointF &, const QPointF &>();
   // QLineF(qreal, qreal, qreal, qreal);
@@ -135,7 +145,7 @@ static void register_line_f_class(script::Namespace ns)
   // QLineF normalVector() const;
   binder.add_fun<QLineF, &QLineF::normalVector>("normalVector");
   // QLineF::IntersectType intersect(const QLineF &, QPointF *) const;
-  binder.add_fun<QLineF::IntersectType, const QLineF &, QPointF *, &QLineF::intersect>("intersect");
+  /// TODO: QLineF::IntersectType intersect(const QLineF &, QPointF *) const;
   // qreal angle(const QLineF &) const;
   binder.add_fun<qreal, const QLineF &, &QLineF::angle>("angle");
   // QPointF pointAt(qreal) const;
@@ -158,6 +168,8 @@ static void register_line_f_class(script::Namespace ns)
   binder.add_void_fun<const QPointF &, const QPointF &, &QLineF::setPoints>("setPoints");
   // void setLine(qreal, qreal, qreal, qreal);
   binder.add_void_fun<qreal, qreal, qreal, qreal, &QLineF::setLine>("setLine");
+  // QLineF & operator=(const QLineF &);
+  binder.operators().assign<const QLineF &>();
   // bool operator==(const QLineF &) const;
   binder.operators().eq<const QLineF &>();
   // bool operator!=(const QLineF &) const;
@@ -166,25 +178,28 @@ static void register_line_f_class(script::Namespace ns)
   binder.add_fun<QLine, &QLineF::toLine>("toLine");
 }
 
-void register_line_file(script::Namespace root)
+
+void register_line_file(script::Namespace core)
 {
   using namespace script;
 
-  register_line_class(root);
-  register_line_f_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = core;
+
+  register_line_class(ns);
+  register_line_f_class(ns);
+  binding::Namespace binder{ ns };
 
   // QDebug operator<<(QDebug, const QLine &);
-  binder.operators().left_shift<QDebug, QDebug, const QLine &>();
+  /// TODO: QDebug operator<<(QDebug, const QLine &);
   // QDataStream & operator<<(QDataStream &, const QLine &);
-  binder.operators().put_to<QDataStream &, const QLine &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QLine &);
   // QDataStream & operator>>(QDataStream &, QLine &);
-  binder.operators().read_from<QDataStream &, QLine &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QLine &);
   // QDebug operator<<(QDebug, const QLineF &);
-  binder.operators().left_shift<QDebug, QDebug, const QLineF &>();
+  /// TODO: QDebug operator<<(QDebug, const QLineF &);
   // QDataStream & operator<<(QDataStream &, const QLineF &);
-  binder.operators().put_to<QDataStream &, const QLineF &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QLineF &);
   // QDataStream & operator>>(QDataStream &, QLineF &);
-  binder.operators().read_from<QDataStream &, QLineF &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QLineF &);
 }
 

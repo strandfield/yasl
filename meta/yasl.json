@@ -11983,7 +11983,6 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "elements": [
@@ -15382,6 +15381,640 @@
                     "hincludes": "<QFileInfo>",
                     "name": "fileinfo",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QLine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLine",
+                                    "parameters": [
+                                        "const QLine &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QLine",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QLine",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLine",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "p1",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "p2",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x1",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y1",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x2",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y2",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dx",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dy",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QLine",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QLine",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "center",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setP1",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setP2",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPoints",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLine",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QLine &"
+                                    ],
+                                    "returns": "QLine &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QLine &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QLine &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QLine",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QLine &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QLine &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QLine &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoIntersection"
+                                        },
+                                        {
+                                            "name": "BoundedIntersection"
+                                        },
+                                        {
+                                            "name": "UnboundedIntersection"
+                                        }
+                                    ],
+                                    "name": "IntersectType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QLineF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLineF",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QLineF",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QLineF",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLineF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLineF",
+                                    "parameters": [
+                                        "const QLine &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "fromPolar",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QLineF",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "p1",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "p2",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x1",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y1",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x2",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y2",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dx",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dy",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "length",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLength",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "angle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAngle",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "angleTo",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "unitVector",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLineF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "normalVector",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLineF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersect",
+                                    "parameters": [
+                                        "const QLineF &",
+                                        "QPointF *"
+                                    ],
+                                    "returns": "QLineF::IntersectType",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "angle",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pointAt",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "QLineF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QLineF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "center",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setP1",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setP2",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPoints",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLine",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "QLineF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLine",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QLineF",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QLineF &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QLineF &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QLineF &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QLine>",
+                    "name": "line",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -15468,9 +16101,22 @@
                 "rename": "SortFlags"
             },
             {
+                "header": "yasl/core/fileinfo.h",
                 "id": "QFileInfo",
                 "name": "QFileInfo",
                 "rename": "FileInfo"
+            },
+            {
+                "header": "yasl/core/line.h",
+                "id": "QLine",
+                "name": "QLine",
+                "rename": "Line"
+            },
+            {
+                "header": "yasl/core/line.h",
+                "id": "QLineF",
+                "name": "QLineF",
+                "rename": "LineF"
             },
             {
                 "header": "yasl/core/margins.h",
@@ -16027,6 +16673,11 @@
                 "id": "QDirSortFlag",
                 "links": "flags@QDir::SortFlags",
                 "name": "QDir::SortFlag"
+            },
+            {
+                "header": "yasl/core/line.h",
+                "id": "QLineFIntersectType",
+                "name": "QLineF::IntersectType"
             }
         ],
         "fundamentals": [
