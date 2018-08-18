@@ -17165,6 +17165,453 @@
                     "hincludes": "<QUrlQuery>",
                     "name": "urlquery",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "checked": 0,
+                                    "enumerators": [
+                                        {
+                                            "checked": 0,
+                                            "name": "MinUtcOffsetSecs"
+                                        },
+                                        {
+                                            "checked": 0,
+                                            "name": "MaxUtcOffsetSecs"
+                                        }
+                                    ],
+                                    "name": "",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "StandardTime"
+                                        },
+                                        {
+                                            "name": "DaylightTime"
+                                        },
+                                        {
+                                            "name": "GenericTime"
+                                        }
+                                    ],
+                                    "name": "TimeType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DefaultName"
+                                        },
+                                        {
+                                            "name": "LongName"
+                                        },
+                                        {
+                                            "name": "ShortName"
+                                        },
+                                        {
+                                            "name": "OffsetName"
+                                        }
+                                    ],
+                                    "name": "NameType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "int",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QLocale::Country",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QTimeZone",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "QTimeZone &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QTimeZone &&"
+                                    ],
+                                    "returns": "QTimeZone &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QTimeZone &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "id",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "country",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale::Country",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "comment",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "displayName",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "QTimeZone::NameType",
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "displayName",
+                                    "parameters": [
+                                        "QTimeZone::TimeType",
+                                        "QTimeZone::NameType",
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "abbreviation",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "offsetFromUtc",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "standardTimeOffset",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "daylightTimeOffset",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasDaylightTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDaylightTime",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "offsetData",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QTimeZone::OffsetData",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasTransitions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nextTransition",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QTimeZone::OffsetData",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "previousTransition",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QTimeZone::OffsetData",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transitions",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QTimeZone::OffsetDataList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "systemTimeZoneId",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "systemTimeZone",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTimeZone",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "utc",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTimeZone",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isTimeZoneIdAvailable",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "availableTimeZoneIds",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "availableTimeZoneIds",
+                                    "parameters": [
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "availableTimeZoneIds",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "ianaIdToWindowsId",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "windowsIdToDefaultIanaId",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "windowsIdToDefaultIanaId",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "windowsIdToIanaIds",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "windowsIdToIanaIds",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTimeZone",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QTimeZone &",
+                                "QTimeZone &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QTimeZone &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QTimeZone &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QTimeZone &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QTimeZone>",
+                    "name": "timezone",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -17321,6 +17768,12 @@
                 "id": "QTime",
                 "name": "QTime",
                 "rename": "Time"
+            },
+            {
+                "header": "yasl/core/timezone.h",
+                "id": "QTimeZone",
+                "name": "QTimeZone",
+                "rename": "TimeZone"
             },
             {
                 "header": "yasl/core/url.h",
@@ -17852,6 +18305,16 @@
                 "header": "yasl/core/line.h",
                 "id": "QLineFIntersectType",
                 "name": "QLineF::IntersectType"
+            },
+            {
+                "header": "yasl/core/timezone.h",
+                "id": "QTimeZoneTimeType",
+                "name": "QTimeZone::TimeType"
+            },
+            {
+                "header": "yasl/core/timezone.h",
+                "id": "QTimeZoneNameType",
+                "name": "QTimeZone::NameType"
             },
             {
                 "header": "yasl/core/url.h",

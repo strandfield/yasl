@@ -9,12 +9,10 @@
 
 #include <QTimeZone>
 
-namespace binding
-{
+namespace binding {
 template<> struct make_type_t<QTimeZone> { inline static script::Type get() { return script::Type::QTimeZone; } };
 template<> struct make_type_t<QTimeZone::NameType> { inline static script::Type get() { return script::Type::QTimeZoneNameType; } };
 template<> struct make_type_t<QTimeZone::TimeType> { inline static script::Type get() { return script::Type::QTimeZoneTimeType; } };
-template<> struct make_type_t<decltype(QTimeZone::MinUtcOffsetSecs)> { inline static script::Type get() { return script::Type::QTimeZoneMinUtcOffsetSecs; } };
 } // namespace binding
 
 #endif // YASL_CORE_TIMEZONE_H

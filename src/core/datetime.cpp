@@ -10,6 +10,7 @@
 
 #include "yasl/core/datetime.h"
 #include "yasl/core/enums.h"
+#include "yasl/core/timezone.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -217,7 +218,7 @@ static void register_date_time_class(script::Namespace ns)
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec, int);
   binder.ctors().add<const QDate &, const QTime &, Qt::TimeSpec, int>();
   // QDateTime(const QDate &, const QTime &, const QTimeZone &);
-  /// TODO: QDateTime(const QDate &, const QTime &, const QTimeZone &);
+  binder.ctors().add<const QDate &, const QTime &, const QTimeZone &>();
   // QDateTime(const QDateTime &);
   binder.ctors().add<const QDateTime &>();
   // QDateTime(QDateTime &&);
@@ -243,7 +244,7 @@ static void register_date_time_class(script::Namespace ns)
   // int offsetFromUtc() const;
   binder.add_fun<int, &QDateTime::offsetFromUtc>("offsetFromUtc");
   // QTimeZone timeZone() const;
-  /// TODO: QTimeZone timeZone() const;
+  binder.add_fun<QTimeZone, &QDateTime::timeZone>("timeZone");
   // QString timeZoneAbbreviation() const;
   binder.add_fun<QString, &QDateTime::timeZoneAbbreviation>("timeZoneAbbreviation");
   // bool isDaylightTime() const;
@@ -261,7 +262,7 @@ static void register_date_time_class(script::Namespace ns)
   // void setOffsetFromUtc(int);
   binder.add_void_fun<int, &QDateTime::setOffsetFromUtc>("setOffsetFromUtc");
   // void setTimeZone(const QTimeZone &);
-  /// TODO: void setTimeZone(const QTimeZone &);
+  binder.add_void_fun<const QTimeZone &, &QDateTime::setTimeZone>("setTimeZone");
   // void setMSecsSinceEpoch(qint64);
   /// TODO: void setMSecsSinceEpoch(qint64);
   // void setSecsSinceEpoch(qint64);
@@ -291,7 +292,7 @@ static void register_date_time_class(script::Namespace ns)
   // QDateTime toOffsetFromUtc(int) const;
   binder.add_fun<QDateTime, int, &QDateTime::toOffsetFromUtc>("toOffsetFromUtc");
   // QDateTime toTimeZone(const QTimeZone &) const;
-  /// TODO: QDateTime toTimeZone(const QTimeZone &) const;
+  binder.add_fun<QDateTime, const QTimeZone &, &QDateTime::toTimeZone>("toTimeZone");
   // qint64 daysTo(const QDateTime &) const;
   /// TODO: qint64 daysTo(const QDateTime &) const;
   // qint64 secsTo(const QDateTime &) const;
@@ -331,7 +332,7 @@ static void register_date_time_class(script::Namespace ns)
   // static QDateTime fromTime_t(uint, Qt::TimeSpec, int);
   binder.add_static<QDateTime, uint, Qt::TimeSpec, int, &QDateTime::fromTime_t>("fromTime_t");
   // static QDateTime fromTime_t(uint, const QTimeZone &);
-  /// TODO: static QDateTime fromTime_t(uint, const QTimeZone &);
+  binder.add_static<QDateTime, uint, const QTimeZone &, &QDateTime::fromTime_t>("fromTime_t");
   // static QDateTime fromMSecsSinceEpoch(qint64);
   /// TODO: static QDateTime fromMSecsSinceEpoch(qint64);
   // static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec, int);
