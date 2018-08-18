@@ -14039,6 +14039,821 @@
                     "hincludes": "<QDateTime>",
                     "name": "datetime",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Dirs"
+                                        },
+                                        {
+                                            "name": "Files"
+                                        },
+                                        {
+                                            "name": "Drives"
+                                        },
+                                        {
+                                            "name": "NoSymLinks"
+                                        },
+                                        {
+                                            "name": "AllEntries"
+                                        },
+                                        {
+                                            "name": "TypeMask"
+                                        },
+                                        {
+                                            "name": "Readable"
+                                        },
+                                        {
+                                            "name": "Writable"
+                                        },
+                                        {
+                                            "name": "Executable"
+                                        },
+                                        {
+                                            "name": "PermissionMask"
+                                        },
+                                        {
+                                            "name": "Modified"
+                                        },
+                                        {
+                                            "name": "Hidden"
+                                        },
+                                        {
+                                            "name": "System"
+                                        },
+                                        {
+                                            "name": "AccessMask"
+                                        },
+                                        {
+                                            "name": "AllDirs"
+                                        },
+                                        {
+                                            "name": "CaseSensitive"
+                                        },
+                                        {
+                                            "name": "NoDot"
+                                        },
+                                        {
+                                            "name": "NoDotDot"
+                                        },
+                                        {
+                                            "name": "NoDotAndDotDot"
+                                        },
+                                        {
+                                            "name": "NoFilter"
+                                        }
+                                    ],
+                                    "name": "Filter",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Name"
+                                        },
+                                        {
+                                            "name": "Time"
+                                        },
+                                        {
+                                            "name": "Size"
+                                        },
+                                        {
+                                            "name": "Unsorted"
+                                        },
+                                        {
+                                            "name": "SortByMask"
+                                        },
+                                        {
+                                            "name": "DirsFirst"
+                                        },
+                                        {
+                                            "name": "Reversed"
+                                        },
+                                        {
+                                            "name": "IgnoreCase"
+                                        },
+                                        {
+                                            "name": "DirsLast"
+                                        },
+                                        {
+                                            "name": "LocaleAware"
+                                        },
+                                        {
+                                            "name": "Type"
+                                        },
+                                        {
+                                            "name": "NoSort"
+                                        }
+                                    ],
+                                    "name": "SortFlag",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QDir",
+                                    "parameters": [
+                                        "const QDir &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDir",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDir",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &",
+                                        "QDir::SortFlags",
+                                        "QDir::Filters"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDir",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QDir &"
+                                    ],
+                                    "returns": "QDir &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QDir &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QDir &&"
+                                    ],
+                                    "returns": "QDir &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QDir &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "path",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "absolutePath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "canonicalPath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addResourceSearchPath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSearchPaths",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addSearchPath",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "searchPaths",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dirName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "filePath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "absoluteFilePath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "relativeFilePath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "toNativeSeparators",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromNativeSeparators",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cd",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cdUp",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nameFilters",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNameFilters",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "filter",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDir::Filters",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFilter",
+                                    "parameters": [
+                                        "QDir::Filters"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sorting",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDir::SortFlags",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSorting",
+                                    "parameters": [
+                                        "QDir::SortFlags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                        "QDir::Filters"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "nameFiltersFromString",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "entryList",
+                                    "parameters": [
+                                        "QDir::Filters",
+                                        "QDir::SortFlags"
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "entryList",
+                                    "parameters": [
+                                        "const QStringList &",
+                                        "QDir::Filters",
+                                        "QDir::SortFlags"
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "entryInfoList",
+                                    "parameters": [
+                                        "QDir::Filters",
+                                        "QDir::SortFlags"
+                                    ],
+                                    "returns": "QFileInfoList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "entryInfoList",
+                                    "parameters": [
+                                        "const QStringList &",
+                                        "QDir::Filters",
+                                        "QDir::SortFlags"
+                                    ],
+                                    "returns": "QFileInfoList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mkdir",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rmdir",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mkpath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rmpath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeRecursively",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isReadable",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "exists",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isRoot",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isRelativePath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isAbsolutePath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isRelative",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isAbsolute",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "makeAbsolute",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QDir &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QDir &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "remove",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rename",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "exists",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drives",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFileInfoList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "listSeparator",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "separator",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrent",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "current",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDir",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "currentPath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "home",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDir",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "homePath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "root",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDir",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rootPath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "temp",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDir",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "tempPath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "match",
+                                    "parameters": [
+                                        "const QStringList &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "match",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cleanPath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "refresh",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDir",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QDir &",
+                                "QDir &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDir::Filters::enum_type",
+                                "QDir::Filters::enum_type"
+                            ],
+                            "returns": "QFlags<QDir::Filters::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDir::Filters::enum_type",
+                                "QFlags<QDir::Filters::enum_type>"
+                            ],
+                            "returns": "QFlags<QDir::Filters::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDir::Filters::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDir::SortFlags::enum_type",
+                                "QDir::SortFlags::enum_type"
+                            ],
+                            "returns": "QFlags<QDir::SortFlags::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDir::SortFlags::enum_type",
+                                "QFlags<QDir::SortFlags::enum_type>"
+                            ],
+                            "returns": "QFlags<QDir::SortFlags::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDir::SortFlags::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "QDir::Filters"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QDir &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QDir>",
+                    "name": "dir",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -14105,6 +14920,24 @@
                 "id": "QDateTime",
                 "name": "QDateTime",
                 "rename": "DateTime"
+            },
+            {
+                "header": "yasl/core/dir.h",
+                "id": "QDir",
+                "name": "QDir",
+                "rename": "Dir"
+            },
+            {
+                "header": "yasl/core/dir.h",
+                "id": "QDirFilters",
+                "name": "QDir::Filters",
+                "rename": "Filters"
+            },
+            {
+                "header": "yasl/core/dir.h",
+                "id": "QDirSortFlags",
+                "name": "QDir::SortFlags",
+                "rename": "SortFlags"
             },
             {
                 "header": "yasl/core/margins.h",
@@ -14649,6 +15482,18 @@
                 "header": "yasl/core/datetime.h",
                 "id": "QDateMonthNameType",
                 "name": "QDate::MonthNameType"
+            },
+            {
+                "header": "yasl/core/dir.h",
+                "id": "QDirFilter",
+                "links": "flags@QDir::Filters",
+                "name": "QDir::Filter"
+            },
+            {
+                "header": "yasl/core/dir.h",
+                "id": "QDirSortFlag",
+                "links": "flags@QDir::SortFlags",
+                "name": "QDir::SortFlag"
             }
         ],
         "fundamentals": [
