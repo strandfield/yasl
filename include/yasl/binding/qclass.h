@@ -108,7 +108,7 @@ public:
 
   void add_dtor()
   {
-    class_.newDestructor(qclass_destructor_wrapper_t<T>::wrap);
+    class_.Destructor(qclass_destructor_wrapper_t<T>::wrap).create();
   }
 
   /****************************************************************

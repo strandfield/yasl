@@ -155,7 +155,7 @@ public:
 
   script::Function add()
   {
-    return class_.newDestructor(destructor_wrapper_small_object_t<T>::wrap);
+    return class_.Destructor(destructor_wrapper_small_object_t<T>::wrap).create();
   }
 };
 
@@ -167,7 +167,7 @@ public:
 
   script::Function add()
   {
-    return class_.newDestructor(destructor_wrapper_large_object_t<T>::wrap);
+    return class_.Destructor(destructor_wrapper_large_object_t<T>::wrap).create();
   }
 };
 

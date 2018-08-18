@@ -85,7 +85,7 @@ void register_ptr_specialization(script::ClassTemplate ptr_template, script::Typ
   // Ptr(const Ptr<T> & other);
   ptr_type.Constructor(callbacks::ptr::copy_ctor).params(Type::cref(ptr_type.id())).create();
   // ~Ptr();
-  ptr_type.newDestructor(callbacks::ptr::dtor);
+  ptr_type.Destructor(callbacks::ptr::dtor).create();
 
   // void operator=(const T & value);
   ptr_type.Operation(AssignmentOperator, callbacks::ptr::assign<T>)

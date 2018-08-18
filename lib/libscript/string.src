@@ -370,7 +370,7 @@ void register_string_type(Class string)
   string.Constructor(callbacks::string::copy_ctor).params(Type::cref(string.id())).create();
   string.Constructor(callbacks::string::char_ctor).setExplicit().params(Type::Char).create();
 
-  string.newDestructor(callbacks::string::dtor);
+  string.Destructor(callbacks::string::dtor).create();
 
   string.Method("at", callbacks::string::at).setConst().returns(Type::Char).params(Type::Int).create();
   string.Method("capacity", callbacks::string::capacity).setConst().returns(Type::Int).create();

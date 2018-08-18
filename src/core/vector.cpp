@@ -579,7 +579,7 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   /// TODO: QVector(QVector<T> &&other);
   /// TODO: QVector(std::initializer_list<T> args);
   // ~QVector();
-  vector.newDestructor(callbacks::dtor);
+  vector.Destructor(callbacks::dtor).create();
   // void append(const T &value);
   vector.Method("append", callbacks::append_value)
     .params(Type::cref(element_type)).create();
