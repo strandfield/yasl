@@ -337,7 +337,7 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
   if (bm == Function::StaticVoidBinding)
     return QString("  binder.add_static_void_fun<%1%2>(\"%3\");").arg(params, funaddr, funname);
   else if(bm == Function::ConstVoidBinding)
-    return QString("  binder.add_const_void<%2%3>(\"%4\");").arg(params, funaddr, funname);
+    return QString("  binder.add_const_void_fun<%2%3>(\"%4\");").arg(params, funaddr, funname);
   else if (bm == Function::VoidBinding)
     return QString("  binder.add_void_fun<%2%3>(\"%4\");").arg(params, funaddr, funname);
   else if (bm == Function::ChainableBinding)
