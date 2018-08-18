@@ -17612,6 +17612,3648 @@
                     "hincludes": "<QTimeZone>",
                     "name": "timezone",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QLocale &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "checked": 0,
+                                    "name": "qt_check_for_QGADGET_macro",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AnyLanguage"
+                                        },
+                                        {
+                                            "name": "C"
+                                        },
+                                        {
+                                            "name": "Abkhazian"
+                                        },
+                                        {
+                                            "name": "Oromo"
+                                        },
+                                        {
+                                            "name": "Afar"
+                                        },
+                                        {
+                                            "name": "Afrikaans"
+                                        },
+                                        {
+                                            "name": "Albanian"
+                                        },
+                                        {
+                                            "name": "Amharic"
+                                        },
+                                        {
+                                            "name": "Arabic"
+                                        },
+                                        {
+                                            "name": "Armenian"
+                                        },
+                                        {
+                                            "name": "Assamese"
+                                        },
+                                        {
+                                            "name": "Aymara"
+                                        },
+                                        {
+                                            "name": "Azerbaijani"
+                                        },
+                                        {
+                                            "name": "Bashkir"
+                                        },
+                                        {
+                                            "name": "Basque"
+                                        },
+                                        {
+                                            "name": "Bengali"
+                                        },
+                                        {
+                                            "name": "Dzongkha"
+                                        },
+                                        {
+                                            "name": "Bihari"
+                                        },
+                                        {
+                                            "name": "Bislama"
+                                        },
+                                        {
+                                            "name": "Breton"
+                                        },
+                                        {
+                                            "name": "Bulgarian"
+                                        },
+                                        {
+                                            "name": "Burmese"
+                                        },
+                                        {
+                                            "name": "Belarusian"
+                                        },
+                                        {
+                                            "name": "Khmer"
+                                        },
+                                        {
+                                            "name": "Catalan"
+                                        },
+                                        {
+                                            "name": "Chinese"
+                                        },
+                                        {
+                                            "name": "Corsican"
+                                        },
+                                        {
+                                            "name": "Croatian"
+                                        },
+                                        {
+                                            "name": "Czech"
+                                        },
+                                        {
+                                            "name": "Danish"
+                                        },
+                                        {
+                                            "name": "Dutch"
+                                        },
+                                        {
+                                            "name": "English"
+                                        },
+                                        {
+                                            "name": "Esperanto"
+                                        },
+                                        {
+                                            "name": "Estonian"
+                                        },
+                                        {
+                                            "name": "Faroese"
+                                        },
+                                        {
+                                            "name": "Fijian"
+                                        },
+                                        {
+                                            "name": "Finnish"
+                                        },
+                                        {
+                                            "name": "French"
+                                        },
+                                        {
+                                            "name": "WesternFrisian"
+                                        },
+                                        {
+                                            "name": "Gaelic"
+                                        },
+                                        {
+                                            "name": "Galician"
+                                        },
+                                        {
+                                            "name": "Georgian"
+                                        },
+                                        {
+                                            "name": "German"
+                                        },
+                                        {
+                                            "name": "Greek"
+                                        },
+                                        {
+                                            "name": "Greenlandic"
+                                        },
+                                        {
+                                            "name": "Guarani"
+                                        },
+                                        {
+                                            "name": "Gujarati"
+                                        },
+                                        {
+                                            "name": "Hausa"
+                                        },
+                                        {
+                                            "name": "Hebrew"
+                                        },
+                                        {
+                                            "name": "Hindi"
+                                        },
+                                        {
+                                            "name": "Hungarian"
+                                        },
+                                        {
+                                            "name": "Icelandic"
+                                        },
+                                        {
+                                            "name": "Indonesian"
+                                        },
+                                        {
+                                            "name": "Interlingua"
+                                        },
+                                        {
+                                            "name": "Interlingue"
+                                        },
+                                        {
+                                            "name": "Inuktitut"
+                                        },
+                                        {
+                                            "name": "Inupiak"
+                                        },
+                                        {
+                                            "name": "Irish"
+                                        },
+                                        {
+                                            "name": "Italian"
+                                        },
+                                        {
+                                            "name": "Japanese"
+                                        },
+                                        {
+                                            "name": "Javanese"
+                                        },
+                                        {
+                                            "name": "Kannada"
+                                        },
+                                        {
+                                            "name": "Kashmiri"
+                                        },
+                                        {
+                                            "name": "Kazakh"
+                                        },
+                                        {
+                                            "name": "Kinyarwanda"
+                                        },
+                                        {
+                                            "name": "Kirghiz"
+                                        },
+                                        {
+                                            "name": "Korean"
+                                        },
+                                        {
+                                            "name": "Kurdish"
+                                        },
+                                        {
+                                            "name": "Rundi"
+                                        },
+                                        {
+                                            "name": "Lao"
+                                        },
+                                        {
+                                            "name": "Latin"
+                                        },
+                                        {
+                                            "name": "Latvian"
+                                        },
+                                        {
+                                            "name": "Lingala"
+                                        },
+                                        {
+                                            "name": "Lithuanian"
+                                        },
+                                        {
+                                            "name": "Macedonian"
+                                        },
+                                        {
+                                            "name": "Malagasy"
+                                        },
+                                        {
+                                            "name": "Malay"
+                                        },
+                                        {
+                                            "name": "Malayalam"
+                                        },
+                                        {
+                                            "name": "Maltese"
+                                        },
+                                        {
+                                            "name": "Maori"
+                                        },
+                                        {
+                                            "name": "Marathi"
+                                        },
+                                        {
+                                            "name": "Marshallese"
+                                        },
+                                        {
+                                            "name": "Mongolian"
+                                        },
+                                        {
+                                            "name": "NauruLanguage"
+                                        },
+                                        {
+                                            "name": "Nepali"
+                                        },
+                                        {
+                                            "name": "NorwegianBokmal"
+                                        },
+                                        {
+                                            "name": "Occitan"
+                                        },
+                                        {
+                                            "name": "Oriya"
+                                        },
+                                        {
+                                            "name": "Pashto"
+                                        },
+                                        {
+                                            "name": "Persian"
+                                        },
+                                        {
+                                            "name": "Polish"
+                                        },
+                                        {
+                                            "name": "Portuguese"
+                                        },
+                                        {
+                                            "name": "Punjabi"
+                                        },
+                                        {
+                                            "name": "Quechua"
+                                        },
+                                        {
+                                            "name": "Romansh"
+                                        },
+                                        {
+                                            "name": "Romanian"
+                                        },
+                                        {
+                                            "name": "Russian"
+                                        },
+                                        {
+                                            "name": "Samoan"
+                                        },
+                                        {
+                                            "name": "Sango"
+                                        },
+                                        {
+                                            "name": "Sanskrit"
+                                        },
+                                        {
+                                            "name": "Serbian"
+                                        },
+                                        {
+                                            "name": "Ossetic"
+                                        },
+                                        {
+                                            "name": "SouthernSotho"
+                                        },
+                                        {
+                                            "name": "Tswana"
+                                        },
+                                        {
+                                            "name": "Shona"
+                                        },
+                                        {
+                                            "name": "Sindhi"
+                                        },
+                                        {
+                                            "name": "Sinhala"
+                                        },
+                                        {
+                                            "name": "Swati"
+                                        },
+                                        {
+                                            "name": "Slovak"
+                                        },
+                                        {
+                                            "name": "Slovenian"
+                                        },
+                                        {
+                                            "name": "Somali"
+                                        },
+                                        {
+                                            "name": "Spanish"
+                                        },
+                                        {
+                                            "name": "Sundanese"
+                                        },
+                                        {
+                                            "name": "Swahili"
+                                        },
+                                        {
+                                            "name": "Swedish"
+                                        },
+                                        {
+                                            "name": "Sardinian"
+                                        },
+                                        {
+                                            "name": "Tajik"
+                                        },
+                                        {
+                                            "name": "Tamil"
+                                        },
+                                        {
+                                            "name": "Tatar"
+                                        },
+                                        {
+                                            "name": "Telugu"
+                                        },
+                                        {
+                                            "name": "Thai"
+                                        },
+                                        {
+                                            "name": "Tibetan"
+                                        },
+                                        {
+                                            "name": "Tigrinya"
+                                        },
+                                        {
+                                            "name": "Tongan"
+                                        },
+                                        {
+                                            "name": "Tsonga"
+                                        },
+                                        {
+                                            "name": "Turkish"
+                                        },
+                                        {
+                                            "name": "Turkmen"
+                                        },
+                                        {
+                                            "name": "Tahitian"
+                                        },
+                                        {
+                                            "name": "Uighur"
+                                        },
+                                        {
+                                            "name": "Ukrainian"
+                                        },
+                                        {
+                                            "name": "Urdu"
+                                        },
+                                        {
+                                            "name": "Uzbek"
+                                        },
+                                        {
+                                            "name": "Vietnamese"
+                                        },
+                                        {
+                                            "name": "Volapuk"
+                                        },
+                                        {
+                                            "name": "Welsh"
+                                        },
+                                        {
+                                            "name": "Wolof"
+                                        },
+                                        {
+                                            "name": "Xhosa"
+                                        },
+                                        {
+                                            "name": "Yiddish"
+                                        },
+                                        {
+                                            "name": "Yoruba"
+                                        },
+                                        {
+                                            "name": "Zhuang"
+                                        },
+                                        {
+                                            "name": "Zulu"
+                                        },
+                                        {
+                                            "name": "NorwegianNynorsk"
+                                        },
+                                        {
+                                            "name": "Bosnian"
+                                        },
+                                        {
+                                            "name": "Divehi"
+                                        },
+                                        {
+                                            "name": "Manx"
+                                        },
+                                        {
+                                            "name": "Cornish"
+                                        },
+                                        {
+                                            "name": "Akan"
+                                        },
+                                        {
+                                            "name": "Konkani"
+                                        },
+                                        {
+                                            "name": "Ga"
+                                        },
+                                        {
+                                            "name": "Igbo"
+                                        },
+                                        {
+                                            "name": "Kamba"
+                                        },
+                                        {
+                                            "name": "Syriac"
+                                        },
+                                        {
+                                            "name": "Blin"
+                                        },
+                                        {
+                                            "name": "Geez"
+                                        },
+                                        {
+                                            "name": "Koro"
+                                        },
+                                        {
+                                            "name": "Sidamo"
+                                        },
+                                        {
+                                            "name": "Atsam"
+                                        },
+                                        {
+                                            "name": "Tigre"
+                                        },
+                                        {
+                                            "name": "Jju"
+                                        },
+                                        {
+                                            "name": "Friulian"
+                                        },
+                                        {
+                                            "name": "Venda"
+                                        },
+                                        {
+                                            "name": "Ewe"
+                                        },
+                                        {
+                                            "name": "Walamo"
+                                        },
+                                        {
+                                            "name": "Hawaiian"
+                                        },
+                                        {
+                                            "name": "Tyap"
+                                        },
+                                        {
+                                            "name": "Nyanja"
+                                        },
+                                        {
+                                            "name": "Filipino"
+                                        },
+                                        {
+                                            "name": "SwissGerman"
+                                        },
+                                        {
+                                            "name": "SichuanYi"
+                                        },
+                                        {
+                                            "name": "Kpelle"
+                                        },
+                                        {
+                                            "name": "LowGerman"
+                                        },
+                                        {
+                                            "name": "SouthNdebele"
+                                        },
+                                        {
+                                            "name": "NorthernSotho"
+                                        },
+                                        {
+                                            "name": "NorthernSami"
+                                        },
+                                        {
+                                            "name": "Taroko"
+                                        },
+                                        {
+                                            "name": "Gusii"
+                                        },
+                                        {
+                                            "name": "Taita"
+                                        },
+                                        {
+                                            "name": "Fulah"
+                                        },
+                                        {
+                                            "name": "Kikuyu"
+                                        },
+                                        {
+                                            "name": "Samburu"
+                                        },
+                                        {
+                                            "name": "Sena"
+                                        },
+                                        {
+                                            "name": "NorthNdebele"
+                                        },
+                                        {
+                                            "name": "Rombo"
+                                        },
+                                        {
+                                            "name": "Tachelhit"
+                                        },
+                                        {
+                                            "name": "Kabyle"
+                                        },
+                                        {
+                                            "name": "Nyankole"
+                                        },
+                                        {
+                                            "name": "Bena"
+                                        },
+                                        {
+                                            "name": "Vunjo"
+                                        },
+                                        {
+                                            "name": "Bambara"
+                                        },
+                                        {
+                                            "name": "Embu"
+                                        },
+                                        {
+                                            "name": "Cherokee"
+                                        },
+                                        {
+                                            "name": "Morisyen"
+                                        },
+                                        {
+                                            "name": "Makonde"
+                                        },
+                                        {
+                                            "name": "Langi"
+                                        },
+                                        {
+                                            "name": "Ganda"
+                                        },
+                                        {
+                                            "name": "Bemba"
+                                        },
+                                        {
+                                            "name": "Kabuverdianu"
+                                        },
+                                        {
+                                            "name": "Meru"
+                                        },
+                                        {
+                                            "name": "Kalenjin"
+                                        },
+                                        {
+                                            "name": "Nama"
+                                        },
+                                        {
+                                            "name": "Machame"
+                                        },
+                                        {
+                                            "name": "Colognian"
+                                        },
+                                        {
+                                            "name": "Masai"
+                                        },
+                                        {
+                                            "name": "Soga"
+                                        },
+                                        {
+                                            "name": "Luyia"
+                                        },
+                                        {
+                                            "name": "Asu"
+                                        },
+                                        {
+                                            "name": "Teso"
+                                        },
+                                        {
+                                            "name": "Saho"
+                                        },
+                                        {
+                                            "name": "KoyraChiini"
+                                        },
+                                        {
+                                            "name": "Rwa"
+                                        },
+                                        {
+                                            "name": "Luo"
+                                        },
+                                        {
+                                            "name": "Chiga"
+                                        },
+                                        {
+                                            "name": "CentralMoroccoTamazight"
+                                        },
+                                        {
+                                            "name": "KoyraboroSenni"
+                                        },
+                                        {
+                                            "name": "Shambala"
+                                        },
+                                        {
+                                            "name": "Bodo"
+                                        },
+                                        {
+                                            "name": "Avaric"
+                                        },
+                                        {
+                                            "name": "Chamorro"
+                                        },
+                                        {
+                                            "name": "Chechen"
+                                        },
+                                        {
+                                            "name": "Church"
+                                        },
+                                        {
+                                            "name": "Chuvash"
+                                        },
+                                        {
+                                            "name": "Cree"
+                                        },
+                                        {
+                                            "name": "Haitian"
+                                        },
+                                        {
+                                            "name": "Herero"
+                                        },
+                                        {
+                                            "name": "HiriMotu"
+                                        },
+                                        {
+                                            "name": "Kanuri"
+                                        },
+                                        {
+                                            "name": "Komi"
+                                        },
+                                        {
+                                            "name": "Kongo"
+                                        },
+                                        {
+                                            "name": "Kwanyama"
+                                        },
+                                        {
+                                            "name": "Limburgish"
+                                        },
+                                        {
+                                            "name": "LubaKatanga"
+                                        },
+                                        {
+                                            "name": "Luxembourgish"
+                                        },
+                                        {
+                                            "name": "Navaho"
+                                        },
+                                        {
+                                            "name": "Ndonga"
+                                        },
+                                        {
+                                            "name": "Ojibwa"
+                                        },
+                                        {
+                                            "name": "Pali"
+                                        },
+                                        {
+                                            "name": "Walloon"
+                                        },
+                                        {
+                                            "name": "Aghem"
+                                        },
+                                        {
+                                            "name": "Basaa"
+                                        },
+                                        {
+                                            "name": "Zarma"
+                                        },
+                                        {
+                                            "name": "Duala"
+                                        },
+                                        {
+                                            "name": "JolaFonyi"
+                                        },
+                                        {
+                                            "name": "Ewondo"
+                                        },
+                                        {
+                                            "name": "Bafia"
+                                        },
+                                        {
+                                            "name": "MakhuwaMeetto"
+                                        },
+                                        {
+                                            "name": "Mundang"
+                                        },
+                                        {
+                                            "name": "Kwasio"
+                                        },
+                                        {
+                                            "name": "Nuer"
+                                        },
+                                        {
+                                            "name": "Sakha"
+                                        },
+                                        {
+                                            "name": "Sangu"
+                                        },
+                                        {
+                                            "name": "CongoSwahili"
+                                        },
+                                        {
+                                            "name": "Tasawaq"
+                                        },
+                                        {
+                                            "name": "Vai"
+                                        },
+                                        {
+                                            "name": "Walser"
+                                        },
+                                        {
+                                            "name": "Yangben"
+                                        },
+                                        {
+                                            "name": "Avestan"
+                                        },
+                                        {
+                                            "name": "Asturian"
+                                        },
+                                        {
+                                            "name": "Ngomba"
+                                        },
+                                        {
+                                            "name": "Kako"
+                                        },
+                                        {
+                                            "name": "Meta"
+                                        },
+                                        {
+                                            "name": "Ngiemboon"
+                                        },
+                                        {
+                                            "name": "Aragonese"
+                                        },
+                                        {
+                                            "name": "Akkadian"
+                                        },
+                                        {
+                                            "name": "AncientEgyptian"
+                                        },
+                                        {
+                                            "name": "AncientGreek"
+                                        },
+                                        {
+                                            "name": "Aramaic"
+                                        },
+                                        {
+                                            "name": "Balinese"
+                                        },
+                                        {
+                                            "name": "Bamun"
+                                        },
+                                        {
+                                            "name": "BatakToba"
+                                        },
+                                        {
+                                            "name": "Buginese"
+                                        },
+                                        {
+                                            "name": "Buhid"
+                                        },
+                                        {
+                                            "name": "Carian"
+                                        },
+                                        {
+                                            "name": "Chakma"
+                                        },
+                                        {
+                                            "name": "ClassicalMandaic"
+                                        },
+                                        {
+                                            "name": "Coptic"
+                                        },
+                                        {
+                                            "name": "Dogri"
+                                        },
+                                        {
+                                            "name": "EasternCham"
+                                        },
+                                        {
+                                            "name": "EasternKayah"
+                                        },
+                                        {
+                                            "name": "Etruscan"
+                                        },
+                                        {
+                                            "name": "Gothic"
+                                        },
+                                        {
+                                            "name": "Hanunoo"
+                                        },
+                                        {
+                                            "name": "Ingush"
+                                        },
+                                        {
+                                            "name": "LargeFloweryMiao"
+                                        },
+                                        {
+                                            "name": "Lepcha"
+                                        },
+                                        {
+                                            "name": "Limbu"
+                                        },
+                                        {
+                                            "name": "Lisu"
+                                        },
+                                        {
+                                            "name": "Lu"
+                                        },
+                                        {
+                                            "name": "Lycian"
+                                        },
+                                        {
+                                            "name": "Lydian"
+                                        },
+                                        {
+                                            "name": "Mandingo"
+                                        },
+                                        {
+                                            "name": "Manipuri"
+                                        },
+                                        {
+                                            "name": "Meroitic"
+                                        },
+                                        {
+                                            "name": "NorthernThai"
+                                        },
+                                        {
+                                            "name": "OldIrish"
+                                        },
+                                        {
+                                            "name": "OldNorse"
+                                        },
+                                        {
+                                            "name": "OldPersian"
+                                        },
+                                        {
+                                            "name": "OldTurkish"
+                                        },
+                                        {
+                                            "name": "Pahlavi"
+                                        },
+                                        {
+                                            "name": "Parthian"
+                                        },
+                                        {
+                                            "name": "Phoenician"
+                                        },
+                                        {
+                                            "name": "PrakritLanguage"
+                                        },
+                                        {
+                                            "name": "Rejang"
+                                        },
+                                        {
+                                            "name": "Sabaean"
+                                        },
+                                        {
+                                            "name": "Samaritan"
+                                        },
+                                        {
+                                            "name": "Santali"
+                                        },
+                                        {
+                                            "name": "Saurashtra"
+                                        },
+                                        {
+                                            "name": "Sora"
+                                        },
+                                        {
+                                            "name": "Sylheti"
+                                        },
+                                        {
+                                            "name": "Tagbanwa"
+                                        },
+                                        {
+                                            "name": "TaiDam"
+                                        },
+                                        {
+                                            "name": "TaiNua"
+                                        },
+                                        {
+                                            "name": "Ugaritic"
+                                        },
+                                        {
+                                            "name": "Akoose"
+                                        },
+                                        {
+                                            "name": "Lakota"
+                                        },
+                                        {
+                                            "name": "StandardMoroccanTamazight"
+                                        },
+                                        {
+                                            "name": "Mapuche"
+                                        },
+                                        {
+                                            "name": "CentralKurdish"
+                                        },
+                                        {
+                                            "name": "LowerSorbian"
+                                        },
+                                        {
+                                            "name": "UpperSorbian"
+                                        },
+                                        {
+                                            "name": "Kenyang"
+                                        },
+                                        {
+                                            "name": "Mohawk"
+                                        },
+                                        {
+                                            "name": "Nko"
+                                        },
+                                        {
+                                            "name": "Prussian"
+                                        },
+                                        {
+                                            "name": "Kiche"
+                                        },
+                                        {
+                                            "name": "SouthernSami"
+                                        },
+                                        {
+                                            "name": "LuleSami"
+                                        },
+                                        {
+                                            "name": "InariSami"
+                                        },
+                                        {
+                                            "name": "SkoltSami"
+                                        },
+                                        {
+                                            "name": "Warlpiri"
+                                        },
+                                        {
+                                            "name": "ManichaeanMiddlePersian"
+                                        },
+                                        {
+                                            "name": "Mende"
+                                        },
+                                        {
+                                            "name": "AncientNorthArabian"
+                                        },
+                                        {
+                                            "name": "LinearA"
+                                        },
+                                        {
+                                            "name": "HmongNjua"
+                                        },
+                                        {
+                                            "name": "Ho"
+                                        },
+                                        {
+                                            "name": "Lezghian"
+                                        },
+                                        {
+                                            "name": "Bassa"
+                                        },
+                                        {
+                                            "name": "Mono"
+                                        },
+                                        {
+                                            "name": "TedimChin"
+                                        },
+                                        {
+                                            "name": "Maithili"
+                                        },
+                                        {
+                                            "name": "Ahom"
+                                        },
+                                        {
+                                            "name": "AmericanSignLanguage"
+                                        },
+                                        {
+                                            "name": "ArdhamagadhiPrakrit"
+                                        },
+                                        {
+                                            "name": "Bhojpuri"
+                                        },
+                                        {
+                                            "name": "HieroglyphicLuwian"
+                                        },
+                                        {
+                                            "name": "LiteraryChinese"
+                                        },
+                                        {
+                                            "name": "Mazanderani"
+                                        },
+                                        {
+                                            "name": "Mru"
+                                        },
+                                        {
+                                            "name": "Newari"
+                                        },
+                                        {
+                                            "name": "NorthernLuri"
+                                        },
+                                        {
+                                            "name": "Palauan"
+                                        },
+                                        {
+                                            "name": "Papiamento"
+                                        },
+                                        {
+                                            "name": "Saraiki"
+                                        },
+                                        {
+                                            "name": "TokelauLanguage"
+                                        },
+                                        {
+                                            "name": "TokPisin"
+                                        },
+                                        {
+                                            "name": "TuvaluLanguage"
+                                        },
+                                        {
+                                            "name": "UncodedLanguages"
+                                        },
+                                        {
+                                            "name": "Cantonese"
+                                        },
+                                        {
+                                            "name": "Osage"
+                                        },
+                                        {
+                                            "name": "Tangut"
+                                        },
+                                        {
+                                            "name": "Norwegian"
+                                        },
+                                        {
+                                            "name": "Moldavian"
+                                        },
+                                        {
+                                            "name": "SerboCroatian"
+                                        },
+                                        {
+                                            "name": "Tagalog"
+                                        },
+                                        {
+                                            "name": "Twi"
+                                        },
+                                        {
+                                            "name": "Afan"
+                                        },
+                                        {
+                                            "name": "Byelorussian"
+                                        },
+                                        {
+                                            "name": "Bhutani"
+                                        },
+                                        {
+                                            "name": "Cambodian"
+                                        },
+                                        {
+                                            "name": "Kurundi"
+                                        },
+                                        {
+                                            "name": "RhaetoRomance"
+                                        },
+                                        {
+                                            "name": "Chewa"
+                                        },
+                                        {
+                                            "name": "Frisian"
+                                        },
+                                        {
+                                            "name": "Uigur"
+                                        },
+                                        {
+                                            "name": "LastLanguage"
+                                        }
+                                    ],
+                                    "name": "Language",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AnyScript"
+                                        },
+                                        {
+                                            "name": "ArabicScript"
+                                        },
+                                        {
+                                            "name": "CyrillicScript"
+                                        },
+                                        {
+                                            "name": "DeseretScript"
+                                        },
+                                        {
+                                            "name": "GurmukhiScript"
+                                        },
+                                        {
+                                            "name": "SimplifiedHanScript"
+                                        },
+                                        {
+                                            "name": "TraditionalHanScript"
+                                        },
+                                        {
+                                            "name": "LatinScript"
+                                        },
+                                        {
+                                            "name": "MongolianScript"
+                                        },
+                                        {
+                                            "name": "TifinaghScript"
+                                        },
+                                        {
+                                            "name": "ArmenianScript"
+                                        },
+                                        {
+                                            "name": "BengaliScript"
+                                        },
+                                        {
+                                            "name": "CherokeeScript"
+                                        },
+                                        {
+                                            "name": "DevanagariScript"
+                                        },
+                                        {
+                                            "name": "EthiopicScript"
+                                        },
+                                        {
+                                            "name": "GeorgianScript"
+                                        },
+                                        {
+                                            "name": "GreekScript"
+                                        },
+                                        {
+                                            "name": "GujaratiScript"
+                                        },
+                                        {
+                                            "name": "HebrewScript"
+                                        },
+                                        {
+                                            "name": "JapaneseScript"
+                                        },
+                                        {
+                                            "name": "KhmerScript"
+                                        },
+                                        {
+                                            "name": "KannadaScript"
+                                        },
+                                        {
+                                            "name": "KoreanScript"
+                                        },
+                                        {
+                                            "name": "LaoScript"
+                                        },
+                                        {
+                                            "name": "MalayalamScript"
+                                        },
+                                        {
+                                            "name": "MyanmarScript"
+                                        },
+                                        {
+                                            "name": "OriyaScript"
+                                        },
+                                        {
+                                            "name": "TamilScript"
+                                        },
+                                        {
+                                            "name": "TeluguScript"
+                                        },
+                                        {
+                                            "name": "ThaanaScript"
+                                        },
+                                        {
+                                            "name": "ThaiScript"
+                                        },
+                                        {
+                                            "name": "TibetanScript"
+                                        },
+                                        {
+                                            "name": "SinhalaScript"
+                                        },
+                                        {
+                                            "name": "SyriacScript"
+                                        },
+                                        {
+                                            "name": "YiScript"
+                                        },
+                                        {
+                                            "name": "VaiScript"
+                                        },
+                                        {
+                                            "name": "AvestanScript"
+                                        },
+                                        {
+                                            "name": "BalineseScript"
+                                        },
+                                        {
+                                            "name": "BamumScript"
+                                        },
+                                        {
+                                            "name": "BatakScript"
+                                        },
+                                        {
+                                            "name": "BopomofoScript"
+                                        },
+                                        {
+                                            "name": "BrahmiScript"
+                                        },
+                                        {
+                                            "name": "BugineseScript"
+                                        },
+                                        {
+                                            "name": "BuhidScript"
+                                        },
+                                        {
+                                            "name": "CanadianAboriginalScript"
+                                        },
+                                        {
+                                            "name": "CarianScript"
+                                        },
+                                        {
+                                            "name": "ChakmaScript"
+                                        },
+                                        {
+                                            "name": "ChamScript"
+                                        },
+                                        {
+                                            "name": "CopticScript"
+                                        },
+                                        {
+                                            "name": "CypriotScript"
+                                        },
+                                        {
+                                            "name": "EgyptianHieroglyphsScript"
+                                        },
+                                        {
+                                            "name": "FraserScript"
+                                        },
+                                        {
+                                            "name": "GlagoliticScript"
+                                        },
+                                        {
+                                            "name": "GothicScript"
+                                        },
+                                        {
+                                            "name": "HanScript"
+                                        },
+                                        {
+                                            "name": "HangulScript"
+                                        },
+                                        {
+                                            "name": "HanunooScript"
+                                        },
+                                        {
+                                            "name": "ImperialAramaicScript"
+                                        },
+                                        {
+                                            "name": "InscriptionalPahlaviScript"
+                                        },
+                                        {
+                                            "name": "InscriptionalParthianScript"
+                                        },
+                                        {
+                                            "name": "JavaneseScript"
+                                        },
+                                        {
+                                            "name": "KaithiScript"
+                                        },
+                                        {
+                                            "name": "KatakanaScript"
+                                        },
+                                        {
+                                            "name": "KayahLiScript"
+                                        },
+                                        {
+                                            "name": "KharoshthiScript"
+                                        },
+                                        {
+                                            "name": "LannaScript"
+                                        },
+                                        {
+                                            "name": "LepchaScript"
+                                        },
+                                        {
+                                            "name": "LimbuScript"
+                                        },
+                                        {
+                                            "name": "LinearBScript"
+                                        },
+                                        {
+                                            "name": "LycianScript"
+                                        },
+                                        {
+                                            "name": "LydianScript"
+                                        },
+                                        {
+                                            "name": "MandaeanScript"
+                                        },
+                                        {
+                                            "name": "MeiteiMayekScript"
+                                        },
+                                        {
+                                            "name": "MeroiticScript"
+                                        },
+                                        {
+                                            "name": "MeroiticCursiveScript"
+                                        },
+                                        {
+                                            "name": "NkoScript"
+                                        },
+                                        {
+                                            "name": "NewTaiLueScript"
+                                        },
+                                        {
+                                            "name": "OghamScript"
+                                        },
+                                        {
+                                            "name": "OlChikiScript"
+                                        },
+                                        {
+                                            "name": "OldItalicScript"
+                                        },
+                                        {
+                                            "name": "OldPersianScript"
+                                        },
+                                        {
+                                            "name": "OldSouthArabianScript"
+                                        },
+                                        {
+                                            "name": "OrkhonScript"
+                                        },
+                                        {
+                                            "name": "OsmanyaScript"
+                                        },
+                                        {
+                                            "name": "PhagsPaScript"
+                                        },
+                                        {
+                                            "name": "PhoenicianScript"
+                                        },
+                                        {
+                                            "name": "PollardPhoneticScript"
+                                        },
+                                        {
+                                            "name": "RejangScript"
+                                        },
+                                        {
+                                            "name": "RunicScript"
+                                        },
+                                        {
+                                            "name": "SamaritanScript"
+                                        },
+                                        {
+                                            "name": "SaurashtraScript"
+                                        },
+                                        {
+                                            "name": "SharadaScript"
+                                        },
+                                        {
+                                            "name": "ShavianScript"
+                                        },
+                                        {
+                                            "name": "SoraSompengScript"
+                                        },
+                                        {
+                                            "name": "CuneiformScript"
+                                        },
+                                        {
+                                            "name": "SundaneseScript"
+                                        },
+                                        {
+                                            "name": "SylotiNagriScript"
+                                        },
+                                        {
+                                            "name": "TagalogScript"
+                                        },
+                                        {
+                                            "name": "TagbanwaScript"
+                                        },
+                                        {
+                                            "name": "TaiLeScript"
+                                        },
+                                        {
+                                            "name": "TaiVietScript"
+                                        },
+                                        {
+                                            "name": "TakriScript"
+                                        },
+                                        {
+                                            "name": "UgariticScript"
+                                        },
+                                        {
+                                            "name": "BrailleScript"
+                                        },
+                                        {
+                                            "name": "HiraganaScript"
+                                        },
+                                        {
+                                            "name": "CaucasianAlbanianScript"
+                                        },
+                                        {
+                                            "name": "BassaVahScript"
+                                        },
+                                        {
+                                            "name": "DuployanScript"
+                                        },
+                                        {
+                                            "name": "ElbasanScript"
+                                        },
+                                        {
+                                            "name": "GranthaScript"
+                                        },
+                                        {
+                                            "name": "PahawhHmongScript"
+                                        },
+                                        {
+                                            "name": "KhojkiScript"
+                                        },
+                                        {
+                                            "name": "LinearAScript"
+                                        },
+                                        {
+                                            "name": "MahajaniScript"
+                                        },
+                                        {
+                                            "name": "ManichaeanScript"
+                                        },
+                                        {
+                                            "name": "MendeKikakuiScript"
+                                        },
+                                        {
+                                            "name": "ModiScript"
+                                        },
+                                        {
+                                            "name": "MroScript"
+                                        },
+                                        {
+                                            "name": "OldNorthArabianScript"
+                                        },
+                                        {
+                                            "name": "NabataeanScript"
+                                        },
+                                        {
+                                            "name": "PalmyreneScript"
+                                        },
+                                        {
+                                            "name": "PauCinHauScript"
+                                        },
+                                        {
+                                            "name": "OldPermicScript"
+                                        },
+                                        {
+                                            "name": "PsalterPahlaviScript"
+                                        },
+                                        {
+                                            "name": "SiddhamScript"
+                                        },
+                                        {
+                                            "name": "KhudawadiScript"
+                                        },
+                                        {
+                                            "name": "TirhutaScript"
+                                        },
+                                        {
+                                            "name": "VarangKshitiScript"
+                                        },
+                                        {
+                                            "name": "AhomScript"
+                                        },
+                                        {
+                                            "name": "AnatolianHieroglyphsScript"
+                                        },
+                                        {
+                                            "name": "HatranScript"
+                                        },
+                                        {
+                                            "name": "MultaniScript"
+                                        },
+                                        {
+                                            "name": "OldHungarianScript"
+                                        },
+                                        {
+                                            "name": "SignWritingScript"
+                                        },
+                                        {
+                                            "name": "AdlamScript"
+                                        },
+                                        {
+                                            "name": "BhaiksukiScript"
+                                        },
+                                        {
+                                            "name": "MarchenScript"
+                                        },
+                                        {
+                                            "name": "NewaScript"
+                                        },
+                                        {
+                                            "name": "OsageScript"
+                                        },
+                                        {
+                                            "name": "TangutScript"
+                                        },
+                                        {
+                                            "name": "HanWithBopomofoScript"
+                                        },
+                                        {
+                                            "name": "JamoScript"
+                                        },
+                                        {
+                                            "name": "SimplifiedChineseScript"
+                                        },
+                                        {
+                                            "name": "TraditionalChineseScript"
+                                        },
+                                        {
+                                            "name": "LastScript"
+                                        }
+                                    ],
+                                    "name": "Script",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AnyCountry"
+                                        },
+                                        {
+                                            "name": "Afghanistan"
+                                        },
+                                        {
+                                            "name": "Albania"
+                                        },
+                                        {
+                                            "name": "Algeria"
+                                        },
+                                        {
+                                            "name": "AmericanSamoa"
+                                        },
+                                        {
+                                            "name": "Andorra"
+                                        },
+                                        {
+                                            "name": "Angola"
+                                        },
+                                        {
+                                            "name": "Anguilla"
+                                        },
+                                        {
+                                            "name": "Antarctica"
+                                        },
+                                        {
+                                            "name": "AntiguaAndBarbuda"
+                                        },
+                                        {
+                                            "name": "Argentina"
+                                        },
+                                        {
+                                            "name": "Armenia"
+                                        },
+                                        {
+                                            "name": "Aruba"
+                                        },
+                                        {
+                                            "name": "Australia"
+                                        },
+                                        {
+                                            "name": "Austria"
+                                        },
+                                        {
+                                            "name": "Azerbaijan"
+                                        },
+                                        {
+                                            "name": "Bahamas"
+                                        },
+                                        {
+                                            "name": "Bahrain"
+                                        },
+                                        {
+                                            "name": "Bangladesh"
+                                        },
+                                        {
+                                            "name": "Barbados"
+                                        },
+                                        {
+                                            "name": "Belarus"
+                                        },
+                                        {
+                                            "name": "Belgium"
+                                        },
+                                        {
+                                            "name": "Belize"
+                                        },
+                                        {
+                                            "name": "Benin"
+                                        },
+                                        {
+                                            "name": "Bermuda"
+                                        },
+                                        {
+                                            "name": "Bhutan"
+                                        },
+                                        {
+                                            "name": "Bolivia"
+                                        },
+                                        {
+                                            "name": "BosniaAndHerzegowina"
+                                        },
+                                        {
+                                            "name": "Botswana"
+                                        },
+                                        {
+                                            "name": "BouvetIsland"
+                                        },
+                                        {
+                                            "name": "Brazil"
+                                        },
+                                        {
+                                            "name": "BritishIndianOceanTerritory"
+                                        },
+                                        {
+                                            "name": "Brunei"
+                                        },
+                                        {
+                                            "name": "Bulgaria"
+                                        },
+                                        {
+                                            "name": "BurkinaFaso"
+                                        },
+                                        {
+                                            "name": "Burundi"
+                                        },
+                                        {
+                                            "name": "Cambodia"
+                                        },
+                                        {
+                                            "name": "Cameroon"
+                                        },
+                                        {
+                                            "name": "Canada"
+                                        },
+                                        {
+                                            "name": "CapeVerde"
+                                        },
+                                        {
+                                            "name": "CaymanIslands"
+                                        },
+                                        {
+                                            "name": "CentralAfricanRepublic"
+                                        },
+                                        {
+                                            "name": "Chad"
+                                        },
+                                        {
+                                            "name": "Chile"
+                                        },
+                                        {
+                                            "name": "China"
+                                        },
+                                        {
+                                            "name": "ChristmasIsland"
+                                        },
+                                        {
+                                            "name": "CocosIslands"
+                                        },
+                                        {
+                                            "name": "Colombia"
+                                        },
+                                        {
+                                            "name": "Comoros"
+                                        },
+                                        {
+                                            "name": "CongoKinshasa"
+                                        },
+                                        {
+                                            "name": "CongoBrazzaville"
+                                        },
+                                        {
+                                            "name": "CookIslands"
+                                        },
+                                        {
+                                            "name": "CostaRica"
+                                        },
+                                        {
+                                            "name": "IvoryCoast"
+                                        },
+                                        {
+                                            "name": "Croatia"
+                                        },
+                                        {
+                                            "name": "Cuba"
+                                        },
+                                        {
+                                            "name": "Cyprus"
+                                        },
+                                        {
+                                            "name": "CzechRepublic"
+                                        },
+                                        {
+                                            "name": "Denmark"
+                                        },
+                                        {
+                                            "name": "Djibouti"
+                                        },
+                                        {
+                                            "name": "Dominica"
+                                        },
+                                        {
+                                            "name": "DominicanRepublic"
+                                        },
+                                        {
+                                            "name": "EastTimor"
+                                        },
+                                        {
+                                            "name": "Ecuador"
+                                        },
+                                        {
+                                            "name": "Egypt"
+                                        },
+                                        {
+                                            "name": "ElSalvador"
+                                        },
+                                        {
+                                            "name": "EquatorialGuinea"
+                                        },
+                                        {
+                                            "name": "Eritrea"
+                                        },
+                                        {
+                                            "name": "Estonia"
+                                        },
+                                        {
+                                            "name": "Ethiopia"
+                                        },
+                                        {
+                                            "name": "FalklandIslands"
+                                        },
+                                        {
+                                            "name": "FaroeIslands"
+                                        },
+                                        {
+                                            "name": "Fiji"
+                                        },
+                                        {
+                                            "name": "Finland"
+                                        },
+                                        {
+                                            "name": "France"
+                                        },
+                                        {
+                                            "name": "Guernsey"
+                                        },
+                                        {
+                                            "name": "FrenchGuiana"
+                                        },
+                                        {
+                                            "name": "FrenchPolynesia"
+                                        },
+                                        {
+                                            "name": "FrenchSouthernTerritories"
+                                        },
+                                        {
+                                            "name": "Gabon"
+                                        },
+                                        {
+                                            "name": "Gambia"
+                                        },
+                                        {
+                                            "name": "Georgia"
+                                        },
+                                        {
+                                            "name": "Germany"
+                                        },
+                                        {
+                                            "name": "Ghana"
+                                        },
+                                        {
+                                            "name": "Gibraltar"
+                                        },
+                                        {
+                                            "name": "Greece"
+                                        },
+                                        {
+                                            "name": "Greenland"
+                                        },
+                                        {
+                                            "name": "Grenada"
+                                        },
+                                        {
+                                            "name": "Guadeloupe"
+                                        },
+                                        {
+                                            "name": "Guam"
+                                        },
+                                        {
+                                            "name": "Guatemala"
+                                        },
+                                        {
+                                            "name": "Guinea"
+                                        },
+                                        {
+                                            "name": "GuineaBissau"
+                                        },
+                                        {
+                                            "name": "Guyana"
+                                        },
+                                        {
+                                            "name": "Haiti"
+                                        },
+                                        {
+                                            "name": "HeardAndMcDonaldIslands"
+                                        },
+                                        {
+                                            "name": "Honduras"
+                                        },
+                                        {
+                                            "name": "HongKong"
+                                        },
+                                        {
+                                            "name": "Hungary"
+                                        },
+                                        {
+                                            "name": "Iceland"
+                                        },
+                                        {
+                                            "name": "India"
+                                        },
+                                        {
+                                            "name": "Indonesia"
+                                        },
+                                        {
+                                            "name": "Iran"
+                                        },
+                                        {
+                                            "name": "Iraq"
+                                        },
+                                        {
+                                            "name": "Ireland"
+                                        },
+                                        {
+                                            "name": "Israel"
+                                        },
+                                        {
+                                            "name": "Italy"
+                                        },
+                                        {
+                                            "name": "Jamaica"
+                                        },
+                                        {
+                                            "name": "Japan"
+                                        },
+                                        {
+                                            "name": "Jordan"
+                                        },
+                                        {
+                                            "name": "Kazakhstan"
+                                        },
+                                        {
+                                            "name": "Kenya"
+                                        },
+                                        {
+                                            "name": "Kiribati"
+                                        },
+                                        {
+                                            "name": "NorthKorea"
+                                        },
+                                        {
+                                            "name": "SouthKorea"
+                                        },
+                                        {
+                                            "name": "Kuwait"
+                                        },
+                                        {
+                                            "name": "Kyrgyzstan"
+                                        },
+                                        {
+                                            "name": "Laos"
+                                        },
+                                        {
+                                            "name": "Latvia"
+                                        },
+                                        {
+                                            "name": "Lebanon"
+                                        },
+                                        {
+                                            "name": "Lesotho"
+                                        },
+                                        {
+                                            "name": "Liberia"
+                                        },
+                                        {
+                                            "name": "Libya"
+                                        },
+                                        {
+                                            "name": "Liechtenstein"
+                                        },
+                                        {
+                                            "name": "Lithuania"
+                                        },
+                                        {
+                                            "name": "Luxembourg"
+                                        },
+                                        {
+                                            "name": "Macau"
+                                        },
+                                        {
+                                            "name": "Macedonia"
+                                        },
+                                        {
+                                            "name": "Madagascar"
+                                        },
+                                        {
+                                            "name": "Malawi"
+                                        },
+                                        {
+                                            "name": "Malaysia"
+                                        },
+                                        {
+                                            "name": "Maldives"
+                                        },
+                                        {
+                                            "name": "Mali"
+                                        },
+                                        {
+                                            "name": "Malta"
+                                        },
+                                        {
+                                            "name": "MarshallIslands"
+                                        },
+                                        {
+                                            "name": "Martinique"
+                                        },
+                                        {
+                                            "name": "Mauritania"
+                                        },
+                                        {
+                                            "name": "Mauritius"
+                                        },
+                                        {
+                                            "name": "Mayotte"
+                                        },
+                                        {
+                                            "name": "Mexico"
+                                        },
+                                        {
+                                            "name": "Micronesia"
+                                        },
+                                        {
+                                            "name": "Moldova"
+                                        },
+                                        {
+                                            "name": "Monaco"
+                                        },
+                                        {
+                                            "name": "Mongolia"
+                                        },
+                                        {
+                                            "name": "Montserrat"
+                                        },
+                                        {
+                                            "name": "Morocco"
+                                        },
+                                        {
+                                            "name": "Mozambique"
+                                        },
+                                        {
+                                            "name": "Myanmar"
+                                        },
+                                        {
+                                            "name": "Namibia"
+                                        },
+                                        {
+                                            "name": "NauruCountry"
+                                        },
+                                        {
+                                            "name": "Nepal"
+                                        },
+                                        {
+                                            "name": "Netherlands"
+                                        },
+                                        {
+                                            "name": "CuraSao"
+                                        },
+                                        {
+                                            "name": "NewCaledonia"
+                                        },
+                                        {
+                                            "name": "NewZealand"
+                                        },
+                                        {
+                                            "name": "Nicaragua"
+                                        },
+                                        {
+                                            "name": "Niger"
+                                        },
+                                        {
+                                            "name": "Nigeria"
+                                        },
+                                        {
+                                            "name": "Niue"
+                                        },
+                                        {
+                                            "name": "NorfolkIsland"
+                                        },
+                                        {
+                                            "name": "NorthernMarianaIslands"
+                                        },
+                                        {
+                                            "name": "Norway"
+                                        },
+                                        {
+                                            "name": "Oman"
+                                        },
+                                        {
+                                            "name": "Pakistan"
+                                        },
+                                        {
+                                            "name": "Palau"
+                                        },
+                                        {
+                                            "name": "PalestinianTerritories"
+                                        },
+                                        {
+                                            "name": "Panama"
+                                        },
+                                        {
+                                            "name": "PapuaNewGuinea"
+                                        },
+                                        {
+                                            "name": "Paraguay"
+                                        },
+                                        {
+                                            "name": "Peru"
+                                        },
+                                        {
+                                            "name": "Philippines"
+                                        },
+                                        {
+                                            "name": "Pitcairn"
+                                        },
+                                        {
+                                            "name": "Poland"
+                                        },
+                                        {
+                                            "name": "Portugal"
+                                        },
+                                        {
+                                            "name": "PuertoRico"
+                                        },
+                                        {
+                                            "name": "Qatar"
+                                        },
+                                        {
+                                            "name": "Reunion"
+                                        },
+                                        {
+                                            "name": "Romania"
+                                        },
+                                        {
+                                            "name": "Russia"
+                                        },
+                                        {
+                                            "name": "Rwanda"
+                                        },
+                                        {
+                                            "name": "SaintKittsAndNevis"
+                                        },
+                                        {
+                                            "name": "SaintLucia"
+                                        },
+                                        {
+                                            "name": "SaintVincentAndTheGrenadines"
+                                        },
+                                        {
+                                            "name": "Samoa"
+                                        },
+                                        {
+                                            "name": "SanMarino"
+                                        },
+                                        {
+                                            "name": "SaoTomeAndPrincipe"
+                                        },
+                                        {
+                                            "name": "SaudiArabia"
+                                        },
+                                        {
+                                            "name": "Senegal"
+                                        },
+                                        {
+                                            "name": "Seychelles"
+                                        },
+                                        {
+                                            "name": "SierraLeone"
+                                        },
+                                        {
+                                            "name": "Singapore"
+                                        },
+                                        {
+                                            "name": "Slovakia"
+                                        },
+                                        {
+                                            "name": "Slovenia"
+                                        },
+                                        {
+                                            "name": "SolomonIslands"
+                                        },
+                                        {
+                                            "name": "Somalia"
+                                        },
+                                        {
+                                            "name": "SouthAfrica"
+                                        },
+                                        {
+                                            "name": "SouthGeorgiaAndTheSouthSandwichIslands"
+                                        },
+                                        {
+                                            "name": "Spain"
+                                        },
+                                        {
+                                            "name": "SriLanka"
+                                        },
+                                        {
+                                            "name": "SaintHelena"
+                                        },
+                                        {
+                                            "name": "SaintPierreAndMiquelon"
+                                        },
+                                        {
+                                            "name": "Sudan"
+                                        },
+                                        {
+                                            "name": "Suriname"
+                                        },
+                                        {
+                                            "name": "SvalbardAndJanMayenIslands"
+                                        },
+                                        {
+                                            "name": "Swaziland"
+                                        },
+                                        {
+                                            "name": "Sweden"
+                                        },
+                                        {
+                                            "name": "Switzerland"
+                                        },
+                                        {
+                                            "name": "Syria"
+                                        },
+                                        {
+                                            "name": "Taiwan"
+                                        },
+                                        {
+                                            "name": "Tajikistan"
+                                        },
+                                        {
+                                            "name": "Tanzania"
+                                        },
+                                        {
+                                            "name": "Thailand"
+                                        },
+                                        {
+                                            "name": "Togo"
+                                        },
+                                        {
+                                            "name": "TokelauCountry"
+                                        },
+                                        {
+                                            "name": "Tonga"
+                                        },
+                                        {
+                                            "name": "TrinidadAndTobago"
+                                        },
+                                        {
+                                            "name": "Tunisia"
+                                        },
+                                        {
+                                            "name": "Turkey"
+                                        },
+                                        {
+                                            "name": "Turkmenistan"
+                                        },
+                                        {
+                                            "name": "TurksAndCaicosIslands"
+                                        },
+                                        {
+                                            "name": "TuvaluCountry"
+                                        },
+                                        {
+                                            "name": "Uganda"
+                                        },
+                                        {
+                                            "name": "Ukraine"
+                                        },
+                                        {
+                                            "name": "UnitedArabEmirates"
+                                        },
+                                        {
+                                            "name": "UnitedKingdom"
+                                        },
+                                        {
+                                            "name": "UnitedStates"
+                                        },
+                                        {
+                                            "name": "UnitedStatesMinorOutlyingIslands"
+                                        },
+                                        {
+                                            "name": "Uruguay"
+                                        },
+                                        {
+                                            "name": "Uzbekistan"
+                                        },
+                                        {
+                                            "name": "Vanuatu"
+                                        },
+                                        {
+                                            "name": "VaticanCityState"
+                                        },
+                                        {
+                                            "name": "Venezuela"
+                                        },
+                                        {
+                                            "name": "Vietnam"
+                                        },
+                                        {
+                                            "name": "BritishVirginIslands"
+                                        },
+                                        {
+                                            "name": "UnitedStatesVirginIslands"
+                                        },
+                                        {
+                                            "name": "WallisAndFutunaIslands"
+                                        },
+                                        {
+                                            "name": "WesternSahara"
+                                        },
+                                        {
+                                            "name": "Yemen"
+                                        },
+                                        {
+                                            "name": "CanaryIslands"
+                                        },
+                                        {
+                                            "name": "Zambia"
+                                        },
+                                        {
+                                            "name": "Zimbabwe"
+                                        },
+                                        {
+                                            "name": "ClippertonIsland"
+                                        },
+                                        {
+                                            "name": "Montenegro"
+                                        },
+                                        {
+                                            "name": "Serbia"
+                                        },
+                                        {
+                                            "name": "SaintBarthelemy"
+                                        },
+                                        {
+                                            "name": "SaintMartin"
+                                        },
+                                        {
+                                            "name": "LatinAmericaAndTheCaribbean"
+                                        },
+                                        {
+                                            "name": "AscensionIsland"
+                                        },
+                                        {
+                                            "name": "AlandIslands"
+                                        },
+                                        {
+                                            "name": "DiegoGarcia"
+                                        },
+                                        {
+                                            "name": "CeutaAndMelilla"
+                                        },
+                                        {
+                                            "name": "IsleOfMan"
+                                        },
+                                        {
+                                            "name": "Jersey"
+                                        },
+                                        {
+                                            "name": "TristanDaCunha"
+                                        },
+                                        {
+                                            "name": "SouthSudan"
+                                        },
+                                        {
+                                            "name": "Bonaire"
+                                        },
+                                        {
+                                            "name": "SintMaarten"
+                                        },
+                                        {
+                                            "name": "Kosovo"
+                                        },
+                                        {
+                                            "name": "EuropeanUnion"
+                                        },
+                                        {
+                                            "name": "OutlyingOceania"
+                                        },
+                                        {
+                                            "name": "Tokelau"
+                                        },
+                                        {
+                                            "name": "Tuvalu"
+                                        },
+                                        {
+                                            "name": "DemocraticRepublicOfCongo"
+                                        },
+                                        {
+                                            "name": "PeoplesRepublicOfCongo"
+                                        },
+                                        {
+                                            "name": "DemocraticRepublicOfKorea"
+                                        },
+                                        {
+                                            "name": "RepublicOfKorea"
+                                        },
+                                        {
+                                            "name": "RussianFederation"
+                                        },
+                                        {
+                                            "name": "SyrianArabRepublic"
+                                        },
+                                        {
+                                            "name": "LastCountry"
+                                        }
+                                    ],
+                                    "name": "Country",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "MetricSystem"
+                                        },
+                                        {
+                                            "name": "ImperialUSSystem"
+                                        },
+                                        {
+                                            "name": "ImperialUKSystem"
+                                        },
+                                        {
+                                            "name": "ImperialSystem"
+                                        }
+                                    ],
+                                    "name": "MeasurementSystem",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LongFormat"
+                                        },
+                                        {
+                                            "name": "ShortFormat"
+                                        },
+                                        {
+                                            "name": "NarrowFormat"
+                                        }
+                                    ],
+                                    "name": "FormatType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DefaultNumberOptions"
+                                        },
+                                        {
+                                            "name": "OmitGroupSeparator"
+                                        },
+                                        {
+                                            "name": "RejectGroupSeparator"
+                                        },
+                                        {
+                                            "name": "OmitLeadingZeroInExponent"
+                                        },
+                                        {
+                                            "name": "RejectLeadingZeroInExponent"
+                                        },
+                                        {
+                                            "name": "IncludeTrailingZeroesAfterDot"
+                                        },
+                                        {
+                                            "name": "RejectTrailingZeroesAfterDot"
+                                        }
+                                    ],
+                                    "name": "NumberOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "FloatingPointShortest"
+                                        }
+                                    ],
+                                    "name": "FloatingPointPrecisionOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "CurrencyIsoCode"
+                                        },
+                                        {
+                                            "name": "CurrencySymbol"
+                                        },
+                                        {
+                                            "name": "CurrencyDisplayName"
+                                        }
+                                    ],
+                                    "name": "CurrencySymbolFormat",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DataSizeBase1000"
+                                        },
+                                        {
+                                            "name": "DataSizeSIQuantifiers"
+                                        },
+                                        {
+                                            "name": "DataSizeIecFormat"
+                                        },
+                                        {
+                                            "name": "DataSizeTraditionalFormat"
+                                        },
+                                        {
+                                            "name": "DataSizeSIFormat"
+                                        }
+                                    ],
+                                    "name": "DataSizeFormat",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QLocale",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLocale",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLocale",
+                                    "parameters": [
+                                        "QLocale::Language",
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLocale",
+                                    "parameters": [
+                                        "QLocale::Language",
+                                        "QLocale::Script",
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLocale",
+                                    "parameters": [
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QLocale &&"
+                                    ],
+                                    "returns": "QLocale &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "QLocale &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "~QLocale",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QLocale &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "language",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale::Language",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "script",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale::Script",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "country",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale::Country",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "name",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bcp47Name",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nativeLanguageName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nativeCountryName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toShort",
+                                    "parameters": [
+                                        "const QString &",
+                                        "bool *"
+                                    ],
+                                    "returns": "short",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUShort",
+                                    "parameters": [
+                                        "const QString &",
+                                        "bool *"
+                                    ],
+                                    "returns": "ushort",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toInt",
+                                    "parameters": [
+                                        "const QString &",
+                                        "bool *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUInt",
+                                    "parameters": [
+                                        "const QString &",
+                                        "bool *"
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLongLong",
+                                    "parameters": [
+                                        "const QString &",
+                                        "bool *"
+                                    ],
+                                    "returns": "qlonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toULongLong",
+                                    "parameters": [
+                                        "const QString &",
+                                        "bool *"
+                                    ],
+                                    "returns": "qulonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toFloat",
+                                    "parameters": [
+                                        "const QString &",
+                                        "bool *"
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDouble",
+                                    "parameters": [
+                                        "const QString &",
+                                        "bool *"
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toShort",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "bool *"
+                                    ],
+                                    "returns": "short",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUShort",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "bool *"
+                                    ],
+                                    "returns": "ushort",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toInt",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "bool *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUInt",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "bool *"
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLongLong",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "bool *"
+                                    ],
+                                    "returns": "qlonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toULongLong",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "bool *"
+                                    ],
+                                    "returns": "qulonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toFloat",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "bool *"
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDouble",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "bool *"
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toShort",
+                                    "parameters": [
+                                        "QStringView",
+                                        "bool *"
+                                    ],
+                                    "returns": "short",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUShort",
+                                    "parameters": [
+                                        "QStringView",
+                                        "bool *"
+                                    ],
+                                    "returns": "ushort",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toInt",
+                                    "parameters": [
+                                        "QStringView",
+                                        "bool *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUInt",
+                                    "parameters": [
+                                        "QStringView",
+                                        "bool *"
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLongLong",
+                                    "parameters": [
+                                        "QStringView",
+                                        "bool *"
+                                    ],
+                                    "returns": "qlonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toULongLong",
+                                    "parameters": [
+                                        "QStringView",
+                                        "bool *"
+                                    ],
+                                    "returns": "qulonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toFloat",
+                                    "parameters": [
+                                        "QStringView",
+                                        "bool *"
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDouble",
+                                    "parameters": [
+                                        "QStringView",
+                                        "bool *"
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "qlonglong"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "qulonglong"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "short"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "ushort"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "double",
+                                        "char",
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "float",
+                                        "char",
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QTime &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "QStringView"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QTime &",
+                                        "QStringView"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "QStringView"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QTime &",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dateFormat",
+                                    "parameters": [
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "timeFormat",
+                                    "parameters": [
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dateTimeFormat",
+                                    "parameters": [
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDate",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toTime",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDateTime",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDate",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toTime",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDateTime",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "decimalPoint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "groupSeparator",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "percent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "zeroDigit",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "negativeSign",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "positiveSign",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "exponential",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "monthName",
+                                    "parameters": [
+                                        "int",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "standaloneMonthName",
+                                    "parameters": [
+                                        "int",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dayName",
+                                    "parameters": [
+                                        "int",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "standaloneDayName",
+                                    "parameters": [
+                                        "int",
+                                        "QLocale::FormatType"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "firstDayOfWeek",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::DayOfWeek",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "weekdays",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<Qt::DayOfWeek>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "amText",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pmText",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "measurementSystem",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale::MeasurementSystem",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textDirection",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::LayoutDirection",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUpper",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLower",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currencySymbol",
+                                    "parameters": [
+                                        "QLocale::CurrencySymbolFormat"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "qlonglong",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "qulonglong",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "short",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "ushort",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "uint",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "double",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "double",
+                                        "const QString &",
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "float",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCurrencyString",
+                                    "parameters": [
+                                        "float",
+                                        "const QString &",
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "formattedDataSize",
+                                    "parameters": [
+                                        "qint64",
+                                        "int",
+                                        "QLocale::DataSizeFormats"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "uiLanguages",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "languageToString",
+                                    "parameters": [
+                                        "QLocale::Language"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "countryToString",
+                                    "parameters": [
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "scriptToString",
+                                    "parameters": [
+                                        "QLocale::Script"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefault",
+                                    "parameters": [
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "c",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "system",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "matchingLocales",
+                                    "parameters": [
+                                        "QLocale::Language",
+                                        "QLocale::Script",
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "QList<QLocale>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "countriesForLanguage",
+                                    "parameters": [
+                                        "QLocale::Language"
+                                    ],
+                                    "returns": "QList<QLocale::Country>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNumberOptions",
+                                    "parameters": [
+                                        "QLocale::NumberOptions"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "numberOptions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale::NumberOptions",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "StandardQuotation"
+                                        },
+                                        {
+                                            "name": "AlternateQuotation"
+                                        }
+                                    ],
+                                    "name": "QuotationStyle",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "quoteString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QLocale::QuotationStyle"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "quoteString",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "QLocale::QuotationStyle"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "createSeparatedList",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QLocale",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QLocale &",
+                                "QLocale &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QLocale::NumberOptions::enum_type",
+                                "QLocale::NumberOptions::enum_type"
+                            ],
+                            "returns": "QFlags<QLocale::NumberOptions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QLocale::NumberOptions::enum_type",
+                                "QFlags<QLocale::NumberOptions::enum_type>"
+                            ],
+                            "returns": "QFlags<QLocale::NumberOptions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QLocale::NumberOptions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QLocale &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QLocale &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QLocale &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QLocale>",
+                    "name": "locale",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -17714,6 +21356,35 @@
                 "id": "QLineF",
                 "name": "QLineF",
                 "rename": "LineF"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocale",
+                "links": "ptr@Ptr<QLocale>;list@QList<QLocale>",
+                "name": "QLocale",
+                "rename": "Locale"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "PtrQLocale",
+                "name": "Ptr<QLocale>"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QListQLocale",
+                "name": "QList<QLocale>"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleDataSizeFormats",
+                "name": "QLocale::DataSizeFormats",
+                "rename": "DataSizeFormats"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleNumberOptions",
+                "name": "QLocale::NumberOptions",
+                "rename": "NumberOptions"
             },
             {
                 "header": "yasl/core/margins.h",
@@ -18305,6 +21976,58 @@
                 "header": "yasl/core/line.h",
                 "id": "QLineFIntersectType",
                 "name": "QLineF::IntersectType"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleLanguage",
+                "name": "QLocale::Language"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleScript",
+                "name": "QLocale::Script"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleCountry",
+                "name": "QLocale::Country"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleMeasurementSystem",
+                "name": "QLocale::MeasurementSystem"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleFormatType",
+                "name": "QLocale::FormatType"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleNumberOption",
+                "links": "flags@QLocale::NumberOptions",
+                "name": "QLocale::NumberOption"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleFloatingPointPrecisionOption",
+                "name": "QLocale::FloatingPointPrecisionOption"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleCurrencySymbolFormat",
+                "name": "QLocale::CurrencySymbolFormat"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleDataSizeFormat",
+                "links": "flags@QLocale::DataSizeFormats",
+                "name": "QLocale::DataSizeFormat"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleQuotationStyle",
+                "name": "QLocale::QuotationStyle"
             },
             {
                 "header": "yasl/core/timezone.h",

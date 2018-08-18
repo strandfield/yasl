@@ -10,13 +10,10 @@
 
 #include <QLocale>
 
-
-namespace binding
-{
-template<> struct make_type_t<QLocale> { inline static script::Type get() { return script::Type::QLocale; } };
+namespace binding {
 template<> struct make_type_t<Ptr<QLocale>> { inline static script::Type get() { return script::Type::PtrQLocale; } };
 template<> struct make_type_t<QList<QLocale>> { inline static script::Type get() { return script::Type::QListQLocale; } };
-
+template<> struct make_type_t<QLocale> { inline static script::Type get() { return script::Type::QLocale; } };
 template<> struct make_type_t<QLocale::Country> { inline static script::Type get() { return script::Type::QLocaleCountry; } };
 template<> struct make_type_t<QLocale::CurrencySymbolFormat> { inline static script::Type get() { return script::Type::QLocaleCurrencySymbolFormat; } };
 template<> struct make_type_t<QLocale::DataSizeFormat> { inline static script::Type get() { return script::Type::QLocaleDataSizeFormat; } };
@@ -29,7 +26,6 @@ template<> struct make_type_t<QLocale::NumberOption> { inline static script::Typ
 template<> struct make_type_t<QLocale::NumberOptions> { inline static script::Type get() { return script::Type::QLocaleNumberOptions; } };
 template<> struct make_type_t<QLocale::QuotationStyle> { inline static script::Type get() { return script::Type::QLocaleQuotationStyle; } };
 template<> struct make_type_t<QLocale::Script> { inline static script::Type get() { return script::Type::QLocaleScript; } };
-
 } // namespace binding
 
 #endif // YASL_CORE_LOCALE_H

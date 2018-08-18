@@ -20,7 +20,7 @@ void register_filedevice_class(script::Namespace n); // defined in filedevice.cp
 void register_fileinfo_file(script::Namespace root); // defined in fileinfo.cpp
 void register_iodevice_class(script::Namespace n); // defined in iodevice.cpp
 void register_line_file(script::Namespace n); // defined in line.cpp
-void register_locale_class(script::Namespace n); // defined in locale.cpp
+void register_locale_file(script::Namespace n); // defined in locale.cpp
 void register_regularexpression_file(script::Namespace n); // defined in regularexpression.cpp
 void register_stringlist_class(script::Namespace n); // defined in string.cpp
 void register_bytearray_file(script::Namespace n); // defined in bytearray.cpp
@@ -62,7 +62,7 @@ void load_core_module(script::Module core)
   register_timer_file(core.root());
   register_timezone_file(core.root());
   register_datetime_file(core.root());
-  register_locale_class(core.root());
+  register_locale_file(core.root());
   register_regularexpression_file(core.root());
   register_bytearray_file(core.root());
   register_qobject(core.root());

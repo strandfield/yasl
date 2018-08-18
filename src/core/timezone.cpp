@@ -10,6 +10,7 @@
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datetime.h"
+#include "yasl/core/locale.h"
 #include "yasl/core/timezone.h"
 
 #include <script/classbuilder.h>
@@ -57,7 +58,7 @@ static void register_time_zone_class(script::Namespace ns)
   // QTimeZone(int);
   binder.ctors().add<int>();
   // QTimeZone(const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &);
-  /// TODO: QTimeZone(const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &);
+  binder.ctors().add<const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &>();
   // QTimeZone(const QTimeZone &);
   binder.ctors().add<const QTimeZone &>();
   // ~QTimeZone();
@@ -77,13 +78,13 @@ static void register_time_zone_class(script::Namespace ns)
   // QByteArray id() const;
   binder.add_fun<QByteArray, &QTimeZone::id>("id");
   // QLocale::Country country() const;
-  /// TODO: QLocale::Country country() const;
+  binder.add_fun<QLocale::Country, &QTimeZone::country>("country");
   // QString comment() const;
   binder.add_fun<QString, &QTimeZone::comment>("comment");
   // QString displayName(const QDateTime &, QTimeZone::NameType, const QLocale &) const;
-  /// TODO: QString displayName(const QDateTime &, QTimeZone::NameType, const QLocale &) const;
+  binder.add_fun<QString, const QDateTime &, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>("displayName");
   // QString displayName(QTimeZone::TimeType, QTimeZone::NameType, const QLocale &) const;
-  /// TODO: QString displayName(QTimeZone::TimeType, QTimeZone::NameType, const QLocale &) const;
+  binder.add_fun<QString, QTimeZone::TimeType, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>("displayName");
   // QString abbreviation(const QDateTime &) const;
   binder.add_fun<QString, const QDateTime &, &QTimeZone::abbreviation>("abbreviation");
   // int offsetFromUtc(const QDateTime &) const;
@@ -117,7 +118,7 @@ static void register_time_zone_class(script::Namespace ns)
   // static QList<QByteArray> availableTimeZoneIds();
   binder.add_static<QList<QByteArray>, &QTimeZone::availableTimeZoneIds>("availableTimeZoneIds");
   // static QList<QByteArray> availableTimeZoneIds(QLocale::Country);
-  /// TODO: static QList<QByteArray> availableTimeZoneIds(QLocale::Country);
+  binder.add_static<QList<QByteArray>, QLocale::Country, &QTimeZone::availableTimeZoneIds>("availableTimeZoneIds");
   // static QList<QByteArray> availableTimeZoneIds(int);
   binder.add_static<QList<QByteArray>, int, &QTimeZone::availableTimeZoneIds>("availableTimeZoneIds");
   // static QByteArray ianaIdToWindowsId(const QByteArray &);
@@ -125,11 +126,11 @@ static void register_time_zone_class(script::Namespace ns)
   // static QByteArray windowsIdToDefaultIanaId(const QByteArray &);
   binder.add_static<QByteArray, const QByteArray &, &QTimeZone::windowsIdToDefaultIanaId>("windowsIdToDefaultIanaId");
   // static QByteArray windowsIdToDefaultIanaId(const QByteArray &, QLocale::Country);
-  /// TODO: static QByteArray windowsIdToDefaultIanaId(const QByteArray &, QLocale::Country);
+  binder.add_static<QByteArray, const QByteArray &, QLocale::Country, &QTimeZone::windowsIdToDefaultIanaId>("windowsIdToDefaultIanaId");
   // static QList<QByteArray> windowsIdToIanaIds(const QByteArray &);
   binder.add_static<QList<QByteArray>, const QByteArray &, &QTimeZone::windowsIdToIanaIds>("windowsIdToIanaIds");
   // static QList<QByteArray> windowsIdToIanaIds(const QByteArray &, QLocale::Country);
-  /// TODO: static QList<QByteArray> windowsIdToIanaIds(const QByteArray &, QLocale::Country);
+  binder.add_static<QList<QByteArray>, const QByteArray &, QLocale::Country, &QTimeZone::windowsIdToIanaIds>("windowsIdToIanaIds");
 }
 
 
