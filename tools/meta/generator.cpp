@@ -414,12 +414,12 @@ QString Generator::generateSignal(FunctionRef fun)
 
   if (fun->parameters.size() == 0)
   {
-    QString format = "binder.sigs().add(\"%1\", \"%2\");";
+    QString format = "  binder.sigs().add(\"%1\", \"%2\");";
     return format.arg(funname, signature);
   }
   else
   {
-    QString format = "binder.sigs().add<%1>(\"%2\", \"%3\");";
+    QString format = "  binder.sigs().add<%1>(\"%2\", \"%3\");";
     const QString params = fun->parameters.join(", ");
     return format.arg(params, funname, signature);
   }
