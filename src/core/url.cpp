@@ -6,36 +6,14 @@
 
 #include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
-#include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/core/flags.h"
 
 #include "yasl/core/bytearray.h"
-#include "yasl/core/datastream.h"
-#include "yasl/core/flags.h"
-#include "yasl/core/urlquery.h"
+#include "yasl/core/url.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-
-#include <QDebug>
-
-static void register_url_component_formatting_option_enum(script::Class url)
-{
-  using namespace script;
-
-  Enum component_formatting_option = url.Enum("ComponentFormattingOption").setId(script::Type::QUrlComponentFormattingOption).get();
-
-  component_formatting_option.addValue("DecodeReserved", QUrl::DecodeReserved);
-  component_formatting_option.addValue("EncodeDelimiters", QUrl::EncodeDelimiters);
-  component_formatting_option.addValue("EncodeReserved", QUrl::EncodeReserved);
-  component_formatting_option.addValue("EncodeSpaces", QUrl::EncodeSpaces);
-  component_formatting_option.addValue("EncodeUnicode", QUrl::EncodeUnicode);
-  component_formatting_option.addValue("FullyDecoded", QUrl::FullyDecoded);
-  component_formatting_option.addValue("FullyEncoded", QUrl::FullyEncoded);
-  component_formatting_option.addValue("PrettyDecoded", QUrl::PrettyDecoded);
-
-  register_qflags_type<QUrl::ComponentFormattingOption>(url, "ComponentFormattingOptions", Type::QUrlComponentFormattingOptions);
-}
 
 static void register_url_parsing_mode_enum(script::Class url)
 {
@@ -43,10 +21,11 @@ static void register_url_parsing_mode_enum(script::Class url)
 
   Enum parsing_mode = url.Enum("ParsingMode").setId(script::Type::QUrlParsingMode).get();
 
-  parsing_mode.addValue("DecodedMode", QUrl::DecodedMode);
-  parsing_mode.addValue("StrictMode", QUrl::StrictMode);
   parsing_mode.addValue("TolerantMode", QUrl::TolerantMode);
+  parsing_mode.addValue("StrictMode", QUrl::StrictMode);
+  parsing_mode.addValue("DecodedMode", QUrl::DecodedMode);
 }
+
 
 static void register_url_url_formatting_option_enum(script::Class url)
 {
@@ -55,21 +34,38 @@ static void register_url_url_formatting_option_enum(script::Class url)
   Enum url_formatting_option = url.Enum("UrlFormattingOption").setId(script::Type::QUrlUrlFormattingOption).get();
 
   url_formatting_option.addValue("None", QUrl::None);
-  url_formatting_option.addValue("NormalizePathSegments", QUrl::NormalizePathSegments);
-  url_formatting_option.addValue("PreferLocalFile", QUrl::PreferLocalFile);
-  url_formatting_option.addValue("RemoveAuthority", QUrl::RemoveAuthority);
-  url_formatting_option.addValue("RemoveFilename", QUrl::RemoveFilename);
-  url_formatting_option.addValue("RemoveFragment", QUrl::RemoveFragment);
-  url_formatting_option.addValue("RemovePassword", QUrl::RemovePassword);
-  url_formatting_option.addValue("RemovePath", QUrl::RemovePath);
-  url_formatting_option.addValue("RemovePort", QUrl::RemovePort);
-  url_formatting_option.addValue("RemoveQuery", QUrl::RemoveQuery);
   url_formatting_option.addValue("RemoveScheme", QUrl::RemoveScheme);
+  url_formatting_option.addValue("RemovePassword", QUrl::RemovePassword);
   url_formatting_option.addValue("RemoveUserInfo", QUrl::RemoveUserInfo);
+  url_formatting_option.addValue("RemovePort", QUrl::RemovePort);
+  url_formatting_option.addValue("RemoveAuthority", QUrl::RemoveAuthority);
+  url_formatting_option.addValue("RemovePath", QUrl::RemovePath);
+  url_formatting_option.addValue("RemoveQuery", QUrl::RemoveQuery);
+  url_formatting_option.addValue("RemoveFragment", QUrl::RemoveFragment);
+  url_formatting_option.addValue("PreferLocalFile", QUrl::PreferLocalFile);
   url_formatting_option.addValue("StripTrailingSlash", QUrl::StripTrailingSlash);
-
-  register_qflags_type<QUrl::UrlFormattingOption>(url, "FormattingOptions", Type::QUrlFormattingOptions);
+  url_formatting_option.addValue("RemoveFilename", QUrl::RemoveFilename);
+  url_formatting_option.addValue("NormalizePathSegments", QUrl::NormalizePathSegments);
 }
+
+
+static void register_url_component_formatting_option_enum(script::Class url)
+{
+  using namespace script;
+
+  Enum component_formatting_option = url.Enum("ComponentFormattingOption").setId(script::Type::QUrlComponentFormattingOption).get();
+
+  register_qflags_type<QUrl::ComponentFormattingOption>(url, "ComponentFormattingOptions", script::Type::QUrlComponentFormattingOptions);
+  component_formatting_option.addValue("PrettyDecoded", QUrl::PrettyDecoded);
+  component_formatting_option.addValue("EncodeSpaces", QUrl::EncodeSpaces);
+  component_formatting_option.addValue("EncodeUnicode", QUrl::EncodeUnicode);
+  component_formatting_option.addValue("EncodeDelimiters", QUrl::EncodeDelimiters);
+  component_formatting_option.addValue("EncodeReserved", QUrl::EncodeReserved);
+  component_formatting_option.addValue("DecodeReserved", QUrl::DecodeReserved);
+  component_formatting_option.addValue("FullyEncoded", QUrl::FullyEncoded);
+  component_formatting_option.addValue("FullyDecoded", QUrl::FullyDecoded);
+}
+
 
 static void register_url_user_input_resolution_option_enum(script::Class url)
 {
@@ -77,11 +73,11 @@ static void register_url_user_input_resolution_option_enum(script::Class url)
 
   Enum user_input_resolution_option = url.Enum("UserInputResolutionOption").setId(script::Type::QUrlUserInputResolutionOption).get();
 
-  user_input_resolution_option.addValue("AssumeLocalFile", QUrl::AssumeLocalFile);
+  register_qflags_type<QUrl::UserInputResolutionOption>(url, "UserInputResolutionOptions", script::Type::QUrlUserInputResolutionOptions);
   user_input_resolution_option.addValue("DefaultResolution", QUrl::DefaultResolution);
-
-  register_qflags_type<QUrl::UserInputResolutionOption>(url, "UserInputResolutionOptions", Type::QUrlUserInputResolutionOptions);
+  user_input_resolution_option.addValue("AssumeLocalFile", QUrl::AssumeLocalFile);
 }
+
 
 static void register_url_class(script::Namespace ns)
 {
@@ -89,14 +85,12 @@ static void register_url_class(script::Namespace ns)
 
   Class url = ns.Class("Url").setId(script::Type::QUrl).get();
 
-  register_url_component_formatting_option_enum(url);
   register_url_parsing_mode_enum(url);
   register_url_url_formatting_option_enum(url);
+  register_url_component_formatting_option_enum(url);
   register_url_user_input_resolution_option_enum(url);
   binding::Class<QUrl> binder{ url };
 
-  // ~QUrl();
-  binder.add_dtor();
   // QUrl();
   binder.ctors().add_default();
   // QUrl(const QUrl &);
@@ -108,23 +102,25 @@ static void register_url_class(script::Namespace ns)
   // QUrl & operator=(const QString &);
   binder.operators().assign<const QString &>();
   // QUrl(QUrl &&);
-  /// TODO: binder.ctors().add<QUrl &&>();
+  binder.ctors().add<QUrl &&>();
   // QUrl & operator=(QUrl &&);
-  /// TODO: binder.operators().assign<QUrl &&>();
+  binder.operators().assign<QUrl &&>();
+  // ~QUrl();
+  binder.add_dtor();
   // void swap(QUrl &);
   binder.add_void_fun<QUrl &, &QUrl::swap>("swap");
   // void setUrl(const QString &, QUrl::ParsingMode);
   binder.add_void_fun<const QString &, QUrl::ParsingMode, &QUrl::setUrl>("setUrl");
   // QString url(QUrl::FormattingOptions) const;
-  binder.add_fun<QString, QUrl::FormattingOptions, &QUrl::url>("url");
+  /// TODO: QString url(QUrl::FormattingOptions) const;
   // QString toString(QUrl::FormattingOptions) const;
-  binder.add_fun<QString, QUrl::FormattingOptions, &QUrl::toString>("toString");
+  /// TODO: QString toString(QUrl::FormattingOptions) const;
   // QString toDisplayString(QUrl::FormattingOptions) const;
-  binder.add_fun<QString, QUrl::FormattingOptions, &QUrl::toDisplayString>("toDisplayString");
+  /// TODO: QString toDisplayString(QUrl::FormattingOptions) const;
   // QUrl adjusted(QUrl::FormattingOptions) const;
-  binder.add_fun<QUrl, QUrl::FormattingOptions, &QUrl::adjusted>("adjusted");
+  /// TODO: QUrl adjusted(QUrl::FormattingOptions) const;
   // QByteArray toEncoded(QUrl::FormattingOptions) const;
-  binder.add_fun<QByteArray, QUrl::FormattingOptions, &QUrl::toEncoded>("toEncoded");
+  /// TODO: QByteArray toEncoded(QUrl::FormattingOptions) const;
   // static QUrl fromEncoded(const QByteArray &, QUrl::ParsingMode);
   binder.add_static<QUrl, const QByteArray &, QUrl::ParsingMode, &QUrl::fromEncoded>("fromEncoded");
   // static QUrl fromUserInput(const QString &);
@@ -180,7 +176,7 @@ static void register_url_class(script::Namespace ns)
   // void setQuery(const QString &, QUrl::ParsingMode);
   binder.add_void_fun<const QString &, QUrl::ParsingMode, &QUrl::setQuery>("setQuery");
   // void setQuery(const QUrlQuery &);
-  binder.add_void_fun<const QUrlQuery &, &QUrl::setQuery>("setQuery");
+  /// TODO: void setQuery(const QUrlQuery &);
   // QString query(QUrl::ComponentFormattingOptions) const;
   binder.add_fun<QString, QUrl::ComponentFormattingOptions, &QUrl::query>("query");
   // bool hasFragment() const;
@@ -212,7 +208,7 @@ static void register_url_class(script::Namespace ns)
   // bool operator!=(const QUrl &) const;
   binder.operators().neq<const QUrl &>();
   // bool matches(const QUrl &, QUrl::FormattingOptions) const;
-  binder.add_fun<bool, const QUrl &, QUrl::FormattingOptions, &QUrl::matches>("matches");
+  /// TODO: bool matches(const QUrl &, QUrl::FormattingOptions) const;
   // static QString fromPercentEncoding(const QByteArray &);
   binder.add_static<QString, const QByteArray &, &QUrl::fromPercentEncoding>("fromPercentEncoding");
   // static QByteArray toPercentEncoding(const QString &, const QByteArray &, const QByteArray &);
@@ -222,61 +218,64 @@ static void register_url_class(script::Namespace ns)
   // static QByteArray toAce(const QString &);
   binder.add_static<QByteArray, const QString &, &QUrl::toAce>("toAce");
   // static QStringList idnWhitelist();
-  binder.add_static<QStringList, &QUrl::idnWhitelist>("idnWhitelist");
+  /// TODO: static QStringList idnWhitelist();
   // static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions);
-  binder.add_static<QStringList, const QList<QUrl> &, QUrl::FormattingOptions, &QUrl::toStringList>("toStringList");
+  /// TODO: static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions);
   // static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode);
-  binder.add_static<QList<QUrl>, const QStringList &, QUrl::ParsingMode, &QUrl::fromStringList>("fromStringList");
+  /// TODO: static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode);
   // static void setIdnWhitelist(const QStringList &);
-  binder.add_static_void_fun<const QStringList &, &QUrl::setIdnWhitelist>("setIdnWhitelist");
+  /// TODO: static void setIdnWhitelist(const QStringList &);
   // QUrl::DataPtr & data_ptr();
-  /// ignore: binder.add_fun<QUrl::DataPtr &, &QUrl::data_ptr>("data_ptr");
+  /// TODO: QUrl::DataPtr & data_ptr();
 }
 
-void register_url_file(script::Namespace root)
+
+void register_url_file(script::Namespace core)
 {
   using namespace script;
 
-  register_url_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = core;
+
+  register_url_class(ns);
+  binding::Namespace binder{ ns };
 
   // uint qHash(const QUrl &, uint);
   binder.add_fun<uint, const QUrl &, uint, &qHash>("qHash");
   // void swap(QUrl &, QUrl &);
   binder.add_void_fun<QUrl &, QUrl &, &swap>("swap");
   // QFlags<QUrl::ComponentFormattingOptions::enum_type> operator|(QUrl::ComponentFormattingOptions::enum_type, QUrl::ComponentFormattingOptions::enum_type);
-  binder.operators().or<QFlags<QUrl::ComponentFormattingOptions::enum_type>, QUrl::ComponentFormattingOptions::enum_type, QUrl::ComponentFormattingOptions::enum_type>();
+  /// TODO: QFlags<QUrl::ComponentFormattingOptions::enum_type> operator|(QUrl::ComponentFormattingOptions::enum_type, QUrl::ComponentFormattingOptions::enum_type);
   // QFlags<QUrl::ComponentFormattingOptions::enum_type> operator|(QUrl::ComponentFormattingOptions::enum_type, QFlags<QUrl::ComponentFormattingOptions::enum_type>);
-  binder.operators().or<QFlags<QUrl::ComponentFormattingOptions::enum_type>, QUrl::ComponentFormattingOptions::enum_type, QFlags<QUrl::ComponentFormattingOptions::enum_type>>();
+  /// TODO: QFlags<QUrl::ComponentFormattingOptions::enum_type> operator|(QUrl::ComponentFormattingOptions::enum_type, QFlags<QUrl::ComponentFormattingOptions::enum_type>);
   // QIncompatibleFlag operator|(QUrl::ComponentFormattingOptions::enum_type, int);
-  binder.operators().or<QIncompatibleFlag, QUrl::ComponentFormattingOptions::enum_type, int>();
+  /// TODO: QIncompatibleFlag operator|(QUrl::ComponentFormattingOptions::enum_type, int);
   // QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::UrlFormattingOption);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::UrlFormattingOption, QUrl::UrlFormattingOption>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::UrlFormattingOption);
   // QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::FormattingOptions);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::UrlFormattingOption, QUrl::FormattingOptions>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::FormattingOptions);
   // QIncompatibleFlag operator|(QUrl::UrlFormattingOption, int);
-  binder.operators().or<QIncompatibleFlag, QUrl::UrlFormattingOption, int>();
+  /// TODO: QIncompatibleFlag operator|(QUrl::UrlFormattingOption, int);
   // QUrl::FormattingOptions & operator|=(QUrl::FormattingOptions &, QUrl::ComponentFormattingOptions);
-  binder.operators().or_assign<QUrl::FormattingOptions &, QUrl::ComponentFormattingOptions>();
+  /// TODO: QUrl::FormattingOptions & operator|=(QUrl::FormattingOptions &, QUrl::ComponentFormattingOptions);
   // QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::ComponentFormattingOption);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::UrlFormattingOption, QUrl::ComponentFormattingOption>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::ComponentFormattingOption);
   // QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::ComponentFormattingOptions);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::UrlFormattingOption, QUrl::ComponentFormattingOptions>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::ComponentFormattingOptions);
   // QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOption, QUrl::UrlFormattingOption);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::ComponentFormattingOption, QUrl::UrlFormattingOption>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOption, QUrl::UrlFormattingOption);
   // QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOptions, QUrl::UrlFormattingOption);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::ComponentFormattingOptions, QUrl::UrlFormattingOption>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOptions, QUrl::UrlFormattingOption);
   // QUrl::FormattingOptions operator|(QUrl::FormattingOptions, QUrl::ComponentFormattingOptions);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::FormattingOptions, QUrl::ComponentFormattingOptions>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::FormattingOptions, QUrl::ComponentFormattingOptions);
   // QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOption, QUrl::FormattingOptions);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::ComponentFormattingOption, QUrl::FormattingOptions>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOption, QUrl::FormattingOptions);
   // QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOptions, QUrl::FormattingOptions);
-  binder.operators().or<QUrl::FormattingOptions, QUrl::ComponentFormattingOptions, QUrl::FormattingOptions>();
+  /// TODO: QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOptions, QUrl::FormattingOptions);
   // QDataStream & operator<<(QDataStream &, const QUrl &);
-  binder.operators().put_to<QDataStream &, const QUrl &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QUrl &);
   // QDataStream & operator>>(QDataStream &, QUrl &);
-  binder.operators().read_from<QDataStream &, QUrl &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QUrl &);
   // QDebug operator<<(QDebug, const QUrl &);
-  binder.operators().left_shift<QDebug, QDebug, const QUrl &>();
+  /// TODO: QDebug operator<<(QDebug, const QUrl &);
 }
 

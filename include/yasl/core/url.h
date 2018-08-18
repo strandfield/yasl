@@ -15,7 +15,6 @@ template<> struct make_type_t<QUrl::ComponentFormattingOption> { inline static s
 template<> struct make_type_t<QUrl::ComponentFormattingOptions> { inline static script::Type get() { return script::Type::QUrlComponentFormattingOptions; } };
 template<> struct make_type_t<QUrl::ParsingMode> { inline static script::Type get() { return script::Type::QUrlParsingMode; } };
 template<> struct make_type_t<QUrl::UrlFormattingOption> { inline static script::Type get() { return script::Type::QUrlUrlFormattingOption; } };
-template<> struct make_type_t<QFlags<QUrl::UrlFormattingOption>> { inline static script::Type get() { return script::Type::QUrlFormattingOptions; } };
 template<> struct make_type_t<QUrl::UserInputResolutionOption> { inline static script::Type get() { return script::Type::QUrlUserInputResolutionOption; } };
 template<> struct make_type_t<QUrl::UserInputResolutionOptions> { inline static script::Type get() { return script::Type::QUrlUserInputResolutionOptions; } };
 } // namespace binding

@@ -16015,6 +16015,880 @@
                     "hincludes": "<QLine>",
                     "name": "line",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QUrl &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "TolerantMode"
+                                        },
+                                        {
+                                            "name": "StrictMode"
+                                        },
+                                        {
+                                            "name": "DecodedMode"
+                                        }
+                                    ],
+                                    "name": "ParsingMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "None"
+                                        },
+                                        {
+                                            "name": "RemoveScheme"
+                                        },
+                                        {
+                                            "name": "RemovePassword"
+                                        },
+                                        {
+                                            "name": "RemoveUserInfo"
+                                        },
+                                        {
+                                            "name": "RemovePort"
+                                        },
+                                        {
+                                            "name": "RemoveAuthority"
+                                        },
+                                        {
+                                            "name": "RemovePath"
+                                        },
+                                        {
+                                            "name": "RemoveQuery"
+                                        },
+                                        {
+                                            "name": "RemoveFragment"
+                                        },
+                                        {
+                                            "name": "PreferLocalFile"
+                                        },
+                                        {
+                                            "name": "StripTrailingSlash"
+                                        },
+                                        {
+                                            "name": "RemoveFilename"
+                                        },
+                                        {
+                                            "name": "NormalizePathSegments"
+                                        }
+                                    ],
+                                    "name": "UrlFormattingOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "PrettyDecoded"
+                                        },
+                                        {
+                                            "name": "EncodeSpaces"
+                                        },
+                                        {
+                                            "name": "EncodeUnicode"
+                                        },
+                                        {
+                                            "name": "EncodeDelimiters"
+                                        },
+                                        {
+                                            "name": "EncodeReserved"
+                                        },
+                                        {
+                                            "name": "DecodeReserved"
+                                        },
+                                        {
+                                            "name": "FullyEncoded"
+                                        },
+                                        {
+                                            "name": "FullyDecoded"
+                                        }
+                                    ],
+                                    "name": "ComponentFormattingOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QUrl",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QUrl",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "returns": "QUrl &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QUrl",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QUrl &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QUrl",
+                                    "parameters": [
+                                        "QUrl &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QUrl &&"
+                                    ],
+                                    "returns": "QUrl &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "~QUrl",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QUrl &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUrl",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "url",
+                                    "parameters": [
+                                        "QUrl::FormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "QUrl::FormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDisplayString",
+                                    "parameters": [
+                                        "QUrl::FormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "adjusted",
+                                    "parameters": [
+                                        "QUrl::FormattingOptions"
+                                    ],
+                                    "returns": "QUrl",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toEncoded",
+                                    "parameters": [
+                                        "QUrl::FormattingOptions"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromEncoded",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "QUrl",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DefaultResolution"
+                                        },
+                                        {
+                                            "name": "AssumeLocalFile"
+                                        }
+                                    ],
+                                    "name": "UserInputResolutionOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "fromUserInput",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QUrl",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromUserInput",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &",
+                                        "QUrl::UserInputResolutionOptions"
+                                    ],
+                                    "returns": "QUrl",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "errorString",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setScheme",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "scheme",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAuthority",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "authority",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUserInfo",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "userInfo",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUserName",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "userName",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPassword",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "password",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHost",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "host",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "topLevelDomain",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPort",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "port",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPath",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "path",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fileName",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasQuery",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setQuery",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setQuery",
+                                    "parameters": [
+                                        "const QUrlQuery &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "query",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasFragment",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fragment",
+                                    "parameters": [
+                                        "QUrl::ComponentFormattingOptions"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFragment",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "resolved",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "returns": "QUrl",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isRelative",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isParentOf",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isLocalFile",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromLocalFile",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QUrl",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLocalFile",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "detach",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matches",
+                                    "parameters": [
+                                        "const QUrl &",
+                                        "QUrl::FormattingOptions"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromPercentEncoding",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "toPercentEncoding",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QByteArray &",
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromAce",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "toAce",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "idnWhitelist",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "toStringList",
+                                    "parameters": [
+                                        "const QList<QUrl> &",
+                                        "QUrl::FormattingOptions"
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromStringList",
+                                    "parameters": [
+                                        "const QStringList &",
+                                        "QUrl::ParsingMode"
+                                    ],
+                                    "returns": "QList<QUrl>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIdnWhitelist",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QUrl::DataPtr &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QUrl",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QUrl &",
+                                "QUrl &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::ComponentFormattingOptions::enum_type",
+                                "QUrl::ComponentFormattingOptions::enum_type"
+                            ],
+                            "returns": "QFlags<QUrl::ComponentFormattingOptions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::ComponentFormattingOptions::enum_type",
+                                "QFlags<QUrl::ComponentFormattingOptions::enum_type>"
+                            ],
+                            "returns": "QFlags<QUrl::ComponentFormattingOptions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::ComponentFormattingOptions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::UrlFormattingOption",
+                                "QUrl::UrlFormattingOption"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::UrlFormattingOption",
+                                "QUrl::FormattingOptions"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::UrlFormattingOption",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|=",
+                            "parameters": [
+                                "QUrl::FormattingOptions &",
+                                "QUrl::ComponentFormattingOptions"
+                            ],
+                            "returns": "QUrl::FormattingOptions &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::UrlFormattingOption",
+                                "QUrl::ComponentFormattingOption"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::UrlFormattingOption",
+                                "QUrl::ComponentFormattingOptions"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::ComponentFormattingOption",
+                                "QUrl::UrlFormattingOption"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::ComponentFormattingOptions",
+                                "QUrl::UrlFormattingOption"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::FormattingOptions",
+                                "QUrl::ComponentFormattingOptions"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::ComponentFormattingOption",
+                                "QUrl::FormattingOptions"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QUrl::ComponentFormattingOptions",
+                                "QUrl::FormattingOptions"
+                            ],
+                            "returns": "QUrl::FormattingOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QUrl &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QUrl &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QUrl &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QUrl>",
+                    "name": "url",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -16171,6 +17045,24 @@
                 "id": "QTime",
                 "name": "QTime",
                 "rename": "Time"
+            },
+            {
+                "header": "yasl/core/url.h",
+                "id": "QUrl",
+                "name": "QUrl",
+                "rename": "Url"
+            },
+            {
+                "header": "yasl/core/url.h",
+                "id": "QUrlComponentFormattingOptions",
+                "name": "QUrl::ComponentFormattingOptions",
+                "rename": "ComponentFormattingOptions"
+            },
+            {
+                "header": "yasl/core/url.h",
+                "id": "QUrlUserInputResolutionOptions",
+                "name": "QUrl::UserInputResolutionOptions",
+                "rename": "UserInputResolutionOptions"
             }
         ],
         "enums": [
@@ -16678,6 +17570,28 @@
                 "header": "yasl/core/line.h",
                 "id": "QLineFIntersectType",
                 "name": "QLineF::IntersectType"
+            },
+            {
+                "header": "yasl/core/url.h",
+                "id": "QUrlParsingMode",
+                "name": "QUrl::ParsingMode"
+            },
+            {
+                "header": "yasl/core/url.h",
+                "id": "QUrlUrlFormattingOption",
+                "name": "QUrl::UrlFormattingOption"
+            },
+            {
+                "header": "yasl/core/url.h",
+                "id": "QUrlComponentFormattingOption",
+                "links": "flags@QUrl::ComponentFormattingOptions",
+                "name": "QUrl::ComponentFormattingOption"
+            },
+            {
+                "header": "yasl/core/url.h",
+                "id": "QUrlUserInputResolutionOption",
+                "links": "flags@QUrl::UserInputResolutionOptions",
+                "name": "QUrl::UserInputResolutionOption"
             }
         ],
         "fundamentals": [
