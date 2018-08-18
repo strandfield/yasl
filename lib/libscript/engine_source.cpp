@@ -68,6 +68,14 @@ Value Engine::expose(QObject *obj)
   return ret;
 }
 
+Value Engine::expose(QObject *obj, Type t)
+{
+  script::Value ret = this->uninitialized(t);
+  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
+  bind(ret, obj);
+  return ret;
+}
+
 void Engine::bind(const Value & val, QObject *obj)
 {
   val.impl()->set_qobject(obj);

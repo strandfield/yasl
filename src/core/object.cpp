@@ -69,11 +69,3 @@ void register_qobject(script::Namespace n)
   n.engine()->registerQtType(&QObject::staticMetaObject, object_type);
 }
 
-script::Value make_object(script::Engine *e, script::Type object_type, QObject *value)
-{
-  script::Value v = e->uninitialized(object_type);
-  e->bind(v, value);
-  v.impl()->type = v.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  return v;
-}
-

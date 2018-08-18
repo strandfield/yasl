@@ -11,8 +11,6 @@
 
 #include <QObject>
 
-script::Value make_object(script::Engine *e, script::Type object_type, QObject *value);
-
 namespace callbacks
 {
 

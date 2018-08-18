@@ -30,21 +30,21 @@ static script::Value new_pushbutton_parent(script::FunctionCall *c)
 {
   using namespace binding;
   QPushButton *object = new QPushButton(value_cast<QWidget*>(c->arg(0)));
-  return make_object(c->engine(), c->callee().returnType().baseType(), object);
+  return c->engine()->expose(object, c->callee().returnType().baseType());
 }
 
 static script::Value new_pushbutton_text(script::FunctionCall *c)
 {
   using namespace binding;
   QPushButton *object = new QPushButton(value_cast<const QString &>(c->arg(0)));
-  return make_object(c->engine(), c->callee().returnType().baseType(), object);
+  return c->engine()->expose(object, c->callee().returnType().baseType());
 }
 
 static script::Value new_pushbutton_text_parent(script::FunctionCall *c)
 {
   using namespace binding;
   QPushButton *object = new QPushButton(value_cast<const QString &>(c->arg(0)), value_cast<QWidget*>(c->arg(1)));
-  return make_object(c->engine(), c->callee().returnType().baseType(), object);
+  return c->engine()->expose(object, c->callee().returnType().baseType());
 }
 
 } // namespace callbacks

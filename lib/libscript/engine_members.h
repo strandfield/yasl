@@ -16,5 +16,7 @@ ClassTemplate getTemplate(ref_template_t) const;
 
 void registerQtType(const QMetaObject *mo, const script::Type & type);
 Value expose(QObject *obj);
+Value expose(QObject *obj, Type t);
 void bind(const script::Value & val, QObject *obj);
+
 Value newPtr(const Type & ptr_type, void *value);
