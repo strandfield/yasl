@@ -2,20 +2,15 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "qfileinfo.h"
+#include "yasl/core/fileinfo.h"
 
 #include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/datetime.h"
 #include "yasl/core/dir.h"
-#include "yasl/core/file.h"
 
 #include <script/classbuilder.h>
-
-#include <QDebug>
 
 static void register_file_info_class(script::Namespace ns)
 {
@@ -25,20 +20,24 @@ static void register_file_info_class(script::Namespace ns)
 
   binding::Class<QFileInfo> binder{ file_info };
 
+  // QFileInfo(QFileInfoPrivate *);
+  /// TODO: QFileInfo(QFileInfoPrivate *);
   // QFileInfo();
   binder.ctors().add_default();
   // QFileInfo(const QString &);
   binder.ctors().add<const QString &>();
   // QFileInfo(const QFile &);
-  binder.ctors().add<const QFile &>();
+  /// TODO: QFileInfo(const QFile &);
   // QFileInfo(const QDir &, const QString &);
   binder.ctors().add<const QDir &, const QString &>();
   // QFileInfo(const QFileInfo &);
   binder.ctors().add<const QFileInfo &>();
+  // ~QFileInfo();
+  binder.add_dtor();
   // QFileInfo & operator=(const QFileInfo &);
   binder.operators().assign<const QFileInfo &>();
   // QFileInfo & operator=(QFileInfo &&);
-  /// TODO binder.operators().assign<QFileInfo &&>();
+  binder.operators().assign<QFileInfo &&>();
   // void swap(QFileInfo &);
   binder.add_void_fun<QFileInfo &, &QFileInfo::swap>("swap");
   // bool operator==(const QFileInfo &) const;
@@ -48,7 +47,7 @@ static void register_file_info_class(script::Namespace ns)
   // void setFile(const QString &);
   binder.add_void_fun<const QString &, &QFileInfo::setFile>("setFile");
   // void setFile(const QFile &);
-  binder.add_void_fun<const QFile &, &QFileInfo::setFile>("setFile");
+  /// TODO: void setFile(const QFile &);
   // void setFile(const QDir &, const QString &);
   binder.add_void_fun<const QDir &, const QString &, &QFileInfo::setFile>("setFile");
   // bool exists() const;
@@ -124,11 +123,11 @@ static void register_file_info_class(script::Namespace ns)
   // uint groupId() const;
   binder.add_fun<uint, &QFileInfo::groupId>("groupId");
   // bool permission(QFile::Permissions) const;
-  binder.add_fun<bool, QFile::Permissions, &QFileInfo::permission>("permission");
+  /// TODO: bool permission(QFile::Permissions) const;
   // QFile::Permissions permissions() const;
-  binder.add_fun<QFile::Permissions, &QFileInfo::permissions>("permissions");
+  /// TODO: QFile::Permissions permissions() const;
   // qint64 size() const;
-  binder.add_fun<qint64, &QFileInfo::size>("size");
+  /// TODO: qint64 size() const;
   // QDateTime created() const;
   binder.add_fun<QDateTime, &QFileInfo::created>("created");
   // QDateTime birthTime() const;
@@ -140,23 +139,26 @@ static void register_file_info_class(script::Namespace ns)
   // QDateTime lastRead() const;
   binder.add_fun<QDateTime, &QFileInfo::lastRead>("lastRead");
   // QDateTime fileTime(QFile::FileTime) const;
-  binder.add_fun<QDateTime, QFile::FileTime, &QFileInfo::fileTime>("fileTime");
+  /// TODO: QDateTime fileTime(QFile::FileTime) const;
   // bool caching() const;
   binder.add_fun<bool, &QFileInfo::caching>("caching");
   // void setCaching(bool);
   binder.add_void_fun<bool, &QFileInfo::setCaching>("setCaching");
 }
 
-void register_fileinfo_file(script::Namespace root)
+
+void register_fileinfo_file(script::Namespace core)
 {
   using namespace script;
 
-  register_file_info_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = core;
+
+  register_file_info_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QFileInfo &, QFileInfo &);
   binder.add_void_fun<QFileInfo &, QFileInfo &, &swap>("swap");
   // QDebug operator<<(QDebug, const QFileInfo &);
-  binder.operators().left_shift<QDebug, QDebug, const QFileInfo &>();
+  /// TODO: QDebug operator<<(QDebug, const QFileInfo &);
 }
 
