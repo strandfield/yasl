@@ -16,7 +16,7 @@ void register_dir_file(script::Namespace); // defined in dir.cpp
 void register_enums_file(script::Namespace n); // defined in enums.cpp
 void register_datetime_file(script::Namespace n); // defined in datetime.cpp
 void register_file_class(script::Namespace n); // defined in file.cpp
-void register_filedevice_class(script::Namespace n); // defined in filedevice.cpp
+void register_filedevice_file(script::Namespace n); // defined in filedevice.cpp
 void register_fileinfo_file(script::Namespace root); // defined in fileinfo.cpp
 void register_iodevice_file(script::Namespace n); // defined in iodevice.cpp
 void register_line_file(script::Namespace n); // defined in line.cpp
@@ -69,7 +69,7 @@ void load_core_module(script::Module core)
   register_bytearray_file(core.root());
   register_object_file(core.root());
   register_iodevice_file(core.root());
-  register_filedevice_class(core.root());
+  register_filedevice_file(core.root());
   register_file_class(core.root());
   register_fileinfo_file(core.root());
   register_line_file(core.root());

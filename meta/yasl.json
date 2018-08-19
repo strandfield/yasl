@@ -25370,6 +25370,335 @@
                     "hincludes": "<QIODevice>",
                     "name": "iodevice",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QIODevice",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoError"
+                                        },
+                                        {
+                                            "name": "ReadError"
+                                        },
+                                        {
+                                            "name": "WriteError"
+                                        },
+                                        {
+                                            "name": "FatalError"
+                                        },
+                                        {
+                                            "name": "ResourceError"
+                                        },
+                                        {
+                                            "name": "OpenError"
+                                        },
+                                        {
+                                            "name": "AbortError"
+                                        },
+                                        {
+                                            "name": "TimeOutError"
+                                        },
+                                        {
+                                            "name": "UnspecifiedError"
+                                        },
+                                        {
+                                            "name": "RemoveError"
+                                        },
+                                        {
+                                            "name": "RenameError"
+                                        },
+                                        {
+                                            "name": "PositionError"
+                                        },
+                                        {
+                                            "name": "ResizeError"
+                                        },
+                                        {
+                                            "name": "PermissionsError"
+                                        },
+                                        {
+                                            "name": "CopyError"
+                                        }
+                                    ],
+                                    "name": "FileError",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "FileAccessTime"
+                                        },
+                                        {
+                                            "name": "FileBirthTime"
+                                        },
+                                        {
+                                            "name": "FileMetadataChangeTime"
+                                        },
+                                        {
+                                            "name": "FileModificationTime"
+                                        }
+                                    ],
+                                    "name": "FileTime",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ReadOwner"
+                                        },
+                                        {
+                                            "name": "WriteOwner"
+                                        },
+                                        {
+                                            "name": "ExeOwner"
+                                        },
+                                        {
+                                            "name": "ReadUser"
+                                        },
+                                        {
+                                            "name": "WriteUser"
+                                        },
+                                        {
+                                            "name": "ExeUser"
+                                        },
+                                        {
+                                            "name": "ReadGroup"
+                                        },
+                                        {
+                                            "name": "WriteGroup"
+                                        },
+                                        {
+                                            "name": "ExeGroup"
+                                        },
+                                        {
+                                            "name": "ReadOther"
+                                        },
+                                        {
+                                            "name": "WriteOther"
+                                        },
+                                        {
+                                            "name": "ExeOther"
+                                        }
+                                    ],
+                                    "name": "Permission",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AutoCloseHandle"
+                                        },
+                                        {
+                                            "name": "DontCloseHandle"
+                                        }
+                                    ],
+                                    "name": "FileHandleFlag",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "~QFileDevice",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "error",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFileDevice::FileError",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "unsetError",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "close",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSequential",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "handle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fileName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "seek",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "atEnd",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "flush",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resize",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "permissions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFileDevice::Permissions",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPermissions",
+                                    "parameters": [
+                                        "QFileDevice::Permissions"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoOptions"
+                                        },
+                                        {
+                                            "name": "MapPrivateOption"
+                                        }
+                                    ],
+                                    "name": "MemoryMapFlags",
+                                    "type": "enum"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "map",
+                                    "parameters": [
+                                        "qint64",
+                                        "qint64",
+                                        "QFileDevice::MemoryMapFlags"
+                                    ],
+                                    "returns": "uchar *",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "unmap",
+                                    "parameters": [
+                                        "uchar *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fileTime",
+                                    "parameters": [
+                                        "QFileDevice::FileTime"
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFileTime",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "QFileDevice::FileTime"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFileDevice",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFileDevice::Permissions::enum_type",
+                                "QFileDevice::Permissions::enum_type"
+                            ],
+                            "returns": "QFlags<QFileDevice::Permissions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFileDevice::Permissions::enum_type",
+                                "QFlags<QFileDevice::Permissions::enum_type>"
+                            ],
+                            "returns": "QFlags<QFileDevice::Permissions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFileDevice::Permissions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "yasl/core/iodevice.h,<QFileDevice>",
+                    "name": "filedevice",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -25454,6 +25783,25 @@
                 "id": "QDirSortFlags",
                 "name": "QDir::SortFlags",
                 "rename": "SortFlags"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDevice",
+                "name": "QFileDevice",
+                "rename": "FileDevice",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDevicePermissions",
+                "name": "QFileDevice::Permissions",
+                "rename": "Permissions"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDeviceFileHandleFlags",
+                "name": "QFileDevice::FileHandleFlags",
+                "rename": "FileHandleFlags"
             },
             {
                 "header": "yasl/core/fileinfo.h",
@@ -26190,6 +26538,33 @@
                 "id": "QDirSortFlag",
                 "links": "flags@QDir::SortFlags",
                 "name": "QDir::SortFlag"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDeviceFileError",
+                "name": "QFileDevice::FileError"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDeviceFileTime",
+                "name": "QFileDevice::FileTime"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDevicePermission",
+                "links": "flags@QFileDevice::Permissions",
+                "name": "QFileDevice::Permission"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDeviceFileHandleFlag",
+                "links": "flags@QFileDevice::FileHandleFlags",
+                "name": "QFileDevice::FileHandleFlag"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDeviceMemoryMapFlags",
+                "name": "QFileDevice::MemoryMapFlags"
             },
             {
                 "header": "yasl/core/iodevice.h",

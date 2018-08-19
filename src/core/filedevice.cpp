@@ -2,21 +2,24 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/core/file.h"
+#include "yasl/core/filedevice.h"
 
+#include "yasl/binding/enum.h"
+#include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
-#include "yasl/core/datetime.h"
 #include "yasl/core/flags.h"
 
+#include "yasl/core/datetime.h"
+#include "yasl/core/filedevice.h"
+
 #include <script/classbuilder.h>
-#include <script/engine.h>
 #include <script/enumbuilder.h>
 
-void register_file_error_enum(script::Class filedevice)
+static void register_file_device_file_error_enum(script::Class file_device)
 {
   using namespace script;
 
-  Enum file_error = filedevice.Enum("FileError").setId(Type::QFileDeviceFileError).get();
+  Enum file_error = file_device.Enum("FileError").setId(script::Type::QFileDeviceFileError).get();
 
   file_error.addValue("NoError", QFileDevice::NoError);
   file_error.addValue("ReadError", QFileDevice::ReadError);
@@ -36,49 +39,26 @@ void register_file_error_enum(script::Class filedevice)
 }
 
 
-void register_file_handle_flag_enum(script::Class filedevice)
+static void register_file_device_file_time_enum(script::Class file_device)
 {
   using namespace script;
 
-  Enum file_handle_flag = filedevice.Enum("FileHandleFlag").setId(Type::QFileDeviceFileHandleFlag).get();
+  Enum file_time = file_device.Enum("FileTime").setId(script::Type::QFileDeviceFileTime).get();
 
-  file_handle_flag.addValue("AutoCloseHandle", QFileDevice::AutoCloseHandle);
-  file_handle_flag.addValue("DontCloseHandle", QFileDevice::DontCloseHandle);
-
-  Class file_handle_flags = register_qflags_type<QFileDevice::FileHandleFlag>(filedevice, "FileHandleFlags", script::Type::QFileDeviceFileHandleFlags);
+  file_time.addValue("FileAccessTime", QFileDevice::FileAccessTime);
+  file_time.addValue("FileBirthTime", QFileDevice::FileBirthTime);
+  file_time.addValue("FileMetadataChangeTime", QFileDevice::FileMetadataChangeTime);
+  file_time.addValue("FileModificationTime", QFileDevice::FileModificationTime);
 }
 
 
-void register_filetime_enum(script::Class filedevice)
+static void register_file_device_permission_enum(script::Class file_device)
 {
   using namespace script;
 
-  Enum filetime = filedevice.Enum("FileTime").setId(Type::QFileDeviceFileTime).get();
+  Enum permission = file_device.Enum("Permission").setId(script::Type::QFileDevicePermission).get();
 
-  filetime.addValue("FileAccessTime", QFileDevice::FileAccessTime);
-  filetime.addValue("FileBirthTime", QFileDevice::FileBirthTime);
-  filetime.addValue("FileMetadataChangeTime", QFileDevice::FileMetadataChangeTime);
-  filetime.addValue("FileModificationTime", QFileDevice::FileModificationTime);
-}
-
-
-void register_memorymapflags_enum(script::Class filedevice)
-{
-  using namespace script;
-
-  Enum memorymapflags = filedevice.Enum("MemoryMapFlags").setId(Type::QFileDeviceMemoryMapFlags).get();
-
-  memorymapflags.addValue("NoOptions", QFileDevice::NoOptions);
-  memorymapflags.addValue("MapPrivateOption", QFileDevice::MapPrivateOption);
-}
-
-
-void register_permission_enum(script::Class filedevice)
-{
-  using namespace script;
-
-  Enum permission = filedevice.Enum("Permission").setId(Type::QFileDevicePermission).get();
-
+  register_qflags_type<QFileDevice::Permission>(file_device, "Permissions", script::Type::QFileDevicePermissions);
   permission.addValue("ReadOwner", QFileDevice::ReadOwner);
   permission.addValue("WriteOwner", QFileDevice::WriteOwner);
   permission.addValue("ExeOwner", QFileDevice::ExeOwner);
@@ -91,59 +71,99 @@ void register_permission_enum(script::Class filedevice)
   permission.addValue("ReadOther", QFileDevice::ReadOther);
   permission.addValue("WriteOther", QFileDevice::WriteOther);
   permission.addValue("ExeOther", QFileDevice::ExeOther);
-  permission.addValue("ResizeError", QFileDevice::ResizeError);
-  permission.addValue("PermissionsError", QFileDevice::PermissionsError);
-  permission.addValue("CopyError", QFileDevice::CopyError);
-
-  Class permissions = register_qflags_type<QFileDevice::Permission>(filedevice, "Permissions", Type::QFileDevicePermissions);
 }
 
 
-void register_filedevice_class(script::Namespace n)
+static void register_file_device_file_handle_flag_enum(script::Class file_device)
 {
   using namespace script;
 
-  Class iodevice = n.engine()->getClass(Type::QIODevice);
+  Enum file_handle_flag = file_device.Enum("FileHandleFlag").setId(script::Type::QFileDeviceFileHandleFlag).get();
 
-  Class filedevice = n.Class("FileDevice").setId(Type::QFileDevice).setBase(iodevice).get();
-
-  register_file_error_enum(filedevice);
-  register_file_handle_flag_enum(filedevice);
-  register_filetime_enum(filedevice);
-  register_memorymapflags_enum(filedevice);
-  register_permission_enum(filedevice);
-
-  binding::QClass<QFileDevice> binder{ filedevice, &QFileDevice::staticMetaObject };
-
-  /* Public functions */
-
-  // QFileDevice::FileError error() const
-  binder.add_fun<QFileDevice::FileError, &QFileDevice::error>("error");
-  // virtual QString fileName() const
-  /// TODO !!!
-  // QDateTime fileTime(QFileDevice::FileTime time) const
-  binder.add_fun<QDateTime, QFileDevice::FileTime, &QFileDevice::fileTime>("fileTime");
-  // bool flush()
-  binder.add_fun<bool, &QFileDevice::flush>("flush");
-  // int handle() const
-  binder.add_fun<int, &QFileDevice::handle>("handle");
-  // uchar * map(qint64 offset, qint64 size, QFileDevice::MemoryMapFlags flags = NoOptions)
-  /// TODO !!!
-  // virtual QFileDevice::Permissions permissions() const
-  /// TODO !!!
-  // virtual bool resize(qint64 sz)
-  /// TODO !!!
-  // bool setFileTime(const QDateTime &newDate, QFileDevice::FileTime fileTime)
-  binder.add_fun<bool, const QDateTime &, QFileDevice::FileTime, &QFileDevice::setFileTime>("setFileTime");
-  // virtual bool setPermissions(QFileDevice::Permissions permissions)
-  /// TODO !!!
-  // bool unmap(uchar *address)
-  /// TODO !!!
-  // void unsetError()
-  binder.add_void_fun<&QFileDevice::unsetError>("unsetError");
-
-
-  /* MetaObject resgistration */
-
-  n.engine()->registerQtType(&QFileDevice::staticMetaObject, Type{ filedevice.id() });
+  register_qflags_type<QFileDevice::FileHandleFlag>(file_device, "FileHandleFlags", script::Type::QFileDeviceFileHandleFlags);
+  file_handle_flag.addValue("AutoCloseHandle", QFileDevice::AutoCloseHandle);
+  file_handle_flag.addValue("DontCloseHandle", QFileDevice::DontCloseHandle);
 }
+
+
+static void register_file_device_memory_map_flags_enum(script::Class file_device)
+{
+  using namespace script;
+
+  Enum memory_map_flags = file_device.Enum("MemoryMapFlags").setId(script::Type::QFileDeviceMemoryMapFlags).get();
+
+  memory_map_flags.addValue("NoOptions", QFileDevice::NoOptions);
+  memory_map_flags.addValue("MapPrivateOption", QFileDevice::MapPrivateOption);
+}
+
+
+static void register_file_device_class(script::Namespace ns)
+{
+  using namespace script;
+
+  Class file_device = ns.Class("FileDevice").setId(script::Type::QFileDevice)
+    .setBase(script::Type::QIODevice).get();
+
+  register_file_device_file_error_enum(file_device);
+  register_file_device_file_time_enum(file_device);
+  register_file_device_permission_enum(file_device);
+  register_file_device_file_handle_flag_enum(file_device);
+  register_file_device_memory_map_flags_enum(file_device);
+  binding::QClass<QFileDevice> binder{ file_device, &QFileDevice::staticMetaObject };
+
+  // ~QFileDevice();
+  binder.add_dtor();
+  // QFileDevice::FileError error() const;
+  binder.add_fun<QFileDevice::FileError, &QFileDevice::error>("error");
+  // void unsetError();
+  binder.add_void_fun<&QFileDevice::unsetError>("unsetError");
+  // void close();
+  binder.add_void_fun<&QFileDevice::close>("close");
+  // bool isSequential() const;
+  binder.add_fun<bool, &QFileDevice::isSequential>("isSequential");
+  // int handle() const;
+  binder.add_fun<int, &QFileDevice::handle>("handle");
+  // QString fileName() const;
+  binder.add_fun<QString, &QFileDevice::fileName>("fileName");
+  // qint64 pos() const;
+  /// TODO: qint64 pos() const;
+  // bool seek(qint64);
+  /// TODO: bool seek(qint64);
+  // bool atEnd() const;
+  binder.add_fun<bool, &QFileDevice::atEnd>("atEnd");
+  // bool flush();
+  binder.add_fun<bool, &QFileDevice::flush>("flush");
+  // qint64 size() const;
+  /// TODO: qint64 size() const;
+  // bool resize(qint64);
+  /// TODO: bool resize(qint64);
+  // QFileDevice::Permissions permissions() const;
+  binder.add_fun<QFileDevice::Permissions, &QFileDevice::permissions>("permissions");
+  // bool setPermissions(QFileDevice::Permissions);
+  binder.add_fun<bool, QFileDevice::Permissions, &QFileDevice::setPermissions>("setPermissions");
+  // QDateTime fileTime(QFileDevice::FileTime) const;
+  binder.add_fun<QDateTime, QFileDevice::FileTime, &QFileDevice::fileTime>("fileTime");
+  // bool setFileTime(const QDateTime &, QFileDevice::FileTime);
+  binder.add_fun<bool, const QDateTime &, QFileDevice::FileTime, &QFileDevice::setFileTime>("setFileTime");
+
+  file_device.engine()->registerQtType(&QFileDevice::staticMetaObject, file_device.id());
+}
+
+
+void register_filedevice_file(script::Namespace core)
+{
+  using namespace script;
+
+  Namespace ns = core;
+
+  register_file_device_class(ns);
+  binding::Namespace binder{ ns };
+
+  // QFlags<QFileDevice::Permissions::enum_type> operator|(QFileDevice::Permissions::enum_type, QFileDevice::Permissions::enum_type);
+  /// TODO: QFlags<QFileDevice::Permissions::enum_type> operator|(QFileDevice::Permissions::enum_type, QFileDevice::Permissions::enum_type);
+  // QFlags<QFileDevice::Permissions::enum_type> operator|(QFileDevice::Permissions::enum_type, QFlags<QFileDevice::Permissions::enum_type>);
+  /// TODO: QFlags<QFileDevice::Permissions::enum_type> operator|(QFileDevice::Permissions::enum_type, QFlags<QFileDevice::Permissions::enum_type>);
+  // QIncompatibleFlag operator|(QFileDevice::Permissions::enum_type, int);
+  /// TODO: QIncompatibleFlag operator|(QFileDevice::Permissions::enum_type, int);
+}
+
