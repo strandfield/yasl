@@ -159,6 +159,28 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename ReturnType, ReturnType(*fun)(), typename FunType = decltype(fun)>
+  void add_static(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>());
+
+    builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<void(*fun)(), typename FunType = decltype(fun)>
+  void add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic();
+
+    builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 
   /****************************************************************
   1-arg member functions
@@ -211,6 +233,18 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename A1, void(*fun)(A1), typename FunType = decltype(fun)>
+  void add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>());
+    
+    builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   /****************************************************************
   2-arg member functions
   ****************************************************************/
@@ -248,6 +282,18 @@ public:
       .params(make_type<A1>(), make_type<A2>());
 
     builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, void(*fun)(A1, A2), typename FunType = decltype(fun)>
+  void add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>());
+
+     builder.create();
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
@@ -291,6 +337,17 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename A1, typename A2, typename A3, void(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
+  void add_static_void_fun(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto builder = class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+
+      builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 
   /****************************************************************
   4-arg member functions
