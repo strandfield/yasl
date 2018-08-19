@@ -657,7 +657,7 @@ void Generator::generate(ClassRef cla)
   if (!cla->base.isEmpty()) 
   {
     Type base_class_info = typeinfo(cla->base);
-    out += endl + ".setBase(script::Type::" + base_class_info.id + ")";
+    out += endl + "    .setBase(script::Type::" + base_class_info.id + ")";
   }
   if (cla->isFinal)
   {
