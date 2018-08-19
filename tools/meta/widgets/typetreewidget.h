@@ -28,7 +28,7 @@ protected:
     RenameColumn,
     IdColumn,
     HeaderColumn,
-    StorageColumn,
+    TagColumn,
     LinksColumn,
   };
 

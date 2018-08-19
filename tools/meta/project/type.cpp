@@ -21,8 +21,8 @@ QJsonObject Type::toJson() const
     ret["rename"] = rename;
   if (!header.isEmpty())
     ret["header"] = header;
-  if (!storage.isEmpty())
-    ret["storage"] = storage;
+  if (!tag.isEmpty())
+    ret["tag"] = tag;
   if (!links.isEmpty())
     ret["links"] = links;
 
@@ -34,7 +34,7 @@ Type Type::fromJson(const QJsonObject & obj)
   Type ret{ obj.value("name").toString(), obj.value("id").toString() };
   ret.rename = obj.value("rename").toString();
   ret.header = obj.value("header").toString();
-  ret.storage = obj.value("storage").toString();
+  ret.tag = obj.value("tag").toString();
   ret.links = obj.value("links").toString();
   return ret;
 }

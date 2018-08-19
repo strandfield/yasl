@@ -135,12 +135,13 @@ QStringList HeaderFile::generateBindingDefinitions()
   {
     out << ("template<> struct make_type_t<" + t.name + "> { inline static script::Type get() { return script::Type::" + t.id + "; } };");
 
-    if (!t.storage.isEmpty())
+    if (!t.tag.isEmpty())
     {
-      bindingIncludes.insert("yasl/binding/values.h");
-
-      out << ("template<> struct storage_type<" + t.id + "> { typedef " + t.storage + " type; };");
-      out << ("template<> inline " + t.storage + " get<" + t.id + ">(const script::Value & val) { static_assert(false); }");
+      if (t.tag == "qobject_tag")
+      {
+        bindingIncludes.insert("yasl/core/qobject-binding.h");
+        out << ("template<> struct tag_resolver<" + t.name + "> { typedef qobject_tag tag_type; };");
+      }
     }
   }
   out << "} // namespace binding";

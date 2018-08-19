@@ -13,7 +13,7 @@ TypeTreeWidget::TypeTreeWidget(const ProjectRef & pro)
 {
   setColumnCount(6);
   setHeaderLabels(QStringList() << "C++ type" << "Yasl name"
-    << "Id" << "Header" << "Storage type" << "Links");
+    << "Id" << "Header" << "Tag" << "Links");
 
   fillTreeWidget(pro);
 
@@ -71,8 +71,8 @@ QString & TypeTreeWidget::getField(Type & t, int col)
     return t.id;
   case HeaderColumn:
     return t.header;
-  case StorageColumn:
-    return t.storage;
+  case TagColumn:
+    return t.tag;
   case LinksColumn:
     return t.links;
   }
@@ -183,7 +183,7 @@ QTreeWidgetItem* TypeTreeWidget::createItem(const Type & t)
   item->setText(RenameColumn, t.rename);
   item->setText(IdColumn, t.id);
   item->setText(HeaderColumn, t.header);
-  item->setText(StorageColumn, t.storage);
+  item->setText(TagColumn, t.tag);
   item->setText(LinksColumn, t.links);
   return item;
 }

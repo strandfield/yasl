@@ -15,7 +15,7 @@ public:
   QString id;
   QString rename;
   QString header;
-  QString storage;
+  QString tag;
   QString links;
 
 public:

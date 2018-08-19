@@ -28,7 +28,7 @@ private:
   QLineEdit *mIdLineEdit;
   QLineEdit *mRenameLineEdit;
   QLineEdit *mHeaderLineEdit;
-  QLineEdit *mStorageLineEdit;
+  QLineEdit *mTagLineEdit;
   QLineEdit *mLinksLineEdit;
 };
 
