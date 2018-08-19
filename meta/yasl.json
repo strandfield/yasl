@@ -21254,6 +21254,473 @@
                     "hincludes": "<QLocale>",
                     "name": "locale",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "const": true,
+                                    "name": "metaObject",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QMetaObject *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "tr",
+                                    "parameters": [
+                                        "const char *",
+                                        "const char *",
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "trUtf8",
+                                    "parameters": [
+                                        "const char *",
+                                        "const char *",
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QObject",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QObject",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "event",
+                                    "parameters": [
+                                        "QEvent *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "eventFilter",
+                                    "parameters": [
+                                        "QObject *",
+                                        "QEvent *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "objectName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setObjectName",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isWidgetType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isWindowType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "signalsBlocked",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "blockSignals",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "thread",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QThread *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveToThread",
+                                    "parameters": [
+                                        "QThread *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "startTimer",
+                                    "parameters": [
+                                        "int",
+                                        "Qt::TimerType"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "startTimer",
+                                    "parameters": [
+                                        "std::chrono::milliseconds",
+                                        "Qt::TimerType"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "killTimer",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "children",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QObjectList &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setParent",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "installEventFilter",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeEventFilter",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "connect",
+                                    "parameters": [
+                                        "const QObject *",
+                                        "const char *",
+                                        "const QObject *",
+                                        "const char *",
+                                        "Qt::ConnectionType"
+                                    ],
+                                    "returns": "QMetaObject::Connection",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "connect",
+                                    "parameters": [
+                                        "const QObject *",
+                                        "const QMetaMethod &",
+                                        "const QObject *",
+                                        "const QMetaMethod &",
+                                        "Qt::ConnectionType"
+                                    ],
+                                    "returns": "QMetaObject::Connection",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "connect",
+                                    "parameters": [
+                                        "const QObject *",
+                                        "const char *",
+                                        "const char *",
+                                        "Qt::ConnectionType"
+                                    ],
+                                    "returns": "QMetaObject::Connection",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "disconnect",
+                                    "parameters": [
+                                        "const QObject *",
+                                        "const char *",
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "disconnect",
+                                    "parameters": [
+                                        "const QObject *",
+                                        "const QMetaMethod &",
+                                        "const QObject *",
+                                        "const QMetaMethod &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "disconnect",
+                                    "parameters": [
+                                        "const char *",
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "disconnect",
+                                    "parameters": [
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "disconnect",
+                                    "parameters": [
+                                        "const QMetaObject::Connection &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dumpObjectTree",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dumpObjectInfo",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setProperty",
+                                    "parameters": [
+                                        "const char *",
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "property",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dynamicPropertyNames",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "registerUserData",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uint",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "setUserData",
+                                    "parameters": [
+                                        "uint",
+                                        "QObjectUserData *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "userData",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "QObjectUserData *",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "destroyed",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "objectNameChanged",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QObject::QPrivateSignal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "parent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QObject *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inherits",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "deleteLater",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QObject",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QObject *"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QSignalBlocker",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QSignalBlocker",
+                                    "parameters": [
+                                        "QObject &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QSignalBlocker",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QSignalBlocker",
+                                    "parameters": [
+                                        "QSignalBlocker &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QSignalBlocker &&"
+                                    ],
+                                    "returns": "QSignalBlocker &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reblock",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "unblock",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QSignalBlocker",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QObject>",
+                    "name": "object",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -21411,6 +21878,34 @@
                 "rename": "PointF"
             },
             {
+                "header": "yasl/core/object.h",
+                "id": "QObject",
+                "links": "ref@QObject*;ptr@Ptr<QObject*>;list@QList<QObject*>",
+                "name": "QObject",
+                "rename": "Object",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/core/object.h",
+                "id": "QObjectStar",
+                "name": "QObject*"
+            },
+            {
+                "header": "yasl/core/object.h",
+                "id": "PtrQObject",
+                "name": "Ptr<QObject*>"
+            },
+            {
+                "header": "yasl/core/object.h",
+                "id": "QListQObject",
+                "name": "QList<QObject*>"
+            },
+            {
+                "header": "yasl/core/object.h",
+                "id": "QListQObject",
+                "name": "QObjectList"
+            },
+            {
                 "header": "yasl/core/rect.h",
                 "id": "QRect",
                 "name": "QRect",
@@ -21421,6 +21916,12 @@
                 "id": "QRectF",
                 "name": "QRectF",
                 "rename": "RectF"
+            },
+            {
+                "header": "yasl/core/object.h",
+                "id": "QSignalBlocker",
+                "name": "QSignalBlocker",
+                "rename": "SignalBlocker"
             },
             {
                 "header": "yasl/core/size.h",

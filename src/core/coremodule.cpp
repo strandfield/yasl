@@ -26,7 +26,7 @@ void register_stringlist_class(script::Namespace n); // defined in string.cpp
 void register_bytearray_file(script::Namespace n); // defined in bytearray.cpp
 void register_qevent(script::Namespace n); // defined in event.cpp
 void register_margins_file(script::Namespace n); // defined in margins.cpp
-void register_qobject(script::Namespace n); // defined in object.cpp
+void register_object_file(script::Namespace n); // defined in object.cpp
 void register_point_file(script::Namespace n); // defined in point.cpp
 void register_rect_file(script::Namespace n); // defined in rect.cpp
 void register_size_file(script::Namespace n); // defined in size.cpp
@@ -65,7 +65,7 @@ void load_core_module(script::Module core)
   register_locale_file(core.root());
   register_regularexpression_file(core.root());
   register_bytearray_file(core.root());
-  register_qobject(core.root());
+  register_object_file(core.root());
   register_iodevice_class(core.root());
   register_filedevice_class(core.root());
   register_file_class(core.root());

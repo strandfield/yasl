@@ -5,29 +5,19 @@
 #ifndef YASL_CORE_OBJECT_H
 #define YASL_CORE_OBJECT_H
 
+#include "yasl/binding/types.h"
 #include "yasl/core/qobject-binding.h"
 #include "yasl/utils/ptr.h"
-#include "yasl/utils/ref.h"
 
 #include <QObject>
 
-namespace callbacks
-{
-
-script::Value connect(script::FunctionCall *c);
-
-} // namespace callbacks
-
-namespace binding
-{
-
+namespace binding {
+template<> struct make_type_t<Ptr<QObject*>> { inline static script::Type get() { return script::Type::PtrQObject; } };
+template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
+template<> struct make_type_t<QObject> { inline static script::Type get() { return script::Type::QObject; } };
 template<> struct tag_resolver<QObject> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QObject*> { inline static script::Type get() { return script::Type::QObjectStar; } };
-template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
-template<> struct make_type_t<Ptr<QObject*>> { inline static script::Type get() { return script::Type::PtrQObject; } };
-
-static_assert(std::is_same<binding::storage_type<QObject>::type, QObject*>::value, "QObject must be stored as QObject*");
-
+template<> struct make_type_t<QSignalBlocker> { inline static script::Type get() { return script::Type::QSignalBlocker; } };
 } // namespace binding
 
 #endif // YASL_CORE_OBJECT_H
