@@ -22099,6 +22099,1307 @@
                     "hincludes": "<QUuid>",
                     "name": "uuid",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "cppincludes": "yasl/core/variant-functions.h",
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Invalid"
+                                        },
+                                        {
+                                            "name": "Bool"
+                                        },
+                                        {
+                                            "name": "Int"
+                                        },
+                                        {
+                                            "name": "UInt"
+                                        },
+                                        {
+                                            "name": "LongLong"
+                                        },
+                                        {
+                                            "name": "ULongLong"
+                                        },
+                                        {
+                                            "name": "Double"
+                                        },
+                                        {
+                                            "name": "Char"
+                                        },
+                                        {
+                                            "name": "Map"
+                                        },
+                                        {
+                                            "name": "List"
+                                        },
+                                        {
+                                            "name": "String"
+                                        },
+                                        {
+                                            "name": "StringList"
+                                        },
+                                        {
+                                            "name": "ByteArray"
+                                        },
+                                        {
+                                            "name": "BitArray"
+                                        },
+                                        {
+                                            "name": "Date"
+                                        },
+                                        {
+                                            "name": "Time"
+                                        },
+                                        {
+                                            "name": "DateTime"
+                                        },
+                                        {
+                                            "name": "Url"
+                                        },
+                                        {
+                                            "name": "Locale"
+                                        },
+                                        {
+                                            "name": "Rect"
+                                        },
+                                        {
+                                            "name": "RectF"
+                                        },
+                                        {
+                                            "name": "Size"
+                                        },
+                                        {
+                                            "name": "SizeF"
+                                        },
+                                        {
+                                            "name": "Line"
+                                        },
+                                        {
+                                            "name": "LineF"
+                                        },
+                                        {
+                                            "name": "Point"
+                                        },
+                                        {
+                                            "name": "PointF"
+                                        },
+                                        {
+                                            "name": "RegExp"
+                                        },
+                                        {
+                                            "name": "RegularExpression"
+                                        },
+                                        {
+                                            "name": "Hash"
+                                        },
+                                        {
+                                            "name": "EasingCurve"
+                                        },
+                                        {
+                                            "name": "Uuid"
+                                        },
+                                        {
+                                            "name": "ModelIndex"
+                                        },
+                                        {
+                                            "name": "PersistentModelIndex"
+                                        },
+                                        {
+                                            "name": "LastCoreType"
+                                        },
+                                        {
+                                            "name": "Font"
+                                        },
+                                        {
+                                            "name": "Pixmap"
+                                        },
+                                        {
+                                            "name": "Brush"
+                                        },
+                                        {
+                                            "name": "Color"
+                                        },
+                                        {
+                                            "name": "Palette"
+                                        },
+                                        {
+                                            "name": "Image"
+                                        },
+                                        {
+                                            "name": "Polygon"
+                                        },
+                                        {
+                                            "name": "Region"
+                                        },
+                                        {
+                                            "name": "Bitmap"
+                                        },
+                                        {
+                                            "name": "Cursor"
+                                        },
+                                        {
+                                            "name": "KeySequence"
+                                        },
+                                        {
+                                            "name": "Pen"
+                                        },
+                                        {
+                                            "name": "TextLength"
+                                        },
+                                        {
+                                            "name": "TextFormat"
+                                        },
+                                        {
+                                            "name": "Matrix"
+                                        },
+                                        {
+                                            "name": "Transform"
+                                        },
+                                        {
+                                            "name": "Matrix4x4"
+                                        },
+                                        {
+                                            "name": "Vector2D"
+                                        },
+                                        {
+                                            "name": "Vector3D"
+                                        },
+                                        {
+                                            "name": "Vector4D"
+                                        },
+                                        {
+                                            "name": "Quaternion"
+                                        },
+                                        {
+                                            "name": "PolygonF"
+                                        },
+                                        {
+                                            "name": "Icon"
+                                        },
+                                        {
+                                            "name": "LastGuiType"
+                                        },
+                                        {
+                                            "name": "SizePolicy"
+                                        },
+                                        {
+                                            "name": "UserType"
+                                        },
+                                        {
+                                            "name": "LastType"
+                                        }
+                                    ],
+                                    "name": "Type",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QVariant",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "QVariant::Type"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "int",
+                                        "const void *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "int",
+                                        "const void *",
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "QDataStream &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "qlonglong"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "qulonglong"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QBitArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "QLatin1String"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QList<QVariant> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QMap<QString, QVariant> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QHash<QString, QVariant> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QSizeF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QLine &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QRegExp &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QRegularExpression &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QEasingCurve &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QUuid &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QModelIndex &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QPersistentModelIndex &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QJsonObject &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "const QJsonDocument &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "QVariant &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QVariant",
+                                    "parameters": [
+                                        "QVariant &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QVariant &&"
+                                    ],
+                                    "returns": "QVariant &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QVariant &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "type",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVariant::Type",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "userType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "typeName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const char *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "canConvert",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "convert",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "detach",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "toInt",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "va_toInt",
+                                    "parameters": [
+                                    ],
+                                    "rename": "toInt",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "toUInt",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "toLongLong",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "qlonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "toULongLong",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "qulonglong",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toBool",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "toDouble",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "va_toDouble",
+                                    "parameters": [
+                                    ],
+                                    "rename": "toDouble",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "toFloat",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "va_toFloat",
+                                    "parameters": [
+                                    ],
+                                    "rename": "toFloat",
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toReal",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toByteArray",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toBitArray",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QBitArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toStringList",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toChar",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QChar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDateTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toList",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QVariant>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toMap",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QMap<QString, QVariant>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toHash",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QHash<QString, QVariant>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toPoint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toPointF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toSizeF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSizeF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLine",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLineF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLineF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toRectF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toLocale",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toRegExp",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegExp",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toRegularExpression",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUrl",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QUrl",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toEasingCurve",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QEasingCurve",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toUuid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QUuid",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toModelIndex",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QModelIndex",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toPersistentModelIndex",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPersistentModelIndex",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toJsonValue",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toJsonObject",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QJsonObject",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toJsonArray",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QJsonArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toJsonDocument",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QJsonDocument",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "load",
+                                    "parameters": [
+                                        "QDataStream &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "save",
+                                    "parameters": [
+                                        "QDataStream &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "typeToName",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "const char *",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "nameToType",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "QVariant::Type",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "constData",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const void *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "data",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const void *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<=",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>=",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "create",
+                                    "parameters": [
+                                        "int",
+                                        "const void *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cmp",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "compare",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "convert",
+                                    "parameters": [
+                                        "const int",
+                                        "void *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVariant::DataPtr &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QVariant::DataPtr &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QVariant",
+                            "type": "class"
+                        },
+                        {
+                            "checked": 0,
+                            "name": "qVariantFromValue",
+                            "parameters": [
+                                "const QVariant &"
+                            ],
+                            "returns": "QVariant",
+                            "type": "function"
+                        },
+                        {
+                            "checked": 0,
+                            "name": "qVariantSetValue",
+                            "parameters": [
+                                "QVariant &",
+                                "const QVariant &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QVariant &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QVariant &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QVariant::Type &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QVariant::Type"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QVariant &",
+                                "QVariant &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "checked": 0,
+                            "name": "qvariant_cast",
+                            "parameters": [
+                                "const QVariant &"
+                            ],
+                            "returns": "QVariant",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QVariant &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QVariant::Type"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QVariant>",
+                    "name": "variant",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -22354,6 +23655,12 @@
                 "id": "QUuid",
                 "name": "QUuid",
                 "rename": "Uuid"
+            },
+            {
+                "header": "yasl/core/variant.h",
+                "id": "QVariant",
+                "name": "QVariant",
+                "rename": "Variant"
             }
         ],
         "enums": [
@@ -22955,6 +24262,11 @@
                 "header": "yasl/core/uuid.h",
                 "id": "QUuidVersion",
                 "name": "QUuid::Version"
+            },
+            {
+                "header": "yasl/core/variant.h",
+                "id": "QVariantType",
+                "name": "QVariant::Type"
             }
         ],
         "fundamentals": [
