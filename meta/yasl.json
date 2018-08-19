@@ -24195,6 +24195,470 @@
                     "hincludes": "<QRegularExpression>",
                     "name": "regularexpression",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoError"
+                                        },
+                                        {
+                                            "name": "AccessError"
+                                        },
+                                        {
+                                            "name": "FormatError"
+                                        }
+                                    ],
+                                    "name": "Status",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NativeFormat"
+                                        },
+                                        {
+                                            "name": "IniFormat"
+                                        },
+                                        {
+                                            "name": "Registry32Format"
+                                        },
+                                        {
+                                            "name": "Registry64Format"
+                                        },
+                                        {
+                                            "name": "InvalidFormat"
+                                        },
+                                        {
+                                            "name": "CustomFormat1"
+                                        },
+                                        {
+                                            "name": "CustomFormat2"
+                                        },
+                                        {
+                                            "name": "CustomFormat3"
+                                        },
+                                        {
+                                            "name": "CustomFormat4"
+                                        },
+                                        {
+                                            "name": "CustomFormat5"
+                                        },
+                                        {
+                                            "name": "CustomFormat6"
+                                        },
+                                        {
+                                            "name": "CustomFormat7"
+                                        },
+                                        {
+                                            "name": "CustomFormat8"
+                                        },
+                                        {
+                                            "name": "CustomFormat9"
+                                        },
+                                        {
+                                            "name": "CustomFormat10"
+                                        },
+                                        {
+                                            "name": "CustomFormat11"
+                                        },
+                                        {
+                                            "name": "CustomFormat12"
+                                        },
+                                        {
+                                            "name": "CustomFormat13"
+                                        },
+                                        {
+                                            "name": "CustomFormat14"
+                                        },
+                                        {
+                                            "name": "CustomFormat15"
+                                        },
+                                        {
+                                            "name": "CustomFormat16"
+                                        }
+                                    ],
+                                    "name": "Format",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "UserScope"
+                                        },
+                                        {
+                                            "name": "SystemScope"
+                                        }
+                                    ],
+                                    "name": "Scope",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QSettings",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QSettings",
+                                    "parameters": [
+                                        "QSettings::Scope",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QSettings",
+                                    "parameters": [
+                                        "QSettings::Format",
+                                        "QSettings::Scope",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QSettings",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QSettings::Format",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QSettings",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QSettings",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "clear",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "sync",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "status",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSettings::Status",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isAtomicSyncRequired",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAtomicSyncRequired",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "beginGroup",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "endGroup",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "group",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "beginReadArray",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "beginWriteArray",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "endArray",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setArrayIndex",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "allKeys",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "childKeys",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "childGroups",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isWritable",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setValue",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "value",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "remove",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFallbacksEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fallbacksEnabled",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fileName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "format",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSettings::Format",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "scope",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSettings::Scope",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "organizationName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "applicationName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIniCodec",
+                                    "parameters": [
+                                        "QTextCodec *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIniCodec",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "iniCodec",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTextCodec *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefaultFormat",
+                                    "parameters": [
+                                        "QSettings::Format"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "defaultFormat",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSettings::Format",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSystemIniPath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUserIniPath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPath",
+                                    "parameters": [
+                                        "QSettings::Format",
+                                        "QSettings::Scope",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "registerFormat",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QSettings::ReadFunc",
+                                        "QSettings::WriteFunc",
+                                        "Qt::CaseSensitivity"
+                                    ],
+                                    "returns": "QSettings::Format",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QSettings",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QSettings>",
+                    "name": "settings",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -24420,6 +24884,13 @@
                 "id": "QRegularExpressionMatchIterator",
                 "name": "QRegularExpressionMatchIterator",
                 "rename": "RegularExpressionMatchIterator"
+            },
+            {
+                "header": "yasl/core/settings.h",
+                "id": "QSettings",
+                "name": "QSettings",
+                "rename": "Settings",
+                "tag": "qobject_tag"
             },
             {
                 "header": "yasl/core/object.h",
@@ -25062,6 +25533,21 @@
                 "id": "QRegularExpressionMatchOption",
                 "links": "flags@QRegularExpression::MatchOptions",
                 "name": "QRegularExpression::MatchOption"
+            },
+            {
+                "header": "yasl/core/settings.h",
+                "id": "QSettingsStatus",
+                "name": "QSettings::Status"
+            },
+            {
+                "header": "yasl/core/settings.h",
+                "id": "QSettingsFormat",
+                "name": "QSettings::Format"
+            },
+            {
+                "header": "yasl/core/settings.h",
+                "id": "QSettingsScope",
+                "name": "QSettings::Scope"
             },
             {
                 "header": "yasl/core/timezone.h",

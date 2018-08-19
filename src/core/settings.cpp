@@ -4,19 +4,28 @@
 
 #include "yasl/core/settings.h"
 
-#include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
-#include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/object.h"
+#include "yasl/core/settings.h"
 #include "yasl/core/variant.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
-#include <QTextCodec>
+static void register_settings_status_enum(script::Class settings)
+{
+  using namespace script;
+
+  Enum status = settings.Enum("Status").setId(script::Type::QSettingsStatus).get();
+
+  status.addValue("NoError", QSettings::NoError);
+  status.addValue("AccessError", QSettings::AccessError);
+  status.addValue("FormatError", QSettings::FormatError);
+}
+
 
 static void register_settings_format_enum(script::Class settings)
 {
@@ -24,14 +33,12 @@ static void register_settings_format_enum(script::Class settings)
 
   Enum format = settings.Enum("Format").setId(script::Type::QSettingsFormat).get();
 
+  format.addValue("NativeFormat", QSettings::NativeFormat);
+  format.addValue("IniFormat", QSettings::IniFormat);
+  format.addValue("Registry32Format", QSettings::Registry32Format);
+  format.addValue("Registry64Format", QSettings::Registry64Format);
+  format.addValue("InvalidFormat", QSettings::InvalidFormat);
   format.addValue("CustomFormat1", QSettings::CustomFormat1);
-  format.addValue("CustomFormat10", QSettings::CustomFormat10);
-  format.addValue("CustomFormat11", QSettings::CustomFormat11);
-  format.addValue("CustomFormat12", QSettings::CustomFormat12);
-  format.addValue("CustomFormat13", QSettings::CustomFormat13);
-  format.addValue("CustomFormat14", QSettings::CustomFormat14);
-  format.addValue("CustomFormat15", QSettings::CustomFormat15);
-  format.addValue("CustomFormat16", QSettings::CustomFormat16);
   format.addValue("CustomFormat2", QSettings::CustomFormat2);
   format.addValue("CustomFormat3", QSettings::CustomFormat3);
   format.addValue("CustomFormat4", QSettings::CustomFormat4);
@@ -40,12 +47,15 @@ static void register_settings_format_enum(script::Class settings)
   format.addValue("CustomFormat7", QSettings::CustomFormat7);
   format.addValue("CustomFormat8", QSettings::CustomFormat8);
   format.addValue("CustomFormat9", QSettings::CustomFormat9);
-  format.addValue("IniFormat", QSettings::IniFormat);
-  format.addValue("InvalidFormat", QSettings::InvalidFormat);
-  format.addValue("NativeFormat", QSettings::NativeFormat);
-  format.addValue("Registry32Format", QSettings::Registry32Format);
-  format.addValue("Registry64Format", QSettings::Registry64Format);
+  format.addValue("CustomFormat10", QSettings::CustomFormat10);
+  format.addValue("CustomFormat11", QSettings::CustomFormat11);
+  format.addValue("CustomFormat12", QSettings::CustomFormat12);
+  format.addValue("CustomFormat13", QSettings::CustomFormat13);
+  format.addValue("CustomFormat14", QSettings::CustomFormat14);
+  format.addValue("CustomFormat15", QSettings::CustomFormat15);
+  format.addValue("CustomFormat16", QSettings::CustomFormat16);
 }
+
 
 static void register_settings_scope_enum(script::Class settings)
 {
@@ -53,35 +63,23 @@ static void register_settings_scope_enum(script::Class settings)
 
   Enum scope = settings.Enum("Scope").setId(script::Type::QSettingsScope).get();
 
-  scope.addValue("SystemScope", QSettings::SystemScope);
   scope.addValue("UserScope", QSettings::UserScope);
+  scope.addValue("SystemScope", QSettings::SystemScope);
 }
 
-static void register_settings_status_enum(script::Class settings)
-{
-  using namespace script;
-
-  Enum status = settings.Enum("Status").setId(script::Type::QSettingsStatus).get();
-
-  status.addValue("AccessError", QSettings::AccessError);
-  status.addValue("FormatError", QSettings::FormatError);
-  status.addValue("NoError", QSettings::NoError);
-}
 
 static void register_settings_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class settings = ns.Class("Settings").setId(script::Type::QSettings).get();
+  Class settings = ns.Class("Settings").setId(script::Type::QSettings)
+    .setBase(script::Type::QObject).get();
 
+  register_settings_status_enum(settings);
   register_settings_format_enum(settings);
   register_settings_scope_enum(settings);
-  register_settings_status_enum(settings);
   binding::QClass<QSettings> binder{ settings, &QSettings::staticMetaObject };
-  binding::Class<QSettings> static_binder{ settings };
-  
-  // ~QSettings();
-  binder.add_dtor();
+
   // QSettings(const QString &, const QString &, QObject *);
   binder.ctors().add<const QString &, const QString &, QObject *>();
   // QSettings(QSettings::Scope, const QString &, const QString &, QObject *);
@@ -92,6 +90,8 @@ static void register_settings_class(script::Namespace ns)
   binder.ctors().add<const QString &, QSettings::Format, QObject *>();
   // QSettings(QObject *);
   binder.ctors().add<QObject *>();
+  // ~QSettings();
+  binder.add_dtor();
   // void clear();
   binder.add_void_fun<&QSettings::clear>("clear");
   // void sync();
@@ -117,11 +117,11 @@ static void register_settings_class(script::Namespace ns)
   // void setArrayIndex(int);
   binder.add_void_fun<int, &QSettings::setArrayIndex>("setArrayIndex");
   // QStringList allKeys() const;
-  binder.add_fun<QStringList, &QSettings::allKeys>("allKeys");
+  /// TODO: QStringList allKeys() const;
   // QStringList childKeys() const;
-  binder.add_fun<QStringList, &QSettings::childKeys>("childKeys");
+  /// TODO: QStringList childKeys() const;
   // QStringList childGroups() const;
-  binder.add_fun<QStringList, &QSettings::childGroups>("childGroups");
+  /// TODO: QStringList childGroups() const;
   // bool isWritable() const;
   binder.add_fun<bool, &QSettings::isWritable>("isWritable");
   // void setValue(const QString &, const QVariant &);
@@ -147,33 +147,36 @@ static void register_settings_class(script::Namespace ns)
   // QString applicationName() const;
   binder.add_fun<QString, &QSettings::applicationName>("applicationName");
   // void setIniCodec(QTextCodec *);
-  binder.add_void_fun<QTextCodec *, &QSettings::setIniCodec>("setIniCodec");
+  /// TODO: void setIniCodec(QTextCodec *);
   // void setIniCodec(const char *);
-  binder.add_void_fun<const char *, &QSettings::setIniCodec>("setIniCodec");
+  /// TODO: void setIniCodec(const char *);
   // QTextCodec * iniCodec() const;
-  /// TODO: binder.add_fun<QTextCodec *, &QSettings::iniCodec>("iniCodec");
+  /// TODO: QTextCodec * iniCodec() const;
   // static void setDefaultFormat(QSettings::Format);
-  static_binder.add_static_void_fun<QSettings::Format, &QSettings::setDefaultFormat>("setDefaultFormat");
+  binder.add_static_void_fun<QSettings::Format, &QSettings::setDefaultFormat>("setDefaultFormat");
   // static QSettings::Format defaultFormat();
-  static_binder.add_static<QSettings::Format, &QSettings::defaultFormat>("defaultFormat");
+  binder.add_static<QSettings::Format, &QSettings::defaultFormat>("defaultFormat");
   // static void setSystemIniPath(const QString &);
-  /// deprecated: binder.add_void_fun<const QString &, &QSettings::setSystemIniPath>("setSystemIniPath");
+  binder.add_static_void_fun<const QString &, &QSettings::setSystemIniPath>("setSystemIniPath");
   // static void setUserIniPath(const QString &);
-  /// deprecated: binder.add_void_fun<const QString &, &QSettings::setUserIniPath>("setUserIniPath");
+  binder.add_static_void_fun<const QString &, &QSettings::setUserIniPath>("setUserIniPath");
   // static void setPath(QSettings::Format, QSettings::Scope, const QString &);
-  static_binder.add_static_void_fun<QSettings::Format, QSettings::Scope, const QString &, &QSettings::setPath>("setPath");
+  binder.add_static_void_fun<QSettings::Format, QSettings::Scope, const QString &, &QSettings::setPath>("setPath");
   // static QSettings::Format registerFormat(const QString &, QSettings::ReadFunc, QSettings::WriteFunc, Qt::CaseSensitivity);
-  static_binder.add_static<QSettings::Format, const QString &, QSettings::ReadFunc, QSettings::WriteFunc, Qt::CaseSensitivity, &QSettings::registerFormat>("registerFormat");
+  /// TODO: static QSettings::Format registerFormat(const QString &, QSettings::ReadFunc, QSettings::WriteFunc, Qt::CaseSensitivity);
 
   settings.engine()->registerQtType(&QSettings::staticMetaObject, settings.id());
 }
 
-void register_settings_file(script::Namespace root)
+
+void register_settings_file(script::Namespace core)
 {
   using namespace script;
 
-  register_settings_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = core;
+
+  register_settings_class(ns);
+  binding::Namespace binder{ ns };
 
 }
 
