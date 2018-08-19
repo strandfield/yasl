@@ -23400,6 +23400,801 @@
                     "hincludes": "<QVariant>",
                     "name": "variant",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QRegularExpression &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoPatternOption"
+                                        },
+                                        {
+                                            "name": "CaseInsensitiveOption"
+                                        },
+                                        {
+                                            "name": "DotMatchesEverythingOption"
+                                        },
+                                        {
+                                            "name": "MultilineOption"
+                                        },
+                                        {
+                                            "name": "ExtendedPatternSyntaxOption"
+                                        },
+                                        {
+                                            "name": "InvertedGreedinessOption"
+                                        },
+                                        {
+                                            "name": "DontCaptureOption"
+                                        },
+                                        {
+                                            "name": "UseUnicodePropertiesOption"
+                                        },
+                                        {
+                                            "name": "OptimizeOnFirstUsageOption"
+                                        },
+                                        {
+                                            "name": "DontAutomaticallyOptimizeOption"
+                                        }
+                                    ],
+                                    "name": "PatternOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "patternOptions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression::PatternOptions",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPatternOptions",
+                                    "parameters": [
+                                        "QRegularExpression::PatternOptions"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QRegularExpression",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegularExpression",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QRegularExpression::PatternOptions"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegularExpression",
+                                    "parameters": [
+                                        "const QRegularExpression &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QRegularExpression",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QRegularExpression &"
+                                    ],
+                                    "returns": "QRegularExpression &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QRegularExpression &&"
+                                    ],
+                                    "returns": "QRegularExpression &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QRegularExpression &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pattern",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPattern",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "patternErrorOffset",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "errorString",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "captureCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "namedCaptureGroups",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NormalMatch"
+                                        },
+                                        {
+                                            "name": "PartialPreferCompleteMatch"
+                                        },
+                                        {
+                                            "name": "PartialPreferFirstMatch"
+                                        },
+                                        {
+                                            "name": "NoMatch"
+                                        }
+                                    ],
+                                    "name": "MatchType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoMatchOption"
+                                        },
+                                        {
+                                            "name": "AnchoredMatchOption"
+                                        },
+                                        {
+                                            "name": "DontCheckSubjectStringMatchOption"
+                                        }
+                                    ],
+                                    "name": "MatchOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "match",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int",
+                                        "QRegularExpression::MatchType",
+                                        "QRegularExpression::MatchOptions"
+                                    ],
+                                    "returns": "QRegularExpressionMatch",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "match",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "int",
+                                        "QRegularExpression::MatchType",
+                                        "QRegularExpression::MatchOptions"
+                                    ],
+                                    "returns": "QRegularExpressionMatch",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalMatch",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int",
+                                        "QRegularExpression::MatchType",
+                                        "QRegularExpression::MatchOptions"
+                                    ],
+                                    "returns": "QRegularExpressionMatchIterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalMatch",
+                                    "parameters": [
+                                        "const QStringRef &",
+                                        "int",
+                                        "QRegularExpression::MatchType",
+                                        "QRegularExpression::MatchOptions"
+                                    ],
+                                    "returns": "QRegularExpressionMatchIterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "optimize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "escape",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QRegularExpression &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QRegularExpression &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QRegularExpression",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QRegularExpression &",
+                                "QRegularExpression &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QRegularExpression::PatternOptions::enum_type",
+                                "QRegularExpression::PatternOptions::enum_type"
+                            ],
+                            "returns": "QFlags<QRegularExpression::PatternOptions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QRegularExpression::PatternOptions::enum_type",
+                                "QFlags<QRegularExpression::PatternOptions::enum_type>"
+                            ],
+                            "returns": "QFlags<QRegularExpression::PatternOptions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QRegularExpression::PatternOptions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QRegularExpression::MatchOptions::enum_type",
+                                "QRegularExpression::MatchOptions::enum_type"
+                            ],
+                            "returns": "QFlags<QRegularExpression::MatchOptions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QRegularExpression::MatchOptions::enum_type",
+                                "QFlags<QRegularExpression::MatchOptions::enum_type>"
+                            ],
+                            "returns": "QFlags<QRegularExpression::MatchOptions::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QRegularExpression::MatchOptions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QRegularExpression &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QRegularExpression &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QRegularExpression &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "QRegularExpression::PatternOptions"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QRegularExpressionMatch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QRegularExpressionMatch",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QRegularExpressionMatch",
+                                    "parameters": [
+                                        "const QRegularExpressionMatch &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QRegularExpressionMatch &"
+                                    ],
+                                    "returns": "QRegularExpressionMatch &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QRegularExpressionMatch &&"
+                                    ],
+                                    "returns": "QRegularExpressionMatch &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QRegularExpressionMatch &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "regularExpression",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matchType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression::MatchType",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matchOptions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression::MatchOptions",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasMatch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasPartialMatch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lastCapturedIndex",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "captured",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedRef",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QStringRef",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedView",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QStringView",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "captured",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedRef",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QStringRef",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "captured",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedRef",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "QStringRef",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedView",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "QStringView",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedTexts",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedStart",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedLength",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedEnd",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedStart",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedLength",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedEnd",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedStart",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedLength",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capturedEnd",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QRegularExpressionMatch",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QRegularExpressionMatch &",
+                                "QRegularExpressionMatch &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QRegularExpressionMatch &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QRegularExpressionMatchIterator",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QRegularExpressionMatchIterator",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QRegularExpressionMatchIterator",
+                                    "parameters": [
+                                        "const QRegularExpressionMatchIterator &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QRegularExpressionMatchIterator &"
+                                    ],
+                                    "returns": "QRegularExpressionMatchIterator &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QRegularExpressionMatchIterator &&"
+                                    ],
+                                    "returns": "QRegularExpressionMatchIterator &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QRegularExpressionMatchIterator &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasNext",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "next",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpressionMatch",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "peekNext",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpressionMatch",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "regularExpression",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matchType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression::MatchType",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matchOptions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression::MatchOptions",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QRegularExpressionMatchIterator",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QRegularExpressionMatchIterator &",
+                                "QRegularExpressionMatchIterator &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QRegularExpression>",
+                    "name": "regularexpression",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -23595,6 +24390,36 @@
                 "id": "QRectF",
                 "name": "QRectF",
                 "rename": "RectF"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpression",
+                "name": "QRegularExpression",
+                "rename": "RegularExpression"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionMatchOptions",
+                "name": "QRegularExpression::MatchOptions",
+                "rename": "MatchOptions"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionPatternOptions",
+                "name": "QRegularExpression::PatternOptions",
+                "rename": "PatternOptions"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionMatch",
+                "name": "QRegularExpressionMatch",
+                "rename": "RegularExpressionMatch"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionMatchIterator",
+                "name": "QRegularExpressionMatchIterator",
+                "rename": "RegularExpressionMatchIterator"
             },
             {
                 "header": "yasl/core/object.h",
@@ -24220,6 +25045,23 @@
                 "header": "yasl/core/locale.h",
                 "id": "QLocaleQuotationStyle",
                 "name": "QLocale::QuotationStyle"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionPatternOption",
+                "links": "flags@QRegularExpression::PatternOptions",
+                "name": "QRegularExpression::PatternOption"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionMatchType",
+                "name": "QRegularExpression::MatchType"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionMatchOption",
+                "links": "flags@QRegularExpression::MatchOptions",
+                "name": "QRegularExpression::MatchOption"
             },
             {
                 "header": "yasl/core/timezone.h",

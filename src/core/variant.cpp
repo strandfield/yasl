@@ -15,6 +15,7 @@
 #include "yasl/core/locale.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
+#include "yasl/core/regularexpression.h"
 #include "yasl/core/size.h"
 #include "yasl/core/url.h"
 #include "yasl/core/uuid.h"
@@ -177,7 +178,7 @@ static void register_variant_class(script::Namespace ns)
   // QVariant(const QRegExp &);
   /// TODO: QVariant(const QRegExp &);
   // QVariant(const QRegularExpression &);
-  /// TODO: QVariant(const QRegularExpression &);
+  binder.ctors().add<const QRegularExpression &>();
   // QVariant(const QUrl &);
   binder.ctors().add<const QUrl &>();
   // QVariant(const QEasingCurve &);
@@ -277,7 +278,7 @@ static void register_variant_class(script::Namespace ns)
   // QRegExp toRegExp() const;
   /// TODO: QRegExp toRegExp() const;
   // QRegularExpression toRegularExpression() const;
-  /// TODO: QRegularExpression toRegularExpression() const;
+  binder.add_fun<QRegularExpression, &QVariant::toRegularExpression>("toRegularExpression");
   // QUrl toUrl() const;
   binder.add_fun<QUrl, &QVariant::toUrl>("toUrl");
   // QEasingCurve toEasingCurve() const;

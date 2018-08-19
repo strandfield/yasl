@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_CORE_REGULAR_EXPRESSION_H
-#define YASL_CORE_REGULAR_EXPRESSION_H
+#ifndef YASL_CORE_REGULAREXPRESSION_H
+#define YASL_CORE_REGULAREXPRESSION_H
 
 #include "yasl/binding/types.h"
 
@@ -20,4 +20,4 @@ template<> struct make_type_t<QRegularExpressionMatch> { inline static script::T
 template<> struct make_type_t<QRegularExpressionMatchIterator> { inline static script::Type get() { return script::Type::QRegularExpressionMatchIterator; } };
 } // namespace binding
 
-#endif // YASL_CORE_REGULAR_EXPRESSION_H
+#endif // YASL_CORE_REGULAREXPRESSION_H

@@ -7,38 +7,12 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
-#include "yasl/core/datastream.h"
 #include "yasl/core/flags.h"
+
+#include "yasl/core/regularexpression.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-
-#include <QDebug>
-
-static void register_regular_expression_match_option_enum(script::Class regular_expression)
-{
-  using namespace script;
-
-  Enum match_option = regular_expression.Enum("MatchOption").setId(script::Type::QRegularExpressionMatchOption).get();
-
-  match_option.addValue("AnchoredMatchOption", QRegularExpression::AnchoredMatchOption);
-  match_option.addValue("DontCheckSubjectStringMatchOption", QRegularExpression::DontCheckSubjectStringMatchOption);
-  match_option.addValue("NoMatchOption", QRegularExpression::NoMatchOption);
-
-  register_qflags_type<QRegularExpression::MatchOption>(regular_expression, "MatchOptions", script::Type::QRegularExpressionMatchOptions);
-}
-
-static void register_regular_expression_match_type_enum(script::Class regular_expression)
-{
-  using namespace script;
-
-  Enum match_type = regular_expression.Enum("MatchType").setId(script::Type::QRegularExpressionMatchType).get();
-
-  match_type.addValue("NoMatch", QRegularExpression::NoMatch);
-  match_type.addValue("NormalMatch", QRegularExpression::NormalMatch);
-  match_type.addValue("PartialPreferCompleteMatch", QRegularExpression::PartialPreferCompleteMatch);
-  match_type.addValue("PartialPreferFirstMatch", QRegularExpression::PartialPreferFirstMatch);
-}
 
 static void register_regular_expression_pattern_option_enum(script::Class regular_expression)
 {
@@ -46,19 +20,45 @@ static void register_regular_expression_pattern_option_enum(script::Class regula
 
   Enum pattern_option = regular_expression.Enum("PatternOption").setId(script::Type::QRegularExpressionPatternOption).get();
 
+  register_qflags_type<QRegularExpression::PatternOption>(regular_expression, "PatternOptions", script::Type::QRegularExpressionPatternOptions);
+  pattern_option.addValue("NoPatternOption", QRegularExpression::NoPatternOption);
   pattern_option.addValue("CaseInsensitiveOption", QRegularExpression::CaseInsensitiveOption);
-  pattern_option.addValue("DontAutomaticallyOptimizeOption", QRegularExpression::DontAutomaticallyOptimizeOption);
-  pattern_option.addValue("DontCaptureOption", QRegularExpression::DontCaptureOption);
   pattern_option.addValue("DotMatchesEverythingOption", QRegularExpression::DotMatchesEverythingOption);
+  pattern_option.addValue("MultilineOption", QRegularExpression::MultilineOption);
   pattern_option.addValue("ExtendedPatternSyntaxOption", QRegularExpression::ExtendedPatternSyntaxOption);
   pattern_option.addValue("InvertedGreedinessOption", QRegularExpression::InvertedGreedinessOption);
-  pattern_option.addValue("MultilineOption", QRegularExpression::MultilineOption);
-  pattern_option.addValue("NoPatternOption", QRegularExpression::NoPatternOption);
-  pattern_option.addValue("OptimizeOnFirstUsageOption", QRegularExpression::OptimizeOnFirstUsageOption);
+  pattern_option.addValue("DontCaptureOption", QRegularExpression::DontCaptureOption);
   pattern_option.addValue("UseUnicodePropertiesOption", QRegularExpression::UseUnicodePropertiesOption);
-
-  register_qflags_type<QRegularExpression::PatternOption>(regular_expression, "PatternOptions", script::Type::QRegularExpressionPatternOptions);
+  pattern_option.addValue("OptimizeOnFirstUsageOption", QRegularExpression::OptimizeOnFirstUsageOption);
+  pattern_option.addValue("DontAutomaticallyOptimizeOption", QRegularExpression::DontAutomaticallyOptimizeOption);
 }
+
+
+static void register_regular_expression_match_type_enum(script::Class regular_expression)
+{
+  using namespace script;
+
+  Enum match_type = regular_expression.Enum("MatchType").setId(script::Type::QRegularExpressionMatchType).get();
+
+  match_type.addValue("NormalMatch", QRegularExpression::NormalMatch);
+  match_type.addValue("PartialPreferCompleteMatch", QRegularExpression::PartialPreferCompleteMatch);
+  match_type.addValue("PartialPreferFirstMatch", QRegularExpression::PartialPreferFirstMatch);
+  match_type.addValue("NoMatch", QRegularExpression::NoMatch);
+}
+
+
+static void register_regular_expression_match_option_enum(script::Class regular_expression)
+{
+  using namespace script;
+
+  Enum match_option = regular_expression.Enum("MatchOption").setId(script::Type::QRegularExpressionMatchOption).get();
+
+  register_qflags_type<QRegularExpression::MatchOption>(regular_expression, "MatchOptions", script::Type::QRegularExpressionMatchOptions);
+  match_option.addValue("NoMatchOption", QRegularExpression::NoMatchOption);
+  match_option.addValue("AnchoredMatchOption", QRegularExpression::AnchoredMatchOption);
+  match_option.addValue("DontCheckSubjectStringMatchOption", QRegularExpression::DontCheckSubjectStringMatchOption);
+}
+
 
 static void register_regular_expression_class(script::Namespace ns)
 {
@@ -66,13 +66,11 @@ static void register_regular_expression_class(script::Namespace ns)
 
   Class regular_expression = ns.Class("RegularExpression").setId(script::Type::QRegularExpression).get();
 
-  register_regular_expression_match_option_enum(regular_expression);
-  register_regular_expression_match_type_enum(regular_expression);
   register_regular_expression_pattern_option_enum(regular_expression);
+  register_regular_expression_match_type_enum(regular_expression);
+  register_regular_expression_match_option_enum(regular_expression);
   binding::Class<QRegularExpression> binder{ regular_expression };
 
-  // ~QRegularExpression();
-  binder.add_dtor();
   // QRegularExpression::PatternOptions patternOptions() const;
   binder.add_fun<QRegularExpression::PatternOptions, &QRegularExpression::patternOptions>("patternOptions");
   // void setPatternOptions(QRegularExpression::PatternOptions);
@@ -83,10 +81,12 @@ static void register_regular_expression_class(script::Namespace ns)
   binder.ctors().add<const QString &, QRegularExpression::PatternOptions>();
   // QRegularExpression(const QRegularExpression &);
   binder.ctors().add<const QRegularExpression &>();
+  // ~QRegularExpression();
+  binder.add_dtor();
   // QRegularExpression & operator=(const QRegularExpression &);
   binder.operators().assign<const QRegularExpression &>();
   // QRegularExpression & operator=(QRegularExpression &&);
-  /// TODO: binder.operators().assign<QRegularExpression &&>();
+  binder.operators().assign<QRegularExpression &&>();
   // void swap(QRegularExpression &);
   binder.add_void_fun<QRegularExpression &, &QRegularExpression::swap>("swap");
   // QString pattern() const;
@@ -102,17 +102,17 @@ static void register_regular_expression_class(script::Namespace ns)
   // int captureCount() const;
   binder.add_fun<int, &QRegularExpression::captureCount>("captureCount");
   // QStringList namedCaptureGroups() const;
-  binder.add_fun<QStringList, &QRegularExpression::namedCaptureGroups>("namedCaptureGroups");
+  /// TODO: QStringList namedCaptureGroups() const;
   // QRegularExpressionMatch match(const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
   binder.add_fun<QRegularExpressionMatch, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::match>("match");
   // QRegularExpressionMatch match(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
-  binder.add_fun<QRegularExpressionMatch, const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::match>("match");
+  /// TODO: QRegularExpressionMatch match(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
   // QRegularExpressionMatchIterator globalMatch(const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
   binder.add_fun<QRegularExpressionMatchIterator, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::globalMatch>("globalMatch");
   // QRegularExpressionMatchIterator globalMatch(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
-  binder.add_fun<QRegularExpressionMatchIterator, const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::globalMatch>("globalMatch");
+  /// TODO: QRegularExpressionMatchIterator globalMatch(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
   // void optimize() const;
-  binder.add_void_fun<&QRegularExpression::optimize>("optimize");
+  binder.add_const_void_fun<&QRegularExpression::optimize>("optimize");
   // static QString escape(const QString &);
   binder.add_static<QString, const QString &, &QRegularExpression::escape>("escape");
   // bool operator==(const QRegularExpression &) const;
@@ -120,6 +120,7 @@ static void register_regular_expression_class(script::Namespace ns)
   // bool operator!=(const QRegularExpression &) const;
   binder.operators().neq<const QRegularExpression &>();
 }
+
 
 static void register_regular_expression_match_class(script::Namespace ns)
 {
@@ -129,16 +130,16 @@ static void register_regular_expression_match_class(script::Namespace ns)
 
   binding::Class<QRegularExpressionMatch> binder{ regular_expression_match };
 
-  // ~QRegularExpressionMatch();
-  binder.add_dtor();
   // QRegularExpressionMatch();
   binder.ctors().add_default();
+  // ~QRegularExpressionMatch();
+  binder.add_dtor();
   // QRegularExpressionMatch(const QRegularExpressionMatch &);
   binder.ctors().add<const QRegularExpressionMatch &>();
   // QRegularExpressionMatch & operator=(const QRegularExpressionMatch &);
   binder.operators().assign<const QRegularExpressionMatch &>();
   // QRegularExpressionMatch & operator=(QRegularExpressionMatch &&);
-  /// TODO: binder.operators().assign<QRegularExpressionMatch &&>();
+  binder.operators().assign<QRegularExpressionMatch &&>();
   // void swap(QRegularExpressionMatch &);
   binder.add_void_fun<QRegularExpressionMatch &, &QRegularExpressionMatch::swap>("swap");
   // QRegularExpression regularExpression() const;
@@ -158,21 +159,21 @@ static void register_regular_expression_match_class(script::Namespace ns)
   // QString captured(int) const;
   binder.add_fun<QString, int, &QRegularExpressionMatch::captured>("captured");
   // QStringRef capturedRef(int) const;
-  binder.add_fun<QStringRef, int, &QRegularExpressionMatch::capturedRef>("capturedRef");
+  /// TODO: QStringRef capturedRef(int) const;
   // QStringView capturedView(int) const;
-  binder.add_fun<QStringView, int, &QRegularExpressionMatch::capturedView>("capturedView");
+  /// TODO: QStringView capturedView(int) const;
   // QString captured(const QString &) const;
   binder.add_fun<QString, const QString &, &QRegularExpressionMatch::captured>("captured");
   // QStringRef capturedRef(const QString &) const;
-  binder.add_fun<QStringRef, const QString &, &QRegularExpressionMatch::capturedRef>("capturedRef");
+  /// TODO: QStringRef capturedRef(const QString &) const;
   // QString captured(QStringView) const;
-  binder.add_fun<QString, QStringView, &QRegularExpressionMatch::captured>("captured");
+  /// TODO: QString captured(QStringView) const;
   // QStringRef capturedRef(QStringView) const;
-  binder.add_fun<QStringRef, QStringView, &QRegularExpressionMatch::capturedRef>("capturedRef");
+  /// TODO: QStringRef capturedRef(QStringView) const;
   // QStringView capturedView(QStringView) const;
-  binder.add_fun<QStringView, QStringView, &QRegularExpressionMatch::capturedView>("capturedView");
+  /// TODO: QStringView capturedView(QStringView) const;
   // QStringList capturedTexts() const;
-  binder.add_fun<QStringList, &QRegularExpressionMatch::capturedTexts>("capturedTexts");
+  /// TODO: QStringList capturedTexts() const;
   // int capturedStart(int) const;
   binder.add_fun<int, int, &QRegularExpressionMatch::capturedStart>("capturedStart");
   // int capturedLength(int) const;
@@ -186,12 +187,13 @@ static void register_regular_expression_match_class(script::Namespace ns)
   // int capturedEnd(const QString &) const;
   binder.add_fun<int, const QString &, &QRegularExpressionMatch::capturedEnd>("capturedEnd");
   // int capturedStart(QStringView) const;
-  binder.add_fun<int, QStringView, &QRegularExpressionMatch::capturedStart>("capturedStart");
+  /// TODO: int capturedStart(QStringView) const;
   // int capturedLength(QStringView) const;
-  binder.add_fun<int, QStringView, &QRegularExpressionMatch::capturedLength>("capturedLength");
+  /// TODO: int capturedLength(QStringView) const;
   // int capturedEnd(QStringView) const;
-  binder.add_fun<int, QStringView, &QRegularExpressionMatch::capturedEnd>("capturedEnd");
+  /// TODO: int capturedEnd(QStringView) const;
 }
+
 
 static void register_regular_expression_match_iterator_class(script::Namespace ns)
 {
@@ -201,16 +203,16 @@ static void register_regular_expression_match_iterator_class(script::Namespace n
 
   binding::Class<QRegularExpressionMatchIterator> binder{ regular_expression_match_iterator };
 
-  // ~QRegularExpressionMatchIterator();
-  binder.add_dtor();
   // QRegularExpressionMatchIterator();
   binder.ctors().add_default();
+  // ~QRegularExpressionMatchIterator();
+  binder.add_dtor();
   // QRegularExpressionMatchIterator(const QRegularExpressionMatchIterator &);
   binder.ctors().add<const QRegularExpressionMatchIterator &>();
   // QRegularExpressionMatchIterator & operator=(const QRegularExpressionMatchIterator &);
   binder.operators().assign<const QRegularExpressionMatchIterator &>();
   // QRegularExpressionMatchIterator & operator=(QRegularExpressionMatchIterator &&);
-  /// TODO: binder.operators().assign<QRegularExpressionMatchIterator &&>();
+  binder.operators().assign<QRegularExpressionMatchIterator &&>();
   // void swap(QRegularExpressionMatchIterator &);
   binder.add_void_fun<QRegularExpressionMatchIterator &, &QRegularExpressionMatchIterator::swap>("swap");
   // bool isValid() const;
@@ -229,43 +231,46 @@ static void register_regular_expression_match_iterator_class(script::Namespace n
   binder.add_fun<QRegularExpression::MatchOptions, &QRegularExpressionMatchIterator::matchOptions>("matchOptions");
 }
 
-void register_regularexpression_file(script::Namespace root)
+
+void register_regularexpression_file(script::Namespace core)
 {
   using namespace script;
 
-  register_regular_expression_class(root);
-  register_regular_expression_match_class(root);
-  register_regular_expression_match_iterator_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = core;
+
+  register_regular_expression_class(ns);
+  register_regular_expression_match_class(ns);
+  register_regular_expression_match_iterator_class(ns);
+  binding::Namespace binder{ ns };
 
   // uint qHash(const QRegularExpression &, uint);
   binder.add_fun<uint, const QRegularExpression &, uint, &qHash>("qHash");
   // void swap(QRegularExpression &, QRegularExpression &);
   binder.add_void_fun<QRegularExpression &, QRegularExpression &, &swap>("swap");
   // QFlags<QRegularExpression::PatternOptions::enum_type> operator|(QRegularExpression::PatternOptions::enum_type, QRegularExpression::PatternOptions::enum_type);
-  binder.operators().or<QFlags<QRegularExpression::PatternOptions::enum_type>, QRegularExpression::PatternOptions::enum_type, QRegularExpression::PatternOptions::enum_type>();
+  /// TODO: QFlags<QRegularExpression::PatternOptions::enum_type> operator|(QRegularExpression::PatternOptions::enum_type, QRegularExpression::PatternOptions::enum_type);
   // QFlags<QRegularExpression::PatternOptions::enum_type> operator|(QRegularExpression::PatternOptions::enum_type, QFlags<QRegularExpression::PatternOptions::enum_type>);
-  binder.operators().or<QFlags<QRegularExpression::PatternOptions::enum_type>, QRegularExpression::PatternOptions::enum_type, QFlags<QRegularExpression::PatternOptions::enum_type>>();
+  /// TODO: QFlags<QRegularExpression::PatternOptions::enum_type> operator|(QRegularExpression::PatternOptions::enum_type, QFlags<QRegularExpression::PatternOptions::enum_type>);
   // QIncompatibleFlag operator|(QRegularExpression::PatternOptions::enum_type, int);
-  binder.operators().or<QIncompatibleFlag, QRegularExpression::PatternOptions::enum_type, int>();
+  /// TODO: QIncompatibleFlag operator|(QRegularExpression::PatternOptions::enum_type, int);
   // QFlags<QRegularExpression::MatchOptions::enum_type> operator|(QRegularExpression::MatchOptions::enum_type, QRegularExpression::MatchOptions::enum_type);
-  binder.operators().or<QFlags<QRegularExpression::MatchOptions::enum_type>, QRegularExpression::MatchOptions::enum_type, QRegularExpression::MatchOptions::enum_type>();
+  /// TODO: QFlags<QRegularExpression::MatchOptions::enum_type> operator|(QRegularExpression::MatchOptions::enum_type, QRegularExpression::MatchOptions::enum_type);
   // QFlags<QRegularExpression::MatchOptions::enum_type> operator|(QRegularExpression::MatchOptions::enum_type, QFlags<QRegularExpression::MatchOptions::enum_type>);
-  binder.operators().or<QFlags<QRegularExpression::MatchOptions::enum_type>, QRegularExpression::MatchOptions::enum_type, QFlags<QRegularExpression::MatchOptions::enum_type>>();
+  /// TODO: QFlags<QRegularExpression::MatchOptions::enum_type> operator|(QRegularExpression::MatchOptions::enum_type, QFlags<QRegularExpression::MatchOptions::enum_type>);
   // QIncompatibleFlag operator|(QRegularExpression::MatchOptions::enum_type, int);
-  binder.operators().or<QIncompatibleFlag, QRegularExpression::MatchOptions::enum_type, int>();
+  /// TODO: QIncompatibleFlag operator|(QRegularExpression::MatchOptions::enum_type, int);
   // QDataStream & operator<<(QDataStream &, const QRegularExpression &);
-  binder.operators().put_to<QDataStream &, const QRegularExpression &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QRegularExpression &);
   // QDataStream & operator>>(QDataStream &, QRegularExpression &);
-  binder.operators().read_from<QDataStream &, QRegularExpression &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QRegularExpression &);
   // QDebug operator<<(QDebug, const QRegularExpression &);
-  binder.operators().left_shift<QDebug, QDebug, const QRegularExpression &>();
+  /// TODO: QDebug operator<<(QDebug, const QRegularExpression &);
   // QDebug operator<<(QDebug, QRegularExpression::PatternOptions);
-  binder.operators().left_shift<QDebug, QDebug, QRegularExpression::PatternOptions>();
+  /// TODO: QDebug operator<<(QDebug, QRegularExpression::PatternOptions);
   // void swap(QRegularExpressionMatch &, QRegularExpressionMatch &);
   binder.add_void_fun<QRegularExpressionMatch &, QRegularExpressionMatch &, &swap>("swap");
   // QDebug operator<<(QDebug, const QRegularExpressionMatch &);
-  binder.operators().left_shift<QDebug, QDebug, const QRegularExpressionMatch &>();
+  /// TODO: QDebug operator<<(QDebug, const QRegularExpressionMatch &);
   // void swap(QRegularExpressionMatchIterator &, QRegularExpressionMatchIterator &);
   binder.add_void_fun<QRegularExpressionMatchIterator &, QRegularExpressionMatchIterator &, &swap>("swap");
 }
