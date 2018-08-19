@@ -25699,6 +25699,309 @@
                     "hincludes": "yasl/core/iodevice.h,<QFileDevice>",
                     "name": "filedevice",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QFileDevice",
+                            "elements": [
+                                {
+                                    "name": "QFile",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFile",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFile",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFile",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFile",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fileName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFileName",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "encodeName",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "decodeName",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "decodeName",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "exists",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "exists",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "readLink",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "readLink",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "symLinkTarget",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "symLinkTarget",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "remove",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "remove",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rename",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rename",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "link",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "link",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "copy",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "copy",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "FILE *",
+                                        "QIODevice::OpenMode",
+                                        "QFileDevice::FileHandleFlags"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "int",
+                                        "QIODevice::OpenMode",
+                                        "QFileDevice::FileHandleFlags"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resize",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resize",
+                                    "parameters": [
+                                        "const QString &",
+                                        "qint64"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "permissions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFileDevice::Permissions",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "permissions",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QFileDevice::Permissions",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPermissions",
+                                    "parameters": [
+                                        "QFileDevice::Permissions"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPermissions",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QFileDevice::Permissions"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFile",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QFile>",
+                    "name": "file",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -25783,6 +26086,13 @@
                 "id": "QDirSortFlags",
                 "name": "QDir::SortFlags",
                 "rename": "SortFlags"
+            },
+            {
+                "header": "yasl/core/file.h",
+                "id": "QFile",
+                "name": "QFile",
+                "rename": "File",
+                "tag": "qobject_tag"
             },
             {
                 "header": "yasl/core/filedevice.h",

@@ -9,6 +9,7 @@
 
 #include "yasl/core/datetime.h"
 #include "yasl/core/dir.h"
+#include "yasl/core/file.h"
 #include "yasl/core/fileinfo.h"
 
 #include <script/classbuilder.h>
@@ -28,7 +29,7 @@ static void register_file_info_class(script::Namespace ns)
   // QFileInfo(const QString &);
   binder.ctors().add<const QString &>();
   // QFileInfo(const QFile &);
-  /// TODO: QFileInfo(const QFile &);
+  binder.ctors().add<const QFile &>();
   // QFileInfo(const QDir &, const QString &);
   binder.ctors().add<const QDir &, const QString &>();
   // QFileInfo(const QFileInfo &);
@@ -48,7 +49,7 @@ static void register_file_info_class(script::Namespace ns)
   // void setFile(const QString &);
   binder.add_void_fun<const QString &, &QFileInfo::setFile>("setFile");
   // void setFile(const QFile &);
-  /// TODO: void setFile(const QFile &);
+  binder.add_void_fun<const QFile &, &QFileInfo::setFile>("setFile");
   // void setFile(const QDir &, const QString &);
   binder.add_void_fun<const QDir &, const QString &, &QFileInfo::setFile>("setFile");
   // bool exists() const;
