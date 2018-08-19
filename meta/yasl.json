@@ -21721,6 +21721,384 @@
                     "hincludes": "<QObject>",
                     "name": "object",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "VarUnknown"
+                                        },
+                                        {
+                                            "name": "NCS"
+                                        },
+                                        {
+                                            "name": "DCE"
+                                        },
+                                        {
+                                            "name": "Microsoft"
+                                        },
+                                        {
+                                            "name": "Reserved"
+                                        }
+                                    ],
+                                    "name": "Variant",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "VerUnknown"
+                                        },
+                                        {
+                                            "name": "Time"
+                                        },
+                                        {
+                                            "name": "EmbeddedPOSIX"
+                                        },
+                                        {
+                                            "name": "Md5"
+                                        },
+                                        {
+                                            "name": "Name"
+                                        },
+                                        {
+                                            "name": "Random"
+                                        },
+                                        {
+                                            "name": "Sha1"
+                                        }
+                                    ],
+                                    "name": "Version",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QUuid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QUuid",
+                                    "parameters": [
+                                        "const QUuid &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QUuid",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QUuid",
+                                    "parameters": [
+                                        "uint",
+                                        "ushort",
+                                        "ushort",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QUuid",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "QUuid",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "QLatin1String"
+                                    ],
+                                    "returns": "QUuid",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QUuid",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QUuid",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toByteArray",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toRfc4122",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromRfc4122",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QUuid",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QUuid &"
+                                    ],
+                                    "returns": "QUuid &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QUuid &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QUuid &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QUuid &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>",
+                                    "parameters": [
+                                        "const QUuid &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QUuid",
+                                    "parameters": [
+                                        "const GUID &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const GUID &"
+                                    ],
+                                    "returns": "QUuid &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const GUID &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const GUID &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "createUuid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QUuid",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "createUuidV3",
+                                    "parameters": [
+                                        "const QUuid &",
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QUuid",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "createUuidV5",
+                                    "parameters": [
+                                        "const QUuid &",
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QUuid",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "createUuidV3",
+                                    "parameters": [
+                                        "const QUuid &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QUuid",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "createUuidV5",
+                                    "parameters": [
+                                        "const QUuid &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QUuid",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "variant",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QUuid::Variant",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "version",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QUuid::Version",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QUuid",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QUuid &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QUuid &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QUuid &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QUuid &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<=",
+                            "parameters": [
+                                "const QUuid &",
+                                "const QUuid &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>=",
+                            "parameters": [
+                                "const QUuid &",
+                                "const QUuid &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QUuid>",
+                    "name": "uuid",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -21970,6 +22348,12 @@
                 "id": "QUrlQuery",
                 "name": "QUrlQuery",
                 "rename": "UrlQuery"
+            },
+            {
+                "header": "yasl/core/uuid.h",
+                "id": "QUuid",
+                "name": "QUuid",
+                "rename": "Uuid"
             }
         ],
         "enums": [
@@ -22561,6 +22945,16 @@
                 "id": "QUrlUserInputResolutionOption",
                 "links": "flags@QUrl::UserInputResolutionOptions",
                 "name": "QUrl::UserInputResolutionOption"
+            },
+            {
+                "header": "yasl/core/uuid.h",
+                "id": "QUuidVariant",
+                "name": "QUuid::Variant"
+            },
+            {
+                "header": "yasl/core/uuid.h",
+                "id": "QUuidVersion",
+                "name": "QUuid::Version"
             }
         ],
         "fundamentals": [
