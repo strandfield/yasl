@@ -11,8 +11,8 @@
 #include <QTimer>
 
 namespace binding {
-template<> struct tag_resolver<QTimer> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QTimer> { inline static script::Type get() { return script::Type::QTimer; } };
+template<> struct tag_resolver<QTimer> { typedef qobject_tag tag_type; };
 } // namespace binding
 
 #endif // YASL_CORE_TIMER_H

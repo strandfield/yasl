@@ -24659,6 +24659,212 @@
                     "hincludes": "<QSettings>",
                     "name": "settings",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "elements": [
+                                {
+                                    "name": "QTimer",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QTimer",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isActive",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "timerId",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInterval",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "interval",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "remainingTime",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTimerType",
+                                    "parameters": [
+                                        "Qt::TimerType"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "timerType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::TimerType",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSingleShot",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSingleShot",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "singleShot",
+                                    "parameters": [
+                                        "int",
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "singleShot",
+                                    "parameters": [
+                                        "int",
+                                        "Qt::TimerType",
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "start",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "start",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "stop",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "timeout",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInterval",
+                                    "parameters": [
+                                        "std::chrono::milliseconds"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intervalAsDuration",
+                                    "parameters": [
+                                    ],
+                                    "returns": "std::chrono::milliseconds",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "remainingTimeAsDuration",
+                                    "parameters": [
+                                    ],
+                                    "returns": "std::chrono::milliseconds",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "singleShot",
+                                    "parameters": [
+                                        "std::chrono::milliseconds",
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "singleShot",
+                                    "parameters": [
+                                        "std::chrono::milliseconds",
+                                        "Qt::TimerType",
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "start",
+                                    "parameters": [
+                                        "std::chrono::milliseconds"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTimer",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QTimer>",
+                    "name": "timer",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -24915,6 +25121,13 @@
                 "id": "QTime",
                 "name": "QTime",
                 "rename": "Time"
+            },
+            {
+                "header": "yasl/core/timer.h",
+                "id": "QTimer",
+                "name": "QTimer",
+                "rename": "Timer",
+                "tag": "qobject_tag"
             },
             {
                 "header": "yasl/core/timezone.h",

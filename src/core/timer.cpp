@@ -4,59 +4,27 @@
 
 #include "yasl/core/timer.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
-#include "yasl/binding/qsignal.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/object.h"
 
 #include <script/classbuilder.h>
 
-// Cannot bind if 'static'
-void single_shot(int time, const QObject *obj, const QString & name)
-{
-  QTimer::singleShot(time, obj, name.toUtf8().data());
-}
-
-// Cannot bind if 'static'
-void single_shot(int time, Qt::TimerType tt, const QObject *obj, const QString & name)
-{
-  QTimer::singleShot(time, tt, obj, name.toUtf8().data());
-}
-
-namespace callbacks
-{
-
-static script::Value new_timer(script::FunctionCall *c)
-{
-  using namespace script;
-  Value v = c->engine()->uninitialized(Type::QTimer);
-  QTimer *timer = new QTimer(binding::value_cast<QObject*>(c->arg(0)));
-  v.impl()->set_qobject(timer);
-  c->engine()->bind(v, timer);
-  v.impl()->type = v.impl()->type.withoutFlag(Type::UninitializedFlag);
-  return v;
-}
-
-} // namespace callbacks
-
 static void register_timer_class(script::Namespace ns)
 {
   using namespace script;
 
   Class timer = ns.Class("Timer").setId(script::Type::QTimer)
-  .setBase(script::Type::QObject).get();
+    .setBase(script::Type::QObject).get();
 
   binding::QClass<QTimer> binder{ timer, &QTimer::staticMetaObject };
-  binding::Class<QTimer> static_binder{ timer };
 
-  // ~QTimer();
-  binder.add_dtor();
   // QTimer(QObject *);
   binder.ctors().add<QObject *>();
+  // ~QTimer();
+  binder.add_dtor();
   // bool isActive() const;
   binder.add_fun<bool, &QTimer::isActive>("isActive");
   // int timerId() const;
@@ -76,50 +44,42 @@ static void register_timer_class(script::Namespace ns)
   // bool isSingleShot() const;
   binder.add_fun<bool, &QTimer::isSingleShot>("isSingleShot");
   // static void singleShot(int, const QObject *, const char *);
-  /// ignore: static_binder.add_static_void_fun<int, const QObject *, const char *, &QTimer::singleShot>("singleShot");
-  static_binder.add_static_void_fun<int, const QObject *, const QString &, &single_shot>("singleShot");
+  /// TODO: static void singleShot(int, const QObject *, const char *);
   // static void singleShot(int, Qt::TimerType, const QObject *, const char *);
-  /// ignore: static_binder.add_static_void_fun<int, Qt::TimerType, const QObject *, const char *, &QTimer::singleShot>("singleShot");
-  static_binder.add_static_void_fun<int, Qt::TimerType, const QObject *, const QString &, &single_shot>("singleShot");
+  /// TODO: static void singleShot(int, Qt::TimerType, const QObject *, const char *);
   // void start(int);
   binder.add_void_fun<int, &QTimer::start>("start");
   // void start();
   binder.add_void_fun<&QTimer::start>("start");
   // void stop();
   binder.add_void_fun<&QTimer::stop>("stop");
-  // void timeout(QTimer::QPrivateSignal);
-  /// ignore: binder.add_void_fun<QTimer::QPrivateSignal, &QTimer::timeout>("timeout");
-  // void setInterval(std::chrono::milliseconds);
-  /// ignore: binder.add_void_fun<std::chrono::milliseconds, &QTimer::setInterval>("setInterval");
-  // std::chrono::milliseconds intervalAsDuration() const;
-  /// ignore: binder.add_fun<std::chrono::milliseconds, &QTimer::intervalAsDuration>("intervalAsDuration");
-  // std::chrono::milliseconds remainingTimeAsDuration() const;
-  /// ignore: binder.add_fun<std::chrono::milliseconds, &QTimer::remainingTimeAsDuration>("remainingTimeAsDuration");
-  // static void singleShot(std::chrono::milliseconds, const QObject *, const char *);
-  /// ignore: binder.add_void_fun<std::chrono::milliseconds, const QObject *, const char *, &QTimer::singleShot>("singleShot");
-  // static void singleShot(std::chrono::milliseconds, Qt::TimerType, const QObject *, const char *);
-  /// ignore: binder.add_void_fun<std::chrono::milliseconds, Qt::TimerType, const QObject *, const char *, &QTimer::singleShot>("singleShot");
-  // void start(std::chrono::milliseconds);
-  /// ignore: binder.add_void_fun<std::chrono::milliseconds, &QTimer::start>("start");
-
-  /* Signals */
   // void timeout();
   binder.sigs().add("timeout", "timeout()");
+  // void setInterval(std::chrono::milliseconds);
+  /// TODO: void setInterval(std::chrono::milliseconds);
+  // std::chrono::milliseconds intervalAsDuration() const;
+  /// TODO: std::chrono::milliseconds intervalAsDuration() const;
+  // std::chrono::milliseconds remainingTimeAsDuration() const;
+  /// TODO: std::chrono::milliseconds remainingTimeAsDuration() const;
+  // static void singleShot(std::chrono::milliseconds, const QObject *, const char *);
+  /// TODO: static void singleShot(std::chrono::milliseconds, const QObject *, const char *);
+  // static void singleShot(std::chrono::milliseconds, Qt::TimerType, const QObject *, const char *);
+  /// TODO: static void singleShot(std::chrono::milliseconds, Qt::TimerType, const QObject *, const char *);
+  // void start(std::chrono::milliseconds);
+  /// TODO: void start(std::chrono::milliseconds);
 
-  auto new_timer = ns.Function("newTimer", callbacks::new_timer)
-    .returns(Type::ref(Type::QTimer))
-    .params(binding::make_type<QObject*>())
-    .create();
-
-  ns.engine()->registerQtType(&QTimer::staticMetaObject, timer.id());
+  timer.engine()->registerQtType(&QTimer::staticMetaObject, timer.id());
 }
 
-void register_timer_file(script::Namespace root)
+
+void register_timer_file(script::Namespace core)
 {
   using namespace script;
 
-  register_timer_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = core;
+
+  register_timer_class(ns);
+  binding::Namespace binder{ ns };
 
 }
 

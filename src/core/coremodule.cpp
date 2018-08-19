@@ -32,6 +32,7 @@ void register_rect_file(script::Namespace n); // defined in rect.cpp
 void register_size_file(script::Namespace n); // defined in size.cpp
 void register_settings_file(script::Namespace n); // defined in settings.cpp
 void register_timer_file(script::Namespace n); // defined in timer.cpp
+void register_newtimer_file(script::Namespace n); // defined in newtimer.cpp
 void register_timezone_file(script::Namespace n); // defined in timezone.cpp
 void register_url_file(script::Namespace n); // defined in url.cpp
 void register_urlquery_file(script::Namespace n); // defined urlquery.cpp
@@ -60,6 +61,7 @@ void load_core_module(script::Module core)
   register_size_file(core.root());
   register_rect_file(core.root());
   register_timer_file(core.root());
+  register_newtimer_file(core.root());
   register_timezone_file(core.root());
   register_datetime_file(core.root());
   register_locale_file(core.root());
