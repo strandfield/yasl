@@ -24865,6 +24865,511 @@
                     "hincludes": "<QTimer>",
                     "name": "timer",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NotOpen"
+                                        },
+                                        {
+                                            "name": "ReadOnly"
+                                        },
+                                        {
+                                            "name": "WriteOnly"
+                                        },
+                                        {
+                                            "name": "ReadWrite"
+                                        },
+                                        {
+                                            "name": "Append"
+                                        },
+                                        {
+                                            "name": "Truncate"
+                                        },
+                                        {
+                                            "name": "Text"
+                                        },
+                                        {
+                                            "name": "Unbuffered"
+                                        }
+                                    ],
+                                    "name": "OpenModeFlag",
+                                    "type": "enum"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "QIODevice",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "QIODevice",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QIODevice",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "openMode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QIODevice::OpenMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextModeEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTextModeEnabled",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isOpen",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isReadable",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isWritable",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSequential",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "readChannelCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "writeChannelCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentReadChannel",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentReadChannel",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentWriteChannel",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentWriteChannel",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "close",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "seek",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "atEnd",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reset",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bytesAvailable",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bytesToWrite",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "read",
+                                    "parameters": [
+                                        "char *",
+                                        "qint64"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "read",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "readAll",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "readLine",
+                                    "parameters": [
+                                        "char *",
+                                        "qint64"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "readLine",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "canReadLine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "startTransaction",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "commitTransaction",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rollbackTransaction",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTransactionStarted",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "write",
+                                    "parameters": [
+                                        "const char *",
+                                        "qint64"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "write",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "write",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "peek",
+                                    "parameters": [
+                                        "char *",
+                                        "qint64"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "peek",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "skip",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "waitForReadyRead",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "waitForBytesWritten",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "ungetChar",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "putChar",
+                                    "parameters": [
+                                        "char"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getChar",
+                                    "parameters": [
+                                        "char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "errorString",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "readyRead",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "channelReadyRead",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "bytesWritten",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "channelBytesWritten",
+                                    "parameters": [
+                                        "int",
+                                        "qint64"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "aboutToClose",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "readChannelFinished",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QIODevice",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QIODevice::OpenMode::enum_type",
+                                "QIODevice::OpenMode::enum_type"
+                            ],
+                            "returns": "QFlags<QIODevice::OpenMode::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QIODevice::OpenMode::enum_type",
+                                "QFlags<QIODevice::OpenMode::enum_type>"
+                            ],
+                            "returns": "QFlags<QIODevice::OpenMode::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QIODevice::OpenMode::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "QIODevice::OpenMode"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QIODevice>",
+                    "name": "iodevice",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -24955,6 +25460,19 @@
                 "id": "QFileInfo",
                 "name": "QFileInfo",
                 "rename": "FileInfo"
+            },
+            {
+                "header": "yasl/core/iodevice.h",
+                "id": "QIODevice",
+                "name": "QIODevice",
+                "rename": "IODevice",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/core/iodevice.h",
+                "id": "QIODeviceOpenMode",
+                "name": "QIODevice::OpenMode",
+                "rename": "OpenMode"
             },
             {
                 "header": "yasl/core/line.h",
@@ -25672,6 +26190,12 @@
                 "id": "QDirSortFlag",
                 "links": "flags@QDir::SortFlags",
                 "name": "QDir::SortFlag"
+            },
+            {
+                "header": "yasl/core/iodevice.h",
+                "id": "QIODeviceOpenModeFlag",
+                "links": "flags@QIODevice::OpenMode",
+                "name": "QIODevice::OpenModeFlag"
             },
             {
                 "header": "yasl/core/line.h",
