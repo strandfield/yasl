@@ -11,7 +11,6 @@ class Class : public Node
 {
 public:
   QList<NodeRef> elements;
-  bool derivedFromQObject;
   QString base;
   bool isFinal;
 

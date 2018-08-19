@@ -294,7 +294,6 @@ void ModuleTreeWidget::refreshItem(QTreeWidgetItem* item)
     Class & c = node->as<Class>();
     item->setText(1, c.base);
     item->setText(2, c.isFinal ? QString{ "true" } : QString{});
-    item->setCheckState(3, c.derivedFromQObject ? Qt::Checked : Qt::Unchecked);
   }
   else if (node->is<Enum>())
   {
@@ -414,7 +413,6 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
     Class & c = node->as<Class>();
     item->setText(1, c.base);
     item->setText(2, c.isFinal ? QString{ "true" } : QString{});
-    item->setCheckState(3, c.derivedFromQObject ? Qt::Checked : Qt::Unchecked);
     for (const auto & n : c.elements)
       item->addChild(createItem(n));
   }
@@ -476,7 +474,6 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
     Class & c = node->as<Class>();
     c.base = item->text(1);
     c.isFinal = item->text(2).toLower() == "true";
-    c.derivedFromQObject = item->checkState(3) == Qt::Checked;;
   }
   else if (node->is<Enum>())
   {

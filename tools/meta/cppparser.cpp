@@ -47,44 +47,6 @@ static bool is_forward_declaration(CXCursor cursor)
   return clang_equalCursors(clang_getCursorDefinition(cursor), clang_getNullCursor());
 }
 
-static CXChildVisitResult get_base_visitor(CXCursor cursor, CXCursor parent, CXClientData client_data)
-{
-  if (clang_getCXXAccessSpecifier(cursor) != CX_CXXPublic)
-    return CXChildVisit_Continue;
-
-  CXCursorKind kind = clang_getCursorKind(cursor);
-  if (kind != CXCursor_CXXBaseSpecifier)
-    return CXChildVisit_Continue;
-
-  QQueue<CXCursor> & result = *(QQueue<CXCursor>*)client_data;
-  result.append(cursor);
-
-  return CXChildVisit_Continue;
-}
-
-static void get_bases(CXCursor class_decl, QQueue<CXCursor> & result)
-{
-  clang_visitChildren(class_decl, get_base_visitor, (void*)&result);
-}
-
-static bool is_derived_from_qobject(CXCursor class_decl)
-{
-  QQueue<CXCursor> bases;
-  get_bases(class_decl, bases);
-  while (!bases.empty())
-  {
-    CXType type = clang_getCursorType(bases.takeFirst());
-    QString type_name = convert(clang_getTypeSpelling(type));
-    if (type_name == "QObject")
-      return true;
-
-    get_bases(clang_getTypeDeclaration(type), bases);
-  }
-
-  return false;
-}
-
-
 static CXChildVisitResult enum_visitor(CXCursor cursor, CXCursor parent, CXClientData client_data)
 {
   Enum & enm = *(Enum*)client_data;
@@ -167,7 +129,6 @@ static CXChildVisitResult namespace_visitor(CXCursor cursor, CXCursor parent, CX
       return CXChildVisit_Continue;
 
     auto c = ns->get<Class>(getCursorSpelling(cursor));
-    c->derivedFromQObject = is_derived_from_qobject(cursor);
     clang_visitChildren(cursor, class_visitor, (void*)c.data());
 
     if (c->elements.isEmpty())

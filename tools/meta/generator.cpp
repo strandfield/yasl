@@ -635,6 +635,7 @@ void Generator::generate(ClassRef cla)
   QString snake = to_snake_case(cla->name);
   Type class_info = typeinfo(qual + cla->name);
   QString claname = class_info.rename.isEmpty() ? class_info.name : class_info.rename;
+  const bool is_qclass = class_info.tag == "qobject_tag";
 
   for (const auto n : cla->elements)
   {
@@ -712,7 +713,7 @@ void Generator::generate(ClassRef cla)
   }
 
 
-  if (cla->derivedFromQObject)
+  if (is_qclass)
   {
     currentSource().bindingIncludes.insert(QClassBinderInclude);
     out += "  binding::QClass<" + cla->name + "> binder{ " + snake + ", &" + cla->name + "::staticMetaObject };" + endl;
@@ -744,7 +745,7 @@ void Generator::generate(ClassRef cla)
     }
   }
 
-  if (cla->derivedFromQObject)
+  if (is_qclass)
   {
     out += endl;
     out += "  " + snake + ".engine()->registerQtType(&" + cla->name + "::staticMetaObject, " + snake + ".id());" + endl;
