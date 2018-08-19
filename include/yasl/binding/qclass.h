@@ -233,6 +233,19 @@ public:
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
+  template<typename ReturnType, typename A1, ReturnType(*fun)(A1), typename FunType = decltype(fun)>
+  void add_static(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto binder = class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>());
+      
+     binder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
   template<typename A1, void(*fun)(A1), typename FunType = decltype(fun)>
   void add_static_void_fun(const std::string & name)
   {
@@ -282,6 +295,19 @@ public:
       .params(make_type<A1>(), make_type<A2>());
 
     builder.create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2), typename FunType = decltype(fun)>
+  void add_static(const std::string & name)
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      auto binder = class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+      
+      binder.create();
     YASL_BINDING_END_RUNTIME_CHECK
   }
 
