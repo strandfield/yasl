@@ -6,10 +6,12 @@
 #define YASL_GUI_SCREEN_H
 
 #include "yasl/binding/types.h"
+#include "yasl/core/qobject-binding.h"
 
 #include <QScreen>
 
 namespace binding {
+template<> struct tag_resolver<QScreen> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QScreen> { inline static script::Type get() { return script::Type::QScreen; } };
 } // namespace binding
 

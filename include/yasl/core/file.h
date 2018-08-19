@@ -12,6 +12,7 @@
 namespace binding
 {
 
+template<> struct tag_resolver<QFile> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QFile> { inline static script::Type get() { return script::Type::QFile; } };
 //template<> struct storage_type<QFile> { typedef QFile* type; };
 //template<> inline QFile* get<QFile>(const script::Value & val) { return qobject_cast<QFile*>(val.toQObject()); }

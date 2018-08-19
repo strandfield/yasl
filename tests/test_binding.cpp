@@ -6,6 +6,7 @@
 
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/core/qobject-binding.h"
 
 #include <script/engine.h>
 #include <script/class.h>
@@ -24,8 +25,6 @@ TEST(BindingTests, decay) {
   ASSERT_TRUE((std::is_same<decay<bool const *>::type, bool>::value));
 }
 
-#include <QTimer>
-
 TEST(BindingTests, tagdetection) {
   using namespace binding;
 
@@ -33,8 +32,6 @@ TEST(BindingTests, tagdetection) {
 
   enum Foo {};
   ASSERT_TRUE((std::is_same<typename tag_resolver<Foo>::tag_type, enum_tag>::value));
-
-  ASSERT_TRUE((std::is_same<typename tag_resolver<QTimer>::tag_type, qobject_tag>::value));
 
   struct Qux { int n[20000]; };
   ASSERT_TRUE((std::is_same<typename tag_resolver<Qux>::tag_type, large_object_tag>::value));
@@ -54,8 +51,6 @@ TEST(BindingTests, storage) {
 
   struct Qux { int n[20000]; };
   ASSERT_TRUE((std::is_same<typename storage_type<Qux>::type, Qux*>::value));
-
-  ASSERT_TRUE((std::is_same<typename storage_type<QTimer>::type, qobject_storage<QTimer>::type>::value));
 }
 
 int bar()

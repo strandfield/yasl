@@ -7,13 +7,10 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/types.h"
-#include "yasl/utils/ref.h"
 
 #include <script/engine.h>
 #include <script/value.h>
 #include <script/private/value_p.h>
-
-#include <QObject>
 
 #include <string>
 
@@ -22,40 +19,33 @@ namespace binding
 
 struct large_object_tag {};
 struct small_object_tag {};
-struct qobject_tag {};
 struct enum_tag {};
 
-template<bool isSmall, bool isEnum, bool isQObject>
+template<bool isSmall, bool isEnum>
 struct tag_resolver_impl;
 
 template<bool isSmall>
-struct tag_resolver_impl<isSmall, true, false>
+struct tag_resolver_impl<isSmall, true>
 {
   typedef enum_tag type;
 };
 
 template<>
-struct tag_resolver_impl<true, false, false>
+struct tag_resolver_impl<true, false>
 {
   typedef small_object_tag type;
 };
 
 template<>
-struct tag_resolver_impl<false, false, false>
+struct tag_resolver_impl<false, false>
 {
   typedef large_object_tag type;
-};
-
-template<bool isSmall>
-struct tag_resolver_impl<isSmall, false, true>
-{
-  typedef qobject_tag type;
 };
 
 template<typename T>
 struct tag_resolver
 {
-  typedef typename tag_resolver_impl<(sizeof(T) <= sizeof(script::ValueImpl::BuiltIn)), std::is_enum<T>::value, std::is_convertible<T*, QObject*>::value>::type tag_type;
+  typedef typename tag_resolver_impl<(sizeof(T) <= sizeof(script::ValueImpl::BuiltIn)), std::is_enum<T>::value>::type tag_type;
 };
 
 } // namespace binding
@@ -111,15 +101,6 @@ struct make_value_t<T, enum_tag>
   }
 };
 
-template<typename T>
-struct make_value_t<T, qobject_tag>
-{
-  static script::Value make(T *input, script::Engine *e)
-  {
-    return make_ref(e, make_type<T*>(), input);
-  }
-};
-
 
 
 template<typename T>
@@ -161,9 +142,6 @@ struct heap_storage
   typedef T* type;
 };
 
-template<typename T>
-struct qobject_storage : heap_storage<T> { };
-
 template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
 struct storage_type_default_impl;
 
@@ -178,9 +156,6 @@ struct storage_type_default_impl<T, enum_tag>
 {
   typedef T type;
 };
-
-template<typename T>
-struct storage_type_default_impl<T, qobject_tag> : qobject_storage<T> { };
 
 
 template<typename T>
@@ -220,14 +195,6 @@ struct get_helper<T, enum_tag>
   }
 };
 
-template<typename T>
-struct get_helper<T, qobject_tag>
-{
-  static T* get(const script::Value & val)
-  {
-    return qobject_cast<T*>(val.toQObject());
-  }
-};
 
 template<typename T>
 typename storage_type<T>::type get(const script::Value & val)

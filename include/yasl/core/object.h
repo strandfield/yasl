@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_OBJECT_H
 #define YASL_CORE_OBJECT_H
 
-#include "yasl/binding/values.h"
+#include "yasl/core/qobject-binding.h"
 #include "yasl/utils/ptr.h"
 #include "yasl/utils/ref.h"
 
@@ -21,6 +21,7 @@ script::Value connect(script::FunctionCall *c);
 namespace binding
 {
 
+template<> struct tag_resolver<QObject> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QObject*> { inline static script::Type get() { return script::Type::QObjectStar; } };
 template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
 template<> struct make_type_t<Ptr<QObject*>> { inline static script::Type get() { return script::Type::PtrQObject; } };

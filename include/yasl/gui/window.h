@@ -6,12 +6,12 @@
 #define YASL_GUI_WINDOW_H
 
 #include "yasl/binding/types.h"
-#include "yasl/binding/values.h"
-#include "yasl/utils/ref.h"
+#include "yasl/core/qobject-binding.h"
 
 #include <QWindow>
 
 namespace binding {
+template<> struct tag_resolver<QWindow> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QWindow> { inline static script::Type get() { return script::Type::QWindow; } };
 template<> struct make_type_t<QWindow*> { inline static script::Type get() { return script::Type::QWindowStar; } };
 template<> struct make_type_t<QWindow::AncestorMode> { inline static script::Type get() { return script::Type::QWindowAncestorMode; } };

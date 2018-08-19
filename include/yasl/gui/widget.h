@@ -16,6 +16,7 @@ script::Value make_widget(QWidget *widget, script::Engine *e);
 namespace binding
 {
 
+template<> struct tag_resolver<QWidget> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QWidget*> { inline static script::Type get() { return script::Type::QWidgetStar; } };
 template<> struct make_type_t<QList<QWidget*>> { inline static script::Type get() { return script::Type::QListQWidget; } };
 template<> struct make_type_t<Ptr<QWidget*>> { inline static script::Type get() { return script::Type::PtrQWidget; } };

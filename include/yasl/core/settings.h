@@ -6,10 +6,12 @@
 #define YASL_CORE_SETTINGS_H
 
 #include "yasl/binding/types.h"
+#include "yasl/core/qobject-binding.h"
 
 #include <QSettings>
 
 namespace binding {
+template<> struct tag_resolver<QSettings> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QSettings> { inline static script::Type get() { return script::Type::QSettings; } };
 template<> struct make_type_t<QSettings::Format> { inline static script::Type get() { return script::Type::QSettingsFormat; } };
 template<> struct make_type_t<QSettings::Scope> { inline static script::Type get() { return script::Type::QSettingsScope; } };

@@ -6,10 +6,12 @@
 #define YASL_GUI_CLIPBOARD_H
 
 #include "yasl/binding/types.h"
+#include "yasl/core/qobject-binding.h"
 
 #include <QClipboard>
 
 namespace binding {
+template<> struct tag_resolver<QClipboard> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QClipboard> { inline static script::Type get() { return script::Type::QClipboard; } };
 template<> struct make_type_t<QClipboard::Mode> { inline static script::Type get() { return script::Type::QClipboardMode; } };
 } // namespace binding
