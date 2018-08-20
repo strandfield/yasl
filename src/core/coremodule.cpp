@@ -55,7 +55,7 @@ void load_core_module(script::Module core)
   register_enums_file(core.root());
   register_char__file(core.root());
   register_dir_file(core.root());
-  register_qevent(core.root());
+  register_qevent(core.root()); /// TODO
   register_point_file(core.root());
   register_margins_file(core.root());
   register_size_file(core.root());

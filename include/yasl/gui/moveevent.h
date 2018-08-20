@@ -13,12 +13,7 @@ namespace binding
 {
 
 template<> struct make_type_t<QMoveEvent> { inline static script::Type get() { return script::Type::QMoveEvent; } };
-
-template<> inline script::Value make_value<QMoveEvent>(QMoveEvent *event, script::Engine *engine) { return make_event(event, script::Type::QMoveEvent, engine); }
-
-template<> inline QMoveEvent* value_cast<QMoveEvent*>(const script::Value & val) { return static_cast<QMoveEvent*>(get_event(val)); }
-template<> inline QMoveEvent& value_cast<QMoveEvent&>(const script::Value & val) { return *static_cast<QMoveEvent*>(get_event(val)); }
-
+template<> struct tag_resolver<QMoveEvent> { typedef qevent_tag tag_type; };
 
 } // namespace binding
 

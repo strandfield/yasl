@@ -13,12 +13,7 @@ namespace binding
 {
 
 template<> struct make_type_t<QCloseEvent> { inline static script::Type get() { return script::Type::QCloseEvent; } };
-
-template<> inline script::Value make_value<QCloseEvent>(QCloseEvent *event, script::Engine *engine) { return make_event(event, script::Type::QCloseEvent, engine); }
-
-template<> inline QCloseEvent* value_cast<QCloseEvent*>(const script::Value & val) { return static_cast<QCloseEvent*>(get_event(val)); }
-template<> inline QCloseEvent& value_cast<QCloseEvent&>(const script::Value & val) { return *static_cast<QCloseEvent*>(get_event(val)); }
-
+template<> struct tag_resolver<QCloseEvent> { typedef qevent_tag tag_type; };
 
 } // namespace binding
 
