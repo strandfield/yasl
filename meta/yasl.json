@@ -26002,6 +26002,752 @@
                     "hincludes": "<QFile>",
                     "name": "file",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "None"
+                                        },
+                                        {
+                                            "name": "Timer"
+                                        },
+                                        {
+                                            "name": "MouseButtonPress"
+                                        },
+                                        {
+                                            "name": "MouseButtonRelease"
+                                        },
+                                        {
+                                            "name": "MouseButtonDblClick"
+                                        },
+                                        {
+                                            "name": "MouseMove"
+                                        },
+                                        {
+                                            "name": "KeyPress"
+                                        },
+                                        {
+                                            "name": "KeyRelease"
+                                        },
+                                        {
+                                            "name": "FocusIn"
+                                        },
+                                        {
+                                            "name": "FocusOut"
+                                        },
+                                        {
+                                            "name": "FocusAboutToChange"
+                                        },
+                                        {
+                                            "name": "Enter"
+                                        },
+                                        {
+                                            "name": "Leave"
+                                        },
+                                        {
+                                            "name": "Paint"
+                                        },
+                                        {
+                                            "name": "Move"
+                                        },
+                                        {
+                                            "name": "Resize"
+                                        },
+                                        {
+                                            "name": "Create"
+                                        },
+                                        {
+                                            "name": "Destroy"
+                                        },
+                                        {
+                                            "name": "Show"
+                                        },
+                                        {
+                                            "name": "Hide"
+                                        },
+                                        {
+                                            "name": "Close"
+                                        },
+                                        {
+                                            "name": "Quit"
+                                        },
+                                        {
+                                            "name": "ParentChange"
+                                        },
+                                        {
+                                            "name": "ParentAboutToChange"
+                                        },
+                                        {
+                                            "name": "ThreadChange"
+                                        },
+                                        {
+                                            "name": "WindowActivate"
+                                        },
+                                        {
+                                            "name": "WindowDeactivate"
+                                        },
+                                        {
+                                            "name": "ShowToParent"
+                                        },
+                                        {
+                                            "name": "HideToParent"
+                                        },
+                                        {
+                                            "name": "Wheel"
+                                        },
+                                        {
+                                            "name": "WindowTitleChange"
+                                        },
+                                        {
+                                            "name": "WindowIconChange"
+                                        },
+                                        {
+                                            "name": "ApplicationWindowIconChange"
+                                        },
+                                        {
+                                            "name": "ApplicationFontChange"
+                                        },
+                                        {
+                                            "name": "ApplicationLayoutDirectionChange"
+                                        },
+                                        {
+                                            "name": "ApplicationPaletteChange"
+                                        },
+                                        {
+                                            "name": "PaletteChange"
+                                        },
+                                        {
+                                            "name": "Clipboard"
+                                        },
+                                        {
+                                            "name": "Speech"
+                                        },
+                                        {
+                                            "name": "MetaCall"
+                                        },
+                                        {
+                                            "name": "SockAct"
+                                        },
+                                        {
+                                            "name": "WinEventAct"
+                                        },
+                                        {
+                                            "name": "DeferredDelete"
+                                        },
+                                        {
+                                            "name": "DragEnter"
+                                        },
+                                        {
+                                            "name": "DragMove"
+                                        },
+                                        {
+                                            "name": "DragLeave"
+                                        },
+                                        {
+                                            "name": "Drop"
+                                        },
+                                        {
+                                            "name": "DragResponse"
+                                        },
+                                        {
+                                            "name": "ChildAdded"
+                                        },
+                                        {
+                                            "name": "ChildPolished"
+                                        },
+                                        {
+                                            "name": "ChildRemoved"
+                                        },
+                                        {
+                                            "name": "ShowWindowRequest"
+                                        },
+                                        {
+                                            "name": "PolishRequest"
+                                        },
+                                        {
+                                            "name": "Polish"
+                                        },
+                                        {
+                                            "name": "LayoutRequest"
+                                        },
+                                        {
+                                            "name": "UpdateRequest"
+                                        },
+                                        {
+                                            "name": "UpdateLater"
+                                        },
+                                        {
+                                            "name": "EmbeddingControl"
+                                        },
+                                        {
+                                            "name": "ActivateControl"
+                                        },
+                                        {
+                                            "name": "DeactivateControl"
+                                        },
+                                        {
+                                            "name": "ContextMenu"
+                                        },
+                                        {
+                                            "name": "InputMethod"
+                                        },
+                                        {
+                                            "name": "TabletMove"
+                                        },
+                                        {
+                                            "name": "LocaleChange"
+                                        },
+                                        {
+                                            "name": "LanguageChange"
+                                        },
+                                        {
+                                            "name": "LayoutDirectionChange"
+                                        },
+                                        {
+                                            "name": "Style"
+                                        },
+                                        {
+                                            "name": "TabletPress"
+                                        },
+                                        {
+                                            "name": "TabletRelease"
+                                        },
+                                        {
+                                            "name": "OkRequest"
+                                        },
+                                        {
+                                            "name": "HelpRequest"
+                                        },
+                                        {
+                                            "name": "IconDrag"
+                                        },
+                                        {
+                                            "name": "FontChange"
+                                        },
+                                        {
+                                            "name": "EnabledChange"
+                                        },
+                                        {
+                                            "name": "ActivationChange"
+                                        },
+                                        {
+                                            "name": "StyleChange"
+                                        },
+                                        {
+                                            "name": "IconTextChange"
+                                        },
+                                        {
+                                            "name": "ModifiedChange"
+                                        },
+                                        {
+                                            "name": "MouseTrackingChange"
+                                        },
+                                        {
+                                            "name": "WindowBlocked"
+                                        },
+                                        {
+                                            "name": "WindowUnblocked"
+                                        },
+                                        {
+                                            "name": "WindowStateChange"
+                                        },
+                                        {
+                                            "name": "ReadOnlyChange"
+                                        },
+                                        {
+                                            "name": "ToolTip"
+                                        },
+                                        {
+                                            "name": "WhatsThis"
+                                        },
+                                        {
+                                            "name": "StatusTip"
+                                        },
+                                        {
+                                            "name": "ActionChanged"
+                                        },
+                                        {
+                                            "name": "ActionAdded"
+                                        },
+                                        {
+                                            "name": "ActionRemoved"
+                                        },
+                                        {
+                                            "name": "FileOpen"
+                                        },
+                                        {
+                                            "name": "Shortcut"
+                                        },
+                                        {
+                                            "name": "ShortcutOverride"
+                                        },
+                                        {
+                                            "name": "WhatsThisClicked"
+                                        },
+                                        {
+                                            "name": "ToolBarChange"
+                                        },
+                                        {
+                                            "name": "ApplicationActivate"
+                                        },
+                                        {
+                                            "name": "ApplicationActivated"
+                                        },
+                                        {
+                                            "name": "ApplicationDeactivate"
+                                        },
+                                        {
+                                            "name": "ApplicationDeactivated"
+                                        },
+                                        {
+                                            "name": "QueryWhatsThis"
+                                        },
+                                        {
+                                            "name": "EnterWhatsThisMode"
+                                        },
+                                        {
+                                            "name": "LeaveWhatsThisMode"
+                                        },
+                                        {
+                                            "name": "ZOrderChange"
+                                        },
+                                        {
+                                            "name": "HoverEnter"
+                                        },
+                                        {
+                                            "name": "HoverLeave"
+                                        },
+                                        {
+                                            "name": "HoverMove"
+                                        },
+                                        {
+                                            "name": "AcceptDropsChange"
+                                        },
+                                        {
+                                            "name": "ZeroTimerEvent"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneMouseMove"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneMousePress"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneMouseRelease"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneMouseDoubleClick"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneContextMenu"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneHoverEnter"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneHoverMove"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneHoverLeave"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneHelp"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneDragEnter"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneDragMove"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneDragLeave"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneDrop"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneWheel"
+                                        },
+                                        {
+                                            "name": "KeyboardLayoutChange"
+                                        },
+                                        {
+                                            "name": "DynamicPropertyChange"
+                                        },
+                                        {
+                                            "name": "TabletEnterProximity"
+                                        },
+                                        {
+                                            "name": "TabletLeaveProximity"
+                                        },
+                                        {
+                                            "name": "NonClientAreaMouseMove"
+                                        },
+                                        {
+                                            "name": "NonClientAreaMouseButtonPress"
+                                        },
+                                        {
+                                            "name": "NonClientAreaMouseButtonRelease"
+                                        },
+                                        {
+                                            "name": "NonClientAreaMouseButtonDblClick"
+                                        },
+                                        {
+                                            "name": "MacSizeChange"
+                                        },
+                                        {
+                                            "name": "ContentsRectChange"
+                                        },
+                                        {
+                                            "name": "MacGLWindowChange"
+                                        },
+                                        {
+                                            "name": "FutureCallOut"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneResize"
+                                        },
+                                        {
+                                            "name": "GraphicsSceneMove"
+                                        },
+                                        {
+                                            "name": "CursorChange"
+                                        },
+                                        {
+                                            "name": "ToolTipChange"
+                                        },
+                                        {
+                                            "name": "NetworkReplyUpdated"
+                                        },
+                                        {
+                                            "name": "GrabMouse"
+                                        },
+                                        {
+                                            "name": "UngrabMouse"
+                                        },
+                                        {
+                                            "name": "GrabKeyboard"
+                                        },
+                                        {
+                                            "name": "UngrabKeyboard"
+                                        },
+                                        {
+                                            "name": "MacGLClearDrawable"
+                                        },
+                                        {
+                                            "name": "StateMachineSignal"
+                                        },
+                                        {
+                                            "name": "StateMachineWrapped"
+                                        },
+                                        {
+                                            "name": "TouchBegin"
+                                        },
+                                        {
+                                            "name": "TouchUpdate"
+                                        },
+                                        {
+                                            "name": "TouchEnd"
+                                        },
+                                        {
+                                            "name": "NativeGesture"
+                                        },
+                                        {
+                                            "name": "RequestSoftwareInputPanel"
+                                        },
+                                        {
+                                            "name": "CloseSoftwareInputPanel"
+                                        },
+                                        {
+                                            "name": "WinIdChange"
+                                        },
+                                        {
+                                            "name": "Gesture"
+                                        },
+                                        {
+                                            "name": "GestureOverride"
+                                        },
+                                        {
+                                            "name": "ScrollPrepare"
+                                        },
+                                        {
+                                            "name": "Scroll"
+                                        },
+                                        {
+                                            "name": "Expose"
+                                        },
+                                        {
+                                            "name": "InputMethodQuery"
+                                        },
+                                        {
+                                            "name": "OrientationChange"
+                                        },
+                                        {
+                                            "name": "TouchCancel"
+                                        },
+                                        {
+                                            "name": "ThemeChange"
+                                        },
+                                        {
+                                            "name": "SockClose"
+                                        },
+                                        {
+                                            "name": "PlatformPanel"
+                                        },
+                                        {
+                                            "name": "StyleAnimationUpdate"
+                                        },
+                                        {
+                                            "name": "ApplicationStateChange"
+                                        },
+                                        {
+                                            "name": "WindowChangeInternal"
+                                        },
+                                        {
+                                            "name": "ScreenChangeInternal"
+                                        },
+                                        {
+                                            "name": "PlatformSurface"
+                                        },
+                                        {
+                                            "name": "Pointer"
+                                        },
+                                        {
+                                            "name": "TabletTrackingChange"
+                                        },
+                                        {
+                                            "name": "User"
+                                        },
+                                        {
+                                            "name": "MaxUser"
+                                        }
+                                    ],
+                                    "name": "Type",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QEvent",
+                                    "parameters": [
+                                        "QEvent::Type"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QEvent",
+                                    "parameters": [
+                                        "const QEvent &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QEvent &"
+                                    ],
+                                    "returns": "QEvent &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "type",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QEvent::Type",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "spontaneous",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAccepted",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isAccepted",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "accept",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "ignore",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "registerEventType",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QEvent",
+                            "type": "class"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QTimerEvent",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QTimerEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "timerId",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTimerEvent",
+                            "type": "class"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QChildEvent",
+                                    "parameters": [
+                                        "QEvent::Type",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QChildEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "child",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QObject *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "added",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "polished",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "removed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QChildEvent",
+                            "type": "class"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QDynamicPropertyChangeEvent",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDynamicPropertyChangeEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "propertyName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDynamicPropertyChangeEvent",
+                            "type": "class"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QDeferredDeleteEvent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDeferredDeleteEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "loopLevel",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDeferredDeleteEvent",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QEvent>",
+                    "name": "event",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -26058,6 +26804,13 @@
                 "rename": "Char"
             },
             {
+                "header": "yasl/core/event.h",
+                "id": "QChildEvent",
+                "name": "QChildEvent",
+                "rename": "ChildEvent",
+                "tag": "qevent_tag"
+            },
+            {
                 "header": "yasl/core/datetime.h",
                 "id": "QDate",
                 "name": "QDate",
@@ -26068,6 +26821,13 @@
                 "id": "QDateTime",
                 "name": "QDateTime",
                 "rename": "DateTime"
+            },
+            {
+                "header": "yasl/core/event.h",
+                "id": "QDeferredDeleteEvent",
+                "name": "QDeferredDeleteEvent",
+                "rename": "DeferredDeleteEvent",
+                "tag": "qevent_tag"
             },
             {
                 "header": "yasl/core/dir.h",
@@ -26086,6 +26846,20 @@
                 "id": "QDirSortFlags",
                 "name": "QDir::SortFlags",
                 "rename": "SortFlags"
+            },
+            {
+                "header": "yasl/core/event.h",
+                "id": "QDynamicPropertyChangeEvent",
+                "name": "QDynamicPropertyChangeEvent",
+                "rename": "DynamicPropertyChangeEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/core/event.h",
+                "id": "QEvent",
+                "name": "QEvent",
+                "rename": "Event",
+                "tag": "qevent_tag"
             },
             {
                 "header": "yasl/core/file.h",
@@ -26304,6 +27078,13 @@
                 "name": "QTimer",
                 "rename": "Timer",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/core/event.h",
+                "id": "QTimerEvent",
+                "name": "QTimerEvent",
+                "rename": "TimerEvent",
+                "tag": "qevent_tag"
             },
             {
                 "header": "yasl/core/timezone.h",
@@ -26848,6 +27629,11 @@
                 "id": "QDirSortFlag",
                 "links": "flags@QDir::SortFlags",
                 "name": "QDir::SortFlag"
+            },
+            {
+                "header": "yasl/core/event.h",
+                "id": "QEventType",
+                "name": "QEvent::Type"
             },
             {
                 "header": "yasl/core/filedevice.h",

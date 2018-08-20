@@ -4,45 +4,22 @@
 
 #include "yasl/core/event.h"
 
-#include "yasl/binding/class.h"
+#include "yasl/binding/enum.h"
+#include "yasl/binding/namespace.h"
+#include "yasl/core/qevent-binder.h"
+
+#include "yasl/core/bytearray.h"
+#include "yasl/core/event.h"
+#include "yasl/core/object.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
-#include <script/interpreter/executioncontext.h>
 
-namespace callbacks
-{
-
-static script::Value ctor(script::FunctionCall *c)
-{
-  auto self = c->thisObject();
-  self.impl()->data.ptr = new QEvent(binding::value_cast<QEvent::Type>(c->arg(0)));
-  return self;
-}
-
-static script::Value dtor(script::FunctionCall *c)
-{
-  auto self = c->thisObject();
-  if (self.impl()->data.ptr != nullptr)
-  {
-    delete static_cast<QEvent*>(self.impl()->data.ptr);
-    self.impl()->data.ptr = nullptr;
-  }
-
-  return script::Value::Void;
-}
-
-} // namespace callbacks
-
-
-void register_qevent(script::Namespace root)
+static void register_event_type_enum(script::Class event)
 {
   using namespace script;
 
-  Class event = root.Class("Event").setId(Type::QEvent).get();
-  
-  Enum type = event.Enum("Type").setId(Type::QEventType).get();
+  Enum type = event.Enum("Type").setId(script::Type::QEventType).get();
 
   type.addValue("None", QEvent::None);
   type.addValue("Timer", QEvent::Timer);
@@ -76,6 +53,17 @@ void register_qevent(script::Namespace root)
   type.addValue("Wheel", QEvent::Wheel);
   type.addValue("WindowTitleChange", QEvent::WindowTitleChange);
   type.addValue("WindowIconChange", QEvent::WindowIconChange);
+  type.addValue("ApplicationWindowIconChange", QEvent::ApplicationWindowIconChange);
+  type.addValue("ApplicationFontChange", QEvent::ApplicationFontChange);
+  type.addValue("ApplicationLayoutDirectionChange", QEvent::ApplicationLayoutDirectionChange);
+  type.addValue("ApplicationPaletteChange", QEvent::ApplicationPaletteChange);
+  type.addValue("PaletteChange", QEvent::PaletteChange);
+  type.addValue("Clipboard", QEvent::Clipboard);
+  type.addValue("Speech", QEvent::Speech);
+  type.addValue("MetaCall", QEvent::MetaCall);
+  type.addValue("SockAct", QEvent::SockAct);
+  type.addValue("WinEventAct", QEvent::WinEventAct);
+  type.addValue("DeferredDelete", QEvent::DeferredDelete);
   type.addValue("DragEnter", QEvent::DragEnter);
   type.addValue("DragMove", QEvent::DragMove);
   type.addValue("DragLeave", QEvent::DragLeave);
@@ -84,23 +72,250 @@ void register_qevent(script::Namespace root)
   type.addValue("ChildAdded", QEvent::ChildAdded);
   type.addValue("ChildPolished", QEvent::ChildPolished);
   type.addValue("ChildRemoved", QEvent::ChildRemoved);
-  // for now that will do...
-   
-  binding::Class<QEvent> qevent{ event };
-  // QEvent(QEvent::Type);
-  event.Constructor(callbacks::ctor).params(Type{ Type::QEventType }).create();
-  // ~QEvent();
-  event.newDestructor(callbacks::dtor);
-  // void accept();
-  qevent.add_void_fun<&QEvent::accept>("accept");
-  // void ignore();
-  qevent.add_void_fun<&QEvent::ignore>("ignore");
-  // bool isAccepted() const;
-  qevent.add_fun<bool, &QEvent::isAccepted>("isAccepted");
-  // void setAccepted(bool);
-  qevent.add_void_fun<bool, &QEvent::setAccepted>("setAccepted");
-  // bool spontaneous() const;
-  qevent.add_fun<bool, &QEvent::spontaneous>("spontaneous");
-  // QEvent::Type type() const;
-  qevent.add_fun<QEvent::Type, &QEvent::type>("type");
+  type.addValue("ShowWindowRequest", QEvent::ShowWindowRequest);
+  type.addValue("PolishRequest", QEvent::PolishRequest);
+  type.addValue("Polish", QEvent::Polish);
+  type.addValue("LayoutRequest", QEvent::LayoutRequest);
+  type.addValue("UpdateRequest", QEvent::UpdateRequest);
+  type.addValue("UpdateLater", QEvent::UpdateLater);
+  type.addValue("EmbeddingControl", QEvent::EmbeddingControl);
+  type.addValue("ActivateControl", QEvent::ActivateControl);
+  type.addValue("DeactivateControl", QEvent::DeactivateControl);
+  type.addValue("ContextMenu", QEvent::ContextMenu);
+  type.addValue("InputMethod", QEvent::InputMethod);
+  type.addValue("TabletMove", QEvent::TabletMove);
+  type.addValue("LocaleChange", QEvent::LocaleChange);
+  type.addValue("LanguageChange", QEvent::LanguageChange);
+  type.addValue("LayoutDirectionChange", QEvent::LayoutDirectionChange);
+  type.addValue("Style", QEvent::Style);
+  type.addValue("TabletPress", QEvent::TabletPress);
+  type.addValue("TabletRelease", QEvent::TabletRelease);
+  type.addValue("OkRequest", QEvent::OkRequest);
+  type.addValue("HelpRequest", QEvent::HelpRequest);
+  type.addValue("IconDrag", QEvent::IconDrag);
+  type.addValue("FontChange", QEvent::FontChange);
+  type.addValue("EnabledChange", QEvent::EnabledChange);
+  type.addValue("ActivationChange", QEvent::ActivationChange);
+  type.addValue("StyleChange", QEvent::StyleChange);
+  type.addValue("IconTextChange", QEvent::IconTextChange);
+  type.addValue("ModifiedChange", QEvent::ModifiedChange);
+  type.addValue("MouseTrackingChange", QEvent::MouseTrackingChange);
+  type.addValue("WindowBlocked", QEvent::WindowBlocked);
+  type.addValue("WindowUnblocked", QEvent::WindowUnblocked);
+  type.addValue("WindowStateChange", QEvent::WindowStateChange);
+  type.addValue("ReadOnlyChange", QEvent::ReadOnlyChange);
+  type.addValue("ToolTip", QEvent::ToolTip);
+  type.addValue("WhatsThis", QEvent::WhatsThis);
+  type.addValue("StatusTip", QEvent::StatusTip);
+  type.addValue("ActionChanged", QEvent::ActionChanged);
+  type.addValue("ActionAdded", QEvent::ActionAdded);
+  type.addValue("ActionRemoved", QEvent::ActionRemoved);
+  type.addValue("FileOpen", QEvent::FileOpen);
+  type.addValue("Shortcut", QEvent::Shortcut);
+  type.addValue("ShortcutOverride", QEvent::ShortcutOverride);
+  type.addValue("WhatsThisClicked", QEvent::WhatsThisClicked);
+  type.addValue("ToolBarChange", QEvent::ToolBarChange);
+  type.addValue("ApplicationActivate", QEvent::ApplicationActivate);
+  type.addValue("ApplicationActivated", QEvent::ApplicationActivated);
+  type.addValue("ApplicationDeactivate", QEvent::ApplicationDeactivate);
+  type.addValue("ApplicationDeactivated", QEvent::ApplicationDeactivated);
+  type.addValue("QueryWhatsThis", QEvent::QueryWhatsThis);
+  type.addValue("EnterWhatsThisMode", QEvent::EnterWhatsThisMode);
+  type.addValue("LeaveWhatsThisMode", QEvent::LeaveWhatsThisMode);
+  type.addValue("ZOrderChange", QEvent::ZOrderChange);
+  type.addValue("HoverEnter", QEvent::HoverEnter);
+  type.addValue("HoverLeave", QEvent::HoverLeave);
+  type.addValue("HoverMove", QEvent::HoverMove);
+  type.addValue("AcceptDropsChange", QEvent::AcceptDropsChange);
+  type.addValue("ZeroTimerEvent", QEvent::ZeroTimerEvent);
+  type.addValue("GraphicsSceneMouseMove", QEvent::GraphicsSceneMouseMove);
+  type.addValue("GraphicsSceneMousePress", QEvent::GraphicsSceneMousePress);
+  type.addValue("GraphicsSceneMouseRelease", QEvent::GraphicsSceneMouseRelease);
+  type.addValue("GraphicsSceneMouseDoubleClick", QEvent::GraphicsSceneMouseDoubleClick);
+  type.addValue("GraphicsSceneContextMenu", QEvent::GraphicsSceneContextMenu);
+  type.addValue("GraphicsSceneHoverEnter", QEvent::GraphicsSceneHoverEnter);
+  type.addValue("GraphicsSceneHoverMove", QEvent::GraphicsSceneHoverMove);
+  type.addValue("GraphicsSceneHoverLeave", QEvent::GraphicsSceneHoverLeave);
+  type.addValue("GraphicsSceneHelp", QEvent::GraphicsSceneHelp);
+  type.addValue("GraphicsSceneDragEnter", QEvent::GraphicsSceneDragEnter);
+  type.addValue("GraphicsSceneDragMove", QEvent::GraphicsSceneDragMove);
+  type.addValue("GraphicsSceneDragLeave", QEvent::GraphicsSceneDragLeave);
+  type.addValue("GraphicsSceneDrop", QEvent::GraphicsSceneDrop);
+  type.addValue("GraphicsSceneWheel", QEvent::GraphicsSceneWheel);
+  type.addValue("KeyboardLayoutChange", QEvent::KeyboardLayoutChange);
+  type.addValue("DynamicPropertyChange", QEvent::DynamicPropertyChange);
+  type.addValue("TabletEnterProximity", QEvent::TabletEnterProximity);
+  type.addValue("TabletLeaveProximity", QEvent::TabletLeaveProximity);
+  type.addValue("NonClientAreaMouseMove", QEvent::NonClientAreaMouseMove);
+  type.addValue("NonClientAreaMouseButtonPress", QEvent::NonClientAreaMouseButtonPress);
+  type.addValue("NonClientAreaMouseButtonRelease", QEvent::NonClientAreaMouseButtonRelease);
+  type.addValue("NonClientAreaMouseButtonDblClick", QEvent::NonClientAreaMouseButtonDblClick);
+  type.addValue("MacSizeChange", QEvent::MacSizeChange);
+  type.addValue("ContentsRectChange", QEvent::ContentsRectChange);
+  type.addValue("MacGLWindowChange", QEvent::MacGLWindowChange);
+  type.addValue("FutureCallOut", QEvent::FutureCallOut);
+  type.addValue("GraphicsSceneResize", QEvent::GraphicsSceneResize);
+  type.addValue("GraphicsSceneMove", QEvent::GraphicsSceneMove);
+  type.addValue("CursorChange", QEvent::CursorChange);
+  type.addValue("ToolTipChange", QEvent::ToolTipChange);
+  type.addValue("NetworkReplyUpdated", QEvent::NetworkReplyUpdated);
+  type.addValue("GrabMouse", QEvent::GrabMouse);
+  type.addValue("UngrabMouse", QEvent::UngrabMouse);
+  type.addValue("GrabKeyboard", QEvent::GrabKeyboard);
+  type.addValue("UngrabKeyboard", QEvent::UngrabKeyboard);
+  type.addValue("MacGLClearDrawable", QEvent::MacGLClearDrawable);
+  type.addValue("StateMachineSignal", QEvent::StateMachineSignal);
+  type.addValue("StateMachineWrapped", QEvent::StateMachineWrapped);
+  type.addValue("TouchBegin", QEvent::TouchBegin);
+  type.addValue("TouchUpdate", QEvent::TouchUpdate);
+  type.addValue("TouchEnd", QEvent::TouchEnd);
+  type.addValue("NativeGesture", QEvent::NativeGesture);
+  type.addValue("RequestSoftwareInputPanel", QEvent::RequestSoftwareInputPanel);
+  type.addValue("CloseSoftwareInputPanel", QEvent::CloseSoftwareInputPanel);
+  type.addValue("WinIdChange", QEvent::WinIdChange);
+  type.addValue("Gesture", QEvent::Gesture);
+  type.addValue("GestureOverride", QEvent::GestureOverride);
+  type.addValue("ScrollPrepare", QEvent::ScrollPrepare);
+  type.addValue("Scroll", QEvent::Scroll);
+  type.addValue("Expose", QEvent::Expose);
+  type.addValue("InputMethodQuery", QEvent::InputMethodQuery);
+  type.addValue("OrientationChange", QEvent::OrientationChange);
+  type.addValue("TouchCancel", QEvent::TouchCancel);
+  type.addValue("ThemeChange", QEvent::ThemeChange);
+  type.addValue("SockClose", QEvent::SockClose);
+  type.addValue("PlatformPanel", QEvent::PlatformPanel);
+  type.addValue("StyleAnimationUpdate", QEvent::StyleAnimationUpdate);
+  type.addValue("ApplicationStateChange", QEvent::ApplicationStateChange);
+  type.addValue("WindowChangeInternal", QEvent::WindowChangeInternal);
+  type.addValue("ScreenChangeInternal", QEvent::ScreenChangeInternal);
+  type.addValue("PlatformSurface", QEvent::PlatformSurface);
+  type.addValue("Pointer", QEvent::Pointer);
+  type.addValue("TabletTrackingChange", QEvent::TabletTrackingChange);
+  type.addValue("User", QEvent::User);
+  type.addValue("MaxUser", QEvent::MaxUser);
 }
+
+
+static void register_event_class(script::Namespace ns)
+{
+  using namespace script;
+
+  Class event = ns.Class("Event").setId(script::Type::QEvent).get();
+
+  register_event_type_enum(event);
+  binding::Event<QEvent> binder{ event };
+
+  // QEvent(QEvent::Type);
+  binder.ctors().add<QEvent::Type>();
+  // QEvent(const QEvent &);
+  binder.ctors().add<const QEvent &>();
+  // ~QEvent();
+  binder.add_dtor();
+  // QEvent & operator=(const QEvent &);
+  binder.operators().assign<const QEvent &>();
+  // QEvent::Type type() const;
+  binder.add_fun<QEvent::Type, &QEvent::type>("type");
+  // bool spontaneous() const;
+  binder.add_fun<bool, &QEvent::spontaneous>("spontaneous");
+  // void setAccepted(bool);
+  binder.add_void_fun<bool, &QEvent::setAccepted>("setAccepted");
+  // bool isAccepted() const;
+  binder.add_fun<bool, &QEvent::isAccepted>("isAccepted");
+  // void accept();
+  binder.add_void_fun<&QEvent::accept>("accept");
+  // void ignore();
+  binder.add_void_fun<&QEvent::ignore>("ignore");
+  // static int registerEventType(int);
+  binder.add_static<int, int, &QEvent::registerEventType>("registerEventType");
+}
+
+
+static void register_timer_event_class(script::Namespace ns)
+{
+  using namespace script;
+
+  Class timer_event = ns.Class("TimerEvent").setId(script::Type::QTimerEvent).get();
+
+  binding::Event<QTimerEvent> binder{ timer_event };
+
+  // QTimerEvent(int);
+  binder.ctors().add<int>();
+  // ~QTimerEvent();
+  binder.add_dtor();
+  // int timerId() const;
+  binder.add_fun<int, &QTimerEvent::timerId>("timerId");
+}
+
+
+static void register_child_event_class(script::Namespace ns)
+{
+  using namespace script;
+
+  Class child_event = ns.Class("ChildEvent").setId(script::Type::QChildEvent).get();
+
+  binding::Event<QChildEvent> binder{ child_event };
+
+  // QChildEvent(QEvent::Type, QObject *);
+  binder.ctors().add<QEvent::Type, QObject *>();
+  // ~QChildEvent();
+  binder.add_dtor();
+  // QObject * child() const;
+  binder.add_fun<QObject *, &QChildEvent::child>("child");
+  // bool added() const;
+  binder.add_fun<bool, &QChildEvent::added>("added");
+  // bool polished() const;
+  binder.add_fun<bool, &QChildEvent::polished>("polished");
+  // bool removed() const;
+  binder.add_fun<bool, &QChildEvent::removed>("removed");
+}
+
+
+static void register_dynamic_property_change_event_class(script::Namespace ns)
+{
+  using namespace script;
+
+  Class dynamic_property_change_event = ns.Class("DynamicPropertyChangeEvent").setId(script::Type::QDynamicPropertyChangeEvent).get();
+
+  binding::Event<QDynamicPropertyChangeEvent> binder{ dynamic_property_change_event };
+
+  // QDynamicPropertyChangeEvent(const QByteArray &);
+  binder.ctors().add<const QByteArray &>();
+  // ~QDynamicPropertyChangeEvent();
+  binder.add_dtor();
+  // QByteArray propertyName() const;
+  binder.add_fun<QByteArray, &QDynamicPropertyChangeEvent::propertyName>("propertyName");
+}
+
+
+static void register_deferred_delete_event_class(script::Namespace ns)
+{
+  using namespace script;
+
+  Class deferred_delete_event = ns.Class("DeferredDeleteEvent").setId(script::Type::QDeferredDeleteEvent).get();
+
+  binding::Event<QDeferredDeleteEvent> binder{ deferred_delete_event };
+
+  // QDeferredDeleteEvent();
+  binder.ctors().add_default();
+  // ~QDeferredDeleteEvent();
+  binder.add_dtor();
+  // int loopLevel() const;
+  binder.add_fun<int, &QDeferredDeleteEvent::loopLevel>("loopLevel");
+}
+
+
+void register_event_file(script::Namespace core)
+{
+  using namespace script;
+
+  Namespace ns = core;
+
+  register_event_class(ns);
+  register_timer_event_class(ns);
+  register_child_event_class(ns);
+  register_dynamic_property_change_event_class(ns);
+  register_deferred_delete_event_class(ns);
+  binding::Namespace binder{ ns };
+
+}
+

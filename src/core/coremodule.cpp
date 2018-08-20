@@ -24,7 +24,7 @@ void register_locale_file(script::Namespace n); // defined in locale.cpp
 void register_regularexpression_file(script::Namespace n); // defined in regularexpression.cpp
 void register_stringlist_class(script::Namespace n); // defined in string.cpp
 void register_bytearray_file(script::Namespace n); // defined in bytearray.cpp
-void register_qevent(script::Namespace n); // defined in event.cpp
+void register_event_file(script::Namespace n); // defined in event.cpp
 void register_margins_file(script::Namespace n); // defined in margins.cpp
 void register_object_file(script::Namespace n); // defined in object.cpp
 void register_point_file(script::Namespace n); // defined in point.cpp
@@ -55,7 +55,7 @@ void load_core_module(script::Module core)
   register_enums_file(core.root());
   register_char__file(core.root());
   register_dir_file(core.root());
-  register_qevent(core.root()); /// TODO
+  register_event_file(core.root());
   register_point_file(core.root());
   register_margins_file(core.root());
   register_size_file(core.root());
