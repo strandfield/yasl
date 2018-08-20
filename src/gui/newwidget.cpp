@@ -396,6 +396,10 @@ void register_newwidget_file(script::Namespace core)
 {
   using namespace script;
 
+  /// TODO : maybe move elsewhere
+  Class widget = core.engine()->getClass(Type::QWidget);
+  widget.Constructor(callbacks::widget_ctor).create();
+
   core.Function("newWidget", callbacks::new_widget)
     .returns(Type::ref(Type::QWidget))
     .create();
