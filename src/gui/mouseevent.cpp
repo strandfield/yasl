@@ -4,22 +4,12 @@
 
 #include "yasl/gui/mouseevent.h"
 
-#include "yasl/binding/class.h"
+#include "yasl/core/qevent-binder.h"
 #include "yasl/core/point.h"
 
 #include <script/classbuilder.h>
 #include <script/namespace.h>
 #include <script/interpreter/executioncontext.h>
-
-namespace callbacks
-{
-
-namespace mouseevent
-{
-
-} // namespace mouseevent
-
-} // namespace callbacks
 
 
 void register_qmouseevent(script::Namespace root)
@@ -29,7 +19,7 @@ void register_qmouseevent(script::Namespace root)
   const Class event = root.engine()->getClass(script::Type::QEvent);
   Class mouseevent = root.Class("MouseEvent").setId(Type::QMouseEvent).setBase(event).setFinal().get();
   
-  binding::Class<QMouseEvent> qmouseevent{ mouseevent };
+  binding::Event<QMouseEvent> qmouseevent{ mouseevent };
   // QMouseEvent(QEvent::Type type, const QPointF &localPos, Qt::MouseButton button, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers)
   /// TODO !!
   // QMouseEvent(QEvent::Type type, const QPointF &localPos, const QPointF &screenPos, Qt::MouseButton button, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers)
@@ -39,7 +29,7 @@ void register_qmouseevent(script::Namespace root)
   // QMouseEvent(QEvent::Type type, const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos, Qt::MouseButton button, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Qt::MouseEventSource source)
   /// TODO !!
   // ~QMouseEvent();
-  mouseevent.newDestructor(event.destructor().native_callback());
+  qmouseevent.add_dtor();
   // Qt::MouseButton button() const
   /// TODO !!
   // Qt::MouseButtons buttons() const

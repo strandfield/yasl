@@ -4,53 +4,24 @@
 
 #include "yasl/gui/keyevent.h"
 
-#include "yasl/binding/class.h"
+#include "yasl/core/qevent-binder.h"
 #include "yasl/core/enums.h"
 
 #include <script/classbuilder.h>
 #include <script/namespace.h>
 #include <script/interpreter/executioncontext.h>
 
-namespace callbacks
-{
-
-namespace keyevent
-{
-
-static script::Value ctor(script::FunctionCall *c)
-{
-  using namespace binding;
-
-  auto self = c->thisObject();
-  self.impl()->data.ptr = new QKeyEvent(
-    value_cast<QEvent::Type>(c->arg(0)), 
-    value_cast<int>(c->arg(1)),
-    value_cast<Qt::KeyboardModifiers>(c->arg(2)), 
-    value_cast<const QString &>(c->arg(3)),
-    value_cast<bool>(c->arg(4)), 
-    value_cast<int>(c->arg(4)));
-  return self;
-}
-
-} // keyevent
-
-} // namespace callbacks
-
 
 void register_qkeyevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class keyevent = root.Class("KeyEvent").setId(Type::QKeyEvent).setBase(event).setFinal().get();
+  Class keyevent = root.Class("KeyEvent").setId(Type::QKeyEvent).setBase(Type::QEvent).setFinal().get();
   
-  binding::Class<QKeyEvent> q{ keyevent };
+  binding::Event<QKeyEvent> q{ keyevent };
 
   // QKeyEvent(QEvent::Type type, int key, Qt::KeyboardModifiers modifiers, const QString &text = QString(), bool autorep = false, ushort count = 1)
-  keyevent.Constructor(callbacks::keyevent::ctor)
-    .params(binding::make_type<QEvent::Type>(), Type::Int, binding::make_type<Qt::KeyboardModifiers>())
-    .params(binding::make_type<const QString &>(), Type::Boolean, Type::Int)
-    .create();
+  q.ctors().add<QEvent::Type, int, Qt::KeyboardModifiers, const QString &, bool, int>();
   // QKeyEvent(QEvent::Type type, int key, Qt::KeyboardModifiers modifiers, quint32 nativeScanCode, quint32 nativeVirtualKey, quint32 nativeModifiers, const QString &text = QString(), bool autorep = false, ushort count = 1)
   /// IGNORE
   // int count() const

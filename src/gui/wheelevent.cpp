@@ -4,32 +4,21 @@
 
 #include "yasl/gui/wheelevent.h"
 
-#include "yasl/binding/class.h"
+#include "yasl/core/qevent-binder.h"
 #include "yasl/core/point.h"
 
 #include <script/classbuilder.h>
 #include <script/namespace.h>
 #include <script/interpreter/executioncontext.h>
 
-namespace callbacks
-{
-
-namespace wheelevent
-{
-
-} // namespace wheelevent
-
-} // namespace callbacks
-
 
 void register_qwheelevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(Type::QEvent);
-  Class wheelevent = root.Class("WheelEvent").setId(Type::QWheelEvent).setBase(event).setFinal().get();
+  Class wheelevent = root.Class("WheelEvent").setId(Type::QWheelEvent).setBase(Type::QEvent).setFinal().get();
   
-  binding::Class<QWheelEvent> qwheelevent{ wheelevent };
+  binding::Event<QWheelEvent> qwheelevent{ wheelevent };
   // QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers)
   /// TODO !!
   // QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Qt::ScrollPhase phase)
@@ -39,7 +28,7 @@ void register_qwheelevent(script::Namespace root)
   // QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Qt::ScrollPhase phase, Qt::MouseEventSource source, bool inverted)
   /// TODO !!
   // ~QWheelEvent();
-  wheelevent.newDestructor(event.destructor().native_callback());
+  qwheelevent.add_dtor();
   // QPoint angleDelta() const
   qwheelevent.add_fun<QPoint, &QWheelEvent::angleDelta>("angleDelta");
   // Qt::MouseButtons buttons() const

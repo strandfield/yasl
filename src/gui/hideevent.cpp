@@ -4,39 +4,23 @@
 
 #include "yasl/gui/hideevent.h"
 
-#include "yasl/binding/class.h"
+#include "yasl/core/qevent-binder.h"
 
 #include <script/classbuilder.h>
 #include <script/namespace.h>
 #include <script/interpreter/executioncontext.h>
-
-namespace callbacks
-{
-
-namespace hideevent
-{
-
-static script::Value ctor(script::FunctionCall *c)
-{
-  auto self = c->thisObject();
-  self.impl()->data.ptr = new QHideEvent();
-  return self;
-}
-
-} // namespace hideevent
-
-} // namespace callbacks
 
 
 void register_qhideevent(script::Namespace root)
 {
   using namespace script;
 
-  const Class event = root.engine()->getClass(script::Type::QEvent);
-  Class hideevent = root.Class("HideEvent").setId(Type::QHideEvent).setBase(event).setFinal().get();
+  Class hideevent = root.Class("HideEvent").setId(Type::QHideEvent).setBase(script::Type::QEvent).setFinal().get();
   
+  binding::Event<QHideEvent> binder{ hideevent };
+
   // QHideEvent();
-  hideevent.Constructor(callbacks::hideevent::ctor).create();
+  binder.ctors().add_default();
   // ~QHideEvent();
-  hideevent.newDestructor(event.destructor().native_callback());
+  binder.add_dtor();
 }
