@@ -17,6 +17,7 @@
 const QString Generator::endl = "\n";
 const QString Generator::ClassBinderInclude = "yasl/binding/class.h";
 const QString Generator::QClassBinderInclude = "yasl/binding/qclass.h";
+const QString Generator::QEventBinderInclude = "yasl/core/qevent-binder.h";
 const QString Generator::EnumBinderInclude = "yasl/binding/enum.h";;
 const QString Generator::NamespaceBinderInclude = "yasl/binding/namespace.h";;
 const QString Generator::ClassBuilderInclude = "<script/classbuilder.h>";;
@@ -717,7 +718,11 @@ void Generator::generate(ClassRef cla)
   {
     currentSource().bindingIncludes.insert(QClassBinderInclude);
     out += "  binding::QClass<" + cla->name + "> binder{ " + snake + ", &" + cla->name + "::staticMetaObject };" + endl;
-
+  }
+  else if (class_info.tag == "qevent_tag")
+  {
+    currentSource().bindingIncludes.insert(QEventBinderInclude);
+    out += "  binding::Event<" + cla->name + "> binder{ " + snake + " };" + endl;
   }
   else
   {
