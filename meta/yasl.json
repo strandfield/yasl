@@ -29412,6 +29412,716 @@
                     "hincludes": "<QFontInfo>",
                     "name": "fontinfo",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QFontMetrics",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFontMetrics",
+                                    "parameters": [
+                                        "const QFont &",
+                                        "QPaintDevice *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFontMetrics",
+                                    "parameters": [
+                                        "const QFontMetrics &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFontMetrics",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QFontMetrics &"
+                                    ],
+                                    "returns": "QFontMetrics &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QFontMetrics &&"
+                                    ],
+                                    "returns": "QFontMetrics &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QFontMetrics &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "ascent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capHeight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "descent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "height",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "leading",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lineSpacing",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minLeftBearing",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minRightBearing",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maxWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "xHeight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "averageCharWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inFont",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inFontUcs4",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "leftBearing",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rightBearing",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "charWidth",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "int",
+                                        "const QString &",
+                                        "int",
+                                        "int *"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "const QString &",
+                                        "int",
+                                        "int *"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &",
+                                        "int",
+                                        "int *"
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tightBoundingRect",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "elidedText",
+                                    "parameters": [
+                                        "const QString &",
+                                        "Qt::TextElideMode",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "underlinePos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "overlinePos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "strikeOutPos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lineWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QFontMetrics &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QFontMetrics &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFontMetrics",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QFontMetrics &",
+                                "QFontMetrics &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QFontMetricsF",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFontMetricsF",
+                                    "parameters": [
+                                        "const QFont &",
+                                        "QPaintDevice *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFontMetricsF",
+                                    "parameters": [
+                                        "const QFontMetrics &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFontMetricsF",
+                                    "parameters": [
+                                        "const QFontMetricsF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFontMetricsF",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QFontMetricsF &"
+                                    ],
+                                    "returns": "QFontMetricsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QFontMetrics &"
+                                    ],
+                                    "returns": "QFontMetricsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QFontMetricsF &&"
+                                    ],
+                                    "returns": "QFontMetricsF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QFontMetricsF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "ascent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capHeight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "descent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "height",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "leading",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lineSpacing",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minLeftBearing",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minRightBearing",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maxWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "xHeight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "averageCharWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inFont",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inFontUcs4",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "leftBearing",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rightBearing",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "QChar"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int",
+                                        "const QString &",
+                                        "int",
+                                        "int *"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &",
+                                        "int",
+                                        "int *"
+                                    ],
+                                    "returns": "QSizeF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tightBoundingRect",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "elidedText",
+                                    "parameters": [
+                                        "const QString &",
+                                        "Qt::TextElideMode",
+                                        "qreal",
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "underlinePos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "overlinePos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "strikeOutPos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lineWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QFontMetricsF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QFontMetricsF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFontMetricsF",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QFontMetricsF &",
+                                "QFontMetricsF &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QFontMetrics>",
+                    "name": "fontmetrics",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -29815,6 +30525,18 @@
                 "id": "QFontInfo",
                 "name": "QFontInfo",
                 "rename": "FontInfo"
+            },
+            {
+                "header": "yasl/gui/fontmetrics.h",
+                "id": "QFontMetrics",
+                "name": "QFontMetrics",
+                "rename": "FontMetrics"
+            },
+            {
+                "header": "yasl/gui/fontmetrics.h",
+                "id": "QFontMetricsF",
+                "name": "QFontMetricsF",
+                "rename": "FontMetricsF"
             }
         ],
         "enums": [

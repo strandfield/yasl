@@ -5,22 +5,15 @@
 #include "yasl/gui/fontmetrics.h"
 
 #include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/char.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/rect.h"
-#include "yasl/core/size.h"
-
 #include "yasl/gui/font.h"
-#include "yasl/gui/paintdevice.h"
+#include "yasl/gui/fontmetrics.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/enumbuilder.h>
-#include <script/namespace.h>
 
 static void register_font_metrics_class(script::Namespace ns)
 {
@@ -33,9 +26,11 @@ static void register_font_metrics_class(script::Namespace ns)
   // QFontMetrics(const QFont &);
   binder.ctors().add<const QFont &>();
   // QFontMetrics(const QFont &, QPaintDevice *);
-  binder.ctors().add<const QFont &, QPaintDevice *>();
+  /// TODO: QFontMetrics(const QFont &, QPaintDevice *);
   // QFontMetrics(const QFontMetrics &);
   binder.ctors().add<const QFontMetrics &>();
+  // ~QFontMetrics();
+  binder.add_dtor();
   // QFontMetrics & operator=(const QFontMetrics &);
   binder.operators().assign<const QFontMetrics &>();
   // QFontMetrics & operator=(QFontMetrics &&);
@@ -85,11 +80,11 @@ static void register_font_metrics_class(script::Namespace ns)
   // QRect boundingRect(const QString &) const;
   binder.add_fun<QRect, const QString &, &QFontMetrics::boundingRect>("boundingRect");
   // QRect boundingRect(const QRect &, int, const QString &, int, int *) const;
-  binder.add_fun<QRect, const QRect &, int, const QString &, int, int *, &QFontMetrics::boundingRect>("boundingRect");
+  /// TODO: QRect boundingRect(const QRect &, int, const QString &, int, int *) const;
   // QRect boundingRect(int, int, int, int, int, const QString &, int, int *) const;
-  /// TODO: binder.add_fun<QRect, int, int, int, int, int, const QString &, int, int *, &QFontMetrics::boundingRect>("boundingRect");
+  /// TODO: QRect boundingRect(int, int, int, int, int, const QString &, int, int *) const;
   // QSize size(int, const QString &, int, int *) const;
-  binder.add_fun<QSize, int, const QString &, int, int *, &QFontMetrics::size>("size");
+  /// TODO: QSize size(int, const QString &, int, int *) const;
   // QRect tightBoundingRect(const QString &) const;
   binder.add_fun<QRect, const QString &, &QFontMetrics::tightBoundingRect>("tightBoundingRect");
   // QString elidedText(const QString &, Qt::TextElideMode, int, int) const;
@@ -108,6 +103,7 @@ static void register_font_metrics_class(script::Namespace ns)
   binder.operators().neq<const QFontMetrics &>();
 }
 
+
 static void register_font_metrics_f_class(script::Namespace ns)
 {
   using namespace script;
@@ -119,11 +115,13 @@ static void register_font_metrics_f_class(script::Namespace ns)
   // QFontMetricsF(const QFont &);
   binder.ctors().add<const QFont &>();
   // QFontMetricsF(const QFont &, QPaintDevice *);
-  binder.ctors().add<const QFont &, QPaintDevice *>();
+  /// TODO: QFontMetricsF(const QFont &, QPaintDevice *);
   // QFontMetricsF(const QFontMetrics &);
   binder.ctors().add<const QFontMetrics &>();
   // QFontMetricsF(const QFontMetricsF &);
   binder.ctors().add<const QFontMetricsF &>();
+  // ~QFontMetricsF();
+  binder.add_dtor();
   // QFontMetricsF & operator=(const QFontMetricsF &);
   binder.operators().assign<const QFontMetricsF &>();
   // QFontMetricsF & operator=(const QFontMetrics &);
@@ -171,9 +169,9 @@ static void register_font_metrics_f_class(script::Namespace ns)
   // QRectF boundingRect(QChar) const;
   binder.add_fun<QRectF, QChar, &QFontMetricsF::boundingRect>("boundingRect");
   // QRectF boundingRect(const QRectF &, int, const QString &, int, int *) const;
-  binder.add_fun<QRectF, const QRectF &, int, const QString &, int, int *, &QFontMetricsF::boundingRect>("boundingRect");
+  /// TODO: QRectF boundingRect(const QRectF &, int, const QString &, int, int *) const;
   // QSizeF size(int, const QString &, int, int *) const;
-  binder.add_fun<QSizeF, int, const QString &, int, int *, &QFontMetricsF::size>("size");
+  /// TODO: QSizeF size(int, const QString &, int, int *) const;
   // QRectF tightBoundingRect(const QString &) const;
   binder.add_fun<QRectF, const QString &, &QFontMetricsF::tightBoundingRect>("tightBoundingRect");
   // QString elidedText(const QString &, Qt::TextElideMode, qreal, int) const;
@@ -192,13 +190,16 @@ static void register_font_metrics_f_class(script::Namespace ns)
   binder.operators().neq<const QFontMetricsF &>();
 }
 
-void register_fontmetrics_file(script::Namespace root)
+
+void register_fontmetrics_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_font_metrics_class(root);
-  register_font_metrics_f_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_font_metrics_class(ns);
+  register_font_metrics_f_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QFontMetrics &, QFontMetrics &);
   binder.add_void_fun<QFontMetrics &, QFontMetrics &, &swap>("swap");
