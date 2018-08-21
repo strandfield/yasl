@@ -10,6 +10,7 @@
 #include "yasl/core/enums.h"
 #include "yasl/core/point.h"
 #include "yasl/gui/cursor.h"
+#include "yasl/gui/pixmap.h"
 
 #include <script/classbuilder.h>
 
@@ -28,7 +29,7 @@ static void register_cursor_class(script::Namespace ns)
   // QCursor(const QBitmap &, const QBitmap &, int, int);
   /// TODO: QCursor(const QBitmap &, const QBitmap &, int, int);
   // QCursor(const QPixmap &, int, int);
-  /// TODO: QCursor(const QPixmap &, int, int);
+  binder.ctors().add<const QPixmap &, int, int>();
   // QCursor(const QCursor &);
   binder.ctors().add<const QCursor &>();
   // ~QCursor();
@@ -50,7 +51,7 @@ static void register_cursor_class(script::Namespace ns)
   // const QBitmap * mask() const;
   /// TODO: const QBitmap * mask() const;
   // QPixmap pixmap() const;
-  /// TODO: QPixmap pixmap() const;
+  binder.add_fun<QPixmap, &QCursor::pixmap>("pixmap");
   // QPoint hotSpot() const;
   binder.add_fun<QPoint, &QCursor::hotSpot>("hotSpot");
   // static QPoint pos();

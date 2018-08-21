@@ -5,32 +5,17 @@
 #include "yasl/gui/pixmap.h"
 
 #include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/enums.h"
-#include "yasl/core/iodevice.h"
 #include "yasl/core/object.h"
-#include "yasl/core/point.h"
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"
-
-#include "yasl/gui/bitmap.h"
 #include "yasl/gui/color.h"
-#include "yasl/gui/image.h"
-#include "yasl/gui/imagereader.h"
-#include "yasl/gui/paintdevice.h"
-#include "yasl/gui/region.h"
-#include "yasl/gui/transform.h"
+#include "yasl/gui/pixmap.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/enumbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_pixmap_class(script::Namespace ns)
 {
@@ -40,22 +25,22 @@ static void register_pixmap_class(script::Namespace ns)
 
   binding::Class<QPixmap> binder{ pixmap };
 
-  // ~QPixmap();
-  binder.add_dtor();
   // QPixmap();
   binder.ctors().add_default();
   // QPixmap(QPlatformPixmap *);
-  /// ignore: binder.ctors().add<QPlatformPixmap *>();
+  /// TODO: QPixmap(QPlatformPixmap *);
   // QPixmap(int, int);
   binder.ctors().add<int, int>();
   // QPixmap(const QSize &);
   binder.ctors().add<const QSize &>();
   // QPixmap(const QString &, const char *, Qt::ImageConversionFlags);
-  binder.ctors().add<const QString &, const char *, Qt::ImageConversionFlags>();
+  /// TODO: QPixmap(const QString &, const char *, Qt::ImageConversionFlags);
   // QPixmap(const char *const []);
-  /// ignore: binder.ctors().add<const char *const []>();
+  /// TODO: QPixmap(const char *const []);
   // QPixmap(const QPixmap &);
   binder.ctors().add<const QPixmap &>();
+  // ~QPixmap();
+  binder.add_dtor();
   // QPixmap & operator=(const QPixmap &);
   binder.operators().assign<const QPixmap &>();
   // QPixmap & operator=(QPixmap &&);
@@ -81,13 +66,13 @@ static void register_pixmap_class(script::Namespace ns)
   // void fill(const QColor &);
   binder.add_void_fun<const QColor &, &QPixmap::fill>("fill");
   // void fill(const QPaintDevice *, const QPoint &);
-  binder.add_void_fun<const QPaintDevice *, const QPoint &, &QPixmap::fill>("fill");
+  /// TODO: void fill(const QPaintDevice *, const QPoint &);
   // void fill(const QPaintDevice *, int, int);
-  binder.add_void_fun<const QPaintDevice *, int, int, &QPixmap::fill>("fill");
+  /// TODO: void fill(const QPaintDevice *, int, int);
   // QBitmap mask() const;
-  binder.add_fun<QBitmap, &QPixmap::mask>("mask");
+  /// TODO: QBitmap mask() const;
   // void setMask(const QBitmap &);
-  binder.add_void_fun<const QBitmap &, &QPixmap::setMask>("setMask");
+  /// TODO: void setMask(const QBitmap &);
   // qreal devicePixelRatio() const;
   binder.add_fun<qreal, &QPixmap::devicePixelRatio>("devicePixelRatio");
   // void setDevicePixelRatio(qreal);
@@ -97,11 +82,11 @@ static void register_pixmap_class(script::Namespace ns)
   // bool hasAlphaChannel() const;
   binder.add_fun<bool, &QPixmap::hasAlphaChannel>("hasAlphaChannel");
   // QBitmap createHeuristicMask(bool) const;
-  binder.add_fun<QBitmap, bool, &QPixmap::createHeuristicMask>("createHeuristicMask");
+  /// TODO: QBitmap createHeuristicMask(bool) const;
   // QBitmap createMaskFromColor(const QColor &, Qt::MaskMode) const;
-  binder.add_fun<QBitmap, const QColor &, Qt::MaskMode, &QPixmap::createMaskFromColor>("createMaskFromColor");
+  /// TODO: QBitmap createMaskFromColor(const QColor &, Qt::MaskMode) const;
   // static QPixmap grabWindow(WId, int, int, int, int);
-  binder.add_static<QPixmap, WId, int, int, int, int, &QPixmap::grabWindow>("grabWindow");
+  /// TODO: static QPixmap grabWindow(WId, int, int, int, int);
   // static QPixmap grabWidget(QObject *, const QRect &);
   binder.add_static<QPixmap, QObject *, const QRect &, &QPixmap::grabWidget>("grabWidget");
   // static QPixmap grabWidget(QObject *, int, int, int, int);
@@ -115,43 +100,43 @@ static void register_pixmap_class(script::Namespace ns)
   // QPixmap scaledToHeight(int, Qt::TransformationMode) const;
   binder.add_fun<QPixmap, int, Qt::TransformationMode, &QPixmap::scaledToHeight>("scaledToHeight");
   // QPixmap transformed(const QMatrix &, Qt::TransformationMode) const;
-  binder.add_fun<QPixmap, const QMatrix &, Qt::TransformationMode, &QPixmap::transformed>("transformed");
+  /// TODO: QPixmap transformed(const QMatrix &, Qt::TransformationMode) const;
   // static QMatrix trueMatrix(const QMatrix &, int, int);
-  /// ignore: binder.add_static<QMatrix, const QMatrix &, int, int, &QPixmap::trueMatrix>("trueMatrix");
+  /// TODO: static QMatrix trueMatrix(const QMatrix &, int, int);
   // QPixmap transformed(const QTransform &, Qt::TransformationMode) const;
-  binder.add_fun<QPixmap, const QTransform &, Qt::TransformationMode, &QPixmap::transformed>("transformed");
+  /// TODO: QPixmap transformed(const QTransform &, Qt::TransformationMode) const;
   // static QTransform trueMatrix(const QTransform &, int, int);
-  binder.add_static<QTransform, const QTransform &, int, int, &QPixmap::trueMatrix>("trueMatrix");
+  /// TODO: static QTransform trueMatrix(const QTransform &, int, int);
   // QImage toImage() const;
-  binder.add_fun<QImage, &QPixmap::toImage>("toImage");
+  /// TODO: QImage toImage() const;
   // static QPixmap fromImage(const QImage &, Qt::ImageConversionFlags);
-  binder.add_static<QPixmap, const QImage &, Qt::ImageConversionFlags, &QPixmap::fromImage>("fromImage");
+  /// TODO: static QPixmap fromImage(const QImage &, Qt::ImageConversionFlags);
   // static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags);
-  binder.add_static<QPixmap, QImageReader *, Qt::ImageConversionFlags, &QPixmap::fromImageReader>("fromImageReader");
+  /// TODO: static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags);
   // static QPixmap fromImage(QImage &&, Qt::ImageConversionFlags);
-  binder.add_static<QPixmap, QImage &&, Qt::ImageConversionFlags, &QPixmap::fromImage>("fromImage");
+  /// TODO: static QPixmap fromImage(QImage &&, Qt::ImageConversionFlags);
   // bool load(const QString &, const char *, Qt::ImageConversionFlags);
-  binder.add_fun<bool, const QString &, const char *, Qt::ImageConversionFlags, &QPixmap::load>("load");
+  /// TODO: bool load(const QString &, const char *, Qt::ImageConversionFlags);
   // bool loadFromData(const uchar *, uint, const char *, Qt::ImageConversionFlags);
-  /// ignore: binder.add_fun<bool, const uchar *, uint, const char *, Qt::ImageConversionFlags, &QPixmap::loadFromData>("loadFromData");
+  /// TODO: bool loadFromData(const uchar *, uint, const char *, Qt::ImageConversionFlags);
   // bool loadFromData(const QByteArray &, const char *, Qt::ImageConversionFlags);
-  binder.add_fun<bool, const QByteArray &, const char *, Qt::ImageConversionFlags, &QPixmap::loadFromData>("loadFromData");
+  /// TODO: bool loadFromData(const QByteArray &, const char *, Qt::ImageConversionFlags);
   // bool save(const QString &, const char *, int) const;
-  binder.add_fun<bool, const QString &, const char *, int, &QPixmap::save>("save");
+  /// TODO: bool save(const QString &, const char *, int) const;
   // bool save(QIODevice *, const char *, int) const;
-  binder.add_fun<bool, QIODevice *, const char *, int, &QPixmap::save>("save");
+  /// TODO: bool save(QIODevice *, const char *, int) const;
   // bool convertFromImage(const QImage &, Qt::ImageConversionFlags);
-  binder.add_fun<bool, const QImage &, Qt::ImageConversionFlags, &QPixmap::convertFromImage>("convertFromImage");
+  /// TODO: bool convertFromImage(const QImage &, Qt::ImageConversionFlags);
   // QPixmap copy(int, int, int, int) const;
   binder.add_fun<QPixmap, int, int, int, int, &QPixmap::copy>("copy");
   // QPixmap copy(const QRect &) const;
   binder.add_fun<QPixmap, const QRect &, &QPixmap::copy>("copy");
   // void scroll(int, int, int, int, int, int, QRegion *);
-  /// TODO: binder.add_void_fun<int, int, int, int, int, int, QRegion *, &QPixmap::scroll>("scroll");
+  /// TODO: void scroll(int, int, int, int, int, int, QRegion *);
   // void scroll(int, int, const QRect &, QRegion *);
-  binder.add_void_fun<int, int, const QRect &, QRegion *, &QPixmap::scroll>("scroll");
+  /// TODO: void scroll(int, int, const QRect &, QRegion *);
   // qint64 cacheKey() const;
-  binder.add_fun<qint64, &QPixmap::cacheKey>("cacheKey");
+  /// TODO: qint64 cacheKey() const;
   // bool isDetached() const;
   binder.add_fun<bool, &QPixmap::isDetached>("isDetached");
   // void detach();
@@ -159,25 +144,32 @@ static void register_pixmap_class(script::Namespace ns)
   // bool isQBitmap() const;
   binder.add_fun<bool, &QPixmap::isQBitmap>("isQBitmap");
   // QPaintEngine * paintEngine() const;
-  binder.add_fun<QPaintEngine *, &QPixmap::paintEngine>("paintEngine");
+  /// TODO: QPaintEngine * paintEngine() const;
   // bool operator!() const;
-  binder.operators().logical_not<bool>();
+  binder.add_fun<bool, &QPixmap::operator!>("operator!");
+  // QPlatformPixmap * handle() const;
+  /// TODO: QPlatformPixmap * handle() const;
+  // QPixmap::DataPtr & data_ptr();
+  /// TODO: QPixmap::DataPtr & data_ptr();
 }
 
-void register_pixmap_file(script::Namespace root)
+
+void register_pixmap_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_pixmap_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_pixmap_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QPixmap &, QPixmap &);
   binder.add_void_fun<QPixmap &, QPixmap &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QPixmap &);
-  binder.operators().put_to<QDataStream &, const QPixmap &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QPixmap &);
   // QDataStream & operator>>(QDataStream &, QPixmap &);
-  binder.operators().read_from<QDataStream &, QPixmap &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QPixmap &);
   // QDebug operator<<(QDebug, const QPixmap &);
-  binder.operators().left_shift<QDebug, QDebug, const QPixmap &>();
+  /// TODO: QDebug operator<<(QDebug, const QPixmap &);
 }
 
