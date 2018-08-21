@@ -31153,6 +31153,424 @@
                     "hincludes": "<QBitmap>",
                     "name": "bitmap",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Normal"
+                                        },
+                                        {
+                                            "name": "Disabled"
+                                        },
+                                        {
+                                            "name": "Active"
+                                        },
+                                        {
+                                            "name": "Selected"
+                                        }
+                                    ],
+                                    "name": "Mode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "On"
+                                        },
+                                        {
+                                            "name": "Off"
+                                        }
+                                    ],
+                                    "name": "State",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QIcon",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QIcon",
+                                    "parameters": [
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QIcon",
+                                    "parameters": [
+                                        "const QIcon &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QIcon",
+                                    "parameters": [
+                                        "QIcon &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QIcon",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QIcon",
+                                    "parameters": [
+                                        "QIconEngine *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QIcon",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QIcon &"
+                                    ],
+                                    "returns": "QIcon &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QIcon &&"
+                                    ],
+                                    "returns": "QIcon &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QIcon &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "parameters": [
+                                        "const QSize &",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "parameters": [
+                                        "int",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "parameters": [
+                                        "QWindow *",
+                                        "const QSize &",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "actualSize",
+                                    "parameters": [
+                                        "const QSize &",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "actualSize",
+                                    "parameters": [
+                                        "QWindow *",
+                                        "const QSize &",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "name",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "paint",
+                                    "parameters": [
+                                        "QPainter *",
+                                        "const QRect &",
+                                        "Qt::Alignment",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "paint",
+                                    "parameters": [
+                                        "QPainter *",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "Qt::Alignment",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "detach",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cacheKey",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addPixmap",
+                                    "parameters": [
+                                        "const QPixmap &",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addFile",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QSize &",
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "availableSizes",
+                                    "parameters": [
+                                        "QIcon::Mode",
+                                        "QIcon::State"
+                                    ],
+                                    "returns": "QList<QSize>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIsMask",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isMask",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromTheme",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QIcon",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromTheme",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QIcon &"
+                                    ],
+                                    "returns": "QIcon",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "hasThemeIcon",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "themeSearchPaths",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setThemeSearchPaths",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "themeName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setThemeName",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QIcon::DataPtr &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QIcon",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QIcon &",
+                                "QIcon &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QIcon &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QIcon &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QIcon &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qt_findAtNxFile",
+                            "parameters": [
+                                "const QString &",
+                                "qreal",
+                                "qreal *"
+                            ],
+                            "returns": "QString",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QIcon>",
+                    "name": "icon",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -31586,6 +32004,12 @@
                 "id": "QBitmap",
                 "name": "QBitmap",
                 "rename": "Bitmap"
+            },
+            {
+                "header": "yasl/gui/icon.h",
+                "id": "QIcon",
+                "name": "QIcon",
+                "rename": "Icon"
             }
         ],
         "enums": [
@@ -32327,6 +32751,16 @@
                 "header": "yasl/gui/fontdatabase.h",
                 "id": "QFontDatabaseSystemFont",
                 "name": "QFontDatabase::SystemFont"
+            },
+            {
+                "header": "yasl/gui/icon.h",
+                "id": "QIconMode",
+                "name": "QIcon::Mode"
+            },
+            {
+                "header": "yasl/gui/icon.h",
+                "id": "QIconState",
+                "name": "QIcon::State"
             }
         ],
         "fundamentals": [
