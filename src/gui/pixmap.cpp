@@ -12,6 +12,7 @@
 #include "yasl/core/object.h"
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"
+#include "yasl/gui/bitmap.h"
 #include "yasl/gui/color.h"
 #include "yasl/gui/pixmap.h"
 
@@ -70,9 +71,9 @@ static void register_pixmap_class(script::Namespace ns)
   // void fill(const QPaintDevice *, int, int);
   /// TODO: void fill(const QPaintDevice *, int, int);
   // QBitmap mask() const;
-  /// TODO: QBitmap mask() const;
+  binder.add_fun<QBitmap, &QPixmap::mask>("mask");
   // void setMask(const QBitmap &);
-  /// TODO: void setMask(const QBitmap &);
+  binder.add_void_fun<const QBitmap &, &QPixmap::setMask>("setMask");
   // qreal devicePixelRatio() const;
   binder.add_fun<qreal, &QPixmap::devicePixelRatio>("devicePixelRatio");
   // void setDevicePixelRatio(qreal);
@@ -82,9 +83,9 @@ static void register_pixmap_class(script::Namespace ns)
   // bool hasAlphaChannel() const;
   binder.add_fun<bool, &QPixmap::hasAlphaChannel>("hasAlphaChannel");
   // QBitmap createHeuristicMask(bool) const;
-  /// TODO: QBitmap createHeuristicMask(bool) const;
+  binder.add_fun<QBitmap, bool, &QPixmap::createHeuristicMask>("createHeuristicMask");
   // QBitmap createMaskFromColor(const QColor &, Qt::MaskMode) const;
-  /// TODO: QBitmap createMaskFromColor(const QColor &, Qt::MaskMode) const;
+  binder.add_fun<QBitmap, const QColor &, Qt::MaskMode, &QPixmap::createMaskFromColor>("createMaskFromColor");
   // static QPixmap grabWindow(WId, int, int, int, int);
   /// TODO: static QPixmap grabWindow(WId, int, int, int, int);
   // static QPixmap grabWidget(QObject *, const QRect &);

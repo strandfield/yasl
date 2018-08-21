@@ -7,16 +7,11 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/enums.h"
-
-#include "yasl/gui/image.h"
+#include "yasl/core/size.h"
+#include "yasl/gui/bitmap.h"
 #include "yasl/gui/pixmap.h"
-#include "yasl/gui/transform.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/enumbuilder.h>
-#include <script/namespace.h>
 
 static void register_bitmap_class(script::Namespace ns)
 {
@@ -27,8 +22,6 @@ static void register_bitmap_class(script::Namespace ns)
 
   binding::Class<QBitmap> binder{ bitmap };
 
-  // ~QBitmap();
-  binder.add_dtor();
   // QBitmap();
   binder.ctors().add_default();
   // QBitmap(const QPixmap &);
@@ -38,13 +31,15 @@ static void register_bitmap_class(script::Namespace ns)
   // QBitmap(const QSize &);
   binder.ctors().add<const QSize &>();
   // QBitmap(const QString &, const char *);
-  binder.ctors().add<const QString &, const char *>();
+  /// TODO: QBitmap(const QString &, const char *);
   // QBitmap(const QBitmap &);
   binder.ctors().add<const QBitmap &>();
   // QBitmap & operator=(const QBitmap &);
   binder.operators().assign<const QBitmap &>();
   // QBitmap & operator=(QBitmap &&);
   binder.operators().assign<QBitmap &&>();
+  // ~QBitmap();
+  binder.add_dtor();
   // QBitmap & operator=(const QPixmap &);
   binder.operators().assign<const QPixmap &>();
   // void swap(QBitmap &);
@@ -52,21 +47,24 @@ static void register_bitmap_class(script::Namespace ns)
   // void clear();
   binder.add_void_fun<&QBitmap::clear>("clear");
   // static QBitmap fromImage(const QImage &, Qt::ImageConversionFlags);
-  binder.add_static<QBitmap, const QImage &, Qt::ImageConversionFlags, &QBitmap::fromImage>("fromImage");
+  /// TODO: static QBitmap fromImage(const QImage &, Qt::ImageConversionFlags);
   // static QBitmap fromData(const QSize &, const uchar *, QImage::Format);
-  binder.add_static<QBitmap, const QSize &, const uchar *, QImage::Format, &QBitmap::fromData>("fromData");
+  /// TODO: static QBitmap fromData(const QSize &, const uchar *, QImage::Format);
   // QBitmap transformed(const QMatrix &) const;
-  /// ignore: binder.add_fun<QBitmap, const QMatrix &, &QBitmap::transformed>("transformed");
+  /// TODO: QBitmap transformed(const QMatrix &) const;
   // QBitmap transformed(const QTransform &) const;
-  binder.add_fun<QBitmap, const QTransform &, &QBitmap::transformed>("transformed");
+  /// TODO: QBitmap transformed(const QTransform &) const;
 }
 
-void register_bitmap_file(script::Namespace root)
+
+void register_bitmap_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_bitmap_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_bitmap_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QBitmap &, QBitmap &);
   binder.add_void_fun<QBitmap &, QBitmap &, &swap>("swap");

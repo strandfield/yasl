@@ -30998,6 +30998,161 @@
                     "hincludes": "<QPixmap>",
                     "name": "pixmap",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QPixmap",
+                            "elements": [
+                                {
+                                    "name": "QBitmap",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBitmap",
+                                    "parameters": [
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBitmap",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBitmap",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBitmap",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBitmap",
+                                    "parameters": [
+                                        "const QBitmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QBitmap &"
+                                    ],
+                                    "returns": "QBitmap &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QBitmap &&"
+                                    ],
+                                    "returns": "QBitmap &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "~QBitmap",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "QBitmap &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QBitmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromImage",
+                                    "parameters": [
+                                        "const QImage &",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "QBitmap",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromData",
+                                    "parameters": [
+                                        "const QSize &",
+                                        "const uchar *",
+                                        "QImage::Format"
+                                    ],
+                                    "returns": "QBitmap",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transformed",
+                                    "parameters": [
+                                        "const QMatrix &"
+                                    ],
+                                    "returns": "QBitmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transformed",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "QBitmap",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QBitmap",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QBitmap &",
+                                "QBitmap &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QBitmap>",
+                    "name": "bitmap",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -31425,6 +31580,12 @@
                 "id": "QPixmap",
                 "name": "QPixmap",
                 "rename": "Pixmap"
+            },
+            {
+                "header": "yasl/gui/bitmap.h",
+                "id": "QBitmap",
+                "name": "QBitmap",
+                "rename": "Bitmap"
             }
         ],
         "enums": [

@@ -9,6 +9,7 @@
 
 #include "yasl/core/enums.h"
 #include "yasl/core/point.h"
+#include "yasl/gui/bitmap.h"
 #include "yasl/gui/cursor.h"
 #include "yasl/gui/pixmap.h"
 
@@ -27,7 +28,7 @@ static void register_cursor_class(script::Namespace ns)
   // QCursor(Qt::CursorShape);
   binder.ctors().add<Qt::CursorShape>();
   // QCursor(const QBitmap &, const QBitmap &, int, int);
-  /// TODO: QCursor(const QBitmap &, const QBitmap &, int, int);
+  binder.ctors().add<const QBitmap &, const QBitmap &, int, int>();
   // QCursor(const QPixmap &, int, int);
   binder.ctors().add<const QPixmap &, int, int>();
   // QCursor(const QCursor &);
