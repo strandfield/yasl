@@ -29226,6 +29226,192 @@
                     "hincludes": "<QFontDatabase>",
                     "name": "fontdatabase",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QFontInfo",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFontInfo",
+                                    "parameters": [
+                                        "const QFontInfo &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFontInfo",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QFontInfo &"
+                                    ],
+                                    "returns": "QFontInfo &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QFontInfo &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "family",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "styleName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixelSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pointSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pointSizeF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "italic",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "style",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFont::Style",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "weight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bold",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "underline",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "overline",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "strikeOut",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fixedPitch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "styleHint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFont::StyleHint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rawMode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "exactMatch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFontInfo",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QFontInfo &",
+                                "QFontInfo &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QFontInfo>",
+                    "name": "fontinfo",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -29623,6 +29809,12 @@
                 "id": "QFontDatabase",
                 "name": "QFontDatabase",
                 "rename": "FontDatabase"
+            },
+            {
+                "header": "yasl/gui/fontinfo.h",
+                "id": "QFontInfo",
+                "name": "QFontInfo",
+                "rename": "FontInfo"
             }
         ],
         "enums": [

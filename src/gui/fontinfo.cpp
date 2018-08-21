@@ -8,10 +8,9 @@
 #include "yasl/binding/namespace.h"
 
 #include "yasl/gui/font.h"
+#include "yasl/gui/fontinfo.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/namespace.h>
 
 static void register_font_info_class(script::Namespace ns)
 {
@@ -21,12 +20,12 @@ static void register_font_info_class(script::Namespace ns)
 
   binding::Class<QFontInfo> binder{ font_info };
 
-  // ~QFontInfo();
-  binder.add_dtor();
   // QFontInfo(const QFont &);
   binder.ctors().add<const QFont &>();
   // QFontInfo(const QFontInfo &);
   binder.ctors().add<const QFontInfo &>();
+  // ~QFontInfo();
+  binder.add_dtor();
   // QFontInfo & operator=(const QFontInfo &);
   binder.operators().assign<const QFontInfo &>();
   // void swap(QFontInfo &);
@@ -65,12 +64,15 @@ static void register_font_info_class(script::Namespace ns)
   binder.add_fun<bool, &QFontInfo::exactMatch>("exactMatch");
 }
 
-void register_fontinfo_file(script::Namespace root)
+
+void register_fontinfo_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_font_info_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_font_info_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QFontInfo &, QFontInfo &);
   binder.add_void_fun<QFontInfo &, QFontInfo &, &swap>("swap");

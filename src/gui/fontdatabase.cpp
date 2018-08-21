@@ -11,6 +11,7 @@
 #include "yasl/core/bytearray.h"
 #include "yasl/gui/font.h"
 #include "yasl/gui/fontdatabase.h"
+#include "yasl/gui/fontinfo.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -102,7 +103,7 @@ static void register_font_database_class(script::Namespace ns)
   // QString styleString(const QFont &);
   binder.add_fun<QString, const QFont &, &QFontDatabase::styleString>("styleString");
   // QString styleString(const QFontInfo &);
-  /// TODO: QString styleString(const QFontInfo &);
+  binder.add_fun<QString, const QFontInfo &, &QFontDatabase::styleString>("styleString");
   // QFont font(const QString &, const QString &, int) const;
   binder.add_fun<QFont, const QString &, const QString &, int, &QFontDatabase::font>("font");
   // bool isBitmapScalable(const QString &, const QString &) const;
