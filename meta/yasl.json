@@ -27833,6 +27833,990 @@
                     "hincludes": "<QColor>",
                     "name": "color",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Helvetica"
+                                        },
+                                        {
+                                            "name": "SansSerif"
+                                        },
+                                        {
+                                            "name": "Times"
+                                        },
+                                        {
+                                            "name": "Serif"
+                                        },
+                                        {
+                                            "name": "Courier"
+                                        },
+                                        {
+                                            "name": "TypeWriter"
+                                        },
+                                        {
+                                            "name": "OldEnglish"
+                                        },
+                                        {
+                                            "name": "Decorative"
+                                        },
+                                        {
+                                            "name": "System"
+                                        },
+                                        {
+                                            "name": "AnyStyle"
+                                        },
+                                        {
+                                            "name": "Cursive"
+                                        },
+                                        {
+                                            "name": "Monospace"
+                                        },
+                                        {
+                                            "name": "Fantasy"
+                                        }
+                                    ],
+                                    "name": "StyleHint",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "PreferDefault"
+                                        },
+                                        {
+                                            "name": "PreferBitmap"
+                                        },
+                                        {
+                                            "name": "PreferDevice"
+                                        },
+                                        {
+                                            "name": "PreferOutline"
+                                        },
+                                        {
+                                            "name": "ForceOutline"
+                                        },
+                                        {
+                                            "name": "PreferMatch"
+                                        },
+                                        {
+                                            "name": "PreferQuality"
+                                        },
+                                        {
+                                            "name": "PreferAntialias"
+                                        },
+                                        {
+                                            "name": "NoAntialias"
+                                        },
+                                        {
+                                            "name": "OpenGLCompatible"
+                                        },
+                                        {
+                                            "name": "ForceIntegerMetrics"
+                                        },
+                                        {
+                                            "name": "NoSubpixelAntialias"
+                                        },
+                                        {
+                                            "name": "PreferNoShaping"
+                                        },
+                                        {
+                                            "name": "NoFontMerging"
+                                        }
+                                    ],
+                                    "name": "StyleStrategy",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "PreferDefaultHinting"
+                                        },
+                                        {
+                                            "name": "PreferNoHinting"
+                                        },
+                                        {
+                                            "name": "PreferVerticalHinting"
+                                        },
+                                        {
+                                            "name": "PreferFullHinting"
+                                        }
+                                    ],
+                                    "name": "HintingPreference",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Thin"
+                                        },
+                                        {
+                                            "name": "ExtraLight"
+                                        },
+                                        {
+                                            "name": "Light"
+                                        },
+                                        {
+                                            "name": "Normal"
+                                        },
+                                        {
+                                            "name": "Medium"
+                                        },
+                                        {
+                                            "name": "DemiBold"
+                                        },
+                                        {
+                                            "name": "Bold"
+                                        },
+                                        {
+                                            "name": "ExtraBold"
+                                        },
+                                        {
+                                            "name": "Black"
+                                        }
+                                    ],
+                                    "name": "Weight",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "StyleNormal"
+                                        },
+                                        {
+                                            "name": "StyleItalic"
+                                        },
+                                        {
+                                            "name": "StyleOblique"
+                                        }
+                                    ],
+                                    "name": "Style",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AnyStretch"
+                                        },
+                                        {
+                                            "name": "UltraCondensed"
+                                        },
+                                        {
+                                            "name": "ExtraCondensed"
+                                        },
+                                        {
+                                            "name": "Condensed"
+                                        },
+                                        {
+                                            "name": "SemiCondensed"
+                                        },
+                                        {
+                                            "name": "Unstretched"
+                                        },
+                                        {
+                                            "name": "SemiExpanded"
+                                        },
+                                        {
+                                            "name": "Expanded"
+                                        },
+                                        {
+                                            "name": "ExtraExpanded"
+                                        },
+                                        {
+                                            "name": "UltraExpanded"
+                                        }
+                                    ],
+                                    "name": "Stretch",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "MixedCase"
+                                        },
+                                        {
+                                            "name": "AllUppercase"
+                                        },
+                                        {
+                                            "name": "AllLowercase"
+                                        },
+                                        {
+                                            "name": "SmallCaps"
+                                        },
+                                        {
+                                            "name": "Capitalize"
+                                        }
+                                    ],
+                                    "name": "Capitalization",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "PercentageSpacing"
+                                        },
+                                        {
+                                            "name": "AbsoluteSpacing"
+                                        }
+                                    ],
+                                    "name": "SpacingType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "FamilyResolved"
+                                        },
+                                        {
+                                            "name": "SizeResolved"
+                                        },
+                                        {
+                                            "name": "StyleHintResolved"
+                                        },
+                                        {
+                                            "name": "StyleStrategyResolved"
+                                        },
+                                        {
+                                            "name": "WeightResolved"
+                                        },
+                                        {
+                                            "name": "StyleResolved"
+                                        },
+                                        {
+                                            "name": "UnderlineResolved"
+                                        },
+                                        {
+                                            "name": "OverlineResolved"
+                                        },
+                                        {
+                                            "name": "StrikeOutResolved"
+                                        },
+                                        {
+                                            "name": "FixedPitchResolved"
+                                        },
+                                        {
+                                            "name": "StretchResolved"
+                                        },
+                                        {
+                                            "name": "KerningResolved"
+                                        },
+                                        {
+                                            "name": "CapitalizationResolved"
+                                        },
+                                        {
+                                            "name": "LetterSpacingResolved"
+                                        },
+                                        {
+                                            "name": "WordSpacingResolved"
+                                        },
+                                        {
+                                            "name": "HintingPreferenceResolved"
+                                        },
+                                        {
+                                            "name": "StyleNameResolved"
+                                        },
+                                        {
+                                            "name": "AllPropertiesResolved"
+                                        }
+                                    ],
+                                    "name": "ResolveProperties",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QFont",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFont",
+                                    "parameters": [
+                                        "const QString &",
+                                        "int",
+                                        "int",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFont",
+                                    "parameters": [
+                                        "const QFont &",
+                                        "QPaintDevice *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFont",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFont",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QFont &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "family",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFamily",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "styleName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStyleName",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pointSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPointSize",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pointSizeF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPointSizeF",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixelSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixelSize",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "weight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWeight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bold",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBold",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStyle",
+                                    "parameters": [
+                                        "QFont::Style"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "style",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFont::Style",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "italic",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setItalic",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "underline",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUnderline",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "overline",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOverline",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "strikeOut",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStrikeOut",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fixedPitch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFixedPitch",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "kerning",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setKerning",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "styleHint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFont::StyleHint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "styleStrategy",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFont::StyleStrategy",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStyleHint",
+                                    "parameters": [
+                                        "QFont::StyleHint",
+                                        "QFont::StyleStrategy"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStyleStrategy",
+                                    "parameters": [
+                                        "QFont::StyleStrategy"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "stretch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStretch",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "letterSpacing",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "letterSpacingType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFont::SpacingType",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLetterSpacing",
+                                    "parameters": [
+                                        "QFont::SpacingType",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "wordSpacing",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWordSpacing",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCapitalization",
+                                    "parameters": [
+                                        "QFont::Capitalization"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capitalization",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFont::Capitalization",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHintingPreference",
+                                    "parameters": [
+                                        "QFont::HintingPreference"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hintingPreference",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFont::HintingPreference",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rawMode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRawMode",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "exactMatch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "QFont &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isCopyOf",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QFont &&"
+                                    ],
+                                    "returns": "QFont &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRawName",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rawName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "key",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "substitute",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "substitutes",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "substitutions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSubstitution",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSubstitutions",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeSubstitutions",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "initialize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cleanup",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cacheStatistics",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "defaultFamily",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lastResortFamily",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lastResortFont",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "resolve",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "QFont",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "resolve",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resolve",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFont",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QFont &",
+                                "QFont &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QFont &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QFont &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QFont &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QFont &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QFont>",
+                    "name": "font",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -28218,6 +29202,12 @@
                 "id": "QColor",
                 "name": "QColor",
                 "rename": "Color"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFont",
+                "name": "QFont",
+                "rename": "Font"
             }
         ],
         "enums": [
@@ -28904,6 +29894,51 @@
                 "header": "yasl/gui/color.h",
                 "id": "QColorNameFormat",
                 "name": "QColor::NameFormat"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontStyleHint",
+                "name": "QFont::StyleHint"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontStyleStrategy",
+                "name": "QFont::StyleStrategy"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontHintingPreference",
+                "name": "QFont::HintingPreference"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontWeight",
+                "name": "QFont::Weight"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontStyle",
+                "name": "QFont::Style"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontStretch",
+                "name": "QFont::Stretch"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontCapitalization",
+                "name": "QFont::Capitalization"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontSpacingType",
+                "name": "QFont::SpacingType"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFontResolveProperties",
+                "name": "QFont::ResolveProperties"
             }
         ],
         "fundamentals": [

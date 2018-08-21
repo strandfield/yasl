@@ -8,30 +8,55 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
-#include "yasl/core/list.h"
+#include "yasl/gui/font.h"
 
-#include "yasl/gui/paintdevice.h"
-
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
 
-#include <QDebug>
-
-static void register_font_capitalization_enum(script::Class font)
+static void register_font_style_hint_enum(script::Class font)
 {
   using namespace script;
 
-  Enum capitalization = font.Enum("Capitalization").setId(script::Type::QFontCapitalization).get();
+  Enum style_hint = font.Enum("StyleHint").setId(script::Type::QFontStyleHint).get();
 
-  capitalization.addValue("AllLowercase", QFont::AllLowercase);
-  capitalization.addValue("AllUppercase", QFont::AllUppercase);
-  capitalization.addValue("Capitalize", QFont::Capitalize);
-  capitalization.addValue("MixedCase", QFont::MixedCase);
-  capitalization.addValue("SmallCaps", QFont::SmallCaps);
+  style_hint.addValue("Helvetica", QFont::Helvetica);
+  style_hint.addValue("SansSerif", QFont::SansSerif);
+  style_hint.addValue("Times", QFont::Times);
+  style_hint.addValue("Serif", QFont::Serif);
+  style_hint.addValue("Courier", QFont::Courier);
+  style_hint.addValue("TypeWriter", QFont::TypeWriter);
+  style_hint.addValue("OldEnglish", QFont::OldEnglish);
+  style_hint.addValue("Decorative", QFont::Decorative);
+  style_hint.addValue("System", QFont::System);
+  style_hint.addValue("AnyStyle", QFont::AnyStyle);
+  style_hint.addValue("Cursive", QFont::Cursive);
+  style_hint.addValue("Monospace", QFont::Monospace);
+  style_hint.addValue("Fantasy", QFont::Fantasy);
 }
+
+
+static void register_font_style_strategy_enum(script::Class font)
+{
+  using namespace script;
+
+  Enum style_strategy = font.Enum("StyleStrategy").setId(script::Type::QFontStyleStrategy).get();
+
+  style_strategy.addValue("PreferDefault", QFont::PreferDefault);
+  style_strategy.addValue("PreferBitmap", QFont::PreferBitmap);
+  style_strategy.addValue("PreferDevice", QFont::PreferDevice);
+  style_strategy.addValue("PreferOutline", QFont::PreferOutline);
+  style_strategy.addValue("ForceOutline", QFont::ForceOutline);
+  style_strategy.addValue("PreferMatch", QFont::PreferMatch);
+  style_strategy.addValue("PreferQuality", QFont::PreferQuality);
+  style_strategy.addValue("PreferAntialias", QFont::PreferAntialias);
+  style_strategy.addValue("NoAntialias", QFont::NoAntialias);
+  style_strategy.addValue("OpenGLCompatible", QFont::OpenGLCompatible);
+  style_strategy.addValue("ForceIntegerMetrics", QFont::ForceIntegerMetrics);
+  style_strategy.addValue("NoSubpixelAntialias", QFont::NoSubpixelAntialias);
+  style_strategy.addValue("PreferNoShaping", QFont::PreferNoShaping);
+  style_strategy.addValue("NoFontMerging", QFont::NoFontMerging);
+}
+
 
 static void register_font_hinting_preference_enum(script::Class font)
 {
@@ -40,46 +65,41 @@ static void register_font_hinting_preference_enum(script::Class font)
   Enum hinting_preference = font.Enum("HintingPreference").setId(script::Type::QFontHintingPreference).get();
 
   hinting_preference.addValue("PreferDefaultHinting", QFont::PreferDefaultHinting);
-  hinting_preference.addValue("PreferFullHinting", QFont::PreferFullHinting);
   hinting_preference.addValue("PreferNoHinting", QFont::PreferNoHinting);
   hinting_preference.addValue("PreferVerticalHinting", QFont::PreferVerticalHinting);
+  hinting_preference.addValue("PreferFullHinting", QFont::PreferFullHinting);
 }
 
-static void register_font_resolve_properties_enum(script::Class font)
+
+static void register_font_weight_enum(script::Class font)
 {
   using namespace script;
 
-  Enum resolve_properties = font.Enum("ResolveProperties").setId(script::Type::QFontResolveProperties).get();
+  Enum weight = font.Enum("Weight").setId(script::Type::QFontWeight).get();
 
-  resolve_properties.addValue("AllPropertiesResolved", QFont::AllPropertiesResolved);
-  resolve_properties.addValue("CapitalizationResolved", QFont::CapitalizationResolved);
-  resolve_properties.addValue("FamilyResolved", QFont::FamilyResolved);
-  resolve_properties.addValue("FixedPitchResolved", QFont::FixedPitchResolved);
-  resolve_properties.addValue("HintingPreferenceResolved", QFont::HintingPreferenceResolved);
-  resolve_properties.addValue("KerningResolved", QFont::KerningResolved);
-  resolve_properties.addValue("LetterSpacingResolved", QFont::LetterSpacingResolved);
-  resolve_properties.addValue("OverlineResolved", QFont::OverlineResolved);
-  resolve_properties.addValue("SizeResolved", QFont::SizeResolved);
-  resolve_properties.addValue("StretchResolved", QFont::StretchResolved);
-  resolve_properties.addValue("StrikeOutResolved", QFont::StrikeOutResolved);
-  resolve_properties.addValue("StyleHintResolved", QFont::StyleHintResolved);
-  resolve_properties.addValue("StyleNameResolved", QFont::StyleNameResolved);
-  resolve_properties.addValue("StyleResolved", QFont::StyleResolved);
-  resolve_properties.addValue("StyleStrategyResolved", QFont::StyleStrategyResolved);
-  resolve_properties.addValue("UnderlineResolved", QFont::UnderlineResolved);
-  resolve_properties.addValue("WeightResolved", QFont::WeightResolved);
-  resolve_properties.addValue("WordSpacingResolved", QFont::WordSpacingResolved);
+  weight.addValue("Thin", QFont::Thin);
+  weight.addValue("ExtraLight", QFont::ExtraLight);
+  weight.addValue("Light", QFont::Light);
+  weight.addValue("Normal", QFont::Normal);
+  weight.addValue("Medium", QFont::Medium);
+  weight.addValue("DemiBold", QFont::DemiBold);
+  weight.addValue("Bold", QFont::Bold);
+  weight.addValue("ExtraBold", QFont::ExtraBold);
+  weight.addValue("Black", QFont::Black);
 }
 
-static void register_font_spacing_type_enum(script::Class font)
+
+static void register_font_style_enum(script::Class font)
 {
   using namespace script;
 
-  Enum spacing_type = font.Enum("SpacingType").setId(script::Type::QFontSpacingType).get();
+  Enum style = font.Enum("Style").setId(script::Type::QFontStyle).get();
 
-  spacing_type.addValue("AbsoluteSpacing", QFont::AbsoluteSpacing);
-  spacing_type.addValue("PercentageSpacing", QFont::PercentageSpacing);
+  style.addValue("StyleNormal", QFont::StyleNormal);
+  style.addValue("StyleItalic", QFont::StyleItalic);
+  style.addValue("StyleOblique", QFont::StyleOblique);
 }
+
 
 static void register_font_stretch_enum(script::Class font)
 {
@@ -88,87 +108,69 @@ static void register_font_stretch_enum(script::Class font)
   Enum stretch = font.Enum("Stretch").setId(script::Type::QFontStretch).get();
 
   stretch.addValue("AnyStretch", QFont::AnyStretch);
-  stretch.addValue("Condensed", QFont::Condensed);
-  stretch.addValue("Expanded", QFont::Expanded);
-  stretch.addValue("ExtraCondensed", QFont::ExtraCondensed);
-  stretch.addValue("ExtraExpanded", QFont::ExtraExpanded);
-  stretch.addValue("SemiCondensed", QFont::SemiCondensed);
-  stretch.addValue("SemiExpanded", QFont::SemiExpanded);
   stretch.addValue("UltraCondensed", QFont::UltraCondensed);
-  stretch.addValue("UltraExpanded", QFont::UltraExpanded);
+  stretch.addValue("ExtraCondensed", QFont::ExtraCondensed);
+  stretch.addValue("Condensed", QFont::Condensed);
+  stretch.addValue("SemiCondensed", QFont::SemiCondensed);
   stretch.addValue("Unstretched", QFont::Unstretched);
+  stretch.addValue("SemiExpanded", QFont::SemiExpanded);
+  stretch.addValue("Expanded", QFont::Expanded);
+  stretch.addValue("ExtraExpanded", QFont::ExtraExpanded);
+  stretch.addValue("UltraExpanded", QFont::UltraExpanded);
 }
 
-static void register_font_style_enum(script::Class font)
+
+static void register_font_capitalization_enum(script::Class font)
 {
   using namespace script;
 
-  Enum style = font.Enum("Style").setId(script::Type::QFontStyle).get();
+  Enum capitalization = font.Enum("Capitalization").setId(script::Type::QFontCapitalization).get();
 
-  style.addValue("StyleItalic", QFont::StyleItalic);
-  style.addValue("StyleNormal", QFont::StyleNormal);
-  style.addValue("StyleOblique", QFont::StyleOblique);
+  capitalization.addValue("MixedCase", QFont::MixedCase);
+  capitalization.addValue("AllUppercase", QFont::AllUppercase);
+  capitalization.addValue("AllLowercase", QFont::AllLowercase);
+  capitalization.addValue("SmallCaps", QFont::SmallCaps);
+  capitalization.addValue("Capitalize", QFont::Capitalize);
 }
 
-static void register_font_style_hint_enum(script::Class font)
+
+static void register_font_spacing_type_enum(script::Class font)
 {
   using namespace script;
 
-  Enum style_hint = font.Enum("StyleHint").setId(script::Type::QFontStyleHint).get();
+  Enum spacing_type = font.Enum("SpacingType").setId(script::Type::QFontSpacingType).get();
 
-  style_hint.addValue("AnyStyle", QFont::AnyStyle);
-  style_hint.addValue("Courier", QFont::Courier);
-  style_hint.addValue("Cursive", QFont::Cursive);
-  style_hint.addValue("Decorative", QFont::Decorative);
-  style_hint.addValue("Fantasy", QFont::Fantasy);
-  style_hint.addValue("Helvetica", QFont::Helvetica);
-  style_hint.addValue("Monospace", QFont::Monospace);
-  style_hint.addValue("OldEnglish", QFont::OldEnglish);
-  style_hint.addValue("SansSerif", QFont::SansSerif);
-  style_hint.addValue("Serif", QFont::Serif);
-  style_hint.addValue("System", QFont::System);
-  style_hint.addValue("Times", QFont::Times);
-  style_hint.addValue("TypeWriter", QFont::TypeWriter);
+  spacing_type.addValue("PercentageSpacing", QFont::PercentageSpacing);
+  spacing_type.addValue("AbsoluteSpacing", QFont::AbsoluteSpacing);
 }
 
-static void register_font_style_strategy_enum(script::Class font)
+
+static void register_font_resolve_properties_enum(script::Class font)
 {
   using namespace script;
 
-  Enum style_strategy = font.Enum("StyleStrategy").setId(script::Type::QFontStyleStrategy).get();
+  Enum resolve_properties = font.Enum("ResolveProperties").setId(script::Type::QFontResolveProperties).get();
 
-  style_strategy.addValue("ForceIntegerMetrics", QFont::ForceIntegerMetrics);
-  style_strategy.addValue("ForceOutline", QFont::ForceOutline);
-  style_strategy.addValue("NoAntialias", QFont::NoAntialias);
-  style_strategy.addValue("NoFontMerging", QFont::NoFontMerging);
-  style_strategy.addValue("NoSubpixelAntialias", QFont::NoSubpixelAntialias);
-  style_strategy.addValue("OpenGLCompatible", QFont::OpenGLCompatible);
-  style_strategy.addValue("PreferAntialias", QFont::PreferAntialias);
-  style_strategy.addValue("PreferBitmap", QFont::PreferBitmap);
-  style_strategy.addValue("PreferDefault", QFont::PreferDefault);
-  style_strategy.addValue("PreferDevice", QFont::PreferDevice);
-  style_strategy.addValue("PreferMatch", QFont::PreferMatch);
-  style_strategy.addValue("PreferNoShaping", QFont::PreferNoShaping);
-  style_strategy.addValue("PreferOutline", QFont::PreferOutline);
-  style_strategy.addValue("PreferQuality", QFont::PreferQuality);
+  resolve_properties.addValue("FamilyResolved", QFont::FamilyResolved);
+  resolve_properties.addValue("SizeResolved", QFont::SizeResolved);
+  resolve_properties.addValue("StyleHintResolved", QFont::StyleHintResolved);
+  resolve_properties.addValue("StyleStrategyResolved", QFont::StyleStrategyResolved);
+  resolve_properties.addValue("WeightResolved", QFont::WeightResolved);
+  resolve_properties.addValue("StyleResolved", QFont::StyleResolved);
+  resolve_properties.addValue("UnderlineResolved", QFont::UnderlineResolved);
+  resolve_properties.addValue("OverlineResolved", QFont::OverlineResolved);
+  resolve_properties.addValue("StrikeOutResolved", QFont::StrikeOutResolved);
+  resolve_properties.addValue("FixedPitchResolved", QFont::FixedPitchResolved);
+  resolve_properties.addValue("StretchResolved", QFont::StretchResolved);
+  resolve_properties.addValue("KerningResolved", QFont::KerningResolved);
+  resolve_properties.addValue("CapitalizationResolved", QFont::CapitalizationResolved);
+  resolve_properties.addValue("LetterSpacingResolved", QFont::LetterSpacingResolved);
+  resolve_properties.addValue("WordSpacingResolved", QFont::WordSpacingResolved);
+  resolve_properties.addValue("HintingPreferenceResolved", QFont::HintingPreferenceResolved);
+  resolve_properties.addValue("StyleNameResolved", QFont::StyleNameResolved);
+  resolve_properties.addValue("AllPropertiesResolved", QFont::AllPropertiesResolved);
 }
 
-static void register_font_weight_enum(script::Class font)
-{
-  using namespace script;
-
-  Enum weight = font.Enum("Weight").setId(script::Type::QFontWeight).get();
-
-  weight.addValue("Black", QFont::Black);
-  weight.addValue("Bold", QFont::Bold);
-  weight.addValue("DemiBold", QFont::DemiBold);
-  weight.addValue("ExtraBold", QFont::ExtraBold);
-  weight.addValue("ExtraLight", QFont::ExtraLight);
-  weight.addValue("Light", QFont::Light);
-  weight.addValue("Medium", QFont::Medium);
-  weight.addValue("Normal", QFont::Normal);
-  weight.addValue("Thin", QFont::Thin);
-}
 
 static void register_font_class(script::Namespace ns)
 {
@@ -176,27 +178,27 @@ static void register_font_class(script::Namespace ns)
 
   Class font = ns.Class("Font").setId(script::Type::QFont).get();
 
-  register_font_capitalization_enum(font);
-  register_font_hinting_preference_enum(font);
-  register_font_resolve_properties_enum(font);
-  register_font_spacing_type_enum(font);
-  register_font_stretch_enum(font);
-  register_font_style_enum(font);
   register_font_style_hint_enum(font);
   register_font_style_strategy_enum(font);
+  register_font_hinting_preference_enum(font);
   register_font_weight_enum(font);
+  register_font_style_enum(font);
+  register_font_stretch_enum(font);
+  register_font_capitalization_enum(font);
+  register_font_spacing_type_enum(font);
+  register_font_resolve_properties_enum(font);
   binding::Class<QFont> binder{ font };
 
-  // ~QFont();
-  binder.add_dtor();
   // QFont();
   binder.ctors().add_default();
   // QFont(const QString &, int, int, bool);
   binder.ctors().add<const QString &, int, int, bool>();
   // QFont(const QFont &, QPaintDevice *);
-  binder.ctors().add<const QFont &, QPaintDevice *>();
+  /// TODO: QFont(const QFont &, QPaintDevice *);
   // QFont(const QFont &);
   binder.ctors().add<const QFont &>();
+  // ~QFont();
+  binder.add_dtor();
   // void swap(QFont &);
   binder.add_void_fun<QFont &, &QFont::swap>("swap");
   // QString family() const;
@@ -316,13 +318,13 @@ static void register_font_class(script::Namespace ns)
   // static QString substitute(const QString &);
   binder.add_static<QString, const QString &, &QFont::substitute>("substitute");
   // static QStringList substitutes(const QString &);
-  binder.add_static<QStringList, const QString &, &QFont::substitutes>("substitutes");
+  /// TODO: static QStringList substitutes(const QString &);
   // static QStringList substitutions();
-  binder.add_static<QStringList, &QFont::substitutions>("substitutions");
+  /// TODO: static QStringList substitutions();
   // static void insertSubstitution(const QString &, const QString &);
   binder.add_static_void_fun<const QString &, const QString &, &QFont::insertSubstitution>("insertSubstitution");
   // static void insertSubstitutions(const QString &, const QStringList &);
-  binder.add_static_void_fun<const QString &, const QStringList &, &QFont::insertSubstitutions>("insertSubstitutions");
+  /// TODO: static void insertSubstitutions(const QString &, const QStringList &);
   // static void removeSubstitutions(const QString &);
   binder.add_static_void_fun<const QString &, &QFont::removeSubstitutions>("removeSubstitutions");
   // static void initialize();
@@ -345,22 +347,25 @@ static void register_font_class(script::Namespace ns)
   binder.add_void_fun<uint, &QFont::resolve>("resolve");
 }
 
-void register_font_file(script::Namespace root)
+
+void register_font_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_font_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_font_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QFont &, QFont &);
   binder.add_void_fun<QFont &, QFont &, &swap>("swap");
   // uint qHash(const QFont &, uint);
   binder.add_fun<uint, const QFont &, uint, &qHash>("qHash");
   // QDataStream & operator<<(QDataStream &, const QFont &);
-  binder.operators().put_to<QDataStream &, const QFont &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QFont &);
   // QDataStream & operator>>(QDataStream &, QFont &);
-  binder.operators().read_from<QDataStream &, QFont &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QFont &);
   // QDebug operator<<(QDebug, const QFont &);
-  binder.operators().left_shift<QDebug, QDebug, const QFont &>();
+  /// TODO: QDebug operator<<(QDebug, const QFont &);
 }
 
