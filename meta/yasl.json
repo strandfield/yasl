@@ -28817,6 +28817,415 @@
                     "hincludes": "<QFont>",
                     "name": "font",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Any"
+                                        },
+                                        {
+                                            "name": "Latin"
+                                        },
+                                        {
+                                            "name": "Greek"
+                                        },
+                                        {
+                                            "name": "Cyrillic"
+                                        },
+                                        {
+                                            "name": "Armenian"
+                                        },
+                                        {
+                                            "name": "Hebrew"
+                                        },
+                                        {
+                                            "name": "Arabic"
+                                        },
+                                        {
+                                            "name": "Syriac"
+                                        },
+                                        {
+                                            "name": "Thaana"
+                                        },
+                                        {
+                                            "name": "Devanagari"
+                                        },
+                                        {
+                                            "name": "Bengali"
+                                        },
+                                        {
+                                            "name": "Gurmukhi"
+                                        },
+                                        {
+                                            "name": "Gujarati"
+                                        },
+                                        {
+                                            "name": "Oriya"
+                                        },
+                                        {
+                                            "name": "Tamil"
+                                        },
+                                        {
+                                            "name": "Telugu"
+                                        },
+                                        {
+                                            "name": "Kannada"
+                                        },
+                                        {
+                                            "name": "Malayalam"
+                                        },
+                                        {
+                                            "name": "Sinhala"
+                                        },
+                                        {
+                                            "name": "Thai"
+                                        },
+                                        {
+                                            "name": "Lao"
+                                        },
+                                        {
+                                            "name": "Tibetan"
+                                        },
+                                        {
+                                            "name": "Myanmar"
+                                        },
+                                        {
+                                            "name": "Georgian"
+                                        },
+                                        {
+                                            "name": "Khmer"
+                                        },
+                                        {
+                                            "name": "SimplifiedChinese"
+                                        },
+                                        {
+                                            "name": "TraditionalChinese"
+                                        },
+                                        {
+                                            "name": "Japanese"
+                                        },
+                                        {
+                                            "name": "Korean"
+                                        },
+                                        {
+                                            "name": "Vietnamese"
+                                        },
+                                        {
+                                            "name": "Symbol"
+                                        },
+                                        {
+                                            "name": "Other"
+                                        },
+                                        {
+                                            "name": "Ogham"
+                                        },
+                                        {
+                                            "name": "Runic"
+                                        },
+                                        {
+                                            "name": "Nko"
+                                        },
+                                        {
+                                            "name": "WritingSystemsCount"
+                                        }
+                                    ],
+                                    "name": "WritingSystem",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "GeneralFont"
+                                        },
+                                        {
+                                            "name": "FixedFont"
+                                        },
+                                        {
+                                            "name": "TitleFont"
+                                        },
+                                        {
+                                            "name": "SmallestReadableFont"
+                                        }
+                                    ],
+                                    "name": "SystemFont",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "standardSizes",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<int>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QFontDatabase",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "writingSystems",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QFontDatabase::WritingSystem>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "writingSystems",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QList<QFontDatabase::WritingSystem>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "families",
+                                    "parameters": [
+                                        "QFontDatabase::WritingSystem"
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "styles",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "pointSizes",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QList<int>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "smoothSizes",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QList<int>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "styleString",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "styleString",
+                                    "parameters": [
+                                        "const QFontInfo &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "font",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &",
+                                        "int"
+                                    ],
+                                    "returns": "QFont",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isBitmapScalable",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSmoothlyScalable",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isScalable",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isFixedPitch",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "italic",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bold",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "weight",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasFamily",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isPrivateFamily",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "writingSystemName",
+                                    "parameters": [
+                                        "QFontDatabase::WritingSystem"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "writingSystemSample",
+                                    "parameters": [
+                                        "QFontDatabase::WritingSystem"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addApplicationFont",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addApplicationFontFromData",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "applicationFontFamilies",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeApplicationFont",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeAllApplicationFonts",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "supportsThreadedFontRendering",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "systemFont",
+                                    "parameters": [
+                                        "QFontDatabase::SystemFont"
+                                    ],
+                                    "returns": "QFont",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFontDatabase",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QFontDatabase>",
+                    "name": "fontdatabase",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -29208,6 +29617,12 @@
                 "id": "QFont",
                 "name": "QFont",
                 "rename": "Font"
+            },
+            {
+                "header": "yasl/gui/fontdatabase.h",
+                "id": "QFontDatabase",
+                "name": "QFontDatabase",
+                "rename": "FontDatabase"
             }
         ],
         "enums": [
@@ -29939,6 +30354,16 @@
                 "header": "yasl/gui/font.h",
                 "id": "QFontResolveProperties",
                 "name": "QFont::ResolveProperties"
+            },
+            {
+                "header": "yasl/gui/fontdatabase.h",
+                "id": "QFontDatabaseWritingSystem",
+                "name": "QFontDatabase::WritingSystem"
+            },
+            {
+                "header": "yasl/gui/fontdatabase.h",
+                "id": "QFontDatabaseSystemFont",
+                "name": "QFontDatabase::SystemFont"
             }
         ],
         "fundamentals": [
