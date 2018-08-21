@@ -30122,6 +30122,259 @@
                     "hincludes": "<QFontMetrics>",
                     "name": "fontmetrics",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QCursor",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QCursor",
+                                    "parameters": [
+                                        "Qt::CursorShape"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QCursor",
+                                    "parameters": [
+                                        "const QBitmap &",
+                                        "const QBitmap &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QCursor",
+                                    "parameters": [
+                                        "const QPixmap &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QCursor",
+                                    "parameters": [
+                                        "const QCursor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QCursor",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QCursor &"
+                                    ],
+                                    "returns": "QCursor &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QCursor",
+                                    "parameters": [
+                                        "QCursor &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QCursor &&"
+                                    ],
+                                    "returns": "QCursor &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QCursor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "shape",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::CursorShape",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setShape",
+                                    "parameters": [
+                                        "Qt::CursorShape"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bitmap",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBitmap *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mask",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBitmap *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hotSpot",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "pos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "pos",
+                                    "parameters": [
+                                        "const QScreen *"
+                                    ],
+                                    "returns": "QPoint",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPos",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPos",
+                                    "parameters": [
+                                        "QScreen *",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPos",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPos",
+                                    "parameters": [
+                                        "QScreen *",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QCursor",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QCursor &",
+                                "QCursor &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QCursor &",
+                                "const QCursor &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QCursor &",
+                                "const QCursor &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QCursor &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QCursor &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QCursor &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QCursor>",
+                    "name": "cursor",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -30537,6 +30790,12 @@
                 "id": "QFontMetricsF",
                 "name": "QFontMetricsF",
                 "rename": "FontMetricsF"
+            },
+            {
+                "header": "yasl/gui/cursor.h",
+                "id": "QCursor",
+                "name": "QCursor",
+                "rename": "Cursor"
             }
         ],
         "enums": [
