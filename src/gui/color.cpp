@@ -8,27 +8,11 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
+#include "yasl/core/enums.h"
+#include "yasl/gui/color.h"
 
-#include "yasl/gui/rgb.h"
-#include "yasl/gui/rgba64.h"
-
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
-
-static void register_color_name_format_enum(script::Class color)
-{
-  using namespace script;
-
-  Enum name_format = color.Enum("NameFormat").setId(script::Type::QColorNameFormat).get();
-
-  name_format.addValue("HexArgb", QColor::HexArgb);
-  name_format.addValue("HexRgb", QColor::HexRgb);
-}
 
 static void register_color_spec_enum(script::Class color)
 {
@@ -36,12 +20,24 @@ static void register_color_spec_enum(script::Class color)
 
   Enum spec = color.Enum("Spec").setId(script::Type::QColorSpec).get();
 
-  spec.addValue("Cmyk", QColor::Cmyk);
-  spec.addValue("Hsl", QColor::Hsl);
-  spec.addValue("Hsv", QColor::Hsv);
   spec.addValue("Invalid", QColor::Invalid);
   spec.addValue("Rgb", QColor::Rgb);
+  spec.addValue("Hsv", QColor::Hsv);
+  spec.addValue("Cmyk", QColor::Cmyk);
+  spec.addValue("Hsl", QColor::Hsl);
 }
+
+
+static void register_color_name_format_enum(script::Class color)
+{
+  using namespace script;
+
+  Enum name_format = color.Enum("NameFormat").setId(script::Type::QColorNameFormat).get();
+
+  name_format.addValue("HexRgb", QColor::HexRgb);
+  name_format.addValue("HexArgb", QColor::HexArgb);
+}
+
 
 static void register_color_class(script::Namespace ns)
 {
@@ -49,30 +45,30 @@ static void register_color_class(script::Namespace ns)
 
   Class color = ns.Class("Color").setId(script::Type::QColor).get();
 
-  register_color_name_format_enum(color);
   register_color_spec_enum(color);
+  register_color_name_format_enum(color);
   binding::Class<QColor> binder{ color };
 
-  // ~QColor();
-  binder.add_dtor();
   // QColor();
   binder.ctors().add_default();
+  // ~QColor();
+  binder.add_dtor();
   // QColor(Qt::GlobalColor);
   binder.ctors().add<Qt::GlobalColor>();
   // QColor(int, int, int, int);
   binder.ctors().add<int, int, int, int>();
   // QColor(QRgb);
-  binder.ctors().add<QRgb>();
+  /// TODO: QColor(QRgb);
   // QColor(QRgba64);
-  binder.ctors().add<QRgba64>();
+  /// TODO: QColor(QRgba64);
   // QColor(const QString &);
   binder.ctors().add<const QString &>();
   // QColor(QStringView);
-  binder.ctors().add<QStringView>();
+  /// TODO: QColor(QStringView);
   // QColor(const char *);
-  binder.ctors().add<const char *>();
+  /// TODO: QColor(const char *);
   // QColor(QLatin1String);
-  binder.ctors().add<QLatin1String>();
+  /// TODO: QColor(QLatin1String);
   // QColor(QColor::Spec);
   binder.ctors().add<QColor::Spec>();
   // QColor(const QColor &);
@@ -94,11 +90,11 @@ static void register_color_class(script::Namespace ns)
   // void setNamedColor(const QString &);
   binder.add_void_fun<const QString &, &QColor::setNamedColor>("setNamedColor");
   // void setNamedColor(QStringView);
-  binder.add_void_fun<QStringView, &QColor::setNamedColor>("setNamedColor");
+  /// TODO: void setNamedColor(QStringView);
   // void setNamedColor(QLatin1String);
-  binder.add_void_fun<QLatin1String, &QColor::setNamedColor>("setNamedColor");
+  /// TODO: void setNamedColor(QLatin1String);
   // static QStringList colorNames();
-  binder.add_static<QStringList, &QColor::colorNames>("colorNames");
+  /// TODO: static QStringList colorNames();
   // QColor::Spec spec() const;
   binder.add_fun<QColor::Spec, &QColor::spec>("spec");
   // int alpha() const;
@@ -134,25 +130,25 @@ static void register_color_class(script::Namespace ns)
   // void setBlueF(qreal);
   binder.add_void_fun<qreal, &QColor::setBlueF>("setBlueF");
   // void getRgb(int *, int *, int *, int *) const;
-  /// TODO: binder.add_const_void_fun<int *, int *, int *, int *, &QColor::getRgb>("getRgb");
+  /// TODO: void getRgb(int *, int *, int *, int *) const;
   // void setRgb(int, int, int, int);
   binder.add_void_fun<int, int, int, int, &QColor::setRgb>("setRgb");
   // void getRgbF(qreal *, qreal *, qreal *, qreal *) const;
-  /// TODO: binder.add_const_void_fun<qreal *, qreal *, qreal *, qreal *, &QColor::getRgbF>("getRgbF");
+  /// TODO: void getRgbF(qreal *, qreal *, qreal *, qreal *) const;
   // void setRgbF(qreal, qreal, qreal, qreal);
   binder.add_void_fun<qreal, qreal, qreal, qreal, &QColor::setRgbF>("setRgbF");
   // QRgba64 rgba64() const;
-  binder.add_fun<QRgba64, &QColor::rgba64>("rgba64");
+  /// TODO: QRgba64 rgba64() const;
   // void setRgba64(QRgba64);
-  binder.add_void_fun<QRgba64, &QColor::setRgba64>("setRgba64");
+  /// TODO: void setRgba64(QRgba64);
   // QRgb rgba() const;
-  binder.add_fun<QRgb, &QColor::rgba>("rgba");
+  /// TODO: QRgb rgba() const;
   // void setRgba(QRgb);
-  binder.add_void_fun<QRgb, &QColor::setRgba>("setRgba");
+  /// TODO: void setRgba(QRgb);
   // QRgb rgb() const;
-  binder.add_fun<QRgb, &QColor::rgb>("rgb");
+  /// TODO: QRgb rgb() const;
   // void setRgb(QRgb);
-  binder.add_void_fun<QRgb, &QColor::setRgb>("setRgb");
+  /// TODO: void setRgb(QRgb);
   // int hue() const;
   binder.add_fun<int, &QColor::hue>("hue");
   // int saturation() const;
@@ -174,11 +170,11 @@ static void register_color_class(script::Namespace ns)
   // qreal valueF() const;
   binder.add_fun<qreal, &QColor::valueF>("valueF");
   // void getHsv(int *, int *, int *, int *) const;
-  /// TODO: binder.add_const_void_fun<int *, int *, int *, int *, &QColor::getHsv>("getHsv");
+  /// TODO: void getHsv(int *, int *, int *, int *) const;
   // void setHsv(int, int, int, int);
   binder.add_void_fun<int, int, int, int, &QColor::setHsv>("setHsv");
   // void getHsvF(qreal *, qreal *, qreal *, qreal *) const;
-  /// TODO: binder.add_const_void_fun<qreal *, qreal *, qreal *, qreal *, &QColor::getHsvF>("getHsvF");
+  /// TODO: void getHsvF(qreal *, qreal *, qreal *, qreal *) const;
   // void setHsvF(qreal, qreal, qreal, qreal);
   binder.add_void_fun<qreal, qreal, qreal, qreal, &QColor::setHsvF>("setHsvF");
   // int cyan() const;
@@ -198,11 +194,11 @@ static void register_color_class(script::Namespace ns)
   // qreal blackF() const;
   binder.add_fun<qreal, &QColor::blackF>("blackF");
   // void getCmyk(int *, int *, int *, int *, int *);
-  /// TODO: binder.add_void_fun<int *, int *, int *, int *, int *, &QColor::getCmyk>("getCmyk");
+  /// TODO: void getCmyk(int *, int *, int *, int *, int *);
   // void setCmyk(int, int, int, int, int);
   binder.add_void_fun<int, int, int, int, int, &QColor::setCmyk>("setCmyk");
   // void getCmykF(qreal *, qreal *, qreal *, qreal *, qreal *);
-  binder.add_void_fun<qreal *, qreal *, qreal *, qreal *, qreal *, &QColor::getCmykF>("getCmykF");
+  /// TODO: void getCmykF(qreal *, qreal *, qreal *, qreal *, qreal *);
   // void setCmykF(qreal, qreal, qreal, qreal, qreal);
   binder.add_void_fun<qreal, qreal, qreal, qreal, qreal, &QColor::setCmykF>("setCmykF");
   // int hslHue() const;
@@ -218,11 +214,11 @@ static void register_color_class(script::Namespace ns)
   // qreal lightnessF() const;
   binder.add_fun<qreal, &QColor::lightnessF>("lightnessF");
   // void getHsl(int *, int *, int *, int *) const;
-  /// TODO: binder.add_const_void_fun<int *, int *, int *, int *, &QColor::getHsl>("getHsl");
+  /// TODO: void getHsl(int *, int *, int *, int *) const;
   // void setHsl(int, int, int, int);
   binder.add_void_fun<int, int, int, int, &QColor::setHsl>("setHsl");
   // void getHslF(qreal *, qreal *, qreal *, qreal *) const;
-  /// TODO: binder.add_const_void_fun<qreal *, qreal *, qreal *, qreal *, &QColor::getHslF>("getHslF");
+  /// TODO: void getHslF(qreal *, qreal *, qreal *, qreal *) const;
   // void setHslF(qreal, qreal, qreal, qreal);
   binder.add_void_fun<qreal, qreal, qreal, qreal, &QColor::setHslF>("setHslF");
   // QColor toRgb() const;
@@ -236,17 +232,17 @@ static void register_color_class(script::Namespace ns)
   // QColor convertTo(QColor::Spec) const;
   binder.add_fun<QColor, QColor::Spec, &QColor::convertTo>("convertTo");
   // static QColor fromRgb(QRgb);
-  binder.add_static<QColor, QRgb, &QColor::fromRgb>("fromRgb");
+  /// TODO: static QColor fromRgb(QRgb);
   // static QColor fromRgba(QRgb);
-  binder.add_static<QColor, QRgb, &QColor::fromRgba>("fromRgba");
+  /// TODO: static QColor fromRgba(QRgb);
   // static QColor fromRgb(int, int, int, int);
   binder.add_static<QColor, int, int, int, int, &QColor::fromRgb>("fromRgb");
   // static QColor fromRgbF(qreal, qreal, qreal, qreal);
   binder.add_static<QColor, qreal, qreal, qreal, qreal, &QColor::fromRgbF>("fromRgbF");
   // static QColor fromRgba64(ushort, ushort, ushort, ushort);
-  binder.add_static<QColor, ushort, ushort, ushort, ushort, &QColor::fromRgba64>("fromRgba64");
+  /// TODO: static QColor fromRgba64(ushort, ushort, ushort, ushort);
   // static QColor fromRgba64(QRgba64);
-  binder.add_static<QColor, QRgba64, &QColor::fromRgba64>("fromRgba64");
+  /// TODO: static QColor fromRgba64(QRgba64);
   // static QColor fromHsv(int, int, int, int);
   binder.add_static<QColor, int, int, int, int, &QColor::fromHsv>("fromHsv");
   // static QColor fromHsvF(qreal, qreal, qreal, qreal);
@@ -274,23 +270,26 @@ static void register_color_class(script::Namespace ns)
   // static bool isValidColor(const QString &);
   binder.add_static<bool, const QString &, &QColor::isValidColor>("isValidColor");
   // static bool isValidColor(QStringView);
-  binder.add_static<bool, QStringView, &QColor::isValidColor>("isValidColor");
+  /// TODO: static bool isValidColor(QStringView);
   // static bool isValidColor(QLatin1String);
-  binder.add_static<bool, QLatin1String, &QColor::isValidColor>("isValidColor");
+  /// TODO: static bool isValidColor(QLatin1String);
 }
 
-void register_color_file(script::Namespace root)
+
+void register_color_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_color_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_color_class(ns);
+  binding::Namespace binder{ ns };
 
   // QDebug operator<<(QDebug, const QColor &);
-  binder.operators().left_shift<QDebug, QDebug, const QColor &>();
+  /// TODO: QDebug operator<<(QDebug, const QColor &);
   // QDataStream & operator<<(QDataStream &, const QColor &);
-  binder.operators().put_to<QDataStream &, const QColor &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QColor &);
   // QDataStream & operator>>(QDataStream &, QColor &);
-  binder.operators().read_from<QDataStream &, QColor &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QColor &);
 }
 

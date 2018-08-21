@@ -26752,6 +26752,1091 @@
             ],
             "name": "core",
             "type": "module"
+        },
+        {
+            "checked": 1,
+            "elements": [
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QColor &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QColor &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QColor &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Invalid"
+                                        },
+                                        {
+                                            "name": "Rgb"
+                                        },
+                                        {
+                                            "name": "Hsv"
+                                        },
+                                        {
+                                            "name": "Cmyk"
+                                        },
+                                        {
+                                            "name": "Hsl"
+                                        }
+                                    ],
+                                    "name": "Spec",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "HexRgb"
+                                        },
+                                        {
+                                            "name": "HexArgb"
+                                        }
+                                    ],
+                                    "name": "NameFormat",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QColor",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "Qt::GlobalColor"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "QRgb"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "QRgba64"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "QLatin1String"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "QColor::Spec"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColor",
+                                    "parameters": [
+                                        "QColor &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QColor &&"
+                                    ],
+                                    "returns": "QColor &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "QColor &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "Qt::GlobalColor"
+                                    ],
+                                    "returns": "QColor &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "name",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "name",
+                                    "parameters": [
+                                        "QColor::NameFormat"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNamedColor",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNamedColor",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNamedColor",
+                                    "parameters": [
+                                        "QLatin1String"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "colorNames",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "spec",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QColor::Spec",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alpha",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlpha",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alphaF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlphaF",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "red",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "green",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "blue",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRed",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGreen",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBlue",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "redF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "greenF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "blueF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRedF",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGreenF",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBlueF",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getRgb",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRgb",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getRgbF",
+                                    "parameters": [
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRgbF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rgba64",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRgba64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRgba64",
+                                    "parameters": [
+                                        "QRgba64"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rgba",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRgb",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRgba",
+                                    "parameters": [
+                                        "QRgb"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rgb",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRgb",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRgb",
+                                    "parameters": [
+                                        "QRgb"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hue",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "saturation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hsvHue",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hsvSaturation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "value",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hueF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "saturationF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hsvHueF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hsvSaturationF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "valueF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getHsv",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHsv",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getHsvF",
+                                    "parameters": [
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHsvF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cyan",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "magenta",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "yellow",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "black",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cyanF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "magentaF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "yellowF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "blackF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getCmyk",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCmyk",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getCmykF",
+                                    "parameters": [
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCmykF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hslHue",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hslSaturation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lightness",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hslHueF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hslSaturationF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lightnessF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getHsl",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHsl",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getHslF",
+                                    "parameters": [
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *",
+                                        "qreal *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHslF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toRgb",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toHsv",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toCmyk",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toHsl",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "convertTo",
+                                    "parameters": [
+                                        "QColor::Spec"
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromRgb",
+                                    "parameters": [
+                                        "QRgb"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromRgba",
+                                    "parameters": [
+                                        "QRgb"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromRgb",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromRgbF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromRgba64",
+                                    "parameters": [
+                                        "ushort",
+                                        "ushort",
+                                        "ushort",
+                                        "ushort"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromRgba64",
+                                    "parameters": [
+                                        "QRgba64"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromHsv",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromHsvF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromCmyk",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromCmykF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromHsl",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromHslF",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "light",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lighter",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dark",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "darker",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isValidColor",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isValidColor",
+                                    "parameters": [
+                                        "QStringView"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isValidColor",
+                                    "parameters": [
+                                        "QLatin1String"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QColor",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QColor>",
+                    "name": "color",
+                    "type": "file"
+                }
+            ],
+            "name": "gui",
+            "type": "module"
         }
     ],
     "types": {
@@ -27127,6 +28212,12 @@
                 "id": "QVariant",
                 "name": "QVariant",
                 "rename": "Variant"
+            },
+            {
+                "header": "yasl/gui/color.h",
+                "id": "QColor",
+                "name": "QColor",
+                "rename": "Color"
             }
         ],
         "enums": [
@@ -27803,6 +28894,16 @@
                 "header": "yasl/core/variant.h",
                 "id": "QVariantType",
                 "name": "QVariant::Type"
+            },
+            {
+                "header": "yasl/gui/color.h",
+                "id": "QColorSpec",
+                "name": "QColor::Spec"
+            },
+            {
+                "header": "yasl/gui/color.h",
+                "id": "QColorNameFormat",
+                "name": "QColor::NameFormat"
             }
         ],
         "fundamentals": [
