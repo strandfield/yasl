@@ -31571,6 +31571,1143 @@
                     "hincludes": "<QIcon>",
                     "name": "icon",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "cppincludes": "yasl/gui/image-functions.h",
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "InvertRgb"
+                                        },
+                                        {
+                                            "name": "InvertRgba"
+                                        }
+                                    ],
+                                    "name": "InvertMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Format_Invalid"
+                                        },
+                                        {
+                                            "name": "Format_Mono"
+                                        },
+                                        {
+                                            "name": "Format_MonoLSB"
+                                        },
+                                        {
+                                            "name": "Format_Indexed8"
+                                        },
+                                        {
+                                            "name": "Format_RGB32"
+                                        },
+                                        {
+                                            "name": "Format_ARGB32"
+                                        },
+                                        {
+                                            "name": "Format_ARGB32_Premultiplied"
+                                        },
+                                        {
+                                            "name": "Format_RGB16"
+                                        },
+                                        {
+                                            "name": "Format_ARGB8565_Premultiplied"
+                                        },
+                                        {
+                                            "name": "Format_RGB666"
+                                        },
+                                        {
+                                            "name": "Format_ARGB6666_Premultiplied"
+                                        },
+                                        {
+                                            "name": "Format_RGB555"
+                                        },
+                                        {
+                                            "name": "Format_ARGB8555_Premultiplied"
+                                        },
+                                        {
+                                            "name": "Format_RGB888"
+                                        },
+                                        {
+                                            "name": "Format_RGB444"
+                                        },
+                                        {
+                                            "name": "Format_ARGB4444_Premultiplied"
+                                        },
+                                        {
+                                            "name": "Format_RGBX8888"
+                                        },
+                                        {
+                                            "name": "Format_RGBA8888"
+                                        },
+                                        {
+                                            "name": "Format_RGBA8888_Premultiplied"
+                                        },
+                                        {
+                                            "name": "Format_BGR30"
+                                        },
+                                        {
+                                            "name": "Format_A2BGR30_Premultiplied"
+                                        },
+                                        {
+                                            "name": "Format_RGB30"
+                                        },
+                                        {
+                                            "name": "Format_A2RGB30_Premultiplied"
+                                        },
+                                        {
+                                            "name": "Format_Alpha8"
+                                        },
+                                        {
+                                            "name": "Format_Grayscale8"
+                                        },
+                                        {
+                                            "name": "NImageFormats"
+                                        }
+                                    ],
+                                    "name": "Format",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "const QSize &",
+                                        "QImage::Format"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "QImage::Format"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "uchar *",
+                                        "int",
+                                        "int",
+                                        "QImage::Format",
+                                        "QImageCleanupFunction",
+                                        "void *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "const uchar *",
+                                        "int",
+                                        "int",
+                                        "QImage::Format",
+                                        "QImageCleanupFunction",
+                                        "void *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "uchar *",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "QImage::Format",
+                                        "QImageCleanupFunction",
+                                        "void *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "const uchar *",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "QImage::Format",
+                                        "QImageCleanupFunction",
+                                        "void *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "const char *const []"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "const QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QImage",
+                                    "parameters": [
+                                        "QImage &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QImage",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QImage &"
+                                    ],
+                                    "returns": "QImage &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QImage &&"
+                                    ],
+                                    "returns": "QImage &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "devType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QImage &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QImage &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "detach",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "copy",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "copy",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "format",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QImage::Format",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "convertToFormat",
+                                    "parameters": [
+                                        "QImage::Format",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "img_convertToFormat",
+                                    "parameters": [
+                                        "QImage::Format",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "rename": "convertToFormat",
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "convertToFormat",
+                                    "parameters": [
+                                        "QImage::Format",
+                                        "const QVector<QRgb> &",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reinterpretAsFormat",
+                                    "parameters": [
+                                        "QImage::Format"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "height",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "depth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "colorCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bitPlaneCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "color",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QRgb",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColor",
+                                    "parameters": [
+                                        "int",
+                                        "QRgb"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColorCount",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "allGray",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isGrayscale",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "bits",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bits",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const uchar *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "constBits",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const uchar *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "byteCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeInBytes",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qsizetype",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "scanLine",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "uchar *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "scanLine",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "const uchar *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "constScanLine",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "const uchar *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bytesPerLine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "valid",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "valid",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixelIndex",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixelIndex",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixel",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QRgb",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixel",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QRgb",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixel",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixel",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixelColor",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixelColor",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixelColor",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixelColor",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "colorTable",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector<QRgb>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColorTable",
+                                    "parameters": [
+                                        "const QVector<QRgb>"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "devicePixelRatio",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDevicePixelRatio",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fill",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fill",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fill",
+                                    "parameters": [
+                                        "Qt::GlobalColor"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasAlphaChannel",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlphaChannel",
+                                    "parameters": [
+                                        "const QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alphaChannel",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "createAlphaMask",
+                                    "parameters": [
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "createHeuristicMask",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "createMaskFromColor",
+                                    "parameters": [
+                                        "QRgb",
+                                        "Qt::MaskMode"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "scaled",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "Qt::AspectRatioMode",
+                                        "Qt::TransformationMode"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "scaled",
+                                    "parameters": [
+                                        "const QSize &",
+                                        "Qt::AspectRatioMode",
+                                        "Qt::TransformationMode"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "scaledToWidth",
+                                    "parameters": [
+                                        "int",
+                                        "Qt::TransformationMode"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "scaledToHeight",
+                                    "parameters": [
+                                        "int",
+                                        "Qt::TransformationMode"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transformed",
+                                    "parameters": [
+                                        "const QMatrix &",
+                                        "Qt::TransformationMode"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "trueMatrix",
+                                    "parameters": [
+                                        "const QMatrix &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QMatrix",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transformed",
+                                    "parameters": [
+                                        "const QTransform &",
+                                        "Qt::TransformationMode"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "trueMatrix",
+                                    "parameters": [
+                                        "const QTransform &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QTransform",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "mirrored",
+                                    "parameters": [
+                                        "bool",
+                                        "bool"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "img_mirrored",
+                                    "parameters": [
+                                        "bool",
+                                        "bool"
+                                    ],
+                                    "rename": "mirrored",
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "const": true,
+                                    "name": "rgbSwapped",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "free",
+                                    "name": "img_rgbSwapped",
+                                    "parameters": [
+                                    ],
+                                    "rename": "rgbSwapped",
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "invertPixels",
+                                    "parameters": [
+                                        "QImage::InvertMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "load",
+                                    "parameters": [
+                                        "QIODevice *",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "load",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "loadFromData",
+                                    "parameters": [
+                                        "const uchar *",
+                                        "int",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "loadFromData",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "save",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const char *",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "save",
+                                    "parameters": [
+                                        "QIODevice *",
+                                        "const char *",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromData",
+                                    "parameters": [
+                                        "const uchar *",
+                                        "int",
+                                        "const char *"
+                                    ],
+                                    "returns": "QImage",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromData",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "const char *"
+                                    ],
+                                    "returns": "QImage",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cacheKey",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "paintEngine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPaintEngine *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dotsPerMeterX",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dotsPerMeterY",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDotsPerMeterX",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDotsPerMeterY",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "offset",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOffset",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textKeys",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setText",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixelFormat",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixelFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "toPixelFormat",
+                                    "parameters": [
+                                        "QImage::Format"
+                                    ],
+                                    "returns": "QPixelFormat",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "toImageFormat",
+                                    "parameters": [
+                                        "QPixelFormat"
+                                    ],
+                                    "returns": "QImage::Format",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QImage::DataPtr &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QImage",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QImage &",
+                                "QImage &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QImage &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QImage &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QImage &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QImage>",
+                    "name": "image",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -32010,6 +33147,12 @@
                 "id": "QIcon",
                 "name": "QIcon",
                 "rename": "Icon"
+            },
+            {
+                "header": "yasl/gui/image.h",
+                "id": "QImage",
+                "name": "QImage",
+                "rename": "Image"
             }
         ],
         "enums": [
@@ -32761,6 +33904,16 @@
                 "header": "yasl/gui/icon.h",
                 "id": "QIconState",
                 "name": "QIcon::State"
+            },
+            {
+                "header": "yasl/gui/image.h",
+                "id": "QImageInvertMode",
+                "name": "QImage::InvertMode"
+            },
+            {
+                "header": "yasl/gui/image.h",
+                "id": "QImageFormat",
+                "name": "QImage::Format"
             }
         ],
         "fundamentals": [

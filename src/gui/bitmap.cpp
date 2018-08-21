@@ -7,8 +7,10 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/enums.h"
 #include "yasl/core/size.h"
 #include "yasl/gui/bitmap.h"
+#include "yasl/gui/image.h"
 #include "yasl/gui/pixmap.h"
 
 #include <script/classbuilder.h>
@@ -47,7 +49,7 @@ static void register_bitmap_class(script::Namespace ns)
   // void clear();
   binder.add_void_fun<&QBitmap::clear>("clear");
   // static QBitmap fromImage(const QImage &, Qt::ImageConversionFlags);
-  /// TODO: static QBitmap fromImage(const QImage &, Qt::ImageConversionFlags);
+  binder.add_static<QBitmap, const QImage &, Qt::ImageConversionFlags, &QBitmap::fromImage>("fromImage");
   // static QBitmap fromData(const QSize &, const uchar *, QImage::Format);
   /// TODO: static QBitmap fromData(const QSize &, const uchar *, QImage::Format);
   // QBitmap transformed(const QMatrix &) const;

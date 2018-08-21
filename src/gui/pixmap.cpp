@@ -14,6 +14,7 @@
 #include "yasl/core/size.h"
 #include "yasl/gui/bitmap.h"
 #include "yasl/gui/color.h"
+#include "yasl/gui/image.h"
 #include "yasl/gui/pixmap.h"
 
 #include <script/classbuilder.h>
@@ -109,13 +110,13 @@ static void register_pixmap_class(script::Namespace ns)
   // static QTransform trueMatrix(const QTransform &, int, int);
   /// TODO: static QTransform trueMatrix(const QTransform &, int, int);
   // QImage toImage() const;
-  /// TODO: QImage toImage() const;
+  binder.add_fun<QImage, &QPixmap::toImage>("toImage");
   // static QPixmap fromImage(const QImage &, Qt::ImageConversionFlags);
-  /// TODO: static QPixmap fromImage(const QImage &, Qt::ImageConversionFlags);
+  binder.add_static<QPixmap, const QImage &, Qt::ImageConversionFlags, &QPixmap::fromImage>("fromImage");
   // static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags);
   /// TODO: static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags);
   // static QPixmap fromImage(QImage &&, Qt::ImageConversionFlags);
-  /// TODO: static QPixmap fromImage(QImage &&, Qt::ImageConversionFlags);
+  binder.add_static<QPixmap, QImage &&, Qt::ImageConversionFlags, &QPixmap::fromImage>("fromImage");
   // bool load(const QString &, const char *, Qt::ImageConversionFlags);
   /// TODO: bool load(const QString &, const char *, Qt::ImageConversionFlags);
   // bool loadFromData(const uchar *, uint, const char *, Qt::ImageConversionFlags);
@@ -127,7 +128,7 @@ static void register_pixmap_class(script::Namespace ns)
   // bool save(QIODevice *, const char *, int) const;
   /// TODO: bool save(QIODevice *, const char *, int) const;
   // bool convertFromImage(const QImage &, Qt::ImageConversionFlags);
-  /// TODO: bool convertFromImage(const QImage &, Qt::ImageConversionFlags);
+  binder.add_fun<bool, const QImage &, Qt::ImageConversionFlags, &QPixmap::convertFromImage>("convertFromImage");
   // QPixmap copy(int, int, int, int) const;
   binder.add_fun<QPixmap, int, int, int, int, &QPixmap::copy>("copy");
   // QPixmap copy(const QRect &) const;
