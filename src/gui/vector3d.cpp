@@ -11,6 +11,7 @@
 #include "yasl/core/point.h"
 #include "yasl/gui/vector2d.h"
 #include "yasl/gui/vector3d.h"
+#include "yasl/gui/vector4d.h"
 
 #include <script/classbuilder.h>
 
@@ -43,7 +44,7 @@ static void register_vector3_d_class(script::Namespace ns)
   // QVector3D(const QVector2D &, float);
   binder.ctors().add<const QVector2D &, float>();
   // QVector3D(const QVector4D &);
-  /// TODO: QVector3D(const QVector4D &);
+  binder.ctors().add<const QVector4D &>();
   // bool isNull() const;
   binder.add_fun<bool, &QVector3D::isNull>("isNull");
   // float x() const;
@@ -103,7 +104,7 @@ static void register_vector3_d_class(script::Namespace ns)
   // QVector2D toVector2D() const;
   binder.add_fun<QVector2D, &QVector3D::toVector2D>("toVector2D");
   // QVector4D toVector4D() const;
-  /// TODO: QVector4D toVector4D() const;
+  binder.add_fun<QVector4D, &QVector3D::toVector4D>("toVector4D");
   // QPoint toPoint() const;
   binder.add_fun<QPoint, &QVector3D::toPoint>("toPoint");
   // QPointF toPointF() const;

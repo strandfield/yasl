@@ -7,17 +7,13 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
-
+#include "yasl/core/point.h"
 #include "yasl/gui/vector2d.h"
 #include "yasl/gui/vector3d.h"
+#include "yasl/gui/vector4d.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_vector4_d_class(script::Namespace ns)
 {
@@ -27,10 +23,14 @@ static void register_vector4_d_class(script::Namespace ns)
 
   binding::Class<QVector4D> binder{ vector4_d };
 
-  // ~QVector4D();
-  binder.add_dtor();
   // QVector4D();
   binder.ctors().add_default();
+  // QVector4D(const QVector4D &);
+  binder.ctors().add<const QVector4D &>();
+  // ~QVector4D();
+  binder.add_dtor();
+  // QVector4D & operator=(const QVector4D &);
+  binder.operators().assign<const QVector4D &>();
   // QVector4D(Qt::Initialization);
   binder.ctors().add<Qt::Initialization>();
   // QVector4D(float, float, float, float);
@@ -65,10 +65,8 @@ static void register_vector4_d_class(script::Namespace ns)
   binder.add_void_fun<float, &QVector4D::setZ>("setZ");
   // void setW(float);
   binder.add_void_fun<float, &QVector4D::setW>("setW");
-  // float & operator[](int);
-  /// TODO: binder.operators().subscript<float &, int>();
   // float operator[](int) const;
-  binder.operators().subscript<float, int>();
+  binder.operators().const_subscript<float, int>();
   // float length() const;
   binder.add_fun<float, &QVector4D::length>("length");
   // float lengthSquared() const;
@@ -105,12 +103,15 @@ static void register_vector4_d_class(script::Namespace ns)
   binder.add_fun<QPointF, &QVector4D::toPointF>("toPointF");
 }
 
-void register_vector4d_file(script::Namespace root)
+
+void register_vector4d_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_vector4_d_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_vector4_d_class(ns);
+  binding::Namespace binder{ ns };
 
   // bool operator==(const QVector4D &, const QVector4D &);
   binder.operators().eq<const QVector4D &, const QVector4D &>();
@@ -135,10 +136,10 @@ void register_vector4d_file(script::Namespace root)
   // bool qFuzzyCompare(const QVector4D &, const QVector4D &);
   binder.add_fun<bool, const QVector4D &, const QVector4D &, &qFuzzyCompare>("qFuzzyCompare");
   // QDebug operator<<(QDebug, const QVector4D &);
-  binder.operators().left_shift<QDebug, QDebug, const QVector4D &>();
+  /// TODO: QDebug operator<<(QDebug, const QVector4D &);
   // QDataStream & operator<<(QDataStream &, const QVector4D &);
-  binder.operators().put_to<QDataStream &, const QVector4D &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QVector4D &);
   // QDataStream & operator>>(QDataStream &, QVector4D &);
-  binder.operators().read_from<QDataStream &, QVector4D &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QVector4D &);
 }
 
