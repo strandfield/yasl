@@ -465,6 +465,7 @@ public:
   template<typename ReturnType, typename IndexType>
   script::Function subscript()
   {
+    /// TODO : consider the case were ReturnType is a non-const reference.
     YASL_BINDING_BEGIN_RUNTIME_CHECK
     return class_.Operation(script::SubscriptOperator, subscript_wrapper<ReturnType, T&, IndexType>)
       .returns(make_type<ReturnType>())

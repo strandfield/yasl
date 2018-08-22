@@ -33488,6 +33488,420 @@
                     "hincludes": "<QTransform>",
                     "name": "transform",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "name": "QVector2D",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVector2D",
+                                    "parameters": [
+                                        "Qt::Initialization"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVector2D",
+                                    "parameters": [
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QVector2D",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "QVector2D &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QVector2D",
+                                    "parameters": [
+                                        "float",
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVector2D",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVector2D",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVector2D",
+                                    "parameters": [
+                                        "const QVector3D &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVector2D",
+                                    "parameters": [
+                                        "const QVector4D &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setX",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setY",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "float &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "length",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lengthSquared",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "normalized",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector2D",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "normalize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "distanceToPoint",
+                                    "parameters": [
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "distanceToLine",
+                                    "parameters": [
+                                        "const QVector2D &",
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "QVector2D &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "QVector2D &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "QVector2D &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "QVector2D &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "QVector2D &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "QVector2D &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "dotProduct",
+                                    "parameters": [
+                                        "const QVector2D &",
+                                        "const QVector2D &"
+                                    ],
+                                    "returns": "float",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toVector3D",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector3D",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toVector4D",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector4D",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toPoint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toPointF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QVector2D",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QVector2D &",
+                                "const QVector2D &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QVector2D &",
+                                "const QVector2D &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QVector2D &",
+                                "const QVector2D &"
+                            ],
+                            "returns": "const QVector2D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QVector2D &",
+                                "const QVector2D &"
+                            ],
+                            "returns": "const QVector2D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "float",
+                                "const QVector2D &"
+                            ],
+                            "returns": "const QVector2D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QVector2D &",
+                                "float"
+                            ],
+                            "returns": "const QVector2D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QVector2D &",
+                                "const QVector2D &"
+                            ],
+                            "returns": "const QVector2D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QVector2D &"
+                            ],
+                            "returns": "const QVector2D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QVector2D &",
+                                "float"
+                            ],
+                            "returns": "const QVector2D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QVector2D &",
+                                "const QVector2D &"
+                            ],
+                            "returns": "const QVector2D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qFuzzyCompare",
+                            "parameters": [
+                                "const QVector2D &",
+                                "const QVector2D &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QVector2D &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QVector2D &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QVector2D &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QVector2D>",
+                    "name": "vector2d",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -33939,6 +34353,12 @@
                 "id": "QTransform",
                 "name": "QTransform",
                 "rename": "Transform"
+            },
+            {
+                "header": "yasl/gui/vector2d.h",
+                "id": "QVector2D",
+                "name": "QVector2D",
+                "rename": "Vector2D"
             }
         ],
         "enums": [
