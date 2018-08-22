@@ -12,6 +12,7 @@
 #include "yasl/gui/bitmap.h"
 #include "yasl/gui/image.h"
 #include "yasl/gui/pixmap.h"
+#include "yasl/gui/transform.h"
 
 #include <script/classbuilder.h>
 
@@ -55,7 +56,7 @@ static void register_bitmap_class(script::Namespace ns)
   // QBitmap transformed(const QMatrix &) const;
   /// TODO: QBitmap transformed(const QMatrix &) const;
   // QBitmap transformed(const QTransform &) const;
-  /// TODO: QBitmap transformed(const QTransform &) const;
+  binder.add_fun<QBitmap, const QTransform &, &QBitmap::transformed>("transformed");
 }
 
 

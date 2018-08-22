@@ -16,6 +16,7 @@
 #include "yasl/gui/color.h"
 #include "yasl/gui/image-functions.h"
 #include "yasl/gui/image.h"
+#include "yasl/gui/transform.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -235,9 +236,9 @@ static void register_image_class(script::Namespace ns)
   // static QMatrix trueMatrix(const QMatrix &, int, int);
   /// TODO: static QMatrix trueMatrix(const QMatrix &, int, int);
   // QImage transformed(const QTransform &, Qt::TransformationMode) const;
-  /// TODO: QImage transformed(const QTransform &, Qt::TransformationMode) const;
+  binder.add_fun<QImage, const QTransform &, Qt::TransformationMode, &QImage::transformed>("transformed");
   // static QTransform trueMatrix(const QTransform &, int, int);
-  /// TODO: static QTransform trueMatrix(const QTransform &, int, int);
+  binder.add_static<QTransform, const QTransform &, int, int, &QImage::trueMatrix>("trueMatrix");
   // QImage img_mirrored(bool, bool);
   binder.add_fun<QImage, bool, bool, &img_mirrored>("mirrored");
   // QImage img_rgbSwapped();

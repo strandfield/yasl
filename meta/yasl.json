@@ -32708,6 +32708,786 @@
                     "hincludes": "<QImage>",
                     "name": "image",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "TxNone"
+                                        },
+                                        {
+                                            "name": "TxTranslate"
+                                        },
+                                        {
+                                            "name": "TxScale"
+                                        },
+                                        {
+                                            "name": "TxRotate"
+                                        },
+                                        {
+                                            "name": "TxShear"
+                                        },
+                                        {
+                                            "name": "TxProject"
+                                        }
+                                    ],
+                                    "name": "TransformationType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QTransform",
+                                    "parameters": [
+                                        "Qt::Initialization"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTransform",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "QTransform",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTransform",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTransform",
+                                    "parameters": [
+                                        "const QMatrix &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QTransform &&"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QTransform",
+                                    "parameters": [
+                                        "QTransform &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTransform",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isAffine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isIdentity",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isInvertible",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isScaling",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isRotating",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTranslating",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "type",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTransform::TransformationType",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "determinant",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "det",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m11",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m12",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m13",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m21",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m22",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m23",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m31",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m32",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "m33",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dx",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dy",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "setMatrix",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inverted",
+                                    "parameters": [
+                                        "bool *"
+                                    ],
+                                    "returns": "QTransform",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "adjoint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTransform",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transposed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTransform",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "scale",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "shear",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rotate",
+                                    "parameters": [
+                                        "qreal",
+                                        "Qt::Axis"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rotateRadians",
+                                    "parameters": [
+                                        "qreal",
+                                        "Qt::Axis"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "squareToQuad",
+                                    "parameters": [
+                                        "const QPolygonF &",
+                                        "QTransform &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "quadToSquare",
+                                    "parameters": [
+                                        "const QPolygonF &",
+                                        "QTransform &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "quadToQuad",
+                                    "parameters": [
+                                        "const QPolygonF &",
+                                        "const QPolygonF &",
+                                        "QTransform &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator*",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "QTransform",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reset",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "const QLine &"
+                                    ],
+                                    "returns": "QLine",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "QLineF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "const QPolygonF &"
+                                    ],
+                                    "returns": "QPolygonF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "const QPolygon &"
+                                    ],
+                                    "returns": "QPolygon",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mapToPolygon",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QPolygon",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mapRect",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mapRect",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "map",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal *",
+                                        "qreal *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toAffine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QMatrix &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromTranslate",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromScale",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QTransform",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTransform",
+                            "type": "class"
+                        },
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QTransform &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qFuzzyCompare",
+                            "parameters": [
+                                "const QTransform &",
+                                "const QTransform &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QTransform &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QTransform &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPoint &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QPoint",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPointF &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QPointF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QLineF &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QLineF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QLine &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QLine",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPolygon &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QPolygon",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPolygonF &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QPolygonF",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QRegion &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QRegion",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QPainterPath &",
+                                "const QTransform &"
+                            ],
+                            "returns": "QPainterPath",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QTransform &",
+                                "qreal"
+                            ],
+                            "returns": "QTransform",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QTransform &",
+                                "qreal"
+                            ],
+                            "returns": "QTransform",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QTransform &",
+                                "qreal"
+                            ],
+                            "returns": "QTransform",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QTransform &",
+                                "qreal"
+                            ],
+                            "returns": "QTransform",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QTransform>",
+                    "name": "transform",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -33153,6 +33933,12 @@
                 "id": "QImage",
                 "name": "QImage",
                 "rename": "Image"
+            },
+            {
+                "header": "yasl/gui/transform.h",
+                "id": "QTransform",
+                "name": "QTransform",
+                "rename": "Transform"
             }
         ],
         "enums": [
@@ -33914,6 +34700,11 @@
                 "header": "yasl/gui/image.h",
                 "id": "QImageFormat",
                 "name": "QImage::Format"
+            },
+            {
+                "header": "yasl/gui/transform.h",
+                "id": "QTransformTransformationType",
+                "name": "QTransform::TransformationType"
             }
         ],
         "fundamentals": [

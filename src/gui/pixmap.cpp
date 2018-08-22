@@ -16,6 +16,7 @@
 #include "yasl/gui/color.h"
 #include "yasl/gui/image.h"
 #include "yasl/gui/pixmap.h"
+#include "yasl/gui/transform.h"
 
 #include <script/classbuilder.h>
 
@@ -106,9 +107,9 @@ static void register_pixmap_class(script::Namespace ns)
   // static QMatrix trueMatrix(const QMatrix &, int, int);
   /// TODO: static QMatrix trueMatrix(const QMatrix &, int, int);
   // QPixmap transformed(const QTransform &, Qt::TransformationMode) const;
-  /// TODO: QPixmap transformed(const QTransform &, Qt::TransformationMode) const;
+  binder.add_fun<QPixmap, const QTransform &, Qt::TransformationMode, &QPixmap::transformed>("transformed");
   // static QTransform trueMatrix(const QTransform &, int, int);
-  /// TODO: static QTransform trueMatrix(const QTransform &, int, int);
+  binder.add_static<QTransform, const QTransform &, int, int, &QPixmap::trueMatrix>("trueMatrix");
   // QImage toImage() const;
   binder.add_fun<QImage, &QPixmap::toImage>("toImage");
   // static QPixmap fromImage(const QImage &, Qt::ImageConversionFlags);

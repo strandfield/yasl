@@ -8,20 +8,14 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/line.h"
 #include "yasl/core/point.h"
+#include "yasl/core/rect.h"
+#include "yasl/gui/transform.h"
 
-#include "yasl/gui/painterpath.h"
-#include "yasl/gui/polygon.h"
-
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_transform_transformation_type_enum(script::Class transform)
 {
@@ -30,12 +24,13 @@ static void register_transform_transformation_type_enum(script::Class transform)
   Enum transformation_type = transform.Enum("TransformationType").setId(script::Type::QTransformTransformationType).get();
 
   transformation_type.addValue("TxNone", QTransform::TxNone);
-  transformation_type.addValue("TxProject", QTransform::TxProject);
-  transformation_type.addValue("TxRotate", QTransform::TxRotate);
-  transformation_type.addValue("TxScale", QTransform::TxScale);
-  transformation_type.addValue("TxShear", QTransform::TxShear);
   transformation_type.addValue("TxTranslate", QTransform::TxTranslate);
+  transformation_type.addValue("TxScale", QTransform::TxScale);
+  transformation_type.addValue("TxRotate", QTransform::TxRotate);
+  transformation_type.addValue("TxShear", QTransform::TxShear);
+  transformation_type.addValue("TxProject", QTransform::TxProject);
 }
+
 
 static void register_transform_class(script::Namespace ns)
 {
@@ -46,18 +41,14 @@ static void register_transform_class(script::Namespace ns)
   register_transform_transformation_type_enum(transform);
   binding::Class<QTransform> binder{ transform };
 
-  // ~QTransform();
-  binder.add_dtor();
   // QTransform(Qt::Initialization);
   binder.ctors().add<Qt::Initialization>();
   // QTransform();
   binder.ctors().add_default();
-  // QTransform(qreal, qreal, qreal, qreal, qreal, qreal, qreal, qreal, qreal);
-  /// TODO: binder.ctors().add<qreal, qreal, qreal, qreal, qreal, qreal, qreal, qreal, qreal>();
   // QTransform(qreal, qreal, qreal, qreal, qreal, qreal);
-  /// TODO: binder.ctors().add<qreal, qreal, qreal, qreal, qreal, qreal>();
+  binder.ctors().add<qreal, qreal, qreal, qreal, qreal, qreal>();
   // QTransform(const QMatrix &);
-  /// ignore: binder.ctors().add<const QMatrix &>();
+  /// TODO: QTransform(const QMatrix &);
   // QTransform & operator=(QTransform &&);
   binder.operators().assign<QTransform &&>();
   // QTransform & operator=(const QTransform &);
@@ -106,10 +97,8 @@ static void register_transform_class(script::Namespace ns)
   binder.add_fun<qreal, &QTransform::dx>("dx");
   // qreal dy() const;
   binder.add_fun<qreal, &QTransform::dy>("dy");
-  // void setMatrix(qreal, qreal, qreal, qreal, qreal, qreal, qreal, qreal, qreal);
-  /// TODO: binder.add_void_fun<qreal, qreal, qreal, qreal, qreal, qreal, qreal, qreal, qreal, &QTransform::setMatrix>("setMatrix");
   // QTransform inverted(bool *) const;
-  binder.add_fun<QTransform, bool *, &QTransform::inverted>("inverted");
+  /// TODO: QTransform inverted(bool *) const;
   // QTransform adjoint() const;
   binder.add_fun<QTransform, &QTransform::adjoint>("adjoint");
   // QTransform transposed() const;
@@ -125,11 +114,11 @@ static void register_transform_class(script::Namespace ns)
   // QTransform & rotateRadians(qreal, Qt::Axis);
   binder.add_chainable<qreal, Qt::Axis, &QTransform::rotateRadians>("rotateRadians");
   // static bool squareToQuad(const QPolygonF &, QTransform &);
-  binder.add_static<bool, const QPolygonF &, QTransform &, &QTransform::squareToQuad>("squareToQuad");
+  /// TODO: static bool squareToQuad(const QPolygonF &, QTransform &);
   // static bool quadToSquare(const QPolygonF &, QTransform &);
-  binder.add_static<bool, const QPolygonF &, QTransform &, &QTransform::quadToSquare>("quadToSquare");
+  /// TODO: static bool quadToSquare(const QPolygonF &, QTransform &);
   // static bool quadToQuad(const QPolygonF &, const QPolygonF &, QTransform &);
-  binder.add_static<bool, const QPolygonF &, const QPolygonF &, QTransform &, &QTransform::quadToQuad>("quadToQuad");
+  /// TODO: static bool quadToQuad(const QPolygonF &, const QPolygonF &, QTransform &);
   // bool operator==(const QTransform &) const;
   binder.operators().eq<const QTransform &>();
   // bool operator!=(const QTransform &) const;
@@ -149,25 +138,25 @@ static void register_transform_class(script::Namespace ns)
   // QLineF map(const QLineF &) const;
   binder.add_fun<QLineF, const QLineF &, &QTransform::map>("map");
   // QPolygonF map(const QPolygonF &) const;
-  binder.add_fun<QPolygonF, const QPolygonF &, &QTransform::map>("map");
+  /// TODO: QPolygonF map(const QPolygonF &) const;
   // QPolygon map(const QPolygon &) const;
-  binder.add_fun<QPolygon, const QPolygon &, &QTransform::map>("map");
+  /// TODO: QPolygon map(const QPolygon &) const;
   // QRegion map(const QRegion &) const;
-  binder.add_fun<QRegion, const QRegion &, &QTransform::map>("map");
+  /// TODO: QRegion map(const QRegion &) const;
   // QPainterPath map(const QPainterPath &) const;
-  binder.add_fun<QPainterPath, const QPainterPath &, &QTransform::map>("map");
+  /// TODO: QPainterPath map(const QPainterPath &) const;
   // QPolygon mapToPolygon(const QRect &) const;
-  binder.add_fun<QPolygon, const QRect &, &QTransform::mapToPolygon>("mapToPolygon");
+  /// TODO: QPolygon mapToPolygon(const QRect &) const;
   // QRect mapRect(const QRect &) const;
   binder.add_fun<QRect, const QRect &, &QTransform::mapRect>("mapRect");
   // QRectF mapRect(const QRectF &) const;
   binder.add_fun<QRectF, const QRectF &, &QTransform::mapRect>("mapRect");
   // void map(int, int, int *, int *) const;
-  /// TODO: binder.add_const_void_fun<int, int, int *, int *, &QTransform::map>("map");
+  /// TODO: void map(int, int, int *, int *) const;
   // void map(qreal, qreal, qreal *, qreal *) const;
-  /// TODO: binder.add_const_void_fun<qreal, qreal, qreal *, qreal *, &QTransform::map>("map");
+  /// TODO: void map(qreal, qreal, qreal *, qreal *) const;
   // const QMatrix & toAffine() const;
-  /// ignore: binder.add_fun<const QMatrix &, &QTransform::toAffine>("toAffine");
+  /// TODO: const QMatrix & toAffine() const;
   // QTransform & operator*=(qreal);
   binder.operators().mul_assign<qreal>();
   // QTransform & operator/=(qreal);
@@ -182,23 +171,26 @@ static void register_transform_class(script::Namespace ns)
   binder.add_static<QTransform, qreal, qreal, &QTransform::fromScale>("fromScale");
 }
 
-void register_transform_file(script::Namespace root)
+
+void register_transform_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_transform_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_transform_class(ns);
+  binding::Namespace binder{ ns };
 
   // uint qHash(const QTransform &, uint);
   binder.add_fun<uint, const QTransform &, uint, &qHash>("qHash");
   // bool qFuzzyCompare(const QTransform &, const QTransform &);
   binder.add_fun<bool, const QTransform &, const QTransform &, &qFuzzyCompare>("qFuzzyCompare");
   // QDataStream & operator<<(QDataStream &, const QTransform &);
-  binder.operators().put_to<QDataStream &, const QTransform &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QTransform &);
   // QDataStream & operator>>(QDataStream &, QTransform &);
-  binder.operators().read_from<QDataStream &, QTransform &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QTransform &);
   // QDebug operator<<(QDebug, const QTransform &);
-  binder.operators().put_to<QDebug, const QTransform &>();
+  /// TODO: QDebug operator<<(QDebug, const QTransform &);
   // QPoint operator*(const QPoint &, const QTransform &);
   binder.operators().mul<QPoint, const QPoint &, const QTransform &>();
   // QPointF operator*(const QPointF &, const QTransform &);
@@ -208,13 +200,13 @@ void register_transform_file(script::Namespace root)
   // QLine operator*(const QLine &, const QTransform &);
   binder.operators().mul<QLine, const QLine &, const QTransform &>();
   // QPolygon operator*(const QPolygon &, const QTransform &);
-  binder.operators().mul<QPolygon, const QPolygon &, const QTransform &>();
+  /// TODO: QPolygon operator*(const QPolygon &, const QTransform &);
   // QPolygonF operator*(const QPolygonF &, const QTransform &);
-  binder.operators().mul<QPolygonF, const QPolygonF &, const QTransform &>();
+  /// TODO: QPolygonF operator*(const QPolygonF &, const QTransform &);
   // QRegion operator*(const QRegion &, const QTransform &);
-  binder.operators().mul<QRegion, const QRegion &, const QTransform &>();
+  /// TODO: QRegion operator*(const QRegion &, const QTransform &);
   // QPainterPath operator*(const QPainterPath &, const QTransform &);
-  binder.operators().mul<QPainterPath, const QPainterPath &, const QTransform &>();
+  /// TODO: QPainterPath operator*(const QPainterPath &, const QTransform &);
   // QTransform operator*(const QTransform &, qreal);
   binder.operators().mul<QTransform, const QTransform &, qreal>();
   // QTransform operator/(const QTransform &, qreal);
