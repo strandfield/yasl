@@ -10,6 +10,7 @@
 #include "yasl/core/enums.h"
 #include "yasl/core/point.h"
 #include "yasl/gui/vector2d.h"
+#include "yasl/gui/vector3d.h"
 
 #include <script/classbuilder.h>
 
@@ -38,7 +39,7 @@ static void register_vector2_d_class(script::Namespace ns)
   // QVector2D(const QPointF &);
   binder.ctors().add<const QPointF &>();
   // QVector2D(const QVector3D &);
-  /// TODO: QVector2D(const QVector3D &);
+  binder.ctors().add<const QVector3D &>();
   // QVector2D(const QVector4D &);
   /// TODO: QVector2D(const QVector4D &);
   // bool isNull() const;
@@ -80,7 +81,7 @@ static void register_vector2_d_class(script::Namespace ns)
   // static float dotProduct(const QVector2D &, const QVector2D &);
   binder.add_static<float, const QVector2D &, const QVector2D &, &QVector2D::dotProduct>("dotProduct");
   // QVector3D toVector3D() const;
-  /// TODO: QVector3D toVector3D() const;
+  binder.add_fun<QVector3D, &QVector2D::toVector3D>("toVector3D");
   // QVector4D toVector4D() const;
   /// TODO: QVector4D toVector4D() const;
   // QPoint toPoint() const;

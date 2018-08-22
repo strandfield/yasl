@@ -7,19 +7,12 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
-#include "yasl/core/rect.h"
-
-#include "yasl/gui/genericmatrix.h"
+#include "yasl/core/point.h"
 #include "yasl/gui/vector2d.h"
-#include "yasl/gui/vector4d.h"
+#include "yasl/gui/vector3d.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_vector3_d_class(script::Namespace ns)
 {
@@ -29,10 +22,14 @@ static void register_vector3_d_class(script::Namespace ns)
 
   binding::Class<QVector3D> binder{ vector3_d };
 
-  // ~QVector3D();
-  binder.add_dtor();
   // QVector3D();
   binder.ctors().add_default();
+  // QVector3D(const QVector3D &);
+  binder.ctors().add<const QVector3D &>();
+  // ~QVector3D();
+  binder.add_dtor();
+  // QVector3D & operator=(const QVector3D &);
+  binder.operators().assign<const QVector3D &>();
   // QVector3D(Qt::Initialization);
   binder.ctors().add<Qt::Initialization>();
   // QVector3D(float, float, float);
@@ -46,7 +43,7 @@ static void register_vector3_d_class(script::Namespace ns)
   // QVector3D(const QVector2D &, float);
   binder.ctors().add<const QVector2D &, float>();
   // QVector3D(const QVector4D &);
-  binder.ctors().add<const QVector4D &>();
+  /// TODO: QVector3D(const QVector4D &);
   // bool isNull() const;
   binder.add_fun<bool, &QVector3D::isNull>("isNull");
   // float x() const;
@@ -61,10 +58,8 @@ static void register_vector3_d_class(script::Namespace ns)
   binder.add_void_fun<float, &QVector3D::setY>("setY");
   // void setZ(float);
   binder.add_void_fun<float, &QVector3D::setZ>("setZ");
-  // float & operator[](int);
-  /// TODO: binder.operators().subscript<float &, int>();
   // float operator[](int) const;
-  binder.operators().subscript<float, int>();
+  binder.operators().const_subscript<float, int>();
   // float length() const;
   binder.add_fun<float, &QVector3D::length>("length");
   // float lengthSquared() const;
@@ -94,9 +89,9 @@ static void register_vector3_d_class(script::Namespace ns)
   // static QVector3D normal(const QVector3D &, const QVector3D &, const QVector3D &);
   binder.add_static<QVector3D, const QVector3D &, const QVector3D &, const QVector3D &, &QVector3D::normal>("normal");
   // QVector3D project(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
-  binder.add_fun<QVector3D, const QMatrix4x4 &, const QMatrix4x4 &, const QRect &, &QVector3D::project>("project");
+  /// TODO: QVector3D project(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
   // QVector3D unproject(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
-  binder.add_fun<QVector3D, const QMatrix4x4 &, const QMatrix4x4 &, const QRect &, &QVector3D::unproject>("unproject");
+  /// TODO: QVector3D unproject(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
   // float distanceToPoint(const QVector3D &) const;
   binder.add_fun<float, const QVector3D &, &QVector3D::distanceToPoint>("distanceToPoint");
   // float distanceToPlane(const QVector3D &, const QVector3D &) const;
@@ -108,19 +103,22 @@ static void register_vector3_d_class(script::Namespace ns)
   // QVector2D toVector2D() const;
   binder.add_fun<QVector2D, &QVector3D::toVector2D>("toVector2D");
   // QVector4D toVector4D() const;
-  binder.add_fun<QVector4D, &QVector3D::toVector4D>("toVector4D");
+  /// TODO: QVector4D toVector4D() const;
   // QPoint toPoint() const;
   binder.add_fun<QPoint, &QVector3D::toPoint>("toPoint");
   // QPointF toPointF() const;
   binder.add_fun<QPointF, &QVector3D::toPointF>("toPointF");
 }
 
-void register_vector3d_file(script::Namespace root)
+
+void register_vector3d_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_vector3_d_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_vector3_d_class(ns);
+  binding::Namespace binder{ ns };
 
   // bool operator==(const QVector3D &, const QVector3D &);
   binder.operators().eq<const QVector3D &, const QVector3D &>();
@@ -145,10 +143,10 @@ void register_vector3d_file(script::Namespace root)
   // bool qFuzzyCompare(const QVector3D &, const QVector3D &);
   binder.add_fun<bool, const QVector3D &, const QVector3D &, &qFuzzyCompare>("qFuzzyCompare");
   // QDebug operator<<(QDebug, const QVector3D &);
-  binder.operators().left_shift<QDebug, QDebug, const QVector3D &>();
+  /// TODO: QDebug operator<<(QDebug, const QVector3D &);
   // QDataStream & operator<<(QDataStream &, const QVector3D &);
-  binder.operators().put_to<QDataStream &, const QVector3D &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QVector3D &);
   // QDataStream & operator>>(QDataStream &, QVector3D &);
-  binder.operators().read_from<QDataStream &, QVector3D &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QVector3D &);
 }
 
