@@ -7,18 +7,12 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
-
-#include "yasl/gui/genericmatrix.h"
+#include "yasl/gui/quaternion.h"
 #include "yasl/gui/vector3d.h"
 #include "yasl/gui/vector4d.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_quaternion_class(script::Namespace ns)
 {
@@ -28,10 +22,14 @@ static void register_quaternion_class(script::Namespace ns)
 
   binding::Class<QQuaternion> binder{ quaternion };
 
-  // ~QQuaternion();
-  binder.add_dtor();
   // QQuaternion();
   binder.ctors().add_default();
+  // QQuaternion(const QQuaternion &);
+  binder.ctors().add<const QQuaternion &>();
+  // ~QQuaternion();
+  binder.add_dtor();
+  // QQuaternion & operator=(const QQuaternion &);
+  binder.operators().assign<const QQuaternion &>();
   // QQuaternion(Qt::Initialization);
   binder.ctors().add<Qt::Initialization>();
   // QQuaternion(float, float, float, float);
@@ -97,11 +95,11 @@ static void register_quaternion_class(script::Namespace ns)
   // QVector4D toVector4D() const;
   binder.add_fun<QVector4D, &QQuaternion::toVector4D>("toVector4D");
   // void getAxisAndAngle(QVector3D *, float *) const;
-  /// TODO: binder.add_const_void_fun<QVector3D *, float *, &QQuaternion::getAxisAndAngle>("getAxisAndAngle");
+  /// TODO: void getAxisAndAngle(QVector3D *, float *) const;
   // static QQuaternion fromAxisAndAngle(const QVector3D &, float);
   binder.add_static<QQuaternion, const QVector3D &, float, &QQuaternion::fromAxisAndAngle>("fromAxisAndAngle");
   // void getAxisAndAngle(float *, float *, float *, float *) const;
-  /// TODO: binder.add_const_void_fun<float *, float *, float *, float *, &QQuaternion::getAxisAndAngle>("getAxisAndAngle");
+  /// TODO: void getAxisAndAngle(float *, float *, float *, float *) const;
   // static QQuaternion fromAxisAndAngle(float, float, float, float);
   binder.add_static<QQuaternion, float, float, float, float, &QQuaternion::fromAxisAndAngle>("fromAxisAndAngle");
   // QVector3D toEulerAngles() const;
@@ -109,15 +107,15 @@ static void register_quaternion_class(script::Namespace ns)
   // static QQuaternion fromEulerAngles(const QVector3D &);
   binder.add_static<QQuaternion, const QVector3D &, &QQuaternion::fromEulerAngles>("fromEulerAngles");
   // void getEulerAngles(float *, float *, float *) const;
-  /// TODO: binder.add_const_void_fun<float *, float *, float *, &QQuaternion::getEulerAngles>("getEulerAngles");
+  /// TODO: void getEulerAngles(float *, float *, float *) const;
   // static QQuaternion fromEulerAngles(float, float, float);
   binder.add_static<QQuaternion, float, float, float, &QQuaternion::fromEulerAngles>("fromEulerAngles");
   // QMatrix3x3 toRotationMatrix() const;
-  binder.add_fun<QMatrix3x3, &QQuaternion::toRotationMatrix>("toRotationMatrix");
+  /// TODO: QMatrix3x3 toRotationMatrix() const;
   // static QQuaternion fromRotationMatrix(const QMatrix3x3 &);
-  binder.add_static<QQuaternion, const QMatrix3x3 &, &QQuaternion::fromRotationMatrix>("fromRotationMatrix");
+  /// TODO: static QQuaternion fromRotationMatrix(const QMatrix3x3 &);
   // void getAxes(QVector3D *, QVector3D *, QVector3D *) const;
-  /// TODO: binder.add_const_void_fun<QVector3D *, QVector3D *, QVector3D *, &QQuaternion::getAxes>("getAxes");
+  /// TODO: void getAxes(QVector3D *, QVector3D *, QVector3D *) const;
   // static QQuaternion fromAxes(const QVector3D &, const QVector3D &, const QVector3D &);
   binder.add_static<QQuaternion, const QVector3D &, const QVector3D &, const QVector3D &, &QQuaternion::fromAxes>("fromAxes");
   // static QQuaternion fromDirection(const QVector3D &, const QVector3D &);
@@ -130,12 +128,15 @@ static void register_quaternion_class(script::Namespace ns)
   binder.add_static<QQuaternion, const QQuaternion &, const QQuaternion &, float, &QQuaternion::nlerp>("nlerp");
 }
 
-void register_quaternion_file(script::Namespace root)
+
+void register_quaternion_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_quaternion_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_quaternion_class(ns);
+  binding::Namespace binder{ ns };
 
   // bool operator==(const QQuaternion &, const QQuaternion &);
   binder.operators().eq<const QQuaternion &, const QQuaternion &>();
@@ -160,10 +161,10 @@ void register_quaternion_file(script::Namespace root)
   // QVector3D operator*(const QQuaternion &, const QVector3D &);
   binder.operators().mul<QVector3D, const QQuaternion &, const QVector3D &>();
   // QDebug operator<<(QDebug, const QQuaternion &);
-  binder.operators().left_shift<QDebug, QDebug, const QQuaternion &>();
+  /// TODO: QDebug operator<<(QDebug, const QQuaternion &);
   // QDataStream & operator<<(QDataStream &, const QQuaternion &);
-  binder.operators().put_to<QDataStream &, const QQuaternion &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QQuaternion &);
   // QDataStream & operator>>(QDataStream &, QQuaternion &);
-  binder.operators().read_from<QDataStream &, QQuaternion &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QQuaternion &);
 }
 

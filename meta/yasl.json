@@ -34880,6 +34880,600 @@
                     "hincludes": "<QVector4D>",
                     "name": "vector4d",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QQuaternion",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QQuaternion",
+                                    "parameters": [
+                                        "const QQuaternion &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QQuaternion",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QQuaternion &"
+                                    ],
+                                    "returns": "QQuaternion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QQuaternion",
+                                    "parameters": [
+                                        "Qt::Initialization"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QQuaternion",
+                                    "parameters": [
+                                        "float",
+                                        "float",
+                                        "float",
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QQuaternion",
+                                    "parameters": [
+                                        "float",
+                                        "const QVector3D &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QQuaternion",
+                                    "parameters": [
+                                        "const QVector4D &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isIdentity",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "vector",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector3D",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVector",
+                                    "parameters": [
+                                        "const QVector3D &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVector",
+                                    "parameters": [
+                                        "float",
+                                        "float",
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "z",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "scalar",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setX",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setY",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setZ",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setScalar",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "dotProduct",
+                                    "parameters": [
+                                        "const QQuaternion &",
+                                        "const QQuaternion &"
+                                    ],
+                                    "returns": "float",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "length",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lengthSquared",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "normalized",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "normalize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inverted",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "conjugated",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "conjugate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rotatedVector",
+                                    "parameters": [
+                                        "const QVector3D &"
+                                    ],
+                                    "returns": "QVector3D",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QQuaternion &"
+                                    ],
+                                    "returns": "QQuaternion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QQuaternion &"
+                                    ],
+                                    "returns": "QQuaternion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "QQuaternion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator*=",
+                                    "parameters": [
+                                        "const QQuaternion &"
+                                    ],
+                                    "returns": "QQuaternion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator/=",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "QQuaternion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toVector4D",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector4D",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getAxisAndAngle",
+                                    "parameters": [
+                                        "QVector3D *",
+                                        "float *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromAxisAndAngle",
+                                    "parameters": [
+                                        "const QVector3D &",
+                                        "float"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getAxisAndAngle",
+                                    "parameters": [
+                                        "float *",
+                                        "float *",
+                                        "float *",
+                                        "float *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromAxisAndAngle",
+                                    "parameters": [
+                                        "float",
+                                        "float",
+                                        "float",
+                                        "float"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toEulerAngles",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector3D",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromEulerAngles",
+                                    "parameters": [
+                                        "const QVector3D &"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getEulerAngles",
+                                    "parameters": [
+                                        "float *",
+                                        "float *",
+                                        "float *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromEulerAngles",
+                                    "parameters": [
+                                        "float",
+                                        "float",
+                                        "float"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toRotationMatrix",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QMatrix3x3",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromRotationMatrix",
+                                    "parameters": [
+                                        "const QMatrix3x3 &"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getAxes",
+                                    "parameters": [
+                                        "QVector3D *",
+                                        "QVector3D *",
+                                        "QVector3D *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromAxes",
+                                    "parameters": [
+                                        "const QVector3D &",
+                                        "const QVector3D &",
+                                        "const QVector3D &"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromDirection",
+                                    "parameters": [
+                                        "const QVector3D &",
+                                        "const QVector3D &"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rotationTo",
+                                    "parameters": [
+                                        "const QVector3D &",
+                                        "const QVector3D &"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "slerp",
+                                    "parameters": [
+                                        "const QQuaternion &",
+                                        "const QQuaternion &",
+                                        "float"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "nlerp",
+                                    "parameters": [
+                                        "const QQuaternion &",
+                                        "const QQuaternion &",
+                                        "float"
+                                    ],
+                                    "returns": "QQuaternion",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QQuaternion",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "const QQuaternion",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator!=",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator+",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "const QQuaternion",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "const QQuaternion",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "float",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "const QQuaternion",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "float"
+                            ],
+                            "returns": "const QQuaternion",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator-",
+                            "parameters": [
+                                "const QQuaternion &"
+                            ],
+                            "returns": "const QQuaternion",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator/",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "float"
+                            ],
+                            "returns": "const QQuaternion",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qFuzzyCompare",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator*",
+                            "parameters": [
+                                "const QQuaternion &",
+                                "const QVector3D &"
+                            ],
+                            "returns": "QVector3D",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QQuaternion &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QQuaternion &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QQuaternion>",
+                    "name": "quaternion",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -35349,6 +35943,12 @@
                 "id": "QVector4D",
                 "name": "QVector4D",
                 "rename": "Vector4D"
+            },
+            {
+                "header": "yasl/gui/quaternion.h",
+                "id": "QQuaternion",
+                "name": "QQuaternion",
+                "rename": "Quaternion"
             }
         ],
         "enums": [
