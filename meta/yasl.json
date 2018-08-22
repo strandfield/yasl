@@ -35474,6 +35474,533 @@
                     "hincludes": "<QQuaternion>",
                     "name": "quaternion",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Rectangle"
+                                        },
+                                        {
+                                            "name": "Ellipse"
+                                        }
+                                    ],
+                                    "name": "RegionType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QRegion",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegion",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "QRegion::RegionType"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegion",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "QRegion::RegionType"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegion",
+                                    "parameters": [
+                                        "const QPolygon &",
+                                        "Qt::FillRule"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegion",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegion",
+                                    "parameters": [
+                                        "QRegion &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegion",
+                                    "parameters": [
+                                        "const QBitmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QRegion",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QRegion &&"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QRegion &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "begin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cbegin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "end",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cend",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rbegin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion::const_reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "crbegin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion::const_reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rend",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion::const_reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "crend",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion::const_reverse_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "united",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "united",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersected",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersected",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "subtracted",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "xored",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersects",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersects",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rects",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector<QRect>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRects",
+                                    "parameters": [
+                                        "const QRect *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rectCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator|",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "const QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator+",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "const QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator+",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "const QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator&",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "const QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator&",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "const QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator-",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "const QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator^",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "const QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator|=",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator&=",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator&=",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator^=",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "QRegion &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QRegion",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QRegion &",
+                                "QRegion &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QRegion &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QRegion &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QRegion &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QRegion>",
+                    "name": "region",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -35949,6 +36476,12 @@
                 "id": "QQuaternion",
                 "name": "QQuaternion",
                 "rename": "Quaternion"
+            },
+            {
+                "header": "yasl/gui/region.h",
+                "id": "QRegion",
+                "name": "QRegion",
+                "rename": "Region"
             }
         ],
         "enums": [
@@ -36715,6 +37248,11 @@
                 "header": "yasl/gui/transform.h",
                 "id": "QTransformTransformationType",
                 "name": "QTransform::TransformationType"
+            },
+            {
+                "header": "yasl/gui/region.h",
+                "id": "QRegionRegionType",
+                "name": "QRegion::RegionType"
             }
         ],
         "fundamentals": [

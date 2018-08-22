@@ -2,27 +2,19 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "qregion.h"
+#include "yasl/gui/region.h"
 
 #include "yasl/binding/class.h"
 #include "yasl/binding/enum.h"
-#include "yasl/binding/macros.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
-#include "yasl/core/enums.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
-
 #include "yasl/gui/bitmap.h"
-#include "yasl/gui/polygon.h"
+#include "yasl/gui/region.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_region_region_type_enum(script::Class region)
 {
@@ -30,9 +22,10 @@ static void register_region_region_type_enum(script::Class region)
 
   Enum region_type = region.Enum("RegionType").setId(script::Type::QRegionRegionType).get();
 
-  region_type.addValue("Ellipse", QRegion::Ellipse);
   region_type.addValue("Rectangle", QRegion::Rectangle);
+  region_type.addValue("Ellipse", QRegion::Ellipse);
 }
+
 
 static void register_region_class(script::Namespace ns)
 {
@@ -50,13 +43,15 @@ static void register_region_class(script::Namespace ns)
   // QRegion(const QRect &, QRegion::RegionType);
   binder.ctors().add<const QRect &, QRegion::RegionType>();
   // QRegion(const QPolygon &, Qt::FillRule);
-  binder.ctors().add<const QPolygon &, Qt::FillRule>();
+  /// TODO: QRegion(const QPolygon &, Qt::FillRule);
   // QRegion(const QRegion &);
   binder.ctors().add<const QRegion &>();
   // QRegion(QRegion &&);
   binder.ctors().add<QRegion &&>();
   // QRegion(const QBitmap &);
   binder.ctors().add<const QBitmap &>();
+  // ~QRegion();
+  binder.add_dtor();
   // QRegion & operator=(const QRegion &);
   binder.operators().assign<const QRegion &>();
   // QRegion & operator=(QRegion &&);
@@ -68,21 +63,21 @@ static void register_region_class(script::Namespace ns)
   // bool isNull() const;
   binder.add_fun<bool, &QRegion::isNull>("isNull");
   // QRegion::const_iterator begin() const;
-  binder.add_fun<QRegion::const_iterator, &QRegion::begin>("begin");
+  /// TODO: QRegion::const_iterator begin() const;
   // QRegion::const_iterator cbegin() const;
-  binder.add_fun<QRegion::const_iterator, &QRegion::cbegin>("cbegin");
+  /// TODO: QRegion::const_iterator cbegin() const;
   // QRegion::const_iterator end() const;
-  binder.add_fun<QRegion::const_iterator, &QRegion::end>("end");
+  /// TODO: QRegion::const_iterator end() const;
   // QRegion::const_iterator cend() const;
-  binder.add_fun<QRegion::const_iterator, &QRegion::cend>("cend");
+  /// TODO: QRegion::const_iterator cend() const;
   // QRegion::const_reverse_iterator rbegin() const;
-  binder.add_fun<QRegion::const_reverse_iterator, &QRegion::rbegin>("rbegin");
+  /// TODO: QRegion::const_reverse_iterator rbegin() const;
   // QRegion::const_reverse_iterator crbegin() const;
-  binder.add_fun<QRegion::const_reverse_iterator, &QRegion::crbegin>("crbegin");
+  /// TODO: QRegion::const_reverse_iterator crbegin() const;
   // QRegion::const_reverse_iterator rend() const;
-  binder.add_fun<QRegion::const_reverse_iterator, &QRegion::rend>("rend");
+  /// TODO: QRegion::const_reverse_iterator rend() const;
   // QRegion::const_reverse_iterator crend() const;
-  binder.add_fun<QRegion::const_reverse_iterator, &QRegion::crend>("crend");
+  /// TODO: QRegion::const_reverse_iterator crend() const;
   // bool contains(const QPoint &) const;
   binder.add_fun<bool, const QPoint &, &QRegion::contains>("contains");
   // bool contains(const QRect &) const;
@@ -114,9 +109,9 @@ static void register_region_class(script::Namespace ns)
   // QRect boundingRect() const;
   binder.add_fun<QRect, &QRegion::boundingRect>("boundingRect");
   // QVector<QRect> rects() const;
-  binder.add_fun<QVector<QRect>, &QRegion::rects>("rects");
+  /// TODO: QVector<QRect> rects() const;
   // void setRects(const QRect *, int);
-  binder.add_void_fun<const QRect *, int, &QRegion::setRects>("setRects");
+  /// TODO: void setRects(const QRect *, int);
   // int rectCount() const;
   binder.add_fun<int, &QRegion::rectCount>("rectCount");
   // const QRegion operator|(const QRegion &) const;
@@ -153,20 +148,23 @@ static void register_region_class(script::Namespace ns)
   binder.operators().neq<const QRegion &>();
 }
 
-void register_region_file(script::Namespace root)
+
+void register_region_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_region_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_region_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QRegion &, QRegion &);
   binder.add_void_fun<QRegion &, QRegion &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QRegion &);
-  binder.operators().put_to<QDataStream &, const QRegion &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QRegion &);
   // QDataStream & operator>>(QDataStream &, QRegion &);
-  binder.operators().read_from<QDataStream &, QRegion &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QRegion &);
   // QDebug operator<<(QDebug, const QRegion &);
-  binder.operators().left_shift<QDebug, QDebug, const QRegion &>();
+  /// TODO: QDebug operator<<(QDebug, const QRegion &);
 }
 

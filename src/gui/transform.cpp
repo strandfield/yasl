@@ -12,6 +12,7 @@
 #include "yasl/core/line.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
+#include "yasl/gui/region.h"
 #include "yasl/gui/transform.h"
 
 #include <script/classbuilder.h>
@@ -142,7 +143,7 @@ static void register_transform_class(script::Namespace ns)
   // QPolygon map(const QPolygon &) const;
   /// TODO: QPolygon map(const QPolygon &) const;
   // QRegion map(const QRegion &) const;
-  /// TODO: QRegion map(const QRegion &) const;
+  binder.add_fun<QRegion, const QRegion &, &QTransform::map>("map");
   // QPainterPath map(const QPainterPath &) const;
   /// TODO: QPainterPath map(const QPainterPath &) const;
   // QPolygon mapToPolygon(const QRect &) const;
@@ -204,7 +205,7 @@ void register_transform_file(script::Namespace gui)
   // QPolygonF operator*(const QPolygonF &, const QTransform &);
   /// TODO: QPolygonF operator*(const QPolygonF &, const QTransform &);
   // QRegion operator*(const QRegion &, const QTransform &);
-  /// TODO: QRegion operator*(const QRegion &, const QTransform &);
+  binder.operators().mul<QRegion, const QRegion &, const QTransform &>();
   // QPainterPath operator*(const QPainterPath &, const QTransform &);
   /// TODO: QPainterPath operator*(const QPainterPath &, const QTransform &);
   // QTransform operator*(const QTransform &, qreal);
