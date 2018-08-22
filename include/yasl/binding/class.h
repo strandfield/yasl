@@ -140,6 +140,46 @@ public:
       .create();
     YASL_BINDING_END_RUNTIME_CHECK
   }
+
+  template<typename A1, typename A2, typename A3>
+  script::Function add()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4>
+  script::Function add()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5>
+  script::Function add()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4, A5>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
+  script::Function add()
+  {
+    YASL_BINDING_BEGIN_RUNTIME_CHECK
+      return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4, A5, A6>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
+      .create();
+    YASL_BINDING_END_RUNTIME_CHECK
+  }
 };
 
 
