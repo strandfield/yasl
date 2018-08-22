@@ -36001,6 +36001,201 @@
                     "hincludes": "<QRegion>",
                     "name": "region",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Clipboard"
+                                        },
+                                        {
+                                            "name": "Selection"
+                                        },
+                                        {
+                                            "name": "FindBuffer"
+                                        },
+                                        {
+                                            "name": "LastMode"
+                                        }
+                                    ],
+                                    "name": "Mode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "clear",
+                                    "parameters": [
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "supportsSelection",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "supportsFindBuffer",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "ownsSelection",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "ownsClipboard",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "ownsFindBuffer",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "parameters": [
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "parameters": [
+                                        "QString &",
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setText",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mimeData",
+                                    "parameters": [
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "const QMimeData *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMimeData",
+                                    "parameters": [
+                                        "QMimeData *",
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "image",
+                                    "parameters": [
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "parameters": [
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setImage",
+                                    "parameters": [
+                                        "const QImage &",
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixmap",
+                                    "parameters": [
+                                        "const QPixmap &",
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "changed",
+                                    "parameters": [
+                                        "QClipboard::Mode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "selectionChanged",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "findBufferChanged",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "dataChanged",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QClipboard",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QClipboard>",
+                    "name": "clipboard",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -36482,6 +36677,13 @@
                 "id": "QRegion",
                 "name": "QRegion",
                 "rename": "Region"
+            },
+            {
+                "header": "yasl/gui/clipboard.h",
+                "id": "QClipboard",
+                "name": "QClipboard",
+                "rename": "Clipboard",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
@@ -37253,6 +37455,11 @@
                 "header": "yasl/gui/region.h",
                 "id": "QRegionRegionType",
                 "name": "QRegion::RegionType"
+            },
+            {
+                "header": "yasl/gui/clipboard.h",
+                "id": "QClipboardMode",
+                "name": "QClipboard::Mode"
             }
         ],
         "fundamentals": [

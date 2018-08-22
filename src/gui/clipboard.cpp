@@ -7,18 +7,13 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
-#include "yasl/binding/qsignal.h"
 
-#include "yasl/core/mimedata.h"
-#include "yasl/core/object.h"
-
+#include "yasl/gui/clipboard.h"
 #include "yasl/gui/image.h"
 #include "yasl/gui/pixmap.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
 
 static void register_clipboard_mode_enum(script::Class clipboard)
 {
@@ -27,10 +22,11 @@ static void register_clipboard_mode_enum(script::Class clipboard)
   Enum mode = clipboard.Enum("Mode").setId(script::Type::QClipboardMode).get();
 
   mode.addValue("Clipboard", QClipboard::Clipboard);
+  mode.addValue("Selection", QClipboard::Selection);
   mode.addValue("FindBuffer", QClipboard::FindBuffer);
   mode.addValue("LastMode", QClipboard::LastMode);
-  mode.addValue("Selection", QClipboard::Selection);
 }
+
 
 static void register_clipboard_class(script::Namespace ns)
 {
@@ -42,12 +38,6 @@ static void register_clipboard_class(script::Namespace ns)
   register_clipboard_mode_enum(clipboard);
   binding::QClass<QClipboard> binder{ clipboard, &QClipboard::staticMetaObject };
 
-  // ~QClipboard();
-  /// ignore: QClipboard destructor is private !
-  // static QString tr(const char *, const char *, int);
-  /// TODO: binder.add_static<QString, const char *, const char *, int, &QClipboard::tr>("tr");
-  // static QString trUtf8(const char *, const char *, int);
-  /// TODO: binder.add_static<QString, const char *, const char *, int, &QClipboard::trUtf8>("trUtf8");
   // void clear(QClipboard::Mode);
   binder.add_void_fun<QClipboard::Mode, &QClipboard::clear>("clear");
   // bool supportsSelection() const;
@@ -67,9 +57,9 @@ static void register_clipboard_class(script::Namespace ns)
   // void setText(const QString &, QClipboard::Mode);
   binder.add_void_fun<const QString &, QClipboard::Mode, &QClipboard::setText>("setText");
   // const QMimeData * mimeData(QClipboard::Mode) const;
-  binder.add_fun<const QMimeData *, QClipboard::Mode, &QClipboard::mimeData>("mimeData");
+  /// TODO: const QMimeData * mimeData(QClipboard::Mode) const;
   // void setMimeData(QMimeData *, QClipboard::Mode);
-  binder.add_void_fun<QMimeData *, QClipboard::Mode, &QClipboard::setMimeData>("setMimeData");
+  /// TODO: void setMimeData(QMimeData *, QClipboard::Mode);
   // QImage image(QClipboard::Mode) const;
   binder.add_fun<QImage, QClipboard::Mode, &QClipboard::image>("image");
   // QPixmap pixmap(QClipboard::Mode) const;
@@ -78,8 +68,6 @@ static void register_clipboard_class(script::Namespace ns)
   binder.add_void_fun<const QImage &, QClipboard::Mode, &QClipboard::setImage>("setImage");
   // void setPixmap(const QPixmap &, QClipboard::Mode);
   binder.add_void_fun<const QPixmap &, QClipboard::Mode, &QClipboard::setPixmap>("setPixmap");
-
-  /* Signals */
   // void changed(QClipboard::Mode);
   binder.sigs().add<QClipboard::Mode>("changed", "changed(QClipboard::Mode)");
   // void selectionChanged();
@@ -89,15 +77,18 @@ static void register_clipboard_class(script::Namespace ns)
   // void dataChanged();
   binder.sigs().add("dataChanged", "dataChanged()");
 
-  ns.engine()->registerQtType(&QClipboard::staticMetaObject, clipboard.id());
+  clipboard.engine()->registerQtType(&QClipboard::staticMetaObject, clipboard.id());
 }
 
-void register_clipboard_file(script::Namespace root)
+
+void register_clipboard_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_clipboard_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_clipboard_class(ns);
+  binding::Namespace binder{ ns };
 
 }
 
