@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_GUI_KEY_SEQUENCE_H
-#define YASL_GUI_KEY_SEQUENCE_H
+#ifndef YASL_GUI_KEYSEQUENCE_H
+#define YASL_GUI_KEYSEQUENCE_H
 
 #include "yasl/binding/types.h"
 
@@ -16,4 +16,4 @@ template<> struct make_type_t<QKeySequence::SequenceMatch> { inline static scrip
 template<> struct make_type_t<QKeySequence::StandardKey> { inline static script::Type get() { return script::Type::QKeySequenceStandardKey; } };
 } // namespace binding
 
-#endif // YASL_GUI_KEY_SEQUENCE_H
+#endif // YASL_GUI_KEYSEQUENCE_H

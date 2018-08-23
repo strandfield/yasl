@@ -36196,6 +36196,542 @@
                     "hincludes": "<QClipboard>",
                     "name": "clipboard",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QKeySequence &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QKeySequence &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QKeySequence &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "UnknownKey"
+                                        },
+                                        {
+                                            "name": "HelpContents"
+                                        },
+                                        {
+                                            "name": "WhatsThis"
+                                        },
+                                        {
+                                            "name": "Open"
+                                        },
+                                        {
+                                            "name": "Close"
+                                        },
+                                        {
+                                            "name": "Save"
+                                        },
+                                        {
+                                            "name": "New"
+                                        },
+                                        {
+                                            "name": "Delete"
+                                        },
+                                        {
+                                            "name": "Cut"
+                                        },
+                                        {
+                                            "name": "Copy"
+                                        },
+                                        {
+                                            "name": "Paste"
+                                        },
+                                        {
+                                            "name": "Undo"
+                                        },
+                                        {
+                                            "name": "Redo"
+                                        },
+                                        {
+                                            "name": "Back"
+                                        },
+                                        {
+                                            "name": "Forward"
+                                        },
+                                        {
+                                            "name": "Refresh"
+                                        },
+                                        {
+                                            "name": "ZoomIn"
+                                        },
+                                        {
+                                            "name": "ZoomOut"
+                                        },
+                                        {
+                                            "name": "Print"
+                                        },
+                                        {
+                                            "name": "AddTab"
+                                        },
+                                        {
+                                            "name": "NextChild"
+                                        },
+                                        {
+                                            "name": "PreviousChild"
+                                        },
+                                        {
+                                            "name": "Find"
+                                        },
+                                        {
+                                            "name": "FindNext"
+                                        },
+                                        {
+                                            "name": "FindPrevious"
+                                        },
+                                        {
+                                            "name": "Replace"
+                                        },
+                                        {
+                                            "name": "SelectAll"
+                                        },
+                                        {
+                                            "name": "Bold"
+                                        },
+                                        {
+                                            "name": "Italic"
+                                        },
+                                        {
+                                            "name": "Underline"
+                                        },
+                                        {
+                                            "name": "MoveToNextChar"
+                                        },
+                                        {
+                                            "name": "MoveToPreviousChar"
+                                        },
+                                        {
+                                            "name": "MoveToNextWord"
+                                        },
+                                        {
+                                            "name": "MoveToPreviousWord"
+                                        },
+                                        {
+                                            "name": "MoveToNextLine"
+                                        },
+                                        {
+                                            "name": "MoveToPreviousLine"
+                                        },
+                                        {
+                                            "name": "MoveToNextPage"
+                                        },
+                                        {
+                                            "name": "MoveToPreviousPage"
+                                        },
+                                        {
+                                            "name": "MoveToStartOfLine"
+                                        },
+                                        {
+                                            "name": "MoveToEndOfLine"
+                                        },
+                                        {
+                                            "name": "MoveToStartOfBlock"
+                                        },
+                                        {
+                                            "name": "MoveToEndOfBlock"
+                                        },
+                                        {
+                                            "name": "MoveToStartOfDocument"
+                                        },
+                                        {
+                                            "name": "MoveToEndOfDocument"
+                                        },
+                                        {
+                                            "name": "SelectNextChar"
+                                        },
+                                        {
+                                            "name": "SelectPreviousChar"
+                                        },
+                                        {
+                                            "name": "SelectNextWord"
+                                        },
+                                        {
+                                            "name": "SelectPreviousWord"
+                                        },
+                                        {
+                                            "name": "SelectNextLine"
+                                        },
+                                        {
+                                            "name": "SelectPreviousLine"
+                                        },
+                                        {
+                                            "name": "SelectNextPage"
+                                        },
+                                        {
+                                            "name": "SelectPreviousPage"
+                                        },
+                                        {
+                                            "name": "SelectStartOfLine"
+                                        },
+                                        {
+                                            "name": "SelectEndOfLine"
+                                        },
+                                        {
+                                            "name": "SelectStartOfBlock"
+                                        },
+                                        {
+                                            "name": "SelectEndOfBlock"
+                                        },
+                                        {
+                                            "name": "SelectStartOfDocument"
+                                        },
+                                        {
+                                            "name": "SelectEndOfDocument"
+                                        },
+                                        {
+                                            "name": "DeleteStartOfWord"
+                                        },
+                                        {
+                                            "name": "DeleteEndOfWord"
+                                        },
+                                        {
+                                            "name": "DeleteEndOfLine"
+                                        },
+                                        {
+                                            "name": "InsertParagraphSeparator"
+                                        },
+                                        {
+                                            "name": "InsertLineSeparator"
+                                        },
+                                        {
+                                            "name": "SaveAs"
+                                        },
+                                        {
+                                            "name": "Preferences"
+                                        },
+                                        {
+                                            "name": "Quit"
+                                        },
+                                        {
+                                            "name": "FullScreen"
+                                        },
+                                        {
+                                            "name": "Deselect"
+                                        },
+                                        {
+                                            "name": "DeleteCompleteLine"
+                                        },
+                                        {
+                                            "name": "Backspace"
+                                        },
+                                        {
+                                            "name": "Cancel"
+                                        }
+                                    ],
+                                    "name": "StandardKey",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NativeText"
+                                        },
+                                        {
+                                            "name": "PortableText"
+                                        }
+                                    ],
+                                    "name": "SequenceFormat",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QKeySequence",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QKeySequence",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QKeySequence::SequenceFormat"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QKeySequence",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QKeySequence",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QKeySequence",
+                                    "parameters": [
+                                        "QKeySequence::StandardKey"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QKeySequence",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoMatch"
+                                        },
+                                        {
+                                            "name": "PartialMatch"
+                                        },
+                                        {
+                                            "name": "ExactMatch"
+                                        }
+                                    ],
+                                    "name": "SequenceMatch",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "QKeySequence::SequenceFormat"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QKeySequence::SequenceFormat"
+                                    ],
+                                    "returns": "QKeySequence",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "listFromString",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QKeySequence::SequenceFormat"
+                                    ],
+                                    "returns": "QList<QKeySequence>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "listToString",
+                                    "parameters": [
+                                        "const QList<QKeySequence> &",
+                                        "QKeySequence::SequenceFormat"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matches",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "QKeySequence::SequenceMatch",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "mnemonic",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QKeySequence",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "keyBindings",
+                                    "parameters": [
+                                        "QKeySequence::StandardKey"
+                                    ],
+                                    "returns": "QList<QKeySequence>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "QKeySequence &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QKeySequence &&"
+                                    ],
+                                    "returns": "QKeySequence &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QKeySequence &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator<=",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator>=",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QKeySequence::DataPtr &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QKeySequence",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QKeySequence &",
+                                "QKeySequence &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QKeySequence &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QKeySequence>",
+                    "name": "keysequence",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -36684,6 +37220,11 @@
                 "name": "QClipboard",
                 "rename": "Clipboard",
                 "tag": "qobject_tag"
+            },
+            {
+                "id": "QKeySequence",
+                "name": "QKeySequence",
+                "rename": "KeySequence"
             }
         ],
         "enums": [
@@ -37460,6 +38001,18 @@
                 "header": "yasl/gui/clipboard.h",
                 "id": "QClipboardMode",
                 "name": "QClipboard::Mode"
+            },
+            {
+                "id": "QKeySequenceStandardKey",
+                "name": "QKeySequence::StandardKey"
+            },
+            {
+                "id": "QKeySequenceSequenceFormat",
+                "name": "QKeySequence::SequenceFormat"
+            },
+            {
+                "id": "QKeySequenceSequenceMatch",
+                "name": "QKeySequence::SequenceMatch"
             }
         ],
         "fundamentals": [
