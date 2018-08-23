@@ -37895,6 +37895,2128 @@
                     "hincludes": "<QGlyphRun>",
                     "name": "glyphrun",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Antialiasing"
+                                        },
+                                        {
+                                            "name": "TextAntialiasing"
+                                        },
+                                        {
+                                            "name": "SmoothPixmapTransform"
+                                        },
+                                        {
+                                            "name": "HighQualityAntialiasing"
+                                        },
+                                        {
+                                            "name": "NonCosmeticDefaultPen"
+                                        },
+                                        {
+                                            "name": "Qt4CompatiblePainting"
+                                        }
+                                    ],
+                                    "name": "RenderHint",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "OpaqueHint"
+                                        }
+                                    ],
+                                    "name": "PixmapFragmentHint",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QPainter",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPainter",
+                                    "parameters": [
+                                        "QPaintDevice *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPainter",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "device",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPaintDevice *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "begin",
+                                    "parameters": [
+                                        "QPaintDevice *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "end",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isActive",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "initFrom",
+                                    "parameters": [
+                                        "const QPaintDevice *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "CompositionMode_SourceOver"
+                                        },
+                                        {
+                                            "name": "CompositionMode_DestinationOver"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Clear"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Source"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Destination"
+                                        },
+                                        {
+                                            "name": "CompositionMode_SourceIn"
+                                        },
+                                        {
+                                            "name": "CompositionMode_DestinationIn"
+                                        },
+                                        {
+                                            "name": "CompositionMode_SourceOut"
+                                        },
+                                        {
+                                            "name": "CompositionMode_DestinationOut"
+                                        },
+                                        {
+                                            "name": "CompositionMode_SourceAtop"
+                                        },
+                                        {
+                                            "name": "CompositionMode_DestinationAtop"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Xor"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Plus"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Multiply"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Screen"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Overlay"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Darken"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Lighten"
+                                        },
+                                        {
+                                            "name": "CompositionMode_ColorDodge"
+                                        },
+                                        {
+                                            "name": "CompositionMode_ColorBurn"
+                                        },
+                                        {
+                                            "name": "CompositionMode_HardLight"
+                                        },
+                                        {
+                                            "name": "CompositionMode_SoftLight"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Difference"
+                                        },
+                                        {
+                                            "name": "CompositionMode_Exclusion"
+                                        },
+                                        {
+                                            "name": "RasterOp_SourceOrDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_SourceAndDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_SourceXorDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_NotSourceAndNotDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_NotSourceOrNotDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_NotSourceXorDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_NotSource"
+                                        },
+                                        {
+                                            "name": "RasterOp_NotSourceAndDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_SourceAndNotDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_NotSourceOrDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_SourceOrNotDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_ClearDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_SetDestination"
+                                        },
+                                        {
+                                            "name": "RasterOp_NotDestination"
+                                        }
+                                    ],
+                                    "name": "CompositionMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "setCompositionMode",
+                                    "parameters": [
+                                        "QPainter::CompositionMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "compositionMode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPainter::CompositionMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "font",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QFont &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFont",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fontMetrics",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFontMetrics",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fontInfo",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QFontInfo",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPen",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPen",
+                                    "parameters": [
+                                        "const QPen &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPen",
+                                    "parameters": [
+                                        "Qt::PenStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pen",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPen &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBrush",
+                                    "parameters": [
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBrush",
+                                    "parameters": [
+                                        "Qt::BrushStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "brush",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBackgroundMode",
+                                    "parameters": [
+                                        "Qt::BGMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "backgroundMode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::BGMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "brushOrigin",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBrushOrigin",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBrushOrigin",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBrushOrigin",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBackground",
+                                    "parameters": [
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "background",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "opacity",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOpacity",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "clipRegion",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "clipPath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setClipRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "Qt::ClipOperation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setClipRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "Qt::ClipOperation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setClipRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "Qt::ClipOperation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setClipRegion",
+                                    "parameters": [
+                                        "const QRegion &",
+                                        "Qt::ClipOperation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setClipPath",
+                                    "parameters": [
+                                        "const QPainterPath &",
+                                        "Qt::ClipOperation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setClipping",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasClipping",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "clipBoundingRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "save",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "restore",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMatrix",
+                                    "parameters": [
+                                        "const QMatrix &",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matrix",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QMatrix &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "deviceMatrix",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QMatrix &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resetMatrix",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTransform",
+                                    "parameters": [
+                                        "const QTransform &",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transform",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "deviceTransform",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resetTransform",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWorldMatrix",
+                                    "parameters": [
+                                        "const QMatrix &",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "worldMatrix",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QMatrix &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWorldTransform",
+                                    "parameters": [
+                                        "const QTransform &",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "worldTransform",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QTransform &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "combinedMatrix",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QMatrix",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "combinedTransform",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTransform",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMatrixEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matrixEnabled",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWorldMatrixEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "worldMatrixEnabled",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "scale",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "shear",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rotate",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "window",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWindow",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWindow",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "viewport",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setViewport",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setViewport",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setViewTransformEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "viewTransformEnabled",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "strokePath",
+                                    "parameters": [
+                                        "const QPainterPath &",
+                                        "const QPen &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillPath",
+                                    "parameters": [
+                                        "const QPainterPath &",
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPath",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPoint",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPoint",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPoint",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPoints",
+                                    "parameters": [
+                                        "const QPointF *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPoints",
+                                    "parameters": [
+                                        "const QPolygonF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPoints",
+                                    "parameters": [
+                                        "const QPoint *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPoints",
+                                    "parameters": [
+                                        "const QPolygon &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLine",
+                                    "parameters": [
+                                        "const QLineF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLine",
+                                    "parameters": [
+                                        "const QLine &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLine",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLine",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLine",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLines",
+                                    "parameters": [
+                                        "const QLineF *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLines",
+                                    "parameters": [
+                                        "const QVector<QLineF> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLines",
+                                    "parameters": [
+                                        "const QPointF *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLines",
+                                    "parameters": [
+                                        "const QVector<QPointF> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLines",
+                                    "parameters": [
+                                        "const QLine *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLines",
+                                    "parameters": [
+                                        "const QVector<QLine> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLines",
+                                    "parameters": [
+                                        "const QPoint *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawLines",
+                                    "parameters": [
+                                        "const QVector<QPoint> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRect",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRect",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRects",
+                                    "parameters": [
+                                        "const QRectF *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRects",
+                                    "parameters": [
+                                        "const QVector<QRectF> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRects",
+                                    "parameters": [
+                                        "const QRect *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRects",
+                                    "parameters": [
+                                        "const QVector<QRect> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawEllipse",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawEllipse",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawEllipse",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawEllipse",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawEllipse",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPolyline",
+                                    "parameters": [
+                                        "const QPointF *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPolyline",
+                                    "parameters": [
+                                        "const QPolygonF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPolyline",
+                                    "parameters": [
+                                        "const QPoint *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPolyline",
+                                    "parameters": [
+                                        "const QPolygon &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPolygon",
+                                    "parameters": [
+                                        "const QPointF *",
+                                        "int",
+                                        "Qt::FillRule"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPolygon",
+                                    "parameters": [
+                                        "const QPolygonF &",
+                                        "Qt::FillRule"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPolygon",
+                                    "parameters": [
+                                        "const QPoint *",
+                                        "int",
+                                        "Qt::FillRule"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPolygon",
+                                    "parameters": [
+                                        "const QPolygon &",
+                                        "Qt::FillRule"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawConvexPolygon",
+                                    "parameters": [
+                                        "const QPointF *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawConvexPolygon",
+                                    "parameters": [
+                                        "const QPolygonF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawConvexPolygon",
+                                    "parameters": [
+                                        "const QPoint *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawConvexPolygon",
+                                    "parameters": [
+                                        "const QPolygon &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawArc",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawArc",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawArc",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPie",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPie",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPie",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawChord",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawChord",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawChord",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRoundedRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "qreal",
+                                        "qreal",
+                                        "Qt::SizeMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "drawRoundedRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "qreal",
+                                        "qreal",
+                                        "Qt::SizeMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRoundedRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "qreal",
+                                        "qreal",
+                                        "Qt::SizeMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRoundRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRoundRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawRoundRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawTiledPixmap",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "const QPixmap &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "drawTiledPixmap",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "const QPixmap &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawTiledPixmap",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "const QPixmap &",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPicture",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPicture &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPicture",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QPicture &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPicture",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPicture &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "const QPixmap &",
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "const QPixmap &",
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "const QPixmap &",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QPixmap &",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPixmap &",
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPixmap &",
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmap",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawPixmapFragments",
+                                    "parameters": [
+                                        "const QPainter::PixmapFragment *",
+                                        "int",
+                                        "const QPixmap &",
+                                        "QPainter::PixmapFragmentHints"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "const QImage &",
+                                        "const QRectF &",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "const QImage &",
+                                        "const QRect &",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QImage &",
+                                        "const QRectF &",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QImage &",
+                                        "const QRect &",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "const QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "const QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "drawImage",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QImage &",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "Qt::ImageConversionFlags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLayoutDirection",
+                                    "parameters": [
+                                        "Qt::LayoutDirection"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "layoutDirection",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::LayoutDirection",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawGlyphRun",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QGlyphRun &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawStaticText",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QStaticText &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawStaticText",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QStaticText &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawStaticText",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QStaticText &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawText",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawText",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawText",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawText",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QString &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawText",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int",
+                                        "const QString &",
+                                        "QRectF *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawText",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "int",
+                                        "const QString &",
+                                        "QRect *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawText",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "const QString &",
+                                        "QRect *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawText",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "const QString &",
+                                        "const QTextOption &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "const QString &",
+                                        "const QTextOption &"
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawTextItem",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QTextItem &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawTextItem",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "const QTextItem &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "drawTextItem",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QTextItem &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "Qt::GlobalColor"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "Qt::GlobalColor"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "Qt::GlobalColor"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "Qt::BrushStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "const QRect &",
+                                        "Qt::BrushStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fillRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "Qt::BrushStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "eraseRect",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "eraseRect",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "eraseRect",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRenderHint",
+                                    "parameters": [
+                                        "QPainter::RenderHint",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRenderHints",
+                                    "parameters": [
+                                        "QPainter::RenderHints",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "renderHints",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPainter::RenderHints",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "testRenderHint",
+                                    "parameters": [
+                                        "QPainter::RenderHint"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "paintEngine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPaintEngine *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRedirected",
+                                    "parameters": [
+                                        "const QPaintDevice *",
+                                        "QPaintDevice *",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "redirected",
+                                    "parameters": [
+                                        "const QPaintDevice *",
+                                        "QPoint *"
+                                    ],
+                                    "returns": "QPaintDevice *",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "restoreRedirected",
+                                    "parameters": [
+                                        "const QPaintDevice *"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "beginNativePainting",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "endNativePainting",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPainter",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QPainter::RenderHints::enum_type",
+                                "QPainter::RenderHints::enum_type"
+                            ],
+                            "returns": "QFlags<QPainter::RenderHints::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QPainter::RenderHints::enum_type",
+                                "QFlags<QPainter::RenderHints::enum_type>"
+                            ],
+                            "returns": "QFlags<QPainter::RenderHints::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QPainter::RenderHints::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QPainter>",
+                    "name": "painter",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -38425,6 +40547,24 @@
                 "id": "QGlyphRun",
                 "name": "QGlyphRun",
                 "rename": "GlyphRun"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainter",
+                "name": "QPainter",
+                "rename": "Painter"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainterRenderHints",
+                "name": "QPainter::RenderHints",
+                "rename": "RenderHints"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainterPixmapFragmentHints",
+                "name": "QPainter::PixmapFragmentHints",
+                "rename": "PixmapFragmentHints"
             }
         ],
         "enums": [
@@ -39241,6 +41381,23 @@
                 "header": "yasl/gui/glyphrun.h",
                 "id": "QGlyphRunGlyphRunFlag",
                 "name": "QGlyphRun::GlyphRunFlag"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainterRenderHint",
+                "links": "flags@QPainter::RenderHints",
+                "name": "QPainter::RenderHint"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainterPixmapFragmentHint",
+                "links": "flags@QPainter::PixmapFragmentHints",
+                "name": "QPainter::PixmapFragmentHint"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainterCompositionMode",
+                "name": "QPainter::CompositionMode"
             }
         ],
         "fundamentals": [
