@@ -22,6 +22,7 @@
 #include "yasl/gui/image.h"
 #include "yasl/gui/painter.h"
 #include "yasl/gui/painterpath.h"
+#include "yasl/gui/pen.h"
 #include "yasl/gui/pixmap.h"
 #include "yasl/gui/region.h"
 #include "yasl/gui/transform.h"
@@ -145,11 +146,11 @@ static void register_painter_class(script::Namespace ns)
   // void setPen(const QColor &);
   binder.add_void_fun<const QColor &, &QPainter::setPen>("setPen");
   // void setPen(const QPen &);
-  /// TODO: void setPen(const QPen &);
+  binder.add_void_fun<const QPen &, &QPainter::setPen>("setPen");
   // void setPen(Qt::PenStyle);
   binder.add_void_fun<Qt::PenStyle, &QPainter::setPen>("setPen");
   // const QPen & pen() const;
-  /// TODO: const QPen & pen() const;
+  binder.add_fun<const QPen &, &QPainter::pen>("pen");
   // void setBrush(const QBrush &);
   binder.add_void_fun<const QBrush &, &QPainter::setBrush>("setBrush");
   // void setBrush(Qt::BrushStyle);
@@ -265,7 +266,7 @@ static void register_painter_class(script::Namespace ns)
   // bool viewTransformEnabled() const;
   binder.add_fun<bool, &QPainter::viewTransformEnabled>("viewTransformEnabled");
   // void strokePath(const QPainterPath &, const QPen &);
-  /// TODO: void strokePath(const QPainterPath &, const QPen &);
+  binder.add_void_fun<const QPainterPath &, const QPen &, &QPainter::strokePath>("strokePath");
   // void fillPath(const QPainterPath &, const QBrush &);
   binder.add_void_fun<const QPainterPath &, const QBrush &, &QPainter::fillPath>("fillPath");
   // void drawPath(const QPainterPath &);

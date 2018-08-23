@@ -7,17 +7,12 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
-
 #include "yasl/gui/brush.h"
 #include "yasl/gui/color.h"
+#include "yasl/gui/pen.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_pen_class(script::Namespace ns)
 {
@@ -27,8 +22,6 @@ static void register_pen_class(script::Namespace ns)
 
   binding::Class<QPen> binder{ pen };
 
-  // ~QPen();
-  binder.add_dtor();
   // QPen();
   binder.ctors().add_default();
   // QPen(Qt::PenStyle);
@@ -39,6 +32,8 @@ static void register_pen_class(script::Namespace ns)
   binder.ctors().add<const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle>();
   // QPen(const QPen &);
   binder.ctors().add<const QPen &>();
+  // ~QPen();
+  binder.add_dtor();
   // QPen & operator=(const QPen &);
   binder.operators().assign<const QPen &>();
   // QPen(QPen &&);
@@ -52,9 +47,9 @@ static void register_pen_class(script::Namespace ns)
   // void setStyle(Qt::PenStyle);
   binder.add_void_fun<Qt::PenStyle, &QPen::setStyle>("setStyle");
   // QVector<qreal> dashPattern() const;
-  binder.add_fun<QVector<qreal>, &QPen::dashPattern>("dashPattern");
+  /// TODO: QVector<qreal> dashPattern() const;
   // void setDashPattern(const QVector<qreal> &);
-  binder.add_void_fun<const QVector<qreal> &, &QPen::setDashPattern>("setDashPattern");
+  /// TODO: void setDashPattern(const QVector<qreal> &);
   // qreal dashOffset() const;
   binder.add_fun<qreal, &QPen::dashOffset>("dashOffset");
   // void setDashOffset(qreal);
@@ -99,22 +94,27 @@ static void register_pen_class(script::Namespace ns)
   binder.operators().neq<const QPen &>();
   // bool isDetached();
   binder.add_fun<bool, &QPen::isDetached>("isDetached");
+  // QPen::DataPtr & data_ptr();
+  /// TODO: QPen::DataPtr & data_ptr();
 }
 
-void register_pen_file(script::Namespace root)
+
+void register_pen_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_pen_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_pen_class(ns);
+  binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QPen &);
-  binder.operators().put_to<QDataStream &, const QPen &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QPen &);
   // QDataStream & operator>>(QDataStream &, QPen &);
-  binder.operators().read_from<QDataStream &, QPen &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QPen &);
   // void swap(QPen &, QPen &);
   binder.add_void_fun<QPen &, QPen &, &swap>("swap");
   // QDebug operator<<(QDebug, const QPen &);
-  binder.operators().left_shift<QDebug, QDebug, const QPen &>();
+  /// TODO: QDebug operator<<(QDebug, const QPen &);
 }
 

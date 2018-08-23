@@ -13,6 +13,7 @@
 #include "yasl/core/rect.h"
 #include "yasl/gui/font.h"
 #include "yasl/gui/painterpath.h"
+#include "yasl/gui/pen.h"
 #include "yasl/gui/region.h"
 #include "yasl/gui/transform.h"
 
@@ -217,7 +218,7 @@ static void register_painter_path_stroker_class(script::Namespace ns)
   // QPainterPathStroker();
   binder.ctors().add_default();
   // QPainterPathStroker(const QPen &);
-  /// TODO: QPainterPathStroker(const QPen &);
+  binder.ctors().add<const QPen &>();
   // ~QPainterPathStroker();
   binder.add_dtor();
   // void setWidth(qreal);

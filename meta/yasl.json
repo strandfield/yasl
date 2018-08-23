@@ -41601,6 +41601,351 @@
                     "hincludes": "<QPalette>",
                     "name": "palette",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QPen &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QPen &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QPen",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPen",
+                                    "parameters": [
+                                        "Qt::PenStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPen",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPen",
+                                    "parameters": [
+                                        "const QBrush &",
+                                        "qreal",
+                                        "Qt::PenStyle",
+                                        "Qt::PenCapStyle",
+                                        "Qt::PenJoinStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPen",
+                                    "parameters": [
+                                        "const QPen &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPen",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QPen &"
+                                    ],
+                                    "returns": "QPen &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QPen",
+                                    "parameters": [
+                                        "QPen &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QPen &&"
+                                    ],
+                                    "returns": "QPen &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QPen &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "style",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::PenStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStyle",
+                                    "parameters": [
+                                        "Qt::PenStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dashPattern",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector<qreal>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDashPattern",
+                                    "parameters": [
+                                        "const QVector<qreal> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dashOffset",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDashOffset",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "miterLimit",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMiterLimit",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "widthF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWidthF",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "color",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColor",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "brush",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QBrush",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBrush",
+                                    "parameters": [
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSolid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capStyle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::PenCapStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCapStyle",
+                                    "parameters": [
+                                        "Qt::PenCapStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "joinStyle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::PenJoinStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setJoinStyle",
+                                    "parameters": [
+                                        "Qt::PenJoinStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isCosmetic",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCosmetic",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QPen &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QPen &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPen::DataPtr &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPen",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QPen &",
+                                "QPen &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QPen &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QPen>",
+                    "name": "pen",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -42167,6 +42512,12 @@
                 "id": "QPalette",
                 "name": "QPalette",
                 "rename": "Palette"
+            },
+            {
+                "header": "yasl/gui/pen.h",
+                "id": "QPen",
+                "name": "QPen",
+                "rename": "Pen"
             }
         ],
         "enums": [
