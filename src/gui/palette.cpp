@@ -8,18 +8,13 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
-
 #include "yasl/gui/brush.h"
 #include "yasl/gui/color.h"
+#include "yasl/gui/palette.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_palette_color_group_enum(script::Class palette)
 {
@@ -28,13 +23,14 @@ static void register_palette_color_group_enum(script::Class palette)
   Enum color_group = palette.Enum("ColorGroup").setId(script::Type::QPaletteColorGroup).get();
 
   color_group.addValue("Active", QPalette::Active);
-  color_group.addValue("All", QPalette::All);
-  color_group.addValue("Current", QPalette::Current);
   color_group.addValue("Disabled", QPalette::Disabled);
   color_group.addValue("Inactive", QPalette::Inactive);
   color_group.addValue("NColorGroups", QPalette::NColorGroups);
+  color_group.addValue("Current", QPalette::Current);
+  color_group.addValue("All", QPalette::All);
   color_group.addValue("Normal", QPalette::Normal);
 }
+
 
 static void register_palette_color_role_enum(script::Class palette)
 {
@@ -42,30 +38,31 @@ static void register_palette_color_role_enum(script::Class palette)
 
   Enum color_role = palette.Enum("ColorRole").setId(script::Type::QPaletteColorRole).get();
 
-  color_role.addValue("AlternateBase", QPalette::AlternateBase);
-  color_role.addValue("Background", QPalette::Background);
-  color_role.addValue("Base", QPalette::Base);
-  color_role.addValue("BrightText", QPalette::BrightText);
+  color_role.addValue("WindowText", QPalette::WindowText);
   color_role.addValue("Button", QPalette::Button);
-  color_role.addValue("ButtonText", QPalette::ButtonText);
+  color_role.addValue("Light", QPalette::Light);
+  color_role.addValue("Midlight", QPalette::Midlight);
   color_role.addValue("Dark", QPalette::Dark);
-  color_role.addValue("Foreground", QPalette::Foreground);
+  color_role.addValue("Mid", QPalette::Mid);
+  color_role.addValue("Text", QPalette::Text);
+  color_role.addValue("BrightText", QPalette::BrightText);
+  color_role.addValue("ButtonText", QPalette::ButtonText);
+  color_role.addValue("Base", QPalette::Base);
+  color_role.addValue("Window", QPalette::Window);
+  color_role.addValue("Shadow", QPalette::Shadow);
   color_role.addValue("Highlight", QPalette::Highlight);
   color_role.addValue("HighlightedText", QPalette::HighlightedText);
-  color_role.addValue("Light", QPalette::Light);
   color_role.addValue("Link", QPalette::Link);
   color_role.addValue("LinkVisited", QPalette::LinkVisited);
-  color_role.addValue("Mid", QPalette::Mid);
-  color_role.addValue("Midlight", QPalette::Midlight);
-  color_role.addValue("NColorRoles", QPalette::NColorRoles);
+  color_role.addValue("AlternateBase", QPalette::AlternateBase);
   color_role.addValue("NoRole", QPalette::NoRole);
-  color_role.addValue("Shadow", QPalette::Shadow);
-  color_role.addValue("Text", QPalette::Text);
   color_role.addValue("ToolTipBase", QPalette::ToolTipBase);
   color_role.addValue("ToolTipText", QPalette::ToolTipText);
-  color_role.addValue("Window", QPalette::Window);
-  color_role.addValue("WindowText", QPalette::WindowText);
+  color_role.addValue("NColorRoles", QPalette::NColorRoles);
+  color_role.addValue("Foreground", QPalette::Foreground);
+  color_role.addValue("Background", QPalette::Background);
 }
+
 
 static void register_palette_class(script::Namespace ns)
 {
@@ -77,8 +74,6 @@ static void register_palette_class(script::Namespace ns)
   register_palette_color_role_enum(palette);
   binding::Class<QPalette> binder{ palette };
 
-  // ~QPalette();
-  binder.add_dtor();
   // QPalette();
   binder.ctors().add_default();
   // QPalette(const QColor &);
@@ -87,12 +82,10 @@ static void register_palette_class(script::Namespace ns)
   binder.ctors().add<Qt::GlobalColor>();
   // QPalette(const QColor &, const QColor &);
   binder.ctors().add<const QColor &, const QColor &>();
-  // QPalette(const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &);
-  /// TODO: binder.ctors().add<const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &>();
-  // QPalette(const QColor &, const QColor &, const QColor &, const QColor &, const QColor &, const QColor &, const QColor &);
-  /// TODO: binder.ctors().add<const QColor &, const QColor &, const QColor &, const QColor &, const QColor &, const QColor &, const QColor &>();
   // QPalette(const QPalette &);
   binder.ctors().add<const QPalette &>();
+  // ~QPalette();
+  binder.add_dtor();
   // QPalette & operator=(const QPalette &);
   binder.operators().assign<const QPalette &>();
   // QPalette(QPalette &&);
@@ -119,8 +112,6 @@ static void register_palette_class(script::Namespace ns)
   binder.add_fun<bool, QPalette::ColorGroup, QPalette::ColorRole, &QPalette::isBrushSet>("isBrushSet");
   // void setBrush(QPalette::ColorGroup, QPalette::ColorRole, const QBrush &);
   binder.add_void_fun<QPalette::ColorGroup, QPalette::ColorRole, const QBrush &, &QPalette::setBrush>("setBrush");
-  // void setColorGroup(QPalette::ColorGroup, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &);
-  /// TODO: binder.add_void_fun<QPalette::ColorGroup, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, const QBrush &, &QPalette::setColorGroup>("setColorGroup");
   // bool isEqual(QPalette::ColorGroup, QPalette::ColorGroup) const;
   binder.add_fun<bool, QPalette::ColorGroup, QPalette::ColorGroup, &QPalette::isEqual>("isEqual");
   // const QColor & color(QPalette::ColorRole) const;
@@ -176,7 +167,7 @@ static void register_palette_class(script::Namespace ns)
   // bool isCopyOf(const QPalette &) const;
   binder.add_fun<bool, const QPalette &, &QPalette::isCopyOf>("isCopyOf");
   // qint64 cacheKey() const;
-  binder.add_fun<qint64, &QPalette::cacheKey>("cacheKey");
+  /// TODO: qint64 cacheKey() const;
   // QPalette resolve(const QPalette &) const;
   binder.add_fun<QPalette, const QPalette &, &QPalette::resolve>("resolve");
   // uint resolve() const;
@@ -185,20 +176,23 @@ static void register_palette_class(script::Namespace ns)
   binder.add_void_fun<uint, &QPalette::resolve>("resolve");
 }
 
-void register_palette_file(script::Namespace root)
+
+void register_palette_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_palette_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_palette_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QPalette &, QPalette &);
   binder.add_void_fun<QPalette &, QPalette &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QPalette &);
-  binder.operators().put_to<QDataStream &, const QPalette &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QPalette &);
   // QDataStream & operator>>(QDataStream &, QPalette &);
-  binder.operators().read_from<QDataStream &, QPalette &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QPalette &);
   // QDebug operator<<(QDebug, const QPalette &);
-  binder.operators().left_shift<QDebug, QDebug, const QPalette &>();
+  /// TODO: QDebug operator<<(QDebug, const QPalette &);
 }
 

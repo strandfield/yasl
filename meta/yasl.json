@@ -40982,6 +40982,625 @@
                     "hincludes": "<QPainterPath>",
                     "name": "painterpath",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "name": "QPalette",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPalette",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPalette",
+                                    "parameters": [
+                                        "Qt::GlobalColor"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPalette",
+                                    "parameters": [
+                                        "const QColor &",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "QPalette",
+                                    "parameters": [
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "QPalette",
+                                    "parameters": [
+                                        "const QColor &",
+                                        "const QColor &",
+                                        "const QColor &",
+                                        "const QColor &",
+                                        "const QColor &",
+                                        "const QColor &",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPalette",
+                                    "parameters": [
+                                        "const QPalette &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPalette",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QPalette &"
+                                    ],
+                                    "returns": "QPalette &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QPalette",
+                                    "parameters": [
+                                        "QPalette &&"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QPalette &&"
+                                    ],
+                                    "returns": "QPalette &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QPalette &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Active"
+                                        },
+                                        {
+                                            "name": "Disabled"
+                                        },
+                                        {
+                                            "name": "Inactive"
+                                        },
+                                        {
+                                            "name": "NColorGroups"
+                                        },
+                                        {
+                                            "name": "Current"
+                                        },
+                                        {
+                                            "name": "All"
+                                        },
+                                        {
+                                            "name": "Normal"
+                                        }
+                                    ],
+                                    "name": "ColorGroup",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "WindowText"
+                                        },
+                                        {
+                                            "name": "Button"
+                                        },
+                                        {
+                                            "name": "Light"
+                                        },
+                                        {
+                                            "name": "Midlight"
+                                        },
+                                        {
+                                            "name": "Dark"
+                                        },
+                                        {
+                                            "name": "Mid"
+                                        },
+                                        {
+                                            "name": "Text"
+                                        },
+                                        {
+                                            "name": "BrightText"
+                                        },
+                                        {
+                                            "name": "ButtonText"
+                                        },
+                                        {
+                                            "name": "Base"
+                                        },
+                                        {
+                                            "name": "Window"
+                                        },
+                                        {
+                                            "name": "Shadow"
+                                        },
+                                        {
+                                            "name": "Highlight"
+                                        },
+                                        {
+                                            "name": "HighlightedText"
+                                        },
+                                        {
+                                            "name": "Link"
+                                        },
+                                        {
+                                            "name": "LinkVisited"
+                                        },
+                                        {
+                                            "name": "AlternateBase"
+                                        },
+                                        {
+                                            "name": "NoRole"
+                                        },
+                                        {
+                                            "name": "ToolTipBase"
+                                        },
+                                        {
+                                            "name": "ToolTipText"
+                                        },
+                                        {
+                                            "name": "NColorRoles"
+                                        },
+                                        {
+                                            "name": "Foreground"
+                                        },
+                                        {
+                                            "name": "Background"
+                                        }
+                                    ],
+                                    "name": "ColorRole",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentColorGroup",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPalette::ColorGroup",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentColorGroup",
+                                    "parameters": [
+                                        "QPalette::ColorGroup"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "color",
+                                    "parameters": [
+                                        "QPalette::ColorGroup",
+                                        "QPalette::ColorRole"
+                                    ],
+                                    "returns": "const QColor &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "brush",
+                                    "parameters": [
+                                        "QPalette::ColorGroup",
+                                        "QPalette::ColorRole"
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColor",
+                                    "parameters": [
+                                        "QPalette::ColorGroup",
+                                        "QPalette::ColorRole",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColor",
+                                    "parameters": [
+                                        "QPalette::ColorRole",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBrush",
+                                    "parameters": [
+                                        "QPalette::ColorRole",
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isBrushSet",
+                                    "parameters": [
+                                        "QPalette::ColorGroup",
+                                        "QPalette::ColorRole"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBrush",
+                                    "parameters": [
+                                        "QPalette::ColorGroup",
+                                        "QPalette::ColorRole",
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "setColorGroup",
+                                    "parameters": [
+                                        "QPalette::ColorGroup",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &",
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEqual",
+                                    "parameters": [
+                                        "QPalette::ColorGroup",
+                                        "QPalette::ColorGroup"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "color",
+                                    "parameters": [
+                                        "QPalette::ColorRole"
+                                    ],
+                                    "returns": "const QColor &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "brush",
+                                    "parameters": [
+                                        "QPalette::ColorRole"
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "foreground",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "windowText",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "button",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "light",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dark",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mid",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "base",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alternateBase",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toolTipBase",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toolTipText",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "background",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "window",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "midlight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "brightText",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttonText",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "shadow",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "highlight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "highlightedText",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "link",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "linkVisited",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QPalette &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QPalette &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isCopyOf",
+                                    "parameters": [
+                                        "const QPalette &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cacheKey",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "resolve",
+                                    "parameters": [
+                                        "const QPalette &"
+                                    ],
+                                    "returns": "QPalette",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "resolve",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resolve",
+                                    "parameters": [
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPalette",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QPalette &",
+                                "QPalette &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QPalette &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QPalette &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QPalette &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QPalette>",
+                    "name": "palette",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -41542,6 +42161,12 @@
                 "id": "QPainterPathStroker",
                 "name": "QPainterPathStroker",
                 "rename": "PainterPathStroker"
+            },
+            {
+                "header": "yasl/gui/palette.h",
+                "id": "QPalette",
+                "name": "QPalette",
+                "rename": "Palette"
             }
         ],
         "enums": [
@@ -42380,6 +43005,16 @@
                 "header": "yasl/gui/painterpath.h",
                 "id": "QPainterPathElementType",
                 "name": "QPainterPath::ElementType"
+            },
+            {
+                "header": "yasl/gui/palette.h",
+                "id": "QPaletteColorGroup",
+                "name": "QPalette::ColorGroup"
+            },
+            {
+                "header": "yasl/gui/palette.h",
+                "id": "QPaletteColorRole",
+                "name": "QPalette::ColorRole"
             }
         ],
         "fundamentals": [
