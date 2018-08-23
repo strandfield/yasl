@@ -8,6 +8,8 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/gui/keysequence.h"
+
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 

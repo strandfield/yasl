@@ -36732,6 +36732,886 @@
                     "hincludes": "<QKeySequence>",
                     "name": "keysequence",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "Qt::BrushStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "const QColor &",
+                                        "Qt::BrushStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "Qt::GlobalColor",
+                                        "Qt::BrushStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "const QColor &",
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "Qt::GlobalColor",
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "const QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QBrush",
+                                    "parameters": [
+                                        "const QGradient &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QBrush",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QBrush &&"
+                                    ],
+                                    "returns": "QBrush &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QBrush &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "style",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::BrushStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStyle",
+                                    "parameters": [
+                                        "Qt::BrushStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matrix",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QMatrix &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMatrix",
+                                    "parameters": [
+                                        "const QMatrix &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transform",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTransform",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTransform",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "texture",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTexture",
+                                    "parameters": [
+                                        "const QPixmap &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textureImage",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QImage",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextureImage",
+                                    "parameters": [
+                                        "const QImage &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "color",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QColor &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColor",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColor",
+                                    "parameters": [
+                                        "Qt::GlobalColor"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "gradient",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QGradient *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isOpaque",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QBrush &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QBrush::DataPtr &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QBrush",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QBrush &",
+                                "QBrush &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QBrush &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QBrush &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QBrush &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LinearGradient"
+                                        },
+                                        {
+                                            "name": "RadialGradient"
+                                        },
+                                        {
+                                            "name": "ConicalGradient"
+                                        },
+                                        {
+                                            "name": "NoGradient"
+                                        }
+                                    ],
+                                    "name": "Type",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "PadSpread"
+                                        },
+                                        {
+                                            "name": "ReflectSpread"
+                                        },
+                                        {
+                                            "name": "RepeatSpread"
+                                        }
+                                    ],
+                                    "name": "Spread",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LogicalMode"
+                                        },
+                                        {
+                                            "name": "StretchToDeviceMode"
+                                        },
+                                        {
+                                            "name": "ObjectBoundingMode"
+                                        }
+                                    ],
+                                    "name": "CoordinateMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ColorInterpolation"
+                                        },
+                                        {
+                                            "name": "ComponentInterpolation"
+                                        }
+                                    ],
+                                    "name": "InterpolationMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QGradient",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "type",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QGradient::Type",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSpread",
+                                    "parameters": [
+                                        "QGradient::Spread"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "spread",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QGradient::Spread",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColorAt",
+                                    "parameters": [
+                                        "qreal",
+                                        "const QColor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStops",
+                                    "parameters": [
+                                        "const QGradientStops &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "stops",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QGradientStops",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "coordinateMode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QGradient::CoordinateMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCoordinateMode",
+                                    "parameters": [
+                                        "QGradient::CoordinateMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "interpolationMode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QGradient::InterpolationMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInterpolationMode",
+                                    "parameters": [
+                                        "QGradient::InterpolationMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QGradient &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QGradient &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QGradient",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QGradient",
+                            "elements": [
+                                {
+                                    "name": "QLinearGradient",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLinearGradient",
+                                    "parameters": [
+                                        "const QLinearGradient &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QLinearGradient",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QLinearGradient &"
+                                    ],
+                                    "returns": "QLinearGradient &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QLinearGradient",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLinearGradient",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "start",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStart",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStart",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "finalStop",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFinalStop",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFinalStop",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QLinearGradient",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QGradient",
+                            "elements": [
+                                {
+                                    "name": "QRadialGradient",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRadialGradient",
+                                    "parameters": [
+                                        "const QRadialGradient &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QRadialGradient &"
+                                    ],
+                                    "returns": "QRadialGradient &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "~QRadialGradient",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QRadialGradient",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "qreal",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRadialGradient",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRadialGradient",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRadialGradient",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRadialGradient",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "qreal",
+                                        "const QPointF &",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRadialGradient",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "center",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCenter",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCenter",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "focalPoint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFocalPoint",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFocalPoint",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "radius",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRadius",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "centerRadius",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCenterRadius",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "focalRadius",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFocalRadius",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QRadialGradient",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QGradient",
+                            "elements": [
+                                {
+                                    "name": "QConicalGradient",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QConicalGradient",
+                                    "parameters": [
+                                        "const QConicalGradient &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QConicalGradient &"
+                                    ],
+                                    "returns": "QConicalGradient &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "~QConicalGradient",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QConicalGradient",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QConicalGradient",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "center",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCenter",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCenter",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "angle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAngle",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QConicalGradient",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QBrush>",
+                    "name": "brush",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -37222,9 +38102,40 @@
                 "tag": "qobject_tag"
             },
             {
+                "header": "yasl/gui/keysequence.h",
                 "id": "QKeySequence",
                 "name": "QKeySequence",
                 "rename": "KeySequence"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QBrush",
+                "name": "QBrush",
+                "rename": "Brush"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradient",
+                "name": "QGradient",
+                "rename": "Gradient"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QLinearGradient",
+                "name": "QLinearGradient",
+                "rename": "LinearGradient"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QRadialGradient",
+                "name": "QRadialGradient",
+                "rename": "RadialGradient"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QConicalGradient",
+                "name": "QConicalGradient",
+                "rename": "ConicalGradient"
             }
         ],
         "enums": [
@@ -38003,16 +38914,39 @@
                 "name": "QClipboard::Mode"
             },
             {
+                "header": "yasl/gui/keysequence.h",
                 "id": "QKeySequenceStandardKey",
                 "name": "QKeySequence::StandardKey"
             },
             {
+                "header": "yasl/gui/keysequence.h",
                 "id": "QKeySequenceSequenceFormat",
                 "name": "QKeySequence::SequenceFormat"
             },
             {
+                "header": "yasl/gui/keysequence.h",
                 "id": "QKeySequenceSequenceMatch",
                 "name": "QKeySequence::SequenceMatch"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradientType",
+                "name": "QGradient::Type"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradientSpread",
+                "name": "QGradient::Spread"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradientCoordinateMode",
+                "name": "QGradient::CoordinateMode"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradientInterpolationMode",
+                "name": "QGradient::InterpolationMode"
             }
         ],
         "fundamentals": [
