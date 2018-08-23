@@ -37612,6 +37612,289 @@
                     "hincludes": "<QBrush>",
                     "name": "brush",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Overline"
+                                        },
+                                        {
+                                            "name": "Underline"
+                                        },
+                                        {
+                                            "name": "StrikeOut"
+                                        },
+                                        {
+                                            "name": "RightToLeft"
+                                        },
+                                        {
+                                            "name": "SplitLigature"
+                                        }
+                                    ],
+                                    "name": "GlyphRunFlag",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QGlyphRun",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QGlyphRun",
+                                    "parameters": [
+                                        "const QGlyphRun &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QGlyphRun &&"
+                                    ],
+                                    "returns": "QGlyphRun &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QGlyphRun &"
+                                    ],
+                                    "returns": "QGlyphRun &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "~QGlyphRun",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QGlyphRun &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rawFont",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRawFont",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRawFont",
+                                    "parameters": [
+                                        "const QRawFont &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRawData",
+                                    "parameters": [
+                                        "const quint32 *",
+                                        "const QPointF *",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "glyphIndexes",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector<quint32>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGlyphIndexes",
+                                    "parameters": [
+                                        "const QVector<quint32> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "positions",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector<QPointF>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPositions",
+                                    "parameters": [
+                                        "const QVector<QPointF> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QGlyphRun &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QGlyphRun &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOverline",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "overline",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUnderline",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "underline",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStrikeOut",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "strikeOut",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRightToLeft",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isRightToLeft",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFlag",
+                                    "parameters": [
+                                        "QGlyphRun::GlyphRunFlag",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFlags",
+                                    "parameters": [
+                                        "QGlyphRun::GlyphRunFlags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "flags",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QGlyphRun::GlyphRunFlags",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBoundingRect",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QGlyphRun",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QGlyphRun &",
+                                "QGlyphRun &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QGlyphRun>",
+                    "name": "glyphrun",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -38136,6 +38419,12 @@
                 "id": "QConicalGradient",
                 "name": "QConicalGradient",
                 "rename": "ConicalGradient"
+            },
+            {
+                "header": "yasl/gui/glyphrun.h",
+                "id": "QGlyphRun",
+                "name": "QGlyphRun",
+                "rename": "GlyphRun"
             }
         ],
         "enums": [
@@ -38947,6 +39236,11 @@
                 "header": "yasl/gui/brush.h",
                 "id": "QGradientInterpolationMode",
                 "name": "QGradient::InterpolationMode"
+            },
+            {
+                "header": "yasl/gui/glyphrun.h",
+                "id": "QGlyphRunGlyphRunFlag",
+                "name": "QGlyphRun::GlyphRunFlag"
             }
         ],
         "fundamentals": [

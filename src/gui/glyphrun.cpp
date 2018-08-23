@@ -8,12 +8,11 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/gui/rawfont.h"
+#include "yasl/core/rect.h"
+#include "yasl/gui/glyphrun.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
 
 static void register_glyph_run_glyph_run_flag_enum(script::Class glyph_run)
 {
@@ -22,11 +21,12 @@ static void register_glyph_run_glyph_run_flag_enum(script::Class glyph_run)
   Enum glyph_run_flag = glyph_run.Enum("GlyphRunFlag").setId(script::Type::QGlyphRunGlyphRunFlag).get();
 
   glyph_run_flag.addValue("Overline", QGlyphRun::Overline);
+  glyph_run_flag.addValue("Underline", QGlyphRun::Underline);
+  glyph_run_flag.addValue("StrikeOut", QGlyphRun::StrikeOut);
   glyph_run_flag.addValue("RightToLeft", QGlyphRun::RightToLeft);
   glyph_run_flag.addValue("SplitLigature", QGlyphRun::SplitLigature);
-  glyph_run_flag.addValue("StrikeOut", QGlyphRun::StrikeOut);
-  glyph_run_flag.addValue("Underline", QGlyphRun::Underline);
 }
+
 
 static void register_glyph_run_class(script::Namespace ns)
 {
@@ -37,8 +37,6 @@ static void register_glyph_run_class(script::Namespace ns)
   register_glyph_run_glyph_run_flag_enum(glyph_run);
   binding::Class<QGlyphRun> binder{ glyph_run };
 
-  // ~QGlyphRun();
-  binder.add_dtor();
   // QGlyphRun();
   binder.ctors().add_default();
   // QGlyphRun(const QGlyphRun &);
@@ -47,22 +45,24 @@ static void register_glyph_run_class(script::Namespace ns)
   binder.operators().assign<QGlyphRun &&>();
   // QGlyphRun & operator=(const QGlyphRun &);
   binder.operators().assign<const QGlyphRun &>();
+  // ~QGlyphRun();
+  binder.add_dtor();
   // void swap(QGlyphRun &);
   binder.add_void_fun<QGlyphRun &, &QGlyphRun::swap>("swap");
   // QRawFont rawFont() const;
-  binder.add_fun<QRawFont, &QGlyphRun::rawFont>("rawFont");
+  /// TODO: QRawFont rawFont() const;
   // void setRawFont(const QRawFont &);
-  binder.add_void_fun<const QRawFont &, &QGlyphRun::setRawFont>("setRawFont");
+  /// TODO: void setRawFont(const QRawFont &);
   // void setRawData(const quint32 *, const QPointF *, int);
-  binder.add_void_fun<const quint32 *, const QPointF *, int, &QGlyphRun::setRawData>("setRawData");
+  /// TODO: void setRawData(const quint32 *, const QPointF *, int);
   // QVector<quint32> glyphIndexes() const;
-  binder.add_fun<QVector<quint32>, &QGlyphRun::glyphIndexes>("glyphIndexes");
+  /// TODO: QVector<quint32> glyphIndexes() const;
   // void setGlyphIndexes(const QVector<quint32> &);
-  binder.add_void_fun<const QVector<quint32> &, &QGlyphRun::setGlyphIndexes>("setGlyphIndexes");
+  /// TODO: void setGlyphIndexes(const QVector<quint32> &);
   // QVector<QPointF> positions() const;
-  binder.add_fun<QVector<QPointF>, &QGlyphRun::positions>("positions");
+  /// TODO: QVector<QPointF> positions() const;
   // void setPositions(const QVector<QPointF> &);
-  binder.add_void_fun<const QVector<QPointF> &, &QGlyphRun::setPositions>("setPositions");
+  /// TODO: void setPositions(const QVector<QPointF> &);
   // void clear();
   binder.add_void_fun<&QGlyphRun::clear>("clear");
   // bool operator==(const QGlyphRun &) const;
@@ -88,9 +88,9 @@ static void register_glyph_run_class(script::Namespace ns)
   // void setFlag(QGlyphRun::GlyphRunFlag, bool);
   binder.add_void_fun<QGlyphRun::GlyphRunFlag, bool, &QGlyphRun::setFlag>("setFlag");
   // void setFlags(QGlyphRun::GlyphRunFlags);
-  binder.add_void_fun<QGlyphRun::GlyphRunFlags, &QGlyphRun::setFlags>("setFlags");
+  /// TODO: void setFlags(QGlyphRun::GlyphRunFlags);
   // QGlyphRun::GlyphRunFlags flags() const;
-  binder.add_fun<QGlyphRun::GlyphRunFlags, &QGlyphRun::flags>("flags");
+  /// TODO: QGlyphRun::GlyphRunFlags flags() const;
   // void setBoundingRect(const QRectF &);
   binder.add_void_fun<const QRectF &, &QGlyphRun::setBoundingRect>("setBoundingRect");
   // QRectF boundingRect() const;
@@ -99,12 +99,15 @@ static void register_glyph_run_class(script::Namespace ns)
   binder.add_fun<bool, &QGlyphRun::isEmpty>("isEmpty");
 }
 
-void register_glyphrun_file(script::Namespace root)
+
+void register_glyphrun_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_glyph_run_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_glyph_run_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QGlyphRun &, QGlyphRun &);
   binder.add_void_fun<QGlyphRun &, QGlyphRun &, &swap>("swap");
