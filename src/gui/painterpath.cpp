@@ -8,22 +8,16 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
-
 #include "yasl/gui/font.h"
-#include "yasl/gui/pen.h"
-#include "yasl/gui/polygon.h"
+#include "yasl/gui/painterpath.h"
 #include "yasl/gui/region.h"
+#include "yasl/gui/transform.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
-
-#include <QDebug>
 
 static void register_painter_path_element_type_enum(script::Class painter_path)
 {
@@ -31,11 +25,12 @@ static void register_painter_path_element_type_enum(script::Class painter_path)
 
   Enum element_type = painter_path.Enum("ElementType").setId(script::Type::QPainterPathElementType).get();
 
-  element_type.addValue("CurveToDataElement", QPainterPath::CurveToDataElement);
-  element_type.addValue("CurveToElement", QPainterPath::CurveToElement);
-  element_type.addValue("LineToElement", QPainterPath::LineToElement);
   element_type.addValue("MoveToElement", QPainterPath::MoveToElement);
+  element_type.addValue("LineToElement", QPainterPath::LineToElement);
+  element_type.addValue("CurveToElement", QPainterPath::CurveToElement);
+  element_type.addValue("CurveToDataElement", QPainterPath::CurveToDataElement);
 }
+
 
 static void register_painter_path_class(script::Namespace ns)
 {
@@ -46,8 +41,6 @@ static void register_painter_path_class(script::Namespace ns)
   register_painter_path_element_type_enum(painter_path);
   binding::Class<QPainterPath> binder{ painter_path };
 
-  // ~QPainterPath();
-  binder.add_dtor();
   // QPainterPath();
   binder.ctors().add_default();
   // QPainterPath(const QPointF &);
@@ -58,6 +51,8 @@ static void register_painter_path_class(script::Namespace ns)
   binder.operators().assign<const QPainterPath &>();
   // QPainterPath & operator=(QPainterPath &&);
   binder.operators().assign<QPainterPath &&>();
+  // ~QPainterPath();
+  binder.add_dtor();
   // void swap(QPainterPath &);
   binder.add_void_fun<QPainterPath &, &QPainterPath::swap>("swap");
   // void closeSubpath();
@@ -99,7 +94,7 @@ static void register_painter_path_class(script::Namespace ns)
   // void addEllipse(const QPointF &, qreal, qreal);
   binder.add_void_fun<const QPointF &, qreal, qreal, &QPainterPath::addEllipse>("addEllipse");
   // void addPolygon(const QPolygonF &);
-  binder.add_void_fun<const QPolygonF &, &QPainterPath::addPolygon>("addPolygon");
+  /// TODO: void addPolygon(const QPolygonF &);
   // void addText(const QPointF &, const QFont &, const QString &);
   binder.add_void_fun<const QPointF &, const QFont &, const QString &, &QPainterPath::addText>("addText");
   // void addText(qreal, qreal, const QFont &, const QString &);
@@ -110,8 +105,6 @@ static void register_painter_path_class(script::Namespace ns)
   binder.add_void_fun<const QRegion &, &QPainterPath::addRegion>("addRegion");
   // void addRoundedRect(const QRectF &, qreal, qreal, Qt::SizeMode);
   binder.add_void_fun<const QRectF &, qreal, qreal, Qt::SizeMode, &QPainterPath::addRoundedRect>("addRoundedRect");
-  // void addRoundedRect(qreal, qreal, qreal, qreal, qreal, qreal, Qt::SizeMode);
-  /// TODO: binder.add_void_fun<qreal, qreal, qreal, qreal, qreal, qreal, Qt::SizeMode, &QPainterPath::addRoundedRect>("addRoundedRect");
   // void addRoundRect(const QRectF &, int, int);
   binder.add_void_fun<const QRectF &, int, int, &QPainterPath::addRoundRect>("addRoundRect");
   // void addRoundRect(qreal, qreal, qreal, qreal, int, int);
@@ -149,21 +142,21 @@ static void register_painter_path_class(script::Namespace ns)
   // QPainterPath toReversed() const;
   binder.add_fun<QPainterPath, &QPainterPath::toReversed>("toReversed");
   // QList<QPolygonF> toSubpathPolygons(const QMatrix &) const;
-  binder.add_fun<QList<QPolygonF>, const QMatrix &, &QPainterPath::toSubpathPolygons>("toSubpathPolygons");
+  /// TODO: QList<QPolygonF> toSubpathPolygons(const QMatrix &) const;
   // QList<QPolygonF> toFillPolygons(const QMatrix &) const;
-  binder.add_fun<QList<QPolygonF>, const QMatrix &, &QPainterPath::toFillPolygons>("toFillPolygons");
+  /// TODO: QList<QPolygonF> toFillPolygons(const QMatrix &) const;
   // QPolygonF toFillPolygon(const QMatrix &) const;
-  binder.add_fun<QPolygonF, const QMatrix &, &QPainterPath::toFillPolygon>("toFillPolygon");
+  /// TODO: QPolygonF toFillPolygon(const QMatrix &) const;
   // QList<QPolygonF> toSubpathPolygons(const QTransform &) const;
-  binder.add_fun<QList<QPolygonF>, const QTransform &, &QPainterPath::toSubpathPolygons>("toSubpathPolygons");
+  /// TODO: QList<QPolygonF> toSubpathPolygons(const QTransform &) const;
   // QList<QPolygonF> toFillPolygons(const QTransform &) const;
-  binder.add_fun<QList<QPolygonF>, const QTransform &, &QPainterPath::toFillPolygons>("toFillPolygons");
+  /// TODO: QList<QPolygonF> toFillPolygons(const QTransform &) const;
   // QPolygonF toFillPolygon(const QTransform &) const;
-  binder.add_fun<QPolygonF, const QTransform &, &QPainterPath::toFillPolygon>("toFillPolygon");
+  /// TODO: QPolygonF toFillPolygon(const QTransform &) const;
   // int elementCount() const;
   binder.add_fun<int, &QPainterPath::elementCount>("elementCount");
   // QPainterPath::Element elementAt(int) const;
-  binder.add_fun<QPainterPath::Element, int, &QPainterPath::elementAt>("elementAt");
+  /// TODO: QPainterPath::Element elementAt(int) const;
   // void setElementPositionAt(int, qreal, qreal);
   binder.add_void_fun<int, qreal, qreal, &QPainterPath::setElementPositionAt>("setElementPositionAt");
   // qreal length() const;
@@ -199,9 +192,9 @@ static void register_painter_path_class(script::Namespace ns)
   // QPainterPath operator|(const QPainterPath &) const;
   binder.operators().or<QPainterPath, const QPainterPath &>();
   // QPainterPath operator+(const QPainterPath &) const;
-  binder.operators().add<QPainterPath, QPainterPath>();
+  binder.operators().add<QPainterPath, const QPainterPath &>();
   // QPainterPath operator-(const QPainterPath &) const;
-  binder.operators().sub<QPainterPath, QPainterPath>();
+  binder.operators().sub<QPainterPath, const QPainterPath &>();
   // QPainterPath & operator&=(const QPainterPath &);
   binder.operators().and_assign<const QPainterPath &>();
   // QPainterPath & operator|=(const QPainterPath &);
@@ -212,6 +205,7 @@ static void register_painter_path_class(script::Namespace ns)
   binder.operators().sub_assign<const QPainterPath &>();
 }
 
+
 static void register_painter_path_stroker_class(script::Namespace ns)
 {
   using namespace script;
@@ -220,12 +214,12 @@ static void register_painter_path_stroker_class(script::Namespace ns)
 
   binding::Class<QPainterPathStroker> binder{ painter_path_stroker };
 
-  // ~QPainterPathStroker();
-  binder.add_dtor();
   // QPainterPathStroker();
   binder.ctors().add_default();
   // QPainterPathStroker(const QPen &);
-  binder.ctors().add<const QPen &>();
+  /// TODO: QPainterPathStroker(const QPen &);
+  // ~QPainterPathStroker();
+  binder.add_dtor();
   // void setWidth(qreal);
   binder.add_void_fun<qreal, &QPainterPathStroker::setWidth>("setWidth");
   // qreal width() const;
@@ -249,9 +243,9 @@ static void register_painter_path_stroker_class(script::Namespace ns)
   // void setDashPattern(Qt::PenStyle);
   binder.add_void_fun<Qt::PenStyle, &QPainterPathStroker::setDashPattern>("setDashPattern");
   // void setDashPattern(const QVector<qreal> &);
-  binder.add_void_fun<const QVector<qreal> &, &QPainterPathStroker::setDashPattern>("setDashPattern");
+  /// TODO: void setDashPattern(const QVector<qreal> &);
   // QVector<qreal> dashPattern() const;
-  binder.add_fun<QVector<qreal>, &QPainterPathStroker::dashPattern>("dashPattern");
+  /// TODO: QVector<qreal> dashPattern() const;
   // void setDashOffset(qreal);
   binder.add_void_fun<qreal, &QPainterPathStroker::setDashOffset>("setDashOffset");
   // qreal dashOffset() const;
@@ -260,21 +254,24 @@ static void register_painter_path_stroker_class(script::Namespace ns)
   binder.add_fun<QPainterPath, const QPainterPath &, &QPainterPathStroker::createStroke>("createStroke");
 }
 
-void register_painterpath_file(script::Namespace root)
+
+void register_painterpath_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_painter_path_class(root);
-  register_painter_path_stroker_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_painter_path_class(ns);
+  register_painter_path_stroker_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QPainterPath &, QPainterPath &);
   binder.add_void_fun<QPainterPath &, QPainterPath &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QPainterPath &);
-  binder.operators().put_to<QDataStream &, const QPainterPath &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QPainterPath &);
   // QDataStream & operator>>(QDataStream &, QPainterPath &);
-  binder.operators().read_from<QDataStream &, QPainterPath &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QPainterPath &);
   // QDebug operator<<(QDebug, const QPainterPath &);
-  binder.operators().left_shift<QDebug, QDebug, const QPainterPath &>();
+  /// TODO: QDebug operator<<(QDebug, const QPainterPath &);
 }
 

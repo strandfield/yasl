@@ -21,6 +21,7 @@
 #include "yasl/gui/glyphrun.h"
 #include "yasl/gui/image.h"
 #include "yasl/gui/painter.h"
+#include "yasl/gui/painterpath.h"
 #include "yasl/gui/pixmap.h"
 #include "yasl/gui/region.h"
 #include "yasl/gui/transform.h"
@@ -178,7 +179,7 @@ static void register_painter_class(script::Namespace ns)
   // QRegion clipRegion() const;
   binder.add_fun<QRegion, &QPainter::clipRegion>("clipRegion");
   // QPainterPath clipPath() const;
-  /// TODO: QPainterPath clipPath() const;
+  binder.add_fun<QPainterPath, &QPainter::clipPath>("clipPath");
   // void setClipRect(const QRectF &, Qt::ClipOperation);
   binder.add_void_fun<const QRectF &, Qt::ClipOperation, &QPainter::setClipRect>("setClipRect");
   // void setClipRect(const QRect &, Qt::ClipOperation);
@@ -188,7 +189,7 @@ static void register_painter_class(script::Namespace ns)
   // void setClipRegion(const QRegion &, Qt::ClipOperation);
   binder.add_void_fun<const QRegion &, Qt::ClipOperation, &QPainter::setClipRegion>("setClipRegion");
   // void setClipPath(const QPainterPath &, Qt::ClipOperation);
-  /// TODO: void setClipPath(const QPainterPath &, Qt::ClipOperation);
+  binder.add_void_fun<const QPainterPath &, Qt::ClipOperation, &QPainter::setClipPath>("setClipPath");
   // void setClipping(bool);
   binder.add_void_fun<bool, &QPainter::setClipping>("setClipping");
   // bool hasClipping() const;
@@ -266,9 +267,9 @@ static void register_painter_class(script::Namespace ns)
   // void strokePath(const QPainterPath &, const QPen &);
   /// TODO: void strokePath(const QPainterPath &, const QPen &);
   // void fillPath(const QPainterPath &, const QBrush &);
-  /// TODO: void fillPath(const QPainterPath &, const QBrush &);
+  binder.add_void_fun<const QPainterPath &, const QBrush &, &QPainter::fillPath>("fillPath");
   // void drawPath(const QPainterPath &);
-  /// TODO: void drawPath(const QPainterPath &);
+  binder.add_void_fun<const QPainterPath &, &QPainter::drawPath>("drawPath");
   // void drawPoint(const QPointF &);
   binder.add_void_fun<const QPointF &, &QPainter::drawPoint>("drawPoint");
   // void drawPoint(const QPoint &);

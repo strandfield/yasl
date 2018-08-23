@@ -40017,6 +40017,971 @@
                     "hincludes": "<QPainter>",
                     "name": "painter",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "MoveToElement"
+                                        },
+                                        {
+                                            "name": "LineToElement"
+                                        },
+                                        {
+                                            "name": "CurveToElement"
+                                        },
+                                        {
+                                            "name": "CurveToDataElement"
+                                        }
+                                    ],
+                                    "name": "ElementType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QPainterPath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPainterPath",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPainterPath",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QPainterPath &&"
+                                    ],
+                                    "returns": "QPainterPath &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "~QPainterPath",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QPainterPath &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "closeSubpath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTo",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "moveTo",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "lineTo",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "lineTo",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "arcMoveTo",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "arcMoveTo",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "arcTo",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "arcTo",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cubicTo",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cubicTo",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "quadTo",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "quadTo",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentPosition",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRect",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRect",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addEllipse",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addEllipse",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addEllipse",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addPolygon",
+                                    "parameters": [
+                                        "const QPolygonF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addText",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QFont &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addText",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "const QFont &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addPath",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRegion",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRoundedRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "qreal",
+                                        "qreal",
+                                        "Qt::SizeMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "addRoundedRect",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "Qt::SizeMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRoundRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRoundRect",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRoundRect",
+                                    "parameters": [
+                                        "const QRectF &",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRoundRect",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "qreal",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "connectPath",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersects",
+                                    "parameters": [
+                                        "const QRectF &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "translate",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "translated",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "controlPointRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRectF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fillRule",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::FillRule",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFillRule",
+                                    "parameters": [
+                                        "Qt::FillRule"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toReversed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toSubpathPolygons",
+                                    "parameters": [
+                                        "const QMatrix &"
+                                    ],
+                                    "returns": "QList<QPolygonF>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toFillPolygons",
+                                    "parameters": [
+                                        "const QMatrix &"
+                                    ],
+                                    "returns": "QList<QPolygonF>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toFillPolygon",
+                                    "parameters": [
+                                        "const QMatrix &"
+                                    ],
+                                    "returns": "QPolygonF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toSubpathPolygons",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "QList<QPolygonF>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toFillPolygons",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "QList<QPolygonF>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toFillPolygon",
+                                    "parameters": [
+                                        "const QTransform &"
+                                    ],
+                                    "returns": "QPolygonF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "elementCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "elementAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QPainterPath::Element",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setElementPositionAt",
+                                    "parameters": [
+                                        "int",
+                                        "qreal",
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "length",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "percentAtLength",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pointAtPercent",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "QPointF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "angleAtPercent",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "slopeAtPercent",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersects",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "united",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intersected",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "subtracted",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "subtractedInverted",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "simplified",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator&",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator|",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator+",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator-",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator&=",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator|=",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator-=",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPainterPath",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QPainterPath &",
+                                "QPainterPath &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QPainterPath &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QPainterPath &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QPainterPathStroker",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPainterPathStroker",
+                                    "parameters": [
+                                        "const QPen &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPainterPathStroker",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setWidth",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCapStyle",
+                                    "parameters": [
+                                        "Qt::PenCapStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "capStyle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::PenCapStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setJoinStyle",
+                                    "parameters": [
+                                        "Qt::PenJoinStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "joinStyle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::PenJoinStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMiterLimit",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "miterLimit",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurveThreshold",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "curveThreshold",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDashPattern",
+                                    "parameters": [
+                                        "Qt::PenStyle"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDashPattern",
+                                    "parameters": [
+                                        "const QVector<qreal> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dashPattern",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVector<qreal>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDashOffset",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dashOffset",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "createStroke",
+                                    "parameters": [
+                                        "const QPainterPath &"
+                                    ],
+                                    "returns": "QPainterPath",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPainterPathStroker",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QPainterPath &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QPainterPath>",
+                    "name": "painterpath",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -40565,6 +41530,18 @@
                 "id": "QPainterPixmapFragmentHints",
                 "name": "QPainter::PixmapFragmentHints",
                 "rename": "PixmapFragmentHints"
+            },
+            {
+                "header": "yasl/gui/painterpath.h",
+                "id": "QPainterPath",
+                "name": "QPainterPath",
+                "rename": "PainterPath"
+            },
+            {
+                "header": "yasl/gui/painterpath.h",
+                "id": "QPainterPathStroker",
+                "name": "QPainterPathStroker",
+                "rename": "PainterPathStroker"
             }
         ],
         "enums": [
@@ -41398,6 +42375,11 @@
                 "header": "yasl/gui/painter.h",
                 "id": "QPainterCompositionMode",
                 "name": "QPainter::CompositionMode"
+            },
+            {
+                "header": "yasl/gui/painterpath.h",
+                "id": "QPainterPathElementType",
+                "name": "QPainterPath::ElementType"
             }
         ],
         "fundamentals": [

@@ -12,6 +12,7 @@
 #include "yasl/core/line.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
+#include "yasl/gui/painterpath.h"
 #include "yasl/gui/region.h"
 #include "yasl/gui/transform.h"
 
@@ -145,7 +146,7 @@ static void register_transform_class(script::Namespace ns)
   // QRegion map(const QRegion &) const;
   binder.add_fun<QRegion, const QRegion &, &QTransform::map>("map");
   // QPainterPath map(const QPainterPath &) const;
-  /// TODO: QPainterPath map(const QPainterPath &) const;
+  binder.add_fun<QPainterPath, const QPainterPath &, &QTransform::map>("map");
   // QPolygon mapToPolygon(const QRect &) const;
   /// TODO: QPolygon mapToPolygon(const QRect &) const;
   // QRect mapRect(const QRect &) const;
@@ -207,7 +208,7 @@ void register_transform_file(script::Namespace gui)
   // QRegion operator*(const QRegion &, const QTransform &);
   binder.operators().mul<QRegion, const QRegion &, const QTransform &>();
   // QPainterPath operator*(const QPainterPath &, const QTransform &);
-  /// TODO: QPainterPath operator*(const QPainterPath &, const QTransform &);
+  binder.operators().mul<QPainterPath, const QPainterPath &, const QTransform &>();
   // QTransform operator*(const QTransform &, qreal);
   binder.operators().mul<QTransform, const QTransform &, qreal>();
   // QTransform operator/(const QTransform &, qreal);
