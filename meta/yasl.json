@@ -43793,6 +43793,418 @@
                     "hincludes": "<QTextOption>",
                     "name": "textoption",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "checked": 0,
+                                    "name": "QValidator",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QValidator",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Invalid"
+                                        },
+                                        {
+                                            "name": "Intermediate"
+                                        },
+                                        {
+                                            "name": "Acceptable"
+                                        }
+                                    ],
+                                    "name": "State",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "setLocale",
+                                    "parameters": [
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "locale",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QLocale",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "validate",
+                                    "parameters": [
+                                        "QString &",
+                                        "int &"
+                                    ],
+                                    "returns": "QValidator::State",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fixup",
+                                    "parameters": [
+                                        "QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "changed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QValidator",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QValidator",
+                            "elements": [
+                                {
+                                    "name": "QIntValidator",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QIntValidator",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QIntValidator",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "validate",
+                                    "parameters": [
+                                        "QString &",
+                                        "int &"
+                                    ],
+                                    "returns": "QValidator::State",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fixup",
+                                    "parameters": [
+                                        "QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottom",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTop",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRange",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottom",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "top",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "bottomChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "topChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QIntValidator",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QValidator",
+                            "elements": [
+                                {
+                                    "name": "QDoubleValidator",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDoubleValidator",
+                                    "parameters": [
+                                        "double",
+                                        "double",
+                                        "int",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDoubleValidator",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "StandardNotation"
+                                        },
+                                        {
+                                            "name": "ScientificNotation"
+                                        }
+                                    ],
+                                    "name": "Notation",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "validate",
+                                    "parameters": [
+                                        "QString &",
+                                        "int &"
+                                    ],
+                                    "returns": "QValidator::State",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRange",
+                                    "parameters": [
+                                        "double",
+                                        "double",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBottom",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTop",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDecimals",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNotation",
+                                    "parameters": [
+                                        "QDoubleValidator::Notation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bottom",
+                                    "parameters": [
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "top",
+                                    "parameters": [
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "decimals",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "notation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QDoubleValidator::Notation",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "bottomChanged",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "topChanged",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "decimalsChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "notationChanged",
+                                    "parameters": [
+                                        "QDoubleValidator::Notation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDoubleValidator",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QValidator",
+                            "elements": [
+                                {
+                                    "name": "QRegularExpressionValidator",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRegularExpressionValidator",
+                                    "parameters": [
+                                        "const QRegularExpression &",
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QRegularExpressionValidator",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "validate",
+                                    "parameters": [
+                                        "QString &",
+                                        "int &"
+                                    ],
+                                    "returns": "QValidator::State",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "regularExpression",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegularExpression",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRegularExpression",
+                                    "parameters": [
+                                        "const QRegularExpression &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "regularExpressionChanged",
+                                    "parameters": [
+                                        "const QRegularExpression &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QRegularExpressionValidator",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QValidator>",
+                    "name": "validator",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -44408,6 +44820,34 @@
                 "id": "QTextOptionFlags",
                 "name": "QTextOption::Flags",
                 "rename": "Flags"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QValidator",
+                "name": "QValidator",
+                "rename": "Validator",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QIntValidator",
+                "name": "QIntValidator",
+                "rename": "IntValidator",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QDoubleValidator",
+                "name": "QDoubleValidator",
+                "rename": "DoubleValidator",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QRegularExpressionValidator",
+                "name": "QRegularExpressionValidator",
+                "rename": "RegularExpressionValidator",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
@@ -45312,6 +45752,16 @@
                 "id": "QTextOptionFlag",
                 "links": "flags@QTextOption::Flags",
                 "name": "QTextOption::Flag"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QValidatorState",
+                "name": "QValidator::State"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QDoubleValidatorNotation",
+                "name": "QDoubleValidator::Notation"
             }
         ],
         "fundamentals": [
