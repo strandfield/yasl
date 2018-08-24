@@ -35476,7 +35476,6 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "elements": [
@@ -45318,6 +45317,733 @@
                     "hincludes": "<QWindow>",
                     "name": "window",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QEvent",
+                            "elements": [
+                                {
+                                    "name": "QMouseEvent",
+                                    "parameters": [
+                                        "QEvent::Type",
+                                        "const QPointF &",
+                                        "Qt::MouseButton",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMouseEvent",
+                                    "parameters": [
+                                        "QEvent::Type",
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "Qt::MouseButton",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMouseEvent",
+                                    "parameters": [
+                                        "QEvent::Type",
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "Qt::MouseButton",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMouseEvent",
+                                    "parameters": [
+                                        "QEvent::Type",
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "Qt::MouseButton",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers",
+                                        "Qt::MouseEventSource"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QMouseEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalPos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalX",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalY",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "localPos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "windowPos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "screenPos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "button",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::MouseButton",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttons",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::MouseButtons",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLocalPos",
+                                    "parameters": [
+                                        "const QPointF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "source",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::MouseEventSource",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "flags",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::MouseEventFlags",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QMouseEvent",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QEvent",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "checked": 0,
+                                    "enumerators": [
+                                        {
+                                            "checked": 0,
+                                            "name": "DefaultDeltasPerStep"
+                                        }
+                                    ],
+                                    "name": "",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QWheelEvent",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "int",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers",
+                                        "Qt::Orientation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QWheelEvent",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "int",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers",
+                                        "Qt::Orientation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QWheelEvent",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "QPoint",
+                                        "QPoint",
+                                        "int",
+                                        "Qt::Orientation",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QWheelEvent",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "QPoint",
+                                        "QPoint",
+                                        "int",
+                                        "Qt::Orientation",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers",
+                                        "Qt::ScrollPhase"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QWheelEvent",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "QPoint",
+                                        "QPoint",
+                                        "int",
+                                        "Qt::Orientation",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers",
+                                        "Qt::ScrollPhase",
+                                        "Qt::MouseEventSource"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QWheelEvent",
+                                    "parameters": [
+                                        "const QPointF &",
+                                        "const QPointF &",
+                                        "QPoint",
+                                        "QPoint",
+                                        "int",
+                                        "Qt::Orientation",
+                                        "Qt::MouseButtons",
+                                        "Qt::KeyboardModifiers",
+                                        "Qt::ScrollPhase",
+                                        "Qt::MouseEventSource",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QWheelEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixelDelta",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "angleDelta",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "delta",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "orientation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::Orientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalPos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalX",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalY",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "posF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globalPosF",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPointF &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttons",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::MouseButtons",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "phase",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::ScrollPhase",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inverted",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "source",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::MouseEventSource",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QWheelEvent",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QEvent",
+                            "elements": [
+                                {
+                                    "name": "QKeyEvent",
+                                    "parameters": [
+                                        "QEvent::Type",
+                                        "int",
+                                        "Qt::KeyboardModifiers",
+                                        "const QString &",
+                                        "bool",
+                                        "ushort"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QKeyEvent",
+                                    "parameters": [
+                                        "QEvent::Type",
+                                        "int",
+                                        "Qt::KeyboardModifiers",
+                                        "quint32",
+                                        "quint32",
+                                        "quint32",
+                                        "const QString &",
+                                        "bool",
+                                        "ushort"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QKeyEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "key",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "matches",
+                                    "parameters": [
+                                        "QKeySequence::StandardKey"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "modifiers",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::KeyboardModifiers",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isAutoRepeat",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nativeScanCode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "quint32",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nativeVirtualKey",
+                                    "parameters": [
+                                    ],
+                                    "returns": "quint32",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nativeModifiers",
+                                    "parameters": [
+                                    ],
+                                    "returns": "quint32",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QKeyEvent",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QEvent",
+                            "elements": [
+                                {
+                                    "name": "QPaintEvent",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPaintEvent",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPaintEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QRect &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "region",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QRegion &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPaintEvent",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QEvent",
+                            "elements": [
+                                {
+                                    "name": "QMoveEvent",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QMoveEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPoint &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "oldPos",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPoint &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QMoveEvent",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QEvent",
+                            "elements": [
+                                {
+                                    "name": "QResizeEvent",
+                                    "parameters": [
+                                        "const QSize &",
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QResizeEvent",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QSize &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "oldSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QSize &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QResizeEvent",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QEvent",
+                            "elements": [
+                                {
+                                    "name": "QCloseEvent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QCloseEvent",
+                                    "type": "destructor"
+                                }
+                            ],
+                            "name": "QCloseEvent",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QEvent",
+                            "elements": [
+                                {
+                                    "name": "QShowEvent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QShowEvent",
+                                    "type": "destructor"
+                                }
+                            ],
+                            "name": "QShowEvent",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QEvent",
+                            "elements": [
+                                {
+                                    "name": "QHideEvent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QHideEvent",
+                                    "type": "destructor"
+                                }
+                            ],
+                            "name": "QHideEvent",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "QKeyEvent *",
+                                "QKeySequence::StandardKey"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator==",
+                            "parameters": [
+                                "QKeySequence::StandardKey",
+                                "QKeyEvent *"
+                            ],
+                            "returns": "bool",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<qevent.h>",
+                    "name": "guievent",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -45974,6 +46700,69 @@
                 "header": "yasl/gui/window.h",
                 "id": "QWindowStar",
                 "name": "QWindow*"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QMouseEvent",
+                "name": "QMouseEvent",
+                "rename": "MouseEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QWheelEvent",
+                "name": "QWheelEvent",
+                "rename": "WheelEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QKeyEvent",
+                "name": "QKeyEvent",
+                "rename": "KeyEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QPaintEvent",
+                "name": "QPaintEvent",
+                "rename": "PaintEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QMoveEvent",
+                "name": "QMoveEvent",
+                "rename": "MoveEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QResizeEvent",
+                "name": "QResizeEvent",
+                "rename": "ResizeEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QCloseEvent",
+                "name": "QCloseEvent",
+                "rename": "CloseEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QShowEvent",
+                "name": "QShowEvent",
+                "rename": "ShowEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QHideEvent",
+                "name": "QHideEvent",
+                "rename": "HideEvent",
+                "tag": "qevent_tag"
             }
         ],
         "enums": [

@@ -7,15 +7,7 @@
 #include "yasl/binding/qclass.h"
 #include "yasl/binding/qsignal.h"
 #include "yasl/core/size.h"
-#include "yasl/gui/closeevent.h"
-#include "yasl/gui/hideevent.h"
-#include "yasl/gui/keyevent.h"
-#include "yasl/gui/mouseevent.h"
-#include "yasl/gui/moveevent.h"
-#include "yasl/gui/paintevent.h"
-#include "yasl/gui/resizeevent.h"
-#include "yasl/gui/showevent.h"
-#include "yasl/gui/wheelevent.h"
+#include "yasl/gui/guievent.h"
 #include "yasl/utils/ref.h"
 
 #include <script/classbuilder.h>

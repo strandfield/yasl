@@ -40,17 +40,10 @@ void register_vector3d_file(script::Namespace n); // defined in vector3d.cpp
 void register_vector4d_file(script::Namespace n); // defined in vector4d.cpp
 void register_window_file(script::Namespace n); // defined in window.cpp
 
-void register_qcloseevent(script::Namespace n); // defined in closeevent.cpp
-void register_qhideevent(script::Namespace n); // defined in hideevent.cpp
-void register_qkeyevent(script::Namespace n); // defined in keyevent.cpp
-void register_qmouseevent(script::Namespace n); // defined in mouseevent.cpp
-void register_qmoveevent(script::Namespace n); // defined in moveevent.cpp
-void register_qpaintevent(script::Namespace n); // defined in paintevent.cpp
-void register_qpushbutton(script::Namespace n); // defined in pushbutton.cpp
-void register_qresizeevent(script::Namespace n); // defined in resizeevent.cpp
-void register_qshowevent(script::Namespace n); // defined in showevent.cpp
-void register_qwheelevent(script::Namespace n); // defined in wheelevent.cpp
+void register_guievent_file(script::Namespace n); // defined in guievent.cpp
+
 void register_qwidget(script::Namespace n); // defined in widget.cpp
+void register_qpushbutton(script::Namespace n); // defined in pushbutton.cpp
 
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
 
@@ -91,14 +84,7 @@ void load_gui_module(script::Module gui)
   register_window_file(gui.root());
 
   // Event classes
-  register_qcloseevent(gui.root());
-  register_qhideevent(gui.root());
-  register_qkeyevent(gui.root());
-  register_qmouseevent(gui.root());
-  register_qmoveevent(gui.root());
-  register_qresizeevent(gui.root());
-  register_qshowevent(gui.root());
-  register_qwheelevent(gui.root());
+  register_guievent_file(gui.root());
 
   register_qwidget(gui.root());
   register_qpushbutton(gui.root());
