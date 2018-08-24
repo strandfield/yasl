@@ -8,16 +8,10 @@
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
-#include "yasl/core/datastream.h"
-#include "yasl/core/iodevice.h"
 #include "yasl/core/rect.h"
-#include "yasl/core/string.h"
+#include "yasl/gui/picture.h"
 
-#include "yasl/gui/painter.h"
-
-#include <script/class.h>
 #include <script/classbuilder.h>
-#include <script/namespace.h>
 
 static void register_picture_class(script::Namespace ns)
 {
@@ -31,6 +25,8 @@ static void register_picture_class(script::Namespace ns)
   binder.ctors().add<int>();
   // QPicture(const QPicture &);
   binder.ctors().add<const QPicture &>();
+  // ~QPicture();
+  binder.add_dtor();
   // bool isNull() const;
   binder.add_fun<bool, &QPicture::isNull>("isNull");
   // int devType() const;
@@ -38,19 +34,19 @@ static void register_picture_class(script::Namespace ns)
   // uint size() const;
   binder.add_fun<uint, &QPicture::size>("size");
   // const char * data() const;
-  binder.add_fun<const char *, &QPicture::data>("data");
+  /// TODO: const char * data() const;
   // void setData(const char *, uint);
-  binder.add_void_fun<const char *, uint, &QPicture::setData>("setData");
+  /// TODO: void setData(const char *, uint);
   // bool play(QPainter *);
-  binder.add_fun<bool, QPainter *, &QPicture::play>("play");
+  /// TODO: bool play(QPainter *);
   // bool load(QIODevice *, const char *);
-  binder.add_fun<bool, QIODevice *, const char *, &QPicture::load>("load");
+  /// TODO: bool load(QIODevice *, const char *);
   // bool load(const QString &, const char *);
-  binder.add_fun<bool, const QString &, const char *, &QPicture::load>("load");
+  /// TODO: bool load(const QString &, const char *);
   // bool save(QIODevice *, const char *);
-  binder.add_fun<bool, QIODevice *, const char *, &QPicture::save>("save");
+  /// TODO: bool save(QIODevice *, const char *);
   // bool save(const QString &, const char *);
-  binder.add_fun<bool, const QString &, const char *, &QPicture::save>("save");
+  /// TODO: bool save(const QString &, const char *);
   // QRect boundingRect() const;
   binder.add_fun<QRect, &QPicture::boundingRect>("boundingRect");
   // void setBoundingRect(const QRect &);
@@ -66,20 +62,21 @@ static void register_picture_class(script::Namespace ns)
   // bool isDetached() const;
   binder.add_fun<bool, &QPicture::isDetached>("isDetached");
   // static const char * pictureFormat(const QString &);
-  binder.add_static<const char *, const QString &, &QPicture::pictureFormat>("pictureFormat");
+  /// TODO: static const char * pictureFormat(const QString &);
   // static QList<QByteArray> inputFormats();
   binder.add_static<QList<QByteArray>, &QPicture::inputFormats>("inputFormats");
   // static QList<QByteArray> outputFormats();
   binder.add_static<QList<QByteArray>, &QPicture::outputFormats>("outputFormats");
   // static QStringList inputFormatList();
-  binder.add_static<QStringList, &QPicture::inputFormatList>("inputFormatList");
+  /// TODO: static QStringList inputFormatList();
   // static QStringList outputFormatList();
-  binder.add_static<QStringList, &QPicture::outputFormatList>("outputFormatList");
+  /// TODO: static QStringList outputFormatList();
   // QPaintEngine * paintEngine() const;
-  /// ignore: binder.add_fun<QPaintEngine *, &QPicture::paintEngine>("paintEngine");
+  /// TODO: QPaintEngine * paintEngine() const;
   // QPicture::DataPtr & data_ptr();
-  /// ignore: binder.add_fun<QPicture::DataPtr &, &QPicture::data_ptr>("data_ptr");
+  /// TODO: QPicture::DataPtr & data_ptr();
 }
+
 
 static void register_picture_i_o_class(script::Namespace ns)
 {
@@ -92,17 +89,19 @@ static void register_picture_i_o_class(script::Namespace ns)
   // QPictureIO();
   binder.ctors().add_default();
   // QPictureIO(QIODevice *, const char *);
-  binder.ctors().add<QIODevice *, const char *>();
+  /// TODO: QPictureIO(QIODevice *, const char *);
   // QPictureIO(const QString &, const char *);
-  binder.ctors().add<const QString &, const char *>();
+  /// TODO: QPictureIO(const QString &, const char *);
+  // ~QPictureIO();
+  binder.add_dtor();
   // const QPicture & picture() const;
   binder.add_fun<const QPicture &, &QPictureIO::picture>("picture");
   // int status() const;
   binder.add_fun<int, &QPictureIO::status>("status");
   // const char * format() const;
-  binder.add_fun<const char *, &QPictureIO::format>("format");
+  /// TODO: const char * format() const;
   // QIODevice * ioDevice() const;
-  binder.add_fun<QIODevice *, &QPictureIO::ioDevice>("ioDevice");
+  /// TODO: QIODevice * ioDevice() const;
   // QString fileName() const;
   binder.add_fun<QString, &QPictureIO::fileName>("fileName");
   // int quality() const;
@@ -110,7 +109,7 @@ static void register_picture_i_o_class(script::Namespace ns)
   // QString description() const;
   binder.add_fun<QString, &QPictureIO::description>("description");
   // const char * parameters() const;
-  binder.add_fun<const char *, &QPictureIO::parameters>("parameters");
+  /// TODO: const char * parameters() const;
   // float gamma() const;
   binder.add_fun<float, &QPictureIO::gamma>("gamma");
   // void setPicture(const QPicture &);
@@ -118,9 +117,9 @@ static void register_picture_i_o_class(script::Namespace ns)
   // void setStatus(int);
   binder.add_void_fun<int, &QPictureIO::setStatus>("setStatus");
   // void setFormat(const char *);
-  binder.add_void_fun<const char *, &QPictureIO::setFormat>("setFormat");
+  /// TODO: void setFormat(const char *);
   // void setIODevice(QIODevice *);
-  binder.add_void_fun<QIODevice *, &QPictureIO::setIODevice>("setIODevice");
+  /// TODO: void setIODevice(QIODevice *);
   // void setFileName(const QString &);
   binder.add_void_fun<const QString &, &QPictureIO::setFileName>("setFileName");
   // void setQuality(int);
@@ -128,7 +127,7 @@ static void register_picture_i_o_class(script::Namespace ns)
   // void setDescription(const QString &);
   binder.add_void_fun<const QString &, &QPictureIO::setDescription>("setDescription");
   // void setParameters(const char *);
-  binder.add_void_fun<const char *, &QPictureIO::setParameters>("setParameters");
+  /// TODO: void setParameters(const char *);
   // void setGamma(float);
   binder.add_void_fun<float, &QPictureIO::setGamma>("setGamma");
   // bool read();
@@ -138,28 +137,31 @@ static void register_picture_i_o_class(script::Namespace ns)
   // static QByteArray pictureFormat(const QString &);
   binder.add_static<QByteArray, const QString &, &QPictureIO::pictureFormat>("pictureFormat");
   // static QByteArray pictureFormat(QIODevice *);
-  binder.add_static<QByteArray, QIODevice *, &QPictureIO::pictureFormat>("pictureFormat");
+  /// TODO: static QByteArray pictureFormat(QIODevice *);
   // static QList<QByteArray> inputFormats();
   binder.add_static<QList<QByteArray>, &QPictureIO::inputFormats>("inputFormats");
   // static QList<QByteArray> outputFormats();
   binder.add_static<QList<QByteArray>, &QPictureIO::outputFormats>("outputFormats");
   // static void defineIOHandler(const char *, const char *, const char *, picture_io_handler, picture_io_handler);
-  binder.add_static_void_fun<const char *, const char *, const char *, picture_io_handler, picture_io_handler, &QPictureIO::defineIOHandler>("defineIOHandler");
+  /// TODO: static void defineIOHandler(const char *, const char *, const char *, picture_io_handler, picture_io_handler);
 }
 
-void register_picture_file(script::Namespace root)
+
+void register_picture_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_picture_class(root);
-  register_picture_i_o_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_picture_class(ns);
+  register_picture_i_o_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QPicture &, QPicture &);
   binder.add_void_fun<QPicture &, QPicture &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QPicture &);
-  binder.operators().put_to<QDataStream &, const QPicture &>();
+  /// TODO: QDataStream & operator<<(QDataStream &, const QPicture &);
   // QDataStream & operator>>(QDataStream &, QPicture &);
-  binder.operators().read_from<QDataStream &, QPicture &>();
+  /// TODO: QDataStream & operator>>(QDataStream &, QPicture &);
 }
 

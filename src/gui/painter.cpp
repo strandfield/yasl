@@ -23,6 +23,7 @@
 #include "yasl/gui/painter.h"
 #include "yasl/gui/painterpath.h"
 #include "yasl/gui/pen.h"
+#include "yasl/gui/picture.h"
 #include "yasl/gui/pixmap.h"
 #include "yasl/gui/region.h"
 #include "yasl/gui/transform.h"
@@ -392,11 +393,11 @@ static void register_painter_class(script::Namespace ns)
   // void drawTiledPixmap(const QRect &, const QPixmap &, const QPoint &);
   binder.add_void_fun<const QRect &, const QPixmap &, const QPoint &, &QPainter::drawTiledPixmap>("drawTiledPixmap");
   // void drawPicture(const QPointF &, const QPicture &);
-  /// TODO: void drawPicture(const QPointF &, const QPicture &);
+  binder.add_void_fun<const QPointF &, const QPicture &, &QPainter::drawPicture>("drawPicture");
   // void drawPicture(int, int, const QPicture &);
-  /// TODO: void drawPicture(int, int, const QPicture &);
+  binder.add_void_fun<int, int, const QPicture &, &QPainter::drawPicture>("drawPicture");
   // void drawPicture(const QPoint &, const QPicture &);
-  /// TODO: void drawPicture(const QPoint &, const QPicture &);
+  binder.add_void_fun<const QPoint &, const QPicture &, &QPainter::drawPicture>("drawPicture");
   // void drawPixmap(const QRectF &, const QPixmap &, const QRectF &);
   binder.add_void_fun<const QRectF &, const QPixmap &, const QRectF &, &QPainter::drawPixmap>("drawPixmap");
   // void drawPixmap(const QRect &, const QPixmap &, const QRect &);

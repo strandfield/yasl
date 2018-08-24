@@ -41946,6 +41946,503 @@
                     "hincludes": "<QPen>",
                     "name": "pen",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QPicture",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPicture",
+                                    "parameters": [
+                                        "const QPicture &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPicture",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "devType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "data",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const char *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setData",
+                                    "parameters": [
+                                        "const char *",
+                                        "uint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "play",
+                                    "parameters": [
+                                        "QPainter *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "load",
+                                    "parameters": [
+                                        "QIODevice *",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "load",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "save",
+                                    "parameters": [
+                                        "QIODevice *",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "save",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const char *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "boundingRect",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBoundingRect",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QPicture &"
+                                    ],
+                                    "returns": "QPicture &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QPicture &&"
+                                    ],
+                                    "returns": "QPicture &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QPicture &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "detach",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDetached",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "pictureFormat",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "const char *",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "inputFormats",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "outputFormats",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "inputFormatList",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "outputFormatList",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "paintEngine",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPaintEngine *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "data_ptr",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPicture::DataPtr &",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPicture",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QPicture &",
+                                "QPicture &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QPictureIO",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPictureIO",
+                                    "parameters": [
+                                        "QIODevice *",
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPictureIO",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPictureIO",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "picture",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const QPicture &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "status",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "format",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const char *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "ioDevice",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QIODevice *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fileName",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "quality",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "description",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "parameters",
+                                    "parameters": [
+                                    ],
+                                    "returns": "const char *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "gamma",
+                                    "parameters": [
+                                    ],
+                                    "returns": "float",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPicture",
+                                    "parameters": [
+                                        "const QPicture &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStatus",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFormat",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIODevice",
+                                    "parameters": [
+                                        "QIODevice *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFileName",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setQuality",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDescription",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setParameters",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGamma",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "read",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "write",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "pictureFormat",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "pictureFormat",
+                                    "parameters": [
+                                        "QIODevice *"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "inputFormats",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "outputFormats",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "defineIOHandler",
+                                    "parameters": [
+                                        "const char *",
+                                        "const char *",
+                                        "const char *",
+                                        "picture_io_handler",
+                                        "picture_io_handler"
+                                    ],
+                                    "returns": "void",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPictureIO",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QPicture &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QPicture &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QPicture>",
+                    "name": "picture",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -42518,6 +43015,18 @@
                 "id": "QPen",
                 "name": "QPen",
                 "rename": "Pen"
+            },
+            {
+                "header": "yasl/gui/picture.h",
+                "id": "QPicture",
+                "name": "QPicture",
+                "rename": "Picture"
+            },
+            {
+                "header": "yasl/gui/picture.h",
+                "id": "QPictureIO",
+                "name": "QPictureIO",
+                "rename": "PictureIO"
             }
         ],
         "enums": [
