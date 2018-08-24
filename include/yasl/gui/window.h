@@ -11,19 +11,11 @@
 #include <QWindow>
 
 namespace binding {
-template<> struct tag_resolver<QWindow> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QWindow> { inline static script::Type get() { return script::Type::QWindow; } };
+template<> struct tag_resolver<QWindow> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QWindow*> { inline static script::Type get() { return script::Type::QWindowStar; } };
 template<> struct make_type_t<QWindow::AncestorMode> { inline static script::Type get() { return script::Type::QWindowAncestorMode; } };
 template<> struct make_type_t<QWindow::Visibility> { inline static script::Type get() { return script::Type::QWindowVisibility; } };
-
-//template<> inline script::Value make_value(QWindow *obj, script::Engine *e)
-//{
-//  return make_ref(e, script::Type::QWindowStar, obj);
-//}
-//
-//template<> struct storage_type<QWindow> { typedef QWindow* type; };
-//template<> inline QWindow* get<QWindow>(const script::Value & val) { return qobject_cast<QWindow*>(val.toQObject()); }
 } // namespace binding
 
 #endif // YASL_GUI_WINDOW_H

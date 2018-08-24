@@ -7,27 +7,36 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
-#include "yasl/binding/qsignal.h"
+#include "yasl/utils/ref.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/margins.h"
 #include "yasl/core/object.h"
 #include "yasl/core/point.h"
+#include "yasl/core/rect.h"
 #include "yasl/core/size.h"
-
 #include "yasl/gui/cursor.h"
 #include "yasl/gui/icon.h"
 #include "yasl/gui/region.h"
-#include "yasl/gui/screen.h"
-#include "yasl/gui/surface.h"
-#include "yasl/gui/surfaceformat.h"
+#include "yasl/gui/window.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
 
-#include <QDebug>
+static void register_window_visibility_enum(script::Class window)
+{
+  using namespace script;
+
+  Enum visibility = window.Enum("Visibility").setId(script::Type::QWindowVisibility).get();
+
+  visibility.addValue("Hidden", QWindow::Hidden);
+  visibility.addValue("AutomaticVisibility", QWindow::AutomaticVisibility);
+  visibility.addValue("Windowed", QWindow::Windowed);
+  visibility.addValue("Minimized", QWindow::Minimized);
+  visibility.addValue("Maximized", QWindow::Maximized);
+  visibility.addValue("FullScreen", QWindow::FullScreen);
+}
+
 
 static void register_window_ancestor_mode_enum(script::Class window)
 {
@@ -39,44 +48,29 @@ static void register_window_ancestor_mode_enum(script::Class window)
   ancestor_mode.addValue("IncludeTransients", QWindow::IncludeTransients);
 }
 
-static void register_window_visibility_enum(script::Class window)
-{
-  using namespace script;
-
-  Enum visibility = window.Enum("Visibility").setId(script::Type::QWindowVisibility).get();
-
-  visibility.addValue("AutomaticVisibility", QWindow::AutomaticVisibility);
-  visibility.addValue("FullScreen", QWindow::FullScreen);
-  visibility.addValue("Hidden", QWindow::Hidden);
-  visibility.addValue("Maximized", QWindow::Maximized);
-  visibility.addValue("Minimized", QWindow::Minimized);
-  visibility.addValue("Windowed", QWindow::Windowed);
-}
 
 static void register_window_class(script::Namespace ns)
 {
   using namespace script;
 
   Class window = ns.Class("Window").setId(script::Type::QWindow)
-    .setBase(Type::QObject).get();
+    .setBase(script::Type::QObject).get();
 
-  register_window_ancestor_mode_enum(window);
+  register_ref_specialization(window.engine(), script::Type::QWindow, script::Type::QWindowStar);
   register_window_visibility_enum(window);
-
-  register_ref_specialization(ns.engine(), Type::QWindow, Type::QWindowStar);
-
+  register_window_ancestor_mode_enum(window);
   binding::QClass<QWindow> binder{ window, &QWindow::staticMetaObject };
 
-  // ~QWindow();
-  binder.add_dtor();
   // QWindow(QScreen *);
-  binder.ctors().add<QScreen *>();
+  /// TODO: QWindow(QScreen *);
   // QWindow(QWindow *);
   binder.ctors().add<QWindow *>();
+  // ~QWindow();
+  binder.add_dtor();
   // void setSurfaceType(QSurface::SurfaceType);
-  binder.add_void_fun<QSurface::SurfaceType, &QWindow::setSurfaceType>("setSurfaceType");
+  /// TODO: void setSurfaceType(QSurface::SurfaceType);
   // QSurface::SurfaceType surfaceType() const;
-  binder.add_fun<QSurface::SurfaceType, &QWindow::surfaceType>("surfaceType");
+  /// TODO: QSurface::SurfaceType surfaceType() const;
   // bool isVisible() const;
   binder.add_fun<bool, &QWindow::isVisible>("isVisible");
   // QWindow::Visibility visibility() const;
@@ -86,7 +80,7 @@ static void register_window_class(script::Namespace ns)
   // void create();
   binder.add_void_fun<&QWindow::create>("create");
   // WId winId() const;
-  /// ignore: binder.add_fun<WId, &QWindow::winId>("winId");
+  /// TODO: WId winId() const;
   // QWindow * parent(QWindow::AncestorMode) const;
   binder.add_fun<QWindow *, QWindow::AncestorMode, &QWindow::parent>("parent");
   // QWindow * parent() const;
@@ -102,15 +96,15 @@ static void register_window_class(script::Namespace ns)
   // void setModality(Qt::WindowModality);
   binder.add_void_fun<Qt::WindowModality, &QWindow::setModality>("setModality");
   // void setFormat(const QSurfaceFormat &);
-  binder.add_void_fun<const QSurfaceFormat &, &QWindow::setFormat>("setFormat");
+  /// TODO: void setFormat(const QSurfaceFormat &);
   // QSurfaceFormat format() const;
-  binder.add_fun<QSurfaceFormat, &QWindow::format>("format");
+  /// TODO: QSurfaceFormat format() const;
   // QSurfaceFormat requestedFormat() const;
-  binder.add_fun<QSurfaceFormat, &QWindow::requestedFormat>("requestedFormat");
+  /// TODO: QSurfaceFormat requestedFormat() const;
   // void setFlags(Qt::WindowFlags);
-  binder.add_void_fun<Qt::WindowFlags, &QWindow::setFlags>("setFlags");
+  /// TODO: void setFlags(Qt::WindowFlags);
   // Qt::WindowFlags flags() const;
-  binder.add_fun<Qt::WindowFlags, &QWindow::flags>("flags");
+  /// TODO: Qt::WindowFlags flags() const;
   // void setFlag(Qt::WindowType, bool);
   binder.add_void_fun<Qt::WindowType, bool, &QWindow::setFlag>("setFlag");
   // Qt::WindowType type() const;
@@ -136,11 +130,11 @@ static void register_window_class(script::Namespace ns)
   // Qt::WindowState windowState() const;
   binder.add_fun<Qt::WindowState, &QWindow::windowState>("windowState");
   // Qt::WindowStates windowStates() const;
-  binder.add_fun<Qt::WindowStates, &QWindow::windowStates>("windowStates");
+  /// TODO: Qt::WindowStates windowStates() const;
   // void setWindowState(Qt::WindowState);
   binder.add_void_fun<Qt::WindowState, &QWindow::setWindowState>("setWindowState");
   // void setWindowStates(Qt::WindowStates);
-  binder.add_void_fun<Qt::WindowStates, &QWindow::setWindowStates>("setWindowStates");
+  /// TODO: void setWindowStates(Qt::WindowStates);
   // void setTransientParent(QWindow *);
   binder.add_void_fun<QWindow *, &QWindow::setTransientParent>("setTransientParent");
   // QWindow * transientParent() const;
@@ -214,17 +208,17 @@ static void register_window_class(script::Namespace ns)
   // void destroy();
   binder.add_void_fun<&QWindow::destroy>("destroy");
   // QPlatformWindow * handle() const;
-  /// ignore: binder.add_fun<QPlatformWindow *, &QWindow::handle>("handle");
+  /// TODO: QPlatformWindow * handle() const;
   // bool setKeyboardGrabEnabled(bool);
   binder.add_fun<bool, bool, &QWindow::setKeyboardGrabEnabled>("setKeyboardGrabEnabled");
   // bool setMouseGrabEnabled(bool);
   binder.add_fun<bool, bool, &QWindow::setMouseGrabEnabled>("setMouseGrabEnabled");
   // QScreen * screen() const;
-  /// TODO: binder.add_fun<QScreen *, &QWindow::screen>("screen");
+  /// TODO: QScreen * screen() const;
   // void setScreen(QScreen *);
-  binder.add_void_fun<QScreen *, &QWindow::setScreen>("setScreen");
+  /// TODO: void setScreen(QScreen *);
   // QAccessibleInterface * accessibleRoot() const;
-  /// TODO: binder.add_fun<QAccessibleInterface *, &QWindow::accessibleRoot>("accessibleRoot");
+  /// TODO: QAccessibleInterface * accessibleRoot() const;
   // QObject * focusObject() const;
   binder.add_fun<QObject *, &QWindow::focusObject>("focusObject");
   // QPoint mapToGlobal(const QPoint &) const;
@@ -237,10 +231,12 @@ static void register_window_class(script::Namespace ns)
   binder.add_void_fun<const QCursor &, &QWindow::setCursor>("setCursor");
   // void unsetCursor();
   binder.add_void_fun<&QWindow::unsetCursor>("unsetCursor");
+  // static QWindow * fromWinId(WId);
+  /// TODO: static QWindow * fromWinId(WId);
   // void setVulkanInstance(QVulkanInstance *);
-  /// TODO: binder.add_void_fun<QVulkanInstance *, &QWindow::setVulkanInstance>("setVulkanInstance");
+  /// TODO: void setVulkanInstance(QVulkanInstance *);
   // QVulkanInstance * vulkanInstance() const;
-  /// TODO: binder.add_fun<QVulkanInstance *, &QWindow::vulkanInstance>("vulkanInstance");
+  /// TODO: QVulkanInstance * vulkanInstance() const;
   // void requestActivate();
   binder.add_void_fun<&QWindow::requestActivate>("requestActivate");
   // void setVisible(bool);
@@ -289,10 +285,6 @@ static void register_window_class(script::Namespace ns)
   binder.add_void_fun<int, &QWindow::alert>("alert");
   // void requestUpdate();
   binder.add_void_fun<&QWindow::requestUpdate>("requestUpdate");
-
-  /* Signals */
-  // void screenChanged(QScreen *);
-  /// TODO: binder.sigs().add<QScreen*>("screenChanged", "screenChanged(QScreen*)");
   // void modalityChanged(Qt::WindowModality);
   binder.sigs().add<Qt::WindowModality>("modalityChanged", "modalityChanged(Qt::WindowModality)");
   // void windowStateChanged(Qt::WindowState);
@@ -328,21 +320,20 @@ static void register_window_class(script::Namespace ns)
   // void opacityChanged(qreal);
   binder.sigs().add<qreal>("opacityChanged", "opacityChanged(qreal)");
 
-  ns.engine()->registerQtType(&QWindow::staticMetaObject, window.id());
+  window.engine()->registerQtType(&QWindow::staticMetaObject, window.id());
 }
 
-void register_window_file(script::Namespace root)
+
+void register_window_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_window_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
 
-  // QWindow * qobject_cast(QObject *);
-  binder.add_fun<QWindow *, QObject *, &qobject_cast>("qobject_cast");
-  // const QWindow * qobject_cast(const QObject *);
-  binder.add_fun<const QWindow *, const QObject *, &qobject_cast>("qobject_cast");
+  register_window_class(ns);
+  binding::Namespace binder{ ns };
+
   // QDebug operator<<(QDebug, const QWindow *);
-  binder.operators().left_shift<QDebug, QDebug, const QWindow *>();
+  /// TODO: QDebug operator<<(QDebug, const QWindow *);
 }
 

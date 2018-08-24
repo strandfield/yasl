@@ -44205,6 +44205,1119 @@
                     "hincludes": "<QValidator>",
                     "name": "validator",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Hidden"
+                                        },
+                                        {
+                                            "name": "AutomaticVisibility"
+                                        },
+                                        {
+                                            "name": "Windowed"
+                                        },
+                                        {
+                                            "name": "Minimized"
+                                        },
+                                        {
+                                            "name": "Maximized"
+                                        },
+                                        {
+                                            "name": "FullScreen"
+                                        }
+                                    ],
+                                    "name": "Visibility",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ExcludeTransients"
+                                        },
+                                        {
+                                            "name": "IncludeTransients"
+                                        }
+                                    ],
+                                    "name": "AncestorMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QWindow",
+                                    "parameters": [
+                                        "QScreen *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QWindow",
+                                    "parameters": [
+                                        "QWindow *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QWindow",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setSurfaceType",
+                                    "parameters": [
+                                        "QSurface::SurfaceType"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "surfaceType",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSurface::SurfaceType",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isVisible",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "visibility",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QWindow::Visibility",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisibility",
+                                    "parameters": [
+                                        "QWindow::Visibility"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "create",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "winId",
+                                    "parameters": [
+                                    ],
+                                    "returns": "WId",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "parent",
+                                    "parameters": [
+                                        "QWindow::AncestorMode"
+                                    ],
+                                    "returns": "QWindow *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "parent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QWindow *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setParent",
+                                    "parameters": [
+                                        "QWindow *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTopLevel",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isModal",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "modality",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::WindowModality",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setModality",
+                                    "parameters": [
+                                        "Qt::WindowModality"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFormat",
+                                    "parameters": [
+                                        "const QSurfaceFormat &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "format",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSurfaceFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "requestedFormat",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSurfaceFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFlags",
+                                    "parameters": [
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "flags",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::WindowFlags",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFlag",
+                                    "parameters": [
+                                        "Qt::WindowType",
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "type",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::WindowType",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "title",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOpacity",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "opacity",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMask",
+                                    "parameters": [
+                                        "const QRegion &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mask",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRegion",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isActive",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reportContentOrientationChange",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contentOrientation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::ScreenOrientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "devicePixelRatio",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "windowState",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::WindowState",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "windowStates",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::WindowStates",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWindowState",
+                                    "parameters": [
+                                        "Qt::WindowState"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWindowStates",
+                                    "parameters": [
+                                        "Qt::WindowStates"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTransientParent",
+                                    "parameters": [
+                                        "QWindow *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transientParent",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QWindow *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isAncestorOf",
+                                    "parameters": [
+                                        "const QWindow *",
+                                        "QWindow::AncestorMode"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isExposed",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumHeight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximumWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximumHeight",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximumSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "baseSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeIncrement",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimumSize",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximumSize",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBaseSize",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSizeIncrement",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "geometry",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "frameMargins",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QMargins",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "frameGeometry",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "framePosition",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFramePosition",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "width",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "height",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "x",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "y",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "position",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPosition",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPosition",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resize",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resize",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFilePath",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "filePath",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIcon",
+                                    "parameters": [
+                                        "const QIcon &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "icon",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QIcon",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "destroy",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "handle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPlatformWindow *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setKeyboardGrabEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMouseGrabEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "screen",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QScreen *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setScreen",
+                                    "parameters": [
+                                        "QScreen *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "accessibleRoot",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QAccessibleInterface *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "focusObject",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QObject *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mapToGlobal",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mapFromGlobal",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QPoint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cursor",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QCursor",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCursor",
+                                    "parameters": [
+                                        "const QCursor &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "unsetCursor",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromWinId",
+                                    "parameters": [
+                                        "WId"
+                                    ],
+                                    "returns": "QWindow *",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVulkanInstance",
+                                    "parameters": [
+                                        "QVulkanInstance *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "vulkanInstance",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QVulkanInstance *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "requestActivate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "show",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "hide",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showMinimized",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showMaximized",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showFullScreen",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showNormal",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "close",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "raise",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "lower",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTitle",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setX",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setY",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHeight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGeometry",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGeometry",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimumWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimumHeight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximumWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximumHeight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "alert",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "requestUpdate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "checked": 0,
+                                    "name": "screenChanged",
+                                    "parameters": [
+                                        "QScreen *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "modalityChanged",
+                                    "parameters": [
+                                        "Qt::WindowModality"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "windowStateChanged",
+                                    "parameters": [
+                                        "Qt::WindowState"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "windowTitleChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "xChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "yChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "widthChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "heightChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "minimumWidthChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "minimumHeightChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "maximumWidthChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "maximumHeightChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "visibleChanged",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "visibilityChanged",
+                                    "parameters": [
+                                        "QWindow::Visibility"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "activeChanged",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "contentOrientationChanged",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "focusObjectChanged",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "opacityChanged",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QWindow",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QWindow *"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QWindow>",
+                    "name": "window",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -44848,6 +45961,19 @@
                 "name": "QRegularExpressionValidator",
                 "rename": "RegularExpressionValidator",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/window.h",
+                "id": "QWindow",
+                "links": "ref@QWindow*",
+                "name": "QWindow",
+                "rename": "Window",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/window.h",
+                "id": "QWindowStar",
+                "name": "QWindow*"
             }
         ],
         "enums": [
@@ -45762,6 +46888,16 @@
                 "header": "yasl/gui/validator.h",
                 "id": "QDoubleValidatorNotation",
                 "name": "QDoubleValidator::Notation"
+            },
+            {
+                "header": "yasl/gui/window.h",
+                "id": "QWindowVisibility",
+                "name": "QWindow::Visibility"
+            },
+            {
+                "header": "yasl/gui/window.h",
+                "id": "QWindowAncestorMode",
+                "name": "QWindow::AncestorMode"
             }
         ],
         "fundamentals": [

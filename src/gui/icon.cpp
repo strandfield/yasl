@@ -11,6 +11,7 @@
 #include "yasl/core/size.h"
 #include "yasl/gui/icon.h"
 #include "yasl/gui/pixmap.h"
+#include "yasl/gui/window.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -76,11 +77,11 @@ static void register_icon_class(script::Namespace ns)
   // QPixmap pixmap(int, QIcon::Mode, QIcon::State) const;
   binder.add_fun<QPixmap, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap");
   // QPixmap pixmap(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
-  /// TODO: QPixmap pixmap(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
+  binder.add_fun<QPixmap, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap");
   // QSize actualSize(const QSize &, QIcon::Mode, QIcon::State) const;
   binder.add_fun<QSize, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>("actualSize");
   // QSize actualSize(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
-  /// TODO: QSize actualSize(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
+  binder.add_fun<QSize, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>("actualSize");
   // QString name() const;
   binder.add_fun<QString, &QIcon::name>("name");
   // void paint(QPainter *, const QRect &, Qt::Alignment, QIcon::Mode, QIcon::State) const;
