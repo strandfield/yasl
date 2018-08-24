@@ -42918,6 +42918,399 @@
                     "hincludes": "<QPixelFormat>",
                     "name": "pixelformat",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "elements": [
+                                {
+                                    "name": "~QScreen",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "handle",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPlatformScreen *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "name",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "manufacturer",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "model",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "serialNumber",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "depth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "geometry",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "physicalSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSizeF",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "physicalDotsPerInchX",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "physicalDotsPerInchY",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "physicalDotsPerInch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "logicalDotsPerInchX",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "logicalDotsPerInchY",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "logicalDotsPerInch",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "devicePixelRatio",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "availableSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "availableGeometry",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "virtualSiblings",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QScreen *>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "virtualSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "virtualGeometry",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "availableVirtualSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "availableVirtualGeometry",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "primaryOrientation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::ScreenOrientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "orientation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::ScreenOrientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nativeOrientation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::ScreenOrientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "orientationUpdateMask",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::ScreenOrientations",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOrientationUpdateMask",
+                                    "parameters": [
+                                        "Qt::ScreenOrientations"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "angleBetween",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation",
+                                        "Qt::ScreenOrientation"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transformBetween",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation",
+                                        "Qt::ScreenOrientation",
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QTransform",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mapBetween",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation",
+                                        "Qt::ScreenOrientation",
+                                        "const QRect &"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isPortrait",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isLandscape",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "grabWindow",
+                                    "parameters": [
+                                        "WId",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "refreshRate",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "geometryChanged",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "availableGeometryChanged",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "physicalSizeChanged",
+                                    "parameters": [
+                                        "const QSizeF &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "physicalDotsPerInchChanged",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "logicalDotsPerInchChanged",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "virtualGeometryChanged",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "primaryOrientationChanged",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "orientationChanged",
+                                    "parameters": [
+                                        "Qt::ScreenOrientation"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "refreshRateChanged",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QScreen",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QScreen *"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QScreen>",
+                    "name": "screen",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -43508,6 +43901,13 @@
                 "id": "QPixelFormat",
                 "name": "QPixelFormat",
                 "rename": "PixelFormat"
+            },
+            {
+                "header": "yasl/gui/screen.h",
+                "id": "QScreen",
+                "name": "QScreen",
+                "rename": "Screen",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
