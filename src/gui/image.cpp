@@ -16,6 +16,7 @@
 #include "yasl/gui/color.h"
 #include "yasl/gui/image-functions.h"
 #include "yasl/gui/image.h"
+#include "yasl/gui/pixelformat.h"
 #include "yasl/gui/transform.h"
 
 #include <script/classbuilder.h>
@@ -284,11 +285,11 @@ static void register_image_class(script::Namespace ns)
   // void setText(const QString &, const QString &);
   binder.add_void_fun<const QString &, const QString &, &QImage::setText>("setText");
   // QPixelFormat pixelFormat() const;
-  /// TODO: QPixelFormat pixelFormat() const;
+  binder.add_fun<QPixelFormat, &QImage::pixelFormat>("pixelFormat");
   // static QPixelFormat toPixelFormat(QImage::Format);
-  /// TODO: static QPixelFormat toPixelFormat(QImage::Format);
+  binder.add_static<QPixelFormat, QImage::Format, &QImage::toPixelFormat>("toPixelFormat");
   // static QImage::Format toImageFormat(QPixelFormat);
-  /// TODO: static QImage::Format toImageFormat(QPixelFormat);
+  binder.add_static<QImage::Format, QPixelFormat, &QImage::toImageFormat>("toImageFormat");
   // QImage::DataPtr & data_ptr();
   /// TODO: QImage::DataPtr & data_ptr();
 }

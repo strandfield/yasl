@@ -42443,6 +42443,481 @@
                     "hincludes": "<QPicture>",
                     "name": "picture",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "RGB"
+                                        },
+                                        {
+                                            "name": "BGR"
+                                        },
+                                        {
+                                            "name": "Indexed"
+                                        },
+                                        {
+                                            "name": "Grayscale"
+                                        },
+                                        {
+                                            "name": "CMYK"
+                                        },
+                                        {
+                                            "name": "HSL"
+                                        },
+                                        {
+                                            "name": "HSV"
+                                        },
+                                        {
+                                            "name": "YUV"
+                                        },
+                                        {
+                                            "name": "Alpha"
+                                        }
+                                    ],
+                                    "name": "ColorModel",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "UsesAlpha"
+                                        },
+                                        {
+                                            "name": "IgnoresAlpha"
+                                        }
+                                    ],
+                                    "name": "AlphaUsage",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AtBeginning"
+                                        },
+                                        {
+                                            "name": "AtEnd"
+                                        }
+                                    ],
+                                    "name": "AlphaPosition",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NotPremultiplied"
+                                        },
+                                        {
+                                            "name": "Premultiplied"
+                                        }
+                                    ],
+                                    "name": "AlphaPremultiplied",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "UnsignedInteger"
+                                        },
+                                        {
+                                            "name": "UnsignedShort"
+                                        },
+                                        {
+                                            "name": "UnsignedByte"
+                                        },
+                                        {
+                                            "name": "FloatingPoint"
+                                        }
+                                    ],
+                                    "name": "TypeInterpretation",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "YUV444"
+                                        },
+                                        {
+                                            "name": "YUV422"
+                                        },
+                                        {
+                                            "name": "YUV411"
+                                        },
+                                        {
+                                            "name": "YUV420P"
+                                        },
+                                        {
+                                            "name": "YUV420SP"
+                                        },
+                                        {
+                                            "name": "YV12"
+                                        },
+                                        {
+                                            "name": "UYVY"
+                                        },
+                                        {
+                                            "name": "YUYV"
+                                        },
+                                        {
+                                            "name": "NV12"
+                                        },
+                                        {
+                                            "name": "NV21"
+                                        },
+                                        {
+                                            "name": "IMC1"
+                                        },
+                                        {
+                                            "name": "IMC2"
+                                        },
+                                        {
+                                            "name": "IMC3"
+                                        },
+                                        {
+                                            "name": "IMC4"
+                                        },
+                                        {
+                                            "name": "Y8"
+                                        },
+                                        {
+                                            "name": "Y16"
+                                        }
+                                    ],
+                                    "name": "YUVLayout",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LittleEndian"
+                                        },
+                                        {
+                                            "name": "BigEndian"
+                                        },
+                                        {
+                                            "name": "CurrentSystemEndian"
+                                        }
+                                    ],
+                                    "name": "ByteOrder",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QPixelFormat",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPixelFormat",
+                                    "parameters": [
+                                        "const QPixelFormat &"
+                                    ],
+                                    "returns": "",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPixelFormat",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QPixelFormat &"
+                                    ],
+                                    "returns": "QPixelFormat &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QPixelFormat",
+                                    "parameters": [
+                                        "QPixelFormat::ColorModel",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "uchar",
+                                        "QPixelFormat::AlphaUsage",
+                                        "QPixelFormat::AlphaPosition",
+                                        "QPixelFormat::AlphaPremultiplied",
+                                        "QPixelFormat::TypeInterpretation",
+                                        "QPixelFormat::ByteOrder",
+                                        "uchar"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "colorModel",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixelFormat::ColorModel",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "channelCount",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "redSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "greenSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "blueSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cyanSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "magentaSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "yellowSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "blackSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hueSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "saturationSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lightnessSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "brightnessSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alphaSize",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bitsPerPixel",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alphaUsage",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixelFormat::AlphaUsage",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alphaPosition",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixelFormat::AlphaPosition",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "premultiplied",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixelFormat::AlphaPremultiplied",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "typeInterpretation",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixelFormat::TypeInterpretation",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "byteOrder",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixelFormat::ByteOrder",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "yuvLayout",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QPixelFormat::YUVLayout",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "subEnum",
+                                    "parameters": [
+                                    ],
+                                    "returns": "uchar",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPixelFormat",
+                            "type": "class"
+                        },
+                        {
+                            "name": "qPixelFormatRgba",
+                            "parameters": [
+                                "uchar",
+                                "uchar",
+                                "uchar",
+                                "uchar",
+                                "QPixelFormat::AlphaUsage",
+                                "QPixelFormat::AlphaPosition",
+                                "QPixelFormat::AlphaPremultiplied",
+                                "QPixelFormat::TypeInterpretation"
+                            ],
+                            "returns": "QPixelFormat",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qPixelFormatGrayscale",
+                            "parameters": [
+                                "uchar",
+                                "QPixelFormat::TypeInterpretation"
+                            ],
+                            "returns": "QPixelFormat",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qPixelFormatAlpha",
+                            "parameters": [
+                                "uchar",
+                                "QPixelFormat::TypeInterpretation"
+                            ],
+                            "returns": "QPixelFormat",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qPixelFormatCmyk",
+                            "parameters": [
+                                "uchar",
+                                "uchar",
+                                "QPixelFormat::AlphaUsage",
+                                "QPixelFormat::AlphaPosition",
+                                "QPixelFormat::TypeInterpretation"
+                            ],
+                            "returns": "QPixelFormat",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qPixelFormatHsl",
+                            "parameters": [
+                                "uchar",
+                                "uchar",
+                                "QPixelFormat::AlphaUsage",
+                                "QPixelFormat::AlphaPosition",
+                                "QPixelFormat::TypeInterpretation"
+                            ],
+                            "returns": "QPixelFormat",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qPixelFormatHsv",
+                            "parameters": [
+                                "uchar",
+                                "uchar",
+                                "QPixelFormat::AlphaUsage",
+                                "QPixelFormat::AlphaPosition",
+                                "QPixelFormat::TypeInterpretation"
+                            ],
+                            "returns": "QPixelFormat",
+                            "type": "function"
+                        },
+                        {
+                            "name": "qPixelFormatYuv",
+                            "parameters": [
+                                "QPixelFormat::YUVLayout",
+                                "uchar",
+                                "QPixelFormat::AlphaUsage",
+                                "QPixelFormat::AlphaPosition",
+                                "QPixelFormat::AlphaPremultiplied",
+                                "QPixelFormat::TypeInterpretation",
+                                "QPixelFormat::ByteOrder"
+                            ],
+                            "returns": "QPixelFormat",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QPixelFormat>",
+                    "name": "pixelformat",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -43027,6 +43502,12 @@
                 "id": "QPictureIO",
                 "name": "QPictureIO",
                 "rename": "PictureIO"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormat",
+                "name": "QPixelFormat",
+                "rename": "PixelFormat"
             }
         ],
         "enums": [
@@ -43875,6 +44356,41 @@
                 "header": "yasl/gui/palette.h",
                 "id": "QPaletteColorRole",
                 "name": "QPalette::ColorRole"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormatColorModel",
+                "name": "QPixelFormat::ColorModel"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormatAlphaUsage",
+                "name": "QPixelFormat::AlphaUsage"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormatAlphaPosition",
+                "name": "QPixelFormat::AlphaPosition"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormatAlphaPremultiplied",
+                "name": "QPixelFormat::AlphaPremultiplied"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormatTypeInterpretation",
+                "name": "QPixelFormat::TypeInterpretation"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormatYUVLayout",
+                "name": "QPixelFormat::YUVLayout"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormatByteOrder",
+                "name": "QPixelFormat::ByteOrder"
             }
         ],
         "fundamentals": [
