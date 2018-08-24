@@ -10,15 +10,12 @@
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
-
 #include "yasl/gui/font.h"
-#include "yasl/gui/textoption.h"
+#include "yasl/gui/statictext.h"
 #include "yasl/gui/transform.h"
 
-#include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
-#include <script/namespace.h>
 
 static void register_static_text_performance_hint_enum(script::Class static_text)
 {
@@ -26,9 +23,10 @@ static void register_static_text_performance_hint_enum(script::Class static_text
 
   Enum performance_hint = static_text.Enum("PerformanceHint").setId(script::Type::QStaticTextPerformanceHint).get();
 
-  performance_hint.addValue("AggressiveCaching", QStaticText::AggressiveCaching);
   performance_hint.addValue("ModerateCaching", QStaticText::ModerateCaching);
+  performance_hint.addValue("AggressiveCaching", QStaticText::AggressiveCaching);
 }
+
 
 static void register_static_text_class(script::Namespace ns)
 {
@@ -39,8 +37,6 @@ static void register_static_text_class(script::Namespace ns)
   register_static_text_performance_hint_enum(static_text);
   binding::Class<QStaticText> binder{ static_text };
 
-  // ~QStaticText();
-  binder.add_dtor();
   // QStaticText();
   binder.ctors().add_default();
   // QStaticText(const QString &);
@@ -51,6 +47,8 @@ static void register_static_text_class(script::Namespace ns)
   binder.operators().assign<QStaticText &&>();
   // QStaticText & operator=(const QStaticText &);
   binder.operators().assign<const QStaticText &>();
+  // ~QStaticText();
+  binder.add_dtor();
   // void swap(QStaticText &);
   binder.add_void_fun<QStaticText &, &QStaticText::swap>("swap");
   // void setText(const QString &);
@@ -66,9 +64,9 @@ static void register_static_text_class(script::Namespace ns)
   // qreal textWidth() const;
   binder.add_fun<qreal, &QStaticText::textWidth>("textWidth");
   // void setTextOption(const QTextOption &);
-  binder.add_void_fun<const QTextOption &, &QStaticText::setTextOption>("setTextOption");
+  /// TODO: void setTextOption(const QTextOption &);
   // QTextOption textOption() const;
-  binder.add_fun<QTextOption, &QStaticText::textOption>("textOption");
+  /// TODO: QTextOption textOption() const;
   // QSizeF size() const;
   binder.add_fun<QSizeF, &QStaticText::size>("size");
   // void prepare(const QTransform &, const QFont &);
@@ -83,12 +81,15 @@ static void register_static_text_class(script::Namespace ns)
   binder.operators().neq<const QStaticText &>();
 }
 
-void register_statictext_file(script::Namespace root)
+
+void register_statictext_file(script::Namespace gui)
 {
   using namespace script;
 
-  register_static_text_class(root);
-  binding::Namespace binder{ root };
+  Namespace ns = gui;
+
+  register_static_text_class(ns);
+  binding::Namespace binder{ ns };
 
   // void swap(QStaticText &, QStaticText &);
   binder.add_void_fun<QStaticText &, QStaticText &, &swap>("swap");

@@ -43311,6 +43311,206 @@
                     "hincludes": "<QScreen>",
                     "name": "screen",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ModerateCaching"
+                                        },
+                                        {
+                                            "name": "AggressiveCaching"
+                                        }
+                                    ],
+                                    "name": "PerformanceHint",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QStaticText",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QStaticText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QStaticText",
+                                    "parameters": [
+                                        "const QStaticText &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QStaticText &&"
+                                    ],
+                                    "returns": "QStaticText &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QStaticText &"
+                                    ],
+                                    "returns": "QStaticText &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "~QStaticText",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QStaticText &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextFormat",
+                                    "parameters": [
+                                        "Qt::TextFormat"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textFormat",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::TextFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextWidth",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textWidth",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextOption",
+                                    "parameters": [
+                                        "const QTextOption &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textOption",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTextOption",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSizeF",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "prepare",
+                                    "parameters": [
+                                        "const QTransform &",
+                                        "const QFont &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPerformanceHint",
+                                    "parameters": [
+                                        "QStaticText::PerformanceHint"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "performanceHint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QStaticText::PerformanceHint",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QStaticText &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QStaticText &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QStaticText",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QStaticText &",
+                                "QStaticText &"
+                            ],
+                            "returns": "void",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QStaticText>",
+                    "name": "statictext",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -43908,6 +44108,12 @@
                 "name": "QScreen",
                 "rename": "Screen",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/statictext.h",
+                "id": "QStaticText",
+                "name": "QStaticText",
+                "rename": "StaticText"
             }
         ],
         "enums": [
@@ -44791,6 +44997,11 @@
                 "header": "yasl/gui/pixelformat.h",
                 "id": "QPixelFormatByteOrder",
                 "name": "QPixelFormat::ByteOrder"
+            },
+            {
+                "header": "yasl/gui/statictext.h",
+                "id": "QStaticTextPerformanceHint",
+                "name": "QStaticText::PerformanceHint"
             }
         ],
         "fundamentals": [

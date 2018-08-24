@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_GUI_STATIC_TEXT_H
-#define YASL_GUI_STATIC_TEXT_H
+#ifndef YASL_GUI_STATICTEXT_H
+#define YASL_GUI_STATICTEXT_H
 
 #include "yasl/binding/types.h"
 
@@ -14,4 +14,4 @@ template<> struct make_type_t<QStaticText> { inline static script::Type get() { 
 template<> struct make_type_t<QStaticText::PerformanceHint> { inline static script::Type get() { return script::Type::QStaticTextPerformanceHint; } };
 } // namespace binding
 
-#endif // YASL_GUI_STATIC_TEXT_H
+#endif // YASL_GUI_STATICTEXT_H

@@ -26,6 +26,7 @@
 #include "yasl/gui/picture.h"
 #include "yasl/gui/pixmap.h"
 #include "yasl/gui/region.h"
+#include "yasl/gui/statictext.h"
 #include "yasl/gui/transform.h"
 
 #include <script/classbuilder.h>
@@ -441,11 +442,11 @@ static void register_painter_class(script::Namespace ns)
   // void drawGlyphRun(const QPointF &, const QGlyphRun &);
   binder.add_void_fun<const QPointF &, const QGlyphRun &, &QPainter::drawGlyphRun>("drawGlyphRun");
   // void drawStaticText(const QPointF &, const QStaticText &);
-  /// TODO: void drawStaticText(const QPointF &, const QStaticText &);
+  binder.add_void_fun<const QPointF &, const QStaticText &, &QPainter::drawStaticText>("drawStaticText");
   // void drawStaticText(const QPoint &, const QStaticText &);
-  /// TODO: void drawStaticText(const QPoint &, const QStaticText &);
+  binder.add_void_fun<const QPoint &, const QStaticText &, &QPainter::drawStaticText>("drawStaticText");
   // void drawStaticText(int, int, const QStaticText &);
-  /// TODO: void drawStaticText(int, int, const QStaticText &);
+  binder.add_void_fun<int, int, const QStaticText &, &QPainter::drawStaticText>("drawStaticText");
   // void drawText(const QPointF &, const QString &);
   binder.add_void_fun<const QPointF &, const QString &, &QPainter::drawText>("drawText");
   // void drawText(const QPoint &, const QString &);
