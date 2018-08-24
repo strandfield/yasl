@@ -43511,6 +43511,288 @@
                     "hincludes": "<QStaticText>",
                     "name": "statictext",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LeftTab"
+                                        },
+                                        {
+                                            "name": "RightTab"
+                                        },
+                                        {
+                                            "name": "CenterTab"
+                                        },
+                                        {
+                                            "name": "DelimiterTab"
+                                        }
+                                    ],
+                                    "name": "TabType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QTextOption",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTextOption",
+                                    "parameters": [
+                                        "Qt::Alignment"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QTextOption",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QTextOption",
+                                    "parameters": [
+                                        "const QTextOption &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QTextOption &"
+                                    ],
+                                    "returns": "QTextOption &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlignment",
+                                    "parameters": [
+                                        "Qt::Alignment"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alignment",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::Alignment",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextDirection",
+                                    "parameters": [
+                                        "Qt::LayoutDirection"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textDirection",
+                                    "parameters": [
+                                    ],
+                                    "returns": "Qt::LayoutDirection",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoWrap"
+                                        },
+                                        {
+                                            "name": "WordWrap"
+                                        },
+                                        {
+                                            "name": "ManualWrap"
+                                        },
+                                        {
+                                            "name": "WrapAnywhere"
+                                        },
+                                        {
+                                            "name": "WrapAtWordBoundaryOrAnywhere"
+                                        }
+                                    ],
+                                    "name": "WrapMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "setWrapMode",
+                                    "parameters": [
+                                        "QTextOption::WrapMode"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "wrapMode",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTextOption::WrapMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ShowTabsAndSpaces"
+                                        },
+                                        {
+                                            "name": "ShowLineAndParagraphSeparators"
+                                        },
+                                        {
+                                            "name": "AddSpaceForLineAndParagraphSeparators"
+                                        },
+                                        {
+                                            "name": "SuppressColors"
+                                        },
+                                        {
+                                            "name": "ShowDocumentTerminator"
+                                        },
+                                        {
+                                            "name": "IncludeTrailingSpaces"
+                                        }
+                                    ],
+                                    "name": "Flag",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "setFlags",
+                                    "parameters": [
+                                        "QTextOption::Flags"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "flags",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QTextOption::Flags",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabStop",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabStop",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabStopDistance",
+                                    "parameters": [
+                                        "qreal"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabStopDistance",
+                                    "parameters": [
+                                    ],
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabArray",
+                                    "parameters": [
+                                        "const QList<qreal> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabArray",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<qreal>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabs",
+                                    "parameters": [
+                                        "const QList<QTextOption::Tab> &"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabs",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QList<QTextOption::Tab>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUseDesignMetrics",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "useDesignMetrics",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTextOption",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QTextOption::Flags::enum_type",
+                                "QTextOption::Flags::enum_type"
+                            ],
+                            "returns": "QFlags<QTextOption::Flags::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QTextOption::Flags::enum_type",
+                                "QFlags<QTextOption::Flags::enum_type>"
+                            ],
+                            "returns": "QFlags<QTextOption::Flags::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QTextOption::Flags::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QTextOption>",
+                    "name": "textoption",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -44114,6 +44396,18 @@
                 "id": "QStaticText",
                 "name": "QStaticText",
                 "rename": "StaticText"
+            },
+            {
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOption",
+                "name": "QTextOption",
+                "rename": "TextOption"
+            },
+            {
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOptionFlags",
+                "name": "QTextOption::Flags",
+                "rename": "Flags"
             }
         ],
         "enums": [
@@ -45002,6 +45296,22 @@
                 "header": "yasl/gui/statictext.h",
                 "id": "QStaticTextPerformanceHint",
                 "name": "QStaticText::PerformanceHint"
+            },
+            {
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOptionTabType",
+                "name": "QTextOption::TabType"
+            },
+            {
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOptionWrapMode",
+                "name": "QTextOption::WrapMode"
+            },
+            {
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOptionFlag",
+                "links": "flags@QTextOption::Flags",
+                "name": "QTextOption::Flag"
             }
         ],
         "fundamentals": [

@@ -12,6 +12,7 @@
 #include "yasl/core/size.h"
 #include "yasl/gui/font.h"
 #include "yasl/gui/statictext.h"
+#include "yasl/gui/textoption.h"
 #include "yasl/gui/transform.h"
 
 #include <script/classbuilder.h>
@@ -64,9 +65,9 @@ static void register_static_text_class(script::Namespace ns)
   // qreal textWidth() const;
   binder.add_fun<qreal, &QStaticText::textWidth>("textWidth");
   // void setTextOption(const QTextOption &);
-  /// TODO: void setTextOption(const QTextOption &);
+  binder.add_void_fun<const QTextOption &, &QStaticText::setTextOption>("setTextOption");
   // QTextOption textOption() const;
-  /// TODO: QTextOption textOption() const;
+  binder.add_fun<QTextOption, &QStaticText::textOption>("textOption");
   // QSizeF size() const;
   binder.add_fun<QSizeF, &QStaticText::size>("size");
   // void prepare(const QTransform &, const QFont &);

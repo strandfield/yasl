@@ -27,6 +27,7 @@
 #include "yasl/gui/pixmap.h"
 #include "yasl/gui/region.h"
 #include "yasl/gui/statictext.h"
+#include "yasl/gui/textoption.h"
 #include "yasl/gui/transform.h"
 
 #include <script/classbuilder.h>
@@ -462,7 +463,7 @@ static void register_painter_class(script::Namespace ns)
   // void drawText(int, int, int, int, int, const QString &, QRect *);
   /// TODO: void drawText(int, int, int, int, int, const QString &, QRect *);
   // void drawText(const QRectF &, const QString &, const QTextOption &);
-  /// TODO: void drawText(const QRectF &, const QString &, const QTextOption &);
+  binder.add_void_fun<const QRectF &, const QString &, const QTextOption &, &QPainter::drawText>("drawText");
   // QRectF boundingRect(const QRectF &, int, const QString &);
   binder.add_fun<QRectF, const QRectF &, int, const QString &, &QPainter::boundingRect>("boundingRect");
   // QRect boundingRect(const QRect &, int, const QString &);
@@ -470,7 +471,7 @@ static void register_painter_class(script::Namespace ns)
   // QRect boundingRect(int, int, int, int, int, const QString &);
   binder.add_fun<QRect, int, int, int, int, int, const QString &, &QPainter::boundingRect>("boundingRect");
   // QRectF boundingRect(const QRectF &, const QString &, const QTextOption &);
-  /// TODO: QRectF boundingRect(const QRectF &, const QString &, const QTextOption &);
+  binder.add_fun<QRectF, const QRectF &, const QString &, const QTextOption &, &QPainter::boundingRect>("boundingRect");
   // void drawTextItem(const QPointF &, const QTextItem &);
   /// TODO: void drawTextItem(const QPointF &, const QTextItem &);
   // void drawTextItem(int, int, const QTextItem &);
