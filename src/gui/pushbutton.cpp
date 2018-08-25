@@ -7,48 +7,9 @@
 #include "yasl/binding/qclass.h"
 #include "yasl/binding/qsignal.h"
 
-#include <script/classbuilder.h>
 #include <script/engine.h>
-#include <script/functionbuilder.h>
-#include <script/interpreter/executioncontext.h>
 #include <script/namespace.h>
 #include <script/value.h>
-
-namespace callbacks
-{
-
-static script::Value new_pushbutton(script::FunctionCall *c)
-{
-  using namespace script;
-  Type type = c->callee().returnType().baseType();
-  Value v = c->engine()->construct(type, {});
-  return v;
-}
-
-
-static script::Value new_pushbutton_parent(script::FunctionCall *c)
-{
-  using namespace binding;
-  QPushButton *object = new QPushButton(value_cast<QWidget*>(c->arg(0)));
-  return c->engine()->expose(object, c->callee().returnType().baseType());
-}
-
-static script::Value new_pushbutton_text(script::FunctionCall *c)
-{
-  using namespace binding;
-  QPushButton *object = new QPushButton(value_cast<const QString &>(c->arg(0)));
-  return c->engine()->expose(object, c->callee().returnType().baseType());
-}
-
-static script::Value new_pushbutton_text_parent(script::FunctionCall *c)
-{
-  using namespace binding;
-  QPushButton *object = new QPushButton(value_cast<const QString &>(c->arg(0)), value_cast<QWidget*>(c->arg(1)));
-  return c->engine()->expose(object, c->callee().returnType().baseType());
-}
-
-} // namespace callbacks
-
 
 void register_qpushbutton(script::Namespace n)
 {
@@ -81,25 +42,6 @@ void register_qpushbutton(script::Namespace n)
   // void setMenu(QMenu *menu)
 
   qpushbutton.sigs().add("clicked", Q_SIGNAL("clicked()"));
-
-  n.Function("newPushButton", callbacks::new_pushbutton)
-    .returns(Type::ref(pushbutton_type))
-    .create();
-
-  n.Function("newPushButton", callbacks::new_pushbutton_parent)
-    .returns(Type::ref(pushbutton_type))
-    .params(binding::make_type<QWidget*>())
-    .create();
-
-  n.Function("newPushButton", callbacks::new_pushbutton_text)
-    .returns(Type::ref(pushbutton_type))
-    .params(binding::make_type<const QString &>())
-    .create();
-
-  n.Function("newPushButton", callbacks::new_pushbutton_text_parent)
-    .returns(Type::ref(pushbutton_type))
-    .params(binding::make_type<const QString &>(), binding::make_type<QWidget*>())
-    .create();
 
   n.engine()->registerQtType(&QPushButton::staticMetaObject, pushbutton_type);
 }

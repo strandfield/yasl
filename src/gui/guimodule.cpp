@@ -47,6 +47,7 @@ void register_abstractbutton_file(script::Namespace n); // defined in abstractbu
 void register_qpushbutton(script::Namespace n); // defined in pushbutton.cpp
 
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
+void register_newpushbutton_file(script::Namespace n); // defined in newpushbutton.cpp
 
 void load_gui_module(script::Module gui)
 {
@@ -92,6 +93,7 @@ void load_gui_module(script::Module gui)
   register_qpushbutton(gui.root());
 
   register_newwidget_file(gui.root());
+  register_newpushbutton_file(gui.root());
 }
 
 void cleanup_gui_module(script::Module gui)
