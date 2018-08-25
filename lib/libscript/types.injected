@@ -297,6 +297,7 @@ QVectorInt,
 QVectorFloat,
 QVectorDouble,
 /* Qt Gui */
+QAbstractButton,
 QBitmap,
 QBrush,
 QClipboard,

@@ -54,9 +54,7 @@ void register_qpushbutton(script::Namespace n)
 {
   using namespace script;
 
-  Class widget = n.engine()->getClass(script::Type::QWidget);
-
-  Class pushbutton = n.Class("PushButton").setId(Type::QPushButton).setBase(widget).get();
+  Class pushbutton = n.Class("PushButton").setId(Type::QPushButton).setBase(script::Type::QAbstractButton).get();
   Type pushbutton_type = pushbutton.id();
 
   auto qpushbutton = binding::QClass<QPushButton>{ pushbutton, &QPushButton::staticMetaObject };
@@ -65,45 +63,6 @@ void register_qpushbutton(script::Namespace n)
   qpushbutton.ctors().add<const QString &>();
   qpushbutton.ctors().add<const QString &, QWidget*>();
   qpushbutton.add_dtor();
-
-  /* Inherited from QAbstractButton */
-  auto qabstractbutton = binding::QClass<QAbstractButton>{ pushbutton, &QAbstractButton::staticMetaObject };
-  // bool autoExclusive() const
-  qabstractbutton.add_fun<bool, &QAbstractButton::autoExclusive>("autoExclusive");
-  // bool autoRepeat() const
-  qabstractbutton.add_fun<bool, &QAbstractButton::autoRepeat>("autoRepeat");
-  // int autoRepeatDelay() const
-  qabstractbutton.add_fun<int, &QAbstractButton::autoRepeatDelay>("autoRepeatDelay");
-  // int autoRepeatInterval() const
-  qabstractbutton.add_fun<int, &QAbstractButton::autoRepeatInterval>("autoRepeatInterval");
-  // QButtonGroup * group() const
-  // QIcon icon() const
-  // QSize iconSize() const
-  // bool isCheckable() const
-  qabstractbutton.add_fun<bool, &QAbstractButton::isCheckable>("isCheckable");
-  // bool isChecked() const
-  qabstractbutton.add_fun<bool, &QAbstractButton::isChecked>("isChecked");
-  // bool isDown() const
-  qabstractbutton.add_fun<bool, &QAbstractButton::isDown>("isDown");
-  // void setAutoExclusive(bool)
-  qabstractbutton.add_void_fun<bool, &QAbstractButton::setAutoExclusive>("setAutoExclusive");
-  // void setAutoRepeat(bool)
-  qabstractbutton.add_void_fun<bool, &QAbstractButton::setAutoRepeat>("setAutoRepeat");
-  // void setAutoRepeatDelay(int)
-  qabstractbutton.add_void_fun<int, &QAbstractButton::setAutoRepeatDelay>("setAutoRepeatDelay");
-  // void setAutoRepeatInterval(int)
-  qabstractbutton.add_void_fun<int, &QAbstractButton::setAutoRepeatInterval>("setAutoRepeatInterval");
-  // void setCheckable(bool)
-  qabstractbutton.add_void_fun<bool, &QAbstractButton::setCheckable>("setCheckable");
-  // void setDown(bool)
-  qabstractbutton.add_void_fun<bool, &QAbstractButton::setDown>("setDown");
-  // void setIcon(const QIcon &icon)
-  // void setShortcut(const QKeySequence &key)
-  // void setText(const QString &text)
-  qabstractbutton.add_void_fun<const QString &, &QAbstractButton::setText>("setText");
-  // QKeySequence shortcut() const
-  // QString text() const
-  qabstractbutton.add_fun<QString, &QAbstractButton::text>("text");
 
   /* QPushButton members */
   // bool autoDefault() const
