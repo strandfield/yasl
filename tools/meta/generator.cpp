@@ -240,12 +240,14 @@ void Generator::generate(ModuleRef mod)
 
   StateGuard state{ this, mod };
 
-  QString decls;
-  
+  source.generalIncludes.insert("<script/engine.h>");
+  source.generalIncludes.insert("<script/module.h>");
+  source.generalIncludes.insert("<script/namespace.h>");
+
   QString load_func = "void load_" + mod->name + "_module(script::Module " + mod->name + ")" + endl;
   load_func += "{" + endl;
 
-
+  QString decls;
   for (const auto & n : mod->elements)
   {
     if (n->checkState == Qt::Unchecked)
@@ -270,6 +272,22 @@ void Generator::generate(ModuleRef mod)
 
   source.functions.append(decls);
   source.functions.append(load_func);
+
+  // Module cleanup function
+  QString cleanup_func = "void cleanup_" + mod->name + "_module(script::Module " + mod->name + ")" + endl;
+  cleanup_func += "{" + endl;
+  cleanup_func += "  (void) " + mod->name + ";" + endl;
+  cleanup_func += "}" + endl;
+  source.functions.append(cleanup_func);
+
+  // Module registration function
+  const QString load_func_name = QString("load_%1_module").arg(mod->name);
+  const QString cleanup_func_name = QString("cleanup_%1_module").arg(mod->name);
+  QString register_func = "void register_" + mod->name + "_module(script::Engine *e)" + endl;
+  register_func += "{" + endl;
+  register_func += "  script::Module gui = e->newModule(\"" + mod->name + "\", " + load_func_name + ", " + cleanup_func_name + ");" + endl;
+  register_func += "}" + endl;
+  source.functions.append(register_func);
 
   source.write();
 }
