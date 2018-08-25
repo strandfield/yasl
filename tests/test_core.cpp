@@ -7,7 +7,6 @@
 #include "yasl/application.h"
 #include "yasl/binding/values.h"
 #include "yasl/binding/namespace.h"
-#include "yasl/core/coremodule.h"
 #include "yasl/core/size.h"
 
 #include <script/functionbuilder.h>

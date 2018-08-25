@@ -4,9 +4,7 @@
 
 #include "yasl/application.h"
 
-#include "yasl/core/coremodule.h"
 #include "yasl/core/object.h"
-#include "yasl/gui/guimodule.h"
 #include "yasl/utils/ref.h"
 
 #include <script/functionbuilder.h>
@@ -18,6 +16,9 @@
 #include <QDebug>
 
 #include <iostream>
+
+void register_core_module(script::Engine*); // defined in coremodule.cpp
+void register_gui_module(script::Engine*); // defined in guimodule.cpp
 
 namespace callbacks
 {
