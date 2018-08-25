@@ -4,6 +4,8 @@
 
 #include "yasl/core/newtimer.h"
 
+#include "yasl/core/object.h"
+
 #include <script/engine.h>
 #include <script/functionbuilder.h>
 #include <script/interpreter/executioncontext.h>

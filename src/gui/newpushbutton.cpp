@@ -4,12 +4,13 @@
 
 #include "yasl/gui/newpushbutton.h"
 
+#include "yasl/gui/widget.h"
+
 #include <script/engine.h>
 #include <script/functionbuilder.h>
 #include <script/interpreter/executioncontext.h>
 #include <script/namespace.h>
 #include <script/value.h>
-
 
 namespace callbacks
 {

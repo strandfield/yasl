@@ -46040,7 +46040,7 @@
                             "type": "function"
                         }
                     ],
-                    "hincludes": "<qevent.h>",
+                    "hincludes": "<qevent.h>,yasl/core/event.h",
                     "name": "guievent",
                     "type": "file"
                 },

@@ -9,6 +9,7 @@
 #include "yasl/core/qevent-binding.h"
 
 #include <qevent.h>
+#include "yasl/core/event.h"
 
 namespace binding {
 template<> struct make_type_t<QCloseEvent> { inline static script::Type get() { return script::Type::QCloseEvent; } };

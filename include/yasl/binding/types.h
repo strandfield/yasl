@@ -11,23 +11,11 @@
 namespace binding
 {
 
-#if defined(YASL_BINDING_COMPILE_TIME_CHECK)
 template<typename T>
 struct make_type_t
 {
   inline static script::Type get() = delete;
 };
-#else
-struct UnknownTypeException {};
-template<typename T>
-struct make_type_t
-{
-  inline static script::Type get()
-  {
-    throw UnknownTypeException{};
-  }
-};
-#endif // defined(YASL_BINDING_COMPILE_TIME_CHECK)
 
 
 template<typename T>
@@ -36,6 +24,15 @@ struct make_type_t<T&>
   inline static script::Type get()
   {
     return script::Type::ref(make_type_t<T>::get());
+  }
+};
+
+template<typename T>
+struct make_type_t<T&&>
+{
+  inline static script::Type get()
+  {
+    return script::Type::rref(make_type_t<T>::get());
   }
 };
 
