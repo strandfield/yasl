@@ -42,7 +42,7 @@ void register_window_file(script::Namespace n); // defined in window.cpp
 
 void register_guievent_file(script::Namespace n); // defined in guievent.cpp
 
-void register_qwidget(script::Namespace n); // defined in widget.cpp
+void register_widget_file(script::Namespace n); // defined in widget.cpp
 void register_qpushbutton(script::Namespace n); // defined in pushbutton.cpp
 
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -86,7 +86,7 @@ void load_gui_module(script::Module gui)
   // Event classes
   register_guievent_file(gui.root());
 
-  register_qwidget(gui.root());
+  register_widget_file(gui.root());
   register_qpushbutton(gui.root());
 
   register_newwidget_file(gui.root());
