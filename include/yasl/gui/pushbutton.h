@@ -2,27 +2,17 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_GUI_PUSH_BUTTON_H
-#define YASL_GUI_PUSH_BUTTON_H
+#ifndef YASL_GUI_PUSHBUTTON_H
+#define YASL_GUI_PUSHBUTTON_H
 
-#include "yasl/gui/widget.h"
+#include "yasl/binding/types.h"
 #include "yasl/core/qobject-binding.h"
 
 #include <QPushButton>
 
-namespace binding
-{
-
-template<> struct tag_resolver<QAbstractButton> { typedef qobject_tag tag_type; };
-//template<> struct storage_type<QAbstractButton> { typedef QAbstractButton* type; };
-//template<> inline QAbstractButton* get<QAbstractButton>(const script::Value & val) { return qobject_cast<QAbstractButton*>(val.toQObject()); }
-static_assert(std::is_same<binding::storage_type<QAbstractButton>::type, QAbstractButton*>::value, "QAbstractButton must be stored as QAbstractButton*");
-
-//template<> struct storage_type<QPushButton> { typedef QPushButton* type; };
-//template<> inline QPushButton* get<QPushButton>(const script::Value & val) { return qobject_cast<QPushButton*>(val.toQObject()); }
+namespace binding {
+template<> struct make_type_t<QPushButton> { inline static script::Type get() { return script::Type::QPushButton; } };
 template<> struct tag_resolver<QPushButton> { typedef qobject_tag tag_type; };
-static_assert(std::is_same<binding::storage_type<QPushButton>::type, QPushButton*>::value, "QPushButton must be stored as QPushButton*");
-
 } // namespace binding
 
-#endif // YASL_GUI_PUSH_BUTTON_H
+#endif // YASL_GUI_PUSHBUTTON_H

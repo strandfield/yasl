@@ -48425,6 +48425,146 @@
                     "hincludes": "<QAbstractButton>",
                     "name": "abstractbutton",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QAbstractButton",
+                            "elements": [
+                                {
+                                    "name": "QPushButton",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPushButton",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QPushButton",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QPushButton",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "autoDefault",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAutoDefault",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDefault",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefault",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMenu",
+                                    "parameters": [
+                                        "QMenu *"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "menu",
+                                    "parameters": [
+                                    ],
+                                    "returns": "QMenu *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFlat",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isFlat",
+                                    "parameters": [
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showMenu",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "clicked",
+                                    "parameters": [
+                                    ],
+                                    "returns": "void",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QPushButton",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QPushButton>",
+                    "name": "pushbutton",
+                    "type": "file"
                 }
             ],
             "name": "gui",
@@ -49173,6 +49313,13 @@
                 "id": "QAbstractButton",
                 "name": "QAbstractButton",
                 "rename": "AbstractButton",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/pushbutton.h",
+                "id": "QPushButton",
+                "name": "QPushButton",
+                "rename": "PushButton",
                 "tag": "qobject_tag"
             }
         ],

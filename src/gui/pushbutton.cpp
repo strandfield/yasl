@@ -4,45 +4,69 @@
 
 #include "yasl/gui/pushbutton.h"
 
+#include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
-#include "yasl/binding/qsignal.h"
 
-#include <script/engine.h>
-#include <script/namespace.h>
-#include <script/value.h>
+#include "yasl/core/size.h"
+#include "yasl/gui/icon.h"
+#include "yasl/gui/widget.h"
 
-void register_qpushbutton(script::Namespace n)
+#include <script/classbuilder.h>
+
+static void register_push_button_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class pushbutton = n.Class("PushButton").setId(Type::QPushButton).setBase(script::Type::QAbstractButton).get();
-  Type pushbutton_type = pushbutton.id();
+  Class push_button = ns.Class("PushButton").setId(script::Type::QPushButton)
+    .setBase(script::Type::QAbstractButton).get();
 
-  auto qpushbutton = binding::QClass<QPushButton>{ pushbutton, &QPushButton::staticMetaObject };
-  qpushbutton.ctors().add_default();
-  qpushbutton.ctors().add<QWidget*>();
-  qpushbutton.ctors().add<const QString &>();
-  qpushbutton.ctors().add<const QString &, QWidget*>();
-  qpushbutton.add_dtor();
+  binding::QClass<QPushButton> binder{ push_button, &QPushButton::staticMetaObject };
 
-  /* QPushButton members */
-  // bool autoDefault() const
-  qpushbutton.add_fun<bool, &QPushButton::autoDefault>("autoDefault");
-  // bool isDefault() const
-  qpushbutton.add_fun<bool, &QPushButton::isDefault>("isDefault");
-  // bool isFlat() const
-  qpushbutton.add_fun<bool, &QPushButton::isFlat>("isFlat");
-  // QMenu * menu() const
-  // void setAutoDefault(bool)
-  qpushbutton.add_void_fun<bool, &QPushButton::setAutoDefault>("setAutoDefault");
-  // void setDefault(bool)
-  qpushbutton.add_void_fun<bool, &QPushButton::setDefault>("setDefault");
-  // void setFlat(bool)
-  qpushbutton.add_void_fun<bool, &QPushButton::setFlat>("setFlat");
-  // void setMenu(QMenu *menu)
+  // QPushButton(QWidget *);
+  binder.ctors().add<QWidget *>();
+  // QPushButton(const QString &, QWidget *);
+  binder.ctors().add<const QString &, QWidget *>();
+  // QPushButton(const QIcon &, const QString &, QWidget *);
+  binder.ctors().add<const QIcon &, const QString &, QWidget *>();
+  // ~QPushButton();
+  binder.add_dtor();
+  // QSize sizeHint() const;
+  binder.add_fun<QSize, &QPushButton::sizeHint>("sizeHint");
+  // QSize minimumSizeHint() const;
+  binder.add_fun<QSize, &QPushButton::minimumSizeHint>("minimumSizeHint");
+  // bool autoDefault() const;
+  binder.add_fun<bool, &QPushButton::autoDefault>("autoDefault");
+  // void setAutoDefault(bool);
+  binder.add_void_fun<bool, &QPushButton::setAutoDefault>("setAutoDefault");
+  // bool isDefault() const;
+  binder.add_fun<bool, &QPushButton::isDefault>("isDefault");
+  // void setDefault(bool);
+  binder.add_void_fun<bool, &QPushButton::setDefault>("setDefault");
+  // void setMenu(QMenu *);
+  /// TODO: void setMenu(QMenu *);
+  // QMenu * menu() const;
+  /// TODO: QMenu * menu() const;
+  // void setFlat(bool);
+  binder.add_void_fun<bool, &QPushButton::setFlat>("setFlat");
+  // bool isFlat() const;
+  binder.add_fun<bool, &QPushButton::isFlat>("isFlat");
+  // void showMenu();
+  binder.add_void_fun<&QPushButton::showMenu>("showMenu");
+  // void clicked();
+  binder.sigs().add("clicked", "clicked()");
 
-  qpushbutton.sigs().add("clicked", Q_SIGNAL("clicked()"));
+  push_button.engine()->registerQtType(&QPushButton::staticMetaObject, push_button.id());
+}
 
-  n.engine()->registerQtType(&QPushButton::staticMetaObject, pushbutton_type);
+
+void register_pushbutton_file(script::Namespace gui)
+{
+  using namespace script;
+
+  Namespace ns = gui;
+
+  register_push_button_class(ns);
+  binding::Namespace binder{ ns };
+
 }
 
