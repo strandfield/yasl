@@ -69,10 +69,15 @@ All features from the `libscript` library are available in `Yasl`.
 You are invited to consult the project's repository [here](https://github.com/RugessNome/libscript) 
 to learn more about it.
 
-Not all classes from Qt are exposed yet, nor there is any list available yet :'(
+Not all classes from Qt are exposed yet, nor is there any plan to expose all of them.
+You can get a rough idea of what is available and what is not by running `yasl-meta` 
+and opening `meta/yasl.json`.
+You can also generate an exhaustive and up to date list by building 
+the `yasl-stats` tool, and executing this command:
 
-For now, the only way for you to know if a class is available is to check the C++ source
-code. 
+```bash
+yasl-stats -dump-tree 
+```
 
 
 ## Documentation
