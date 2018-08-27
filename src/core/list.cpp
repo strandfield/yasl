@@ -497,7 +497,7 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
   list.Constructor(callbacks::copy_ctor)
     .params(Type::cref(list.id())).create();
   // ~QList<T>();
-  list.newDestructor(callbacks::dtor);
+  list.Destructor(callbacks::dtor).create();
 
   // void append(const T &value)
   list.Method("append", callbacks::append_value)

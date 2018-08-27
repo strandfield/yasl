@@ -124,7 +124,7 @@ static void fill_ref_instance(script::Class & instance, const script::Class & qc
   instance.Constructor(callbacks::copy_ctor).params(Type::cref(instance.id())).create();
   instance.Constructor(callbacks::copy_ctor).params(Type::cref(qclass.id())).create();
 
-  instance.newDestructor(callbacks::dtor);
+  instance.Destructor(callbacks::dtor).create();
 
   instance.Method("get", callbacks::get)
     .setConst()

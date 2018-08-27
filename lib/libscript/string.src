@@ -355,7 +355,7 @@ Type register_charref_type(Engine *e)
 
   charref.Constructor(callbacks::charref::copy_ctor).params(Type::cref(charref.id())).create();
 
-  charref.newDestructor(callbacks::charref::dtor);
+  charref.Destructor(callbacks::charref::dtor).create();
 
   charref.Operation(AssignmentOperator, callbacks::charref::assign).returns(Type::ref(charref.id())).params(Type::Char).create();
 
