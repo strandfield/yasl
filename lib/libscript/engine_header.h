@@ -1,4 +1,5 @@
 
+#include "script/function.h"
 #include "script/value.h"
 
 #include <QPointer>
