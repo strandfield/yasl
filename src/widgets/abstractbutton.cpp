@@ -2,7 +2,7 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/gui/abstractbutton.h"
+#include "yasl/widgets/abstractbutton.h"
 
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -89,11 +89,11 @@ static void register_abstract_button_class(script::Namespace ns)
 }
 
 
-void register_abstractbutton_file(script::Namespace gui)
+void register_abstractbutton_file(script::Namespace widgets)
 {
   using namespace script;
 
-  Namespace ns = gui;
+  Namespace ns = widgets;
 
   register_abstract_button_class(ns);
   binding::Namespace binder{ ns };

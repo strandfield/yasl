@@ -19,6 +19,7 @@
 
 void register_core_module(script::Engine*); // defined in coremodule.cpp
 void register_gui_module(script::Engine*); // defined in guimodule.cpp
+void register_widgets_module(script::Engine*); // defined in widgets.cpp
 
 namespace callbacks
 {
@@ -61,6 +62,7 @@ Application::Application(int & argc, char **argv)
 
   register_core_module(&mEngine);
   register_gui_module(&mEngine);
+  register_widgets_module(&mEngine);
 
   mEngine.rootNamespace().Function("print", callbacks::print_int)
     .params(script::Type::Int).create();

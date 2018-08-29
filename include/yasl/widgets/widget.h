@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_GUI_WIDGET_H
-#define YASL_GUI_WIDGET_H
+#ifndef YASL_WIDGETS_WIDGET_H
+#define YASL_WIDGETS_WIDGET_H
 
 #include "yasl/binding/types.h"
 #include "yasl/core/qobject-binding.h"
@@ -20,4 +20,4 @@ template<> struct make_type_t<QWidget*> { inline static script::Type get() { ret
 template<> struct make_type_t<QWidget::RenderFlag> { inline static script::Type get() { return script::Type::QWidgetRenderFlag; } };
 } // namespace binding
 
-#endif // YASL_GUI_WIDGET_H
+#endif // YASL_WIDGETS_WIDGET_H

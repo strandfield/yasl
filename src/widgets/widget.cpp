@@ -2,7 +2,7 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/gui/widget.h"
+#include "yasl/widgets/widget.h"
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
@@ -28,8 +28,8 @@
 #include "yasl/gui/palette.h"
 #include "yasl/gui/pixmap.h"
 #include "yasl/gui/region.h"
-#include "yasl/gui/widget.h"
 #include "yasl/gui/window.h"
+#include "yasl/widgets/widget.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -568,11 +568,11 @@ static void register_widget_class(script::Namespace ns)
 }
 
 
-void register_widget_file(script::Namespace gui)
+void register_widget_file(script::Namespace widgets)
 {
   using namespace script;
 
-  Namespace ns = gui;
+  Namespace ns = widgets;
 
   register_widget_class(ns);
   binding::Namespace binder{ ns };

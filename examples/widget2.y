@@ -1,5 +1,6 @@
 import core;
 import gui;
+import widgets;
 
 Widget & w = newWidget("Hello World");
 PushButton & b = newPushButton("Close", w);

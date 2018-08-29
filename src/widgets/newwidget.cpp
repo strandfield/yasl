@@ -2,7 +2,7 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/gui/newwidget.h"
+#include "yasl/widgets/newwidget.h"
 
 #include "yasl/binding/qclass.h"
 #include "yasl/binding/qsignal.h"

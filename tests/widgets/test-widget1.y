@@ -1,4 +1,4 @@
-import gui;
+import widgets;
 
 Widget & widget = newWidget("Hello there!");
 widget.show();

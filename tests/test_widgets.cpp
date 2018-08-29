@@ -6,7 +6,7 @@
 
 #include "yasl/application.h"
 #include "yasl/core/object.h"
-#include "yasl/gui/widget.h"
+#include "yasl/widgets/widget.h"
 
 #include <script/script.h>
 

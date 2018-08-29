@@ -2,9 +2,9 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/gui/newpushbutton.h"
+#include "yasl/widgets/newpushbutton.h"
 
-#include "yasl/gui/widget.h"
+#include "yasl/widgets/widget.h"
 
 #include <script/engine.h>
 #include <script/functionbuilder.h>

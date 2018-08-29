@@ -46043,7 +46043,14 @@
                     "hincludes": "<qevent.h>,yasl/core/event.h",
                     "name": "guievent",
                     "type": "file"
-                },
+                }
+            ],
+            "name": "gui",
+            "type": "module"
+        },
+        {
+            "checked": 1,
+            "elements": [
                 {
                     "elements": [
                         {
@@ -48567,7 +48574,7 @@
                     "type": "file"
                 }
             ],
-            "name": "gui",
+            "name": "widgets",
             "type": "module"
         }
     ],
@@ -49286,7 +49293,7 @@
                 "tag": "qevent_tag"
             },
             {
-                "header": "yasl/gui/widget.h",
+                "header": "yasl/widgets/widget.h",
                 "id": "QWidget",
                 "links": "ref@QWidget*;ptr@Ptr<QWidget*>;list@QList<QWidget*>",
                 "name": "QWidget",
@@ -49294,29 +49301,29 @@
                 "tag": "qobject_tag"
             },
             {
-                "header": "yasl/gui/widget.h",
+                "header": "yasl/widgets/widget.h",
                 "id": "QWidgetStar",
                 "name": "QWidget*"
             },
             {
-                "header": "yasl/gui/widget.h",
+                "header": "yasl/widgets/widget.h",
                 "id": "PtrQWidget",
                 "name": "Ptr<QWidget*>"
             },
             {
-                "header": "yasl/gui/widget.h",
+                "header": "yasl/widgets/widget.h",
                 "id": "QListQWidget",
                 "name": "QList<QWidget*>"
             },
             {
-                "header": "yasl/gui/abstractbutton.h",
+                "header": "yasl/widgets/abstractbutton.h",
                 "id": "QAbstractButton",
                 "name": "QAbstractButton",
                 "rename": "AbstractButton",
                 "tag": "qobject_tag"
             },
             {
-                "header": "yasl/gui/pushbutton.h",
+                "header": "yasl/widgets/pushbutton.h",
                 "id": "QPushButton",
                 "name": "QPushButton",
                 "rename": "PushButton",
@@ -50247,7 +50254,7 @@
                 "name": "QWindow::AncestorMode"
             },
             {
-                "header": "yasl/gui/widget.h",
+                "header": "yasl/widgets/widget.h",
                 "id": "QWidgetRenderFlag",
                 "name": "QWidget::RenderFlag"
             }

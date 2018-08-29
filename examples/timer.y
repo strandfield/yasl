@@ -1,5 +1,5 @@
 import core;
-import gui;
+import widgets;
 
 Widget & w = newWidget("Hello there !");
 w.show();

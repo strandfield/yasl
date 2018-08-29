@@ -5,6 +5,6 @@
 #ifndef YASL_GUI_NEW_PUSHBUTTON_H
 #define YASL_GUI_NEW_PUSHBUTTON_H
 
-#include "yasl/gui/pushbutton.h"
+#include "yasl/widgets/pushbutton.h"
 
 #endif // YASL_GUI_NEW_PUSHBUTTON_H

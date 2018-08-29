@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_GUI_PUSHBUTTON_H
-#define YASL_GUI_PUSHBUTTON_H
+#ifndef YASL_WIDGETS_PUSHBUTTON_H
+#define YASL_WIDGETS_PUSHBUTTON_H
 
 #include "yasl/binding/types.h"
 #include "yasl/core/qobject-binding.h"
@@ -15,4 +15,4 @@ template<> struct make_type_t<QPushButton> { inline static script::Type get() { 
 template<> struct tag_resolver<QPushButton> { typedef qobject_tag tag_type; };
 } // namespace binding
 
-#endif // YASL_GUI_PUSHBUTTON_H
+#endif // YASL_WIDGETS_PUSHBUTTON_H

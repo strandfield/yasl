@@ -39,14 +39,6 @@ void register_textoption_file(script::Namespace n); // defined in textoption.cpp
 void register_validator_file(script::Namespace n); // defined in validator.cpp
 void register_window_file(script::Namespace n); // defined in window.cpp
 void register_guievent_file(script::Namespace n); // defined in guievent.cpp
-void register_widget_file(script::Namespace n); // defined in widget.cpp
-void register_abstractbutton_file(script::Namespace n); // defined in abstractbutton.cpp
-void register_pushbutton_file(script::Namespace n); // defined in pushbutton.cpp
-
-// Start of non-generated code
-void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
-void register_newpushbutton_file(script::Namespace n); // defined in newpushbutton.cpp
-// End of non-generated code
 
 void load_gui_module(script::Module gui)
 {
@@ -86,14 +78,6 @@ void load_gui_module(script::Module gui)
   register_validator_file(gui.root());
   register_window_file(gui.root());
   register_guievent_file(gui.root());
-  register_widget_file(gui.root());
-  register_abstractbutton_file(gui.root());
-  register_pushbutton_file(gui.root());
-
-  // Start of non-generated code
-  register_newwidget_file(gui.root());
-  register_newpushbutton_file(gui.root());
-  // End of non-generated code
 }
 
 void cleanup_gui_module(script::Module gui)

@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_NEW_WIDGET_H
 #define YASL_GUI_NEW_WIDGET_H
 
-#include "yasl/gui/widget.h"
+#include "yasl/widgets/widget.h"
 
 class Widget : public QWidget
 {
