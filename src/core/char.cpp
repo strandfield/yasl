@@ -377,7 +377,7 @@ static void register_char__class(script::Namespace ns)
   register_char__unicode_version_enum(char_);
   binding::Class<QChar> binder{ char_ };
 
-  //  ~Char();
+  // ~QChar();
   binder.add_dtor();
   // QChar();
   binder.ctors().add_default();

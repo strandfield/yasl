@@ -29,13 +29,15 @@ void Function::fillJson(QJsonObject & obj) const
   if (!rename.isEmpty())
     obj["rename"] = rename;
 
-  obj["returns"] = returnType;
+  if(!returnType.isEmpty() && returnType != "void")
+    obj["returns"] = returnType;
 
   QJsonArray params;
   for (const auto & p : parameters)
     params.append(p);
 
-  obj["parameters"] = params;
+  if(!params.isEmpty())
+    obj["parameters"] = params;
 
   if(isExplicit)
     obj["explicit"] = isExplicit;
@@ -55,11 +57,16 @@ QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
   ret->rename = obj.value("rename").toString();
 
   ret->returnType = obj.value("returns").toString();
+  if (ret->returnType.isEmpty())
+    ret->returnType = "void";
 
-  QJsonArray parameters = obj.value("parameters").toArray();
-  ret->parameters.reserve(parameters.size());
-  for (const auto & item : parameters)
-    ret->parameters.push_back(item.toString());
+  if (obj.contains("parameters"))
+  {
+    QJsonArray parameters = obj.value("parameters").toArray();
+    ret->parameters.reserve(parameters.size());
+    for (const auto & item : parameters)
+      ret->parameters.push_back(item.toString());
+  }
 
   ret->isExplicit = obj.contains("explicit") ? obj.value("explicit").toBool() : false;
   ret->isStatic = obj.contains("static") ? obj.value("static").toBool() : false;
