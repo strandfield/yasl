@@ -44588,6 +44588,289 @@
                     "hincludes": "<QFrame>",
                     "name": "frame",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QFrame",
+                            "elements": [
+                                {
+                                    "name": "QLabel",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLabel",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QLabel",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "returns": "const QPixmap *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "picture",
+                                    "returns": "const QPicture *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "movie",
+                                    "returns": "QMovie *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textFormat",
+                                    "returns": "Qt::TextFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextFormat",
+                                    "parameters": [
+                                        "Qt::TextFormat"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alignment",
+                                    "returns": "Qt::Alignment",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlignment",
+                                    "parameters": [
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWordWrap",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "wordWrap",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "indent",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIndent",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "margin",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMargin",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasScaledContents",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setScaledContents",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBuddy",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buddy",
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "heightForWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "openExternalLinks",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOpenExternalLinks",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextInteractionFlags",
+                                    "parameters": [
+                                        "Qt::TextInteractionFlags"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textInteractionFlags",
+                                    "returns": "Qt::TextInteractionFlags",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSelection",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasSelectedText",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectedText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectionStart",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixmap",
+                                    "parameters": [
+                                        "const QPixmap &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPicture",
+                                    "parameters": [
+                                        "const QPicture &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMovie",
+                                    "parameters": [
+                                        "QMovie *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNum",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "linkActivated",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "linkHovered",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QLabel",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QLabel>",
+                    "name": "label",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -45350,6 +45633,13 @@
                 "id": "QFrame",
                 "name": "QFrame",
                 "rename": "Frame",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/label.h",
+                "id": "QLabel",
+                "name": "QLabel",
+                "rename": "Label",
                 "tag": "qobject_tag"
             }
         ],
