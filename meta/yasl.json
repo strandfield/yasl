@@ -44418,6 +44418,176 @@
                     "hincludes": "<QPushButton>",
                     "name": "pushbutton",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QFrame",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFrame",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "frameStyle",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFrameStyle",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "frameWidth",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoFrame"
+                                        },
+                                        {
+                                            "name": "Box"
+                                        },
+                                        {
+                                            "name": "Panel"
+                                        },
+                                        {
+                                            "name": "WinPanel"
+                                        },
+                                        {
+                                            "name": "HLine"
+                                        },
+                                        {
+                                            "name": "VLine"
+                                        },
+                                        {
+                                            "name": "StyledPanel"
+                                        }
+                                    ],
+                                    "name": "Shape",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Plain"
+                                        },
+                                        {
+                                            "name": "Raised"
+                                        },
+                                        {
+                                            "name": "Sunken"
+                                        }
+                                    ],
+                                    "name": "Shadow",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Shadow_Mask"
+                                        },
+                                        {
+                                            "name": "Shape_Mask"
+                                        }
+                                    ],
+                                    "name": "StyleMask",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "frameShape",
+                                    "returns": "QFrame::Shape",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFrameShape",
+                                    "parameters": [
+                                        "QFrame::Shape"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "frameShadow",
+                                    "returns": "QFrame::Shadow",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFrameShadow",
+                                    "parameters": [
+                                        "QFrame::Shadow"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lineWidth",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLineWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "midLineWidth",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMidLineWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "frameRect",
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFrameRect",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFrame",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QFrame>",
+                    "name": "frame",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -45173,6 +45343,13 @@
                 "id": "QPushButton",
                 "name": "QPushButton",
                 "rename": "PushButton",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/frame.h",
+                "id": "QFrame",
+                "name": "QFrame",
+                "rename": "Frame",
                 "tag": "qobject_tag"
             }
         ],
@@ -46103,6 +46280,21 @@
                 "header": "yasl/widgets/widget.h",
                 "id": "QWidgetRenderFlag",
                 "name": "QWidget::RenderFlag"
+            },
+            {
+                "header": "yasl/widgets/frame.h",
+                "id": "QFrameShape",
+                "name": "QFrame::Shape"
+            },
+            {
+                "header": "yasl/widgets/frame.h",
+                "id": "QFrameShadow",
+                "name": "QFrame::Shadow"
+            },
+            {
+                "header": "yasl/widgets/frame.h",
+                "id": "QFrameStyleMask",
+                "name": "QFrame::StyleMask"
             }
         ],
         "fundamentals": [

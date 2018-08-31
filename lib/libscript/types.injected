@@ -185,6 +185,10 @@ QValidatorState,
 QWidgetRenderFlag,
 QWindowAncestorMode,
 QWindowVisibility,
+/* Qt Widgets */
+QFrameShadow,
+QFrameShape,
+QFrameStyleMask,
 LastEnumType,
 
 /* Classes */
@@ -346,4 +350,6 @@ QWidget,
 QWidgetStar,
 QWindow,
 QWindowStar,
+/* Qt Widgets */
+QFrame,
 LastClassType,

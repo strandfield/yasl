@@ -8,6 +8,7 @@
 #include <script/namespace.h>
 
 void register_widget_file(script::Namespace n); // defined in widget.cpp
+void register_frame_file(script::Namespace n); // defined in frame.cpp
 void register_abstractbutton_file(script::Namespace n); // defined in abstractbutton.cpp
 void register_pushbutton_file(script::Namespace n); // defined in pushbutton.cpp
 
@@ -23,6 +24,7 @@ void load_widgets_module(script::Module widgets)
   // End of non-generated code
 
   register_widget_file(widgets.root());
+  register_frame_file(widgets.root());
   register_abstractbutton_file(widgets.root());
   register_pushbutton_file(widgets.root());
 
