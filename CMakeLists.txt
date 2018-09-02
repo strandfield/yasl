@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.9)
 project(yasl)
 
-set(LIBSCRIPT_PROJECT_DIR "" CACHE PATH "Provide the directory of the libscript library")
+set(LIBSCRIPT_PROJECT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libscript" CACHE PATH "Provide the directory of the libscript library")
 
 if ("${LIBSCRIPT_PROJECT_DIR}" STREQUAL "")
   message(FATAL_ERROR "The directory of the libscript project must be specified")  
