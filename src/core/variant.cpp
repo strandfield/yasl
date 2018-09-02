@@ -11,6 +11,7 @@
 #include "yasl/core/bytearray.h"
 #include "yasl/core/char.h"
 #include "yasl/core/datetime.h"
+#include "yasl/core/jsonvalue.h"
 #include "yasl/core/line.h"
 #include "yasl/core/locale.h"
 #include "yasl/core/point.h"
@@ -190,7 +191,7 @@ static void register_variant_class(script::Namespace ns)
   // QVariant(const QPersistentModelIndex &);
   /// TODO: QVariant(const QPersistentModelIndex &);
   // QVariant(const QJsonValue &);
-  /// TODO: QVariant(const QJsonValue &);
+  binder.ctors().add<const QJsonValue &>();
   // QVariant(const QJsonObject &);
   /// TODO: QVariant(const QJsonObject &);
   // QVariant(const QJsonArray &);
@@ -290,7 +291,7 @@ static void register_variant_class(script::Namespace ns)
   // QPersistentModelIndex toPersistentModelIndex() const;
   /// TODO: QPersistentModelIndex toPersistentModelIndex() const;
   // QJsonValue toJsonValue() const;
-  /// TODO: QJsonValue toJsonValue() const;
+  binder.add_fun<QJsonValue, &QVariant::toJsonValue>("toJsonValue");
   // QJsonObject toJsonObject() const;
   /// TODO: QJsonObject toJsonObject() const;
   // QJsonArray toJsonArray() const;

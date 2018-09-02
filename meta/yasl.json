@@ -25172,6 +25172,536 @@
                     "hincludes": "<QEvent>",
                     "name": "event",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Null"
+                                        },
+                                        {
+                                            "name": "Bool"
+                                        },
+                                        {
+                                            "name": "Double"
+                                        },
+                                        {
+                                            "name": "String"
+                                        },
+                                        {
+                                            "name": "Array"
+                                        },
+                                        {
+                                            "name": "Object"
+                                        },
+                                        {
+                                            "name": "Undefined"
+                                        }
+                                    ],
+                                    "name": "Type",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "QJsonValue::Type"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "QLatin1String"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "const QJsonObject &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QJsonValue",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "QJsonValue &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QJsonValue",
+                                    "parameters": [
+                                        "QJsonValue &&"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QJsonValue &&"
+                                    ],
+                                    "returns": "QJsonValue &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QJsonValue &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromVariant",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "QJsonValue",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toVariant",
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "type",
+                                    "returns": "QJsonValue::Type",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isBool",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDouble",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isString",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isArray",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isObject",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isUndefined",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toBool",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toInt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDouble",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toArray",
+                                    "returns": "QJsonArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toArray",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "returns": "QJsonArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toObject",
+                                    "returns": "QJsonObject",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toObject",
+                                    "parameters": [
+                                        "const QJsonObject &"
+                                    ],
+                                    "returns": "QJsonObject",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "const QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "QLatin1String"
+                                    ],
+                                    "returns": "const QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "const QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QJsonValue",
+                            "type": "class"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QJsonValueRef",
+                                    "parameters": [
+                                        "QJsonArray *",
+                                        "int"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonValueRef",
+                                    "parameters": [
+                                        "QJsonObject *",
+                                        "int"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "QJsonValueRef &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QJsonValueRef &"
+                                    ],
+                                    "returns": "QJsonValueRef &",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toVariant",
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "type",
+                                    "returns": "QJsonValue::Type",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isBool",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDouble",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isString",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isArray",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isObject",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isUndefined",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toBool",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toInt",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDouble",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toArray",
+                                    "returns": "QJsonArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toObject",
+                                    "returns": "QJsonObject",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toBool",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toInt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toDouble",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toString",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QJsonValueRef",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QJsonValue &",
+                                "QJsonValue &"
+                            ],
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QJsonValue &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QJsonValue>",
+                    "name": "jsonvalue",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -46650,6 +47180,18 @@
                 "name": "QLineEdit",
                 "rename": "LineEdit",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/core/jsonvalue.h",
+                "id": "QJsonValue",
+                "name": "QJsonValue",
+                "rename": "JsonValue"
+            },
+            {
+                "header": "yasl/core/jsonvalue.h",
+                "id": "QJsonValueRef",
+                "name": "QJsonValueRef",
+                "rename": "JsonValueRef"
             }
         ],
         "enums": [
@@ -47614,6 +48156,11 @@
                 "header": "yasl/widgets/lineedit.h",
                 "id": "QLineEditEchoMode",
                 "name": "QLineEdit::EchoMode"
+            },
+            {
+                "header": "yasl/core/jsonvalue.h",
+                "id": "QJsonValueType",
+                "name": "QJsonValue::Type"
             }
         ],
         "fundamentals": [
