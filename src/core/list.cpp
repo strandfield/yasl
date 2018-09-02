@@ -16,10 +16,9 @@
 
 static script::Value make_list(const QList<ContainerValue> & val, const script::Type & list_type, script::Engine *e)
 {
-  script::Value ret = e->uninitialized(list_type);
-  new (&ret.impl()->data.memory) QList<ContainerValue>{val};
-  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  return ret;
+  return e->construct(list_type, [&val](script::Value & ret) {
+    new (&ret.impl()->data.memory) QList<ContainerValue>{val};
+  });
 }
 
 namespace callbacks

@@ -49,14 +49,15 @@ static script::Value new_widget(script::FunctionCall *c)
 static script::Value new_widget_window_title(script::FunctionCall *c)
 {
   using namespace script;
-  Type widget_type = c->callee().returnType().baseType();
-  Value v = c->engine()->uninitialized(widget_type);
+
   QWidget *widget = new QWidget;
   widget->setWindowTitle(binding::value_cast<QString>(c->arg(0)));
-  v.impl()->set_qobject(widget);
-  c->engine()->bind(v, widget);
-  v.impl()->type = v.impl()->type.withoutFlag(Type::UninitializedFlag);
-  return v;
+
+  Type widget_type = c->callee().returnType().baseType();
+
+  return c->engine()->construct(widget_type, [c, widget](Value & ret) {
+    c->engine()->bind(ret, widget);
+  });
 }
 
 static script::Value close_event(script::FunctionCall *c)

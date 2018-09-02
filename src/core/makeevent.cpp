@@ -17,10 +17,9 @@ script::Value make_event(QEvent *event, const script::Type & event_type, script:
 {
   using namespace script;
 
-  Value ret = engine->uninitialized(event_type);
-  ret.impl()->data.ptr = event;
-  ret.impl()->type = ret.impl()->type.withoutFlag(Type::UninitializedFlag);
-  return ret;
+  return engine->construct(event_type, [event](script::Value & val) {
+    val.impl()->data.ptr = event;
+  });
 }
 
 void clear_event(script::Value & value)

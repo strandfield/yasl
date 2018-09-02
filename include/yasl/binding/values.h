@@ -73,10 +73,9 @@ struct make_value_t<T, small_object_tag>
 {
   static script::Value make(const T & input, script::Engine *e)
   {
-    script::Value ret = e->uninitialized(make_type<T>());
-    new (&ret.impl()->data.memory) T(input);
-    ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-    return ret;
+    return e->construct(make_type<T>(), [&input](script::Value & ret) {
+      new (&ret.impl()->data.memory) T(input);
+    });
   }
 };
 
@@ -85,10 +84,9 @@ struct make_value_t<T, large_object_tag>
 {
   static script::Value make(const T & input, script::Engine *e)
   {
-    script::Value ret = e->uninitialized(make_type<T>());
-    ret.impl()->data.ptr = new T(input);
-    ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-    return ret;
+    return e->construct(make_type<T>(), [&input](script::Value & ret) {
+      ret.impl()->data.ptr = new T(input);
+    });
   }
 };
 

@@ -16,12 +16,11 @@
 #include <script/private/engine_p.h>
 #include <script/templatebuilder.h>
 
-static script::Value make_vector(const QVector<ContainerValue> & val, const script::Type & list_type, script::Engine *e)
+static script::Value make_vector(const QVector<ContainerValue> & val, const script::Type & vector_type, script::Engine *e)
 {
-  script::Value ret = e->uninitialized(list_type);
-  new (&ret.impl()->data.memory) QVector<ContainerValue>{val};
-  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  return ret;
+  return e->construct(vector_type, [&val](script::Value & ret) {
+    new (&ret.impl()->data.memory) QVector<ContainerValue>{val};
+  });
 }
 
 namespace callbacks

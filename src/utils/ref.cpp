@@ -218,11 +218,9 @@ script::Class register_ref_specialization(script::Engine *e, script::Type object
 
 script::Value make_ref(script::Engine *e, const script::Type & ref_type, QObject *value)
 {
-  using namespace script;
-  Value v = e->uninitialized(ref_type);
-  v.impl()->set_qobject(value);
-  v.impl()->type = v.impl()->type.withoutFlag(Type::UninitializedFlag);
-  return v;
+  return e->construct(ref_type, [value](script::Value & ret) {
+    ret.impl()->set_qobject(value);
+  });
 }
 
 script::Class get_ref_type(script::Engine *e, const script::Type & object_type)

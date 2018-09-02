@@ -62,18 +62,16 @@ Value Engine::expose(QObject *obj)
     return binding_data.value<binding::BindingData>().value;
 
   script::Type t = get_qt_type(obj->metaObject(), d->qt_type_map);
-  script::Value ret = this->uninitialized(t);
-  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  bind(ret, obj);
-  return ret;
+  return this->construct(t, [obj, this](Value & ret) {
+    this->bind(ret, obj);
+  });
 }
 
 Value Engine::expose(QObject *obj, Type t)
 {
-  script::Value ret = this->uninitialized(t);
-  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  bind(ret, obj);
-  return ret;
+  return this->construct(t, [obj, this](Value & ret) {
+    this->bind(ret, obj);
+  });
 }
 
 void Engine::bind(const Value & val, QObject *obj)
@@ -84,10 +82,9 @@ void Engine::bind(const Value & val, QObject *obj)
 
 Value Engine::newPtr(const script::Type & ptr_type, void *value)
 {
-  script::Value ret = this->uninitialized(ptr_type);
-  ret.impl()->data.ptr = value;
-  ret.impl()->type = ret.impl()->type.withoutFlag(script::Type::UninitializedFlag);
-  return ret;
+  return this->construct(ptr_type, [value](Value & ret) {
+    ret.impl()->data.ptr = value;
+  });
 }
 
 } // namespace script
