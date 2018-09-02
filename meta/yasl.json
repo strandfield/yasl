@@ -45311,6 +45311,561 @@
                     "hincludes": "<QTabWidget>",
                     "name": "tabwidget",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LeadingPosition"
+                                        },
+                                        {
+                                            "name": "TrailingPosition"
+                                        }
+                                    ],
+                                    "name": "ActionPosition",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QLineEdit",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QLineEdit",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QLineEdit",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "displayText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "placeholderText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPlaceholderText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maxLength",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaxLength",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFrame",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasFrame",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setClearButtonEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isClearButtonEnabled",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Normal"
+                                        },
+                                        {
+                                            "name": "NoEcho"
+                                        },
+                                        {
+                                            "name": "Password"
+                                        },
+                                        {
+                                            "name": "PasswordEchoOnEdit"
+                                        }
+                                    ],
+                                    "name": "EchoMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "echoMode",
+                                    "returns": "QLineEdit::EchoMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setEchoMode",
+                                    "parameters": [
+                                        "QLineEdit::EchoMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isReadOnly",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setReadOnly",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setValidator",
+                                    "parameters": [
+                                        "const QValidator *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "validator",
+                                    "returns": "const QValidator *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCompleter",
+                                    "parameters": [
+                                        "QCompleter *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "completer",
+                                    "returns": "QCompleter *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cursorPosition",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCursorPosition",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cursorPositionAt",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlignment",
+                                    "parameters": [
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alignment",
+                                    "returns": "Qt::Alignment",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cursorForward",
+                                    "parameters": [
+                                        "bool",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cursorBackward",
+                                    "parameters": [
+                                        "bool",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cursorWordForward",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cursorWordBackward",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "backspace",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "del",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "home",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "end",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isModified",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setModified",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSelection",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasSelectedText",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectedText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectionStart",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectionEnd",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectionLength",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isUndoAvailable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isRedoAvailable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDragEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dragEnabled",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCursorMoveStyle",
+                                    "parameters": [
+                                        "Qt::CursorMoveStyle"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cursorMoveStyle",
+                                    "returns": "Qt::CursorMoveStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inputMask",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInputMask",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasAcceptableInput",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextMargins",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextMargins",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getTextMargins",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textMargins",
+                                    "returns": "QMargins",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "QAction *",
+                                        "QLineEdit::ActionPosition"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "QLineEdit::ActionPosition"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "selectAll",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "undo",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "redo",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cut",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "copy",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "paste",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "deselect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "createStandardContextMenu",
+                                    "returns": "QMenu *",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "textChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "textEdited",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "cursorPositionChanged",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "returnPressed",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "editingFinished",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "selectionChanged",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inputMethodQuery",
+                                    "parameters": [
+                                        "Qt::InputMethodQuery"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inputMethodQuery",
+                                    "parameters": [
+                                        "Qt::InputMethodQuery",
+                                        "QVariant"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "event",
+                                    "parameters": [
+                                        "QEvent *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QLineEdit",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QLineEdit>",
+                    "name": "lineedit",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -46087,6 +46642,13 @@
                 "id": "QTabWidget",
                 "name": "QTabWidget",
                 "rename": "TabWidget",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/lineedit.h",
+                "id": "QLineEdit",
+                "name": "QLineEdit",
+                "rename": "LineEdit",
                 "tag": "qobject_tag"
             }
         ],
@@ -47042,6 +47604,16 @@
                 "header": "yasl/widgets/tabwidget.h",
                 "id": "QTabWidgetTabShape",
                 "name": "QTabWidget::TabShape"
+            },
+            {
+                "header": "yasl/widgets/lineedit.h",
+                "id": "QLineEditActionPosition",
+                "name": "QLineEdit::ActionPosition"
+            },
+            {
+                "header": "yasl/widgets/lineedit.h",
+                "id": "QLineEditEchoMode",
+                "name": "QLineEdit::EchoMode"
             }
         ],
         "fundamentals": [
