@@ -12,6 +12,7 @@
 #include "yasl/core/char.h"
 #include "yasl/core/datetime.h"
 #include "yasl/core/jsonarray.h"
+#include "yasl/core/jsonobject.h"
 #include "yasl/core/jsonvalue.h"
 #include "yasl/core/line.h"
 #include "yasl/core/locale.h"
@@ -194,7 +195,7 @@ static void register_variant_class(script::Namespace ns)
   // QVariant(const QJsonValue &);
   binder.ctors().add<const QJsonValue &>();
   // QVariant(const QJsonObject &);
-  /// TODO: QVariant(const QJsonObject &);
+  binder.ctors().add<const QJsonObject &>();
   // QVariant(const QJsonArray &);
   binder.ctors().add<const QJsonArray &>();
   // QVariant(const QJsonDocument &);
@@ -294,7 +295,7 @@ static void register_variant_class(script::Namespace ns)
   // QJsonValue toJsonValue() const;
   binder.add_fun<QJsonValue, &QVariant::toJsonValue>("toJsonValue");
   // QJsonObject toJsonObject() const;
-  /// TODO: QJsonObject toJsonObject() const;
+  binder.add_fun<QJsonObject, &QVariant::toJsonObject>("toJsonObject");
   // QJsonArray toJsonArray() const;
   binder.add_fun<QJsonArray, &QVariant::toJsonArray>("toJsonArray");
   // QJsonDocument toJsonDocument() const;
