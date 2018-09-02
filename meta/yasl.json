@@ -25702,6 +25702,355 @@
                     "hincludes": "<QJsonValue>",
                     "name": "jsonvalue",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "name": "QJsonArray",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonArray",
+                                    "parameters": [
+                                        "std::initializer_list<QJsonValue>"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QJsonArray",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QJsonArray",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "returns": "QJsonArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QJsonArray",
+                                    "parameters": [
+                                        "QJsonArray &&"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QJsonArray &&"
+                                    ],
+                                    "returns": "QJsonArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromStringList",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "QJsonArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromVariantList",
+                                    "parameters": [
+                                        "const QVariantList &"
+                                    ],
+                                    "returns": "QJsonArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toVariantList",
+                                    "returns": "QVariantList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "size",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "at",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "first",
+                                    "returns": "QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "last",
+                                    "returns": "QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "prepend",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "append",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "takeAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeFirst",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeLast",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "int",
+                                        "const QJsonValue &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "replace",
+                                    "parameters": [
+                                        "int",
+                                        "const QJsonValue &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QJsonValueRef",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QJsonArray &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "begin",
+                                    "returns": "QJsonArray::iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "begin",
+                                    "returns": "QJsonArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "constBegin",
+                                    "returns": "QJsonArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "end",
+                                    "returns": "QJsonArray::iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "end",
+                                    "returns": "QJsonArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "constEnd",
+                                    "returns": "QJsonArray::const_iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "QJsonArray::iterator",
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "QJsonArray::iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "erase",
+                                    "parameters": [
+                                        "QJsonArray::iterator"
+                                    ],
+                                    "returns": "QJsonArray::iterator",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator+",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "QJsonArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator+=",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "QJsonArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "returns": "QJsonArray &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "push_back",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "push_front",
+                                    "parameters": [
+                                        "const QJsonValue &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "pop_front",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "pop_back",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "empty",
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QJsonArray",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QJsonArray &",
+                                "QJsonArray &"
+                            ],
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QJsonArray &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QJsonArray>",
+                    "name": "jsonarray",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -47192,6 +47541,12 @@
                 "id": "QJsonValueRef",
                 "name": "QJsonValueRef",
                 "rename": "JsonValueRef"
+            },
+            {
+                "header": "yasl/core/jsonarray.h",
+                "id": "QJsonArray",
+                "name": "QJsonArray",
+                "rename": "JsonArray"
             }
         ],
         "enums": [

@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/jsonarray.h"
 #include "yasl/core/jsonvalue.h"
 #include "yasl/core/variant.h"
 
@@ -56,7 +57,7 @@ static void register_json_value_class(script::Namespace ns)
   // QJsonValue(const char *);
   /// TODO: QJsonValue(const char *);
   // QJsonValue(const QJsonArray &);
-  /// TODO: QJsonValue(const QJsonArray &);
+  binder.ctors().add<const QJsonArray &>();
   // QJsonValue(const QJsonObject &);
   /// TODO: QJsonValue(const QJsonObject &);
   // ~QJsonValue();
@@ -102,9 +103,9 @@ static void register_json_value_class(script::Namespace ns)
   // QString toString(const QString &) const;
   binder.add_fun<QString, const QString &, &QJsonValue::toString>("toString");
   // QJsonArray toArray() const;
-  /// TODO: QJsonArray toArray() const;
+  binder.add_fun<QJsonArray, &QJsonValue::toArray>("toArray");
   // QJsonArray toArray(const QJsonArray &) const;
-  /// TODO: QJsonArray toArray(const QJsonArray &) const;
+  binder.add_fun<QJsonArray, const QJsonArray &, &QJsonValue::toArray>("toArray");
   // QJsonObject toObject() const;
   /// TODO: QJsonObject toObject() const;
   // QJsonObject toObject(const QJsonObject &) const;
@@ -165,7 +166,7 @@ static void register_json_value_ref_class(script::Namespace ns)
   // QString toString() const;
   binder.add_fun<QString, &QJsonValueRef::toString>("toString");
   // QJsonArray toArray() const;
-  /// TODO: QJsonArray toArray() const;
+  binder.add_fun<QJsonArray, &QJsonValueRef::toArray>("toArray");
   // QJsonObject toObject() const;
   /// TODO: QJsonObject toObject() const;
   // bool toBool(bool) const;

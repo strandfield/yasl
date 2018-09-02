@@ -33,6 +33,7 @@ void register_filedevice_file(script::Namespace n); // defined in filedevice.cpp
 void register_file_file(script::Namespace n); // defined in file.cpp
 void register_event_file(script::Namespace n); // defined in event.cpp
 void register_jsonvalue_file(script::Namespace n); // defined in jsonvalue.cpp
+void register_jsonarray_file(script::Namespace n); // defined in jsonarray.cpp
 
 // Start of non-generated code
 void register_ptr_template(script::Namespace n); // defined in ptr.cpp
@@ -78,6 +79,7 @@ void load_core_module(script::Module core)
   register_file_file(core.root());
   register_event_file(core.root());
   register_jsonvalue_file(core.root());
+  register_jsonarray_file(core.root());
 
   // Start of non-generated code
   register_newobject_file(core.root());
