@@ -44871,6 +44871,446 @@
                     "hincludes": "<QLabel>",
                     "name": "label",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QTabWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QTabWidget",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "addTab",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addTab",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QIcon &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertTab",
+                                    "parameters": [
+                                        "int",
+                                        "QWidget *",
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertTab",
+                                    "parameters": [
+                                        "int",
+                                        "QWidget *",
+                                        "const QIcon &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeTab",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTabEnabled",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabEnabled",
+                                    "parameters": [
+                                        "int",
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabText",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabText",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabIcon",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QIcon",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabIcon",
+                                    "parameters": [
+                                        "int",
+                                        "const QIcon &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabToolTip",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabToolTip",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabWhatsThis",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabWhatsThis",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentIndex",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentWidget",
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "widget",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "indexOf",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "North"
+                                        },
+                                        {
+                                            "name": "South"
+                                        },
+                                        {
+                                            "name": "West"
+                                        },
+                                        {
+                                            "name": "East"
+                                        }
+                                    ],
+                                    "name": "TabPosition",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabPosition",
+                                    "returns": "QTabWidget::TabPosition",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabPosition",
+                                    "parameters": [
+                                        "QTabWidget::TabPosition"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabsClosable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabsClosable",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isMovable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMovable",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Rounded"
+                                        },
+                                        {
+                                            "name": "Triangular"
+                                        }
+                                    ],
+                                    "name": "TabShape",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabShape",
+                                    "returns": "QTabWidget::TabShape",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabShape",
+                                    "parameters": [
+                                        "QTabWidget::TabShape"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "heightForWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasHeightForWidth",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCornerWidget",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::Corner"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cornerWidget",
+                                    "parameters": [
+                                        "Qt::Corner"
+                                    ],
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "elideMode",
+                                    "returns": "Qt::TextElideMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setElideMode",
+                                    "parameters": [
+                                        "Qt::TextElideMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "iconSize",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIconSize",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "usesScrollButtons",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setUsesScrollButtons",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "documentMode",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDocumentMode",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabBarAutoHide",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTabBarAutoHide",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tabBar",
+                                    "returns": "QTabBar *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentIndex",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "tabCloseRequested",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "tabBarClicked",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "tabBarDoubleClicked",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTabWidget",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QTabWidget>",
+                    "name": "tabwidget",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -45640,6 +46080,13 @@
                 "id": "QLabel",
                 "name": "QLabel",
                 "rename": "Label",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/tabwidget.h",
+                "id": "QTabWidget",
+                "name": "QTabWidget",
+                "rename": "TabWidget",
                 "tag": "qobject_tag"
             }
         ],
@@ -46585,6 +47032,16 @@
                 "header": "yasl/widgets/frame.h",
                 "id": "QFrameStyleMask",
                 "name": "QFrame::StyleMask"
+            },
+            {
+                "header": "yasl/widgets/tabwidget.h",
+                "id": "QTabWidgetTabPosition",
+                "name": "QTabWidget::TabPosition"
+            },
+            {
+                "header": "yasl/widgets/tabwidget.h",
+                "id": "QTabWidgetTabShape",
+                "name": "QTabWidget::TabShape"
             }
         ],
         "fundamentals": [
