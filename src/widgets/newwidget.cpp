@@ -16,6 +16,7 @@
 #include <script/engine.h>
 #include <script/functionbuilder.h>
 #include <script/functiontemplate.h>
+#include <script/initialization.h>
 #include <script/interpreter/executioncontext.h>
 #include <script/namespace.h>
 #include <script/overloadresolution.h>
@@ -287,7 +288,7 @@ public:
   ~NewWidgetTemplateData() = default;
 
   script::Function target;
-  std::vector<script::ConversionSequence> conversions;
+  std::vector<script::Conversion> conversions;
   std::vector<script::Type> types;
   Widget::Callbacks callbacks;
 };
@@ -300,7 +301,7 @@ static script::Value new_widget_template(script::FunctionCall *c)
   using namespace script;
   auto data = std::static_pointer_cast<NewWidgetTemplateData>(c->callee().data());
   std::vector<Value> args{ c->args().begin(), c->args().end() };
-  c->engine()->applyConversions(args, data->types, data->conversions);
+  c->engine()->applyConversions(args, data->conversions);
   Value widget = c->engine()->invoke(data->target, args);
   binding::value_cast<Widget*>(widget)->mCallbacks = data->callbacks;
   return widget;
@@ -361,7 +362,9 @@ std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> ne
     throw TemplateInstantiationError{ "newWidget() : Could not find valid constructor" };
 
   data->target = resol.selectedOverload();
-  data->conversions = resol.conversionSequence();
+  /// TODO: should we use Initialization instead ?
+  for (const auto & init : resol.initializations())
+    data->conversions.push_back(init.conversion());
   data->types = data->target.prototype().parameters();
 
   fill_callbacks(data->callbacks, target_type);
