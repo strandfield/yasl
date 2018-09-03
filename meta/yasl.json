@@ -26406,6 +26406,291 @@
                     "hincludes": "<QJsonObject>",
                     "name": "jsonobject",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QJsonDocument",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonDocument",
+                                    "parameters": [
+                                        "const QJsonObject &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QJsonDocument",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QJsonDocument",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "QJsonDocument",
+                                    "parameters": [
+                                        "const QJsonDocument &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QJsonDocument &"
+                                    ],
+                                    "returns": "QJsonDocument &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QJsonDocument",
+                                    "parameters": [
+                                        "QJsonDocument &&"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QJsonDocument &&"
+                                    ],
+                                    "returns": "QJsonDocument &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QJsonDocument &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Validate"
+                                        },
+                                        {
+                                            "name": "BypassValidation"
+                                        }
+                                    ],
+                                    "name": "DataValidation",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "fromRawData",
+                                    "parameters": [
+                                        "const char *",
+                                        "int",
+                                        "QJsonDocument::DataValidation"
+                                    ],
+                                    "returns": "QJsonDocument",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rawData",
+                                    "parameters": [
+                                        "int *"
+                                    ],
+                                    "returns": "const char *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromBinaryData",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "QJsonDocument::DataValidation"
+                                    ],
+                                    "returns": "QJsonDocument",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toBinaryData",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "fromVariant",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "QJsonDocument",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toVariant",
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Indented"
+                                        },
+                                        {
+                                            "name": "Compact"
+                                        }
+                                    ],
+                                    "name": "JsonFormat",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "fromJson",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "QJsonParseError *"
+                                    ],
+                                    "returns": "QJsonDocument",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toJson",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toJson",
+                                    "parameters": [
+                                        "QJsonDocument::JsonFormat"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isArray",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isObject",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "object",
+                                    "returns": "QJsonObject",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "array",
+                                    "returns": "QJsonArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setObject",
+                                    "parameters": [
+                                        "const QJsonObject &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setArray",
+                                    "parameters": [
+                                        "const QJsonArray &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "const QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "QLatin1String"
+                                    ],
+                                    "returns": "const QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator[]",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "const QJsonValue",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QJsonDocument &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QJsonDocument &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNull",
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QJsonDocument",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QJsonDocument &",
+                                "QJsonDocument &"
+                            ],
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QJsonDocument &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QJsonDocument>",
+                    "name": "jsondocument",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -47908,6 +48193,12 @@
                 "id": "QJsonObject",
                 "name": "QJsonObject",
                 "rename": "JsonObject"
+            },
+            {
+                "header": "yasl/core/jsondocument.h",
+                "id": "QJsonDocument",
+                "name": "QJsonDocument",
+                "rename": "JsonDocument"
             }
         ],
         "enums": [
@@ -48877,6 +49168,16 @@
                 "header": "yasl/core/jsonvalue.h",
                 "id": "QJsonValueType",
                 "name": "QJsonValue::Type"
+            },
+            {
+                "header": "yasl/core/jsondocument.h",
+                "id": "QJsonDocumentDataValidation",
+                "name": "QJsonDocument::DataValidation"
+            },
+            {
+                "header": "yasl/core/jsondocument.h",
+                "id": "QJsonDocumentJsonFormat",
+                "name": "QJsonDocument::JsonFormat"
             }
         ],
         "fundamentals": [
