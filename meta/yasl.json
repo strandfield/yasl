@@ -26827,6 +26827,729 @@
                     "hincludes": "<QElapsedTimer>",
                     "name": "elapsedtimer",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "name": "QProcessEnvironment",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QProcessEnvironment",
+                                    "parameters": [
+                                        "const QProcessEnvironment &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QProcessEnvironment",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QProcessEnvironment &&"
+                                    ],
+                                    "returns": "QProcessEnvironment &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QProcessEnvironment &"
+                                    ],
+                                    "returns": "QProcessEnvironment &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QProcessEnvironment &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QProcessEnvironment &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QProcessEnvironment &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contains",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "remove",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "value",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toStringList",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "keys",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insert",
+                                    "parameters": [
+                                        "const QProcessEnvironment &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "systemEnvironment",
+                                    "returns": "QProcessEnvironment",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QProcessEnvironment",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QProcessEnvironment &",
+                                "QProcessEnvironment &"
+                            ],
+                            "type": "function"
+                        },
+                        {
+                            "base": "QIODevice",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "FailedToStart"
+                                        },
+                                        {
+                                            "name": "Crashed"
+                                        },
+                                        {
+                                            "name": "Timedout"
+                                        },
+                                        {
+                                            "name": "ReadError"
+                                        },
+                                        {
+                                            "name": "WriteError"
+                                        },
+                                        {
+                                            "name": "UnknownError"
+                                        }
+                                    ],
+                                    "name": "ProcessError",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NotRunning"
+                                        },
+                                        {
+                                            "name": "Starting"
+                                        },
+                                        {
+                                            "name": "Running"
+                                        }
+                                    ],
+                                    "name": "ProcessState",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "StandardOutput"
+                                        },
+                                        {
+                                            "name": "StandardError"
+                                        }
+                                    ],
+                                    "name": "ProcessChannel",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "SeparateChannels"
+                                        },
+                                        {
+                                            "name": "MergedChannels"
+                                        },
+                                        {
+                                            "name": "ForwardedChannels"
+                                        },
+                                        {
+                                            "name": "ForwardedOutputChannel"
+                                        },
+                                        {
+                                            "name": "ForwardedErrorChannel"
+                                        }
+                                    ],
+                                    "name": "ProcessChannelMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ManagedInputChannel"
+                                        },
+                                        {
+                                            "name": "ForwardedInputChannel"
+                                        }
+                                    ],
+                                    "name": "InputChannelMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NormalExit"
+                                        },
+                                        {
+                                            "name": "CrashExit"
+                                        }
+                                    ],
+                                    "name": "ExitStatus",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QProcess",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QProcess",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "start",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QStringList &",
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "start",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "start",
+                                    "parameters": [
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "startDetached",
+                                    "parameters": [
+                                        "qint64 *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "program",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setProgram",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "arguments",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setArguments",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "readChannelMode",
+                                    "returns": "QProcess::ProcessChannelMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setReadChannelMode",
+                                    "parameters": [
+                                        "QProcess::ProcessChannelMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "processChannelMode",
+                                    "returns": "QProcess::ProcessChannelMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setProcessChannelMode",
+                                    "parameters": [
+                                        "QProcess::ProcessChannelMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inputChannelMode",
+                                    "returns": "QProcess::InputChannelMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInputChannelMode",
+                                    "parameters": [
+                                        "QProcess::InputChannelMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "readChannel",
+                                    "returns": "QProcess::ProcessChannel",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setReadChannel",
+                                    "parameters": [
+                                        "QProcess::ProcessChannel"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "closeReadChannel",
+                                    "parameters": [
+                                        "QProcess::ProcessChannel"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "closeWriteChannel",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStandardInputFile",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStandardOutputFile",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStandardErrorFile",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStandardOutputProcess",
+                                    "parameters": [
+                                        "QProcess *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nativeArguments",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNativeArguments",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "createProcessArgumentsModifier",
+                                    "returns": "QProcess::CreateProcessArgumentModifier",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCreateProcessArgumentsModifier",
+                                    "parameters": [
+                                        "QProcess::CreateProcessArgumentModifier"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "workingDirectory",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWorkingDirectory",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setEnvironment",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "environment",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setProcessEnvironment",
+                                    "parameters": [
+                                        "const QProcessEnvironment &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "processEnvironment",
+                                    "returns": "QProcessEnvironment",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "error",
+                                    "returns": "QProcess::ProcessError",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "state",
+                                    "returns": "QProcess::ProcessState",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pid",
+                                    "returns": "Q_PID",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "processId",
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "waitForStarted",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "waitForReadyRead",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "waitForBytesWritten",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "waitForFinished",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "readAllStandardOutput",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "readAllStandardError",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "exitCode",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "exitStatus",
+                                    "returns": "QProcess::ExitStatus",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bytesAvailable",
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "bytesToWrite",
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSequential",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "canReadLine",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "close",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "atEnd",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "execute",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "execute",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "startDetached",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QStringList &",
+                                        "const QString &",
+                                        "qint64 *"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "startDetached",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "startDetached",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "systemEnvironment",
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "nullDevice",
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "terminate",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "kill",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "started",
+                                    "parameters": [
+                                        "QProcess::QPrivateSignal"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "finished",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "finished",
+                                    "parameters": [
+                                        "int",
+                                        "QProcess::ExitStatus"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "error",
+                                    "parameters": [
+                                        "QProcess::ProcessError"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "errorOccurred",
+                                    "parameters": [
+                                        "QProcess::ProcessError"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "stateChanged",
+                                    "parameters": [
+                                        "QProcess::ProcessState"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "readyReadStandardOutput",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "readyReadStandardError",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QProcess",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QProcess>",
+                    "name": "process",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -47779,6 +48502,19 @@
                 "name": "QObjectList"
             },
             {
+                "header": "yasl/core/process.h",
+                "id": "QProcess",
+                "name": "QProcess",
+                "rename": "Process",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessEnvironment",
+                "name": "QProcessEnvironment",
+                "rename": "ProcessEnvironment"
+            },
+            {
                 "header": "yasl/core/rect.h",
                 "id": "QRect",
                 "name": "QRect",
@@ -48943,6 +49679,36 @@
                 "header": "yasl/core/locale.h",
                 "id": "QLocaleQuotationStyle",
                 "name": "QLocale::QuotationStyle"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessProcessError",
+                "name": "QProcess::ProcessError"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessProcessState",
+                "name": "QProcess::ProcessState"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessProcessChannel",
+                "name": "QProcess::ProcessChannel"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessProcessChannelMode",
+                "name": "QProcess::ProcessChannelMode"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessInputChannelMode",
+                "name": "QProcess::InputChannelMode"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessExitStatus",
+                "name": "QProcess::ExitStatus"
             },
             {
                 "header": "yasl/core/regularexpression.h",
