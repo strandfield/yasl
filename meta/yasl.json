@@ -26691,6 +26691,142 @@
                     "hincludes": "<QJsonDocument>",
                     "name": "jsondocument",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "SystemTime"
+                                        },
+                                        {
+                                            "name": "MonotonicClock"
+                                        },
+                                        {
+                                            "name": "TickCounter"
+                                        },
+                                        {
+                                            "name": "MachAbsoluteTime"
+                                        },
+                                        {
+                                            "name": "PerformanceCounter"
+                                        }
+                                    ],
+                                    "name": "ClockType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QElapsedTimer",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QElapsedTimer",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "clockType",
+                                    "returns": "QElapsedTimer::ClockType",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isMonotonic",
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "start",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "restart",
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "invalidate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nsecsElapsed",
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "elapsed",
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasExpired",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "msecsSinceReference",
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "msecsTo",
+                                    "parameters": [
+                                        "const QElapsedTimer &"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "secsTo",
+                                    "parameters": [
+                                        "const QElapsedTimer &"
+                                    ],
+                                    "returns": "qint64",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QElapsedTimer &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QElapsedTimer &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QElapsedTimer",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QElapsedTimer>",
+                    "name": "elapsedtimer",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -47492,6 +47628,12 @@
                 "tag": "qevent_tag"
             },
             {
+                "header": "yasl/core/elapsedtimer.h",
+                "id": "QElapsedTimer",
+                "name": "QElapsedTimer",
+                "rename": "ElapsedTimer"
+            },
+            {
                 "header": "yasl/core/event.h",
                 "id": "QEvent",
                 "name": "QEvent",
@@ -48701,6 +48843,11 @@
                 "id": "QDirSortFlag",
                 "links": "flags@QDir::SortFlags",
                 "name": "QDir::SortFlag"
+            },
+            {
+                "header": "yasl/core/elapsedtimer.h",
+                "id": "QElapsedTimerClockType",
+                "name": "QElapsedTimer::ClockType"
             },
             {
                 "header": "yasl/core/event.h",
