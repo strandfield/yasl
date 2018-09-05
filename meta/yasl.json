@@ -27550,6 +27550,196 @@
                     "hincludes": "<QProcess>",
                     "name": "process",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "name": "qHash",
+                            "parameters": [
+                                "const QMimeType &",
+                                "uint"
+                            ],
+                            "returns": "uint",
+                            "type": "function"
+                        },
+                        {
+                            "elements": [
+                                {
+                                    "name": "QMimeType",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMimeType",
+                                    "parameters": [
+                                        "const QMimeType &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QMimeType &"
+                                    ],
+                                    "returns": "QMimeType &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QMimeType &&"
+                                    ],
+                                    "returns": "QMimeType &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QMimeType &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QMimeType",
+                                    "parameters": [
+                                        "const QMimeTypePrivate &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QMimeType",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QMimeType &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QMimeType &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDefault",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "name",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "comment",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "genericIconName",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "iconName",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "globPatterns",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "parentMimeTypes",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "allAncestors",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "aliases",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "suffixes",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "preferredSuffix",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inherits",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "filterString",
+                                    "returns": "QString",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QMimeType",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QMimeType &",
+                                "QMimeType &"
+                            ],
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QMimeType &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QMimeType>",
+                    "name": "mimetype",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -48460,6 +48650,12 @@
                 "id": "QMarginsF",
                 "name": "QMarginsF",
                 "rename": "MarginsF"
+            },
+            {
+                "header": "yasl/core/mimetype.h",
+                "id": "QMimeType",
+                "name": "QMimeType",
+                "rename": "MimeType"
             },
             {
                 "header": "yasl/core/point.h",
