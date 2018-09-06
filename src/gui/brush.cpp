@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/point.h"
 #include "yasl/gui/brush.h"
@@ -327,9 +328,9 @@ void register_brush_file(script::Namespace gui)
   // void swap(QBrush &, QBrush &);
   binder.add_void_fun<QBrush &, QBrush &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QBrush &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QBrush &);
+  binder.operators().put_to<QDataStream &, const QBrush &>();
   // QDataStream & operator>>(QDataStream &, QBrush &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QBrush &);
+  binder.operators().read_from<QDataStream &, QBrush &>();
   // QDebug operator<<(QDebug, const QBrush &);
   /// TODO: QDebug operator<<(QDebug, const QBrush &);
 }

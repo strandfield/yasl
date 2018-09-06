@@ -10,7 +10,11 @@
 #include <QDataStream>
 
 namespace binding {
-
+template<> struct make_type_t<QDataStream> { inline static script::Type get() { return script::Type::QDataStream; } };
+template<> struct make_type_t<QDataStream::ByteOrder> { inline static script::Type get() { return script::Type::QDataStreamByteOrder; } };
+template<> struct make_type_t<QDataStream::FloatingPointPrecision> { inline static script::Type get() { return script::Type::QDataStreamFloatingPointPrecision; } };
+template<> struct make_type_t<QDataStream::Status> { inline static script::Type get() { return script::Type::QDataStreamStatus; } };
+template<> struct make_type_t<QDataStream::Version> { inline static script::Type get() { return script::Type::QDataStreamVersion; } };
 } // namespace binding
 
 #endif // YASL_CORE_DATASTREAM_H

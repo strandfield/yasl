@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/line.h"
 #include "yasl/core/point.h"
@@ -188,9 +189,9 @@ void register_transform_file(script::Namespace gui)
   // bool qFuzzyCompare(const QTransform &, const QTransform &);
   binder.add_fun<bool, const QTransform &, const QTransform &, &qFuzzyCompare>("qFuzzyCompare");
   // QDataStream & operator<<(QDataStream &, const QTransform &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QTransform &);
+  binder.operators().put_to<QDataStream &, const QTransform &>();
   // QDataStream & operator>>(QDataStream &, QTransform &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QTransform &);
+  binder.operators().read_from<QDataStream &, QTransform &>();
   // QDebug operator<<(QDebug, const QTransform &);
   /// TODO: QDebug operator<<(QDebug, const QTransform &);
   // QPoint operator*(const QPoint &, const QTransform &);

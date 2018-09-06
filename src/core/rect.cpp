@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/margins.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
@@ -351,9 +352,9 @@ void register_rect_file(script::Namespace core)
   // bool operator!=(const QRect &, const QRect &);
   binder.operators().neq<const QRect &, const QRect &>();
   // QDataStream & operator<<(QDataStream &, const QRect &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QRect &);
+  binder.operators().put_to<QDataStream &, const QRect &>();
   // QDataStream & operator>>(QDataStream &, QRect &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QRect &);
+  binder.operators().read_from<QDataStream &, QRect &>();
   // bool operator==(const QRect &, const QRect &);
   binder.operators().eq<const QRect &, const QRect &>();
   // bool operator!=(const QRect &, const QRect &);
@@ -371,9 +372,9 @@ void register_rect_file(script::Namespace core)
   // bool operator!=(const QRectF &, const QRectF &);
   binder.operators().neq<const QRectF &, const QRectF &>();
   // QDataStream & operator<<(QDataStream &, const QRectF &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QRectF &);
+  binder.operators().put_to<QDataStream &, const QRectF &>();
   // QDataStream & operator>>(QDataStream &, QRectF &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QRectF &);
+  binder.operators().read_from<QDataStream &, QRectF &>();
   // bool operator==(const QRectF &, const QRectF &);
   binder.operators().eq<const QRectF &, const QRectF &>();
   // bool operator!=(const QRectF &, const QRectF &);

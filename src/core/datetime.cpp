@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/datetime.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/timezone.h"
@@ -364,17 +365,17 @@ void register_datetime_file(script::Namespace core)
   // void swap(QDateTime &, QDateTime &);
   binder.add_void_fun<QDateTime &, QDateTime &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QDate &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QDate &);
+  binder.operators().put_to<QDataStream &, const QDate &>();
   // QDataStream & operator>>(QDataStream &, QDate &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QDate &);
+  binder.operators().read_from<QDataStream &, QDate &>();
   // QDataStream & operator<<(QDataStream &, const QTime &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QTime &);
+  binder.operators().put_to<QDataStream &, const QTime &>();
   // QDataStream & operator>>(QDataStream &, QTime &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QTime &);
+  binder.operators().read_from<QDataStream &, QTime &>();
   // QDataStream & operator<<(QDataStream &, const QDateTime &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QDateTime &);
+  binder.operators().put_to<QDataStream &, const QDateTime &>();
   // QDataStream & operator>>(QDataStream &, QDateTime &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QDateTime &);
+  binder.operators().read_from<QDataStream &, QDateTime &>();
   // QDebug operator<<(QDebug, const QDate &);
   /// TODO: QDebug operator<<(QDebug, const QDate &);
   // QDebug operator<<(QDebug, const QTime &);

@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/gui/color.h"
 
@@ -288,8 +289,8 @@ void register_color_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QColor &);
   /// TODO: QDebug operator<<(QDebug, const QColor &);
   // QDataStream & operator<<(QDataStream &, const QColor &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QColor &);
+  binder.operators().put_to<QDataStream &, const QColor &>();
   // QDataStream & operator>>(QDataStream &, QColor &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QColor &);
+  binder.operators().read_from<QDataStream &, QColor &>();
 }
 

@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
 #include "yasl/gui/bitmap.h"
@@ -161,9 +162,9 @@ void register_region_file(script::Namespace gui)
   // void swap(QRegion &, QRegion &);
   binder.add_void_fun<QRegion &, QRegion &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QRegion &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QRegion &);
+  binder.operators().put_to<QDataStream &, const QRegion &>();
   // QDataStream & operator>>(QDataStream &, QRegion &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QRegion &);
+  binder.operators().read_from<QDataStream &, QRegion &>();
   // QDebug operator<<(QDebug, const QRegion &);
   /// TODO: QDebug operator<<(QDebug, const QRegion &);
 }

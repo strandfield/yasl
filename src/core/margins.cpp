@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/margins.h"
 
 #include <script/classbuilder.h>
@@ -128,9 +129,9 @@ void register_margins_file(script::Namespace core)
   binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QMargins &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QMargins &);
+  binder.operators().put_to<QDataStream &, const QMargins &>();
   // QDataStream & operator>>(QDataStream &, QMargins &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QMargins &);
+  binder.operators().read_from<QDataStream &, QMargins &>();
   // bool operator==(const QMargins &, const QMargins &);
   binder.operators().eq<const QMargins &, const QMargins &>();
   // bool operator!=(const QMargins &, const QMargins &);
@@ -164,9 +165,9 @@ void register_margins_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QMargins &);
   /// TODO: QDebug operator<<(QDebug, const QMargins &);
   // QDataStream & operator<<(QDataStream &, const QMarginsF &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QMarginsF &);
+  binder.operators().put_to<QDataStream &, const QMarginsF &>();
   // QDataStream & operator>>(QDataStream &, QMarginsF &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QMarginsF &);
+  binder.operators().read_from<QDataStream &, QMarginsF &>();
   // bool operator==(const QMarginsF &, const QMarginsF &);
   binder.operators().eq<const QMarginsF &, const QMarginsF &>();
   // bool operator!=(const QMarginsF &, const QMarginsF &);

@@ -10,6 +10,7 @@
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/char.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/datetime.h"
 #include "yasl/core/jsonarray.h"
 #include "yasl/core/jsondocument.h"
@@ -122,7 +123,7 @@ static void register_variant_class(script::Namespace ns)
   // QVariant(const QVariant &);
   binder.ctors().add<const QVariant &>();
   // QVariant(QDataStream &);
-  /// TODO: QVariant(QDataStream &);
+  binder.ctors().add<QDataStream &>();
   // QVariant(int);
   binder.ctors().add<int>();
   // QVariant(qlonglong);
@@ -302,9 +303,9 @@ static void register_variant_class(script::Namespace ns)
   // QJsonDocument toJsonDocument() const;
   binder.add_fun<QJsonDocument, &QVariant::toJsonDocument>("toJsonDocument");
   // void load(QDataStream &);
-  /// TODO: void load(QDataStream &);
+  binder.add_void_fun<QDataStream &, &QVariant::load>("load");
   // void save(QDataStream &) const;
-  /// TODO: void save(QDataStream &) const;
+  binder.add_const_void_fun<QDataStream &, &QVariant::save>("save");
   // static const char * typeToName(int);
   /// TODO: static const char * typeToName(int);
   // static QVariant::Type nameToType(const char *);
@@ -352,13 +353,13 @@ void register_variant_file(script::Namespace core)
   binding::Namespace binder{ ns };
 
   // QDataStream & operator>>(QDataStream &, QVariant &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QVariant &);
+  binder.operators().read_from<QDataStream &, QVariant &>();
   // QDataStream & operator<<(QDataStream &, const QVariant &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QVariant &);
+  binder.operators().put_to<QDataStream &, const QVariant &>();
   // QDataStream & operator>>(QDataStream &, QVariant::Type &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QVariant::Type &);
+  binder.operators().read_from<QDataStream &, QVariant::Type &>();
   // QDataStream & operator<<(QDataStream &, const QVariant::Type);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QVariant::Type);
+  binder.operators().put_to<QDataStream &, const QVariant::Type>();
   // void swap(QVariant &, QVariant &);
   binder.add_void_fun<QVariant &, QVariant &, &swap>("swap");
   // QDebug operator<<(QDebug, const QVariant &);

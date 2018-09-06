@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/gui/brush.h"
 #include "yasl/gui/color.h"
@@ -109,9 +110,9 @@ void register_pen_file(script::Namespace gui)
   binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QPen &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QPen &);
+  binder.operators().put_to<QDataStream &, const QPen &>();
   // QDataStream & operator>>(QDataStream &, QPen &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QPen &);
+  binder.operators().read_from<QDataStream &, QPen &>();
   // void swap(QPen &, QPen &);
   binder.add_void_fun<QPen &, QPen &, &swap>("swap");
   // QDebug operator<<(QDebug, const QPen &);

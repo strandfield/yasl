@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
 
@@ -149,9 +150,9 @@ void register_size_file(script::Namespace core)
   binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QSize &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QSize &);
+  binder.operators().put_to<QDataStream &, const QSize &>();
   // QDataStream & operator>>(QDataStream &, QSize &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QSize &);
+  binder.operators().read_from<QDataStream &, QSize &>();
   // bool operator==(const QSize &, const QSize &);
   binder.operators().eq<const QSize &, const QSize &>();
   // bool operator!=(const QSize &, const QSize &);
@@ -169,9 +170,9 @@ void register_size_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QSize &);
   /// TODO: QDebug operator<<(QDebug, const QSize &);
   // QDataStream & operator<<(QDataStream &, const QSizeF &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QSizeF &);
+  binder.operators().put_to<QDataStream &, const QSizeF &>();
   // QDataStream & operator>>(QDataStream &, QSizeF &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QSizeF &);
+  binder.operators().read_from<QDataStream &, QSizeF &>();
   // bool operator==(const QSizeF &, const QSizeF &);
   binder.operators().eq<const QSizeF &, const QSizeF &>();
   // bool operator!=(const QSizeF &, const QSizeF &);

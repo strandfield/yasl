@@ -11,6 +11,7 @@
 #include "yasl/core/listspecializations.h"
 
 #include "yasl/core/char.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/datetime.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/locale.h"
@@ -1193,9 +1194,9 @@ void register_locale_file(script::Namespace core)
   // QIncompatibleFlag operator|(QLocale::NumberOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QLocale::NumberOptions::enum_type, int);
   // QDataStream & operator<<(QDataStream &, const QLocale &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QLocale &);
+  binder.operators().put_to<QDataStream &, const QLocale &>();
   // QDataStream & operator>>(QDataStream &, QLocale &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QLocale &);
+  binder.operators().read_from<QDataStream &, QLocale &>();
   // QDebug operator<<(QDebug, const QLocale &);
   /// TODO: QDebug operator<<(QDebug, const QLocale &);
 }

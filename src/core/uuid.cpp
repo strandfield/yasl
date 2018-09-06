@@ -9,6 +9,7 @@
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/uuid.h"
 
 #include <script/classbuilder.h>
@@ -127,9 +128,9 @@ void register_uuid_file(script::Namespace core)
   binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QUuid &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QUuid &);
+  binder.operators().put_to<QDataStream &, const QUuid &>();
   // QDataStream & operator>>(QDataStream &, QUuid &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QUuid &);
+  binder.operators().read_from<QDataStream &, QUuid &>();
   // QDebug operator<<(QDebug, const QUuid &);
   /// TODO: QDebug operator<<(QDebug, const QUuid &);
   // uint qHash(const QUuid &, uint);

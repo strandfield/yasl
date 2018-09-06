@@ -9,6 +9,7 @@
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/datetime.h"
 #include "yasl/core/locale.h"
 #include "yasl/core/timezone.h"
@@ -146,9 +147,9 @@ void register_timezone_file(script::Namespace core)
   // void swap(QTimeZone &, QTimeZone &);
   binder.add_void_fun<QTimeZone &, QTimeZone &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QTimeZone &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QTimeZone &);
+  binder.operators().put_to<QDataStream &, const QTimeZone &>();
   // QDataStream & operator>>(QDataStream &, QTimeZone &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QTimeZone &);
+  binder.operators().read_from<QDataStream &, QTimeZone &>();
   // QDebug operator<<(QDebug, const QTimeZone &);
   /// TODO: QDebug operator<<(QDebug, const QTimeZone &);
 }

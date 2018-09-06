@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/gui/brush.h"
 #include "yasl/gui/color.h"
@@ -189,9 +190,9 @@ void register_palette_file(script::Namespace gui)
   // void swap(QPalette &, QPalette &);
   binder.add_void_fun<QPalette &, QPalette &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QPalette &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QPalette &);
+  binder.operators().put_to<QDataStream &, const QPalette &>();
   // QDataStream & operator>>(QDataStream &, QPalette &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QPalette &);
+  binder.operators().read_from<QDataStream &, QPalette &>();
   // QDebug operator<<(QDebug, const QPalette &);
   /// TODO: QDebug operator<<(QDebug, const QPalette &);
 }

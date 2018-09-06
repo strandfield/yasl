@@ -10,6 +10,7 @@
 #include "yasl/core/flags.h"
 
 #include "yasl/core/bytearray.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/url.h"
 #include "yasl/core/urlquery.h"
 
@@ -273,9 +274,9 @@ void register_url_file(script::Namespace core)
   // QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOptions, QUrl::FormattingOptions);
   /// TODO: QUrl::FormattingOptions operator|(QUrl::ComponentFormattingOptions, QUrl::FormattingOptions);
   // QDataStream & operator<<(QDataStream &, const QUrl &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QUrl &);
+  binder.operators().put_to<QDataStream &, const QUrl &>();
   // QDataStream & operator>>(QDataStream &, QUrl &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QUrl &);
+  binder.operators().read_from<QDataStream &, QUrl &>();
   // QDebug operator<<(QDebug, const QUrl &);
   /// TODO: QDebug operator<<(QDebug, const QUrl &);
 }

@@ -9,6 +9,7 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/core/flags.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/regularexpression.h"
 
 #include <script/classbuilder.h>
@@ -260,9 +261,9 @@ void register_regularexpression_file(script::Namespace core)
   // QIncompatibleFlag operator|(QRegularExpression::MatchOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QRegularExpression::MatchOptions::enum_type, int);
   // QDataStream & operator<<(QDataStream &, const QRegularExpression &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QRegularExpression &);
+  binder.operators().put_to<QDataStream &, const QRegularExpression &>();
   // QDataStream & operator>>(QDataStream &, QRegularExpression &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QRegularExpression &);
+  binder.operators().read_from<QDataStream &, QRegularExpression &>();
   // QDebug operator<<(QDebug, const QRegularExpression &);
   /// TODO: QDebug operator<<(QDebug, const QRegularExpression &);
   // QDebug operator<<(QDebug, QRegularExpression::PatternOptions);

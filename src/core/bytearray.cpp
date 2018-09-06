@@ -12,6 +12,7 @@
 
 #include "yasl/core/bytearray-functions.h"
 #include "yasl/core/bytearray.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 
 #include <script/classbuilder.h>
@@ -377,9 +378,9 @@ void register_bytearray_file(script::Namespace core)
   // const QByteArray operator+(char, const QByteArray &);
   binder.operators().add<const QByteArray, char, const QByteArray &>();
   // QDataStream & operator<<(QDataStream &, const QByteArray &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QByteArray &);
+  binder.operators().put_to<QDataStream &, const QByteArray &>();
   // QDataStream & operator>>(QDataStream &, QByteArray &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QByteArray &);
+  binder.operators().read_from<QDataStream &, QByteArray &>();
   // QByteArray qCompress(const QByteArray &, int);
   binder.add_fun<QByteArray, const QByteArray &, int, &qCompress>("qCompress");
   // QByteArray qUncompress(const QByteArray &);

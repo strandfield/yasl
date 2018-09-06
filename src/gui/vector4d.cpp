@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/point.h"
 #include "yasl/gui/vector2d.h"
@@ -138,8 +139,8 @@ void register_vector4d_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QVector4D &);
   /// TODO: QDebug operator<<(QDebug, const QVector4D &);
   // QDataStream & operator<<(QDataStream &, const QVector4D &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QVector4D &);
+  binder.operators().put_to<QDataStream &, const QVector4D &>();
   // QDataStream & operator>>(QDataStream &, QVector4D &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QVector4D &);
+  binder.operators().read_from<QDataStream &, QVector4D &>();
 }
 

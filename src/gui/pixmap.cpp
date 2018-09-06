@@ -8,6 +8,7 @@
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/object.h"
 #include "yasl/core/rect.h"
@@ -169,9 +170,9 @@ void register_pixmap_file(script::Namespace gui)
   // void swap(QPixmap &, QPixmap &);
   binder.add_void_fun<QPixmap &, QPixmap &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QPixmap &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QPixmap &);
+  binder.operators().put_to<QDataStream &, const QPixmap &>();
   // QDataStream & operator>>(QDataStream &, QPixmap &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QPixmap &);
+  binder.operators().read_from<QDataStream &, QPixmap &>();
   // QDebug operator<<(QDebug, const QPixmap &);
   /// TODO: QDebug operator<<(QDebug, const QPixmap &);
 }

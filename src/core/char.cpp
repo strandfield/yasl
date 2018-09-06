@@ -10,6 +10,7 @@
 
 #include "yasl/core/char-functions.h"
 #include "yasl/core/char.h"
+#include "yasl/core/datastream.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -610,8 +611,8 @@ void register_char__file(script::Namespace core)
   // bool operator<=(std::nullptr_t, QChar);
   /// TODO: bool operator<=(std::nullptr_t, QChar);
   // QDataStream & operator<<(QDataStream &, QChar);
-  /// TODO: QDataStream & operator<<(QDataStream &, QChar);
+  binder.operators().put_to<QDataStream &, QChar>();
   // QDataStream & operator>>(QDataStream &, QChar &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QChar &);
+  binder.operators().read_from<QDataStream &, QChar &>();
 }
 

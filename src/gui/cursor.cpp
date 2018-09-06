@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/point.h"
 #include "yasl/gui/bitmap.h"
@@ -86,9 +87,9 @@ void register_cursor_file(script::Namespace gui)
   // bool operator!=(const QCursor &, const QCursor &);
   binder.operators().neq<const QCursor &, const QCursor &>();
   // QDataStream & operator<<(QDataStream &, const QCursor &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QCursor &);
+  binder.operators().put_to<QDataStream &, const QCursor &>();
   // QDataStream & operator>>(QDataStream &, QCursor &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QCursor &);
+  binder.operators().read_from<QDataStream &, QCursor &>();
   // QDebug operator<<(QDebug, const QCursor &);
   /// TODO: QDebug operator<<(QDebug, const QCursor &);
 }

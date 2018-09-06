@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/gui/keysequence.h"
 
 #include <script/classbuilder.h>
@@ -194,9 +195,9 @@ void register_keysequence_file(script::Namespace gui)
   binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QKeySequence &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QKeySequence &);
+  binder.operators().put_to<QDataStream &, const QKeySequence &>();
   // QDataStream & operator>>(QDataStream &, QKeySequence &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QKeySequence &);
+  binder.operators().read_from<QDataStream &, QKeySequence &>();
   // uint qHash(const QKeySequence &, uint);
   binder.add_fun<uint, const QKeySequence &, uint, &qHash>("qHash");
   // void swap(QKeySequence &, QKeySequence &);

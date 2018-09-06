@@ -27740,6 +27740,546 @@
                     "hincludes": "<QMimeType>",
                     "name": "mimetype",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Qt_1_0"
+                                        },
+                                        {
+                                            "name": "Qt_2_0"
+                                        },
+                                        {
+                                            "name": "Qt_2_1"
+                                        },
+                                        {
+                                            "name": "Qt_3_0"
+                                        },
+                                        {
+                                            "name": "Qt_3_1"
+                                        },
+                                        {
+                                            "name": "Qt_3_3"
+                                        },
+                                        {
+                                            "name": "Qt_4_0"
+                                        },
+                                        {
+                                            "name": "Qt_4_1"
+                                        },
+                                        {
+                                            "name": "Qt_4_2"
+                                        },
+                                        {
+                                            "name": "Qt_4_3"
+                                        },
+                                        {
+                                            "name": "Qt_4_4"
+                                        },
+                                        {
+                                            "name": "Qt_4_5"
+                                        },
+                                        {
+                                            "name": "Qt_4_6"
+                                        },
+                                        {
+                                            "name": "Qt_4_7"
+                                        },
+                                        {
+                                            "name": "Qt_4_8"
+                                        },
+                                        {
+                                            "name": "Qt_4_9"
+                                        },
+                                        {
+                                            "name": "Qt_5_0"
+                                        },
+                                        {
+                                            "name": "Qt_5_1"
+                                        },
+                                        {
+                                            "name": "Qt_5_2"
+                                        },
+                                        {
+                                            "name": "Qt_5_3"
+                                        },
+                                        {
+                                            "name": "Qt_5_4"
+                                        },
+                                        {
+                                            "name": "Qt_5_5"
+                                        },
+                                        {
+                                            "name": "Qt_5_6"
+                                        },
+                                        {
+                                            "name": "Qt_5_7"
+                                        },
+                                        {
+                                            "name": "Qt_5_8"
+                                        },
+                                        {
+                                            "name": "Qt_5_9"
+                                        },
+                                        {
+                                            "name": "Qt_5_10"
+                                        },
+                                        {
+                                            "name": "Qt_DefaultCompiledVersion"
+                                        }
+                                    ],
+                                    "name": "Version",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "BigEndian"
+                                        },
+                                        {
+                                            "name": "LittleEndian"
+                                        }
+                                    ],
+                                    "name": "ByteOrder",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Ok"
+                                        },
+                                        {
+                                            "name": "ReadPastEnd"
+                                        },
+                                        {
+                                            "name": "ReadCorruptData"
+                                        },
+                                        {
+                                            "name": "WriteFailed"
+                                        }
+                                    ],
+                                    "name": "Status",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "SinglePrecision"
+                                        },
+                                        {
+                                            "name": "DoublePrecision"
+                                        }
+                                    ],
+                                    "name": "FloatingPointPrecision",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QDataStream",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDataStream",
+                                    "parameters": [
+                                        "QIODevice *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDataStream",
+                                    "parameters": [
+                                        "QByteArray *",
+                                        "QIODevice::OpenMode"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDataStream",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDataStream",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "device",
+                                    "returns": "QIODevice *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDevice",
+                                    "parameters": [
+                                        "QIODevice *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "unsetDevice",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "atEnd",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "status",
+                                    "returns": "QDataStream::Status",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStatus",
+                                    "parameters": [
+                                        "QDataStream::Status"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resetStatus",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "floatingPointPrecision",
+                                    "returns": "QDataStream::FloatingPointPrecision",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFloatingPointPrecision",
+                                    "parameters": [
+                                        "QDataStream::FloatingPointPrecision"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "byteOrder",
+                                    "returns": "QDataStream::ByteOrder",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setByteOrder",
+                                    "parameters": [
+                                        "QDataStream::ByteOrder"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "version",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVersion",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "qint8 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "quint8 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "qint16 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "quint16 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "qint32 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "quint32 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "qint64 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "quint64 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "std::nullptr_t &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "bool &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "qfloat16 &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "float &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "double &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator>>",
+                                    "parameters": [
+                                        "char *&"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "qint8"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "quint8"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "qint16"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "quint16"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "qint32"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "quint32"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "qint64"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "quint64"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "std::nullptr_t"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "qfloat16"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "float"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator<<",
+                                    "parameters": [
+                                        "const char *"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "readBytes",
+                                    "parameters": [
+                                        "char *&",
+                                        "uint &"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "readRawData",
+                                    "parameters": [
+                                        "char *",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "writeBytes",
+                                    "parameters": [
+                                        "const char *",
+                                        "uint"
+                                    ],
+                                    "returns": "QDataStream &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "writeRawData",
+                                    "parameters": [
+                                        "const char *",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "skipRawData",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "startTransaction",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "commitTransaction",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "rollbackTransaction",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "abortTransaction",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDataStream",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QDataStream>",
+                    "name": "datastream",
+                    "type": "file"
                 }
             ],
             "name": "core",
@@ -48497,6 +49037,12 @@
                 "tag": "qevent_tag"
             },
             {
+                "header": "yasl/core/datastream.h",
+                "id": "QDataStream",
+                "name": "QDataStream",
+                "rename": "DataStream"
+            },
+            {
                 "header": "yasl/core/datetime.h",
                 "id": "QDate",
                 "name": "QDate",
@@ -49758,6 +50304,26 @@
                 "header": "yasl/core/char.h",
                 "id": "QCharUnicodeVersion",
                 "name": "QChar::UnicodeVersion"
+            },
+            {
+                "header": "yasl/core/datastream.h",
+                "id": "QDataStreamVersion",
+                "name": "QDataStream::Version"
+            },
+            {
+                "header": "yasl/core/datastream.h",
+                "id": "QDataStreamByteOrder",
+                "name": "QDataStream::ByteOrder"
+            },
+            {
+                "header": "yasl/core/datastream.h",
+                "id": "QDataStreamStatus",
+                "name": "QDataStream::Status"
+            },
+            {
+                "header": "yasl/core/datastream.h",
+                "id": "QDataStreamFloatingPointPrecision",
+                "name": "QDataStream::FloatingPointPrecision"
             },
             {
                 "header": "yasl/core/datetime.h",

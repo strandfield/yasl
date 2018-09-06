@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/line.h"
 #include "yasl/core/point.h"
 
@@ -192,14 +193,14 @@ void register_line_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QLine &);
   /// TODO: QDebug operator<<(QDebug, const QLine &);
   // QDataStream & operator<<(QDataStream &, const QLine &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QLine &);
+  binder.operators().put_to<QDataStream &, const QLine &>();
   // QDataStream & operator>>(QDataStream &, QLine &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QLine &);
+  binder.operators().read_from<QDataStream &, QLine &>();
   // QDebug operator<<(QDebug, const QLineF &);
   /// TODO: QDebug operator<<(QDebug, const QLineF &);
   // QDataStream & operator<<(QDataStream &, const QLineF &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QLineF &);
+  binder.operators().put_to<QDataStream &, const QLineF &>();
   // QDataStream & operator>>(QDataStream &, QLineF &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QLineF &);
+  binder.operators().read_from<QDataStream &, QLineF &>();
 }
 

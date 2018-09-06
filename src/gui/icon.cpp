@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/size.h"
 #include "yasl/gui/icon.h"
 #include "yasl/gui/pixmap.h"
@@ -137,9 +138,9 @@ void register_icon_file(script::Namespace gui)
   // void swap(QIcon &, QIcon &);
   binder.add_void_fun<QIcon &, QIcon &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QIcon &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QIcon &);
+  binder.operators().put_to<QDataStream &, const QIcon &>();
   // QDataStream & operator>>(QDataStream &, QIcon &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QIcon &);
+  binder.operators().read_from<QDataStream &, QIcon &>();
   // QDebug operator<<(QDebug, const QIcon &);
   /// TODO: QDebug operator<<(QDebug, const QIcon &);
   // QString qt_findAtNxFile(const QString &, qreal, qreal *);

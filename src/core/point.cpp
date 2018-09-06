@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/point.h"
 
 #include <script/classbuilder.h>
@@ -116,9 +117,9 @@ void register_point_file(script::Namespace core)
   binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QPoint &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QPoint &);
+  binder.operators().put_to<QDataStream &, const QPoint &>();
   // QDataStream & operator>>(QDataStream &, QPoint &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QPoint &);
+  binder.operators().read_from<QDataStream &, QPoint &>();
   // bool operator==(const QPoint &, const QPoint &);
   binder.operators().eq<const QPoint &, const QPoint &>();
   // bool operator!=(const QPoint &, const QPoint &);
@@ -148,9 +149,9 @@ void register_point_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QPoint &);
   /// TODO: QDebug operator<<(QDebug, const QPoint &);
   // QDataStream & operator<<(QDataStream &, const QPointF &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QPointF &);
+  binder.operators().put_to<QDataStream &, const QPointF &>();
   // QDataStream & operator>>(QDataStream &, QPointF &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QPointF &);
+  binder.operators().read_from<QDataStream &, QPointF &>();
   // bool operator==(const QPointF &, const QPointF &);
   binder.operators().eq<const QPointF &, const QPointF &>();
   // bool operator!=(const QPointF &, const QPointF &);

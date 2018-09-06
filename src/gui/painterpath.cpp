@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
@@ -269,9 +270,9 @@ void register_painterpath_file(script::Namespace gui)
   // void swap(QPainterPath &, QPainterPath &);
   binder.add_void_fun<QPainterPath &, QPainterPath &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QPainterPath &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QPainterPath &);
+  binder.operators().put_to<QDataStream &, const QPainterPath &>();
   // QDataStream & operator>>(QDataStream &, QPainterPath &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QPainterPath &);
+  binder.operators().read_from<QDataStream &, QPainterPath &>();
   // QDebug operator<<(QDebug, const QPainterPath &);
   /// TODO: QDebug operator<<(QDebug, const QPainterPath &);
 }

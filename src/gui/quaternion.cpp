@@ -7,6 +7,7 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
 #include "yasl/gui/quaternion.h"
 #include "yasl/gui/vector3d.h"
@@ -163,8 +164,8 @@ void register_quaternion_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QQuaternion &);
   /// TODO: QDebug operator<<(QDebug, const QQuaternion &);
   // QDataStream & operator<<(QDataStream &, const QQuaternion &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QQuaternion &);
+  binder.operators().put_to<QDataStream &, const QQuaternion &>();
   // QDataStream & operator>>(QDataStream &, QQuaternion &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QQuaternion &);
+  binder.operators().read_from<QDataStream &, QQuaternion &>();
 }
 

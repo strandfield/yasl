@@ -39,6 +39,7 @@ void register_jsondocument_file(script::Namespace n); // defined in jsondocument
 void register_elapsedtimer_file(script::Namespace n); // defined in elapsedtimer.cpp
 void register_process_file(script::Namespace n); // defined in process.cpp
 void register_mimetype_file(script::Namespace n); // defined in mimetype.cpp
+void register_datastream_file(script::Namespace n); // defined in datastream.cpp
 
 // Start of non-generated code
 void register_ptr_template(script::Namespace n); // defined in ptr.cpp
@@ -90,6 +91,7 @@ void load_core_module(script::Module core)
   register_elapsedtimer_file(core.root());
   register_process_file(core.root());
   register_mimetype_file(core.root());
+  register_datastream_file(core.root());
 
   // Start of non-generated code
   register_newobject_file(core.root());

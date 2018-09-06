@@ -8,6 +8,7 @@
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
+#include "yasl/core/datastream.h"
 #include "yasl/gui/font.h"
 
 #include <script/classbuilder.h>
@@ -362,9 +363,9 @@ void register_font_file(script::Namespace gui)
   // uint qHash(const QFont &, uint);
   binder.add_fun<uint, const QFont &, uint, &qHash>("qHash");
   // QDataStream & operator<<(QDataStream &, const QFont &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QFont &);
+  binder.operators().put_to<QDataStream &, const QFont &>();
   // QDataStream & operator>>(QDataStream &, QFont &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QFont &);
+  binder.operators().read_from<QDataStream &, QFont &>();
   // QDebug operator<<(QDebug, const QFont &);
   /// TODO: QDebug operator<<(QDebug, const QFont &);
 }

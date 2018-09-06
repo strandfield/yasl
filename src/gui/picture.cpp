@@ -8,6 +8,7 @@
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
+#include "yasl/core/datastream.h"
 #include "yasl/core/rect.h"
 #include "yasl/gui/picture.h"
 
@@ -160,8 +161,8 @@ void register_picture_file(script::Namespace gui)
   // void swap(QPicture &, QPicture &);
   binder.add_void_fun<QPicture &, QPicture &, &swap>("swap");
   // QDataStream & operator<<(QDataStream &, const QPicture &);
-  /// TODO: QDataStream & operator<<(QDataStream &, const QPicture &);
+  binder.operators().put_to<QDataStream &, const QPicture &>();
   // QDataStream & operator>>(QDataStream &, QPicture &);
-  /// TODO: QDataStream & operator>>(QDataStream &, QPicture &);
+  binder.operators().read_from<QDataStream &, QPicture &>();
 }
 
