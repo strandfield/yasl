@@ -481,16 +481,29 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
   }
   else
   {
-    if (!isMember() && (op == LeftShift || op == RightShift))
+    if (op == LeftShift || op == RightShift)
     {
-      if (fun->returnType == fun->parameters.at(0))
+      if(!isMember())
       {
-        out += (op == LeftShift ? "put_to" : "read_from") + QString("<");
-        QStringList targs;
-        targs << fparam(fun->parameters.first()) << fparam(fun->parameters.at(1));
-        out += targs.join(", ");
-        out += ">();";
-        return out;
+        if (fun->returnType == fun->parameters.at(0))
+        {
+          out += (op == LeftShift ? "put_to" : "read_from") + QString("<");
+          QStringList targs;
+          targs << fparam(fun->parameters.first()) << fparam(fun->parameters.at(1));
+          out += targs.join(", ");
+          out += ">();";
+          return out;
+        }
+      }
+      else
+      {
+        if (fun->returnType == enclosingName() + " &")
+        {
+          out += (op == LeftShift ? "put_to" : "read_from") + QString("<");
+          out += fparam(fun->parameters.first());
+          out += ">();";
+          return out;
+        }
       }
     }
 
