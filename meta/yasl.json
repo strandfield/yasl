@@ -49094,6 +49094,629 @@
                     "hincludes": "<QGroupBox>",
                     "name": "groupbox",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QComboBox",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QComboBox",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maxVisibleItems",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaxVisibleItems",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaxCount",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maxCount",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "autoCompletion",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAutoCompletion",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "autoCompletionCaseSensitivity",
+                                    "returns": "Qt::CaseSensitivity",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAutoCompletionCaseSensitivity",
+                                    "parameters": [
+                                        "Qt::CaseSensitivity"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "duplicatesEnabled",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDuplicatesEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFrame",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasFrame",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "findText",
+                                    "parameters": [
+                                        "const QString &",
+                                        "Qt::MatchFlags"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "findData",
+                                    "parameters": [
+                                        "const QVariant &",
+                                        "int",
+                                        "Qt::MatchFlags"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoInsert"
+                                        },
+                                        {
+                                            "name": "InsertAtTop"
+                                        },
+                                        {
+                                            "name": "InsertAtCurrent"
+                                        },
+                                        {
+                                            "name": "InsertAtBottom"
+                                        },
+                                        {
+                                            "name": "InsertAfterCurrent"
+                                        },
+                                        {
+                                            "name": "InsertBeforeCurrent"
+                                        },
+                                        {
+                                            "name": "InsertAlphabetically"
+                                        }
+                                    ],
+                                    "name": "InsertPolicy",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "insertPolicy",
+                                    "returns": "QComboBox::InsertPolicy",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInsertPolicy",
+                                    "parameters": [
+                                        "QComboBox::InsertPolicy"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AdjustToContents"
+                                        },
+                                        {
+                                            "name": "AdjustToContentsOnFirstShow"
+                                        },
+                                        {
+                                            "name": "AdjustToMinimumContentsLength"
+                                        },
+                                        {
+                                            "name": "AdjustToMinimumContentsLengthWithIcon"
+                                        }
+                                    ],
+                                    "name": "SizeAdjustPolicy",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeAdjustPolicy",
+                                    "returns": "QComboBox::SizeAdjustPolicy",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSizeAdjustPolicy",
+                                    "parameters": [
+                                        "QComboBox::SizeAdjustPolicy"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumContentsLength",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimumContentsLength",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "iconSize",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIconSize",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEditable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setEditable",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLineEdit",
+                                    "parameters": [
+                                        "QLineEdit *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "lineEdit",
+                                    "returns": "QLineEdit *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setValidator",
+                                    "parameters": [
+                                        "const QValidator *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "validator",
+                                    "returns": "const QValidator *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCompleter",
+                                    "parameters": [
+                                        "QCompleter *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "completer",
+                                    "returns": "QCompleter *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemDelegate",
+                                    "returns": "QAbstractItemDelegate *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setItemDelegate",
+                                    "parameters": [
+                                        "QAbstractItemDelegate *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "model",
+                                    "returns": "QAbstractItemModel *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setModel",
+                                    "parameters": [
+                                        "QAbstractItemModel *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rootModelIndex",
+                                    "returns": "QModelIndex",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRootModelIndex",
+                                    "parameters": [
+                                        "const QModelIndex &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "modelColumn",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setModelColumn",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentIndex",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentData",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemText",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemIcon",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QIcon",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemData",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addItem",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QVariant &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addItem",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &",
+                                        "const QVariant &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addItems",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertItem",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &",
+                                        "const QVariant &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertItem",
+                                    "parameters": [
+                                        "int",
+                                        "const QIcon &",
+                                        "const QString &",
+                                        "const QVariant &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertItems",
+                                    "parameters": [
+                                        "int",
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSeparator",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeItem",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setItemText",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setItemIcon",
+                                    "parameters": [
+                                        "int",
+                                        "const QIcon &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setItemData",
+                                    "parameters": [
+                                        "int",
+                                        "const QVariant &",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "view",
+                                    "returns": "QAbstractItemView *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setView",
+                                    "parameters": [
+                                        "QAbstractItemView *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showPopup",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "hidePopup",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "event",
+                                    "parameters": [
+                                        "QEvent *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inputMethodQuery",
+                                    "parameters": [
+                                        "Qt::InputMethodQuery"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inputMethodQuery",
+                                    "parameters": [
+                                        "Qt::InputMethodQuery",
+                                        "const QVariant &"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clearEditText",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setEditText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentIndex",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "editTextChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "activated",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "activated",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "highlighted",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "highlighted",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentIndexChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentIndexChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentTextChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QComboBox",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QComboBox>",
+                    "name": "combobox",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -49945,6 +50568,13 @@
                 "id": "QGroupBox",
                 "name": "QGroupBox",
                 "rename": "GroupBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/combobox.h",
+                "id": "QComboBox",
+                "name": "QComboBox",
+                "rename": "ComboBox",
                 "tag": "qobject_tag"
             }
         ],
@@ -50980,6 +51610,16 @@
                 "header": "yasl/core/jsondocument.h",
                 "id": "QJsonDocumentJsonFormat",
                 "name": "QJsonDocument::JsonFormat"
+            },
+            {
+                "header": "yasl/widgets/combobox.h",
+                "id": "QComboBoxInsertPolicy",
+                "name": "QComboBox::InsertPolicy"
+            },
+            {
+                "header": "yasl/widgets/combobox.h",
+                "id": "QComboBoxSizeAdjustPolicy",
+                "name": "QComboBox::SizeAdjustPolicy"
             }
         ],
         "fundamentals": [
