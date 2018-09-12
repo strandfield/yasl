@@ -380,6 +380,7 @@ QWindow,
 QWindowStar,
 /* Qt Widgets */
 QFrame,
+QGroupBox,
 QLabel,
 QLineEdit,
 QTabWidget,

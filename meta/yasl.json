@@ -48974,6 +48974,126 @@
                     "hincludes": "<QLineEdit>",
                     "name": "lineedit",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QGroupBox",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QGroupBox",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QGroupBox",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "title",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTitle",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alignment",
+                                    "returns": "Qt::Alignment",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlignment",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isFlat",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFlat",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isCheckable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCheckable",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isChecked",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setChecked",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "clicked",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "toggled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QGroupBox",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QGroupBox>",
+                    "name": "groupbox",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -49819,6 +49939,13 @@
                 "id": "QJsonDocument",
                 "name": "QJsonDocument",
                 "rename": "JsonDocument"
+            },
+            {
+                "header": "yasl/widgets/groupbox.h",
+                "id": "QGroupBox",
+                "name": "QGroupBox",
+                "rename": "GroupBox",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
