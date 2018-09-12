@@ -49717,6 +49717,132 @@
                     "hincludes": "<QComboBox>",
                     "name": "combobox",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QComboBox",
+                            "elements": [
+                                {
+                                    "name": "QFontComboBox",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFontComboBox",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setWritingSystem",
+                                    "parameters": [
+                                        "QFontDatabase::WritingSystem"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "writingSystem",
+                                    "returns": "QFontDatabase::WritingSystem",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AllFonts"
+                                        },
+                                        {
+                                            "name": "ScalableFonts"
+                                        },
+                                        {
+                                            "name": "NonScalableFonts"
+                                        },
+                                        {
+                                            "name": "MonospacedFonts"
+                                        },
+                                        {
+                                            "name": "ProportionalFonts"
+                                        }
+                                    ],
+                                    "name": "FontFilter",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "setFontFilters",
+                                    "parameters": [
+                                        "QFontComboBox::FontFilters"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fontFilters",
+                                    "returns": "QFontComboBox::FontFilters",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentFont",
+                                    "returns": "QFont",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentFont",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentFontChanged",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFontComboBox",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFontComboBox::FontFilters::enum_type",
+                                "QFontComboBox::FontFilters::enum_type"
+                            ],
+                            "returns": "QFlags<QFontComboBox::FontFilters::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFontComboBox::FontFilters::enum_type",
+                                "QFlags<QFontComboBox::FontFilters::enum_type>"
+                            ],
+                            "returns": "QFlags<QFontComboBox::FontFilters::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFontComboBox::FontFilters::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QFontComboBox>",
+                    "name": "fontcombobox",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -50576,6 +50702,19 @@
                 "name": "QComboBox",
                 "rename": "ComboBox",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/fontcombobox.h",
+                "id": "QFontComboBox",
+                "name": "QFontComboBox",
+                "rename": "FontComboBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/fontcombobox.h",
+                "id": "QFontComboBoxFontFilters",
+                "name": "QFontComboBox::FontFilters",
+                "rename": "FontFilters"
             }
         ],
         "enums": [
@@ -51620,6 +51759,12 @@
                 "header": "yasl/widgets/combobox.h",
                 "id": "QComboBoxSizeAdjustPolicy",
                 "name": "QComboBox::SizeAdjustPolicy"
+            },
+            {
+                "header": "yasl/widgets/fontcombobox.h",
+                "id": "QFontComboBoxFontFilter",
+                "links": "flags@QFontComboBox::FontFilters",
+                "name": "QFontComboBox::FontFilter"
             }
         ],
         "fundamentals": [

@@ -16,6 +16,7 @@ void register_tabwidget_file(script::Namespace n); // defined in tabwidget.cpp
 void register_lineedit_file(script::Namespace n); // defined in lineedit.cpp
 void register_groupbox_file(script::Namespace n); // defined in groupbox.cpp
 void register_combobox_file(script::Namespace n); // defined in combobox.cpp
+void register_fontcombobox_file(script::Namespace n); // defined in fontcombobox.cpp
 
 // Start of non-generated code
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -37,6 +38,7 @@ void load_widgets_module(script::Module widgets)
   register_lineedit_file(widgets.root());
   register_groupbox_file(widgets.root());
   register_combobox_file(widgets.root());
+  register_fontcombobox_file(widgets.root());
 
   // Start of non-generated code
   register_newwidget_file(widgets.root());
