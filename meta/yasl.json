@@ -50099,6 +50099,91 @@
                     "hincludes": "<QAbstractSlider>",
                     "name": "abstractslider",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QAbstractSlider",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoTicks"
+                                        },
+                                        {
+                                            "name": "TicksAbove"
+                                        },
+                                        {
+                                            "name": "TicksLeft"
+                                        },
+                                        {
+                                            "name": "TicksBelow"
+                                        },
+                                        {
+                                            "name": "TicksRight"
+                                        },
+                                        {
+                                            "name": "TicksBothSides"
+                                        }
+                                    ],
+                                    "name": "TickPosition",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QSlider",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QSlider",
+                                    "parameters": [
+                                        "Qt::Orientation",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QSlider",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setTickPosition",
+                                    "parameters": [
+                                        "QSlider::TickPosition"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tickPosition",
+                                    "returns": "QSlider::TickPosition",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTickInterval",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "tickInterval",
+                                    "returns": "int",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QSlider",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QSlider>",
+                    "name": "slider",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -50977,6 +51062,13 @@
                 "id": "QAbstractSlider",
                 "name": "QAbstractSlider",
                 "rename": "AbstractSlider",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/slider.h",
+                "id": "QSlider",
+                "name": "QSlider",
+                "rename": "Slider",
                 "tag": "qobject_tag"
             }
         ],
@@ -52033,6 +52125,11 @@
                 "header": "yasl/widgets/abstractslider.h",
                 "id": "QAbstractSliderSliderAction",
                 "name": "QAbstractSlider::SliderAction"
+            },
+            {
+                "header": "yasl/widgets/slider.h",
+                "id": "QSliderTickPosition",
+                "name": "QSlider::TickPosition"
             }
         ],
         "fundamentals": [

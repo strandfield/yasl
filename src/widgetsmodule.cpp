@@ -18,6 +18,7 @@ void register_groupbox_file(script::Namespace n); // defined in groupbox.cpp
 void register_combobox_file(script::Namespace n); // defined in combobox.cpp
 void register_fontcombobox_file(script::Namespace n); // defined in fontcombobox.cpp
 void register_abstractslider_file(script::Namespace n); // defined in abstractslider.cpp
+void register_slider_file(script::Namespace n); // defined in slider.cpp
 
 // Start of non-generated code
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -41,6 +42,7 @@ void load_widgets_module(script::Module widgets)
   register_combobox_file(widgets.root());
   register_fontcombobox_file(widgets.root());
   register_abstractslider_file(widgets.root());
+  register_slider_file(widgets.root());
 
   // Start of non-generated code
   register_newwidget_file(widgets.root());
