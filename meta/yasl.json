@@ -49843,6 +49843,262 @@
                     "hincludes": "<QFontComboBox>",
                     "name": "fontcombobox",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QAbstractSlider",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QAbstractSlider",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "orientation",
+                                    "returns": "Qt::Orientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSingleStep",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "singleStep",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPageStep",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pageStep",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTracking",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasTracking",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSliderDown",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSliderDown",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSliderPosition",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sliderPosition",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInvertedAppearance",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "invertedAppearance",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInvertedControls",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "invertedControls",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "SliderNoAction"
+                                        },
+                                        {
+                                            "name": "SliderSingleStepAdd"
+                                        },
+                                        {
+                                            "name": "SliderSingleStepSub"
+                                        },
+                                        {
+                                            "name": "SliderPageStepAdd"
+                                        },
+                                        {
+                                            "name": "SliderPageStepSub"
+                                        },
+                                        {
+                                            "name": "SliderToMinimum"
+                                        },
+                                        {
+                                            "name": "SliderToMaximum"
+                                        },
+                                        {
+                                            "name": "SliderMove"
+                                        }
+                                    ],
+                                    "name": "SliderAction",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "value",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "triggerAction",
+                                    "parameters": [
+                                        "QAbstractSlider::SliderAction"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setValue",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOrientation",
+                                    "parameters": [
+                                        "Qt::Orientation"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRange",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "valueChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "sliderPressed",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "sliderMoved",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "sliderReleased",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "rangeChanged",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "actionTriggered",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QAbstractSlider",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QAbstractSlider>",
+                    "name": "abstractslider",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -50715,6 +50971,13 @@
                 "id": "QFontComboBoxFontFilters",
                 "name": "QFontComboBox::FontFilters",
                 "rename": "FontFilters"
+            },
+            {
+                "header": "yasl/widgets/abstractslider.h",
+                "id": "QAbstractSlider",
+                "name": "QAbstractSlider",
+                "rename": "AbstractSlider",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
@@ -51765,6 +52028,11 @@
                 "id": "QFontComboBoxFontFilter",
                 "links": "flags@QFontComboBox::FontFilters",
                 "name": "QFontComboBox::FontFilter"
+            },
+            {
+                "header": "yasl/widgets/abstractslider.h",
+                "id": "QAbstractSliderSliderAction",
+                "name": "QAbstractSlider::SliderAction"
             }
         ],
         "fundamentals": [
