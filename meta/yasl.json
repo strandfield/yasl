@@ -50602,6 +50602,327 @@
                     "hincludes": "<QAbstractSpinBox>",
                     "name": "abstractspinbox",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QAbstractSpinBox",
+                            "elements": [
+                                {
+                                    "name": "QSpinBox",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QSpinBox",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "value",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "prefix",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPrefix",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "suffix",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSuffix",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cleanText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "singleStep",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSingleStep",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRange",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "displayIntegerBase",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDisplayIntegerBase",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setValue",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "valueChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "valueChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QSpinBox",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QAbstractSpinBox",
+                            "elements": [
+                                {
+                                    "name": "QDoubleSpinBox",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDoubleSpinBox",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "value",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "prefix",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPrefix",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "suffix",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSuffix",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cleanText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "singleStep",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSingleStep",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimum",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimum",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximum",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximum",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRange",
+                                    "parameters": [
+                                        "double",
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "decimals",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDecimals",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "validate",
+                                    "parameters": [
+                                        "QString &",
+                                        "int &"
+                                    ],
+                                    "returns": "QValidator::State",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "valueFromText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textFromValue",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fixup",
+                                    "parameters": [
+                                        "QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setValue",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "valueChanged",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "valueChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDoubleSpinBox",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QSpinBox>",
+                    "name": "spinbox",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -51515,6 +51836,20 @@
                 "id": "QAbstractSpinBoxStepEnabled",
                 "name": "QAbstractSpinBox::StepEnabled",
                 "rename": "StepEnabled"
+            },
+            {
+                "header": "yasl/widgets/spinbox.h",
+                "id": "QSpinBox",
+                "name": "QSpinBox",
+                "rename": "SpinBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/spinbox.h",
+                "id": "QDoubleSpinBox",
+                "name": "QDoubleSpinBox",
+                "rename": "DoubleSpinBox",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
