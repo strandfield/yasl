@@ -50184,6 +50184,39 @@
                     "hincludes": "<QSlider>",
                     "name": "slider",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QAbstractSlider",
+                            "elements": [
+                                {
+                                    "name": "QScrollBar",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QScrollBar",
+                                    "parameters": [
+                                        "Qt::Orientation",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QScrollBar",
+                                    "type": "destructor"
+                                }
+                            ],
+                            "name": "QScrollBar",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QScrollBar>",
+                    "name": "scrollbar",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -51069,6 +51102,13 @@
                 "id": "QSlider",
                 "name": "QSlider",
                 "rename": "Slider",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/scrollbar.h",
+                "id": "QScrollBar",
+                "name": "QScrollBar",
+                "rename": "ScrollBar",
                 "tag": "qobject_tag"
             }
         ],
