@@ -21,6 +21,7 @@ void register_abstractslider_file(script::Namespace n); // defined in abstractsl
 void register_slider_file(script::Namespace n); // defined in slider.cpp
 void register_scrollbar_file(script::Namespace n); // defined in scrollbar.cpp
 void register_dial_file(script::Namespace n); // defined in dial.cpp
+void register_abstractspinbox_file(script::Namespace n); // defined in abstractspinbox.cpp
 
 // Start of non-generated code
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -47,6 +48,7 @@ void load_widgets_module(script::Module widgets)
   register_dial_file(widgets.root());
   register_scrollbar_file(widgets.root());
   register_slider_file(widgets.root());
+  register_abstractspinbox_file(widgets.root());
 
   // Start of non-generated code
   register_newwidget_file(widgets.root());

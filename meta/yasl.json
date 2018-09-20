@@ -50287,6 +50287,321 @@
                     "hincludes": "<QDial>",
                     "name": "dial",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QAbstractSpinBox",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QAbstractSpinBox",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "StepNone"
+                                        },
+                                        {
+                                            "name": "StepUpEnabled"
+                                        },
+                                        {
+                                            "name": "StepDownEnabled"
+                                        }
+                                    ],
+                                    "name": "StepEnabledFlag",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "UpDownArrows"
+                                        },
+                                        {
+                                            "name": "PlusMinus"
+                                        },
+                                        {
+                                            "name": "NoButtons"
+                                        }
+                                    ],
+                                    "name": "ButtonSymbols",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttonSymbols",
+                                    "returns": "QAbstractSpinBox::ButtonSymbols",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setButtonSymbols",
+                                    "parameters": [
+                                        "QAbstractSpinBox::ButtonSymbols"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "CorrectToPreviousValue"
+                                        },
+                                        {
+                                            "name": "CorrectToNearestValue"
+                                        }
+                                    ],
+                                    "name": "CorrectionMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "setCorrectionMode",
+                                    "parameters": [
+                                        "QAbstractSpinBox::CorrectionMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "correctionMode",
+                                    "returns": "QAbstractSpinBox::CorrectionMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasAcceptableInput",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "specialValueText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSpecialValueText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "wrapping",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWrapping",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setReadOnly",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isReadOnly",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setKeyboardTracking",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "keyboardTracking",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlignment",
+                                    "parameters": [
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alignment",
+                                    "returns": "Qt::Alignment",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFrame",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasFrame",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAccelerated",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isAccelerated",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGroupSeparatorShown",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isGroupSeparatorShown",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "interpretText",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "event",
+                                    "parameters": [
+                                        "QEvent *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inputMethodQuery",
+                                    "parameters": [
+                                        "Qt::InputMethodQuery"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "validate",
+                                    "parameters": [
+                                        "QString &",
+                                        "int &"
+                                    ],
+                                    "returns": "QValidator::State",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fixup",
+                                    "parameters": [
+                                        "QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "stepBy",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "stepUp",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "stepDown",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "selectAll",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "editingFinished",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QAbstractSpinBox",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QAbstractSpinBox::StepEnabled::enum_type",
+                                "QAbstractSpinBox::StepEnabled::enum_type"
+                            ],
+                            "returns": "QFlags<QAbstractSpinBox::StepEnabled::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QAbstractSpinBox::StepEnabled::enum_type",
+                                "QFlags<QAbstractSpinBox::StepEnabled::enum_type>"
+                            ],
+                            "returns": "QFlags<QAbstractSpinBox::StepEnabled::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QAbstractSpinBox::StepEnabled::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QAbstractSpinBox>",
+                    "name": "abstractspinbox",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -51187,6 +51502,19 @@
                 "name": "QDial",
                 "rename": "Dial",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBox",
+                "name": "QAbstractSpinBox",
+                "rename": "AbstractSpinBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBoxStepEnabled",
+                "name": "QAbstractSpinBox::StepEnabled",
+                "rename": "StepEnabled"
             }
         ],
         "enums": [
@@ -52247,6 +52575,22 @@
                 "header": "yasl/widgets/slider.h",
                 "id": "QSliderTickPosition",
                 "name": "QSlider::TickPosition"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBoxStepEnabledFlag",
+                "links": "flags@QAbstractSpinBox::StepEnabled",
+                "name": "QAbstractSpinBox::StepEnabledFlag"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBoxButtonSymbols",
+                "name": "QAbstractSpinBox::ButtonSymbols"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBoxCorrectionMode",
+                "name": "QAbstractSpinBox::CorrectionMode"
             }
         ],
         "fundamentals": [
