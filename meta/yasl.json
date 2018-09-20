@@ -50217,6 +50217,76 @@
                     "hincludes": "<QScrollBar>",
                     "name": "scrollbar",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QAbstractSlider",
+                            "elements": [
+                                {
+                                    "name": "QDial",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDial",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "wrapping",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "notchSize",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNotchTarget",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "notchTarget",
+                                    "returns": "qreal",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "notchesVisible",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNotchesVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWrapping",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDial",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QDial>",
+                    "name": "dial",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -51109,6 +51179,13 @@
                 "id": "QScrollBar",
                 "name": "QScrollBar",
                 "rename": "ScrollBar",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/dial.h",
+                "id": "QDial",
+                "name": "QDial",
+                "rename": "Dial",
                 "tag": "qobject_tag"
             }
         ],

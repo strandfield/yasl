@@ -20,6 +20,7 @@ void register_fontcombobox_file(script::Namespace n); // defined in fontcombobox
 void register_abstractslider_file(script::Namespace n); // defined in abstractslider.cpp
 void register_slider_file(script::Namespace n); // defined in slider.cpp
 void register_scrollbar_file(script::Namespace n); // defined in scrollbar.cpp
+void register_dial_file(script::Namespace n); // defined in dial.cpp
 
 // Start of non-generated code
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -43,6 +44,7 @@ void load_widgets_module(script::Module widgets)
   register_combobox_file(widgets.root());
   register_fontcombobox_file(widgets.root());
   register_abstractslider_file(widgets.root());
+  register_dial_file(widgets.root());
   register_scrollbar_file(widgets.root());
   register_slider_file(widgets.root());
 

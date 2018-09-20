@@ -386,6 +386,7 @@ QWindowStar,
 /* Qt Widgets */
 QAbstractSlider,
 QComboBox,
+QDial,
 QFontComboBox,
 QFontComboBoxFontFilters,
 QFrame,
