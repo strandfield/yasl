@@ -11,6 +11,7 @@ void register_widget_file(script::Namespace n); // defined in widget.cpp
 void register_frame_file(script::Namespace n); // defined in frame.cpp
 void register_label_file(script::Namespace n); // defined in label.cpp
 void register_abstractbutton_file(script::Namespace n); // defined in abstractbutton.cpp
+void register_checkbox_file(script::Namespace n); // defined in checkbox.cpp
 void register_pushbutton_file(script::Namespace n); // defined in pushbutton.cpp
 void register_tabwidget_file(script::Namespace n); // defined in tabwidget.cpp
 void register_lineedit_file(script::Namespace n); // defined in lineedit.cpp
@@ -40,6 +41,7 @@ void load_widgets_module(script::Module widgets)
   register_frame_file(widgets.root());
   register_label_file(widgets.root());
   register_abstractbutton_file(widgets.root());
+  register_checkbox_file(widgets.root());
   register_pushbutton_file(widgets.root());
   register_tabwidget_file(widgets.root());
   register_lineedit_file(widgets.root());

@@ -51435,6 +51435,75 @@
                     "hincludes": "<QDateTimeEdit>",
                     "name": "datetimeedit",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QAbstractButton",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "name": "QCheckBox",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QCheckBox",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QCheckBox",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setTristate",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTristate",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "checkState",
+                                    "returns": "Qt::CheckState",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCheckState",
+                                    "parameters": [
+                                        "Qt::CheckState"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "stateChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QCheckBox",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QCheckBox>",
+                    "name": "checkbox",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -52389,6 +52458,13 @@
                 "id": "QDateTimeEditSections",
                 "name": "QDateTimeEdit::Sections",
                 "rename": "Sections"
+            },
+            {
+                "header": "yasl/widgets/checkbox.h",
+                "id": "QCheckBox",
+                "name": "QCheckBox",
+                "rename": "CheckBox",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
