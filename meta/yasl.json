@@ -51504,6 +51504,39 @@
                     "hincludes": "<QCheckBox>",
                     "name": "checkbox",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QAbstractButton",
+                            "elements": [
+                                {
+                                    "name": "QRadioButton",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QRadioButton",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QRadioButton",
+                                    "type": "destructor"
+                                }
+                            ],
+                            "name": "QRadioButton",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QRadioButton>",
+                    "name": "radiobutton",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -52464,6 +52497,13 @@
                 "id": "QCheckBox",
                 "name": "QCheckBox",
                 "rename": "CheckBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/radiobutton.h",
+                "id": "QRadioButton",
+                "name": "QRadioButton",
+                "rename": "RadioButton",
                 "tag": "qobject_tag"
             }
         ],
