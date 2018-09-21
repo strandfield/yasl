@@ -50923,6 +50923,518 @@
                     "hincludes": "<QSpinBox>",
                     "name": "spinbox",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QAbstractSpinBox",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoSection"
+                                        },
+                                        {
+                                            "name": "AmPmSection"
+                                        },
+                                        {
+                                            "name": "MSecSection"
+                                        },
+                                        {
+                                            "name": "SecondSection"
+                                        },
+                                        {
+                                            "name": "MinuteSection"
+                                        },
+                                        {
+                                            "name": "HourSection"
+                                        },
+                                        {
+                                            "name": "DaySection"
+                                        },
+                                        {
+                                            "name": "MonthSection"
+                                        },
+                                        {
+                                            "name": "YearSection"
+                                        },
+                                        {
+                                            "name": "TimeSections_Mask"
+                                        },
+                                        {
+                                            "name": "DateSections_Mask"
+                                        }
+                                    ],
+                                    "name": "Section",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QDateTimeEdit",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTimeEdit",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTimeEdit",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateTimeEdit",
+                                    "parameters": [
+                                        "const QTime &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDateTimeEdit",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "dateTime",
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "date",
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "time",
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumDateTime",
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clearMinimumDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimumDateTime",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximumDateTime",
+                                    "returns": "QDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clearMaximumDateTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximumDateTime",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDateTimeRange",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "const QDateTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumDate",
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimumDate",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clearMinimumDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximumDate",
+                                    "returns": "QDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximumDate",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clearMaximumDate",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDateRange",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "const QDate &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumTime",
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimumTime",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clearMinimumTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximumTime",
+                                    "returns": "QTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximumTime",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clearMaximumTime",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTimeRange",
+                                    "parameters": [
+                                        "const QTime &",
+                                        "const QTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "displayedSections",
+                                    "returns": "QDateTimeEdit::Sections",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentSection",
+                                    "returns": "QDateTimeEdit::Section",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sectionAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QDateTimeEdit::Section",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentSection",
+                                    "parameters": [
+                                        "QDateTimeEdit::Section"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentSectionIndex",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentSectionIndex",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "calendarWidget",
+                                    "returns": "QCalendarWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCalendarWidget",
+                                    "parameters": [
+                                        "QCalendarWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sectionCount",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSelectedSection",
+                                    "parameters": [
+                                        "QDateTimeEdit::Section"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sectionText",
+                                    "parameters": [
+                                        "QDateTimeEdit::Section"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "displayFormat",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDisplayFormat",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "calendarPopup",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCalendarPopup",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "timeSpec",
+                                    "returns": "Qt::TimeSpec",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTimeSpec",
+                                    "parameters": [
+                                        "Qt::TimeSpec"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "stepBy",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "event",
+                                    "parameters": [
+                                        "QEvent *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "dateTimeChanged",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "timeChanged",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "dateChanged",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDateTime",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDate",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTime",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDateTimeEdit",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QDateTimeEdit",
+                            "elements": [
+                                {
+                                    "name": "QTimeEdit",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTimeEdit",
+                                    "parameters": [
+                                        "const QTime &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QTimeEdit",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "userTimeChanged",
+                                    "parameters": [
+                                        "const QTime &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTimeEdit",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QDateTimeEdit",
+                            "elements": [
+                                {
+                                    "name": "QDateEdit",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QDateEdit",
+                                    "parameters": [
+                                        "const QDate &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDateEdit",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "userDateChanged",
+                                    "parameters": [
+                                        "const QDate &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDateEdit",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDateTimeEdit::Sections::enum_type",
+                                "QDateTimeEdit::Sections::enum_type"
+                            ],
+                            "returns": "QFlags<QDateTimeEdit::Sections::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDateTimeEdit::Sections::enum_type",
+                                "QFlags<QDateTimeEdit::Sections::enum_type>"
+                            ],
+                            "returns": "QFlags<QDateTimeEdit::Sections::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QDateTimeEdit::Sections::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QDateTimeEdit>",
+                    "name": "datetimeedit",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -51850,6 +52362,33 @@
                 "name": "QDoubleSpinBox",
                 "rename": "DoubleSpinBox",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QDateTimeEdit",
+                "name": "QDateTimeEdit",
+                "rename": "DateTimeEdit",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QTimeEdit",
+                "name": "QTimeEdit",
+                "rename": "TimeEdit",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QDateEdit",
+                "name": "QDateEdit",
+                "rename": "DateEdit",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QDateTimeEditSections",
+                "name": "QDateTimeEdit::Sections",
+                "rename": "Sections"
             }
         ],
         "enums": [
@@ -52926,6 +53465,12 @@
                 "header": "yasl/widgets/abstractspinbox.h",
                 "id": "QAbstractSpinBoxCorrectionMode",
                 "name": "QAbstractSpinBox::CorrectionMode"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QDateTimeEditSection",
+                "links": "flags@QDateTimeEdit::Sections",
+                "name": "QDateTimeEdit::Section"
             }
         ],
         "fundamentals": [

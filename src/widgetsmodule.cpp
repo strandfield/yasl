@@ -23,6 +23,7 @@ void register_scrollbar_file(script::Namespace n); // defined in scrollbar.cpp
 void register_dial_file(script::Namespace n); // defined in dial.cpp
 void register_abstractspinbox_file(script::Namespace n); // defined in abstractspinbox.cpp
 void register_spinbox_file(script::Namespace n); // defined in spinbox.cpp
+void register_datetimeedit_file(script::Namespace n); // defined in datetimeedit.cpp
 
 // Start of non-generated code
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -51,6 +52,7 @@ void load_widgets_module(script::Module widgets)
   register_slider_file(widgets.root());
   register_abstractspinbox_file(widgets.root());
   register_spinbox_file(widgets.root());
+  register_datetimeedit_file(widgets.root());
 
   // Start of non-generated code
   register_newwidget_file(widgets.root());
