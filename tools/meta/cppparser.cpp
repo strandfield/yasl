@@ -33,6 +33,7 @@ static QString getCursorFile(CXCursor cursor)
   unsigned int line, col, offset;
   clang_getSpellingLocation(location, &file, &line, &col, &offset);
   QString result = convert(clang_getFileName(file));
+  result.replace("\\", "/");
   return result;
 }
 
