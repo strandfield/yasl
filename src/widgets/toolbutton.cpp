@@ -10,6 +10,7 @@
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
+#include "yasl/widgets/action.h"
 #include "yasl/widgets/toolbutton.h"
 #include "yasl/widgets/widget.h"
 
@@ -61,7 +62,7 @@ static void register_tool_button_class(script::Namespace ns)
   // QToolButton::ToolButtonPopupMode popupMode() const;
   binder.add_fun<QToolButton::ToolButtonPopupMode, &QToolButton::popupMode>("popupMode");
   // QAction * defaultAction() const;
-  /// TODO: QAction * defaultAction() const;
+  binder.add_fun<QAction *, &QToolButton::defaultAction>("defaultAction");
   // void setAutoRaise(bool);
   binder.add_void_fun<bool, &QToolButton::setAutoRaise>("setAutoRaise");
   // bool autoRaise() const;
@@ -71,7 +72,9 @@ static void register_tool_button_class(script::Namespace ns)
   // void setToolButtonStyle(Qt::ToolButtonStyle);
   binder.add_void_fun<Qt::ToolButtonStyle, &QToolButton::setToolButtonStyle>("setToolButtonStyle");
   // void setDefaultAction(QAction *);
-  /// TODO: void setDefaultAction(QAction *);
+  binder.add_void_fun<QAction *, &QToolButton::setDefaultAction>("setDefaultAction");
+  // void triggered(QAction *);
+  binder.sigs().add<QAction *>("triggered", "triggered(QAction *)");
 
   tool_button.engine()->registerQtType(&QToolButton::staticMetaObject, tool_button.id());
 }

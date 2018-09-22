@@ -29,6 +29,7 @@
 #include "yasl/gui/pixmap.h"
 #include "yasl/gui/region.h"
 #include "yasl/gui/window.h"
+#include "yasl/widgets/action.h"
 #include "yasl/widgets/widget.h"
 
 #include <script/classbuilder.h>
@@ -500,15 +501,15 @@ static void register_widget_class(script::Namespace ns)
   // void setAcceptDrops(bool);
   binder.add_void_fun<bool, &QWidget::setAcceptDrops>("setAcceptDrops");
   // void addAction(QAction *);
-  /// TODO: void addAction(QAction *);
+  binder.add_void_fun<QAction *, &QWidget::addAction>("addAction");
   // void addActions(QList<QAction *>);
   /// TODO: void addActions(QList<QAction *>);
   // void insertActions(QAction *, QList<QAction *>);
   /// TODO: void insertActions(QAction *, QList<QAction *>);
   // void insertAction(QAction *, QAction *);
-  /// TODO: void insertAction(QAction *, QAction *);
+  binder.add_void_fun<QAction *, QAction *, &QWidget::insertAction>("insertAction");
   // void removeAction(QAction *);
-  /// TODO: void removeAction(QAction *);
+  binder.add_void_fun<QAction *, &QWidget::removeAction>("removeAction");
   // QList<QAction *> actions() const;
   /// TODO: QList<QAction *> actions() const;
   // QWidget * parentWidget() const;

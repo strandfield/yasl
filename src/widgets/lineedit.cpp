@@ -14,6 +14,7 @@
 #include "yasl/core/size.h"
 #include "yasl/core/variant.h"
 #include "yasl/gui/icon.h"
+#include "yasl/widgets/action.h"
 #include "yasl/widgets/lineedit.h"
 #include "yasl/widgets/widget.h"
 
@@ -170,9 +171,9 @@ static void register_line_edit_class(script::Namespace ns)
   // QMargins textMargins() const;
   binder.add_fun<QMargins, &QLineEdit::textMargins>("textMargins");
   // void addAction(QAction *, QLineEdit::ActionPosition);
-  /// TODO: void addAction(QAction *, QLineEdit::ActionPosition);
+  binder.add_void_fun<QAction *, QLineEdit::ActionPosition, &QLineEdit::addAction>("addAction");
   // QAction * addAction(const QIcon &, QLineEdit::ActionPosition);
-  /// TODO: QAction * addAction(const QIcon &, QLineEdit::ActionPosition);
+  binder.add_fun<QAction *, const QIcon &, QLineEdit::ActionPosition, &QLineEdit::addAction>("addAction");
   // void setText(const QString &);
   binder.add_void_fun<const QString &, &QLineEdit::setText>("setText");
   // void clear();

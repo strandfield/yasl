@@ -45463,7 +45463,6 @@
             "type": "module"
         },
         {
-            "checked": 1,
             "elements": [
                 {
                     "elements": [
@@ -47203,11 +47202,9 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "base": "QWidget",
-                            "checked": 1,
                             "elements": [
                                 {
                                     "name": "~QAbstractButton",
@@ -50101,11 +50098,9 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "base": "QAbstractSlider",
-                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -51437,11 +51432,9 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "base": "QAbstractButton",
-                            "checked": 1,
                             "elements": [
                                 {
                                     "name": "QCheckBox",
@@ -51539,11 +51532,9 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "base": "QAbstractButton",
-                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -51667,7 +51658,6 @@
                                 },
                                 {
                                     "binding": "signals",
-                                    "checked": 0,
                                     "name": "triggered",
                                     "parameters": [
                                         "QAction *"
@@ -51681,6 +51671,495 @@
                     ],
                     "hincludes": "<QToolButton>",
                     "name": "toolbutton",
+                    "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoRole"
+                                        },
+                                        {
+                                            "name": "TextHeuristicRole"
+                                        },
+                                        {
+                                            "name": "ApplicationSpecificRole"
+                                        },
+                                        {
+                                            "name": "AboutQtRole"
+                                        },
+                                        {
+                                            "name": "AboutRole"
+                                        },
+                                        {
+                                            "name": "PreferencesRole"
+                                        },
+                                        {
+                                            "name": "QuitRole"
+                                        }
+                                    ],
+                                    "name": "MenuRole",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LowPriority"
+                                        },
+                                        {
+                                            "name": "NormalPriority"
+                                        },
+                                        {
+                                            "name": "HighPriority"
+                                        }
+                                    ],
+                                    "name": "Priority",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QAction",
+                                    "parameters": [
+                                        "QObject *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QAction",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QObject *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QAction",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &",
+                                        "QObject *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QAction",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setActionGroup",
+                                    "parameters": [
+                                        "QActionGroup *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "actionGroup",
+                                    "returns": "QActionGroup *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIcon",
+                                    "parameters": [
+                                        "const QIcon &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "icon",
+                                    "returns": "QIcon",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIconText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "iconText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setToolTip",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toolTip",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStatusTip",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "statusTip",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWhatsThis",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "whatsThis",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPriority",
+                                    "parameters": [
+                                        "QAction::Priority"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "priority",
+                                    "returns": "QAction::Priority",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "menu",
+                                    "returns": "QMenu *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMenu",
+                                    "parameters": [
+                                        "QMenu *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSeparator",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSeparator",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setShortcut",
+                                    "parameters": [
+                                        "const QKeySequence &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "shortcut",
+                                    "returns": "QKeySequence",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setShortcuts",
+                                    "parameters": [
+                                        "const QList<QKeySequence> &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setShortcuts",
+                                    "parameters": [
+                                        "QKeySequence::StandardKey"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "shortcuts",
+                                    "returns": "QList<QKeySequence>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setShortcutContext",
+                                    "parameters": [
+                                        "Qt::ShortcutContext"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "shortcutContext",
+                                    "returns": "Qt::ShortcutContext",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAutoRepeat",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "autoRepeat",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFont",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "font",
+                                    "returns": "QFont",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCheckable",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isCheckable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "data",
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setData",
+                                    "parameters": [
+                                        "const QVariant &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isChecked",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEnabled",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isVisible",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Trigger"
+                                        },
+                                        {
+                                            "name": "Hover"
+                                        }
+                                    ],
+                                    "name": "ActionEvent",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "activate",
+                                    "parameters": [
+                                        "QAction::ActionEvent"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showStatusText",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMenuRole",
+                                    "parameters": [
+                                        "QAction::MenuRole"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "menuRole",
+                                    "returns": "QAction::MenuRole",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIconVisibleInMenu",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isIconVisibleInMenu",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setShortcutVisibleInContextMenu",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isShortcutVisibleInContextMenu",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "parentWidget",
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "associatedWidgets",
+                                    "returns": "QList<QWidget *>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "associatedGraphicsWidgets",
+                                    "returns": "QList<QGraphicsWidget *>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "trigger",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "hover",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setChecked",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "toggle",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDisabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "changed",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "triggered",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "hovered",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "toggled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QAction",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QAction *"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QAction>",
+                    "name": "action",
                     "type": "file"
                 }
             ],
@@ -52657,6 +53136,29 @@
                 "name": "QToolButton",
                 "rename": "ToolButton",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QAction",
+                "links": "ref@QAction*;ptr@Ptr<QAction*>;list@QList<QAction*>",
+                "name": "QAction",
+                "rename": "Action",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QActionStar",
+                "name": "QAction*"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "PtrQAction",
+                "name": "Ptr<QAction*>"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QListQAction",
+                "name": "QList<QAction*>"
             }
         ],
         "enums": [
@@ -53744,6 +54246,21 @@
                 "header": "yasl/widgets/toolbutton.h",
                 "id": "QToolButtonToolButtonPopupMode",
                 "name": "QToolButton::ToolButtonPopupMode"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QActionMenuRole",
+                "name": "QAction::MenuRole"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QActionPriority",
+                "name": "QAction::Priority"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QActionActionEvent",
+                "name": "QAction::ActionEvent"
             }
         ],
         "fundamentals": [
