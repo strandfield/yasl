@@ -51537,6 +51537,151 @@
                     "hincludes": "<QRadioButton>",
                     "name": "radiobutton",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QAbstractButton",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DelayedPopup"
+                                        },
+                                        {
+                                            "name": "MenuButtonPopup"
+                                        },
+                                        {
+                                            "name": "InstantPopup"
+                                        }
+                                    ],
+                                    "name": "ToolButtonPopupMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QToolButton",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QToolButton",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toolButtonStyle",
+                                    "returns": "Qt::ToolButtonStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "arrowType",
+                                    "returns": "Qt::ArrowType",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setArrowType",
+                                    "parameters": [
+                                        "Qt::ArrowType"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMenu",
+                                    "parameters": [
+                                        "QMenu *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "menu",
+                                    "returns": "QMenu *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPopupMode",
+                                    "parameters": [
+                                        "QToolButton::ToolButtonPopupMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "popupMode",
+                                    "returns": "QToolButton::ToolButtonPopupMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "defaultAction",
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAutoRaise",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "autoRaise",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showMenu",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setToolButtonStyle",
+                                    "parameters": [
+                                        "Qt::ToolButtonStyle"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefaultAction",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "checked": 0,
+                                    "name": "triggered",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QToolButton",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QToolButton>",
+                    "name": "toolbutton",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -52504,6 +52649,13 @@
                 "id": "QRadioButton",
                 "name": "QRadioButton",
                 "rename": "RadioButton",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/toolbutton.h",
+                "id": "QToolButton",
+                "name": "QToolButton",
+                "rename": "ToolButton",
                 "tag": "qobject_tag"
             }
         ],
@@ -53587,6 +53739,11 @@
                 "id": "QDateTimeEditSection",
                 "links": "flags@QDateTimeEdit::Sections",
                 "name": "QDateTimeEdit::Section"
+            },
+            {
+                "header": "yasl/widgets/toolbutton.h",
+                "id": "QToolButtonToolButtonPopupMode",
+                "name": "QToolButton::ToolButtonPopupMode"
             }
         ],
         "fundamentals": [

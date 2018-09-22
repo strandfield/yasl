@@ -216,6 +216,7 @@ QLineEditEchoMode,
 QSliderTickPosition,
 QTabWidgetTabPosition,
 QTabWidgetTabShape,
+QToolButtonToolButtonPopupMode,
 LastEnumType,
 
 /* Classes */
@@ -410,4 +411,5 @@ QSlider,
 QSpinBox,
 QTabWidget,
 QTimeEdit,
+QToolButton,
 LastClassType,

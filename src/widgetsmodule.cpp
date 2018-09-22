@@ -26,6 +26,7 @@ void register_abstractspinbox_file(script::Namespace n); // defined in abstracts
 void register_spinbox_file(script::Namespace n); // defined in spinbox.cpp
 void register_datetimeedit_file(script::Namespace n); // defined in datetimeedit.cpp
 void register_radiobutton_file(script::Namespace n); // defined in radiobutton.cpp
+void register_toolbutton_file(script::Namespace n); // defined in toolbutton.cpp
 
 // Start of non-generated code
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -45,6 +46,7 @@ void load_widgets_module(script::Module widgets)
   register_checkbox_file(widgets.root());
   register_pushbutton_file(widgets.root());
   register_radiobutton_file(widgets.root());
+  register_toolbutton_file(widgets.root());
   register_tabwidget_file(widgets.root());
   register_lineedit_file(widgets.root());
   register_groupbox_file(widgets.root());
