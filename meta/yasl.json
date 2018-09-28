@@ -52161,6 +52161,393 @@
                     "hincludes": "<QAction>",
                     "name": "action",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QMenu",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMenu",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QMenu",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QObject *",
+                                        "const char *",
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &",
+                                        "const QObject *",
+                                        "const char *",
+                                        "const QKeySequence &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addMenu",
+                                    "parameters": [
+                                        "QMenu *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addMenu",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QMenu *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addMenu",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QMenu *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addSeparator",
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addSection",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addSection",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertMenu",
+                                    "parameters": [
+                                        "QAction *",
+                                        "QMenu *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSeparator",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSection",
+                                    "parameters": [
+                                        "QAction *",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSection",
+                                    "parameters": [
+                                        "QAction *",
+                                        "const QIcon &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTearOffEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTearOffEnabled",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTearOffMenuVisible",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showTearOffMenu",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showTearOffMenu",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "hideTearOffMenu",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefaultAction",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "defaultAction",
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setActiveAction",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "activeAction",
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "popup",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "QAction *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "exec",
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "exec",
+                                    "parameters": [
+                                        "const QPoint &",
+                                        "QAction *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "exec",
+                                    "parameters": [
+                                        "QList<QAction *>",
+                                        "const QPoint &",
+                                        "QAction *",
+                                        "QWidget *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "actionGeometry",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "actionAt",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "menuAction",
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "title",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTitle",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "icon",
+                                    "returns": "QIcon",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIcon",
+                                    "parameters": [
+                                        "const QIcon &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNoReplayFor",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "platformMenu",
+                                    "returns": "QPlatformMenu *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPlatformMenu",
+                                    "parameters": [
+                                        "QPlatformMenu *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "separatorsCollapsible",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSeparatorsCollapsible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toolTipsVisible",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setToolTipsVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "aboutToShow",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "aboutToHide",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "triggered",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "hovered",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QMenu",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QMenu>",
+                    "name": "menu",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -53159,6 +53546,19 @@
                 "header": "yasl/widgets/action.h",
                 "id": "QListQAction",
                 "name": "QList<QAction*>"
+            },
+            {
+                "header": "yasl/widgets/menu.h",
+                "id": "QMenu",
+                "links": "ref@QMenu*",
+                "name": "QMenu",
+                "rename": "Menu",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/menu.h",
+                "id": "QMenuStar",
+                "name": "QMenu*"
             }
         ],
         "enums": [

@@ -11,6 +11,7 @@
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
 #include "yasl/widgets/action.h"
+#include "yasl/widgets/menu.h"
 #include "yasl/widgets/toolbutton.h"
 #include "yasl/widgets/widget.h"
 
@@ -54,9 +55,9 @@ static void register_tool_button_class(script::Namespace ns)
   // void setArrowType(Qt::ArrowType);
   binder.add_void_fun<Qt::ArrowType, &QToolButton::setArrowType>("setArrowType");
   // void setMenu(QMenu *);
-  /// TODO: void setMenu(QMenu *);
+  binder.add_void_fun<QMenu *, &QToolButton::setMenu>("setMenu");
   // QMenu * menu() const;
-  /// TODO: QMenu * menu() const;
+  binder.add_fun<QMenu *, &QToolButton::menu>("menu");
   // void setPopupMode(QToolButton::ToolButtonPopupMode);
   binder.add_void_fun<QToolButton::ToolButtonPopupMode, &QToolButton::setPopupMode>("setPopupMode");
   // QToolButton::ToolButtonPopupMode popupMode() const;

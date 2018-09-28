@@ -16,6 +16,7 @@
 #include "yasl/gui/icon.h"
 #include "yasl/widgets/action.h"
 #include "yasl/widgets/lineedit.h"
+#include "yasl/widgets/menu.h"
 #include "yasl/widgets/widget.h"
 
 #include <script/classbuilder.h>
@@ -195,7 +196,7 @@ static void register_line_edit_class(script::Namespace ns)
   // void insert(const QString &);
   binder.add_void_fun<const QString &, &QLineEdit::insert>("insert");
   // QMenu * createStandardContextMenu();
-  /// TODO: QMenu * createStandardContextMenu();
+  binder.add_fun<QMenu *, &QLineEdit::createStandardContextMenu>("createStandardContextMenu");
   // void textChanged(const QString &);
   binder.sigs().add<const QString &>("textChanged", "textChanged(const QString &)");
   // void textEdited(const QString &);

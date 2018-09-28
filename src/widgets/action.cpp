@@ -17,6 +17,7 @@
 #include "yasl/gui/icon.h"
 #include "yasl/gui/keysequence.h"
 #include "yasl/widgets/action.h"
+#include "yasl/widgets/menu.h"
 #include "yasl/widgets/widget.h"
 
 #include <script/classbuilder.h>
@@ -117,9 +118,9 @@ static void register_action_class(script::Namespace ns)
   // QAction::Priority priority() const;
   binder.add_fun<QAction::Priority, &QAction::priority>("priority");
   // QMenu * menu() const;
-  /// TODO: QMenu * menu() const;
+  binder.add_fun<QMenu *, &QAction::menu>("menu");
   // void setMenu(QMenu *);
-  /// TODO: void setMenu(QMenu *);
+  binder.add_void_fun<QMenu *, &QAction::setMenu>("setMenu");
   // void setSeparator(bool);
   binder.add_void_fun<bool, &QAction::setSeparator>("setSeparator");
   // bool isSeparator() const;

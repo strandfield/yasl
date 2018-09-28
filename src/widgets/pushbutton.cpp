@@ -9,6 +9,7 @@
 
 #include "yasl/core/size.h"
 #include "yasl/gui/icon.h"
+#include "yasl/widgets/menu.h"
 #include "yasl/widgets/widget.h"
 
 #include <script/classbuilder.h>
@@ -43,9 +44,9 @@ static void register_push_button_class(script::Namespace ns)
   // void setDefault(bool);
   binder.add_void_fun<bool, &QPushButton::setDefault>("setDefault");
   // void setMenu(QMenu *);
-  /// TODO: void setMenu(QMenu *);
+  binder.add_void_fun<QMenu *, &QPushButton::setMenu>("setMenu");
   // QMenu * menu() const;
-  /// TODO: QMenu * menu() const;
+  binder.add_fun<QMenu *, &QPushButton::menu>("menu");
   // void setFlat(bool);
   binder.add_void_fun<bool, &QPushButton::setFlat>("setFlat");
   // bool isFlat() const;
