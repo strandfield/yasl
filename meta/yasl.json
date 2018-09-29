@@ -53154,6 +53154,418 @@
                     "hincludes": "<QBoxLayout>",
                     "name": "boxlayout",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QLayout",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "FieldsStayAtSizeHint"
+                                        },
+                                        {
+                                            "name": "ExpandingFieldsGrow"
+                                        },
+                                        {
+                                            "name": "AllNonFixedFieldsGrow"
+                                        }
+                                    ],
+                                    "name": "FieldGrowthPolicy",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DontWrapRows"
+                                        },
+                                        {
+                                            "name": "WrapLongRows"
+                                        },
+                                        {
+                                            "name": "WrapAllRows"
+                                        }
+                                    ],
+                                    "name": "RowWrapPolicy",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LabelRole"
+                                        },
+                                        {
+                                            "name": "FieldRole"
+                                        },
+                                        {
+                                            "name": "SpanningRole"
+                                        }
+                                    ],
+                                    "name": "ItemRole",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QFormLayout",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFormLayout",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setFieldGrowthPolicy",
+                                    "parameters": [
+                                        "QFormLayout::FieldGrowthPolicy"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fieldGrowthPolicy",
+                                    "returns": "QFormLayout::FieldGrowthPolicy",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRowWrapPolicy",
+                                    "parameters": [
+                                        "QFormLayout::RowWrapPolicy"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rowWrapPolicy",
+                                    "returns": "QFormLayout::RowWrapPolicy",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLabelAlignment",
+                                    "parameters": [
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "labelAlignment",
+                                    "returns": "Qt::Alignment",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFormAlignment",
+                                    "parameters": [
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "formAlignment",
+                                    "returns": "Qt::Alignment",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHorizontalSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "horizontalSpacing",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVerticalSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "verticalSpacing",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "spacing",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRow",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRow",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "QLayout *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRow",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRow",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QLayout *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRow",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addRow",
+                                    "parameters": [
+                                        "QLayout *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertRow",
+                                    "parameters": [
+                                        "int",
+                                        "QWidget *",
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertRow",
+                                    "parameters": [
+                                        "int",
+                                        "QWidget *",
+                                        "QLayout *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertRow",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertRow",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &",
+                                        "QLayout *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertRow",
+                                    "parameters": [
+                                        "int",
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertRow",
+                                    "parameters": [
+                                        "int",
+                                        "QLayout *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeRow",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeRow",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeRow",
+                                    "parameters": [
+                                        "QLayout *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "takeRow",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QFormLayout::TakeRowResult",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "takeRow",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "returns": "QFormLayout::TakeRowResult",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "takeRow",
+                                    "parameters": [
+                                        "QLayout *"
+                                    ],
+                                    "returns": "QFormLayout::TakeRowResult",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setItem",
+                                    "parameters": [
+                                        "int",
+                                        "QFormLayout::ItemRole",
+                                        "QLayoutItem *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWidget",
+                                    "parameters": [
+                                        "int",
+                                        "QFormLayout::ItemRole",
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLayout",
+                                    "parameters": [
+                                        "int",
+                                        "QFormLayout::ItemRole",
+                                        "QLayout *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemAt",
+                                    "parameters": [
+                                        "int",
+                                        "QFormLayout::ItemRole"
+                                    ],
+                                    "returns": "QLayoutItem *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getItemPosition",
+                                    "parameters": [
+                                        "int",
+                                        "int *",
+                                        "QFormLayout::ItemRole *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getWidgetPosition",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "int *",
+                                        "QFormLayout::ItemRole *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getLayoutPosition",
+                                    "parameters": [
+                                        "QLayout *",
+                                        "int *",
+                                        "QFormLayout::ItemRole *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "labelForField",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "labelForField",
+                                    "parameters": [
+                                        "QLayout *"
+                                    ],
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addItem",
+                                    "parameters": [
+                                        "QLayoutItem *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QLayoutItem *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rowCount",
+                                    "returns": "int",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFormLayout",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QFormLayout>",
+                    "name": "formlayout",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -54198,6 +54610,13 @@
                 "id": "QVBoxLayout",
                 "name": "QVBoxLayout",
                 "rename": "QVBoxLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/formlayout.h",
+                "id": "QFormLayout",
+                "name": "QFormLayout",
+                "rename": "FormLayout",
                 "tag": "qobject_tag"
             }
         ],
@@ -55311,6 +55730,21 @@
                 "header": "yasl/widgets/boxlayout.h",
                 "id": "QBoxLayoutDirection",
                 "name": "QBoxLayout::Direction"
+            },
+            {
+                "header": "yasl/widgets/formlayout.h",
+                "id": "QFormLayoutFieldGrowthPolicy",
+                "name": "QFormLayout::FieldGrowthPolicy"
+            },
+            {
+                "header": "yasl/widgets/formlayout.h",
+                "id": "QFormLayoutRowWrapPolicy",
+                "name": "QFormLayout::RowWrapPolicy"
+            },
+            {
+                "header": "yasl/widgets/formlayout.h",
+                "id": "QFormLayoutItemRole",
+                "name": "QFormLayout::ItemRole"
             }
         ],
         "fundamentals": [
