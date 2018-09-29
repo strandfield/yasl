@@ -37,7 +37,7 @@ public:
 
 ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   : mProject(pro)
-  , mShowCheckboxes(false)
+  , mShowCheckboxes(true)
 {
   setColumnCount(6);
   setHeaderHidden(false);
