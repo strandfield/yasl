@@ -33,6 +33,7 @@ void register_layout_file(script::Namespace n); // defined in layout.cpp
 void register_boxlayout_file(script::Namespace n); // defined in boxlayout.cpp
 void register_formlayout_file(script::Namespace n); // defined in formlayout.cpp
 void register_gridlayout_file(script::Namespace n); // defined in gridlayout.cpp
+void register_stackedlayout_file(script::Namespace n); // defined in stackedlayout.cpp
 
 // Start of non-generated code
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -71,6 +72,7 @@ void load_widgets_module(script::Module widgets)
   register_boxlayout_file(widgets.root());
   register_formlayout_file(widgets.root());
   register_gridlayout_file(widgets.root());
+  register_stackedlayout_file(widgets.root());
 
   // Start of non-generated code
   register_newwidget_file(widgets.root());

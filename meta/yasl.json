@@ -53837,6 +53837,197 @@
                     "hincludes": "<QGridLayout>",
                     "name": "gridlayout",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QLayout",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "StackOne"
+                                        },
+                                        {
+                                            "name": "StackAll"
+                                        }
+                                    ],
+                                    "name": "StackingMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QStackedLayout",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QStackedLayout",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QStackedLayout",
+                                    "parameters": [
+                                        "QLayout *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QStackedLayout",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "addWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertWidget",
+                                    "parameters": [
+                                        "int",
+                                        "QWidget *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentWidget",
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentIndex",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "widget",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "stackingMode",
+                                    "returns": "QStackedLayout::StackingMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStackingMode",
+                                    "parameters": [
+                                        "QStackedLayout::StackingMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addItem",
+                                    "parameters": [
+                                        "QLayoutItem *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSize",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QLayoutItem *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "takeAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QLayoutItem *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGeometry",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasHeightForWidth",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "heightForWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "widgetRemoved",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "currentChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentIndex",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCurrentWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QStackedLayout",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QStackedLayout>",
+                    "name": "stackedlayout",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -54895,6 +55086,13 @@
                 "id": "QGridLayout",
                 "name": "QGridLayout",
                 "rename": "GridLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/stackedlayout.h",
+                "id": "QStackedLayout",
+                "name": "QStackedLayout",
+                "rename": "StackedLayout",
                 "tag": "qobject_tag"
             }
         ],
@@ -56023,6 +56221,11 @@
                 "header": "yasl/widgets/formlayout.h",
                 "id": "QFormLayoutItemRole",
                 "name": "QFormLayout::ItemRole"
+            },
+            {
+                "header": "yasl/widgets/stackedlayout.h",
+                "id": "QStackedLayoutStackingMode",
+                "name": "QStackedLayout::StackingMode"
             }
         ],
         "fundamentals": [
