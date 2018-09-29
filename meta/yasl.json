@@ -52903,6 +52903,257 @@
                     "hincludes": "<QLayout>",
                     "name": "layout",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QLayout",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LeftToRight"
+                                        },
+                                        {
+                                            "name": "RightToLeft"
+                                        },
+                                        {
+                                            "name": "TopToBottom"
+                                        },
+                                        {
+                                            "name": "BottomToTop"
+                                        },
+                                        {
+                                            "name": "Down"
+                                        },
+                                        {
+                                            "name": "Up"
+                                        }
+                                    ],
+                                    "name": "Direction",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QBoxLayout",
+                                    "parameters": [
+                                        "QBoxLayout::Direction",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QBoxLayout",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "direction",
+                                    "returns": "QBoxLayout::Direction",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDirection",
+                                    "parameters": [
+                                        "QBoxLayout::Direction"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addStretch",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addSpacerItem",
+                                    "parameters": [
+                                        "QSpacerItem *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addWidget",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "int",
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addLayout",
+                                    "parameters": [
+                                        "QLayout *",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addStrut",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSpacing",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertStretch",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSpacerItem",
+                                    "parameters": [
+                                        "int",
+                                        "QSpacerItem *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertWidget",
+                                    "parameters": [
+                                        "int",
+                                        "QWidget *",
+                                        "int",
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertLayout",
+                                    "parameters": [
+                                        "int",
+                                        "QLayout *",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertItem",
+                                    "parameters": [
+                                        "int",
+                                        "QLayoutItem *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "spacing",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStretchFactor",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStretchFactor",
+                                    "parameters": [
+                                        "QLayout *",
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStretch",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "stretch",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QBoxLayout",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QBoxLayout",
+                            "elements": [
+                                {
+                                    "name": "QHBoxLayout",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QHBoxLayout",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QHBoxLayout",
+                                    "type": "destructor"
+                                }
+                            ],
+                            "name": "QHBoxLayout",
+                            "type": "class"
+                        },
+                        {
+                            "base": "QBoxLayout",
+                            "elements": [
+                                {
+                                    "name": "QVBoxLayout",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QVBoxLayout",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QVBoxLayout",
+                                    "type": "destructor"
+                                }
+                            ],
+                            "name": "QVBoxLayout",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QBoxLayout>",
+                    "name": "boxlayout",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -53927,6 +54178,27 @@
                 "header": "yasl/widgets/layout.h",
                 "id": "QLayoutStar",
                 "name": "QLayout*"
+            },
+            {
+                "header": "yasl/widgets/boxlayout.h",
+                "id": "QBoxLayout",
+                "name": "QBoxLayout",
+                "rename": "BoxLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/boxlayout.h",
+                "id": "QHBoxLayout",
+                "name": "QHBoxLayout",
+                "rename": "QHBoxLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/boxlayout.h",
+                "id": "QVBoxLayout",
+                "name": "QVBoxLayout",
+                "rename": "QVBoxLayout",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
@@ -55034,6 +55306,11 @@
                 "header": "yasl/widgets/layout.h",
                 "id": "QLayoutSizeConstraint",
                 "name": "QLayout::SizeConstraint"
+            },
+            {
+                "header": "yasl/widgets/boxlayout.h",
+                "id": "QBoxLayoutDirection",
+                "name": "QBoxLayout::Direction"
             }
         ],
         "fundamentals": [
