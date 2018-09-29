@@ -53566,6 +53566,277 @@
                     "hincludes": "<QFormLayout>",
                     "name": "formlayout",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QLayout",
+                            "elements": [
+                                {
+                                    "name": "QGridLayout",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QGridLayout",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QGridLayout",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setHorizontalSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "horizontalSpacing",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVerticalSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "verticalSpacing",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "spacing",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRowStretch",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColumnStretch",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rowStretch",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "columnStretch",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRowMinimumHeight",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setColumnMinimumWidth",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rowMinimumHeight",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "columnMinimumWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "columnCount",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "rowCount",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cellRect",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addWidget",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "int",
+                                        "int",
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addWidget",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addLayout",
+                                    "parameters": [
+                                        "QLayout *",
+                                        "int",
+                                        "int",
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addLayout",
+                                    "parameters": [
+                                        "QLayout *",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOriginCorner",
+                                    "parameters": [
+                                        "Qt::Corner"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "originCorner",
+                                    "returns": "Qt::Corner",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemAtPosition",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QLayoutItem *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGeometry",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addItem",
+                                    "parameters": [
+                                        "QLayoutItem *",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefaultPositioning",
+                                    "parameters": [
+                                        "int",
+                                        "Qt::Orientation"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getItemPosition",
+                                    "parameters": [
+                                        "int",
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QGridLayout",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QGridLayout>",
+                    "name": "gridlayout",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -54617,6 +54888,13 @@
                 "id": "QFormLayout",
                 "name": "QFormLayout",
                 "rename": "FormLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/gridlayout.h",
+                "id": "QGridLayout",
+                "name": "QGridLayout",
+                "rename": "GridLayout",
                 "tag": "qobject_tag"
             }
         ],
