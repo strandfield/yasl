@@ -30,6 +30,7 @@
 #include "yasl/gui/region.h"
 #include "yasl/gui/window.h"
 #include "yasl/widgets/action.h"
+#include "yasl/widgets/layout.h"
 #include "yasl/widgets/widget.h"
 
 #include <script/classbuilder.h>
@@ -477,9 +478,9 @@ static void register_widget_class(script::Namespace ns)
   // QRect contentsRect() const;
   binder.add_fun<QRect, &QWidget::contentsRect>("contentsRect");
   // QLayout * layout() const;
-  /// TODO: QLayout * layout() const;
+  binder.add_fun<QLayout *, &QWidget::layout>("layout");
   // void setLayout(QLayout *);
-  /// TODO: void setLayout(QLayout *);
+  binder.add_void_fun<QLayout *, &QWidget::setLayout>("setLayout");
   // void updateGeometry();
   binder.add_void_fun<&QWidget::updateGeometry>("updateGeometry");
   // void setParent(QWidget *);

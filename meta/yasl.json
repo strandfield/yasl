@@ -45463,6 +45463,7 @@
             "type": "module"
         },
         {
+            "checked": 1,
             "elements": [
                 {
                     "elements": [
@@ -52548,6 +52549,360 @@
                     "hincludes": "<QMenu>",
                     "name": "menu",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QObject",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "SetDefaultConstraint"
+                                        },
+                                        {
+                                            "name": "SetNoConstraint"
+                                        },
+                                        {
+                                            "name": "SetMinimumSize"
+                                        },
+                                        {
+                                            "name": "SetFixedSize"
+                                        },
+                                        {
+                                            "name": "SetMaximumSize"
+                                        },
+                                        {
+                                            "name": "SetMinAndMaxSize"
+                                        }
+                                    ],
+                                    "name": "SizeConstraint",
+                                    "type": "enum"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "QLayout",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "QLayout",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QLayout",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "margin",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "spacing",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMargin",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSpacing",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setContentsMargins",
+                                    "parameters": [
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setContentsMargins",
+                                    "parameters": [
+                                        "const QMargins &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "getContentsMargins",
+                                    "parameters": [
+                                        "int *",
+                                        "int *",
+                                        "int *",
+                                        "int *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contentsMargins",
+                                    "returns": "QMargins",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "contentsRect",
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlignment",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::Alignment"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlignment",
+                                    "parameters": [
+                                        "QLayout *",
+                                        "Qt::Alignment"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSizeConstraint",
+                                    "parameters": [
+                                        "QLayout::SizeConstraint"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeConstraint",
+                                    "returns": "QLayout::SizeConstraint",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMenuBar",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "menuBar",
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "parentWidget",
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "invalidate",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "geometry",
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "activate",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "update",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addItem",
+                                    "parameters": [
+                                        "QLayoutItem *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeItem",
+                                    "parameters": [
+                                        "QLayoutItem *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "expandingDirections",
+                                    "returns": "Qt::Orientations",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSize",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximumSize",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setGeometry",
+                                    "parameters": [
+                                        "const QRect &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QLayoutItem *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "takeAt",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QLayoutItem *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "indexOf",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "count",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEmpty",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "controlTypes",
+                                    "returns": "QSizePolicy::ControlTypes",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "replaceWidget",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "QWidget *",
+                                        "Qt::FindChildOptions"
+                                    ],
+                                    "returns": "QLayoutItem *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "totalHeightForWidth",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "totalMinimumSize",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "totalMaximumSize",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "totalSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "layout",
+                                    "returns": "QLayout *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isEnabled",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "closestAcceptableSize",
+                                    "parameters": [
+                                        "const QWidget *",
+                                        "const QSize &"
+                                    ],
+                                    "returns": "QSize",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QLayout",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QLayout>",
+                    "name": "layout",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -53559,6 +53914,19 @@
                 "header": "yasl/widgets/menu.h",
                 "id": "QMenuStar",
                 "name": "QMenu*"
+            },
+            {
+                "header": "yasl/widgets/layout.h",
+                "id": "QLayout",
+                "links": "ref@QLayout*",
+                "name": "QLayout",
+                "rename": "Layout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/layout.h",
+                "id": "QLayoutStar",
+                "name": "QLayout*"
             }
         ],
         "enums": [
@@ -54661,6 +55029,11 @@
                 "header": "yasl/widgets/action.h",
                 "id": "QActionActionEvent",
                 "name": "QAction::ActionEvent"
+            },
+            {
+                "header": "yasl/widgets/layout.h",
+                "id": "QLayoutSizeConstraint",
+                "name": "QLayout::SizeConstraint"
             }
         ],
         "fundamentals": [

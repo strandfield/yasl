@@ -29,6 +29,7 @@ void register_radiobutton_file(script::Namespace n); // defined in radiobutton.c
 void register_toolbutton_file(script::Namespace n); // defined in toolbutton.cpp
 void register_action_file(script::Namespace n); // defined in action.cpp
 void register_menu_file(script::Namespace n); // defined in menu.cpp
+void register_layout_file(script::Namespace n); // defined in layout.cpp
 
 // Start of non-generated code
 void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
@@ -63,6 +64,7 @@ void load_widgets_module(script::Module widgets)
   register_spinbox_file(widgets.root());
   register_datetimeedit_file(widgets.root());
   register_menu_file(widgets.root());
+  register_layout_file(widgets.root());
 
   // Start of non-generated code
   register_newwidget_file(widgets.root());
