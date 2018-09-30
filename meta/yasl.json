@@ -52921,6 +52921,7 @@
                     "type": "file"
                 },
                 {
+                    "cppincludes": "boxlayout.inc",
                     "elements": [
                         {
                             "base": "QLayout",
@@ -53165,6 +53166,10 @@
                             ],
                             "name": "QVBoxLayout",
                             "type": "class"
+                        },
+                        {
+                            "type": "statement",
+                            "value": "register_newlayout_functions(widgets);"
                         }
                     ],
                     "hincludes": "<QBoxLayout>",

@@ -8,6 +8,7 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
+#include "boxlayout.inc"
 #include "yasl/core/enums.h"
 #include "yasl/widgets/boxlayout.h"
 #include "yasl/widgets/layout.h"
@@ -141,5 +142,6 @@ void register_boxlayout_file(script::Namespace widgets)
   register_v_box_layout_class(ns);
   binding::Namespace binder{ ns };
 
+  register_newlayout_functions(widgets);
 }
 
