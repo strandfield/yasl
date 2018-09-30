@@ -54209,6 +54209,767 @@
                     "hincludes": "<QDialog>",
                     "name": "dialog",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QDialog",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoIcon"
+                                        },
+                                        {
+                                            "name": "Information"
+                                        },
+                                        {
+                                            "name": "Warning"
+                                        },
+                                        {
+                                            "name": "Critical"
+                                        },
+                                        {
+                                            "name": "Question"
+                                        }
+                                    ],
+                                    "name": "Icon",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "InvalidRole"
+                                        },
+                                        {
+                                            "name": "AcceptRole"
+                                        },
+                                        {
+                                            "name": "RejectRole"
+                                        },
+                                        {
+                                            "name": "DestructiveRole"
+                                        },
+                                        {
+                                            "name": "ActionRole"
+                                        },
+                                        {
+                                            "name": "HelpRole"
+                                        },
+                                        {
+                                            "name": "YesRole"
+                                        },
+                                        {
+                                            "name": "NoRole"
+                                        },
+                                        {
+                                            "name": "ResetRole"
+                                        },
+                                        {
+                                            "name": "ApplyRole"
+                                        },
+                                        {
+                                            "name": "NRoles"
+                                        }
+                                    ],
+                                    "name": "ButtonRole",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoButton"
+                                        },
+                                        {
+                                            "name": "Ok"
+                                        },
+                                        {
+                                            "name": "Save"
+                                        },
+                                        {
+                                            "name": "SaveAll"
+                                        },
+                                        {
+                                            "name": "Open"
+                                        },
+                                        {
+                                            "name": "Yes"
+                                        },
+                                        {
+                                            "name": "YesToAll"
+                                        },
+                                        {
+                                            "name": "No"
+                                        },
+                                        {
+                                            "name": "NoToAll"
+                                        },
+                                        {
+                                            "name": "Abort"
+                                        },
+                                        {
+                                            "name": "Retry"
+                                        },
+                                        {
+                                            "name": "Ignore"
+                                        },
+                                        {
+                                            "name": "Close"
+                                        },
+                                        {
+                                            "name": "Cancel"
+                                        },
+                                        {
+                                            "name": "Discard"
+                                        },
+                                        {
+                                            "name": "Help"
+                                        },
+                                        {
+                                            "name": "Apply"
+                                        },
+                                        {
+                                            "name": "Reset"
+                                        },
+                                        {
+                                            "name": "RestoreDefaults"
+                                        },
+                                        {
+                                            "name": "FirstButton"
+                                        },
+                                        {
+                                            "name": "LastButton"
+                                        },
+                                        {
+                                            "name": "YesAll"
+                                        },
+                                        {
+                                            "name": "NoAll"
+                                        },
+                                        {
+                                            "name": "Default"
+                                        },
+                                        {
+                                            "name": "Escape"
+                                        },
+                                        {
+                                            "name": "FlagMask"
+                                        },
+                                        {
+                                            "name": "ButtonMask"
+                                        }
+                                    ],
+                                    "name": "StandardButton",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QMessageBox",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QMessageBox",
+                                    "parameters": [
+                                        "QMessageBox::Icon",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButtons",
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QMessageBox",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "addButton",
+                                    "parameters": [
+                                        "QAbstractButton *",
+                                        "QMessageBox::ButtonRole"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addButton",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QMessageBox::ButtonRole"
+                                    ],
+                                    "returns": "QPushButton *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addButton",
+                                    "parameters": [
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "QPushButton *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removeButton",
+                                    "parameters": [
+                                        "QAbstractButton *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QObject *",
+                                        "const char *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttons",
+                                    "returns": "QList<QAbstractButton *>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttonRole",
+                                    "parameters": [
+                                        "QAbstractButton *"
+                                    ],
+                                    "returns": "QMessageBox::ButtonRole",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStandardButtons",
+                                    "parameters": [
+                                        "QMessageBox::StandardButtons"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "standardButtons",
+                                    "returns": "QMessageBox::StandardButtons",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "standardButton",
+                                    "parameters": [
+                                        "QAbstractButton *"
+                                    ],
+                                    "returns": "QMessageBox::StandardButton",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "button",
+                                    "parameters": [
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "QAbstractButton *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "defaultButton",
+                                    "returns": "QPushButton *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefaultButton",
+                                    "parameters": [
+                                        "QPushButton *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefaultButton",
+                                    "parameters": [
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "escapeButton",
+                                    "returns": "QAbstractButton *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setEscapeButton",
+                                    "parameters": [
+                                        "QAbstractButton *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setEscapeButton",
+                                    "parameters": [
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "clickedButton",
+                                    "returns": "QAbstractButton *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "icon",
+                                    "returns": "QMessageBox::Icon",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIcon",
+                                    "parameters": [
+                                        "QMessageBox::Icon"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "iconPixmap",
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIconPixmap",
+                                    "parameters": [
+                                        "const QPixmap &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textFormat",
+                                    "returns": "Qt::TextFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextFormat",
+                                    "parameters": [
+                                        "Qt::TextFormat"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextInteractionFlags",
+                                    "parameters": [
+                                        "Qt::TextInteractionFlags"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textInteractionFlags",
+                                    "returns": "Qt::TextInteractionFlags",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCheckBox",
+                                    "parameters": [
+                                        "QCheckBox *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "checkBox",
+                                    "returns": "QCheckBox *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "information",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButtons",
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "QMessageBox::StandardButton",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "question",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButtons",
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "QMessageBox::StandardButton",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "warning",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButtons",
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "QMessageBox::StandardButton",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "critical",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButtons",
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "QMessageBox::StandardButton",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "about",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "aboutQt",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &"
+                                    ],
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "QMessageBox",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::Icon",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "information",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "information",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "information",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButton",
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "QMessageBox::StandardButton",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "question",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "question",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "question",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButton",
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "warning",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "warning",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "warning",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButton",
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "critical",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "checked": 0,
+                                    "name": "critical",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "critical",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QMessageBox::StandardButton",
+                                        "QMessageBox::StandardButton"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttonText",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setButtonText",
+                                    "parameters": [
+                                        "int",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "informativeText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInformativeText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "detailedText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDetailedText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWindowTitle",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWindowModality",
+                                    "parameters": [
+                                        "Qt::WindowModality"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "standardIcon",
+                                    "parameters": [
+                                        "QMessageBox::Icon"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "buttonClicked",
+                                    "parameters": [
+                                        "QAbstractButton *"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QMessageBox",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QMessageBox::StandardButtons::enum_type",
+                                "QMessageBox::StandardButtons::enum_type"
+                            ],
+                            "returns": "QFlags<QMessageBox::StandardButtons::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QMessageBox::StandardButtons::enum_type",
+                                "QFlags<QMessageBox::StandardButtons::enum_type>"
+                            ],
+                            "returns": "QFlags<QMessageBox::StandardButtons::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QMessageBox::StandardButtons::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QMessageBox>",
+                    "name": "messagebox",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -55282,6 +56043,19 @@
                 "name": "QDialog",
                 "rename": "Dialog",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBox",
+                "name": "QMessageBox",
+                "rename": "MessageBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBoxStandardButtons",
+                "name": "QMessageBox::StandardButtons",
+                "rename": "StandardButtons"
             }
         ],
         "enums": [
@@ -56419,6 +57193,22 @@
                 "header": "yasl/widgets/dialog.h",
                 "id": "QDialogDialogCode",
                 "name": "QDialog::DialogCode"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBoxIcon",
+                "name": "QMessageBox::Icon"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBoxButtonRole",
+                "name": "QMessageBox::ButtonRole"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBoxStandardButton",
+                "links": "flags@QMessageBox::StandardButtons",
+                "name": "QMessageBox::StandardButton"
             }
         ],
         "fundamentals": [
