@@ -54044,6 +54044,171 @@
                     "hincludes": "<QStackedLayout>",
                     "name": "stackedlayout",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QDialog",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QDialog",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Rejected"
+                                        },
+                                        {
+                                            "name": "Accepted"
+                                        }
+                                    ],
+                                    "name": "DialogCode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "result",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOrientation",
+                                    "parameters": [
+                                        "Qt::Orientation"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "orientation",
+                                    "returns": "Qt::Orientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setExtension",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "extension",
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSizeGripEnabled",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isSizeGripEnabled",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setModal",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setResult",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "finished",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "accepted",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "rejected",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "exec",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "done",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "accept",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reject",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showExtension",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QDialog",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QDialog>",
+                    "name": "dialog",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -55109,6 +55274,13 @@
                 "id": "QStackedLayout",
                 "name": "QStackedLayout",
                 "rename": "StackedLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/dialog.h",
+                "id": "QDialog",
+                "name": "QDialog",
+                "rename": "Dialog",
                 "tag": "qobject_tag"
             }
         ],
@@ -56242,6 +56414,11 @@
                 "header": "yasl/widgets/stackedlayout.h",
                 "id": "QStackedLayoutStackingMode",
                 "name": "QStackedLayout::StackingMode"
+            },
+            {
+                "header": "yasl/widgets/dialog.h",
+                "id": "QDialogDialogCode",
+                "name": "QDialog::DialogCode"
             }
         ],
         "fundamentals": [
