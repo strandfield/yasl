@@ -12,6 +12,7 @@
 #include "project/function.h"
 #include "project/module.h"
 #include "project/namespace.h"
+#include "project/statement.h"
 
 #include <QAction>
 #include <QKeyEvent>
@@ -439,6 +440,12 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
     item->setText(1, Function::serialize(node->as<Function>().bindingMethod));
     item->setText(2, node->as<Function>().rename);
   }
+  else if (node->is<Statement>())
+  {
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+
+    item->setIcon(0, QIcon(":/assets/statement.png"));
+  }
 
   handle_checkboxes(item, mShowCheckboxes);
   return item;
@@ -459,7 +466,7 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
 
   node->checkState = item->checkState(0);
 
-  if (node->is<Namespace>() || node->is<Module>() || node->is<Class>() || node->is<Enum>())
+  if (node->is<Namespace>() || node->is<Module>() || node->is<Class>() || node->is<Enum>() || node->is<Statement>())
   {
     node->name = item->text(0);
   }
@@ -581,6 +588,10 @@ void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
   {
     setHeaderLabels(QStringList() << "Name" << "Rename");
   }
+  else if (node->is<Statement>())
+  {
+    setHeaderLabels(QStringList() << "Statement");
+  }
 }
 
 void ModuleTreeWidget::clearHeaders()
@@ -602,6 +613,8 @@ void ModuleTreeWidget::displayContextMenu(const QPoint & p)
 
   if (node->is<Class>())
     menu = mClassMenu;
+  else if (node->is<File>())
+    menu = mFileNodeMenu;
 
   if (menu == nullptr)
     return;
@@ -618,10 +631,12 @@ NodeRef ModuleTreeWidget::getNode(QTreeWidgetItem *item)
 void ModuleTreeWidget::createContextMenus()
 {
   mClassMenu = new QMenu(this);
+  mFileNodeMenu = new QMenu(this);
 
   mAddCopyCtorAction = mClassMenu->addAction("Add copy constructor");
   mAddDestructorAction = mClassMenu->addAction("Add destructor");
   mAddAssignmentAction = mClassMenu->addAction("Add assignment");
+  mAddStatementAction = mFileNodeMenu->addAction("Add statement");
 }
 
 void ModuleTreeWidget::execAction(QTreeWidgetItem *item, NodeRef node, QAction *act)
@@ -647,6 +662,15 @@ void ModuleTreeWidget::execAction(QTreeWidgetItem *item, NodeRef node, QAction *
       assign->returnType = cla.name + " &";
       assign->parameters.append("const " + cla.name + " &");
       cla.elements.append(assign);
+    }
+  }
+  else if (node->is<File>())
+  {
+    File & file = node->as<File>();
+    if (act == mAddStatementAction)
+    {
+      auto stmt = StatementRef::create("(void) 0;");
+      file.elements.append(stmt);
     }
   }
 

@@ -10,6 +10,7 @@
 #include "project/function.h"
 #include "project/module.h"
 #include "project/namespace.h"
+#include "project/statement.h"
 
 #include <QApplication>
 
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
   Node::registerDeserializer(Destructor::staticTypeCode, Destructor::fromJson);
   Node::registerDeserializer(Module::staticTypeCode, Module::fromJson);
   Node::registerDeserializer(Namespace::staticTypeCode, Namespace::fromJson);
+  Node::registerDeserializer(Statement::staticTypeCode, Statement::fromJson);
 
   MainWindow w;
   w.show();

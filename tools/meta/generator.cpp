@@ -7,6 +7,8 @@
 #include "gen/headerfile.h"
 #include "gen/sourcefile.h"
 
+#include "project/statement.h"
+
 #include <QDir>
 #include <QFile>
 #include <QJsonObject>
@@ -920,18 +922,22 @@ void Generator::generate(NamespaceRef ns)
     if (n->checkState == Qt::Unchecked)
       continue;
 
-    if (!n->is<Function>())
-      continue;
-
-    FunctionRef fun = qSharedPointerCast<Function>(n);
-    out += "  // " + fun->displayedName() + endl;
-    try
+    if (n->is<Function>())
     {
-      out += generate(fun) + endl;
+      FunctionRef fun = qSharedPointerCast<Function>(n);
+      out += "  // " + fun->displayedName() + endl;
+      try
+      {
+        out += generate(fun) + endl;
+      }
+      catch (...)
+      {
+        out += "  /// TODO: " + fun->displayedName() + endl;
+      }
     }
-    catch (...)
+    else if (n->is<Statement>())
     {
-      out += "  /// TODO: " + fun->displayedName() + endl;
+      out += "  " + n->name + endl;
     }
   }
 

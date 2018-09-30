@@ -65,6 +65,8 @@ private:
   QAction *mAddCopyCtorAction;
   QAction *mAddDestructorAction;
   QAction *mAddAssignmentAction;
+  QMenu *mFileNodeMenu;
+  QAction *mAddStatementAction;
 };
 
 #endif // YASL_META_MODULETREEWIDGET_H
