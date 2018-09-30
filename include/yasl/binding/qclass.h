@@ -305,6 +305,17 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
+  void add_static(const std::string & name)
+  {
+    auto binder = class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+
+    binder.create();
+  }
+
   template<typename A1, typename A2, typename A3, void(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
   void add_static_void_fun(const std::string & name)
   {
@@ -349,6 +360,17 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
+  void add_static(const std::string & name)
+  {
+    auto binder = class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+
+    binder.create();
+  }
+
   /****************************************************************
   5-arg member functions
   ****************************************************************/
@@ -381,6 +403,17 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
 
     builder.create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
+  void add_static(const std::string & name)
+  {
+    auto binder = class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+
+    binder.create();
   }
 };
 
