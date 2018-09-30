@@ -100,9 +100,9 @@ static void register_abstract_spin_box_class(script::Namespace ns)
   // bool keyboardTracking() const;
   binder.add_fun<bool, &QAbstractSpinBox::keyboardTracking>("keyboardTracking");
   // void setAlignment(Qt::Alignment);
-  /// TODO: void setAlignment(Qt::Alignment);
+  binder.add_void_fun<Qt::Alignment, &QAbstractSpinBox::setAlignment>("setAlignment");
   // Qt::Alignment alignment() const;
-  /// TODO: Qt::Alignment alignment() const;
+  binder.add_fun<Qt::Alignment, &QAbstractSpinBox::alignment>("alignment");
   // void setFrame(bool);
   binder.add_void_fun<bool, &QAbstractSpinBox::setFrame>("setFrame");
   // bool hasFrame() const;

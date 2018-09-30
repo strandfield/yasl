@@ -66,13 +66,9 @@ static void register_grid_layout_class(script::Namespace ns)
   // void addWidget(QWidget *);
   binder.add_void_fun<QWidget *, &QGridLayout::addWidget>("addWidget");
   // void addWidget(QWidget *, int, int, Qt::Alignment);
-  /// TODO: void addWidget(QWidget *, int, int, Qt::Alignment);
-  // void addWidget(QWidget *, int, int, int, int, Qt::Alignment);
-  /// TODO: void addWidget(QWidget *, int, int, int, int, Qt::Alignment);
+  binder.add_void_fun<QWidget *, int, int, Qt::Alignment, &QGridLayout::addWidget>("addWidget");
   // void addLayout(QLayout *, int, int, Qt::Alignment);
-  /// TODO: void addLayout(QLayout *, int, int, Qt::Alignment);
-  // void addLayout(QLayout *, int, int, int, int, Qt::Alignment);
-  /// TODO: void addLayout(QLayout *, int, int, int, int, Qt::Alignment);
+  binder.add_void_fun<QLayout *, int, int, Qt::Alignment, &QGridLayout::addLayout>("addLayout");
   // void setOriginCorner(Qt::Corner);
   binder.add_void_fun<Qt::Corner, &QGridLayout::setOriginCorner>("setOriginCorner");
   // Qt::Corner originCorner() const;

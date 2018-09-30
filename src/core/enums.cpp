@@ -197,6 +197,7 @@ static void register_qt_alignment_flag_enum(script::Namespace qt)
   Enum alignment_flag = qt.Enum("AlignmentFlag").setId(script::Type::QtAlignmentFlag)
     .setEnumClass().get();
 
+  register_qflags_type<Qt::AlignmentFlag>(qt, "Alignment", script::Type::QtAlignment);
   alignment_flag.addValue("AlignLeft", Qt::AlignLeft);
   alignment_flag.addValue("AlignLeading", Qt::AlignLeading);
   alignment_flag.addValue("AlignRight", Qt::AlignRight);

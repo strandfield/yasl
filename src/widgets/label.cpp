@@ -43,9 +43,9 @@ static void register_label_class(script::Namespace ns)
   // void setTextFormat(Qt::TextFormat);
   binder.add_void_fun<Qt::TextFormat, &QLabel::setTextFormat>("setTextFormat");
   // Qt::Alignment alignment() const;
-  /// TODO: Qt::Alignment alignment() const;
+  binder.add_fun<Qt::Alignment, &QLabel::alignment>("alignment");
   // void setAlignment(Qt::Alignment);
-  /// TODO: void setAlignment(Qt::Alignment);
+  binder.add_void_fun<Qt::Alignment, &QLabel::setAlignment>("setAlignment");
   // void setWordWrap(bool);
   binder.add_void_fun<bool, &QLabel::setWordWrap>("setWordWrap");
   // bool wordWrap() const;

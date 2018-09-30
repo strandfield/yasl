@@ -72,7 +72,7 @@ static void register_text_option_class(script::Namespace ns)
   // QTextOption();
   binder.ctors().add_default();
   // QTextOption(Qt::Alignment);
-  /// TODO: QTextOption(Qt::Alignment);
+  binder.ctors().add<Qt::Alignment>();
   // ~QTextOption();
   binder.add_dtor();
   // QTextOption(const QTextOption &);
@@ -80,9 +80,9 @@ static void register_text_option_class(script::Namespace ns)
   // QTextOption & operator=(const QTextOption &);
   binder.operators().assign<const QTextOption &>();
   // void setAlignment(Qt::Alignment);
-  /// TODO: void setAlignment(Qt::Alignment);
+  binder.add_void_fun<Qt::Alignment, &QTextOption::setAlignment>("setAlignment");
   // Qt::Alignment alignment() const;
-  /// TODO: Qt::Alignment alignment() const;
+  binder.add_fun<Qt::Alignment, &QTextOption::alignment>("alignment");
   // void setTextDirection(Qt::LayoutDirection);
   binder.add_void_fun<Qt::LayoutDirection, &QTextOption::setTextDirection>("setTextDirection");
   // Qt::LayoutDirection textDirection() const;

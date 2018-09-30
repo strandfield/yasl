@@ -53584,9 +53584,11 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
                             "base": "QLayout",
+                            "checked": 1,
                             "elements": [
                                 {
                                     "name": "QGridLayout",
@@ -53750,6 +53752,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "addWidget",
                                     "parameters": [
                                         "QWidget *",
@@ -53772,6 +53775,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "addLayout",
                                     "parameters": [
                                         "QLayout *",
@@ -54980,6 +54984,12 @@
         "classes": [
             {
                 "header": "yasl/core/enums.h",
+                "id": "QtAlignment",
+                "name": "Qt::Alignment",
+                "rename": "Alignment"
+            },
+            {
+                "header": "yasl/core/enums.h",
                 "id": "QtImageConversionFlags",
                 "name": "Qt::ImageConversionFlags",
                 "rename": "ImageConversionFlags"
@@ -56114,6 +56124,7 @@
             {
                 "header": "yasl/core/enums.h",
                 "id": "QtAlignmentFlag",
+                "links": "flags@Qt::Alignment",
                 "name": "Qt::AlignmentFlag"
             },
             {

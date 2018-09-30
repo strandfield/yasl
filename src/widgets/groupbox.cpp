@@ -7,6 +7,7 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
+#include "yasl/core/enums.h"
 #include "yasl/core/size.h"
 #include "yasl/widgets/widget.h"
 
@@ -32,7 +33,7 @@ static void register_group_box_class(script::Namespace ns)
   // void setTitle(const QString &);
   binder.add_void_fun<const QString &, &QGroupBox::setTitle>("setTitle");
   // Qt::Alignment alignment() const;
-  /// TODO: Qt::Alignment alignment() const;
+  binder.add_fun<Qt::Alignment, &QGroupBox::alignment>("alignment");
   // void setAlignment(int);
   binder.add_void_fun<int, &QGroupBox::setAlignment>("setAlignment");
   // QSize minimumSizeHint() const;

@@ -10,6 +10,7 @@
 #include <Qt>
 
 namespace binding {
+template<> struct make_type_t<Qt::Alignment> { inline static script::Type get() { return script::Type::QtAlignment; } };
 template<> struct make_type_t<Qt::AlignmentFlag> { inline static script::Type get() { return script::Type::QtAlignmentFlag; } };
 template<> struct make_type_t<Qt::AnchorPoint> { inline static script::Type get() { return script::Type::QtAnchorPoint; } };
 template<> struct make_type_t<Qt::ApplicationAttribute> { inline static script::Type get() { return script::Type::QtApplicationAttribute; } };

@@ -9,6 +9,7 @@
 #include "yasl/binding/qclass.h"
 #include "yasl/utils/ref.h"
 
+#include "yasl/core/enums.h"
 #include "yasl/core/margins.h"
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"
@@ -65,9 +66,9 @@ static void register_layout_class(script::Namespace ns)
   // QRect contentsRect() const;
   binder.add_fun<QRect, &QLayout::contentsRect>("contentsRect");
   // bool setAlignment(QWidget *, Qt::Alignment);
-  /// TODO: bool setAlignment(QWidget *, Qt::Alignment);
+  binder.add_fun<bool, QWidget *, Qt::Alignment, &QLayout::setAlignment>("setAlignment");
   // bool setAlignment(QLayout *, Qt::Alignment);
-  /// TODO: bool setAlignment(QLayout *, Qt::Alignment);
+  binder.add_fun<bool, QLayout *, Qt::Alignment, &QLayout::setAlignment>("setAlignment");
   // void setSizeConstraint(QLayout::SizeConstraint);
   binder.add_void_fun<QLayout::SizeConstraint, &QLayout::setSizeConstraint>("setSizeConstraint");
   // QLayout::SizeConstraint sizeConstraint() const;

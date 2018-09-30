@@ -8,6 +8,7 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
+#include "yasl/core/enums.h"
 #include "yasl/widgets/formlayout.h"
 #include "yasl/widgets/layout.h"
 #include "yasl/widgets/widget.h"
@@ -76,13 +77,13 @@ static void register_form_layout_class(script::Namespace ns)
   // QFormLayout::RowWrapPolicy rowWrapPolicy() const;
   binder.add_fun<QFormLayout::RowWrapPolicy, &QFormLayout::rowWrapPolicy>("rowWrapPolicy");
   // void setLabelAlignment(Qt::Alignment);
-  /// TODO: void setLabelAlignment(Qt::Alignment);
+  binder.add_void_fun<Qt::Alignment, &QFormLayout::setLabelAlignment>("setLabelAlignment");
   // Qt::Alignment labelAlignment() const;
-  /// TODO: Qt::Alignment labelAlignment() const;
+  binder.add_fun<Qt::Alignment, &QFormLayout::labelAlignment>("labelAlignment");
   // void setFormAlignment(Qt::Alignment);
-  /// TODO: void setFormAlignment(Qt::Alignment);
+  binder.add_void_fun<Qt::Alignment, &QFormLayout::setFormAlignment>("setFormAlignment");
   // Qt::Alignment formAlignment() const;
-  /// TODO: Qt::Alignment formAlignment() const;
+  binder.add_fun<Qt::Alignment, &QFormLayout::formAlignment>("formAlignment");
   // void setHorizontalSpacing(int);
   binder.add_void_fun<int, &QFormLayout::setHorizontalSpacing>("setHorizontalSpacing");
   // int horizontalSpacing() const;

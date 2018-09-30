@@ -8,6 +8,7 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
+#include "yasl/core/enums.h"
 #include "yasl/widgets/boxlayout.h"
 #include "yasl/widgets/layout.h"
 #include "yasl/widgets/widget.h"
@@ -55,7 +56,7 @@ static void register_box_layout_class(script::Namespace ns)
   // void addSpacerItem(QSpacerItem *);
   /// TODO: void addSpacerItem(QSpacerItem *);
   // void addWidget(QWidget *, int, Qt::Alignment);
-  /// TODO: void addWidget(QWidget *, int, Qt::Alignment);
+  binder.add_void_fun<QWidget *, int, Qt::Alignment, &QBoxLayout::addWidget>("addWidget");
   // void addLayout(QLayout *, int);
   binder.add_void_fun<QLayout *, int, &QBoxLayout::addLayout>("addLayout");
   // void addStrut(int);
@@ -67,7 +68,7 @@ static void register_box_layout_class(script::Namespace ns)
   // void insertSpacerItem(int, QSpacerItem *);
   /// TODO: void insertSpacerItem(int, QSpacerItem *);
   // void insertWidget(int, QWidget *, int, Qt::Alignment);
-  /// TODO: void insertWidget(int, QWidget *, int, Qt::Alignment);
+  binder.add_void_fun<int, QWidget *, int, Qt::Alignment, &QBoxLayout::insertWidget>("insertWidget");
   // void insertLayout(int, QLayout *, int);
   binder.add_void_fun<int, QLayout *, int, &QBoxLayout::insertLayout>("insertLayout");
   // void insertItem(int, QLayoutItem *);

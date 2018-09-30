@@ -110,9 +110,9 @@ static void register_line_edit_class(script::Namespace ns)
   // int cursorPositionAt(const QPoint &);
   binder.add_fun<int, const QPoint &, &QLineEdit::cursorPositionAt>("cursorPositionAt");
   // void setAlignment(Qt::Alignment);
-  /// TODO: void setAlignment(Qt::Alignment);
+  binder.add_void_fun<Qt::Alignment, &QLineEdit::setAlignment>("setAlignment");
   // Qt::Alignment alignment() const;
-  /// TODO: Qt::Alignment alignment() const;
+  binder.add_fun<Qt::Alignment, &QLineEdit::alignment>("alignment");
   // void cursorForward(bool, int);
   binder.add_void_fun<bool, int, &QLineEdit::cursorForward>("cursorForward");
   // void cursorBackward(bool, int);
