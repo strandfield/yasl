@@ -69,5 +69,7 @@ void register_pushbutton_file(script::Namespace widgets)
   register_push_button_class(ns);
   binding::Namespace binder{ ns };
 
+  void register_newpushbutton_file(script::Namespace n); // defined in newpushbutton.cpp
+  register_newpushbutton_file(widgets);
 }
 

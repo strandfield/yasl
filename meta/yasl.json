@@ -47196,6 +47196,14 @@
                             ],
                             "returns": "QDebug",
                             "type": "function"
+                        },
+                        {
+                            "type": "statement",
+                            "value": "void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp"
+                        },
+                        {
+                            "type": "statement",
+                            "value": "register_newwidget_file(widgets);"
                         }
                     ],
                     "hincludes": "<QWidget>",
@@ -47519,6 +47527,14 @@
                             ],
                             "name": "QPushButton",
                             "type": "class"
+                        },
+                        {
+                            "type": "statement",
+                            "value": "void register_newpushbutton_file(script::Namespace n); // defined in newpushbutton.cpp"
+                        },
+                        {
+                            "type": "statement",
+                            "value": "register_newpushbutton_file(widgets);"
                         }
                     ],
                     "hincludes": "<QPushButton>",

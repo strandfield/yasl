@@ -587,5 +587,7 @@ void register_widget_file(script::Namespace widgets)
   /// TODO: QIncompatibleFlag operator|(QWidget::RenderFlags::enum_type, int);
   // QDebug operator<<(QDebug, const QWidget *);
   /// TODO: QDebug operator<<(QDebug, const QWidget *);
+  void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
+  register_newwidget_file(widgets);
 }
 

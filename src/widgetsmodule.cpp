@@ -35,11 +35,6 @@ void register_formlayout_file(script::Namespace n); // defined in formlayout.cpp
 void register_gridlayout_file(script::Namespace n); // defined in gridlayout.cpp
 void register_stackedlayout_file(script::Namespace n); // defined in stackedlayout.cpp
 
-// Start of non-generated code
-void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
-void register_newpushbutton_file(script::Namespace n); // defined in newpushbutton.cpp
-// End of non-generated code
-
 void load_widgets_module(script::Module widgets)
 {
   // Start of non-generated code
@@ -73,11 +68,6 @@ void load_widgets_module(script::Module widgets)
   register_formlayout_file(widgets.root());
   register_gridlayout_file(widgets.root());
   register_stackedlayout_file(widgets.root());
-
-  // Start of non-generated code
-  register_newwidget_file(widgets.root());
-  register_newpushbutton_file(widgets.root());
-  // End of non-generated code
 }
 
 void cleanup_widgets_module(script::Module gui)
