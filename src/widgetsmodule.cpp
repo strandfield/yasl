@@ -36,6 +36,7 @@ void register_gridlayout_file(script::Namespace n); // defined in gridlayout.cpp
 void register_stackedlayout_file(script::Namespace n); // defined in stackedlayout.cpp
 void register_dialog_file(script::Namespace n); // defined in dialog.cpp
 void register_messagebox_file(script::Namespace n); // defined in messagebox.cpp
+void register_filedialog_file(script::Namespace n); // defined in filedialog.cpp
 
 void load_widgets_module(script::Module widgets)
 {
@@ -72,6 +73,7 @@ void load_widgets_module(script::Module widgets)
   register_stackedlayout_file(widgets.root());
   register_dialog_file(widgets.root());
   register_messagebox_file(widgets.root());
+  register_filedialog_file(widgets.root());
 }
 
 void cleanup_widgets_module(script::Module gui)

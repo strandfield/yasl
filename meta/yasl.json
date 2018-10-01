@@ -54979,6 +54979,745 @@
                     "hincludes": "<QMessageBox>",
                     "name": "messagebox",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QDialog",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "Detail"
+                                        },
+                                        {
+                                            "name": "List"
+                                        }
+                                    ],
+                                    "name": "ViewMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AnyFile"
+                                        },
+                                        {
+                                            "name": "ExistingFile"
+                                        },
+                                        {
+                                            "name": "Directory"
+                                        },
+                                        {
+                                            "name": "ExistingFiles"
+                                        },
+                                        {
+                                            "name": "DirectoryOnly"
+                                        }
+                                    ],
+                                    "name": "FileMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "AcceptOpen"
+                                        },
+                                        {
+                                            "name": "AcceptSave"
+                                        }
+                                    ],
+                                    "name": "AcceptMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "LookIn"
+                                        },
+                                        {
+                                            "name": "FileName"
+                                        },
+                                        {
+                                            "name": "FileType"
+                                        },
+                                        {
+                                            "name": "Accept"
+                                        },
+                                        {
+                                            "name": "Reject"
+                                        }
+                                    ],
+                                    "name": "DialogLabel",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ShowDirsOnly"
+                                        },
+                                        {
+                                            "name": "DontResolveSymlinks"
+                                        },
+                                        {
+                                            "name": "DontConfirmOverwrite"
+                                        },
+                                        {
+                                            "name": "DontUseSheet"
+                                        },
+                                        {
+                                            "name": "DontUseNativeDialog"
+                                        },
+                                        {
+                                            "name": "ReadOnly"
+                                        },
+                                        {
+                                            "name": "HideNameFilterDetails"
+                                        },
+                                        {
+                                            "name": "DontUseCustomDirectoryIcons"
+                                        }
+                                    ],
+                                    "name": "Option",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QFileDialog",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFileDialog",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFileDialog",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setDirectory",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDirectory",
+                                    "parameters": [
+                                        "const QDir &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "directory",
+                                    "returns": "QDir",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDirectoryUrl",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "directoryUrl",
+                                    "returns": "QUrl",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "selectFile",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectedFiles",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "selectUrl",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectedUrls",
+                                    "returns": "QList<QUrl>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNameFilterDetailsVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isNameFilterDetailsVisible",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNameFilter",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setNameFilters",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nameFilters",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "selectNameFilter",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectedMimeTypeFilter",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectedNameFilter",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMimeTypeFilters",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "mimeTypeFilters",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "selectMimeTypeFilter",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "filter",
+                                    "returns": "QDir::Filters",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFilter",
+                                    "parameters": [
+                                        "QDir::Filters"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setViewMode",
+                                    "parameters": [
+                                        "QFileDialog::ViewMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "viewMode",
+                                    "returns": "QFileDialog::ViewMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFileMode",
+                                    "parameters": [
+                                        "QFileDialog::FileMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "fileMode",
+                                    "returns": "QFileDialog::FileMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAcceptMode",
+                                    "parameters": [
+                                        "QFileDialog::AcceptMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "acceptMode",
+                                    "returns": "QFileDialog::AcceptMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setReadOnly",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isReadOnly",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setResolveSymlinks",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "resolveSymlinks",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSidebarUrls",
+                                    "parameters": [
+                                        "const QList<QUrl> &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sidebarUrls",
+                                    "returns": "QList<QUrl>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "saveState",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "restoreState",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setConfirmOverwrite",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "confirmOverwrite",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefaultSuffix",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "defaultSuffix",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setHistory",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "history",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setItemDelegate",
+                                    "parameters": [
+                                        "QAbstractItemDelegate *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "itemDelegate",
+                                    "returns": "QAbstractItemDelegate *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIconProvider",
+                                    "parameters": [
+                                        "QFileIconProvider *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "iconProvider",
+                                    "returns": "QFileIconProvider *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLabelText",
+                                    "parameters": [
+                                        "QFileDialog::DialogLabel",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "labelText",
+                                    "parameters": [
+                                        "QFileDialog::DialogLabel"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSupportedSchemes",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "supportedSchemes",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setProxyModel",
+                                    "parameters": [
+                                        "QAbstractProxyModel *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "proxyModel",
+                                    "returns": "QAbstractProxyModel *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOption",
+                                    "parameters": [
+                                        "QFileDialog::Option",
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "testOption",
+                                    "parameters": [
+                                        "QFileDialog::Option"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOptions",
+                                    "parameters": [
+                                        "QFileDialog::Options"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "options",
+                                    "returns": "QFileDialog::Options",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QObject *",
+                                        "const char *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "fileSelected",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "checked": 0,
+                                    "name": "filesSelected",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "directoryEntered",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "checked": 0,
+                                    "name": "urlSelected",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "checked": 0,
+                                    "name": "urlsSelected",
+                                    "parameters": [
+                                        "const QList<QUrl> &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "checked": 0,
+                                    "name": "currentUrlChanged",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "checked": 0,
+                                    "name": "directoryUrlEntered",
+                                    "parameters": [
+                                        "const QUrl &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "filterSelected",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getOpenFileName",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QString *",
+                                        "QFileDialog::Options"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getOpenFileUrl",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QUrl &",
+                                        "const QString &",
+                                        "QString *",
+                                        "QFileDialog::Options",
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "QUrl",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getSaveFileName",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QString *",
+                                        "QFileDialog::Options"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getSaveFileUrl",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QUrl &",
+                                        "const QString &",
+                                        "QString *",
+                                        "QFileDialog::Options",
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "QUrl",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getExistingDirectory",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QFileDialog::Options"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getExistingDirectoryUrl",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QUrl &",
+                                        "QFileDialog::Options",
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "QUrl",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getOpenFileNames",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QString *",
+                                        "QFileDialog::Options"
+                                    ],
+                                    "returns": "QStringList",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getOpenFileUrls",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QUrl &",
+                                        "const QString &",
+                                        "QString *",
+                                        "QFileDialog::Options",
+                                        "const QStringList &"
+                                    ],
+                                    "returns": "QList<QUrl>",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFileDialog",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFileDialog::Options::enum_type",
+                                "QFileDialog::Options::enum_type"
+                            ],
+                            "returns": "QFlags<QFileDialog::Options::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFileDialog::Options::enum_type",
+                                "QFlags<QFileDialog::Options::enum_type>"
+                            ],
+                            "returns": "QFlags<QFileDialog::Options::enum_type>",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFileDialog::Options::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QFileDialog>",
+                    "name": "filedialog",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -56071,6 +56810,19 @@
                 "id": "QMessageBoxStandardButtons",
                 "name": "QMessageBox::StandardButtons",
                 "rename": "StandardButtons"
+            },
+            {
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialog",
+                "name": "QFileDialog",
+                "rename": "FileDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogOptions",
+                "name": "QFileDialog::Options",
+                "rename": "Options"
             }
         ],
         "enums": [
@@ -57225,6 +57977,32 @@
                 "id": "QMessageBoxStandardButton",
                 "links": "flags@QMessageBox::StandardButtons",
                 "name": "QMessageBox::StandardButton"
+            },
+            {
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogViewMode",
+                "name": "QFileDialog::ViewMode"
+            },
+            {
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogFileMode",
+                "name": "QFileDialog::FileMode"
+            },
+            {
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogAcceptMode",
+                "name": "QFileDialog::AcceptMode"
+            },
+            {
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogDialogLabel",
+                "name": "QFileDialog::DialogLabel"
+            },
+            {
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogOption",
+                "links": "flags@QFileDialog::Options",
+                "name": "QFileDialog::Option"
             }
         ],
         "fundamentals": [
