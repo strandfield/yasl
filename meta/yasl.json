@@ -55760,6 +55760,226 @@
                     "hincludes": "<QErrorMessage>",
                     "name": "errormessage",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QDialog",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ShowAlphaChannel"
+                                        },
+                                        {
+                                            "name": "NoButtons"
+                                        },
+                                        {
+                                            "name": "DontUseNativeDialog"
+                                        }
+                                    ],
+                                    "name": "ColorDialogOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QColorDialog",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QColorDialog",
+                                    "parameters": [
+                                        "const QColor &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QColorDialog",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setCurrentColor",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentColor",
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectedColor",
+                                    "returns": "QColor",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOption",
+                                    "parameters": [
+                                        "QColorDialog::ColorDialogOption",
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "testOption",
+                                    "parameters": [
+                                        "QColorDialog::ColorDialogOption"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOptions",
+                                    "parameters": [
+                                        "QColorDialog::ColorDialogOptions"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "options",
+                                    "returns": "QColorDialog::ColorDialogOptions",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QObject *",
+                                        "const char *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getColor",
+                                    "parameters": [
+                                        "const QColor &",
+                                        "QWidget *",
+                                        "const QString &",
+                                        "QColorDialog::ColorDialogOptions"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getRgba",
+                                    "parameters": [
+                                        "QRgb",
+                                        "bool *",
+                                        "QWidget *"
+                                    ],
+                                    "returns": "QRgb",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "customCount",
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "customColor",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCustomColor",
+                                    "parameters": [
+                                        "int",
+                                        "QColor"
+                                    ],
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "standardColor",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QColor",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStandardColor",
+                                    "parameters": [
+                                        "int",
+                                        "QColor"
+                                    ],
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentColorChanged",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "colorSelected",
+                                    "parameters": [
+                                        "const QColor &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QColorDialog",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QColorDialog::ColorDialogOption",
+                                "QColorDialog::ColorDialogOption"
+                            ],
+                            "returns": "QColorDialog::ColorDialogOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QColorDialog::ColorDialogOption",
+                                "QColorDialog::ColorDialogOptions"
+                            ],
+                            "returns": "QColorDialog::ColorDialogOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QColorDialog::ColorDialogOptions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QColorDialog>",
+                    "name": "colordialog",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -56872,6 +57092,19 @@
                 "name": "QErrorMessage",
                 "rename": "ErrorMessage",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/colordialog.h",
+                "id": "QColorDialog",
+                "name": "QColorDialog",
+                "rename": "ColorDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/colordialog.h",
+                "id": "QColorDialogColorDialogOptions",
+                "name": "QColorDialog::ColorDialogOptions",
+                "rename": "ColorDialogOptions"
             }
         ],
         "enums": [
@@ -58052,6 +58285,12 @@
                 "id": "QFileDialogOption",
                 "links": "flags@QFileDialog::Options",
                 "name": "QFileDialog::Option"
+            },
+            {
+                "header": "yasl/widgets/colordialog.h",
+                "id": "QColorDialogColorDialogOption",
+                "links": "flags@QColorDialog::ColorDialogOptions",
+                "name": "QColorDialog::ColorDialogOption"
             }
         ],
         "fundamentals": [

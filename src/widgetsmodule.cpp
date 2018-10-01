@@ -38,6 +38,7 @@ void register_dialog_file(script::Namespace n); // defined in dialog.cpp
 void register_messagebox_file(script::Namespace n); // defined in messagebox.cpp
 void register_filedialog_file(script::Namespace n); // defined in filedialog.cpp
 void register_errormessage_file(script::Namespace n); // defined in errormessage.cpp
+void register_colordialog_file(script::Namespace n); // defined in colordialog.cpp
 
 void load_widgets_module(script::Module widgets)
 {
@@ -76,6 +77,7 @@ void load_widgets_module(script::Module widgets)
   register_messagebox_file(widgets.root());
   register_filedialog_file(widgets.root());
   register_errormessage_file(widgets.root());
+  register_colordialog_file(widgets.root());
 }
 
 void cleanup_widgets_module(script::Module gui)
