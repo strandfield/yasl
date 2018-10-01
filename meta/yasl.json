@@ -55718,6 +55718,48 @@
                     "hincludes": "<QFileDialog>",
                     "name": "filedialog",
                     "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "base": "QDialog",
+                            "checked": 1,
+                            "elements": [
+                                {
+                                    "name": "QErrorMessage",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QErrorMessage",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "showMessage",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "showMessage",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QErrorMessage",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QErrorMessage>",
+                    "name": "errormessage",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -56823,6 +56865,13 @@
                 "id": "QFileDialogOptions",
                 "name": "QFileDialog::Options",
                 "rename": "Options"
+            },
+            {
+                "header": "yasl/widgets/errormessage.h",
+                "id": "QErrorMessage",
+                "name": "QErrorMessage",
+                "rename": "ErrorMessage",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
