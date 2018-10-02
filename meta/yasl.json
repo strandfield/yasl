@@ -56167,6 +56167,538 @@
                     "hincludes": "<QFontDialog>",
                     "name": "fontdialog",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QDialog",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoButtons"
+                                        },
+                                        {
+                                            "name": "UseListViewForComboBoxItems"
+                                        },
+                                        {
+                                            "name": "UsePlainTextEditForTextInput"
+                                        }
+                                    ],
+                                    "name": "InputDialogOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "TextInput"
+                                        },
+                                        {
+                                            "name": "IntInput"
+                                        },
+                                        {
+                                            "name": "DoubleInput"
+                                        }
+                                    ],
+                                    "name": "InputMode",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QInputDialog",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QInputDialog",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setInputMode",
+                                    "parameters": [
+                                        "QInputDialog::InputMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "inputMode",
+                                    "returns": "QInputDialog::InputMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLabelText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "labelText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOption",
+                                    "parameters": [
+                                        "QInputDialog::InputDialogOption",
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "testOption",
+                                    "parameters": [
+                                        "QInputDialog::InputDialogOption"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOptions",
+                                    "parameters": [
+                                        "QInputDialog::InputDialogOptions"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "options",
+                                    "returns": "QInputDialog::InputDialogOptions",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextValue",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textValue",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextEchoMode",
+                                    "parameters": [
+                                        "QLineEdit::EchoMode"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textEchoMode",
+                                    "returns": "QLineEdit::EchoMode",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setComboBoxEditable",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isComboBoxEditable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setComboBoxItems",
+                                    "parameters": [
+                                        "const QStringList &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "comboBoxItems",
+                                    "returns": "QStringList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIntValue",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intValue",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIntMinimum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intMinimum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIntMaximum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intMaximum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIntRange",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIntStep",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "intStep",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDoubleValue",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "doubleValue",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDoubleMinimum",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "doubleMinimum",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDoubleMaximum",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "doubleMaximum",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDoubleRange",
+                                    "parameters": [
+                                        "double",
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDoubleDecimals",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "doubleDecimals",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOkButtonText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "okButtonText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCancelButtonText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "cancelButtonText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QObject *",
+                                        "const char *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getText",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QLineEdit::EchoMode",
+                                        "const QString &",
+                                        "bool *",
+                                        "Qt::WindowFlags",
+                                        "Qt::InputMethodHints"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getMultiLineText",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QString &",
+                                        "bool *",
+                                        "Qt::WindowFlags",
+                                        "Qt::InputMethodHints"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getItem",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "const QStringList &",
+                                        "int",
+                                        "bool",
+                                        "bool *",
+                                        "Qt::WindowFlags",
+                                        "Qt::InputMethodHints"
+                                    ],
+                                    "returns": "QString",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getInt",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "int",
+                                        "bool *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "returns": "int",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getDouble",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "double",
+                                        "double",
+                                        "double",
+                                        "int",
+                                        "bool *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "returns": "double",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getDouble",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "const QString &",
+                                        "const QString &",
+                                        "double",
+                                        "double",
+                                        "double",
+                                        "int",
+                                        "bool *",
+                                        "Qt::WindowFlags",
+                                        "double"
+                                    ],
+                                    "returns": "double",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDoubleStep",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "doubleStep",
+                                    "returns": "double",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "textValueChanged",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "textValueSelected",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "intValueChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "intValueSelected",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "doubleValueChanged",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "doubleValueSelected",
+                                    "parameters": [
+                                        "double"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "done",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QInputDialog",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QInputDialog::InputDialogOption",
+                                "QInputDialog::InputDialogOption"
+                            ],
+                            "returns": "QInputDialog::InputDialogOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QInputDialog::InputDialogOption",
+                                "QInputDialog::InputDialogOptions"
+                            ],
+                            "returns": "QInputDialog::InputDialogOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QInputDialog::InputDialogOptions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QInputDialog>",
+                    "name": "inputdialog",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -57305,6 +57837,19 @@
                 "id": "QFontDialogFontDialogOptions",
                 "name": "QFontDialog::FontDialogOptions",
                 "rename": "FontDialogOptions"
+            },
+            {
+                "header": "yasl/widgets/inputdialog.h",
+                "id": "QInputDialog",
+                "name": "QInputDialog",
+                "rename": "InputDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/inputdialog.h",
+                "id": "QInputDialogInputDialogOptions",
+                "name": "QInputDialog::InputDialogOptions",
+                "rename": "InputDialogOptions"
             }
         ],
         "enums": [
@@ -58497,6 +59042,17 @@
                 "id": "QFontDialogFontDialogOption",
                 "links": "flags@QFontDialog::FontDialogOptions",
                 "name": "QFontDialog::FontDialogOption"
+            },
+            {
+                "header": "yasl/widgets/inputdialog.h",
+                "id": "QInputDialogInputDialogOption",
+                "links": "flags@QInputDialog::InputDialogOptions",
+                "name": "QInputDialog::InputDialogOption"
+            },
+            {
+                "header": "yasl/widgets/inputdialog.h",
+                "id": "QInputDialogInputMode",
+                "name": "QInputDialog::InputMode"
             }
         ],
         "fundamentals": [

@@ -40,6 +40,7 @@ void register_filedialog_file(script::Namespace n); // defined in filedialog.cpp
 void register_errormessage_file(script::Namespace n); // defined in errormessage.cpp
 void register_colordialog_file(script::Namespace n); // defined in colordialog.cpp
 void register_fontdialog_file(script::Namespace n); // defined in fontdialog.cpp
+void register_inputdialog_file(script::Namespace n); // defined in inputdialog.cpp
 
 void load_widgets_module(script::Module widgets)
 {
@@ -80,6 +81,7 @@ void load_widgets_module(script::Module widgets)
   register_errormessage_file(widgets.root());
   register_colordialog_file(widgets.root());
   register_fontdialog_file(widgets.root());
+  register_inputdialog_file(widgets.root());
 }
 
 void cleanup_widgets_module(script::Module gui)
