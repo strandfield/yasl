@@ -56699,6 +56699,204 @@
                     "hincludes": "<QInputDialog>",
                     "name": "inputdialog",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QDialog",
+                            "elements": [
+                                {
+                                    "name": "QProgressDialog",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QProgressDialog",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QString &",
+                                        "int",
+                                        "int",
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QProgressDialog",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setLabel",
+                                    "parameters": [
+                                        "QLabel *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCancelButton",
+                                    "parameters": [
+                                        "QPushButton *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setBar",
+                                    "parameters": [
+                                        "QProgressBar *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "wasCanceled",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "value",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "labelText",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumDuration",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAutoReset",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "autoReset",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAutoClose",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "autoClose",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QObject *",
+                                        "const char *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cancel",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reset",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRange",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setValue",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setLabelText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCancelButtonText",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimumDuration",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "canceled",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QProgressDialog",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QProgressDialog>",
+                    "name": "progressdialog",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -57850,6 +58048,13 @@
                 "id": "QInputDialogInputDialogOptions",
                 "name": "QInputDialog::InputDialogOptions",
                 "rename": "InputDialogOptions"
+            },
+            {
+                "header": "yasl/widgets/progressdialog.h",
+                "id": "QProgressDialog",
+                "name": "QProgressDialog",
+                "rename": "ProgressDialog",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
