@@ -55980,6 +55980,193 @@
                     "hincludes": "<QColorDialog>",
                     "name": "colordialog",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QDialog",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "NoButtons"
+                                        },
+                                        {
+                                            "name": "DontUseNativeDialog"
+                                        },
+                                        {
+                                            "name": "ScalableFonts"
+                                        },
+                                        {
+                                            "name": "NonScalableFonts"
+                                        },
+                                        {
+                                            "name": "MonospacedFonts"
+                                        },
+                                        {
+                                            "name": "ProportionalFonts"
+                                        }
+                                    ],
+                                    "name": "FontDialogOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QFontDialog",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QFontDialog",
+                                    "parameters": [
+                                        "const QFont &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QFontDialog",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setCurrentFont",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentFont",
+                                    "returns": "QFont",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "selectedFont",
+                                    "returns": "QFont",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOption",
+                                    "parameters": [
+                                        "QFontDialog::FontDialogOption",
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "testOption",
+                                    "parameters": [
+                                        "QFontDialog::FontDialogOption"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOptions",
+                                    "parameters": [
+                                        "QFontDialog::FontDialogOptions"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "options",
+                                    "returns": "QFontDialog::FontDialogOptions",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "open",
+                                    "parameters": [
+                                        "QObject *",
+                                        "const char *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getFont",
+                                    "parameters": [
+                                        "bool *",
+                                        "QWidget *"
+                                    ],
+                                    "returns": "QFont",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "getFont",
+                                    "parameters": [
+                                        "bool *",
+                                        "const QFont &",
+                                        "QWidget *",
+                                        "const QString &",
+                                        "QFontDialog::FontDialogOptions"
+                                    ],
+                                    "returns": "QFont",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentFontChanged",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "fontSelected",
+                                    "parameters": [
+                                        "const QFont &"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QFontDialog",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFontDialog::FontDialogOption",
+                                "QFontDialog::FontDialogOption"
+                            ],
+                            "returns": "QFontDialog::FontDialogOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFontDialog::FontDialogOption",
+                                "QFontDialog::FontDialogOptions"
+                            ],
+                            "returns": "QFontDialog::FontDialogOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QFontDialog::FontDialogOptions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QFontDialog>",
+                    "name": "fontdialog",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -57105,6 +57292,19 @@
                 "id": "QColorDialogColorDialogOptions",
                 "name": "QColorDialog::ColorDialogOptions",
                 "rename": "ColorDialogOptions"
+            },
+            {
+                "header": "yasl/widgets/fontdialog.h",
+                "id": "QFontDialog",
+                "name": "QFontDialog",
+                "rename": "FontDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/fontdialog.h",
+                "id": "QFontDialogFontDialogOptions",
+                "name": "QFontDialog::FontDialogOptions",
+                "rename": "FontDialogOptions"
             }
         ],
         "enums": [
@@ -58291,6 +58491,12 @@
                 "id": "QColorDialogColorDialogOption",
                 "links": "flags@QColorDialog::ColorDialogOptions",
                 "name": "QColorDialog::ColorDialogOption"
+            },
+            {
+                "header": "yasl/widgets/fontdialog.h",
+                "id": "QFontDialogFontDialogOption",
+                "links": "flags@QFontDialog::FontDialogOptions",
+                "name": "QFontDialog::FontDialogOption"
             }
         ],
         "fundamentals": [
