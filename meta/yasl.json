@@ -57545,6 +57545,311 @@
                     "hincludes": "<QWizard>",
                     "name": "wizard",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QToolBar",
+                                    "parameters": [
+                                        "const QString &",
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QToolBar",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QToolBar",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setMovable",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isMovable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAllowedAreas",
+                                    "parameters": [
+                                        "Qt::ToolBarAreas"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "allowedAreas",
+                                    "returns": "Qt::ToolBarAreas",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isAreaAllowed",
+                                    "parameters": [
+                                        "Qt::ToolBarArea"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOrientation",
+                                    "parameters": [
+                                        "Qt::Orientation"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "orientation",
+                                    "returns": "Qt::Orientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "clear",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addAction",
+                                    "parameters": [
+                                        "const QIcon &",
+                                        "const QString &",
+                                        "const QObject *",
+                                        "const char *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addSeparator",
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertSeparator",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "addWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "insertWidget",
+                                    "parameters": [
+                                        "QAction *",
+                                        "QWidget *"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "actionGeometry",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "returns": "QRect",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "actionAt",
+                                    "parameters": [
+                                        "const QPoint &"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "actionAt",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toggleViewAction",
+                                    "returns": "QAction *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "iconSize",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "toolButtonStyle",
+                                    "returns": "Qt::ToolButtonStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "widgetForAction",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isFloatable",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFloatable",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isFloating",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setIconSize",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setToolButtonStyle",
+                                    "parameters": [
+                                        "Qt::ToolButtonStyle"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "actionTriggered",
+                                    "parameters": [
+                                        "QAction *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "movableChanged",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "allowedAreasChanged",
+                                    "parameters": [
+                                        "Qt::ToolBarAreas"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "orientationChanged",
+                                    "parameters": [
+                                        "Qt::Orientation"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "iconSizeChanged",
+                                    "parameters": [
+                                        "const QSize &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "toolButtonStyleChanged",
+                                    "parameters": [
+                                        "Qt::ToolButtonStyle"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "topLevelChanged",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "visibilityChanged",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QToolBar",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QToolBar>",
+                    "name": "toolbar",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -58723,6 +59028,18 @@
                 "id": "QWizardWizardOptions",
                 "name": "QWizard::WizardOptions",
                 "rename": "WizardOptions"
+            },
+            {
+                "header": "yasl/widgets/toolbar.h",
+                "id": "QToolBar",
+                "name": "QToolBar",
+                "rename": "ToolBar",
+                "tag": "qobject_tag"
+            },
+            {
+                "id": "QtToolBarAreas",
+                "name": "Qt::ToolBarAreas",
+                "rename": "ToolBarAreas"
             }
         ],
         "enums": [
@@ -58913,6 +59230,7 @@
             {
                 "header": "yasl/core/enums.h",
                 "id": "QtToolBarArea",
+                "links": "flags@Qt::ToolBarAreas",
                 "name": "Qt::ToolBarArea"
             },
             {

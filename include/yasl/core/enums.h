@@ -89,6 +89,7 @@ template<> struct make_type_t<Qt::TimeSpec> { inline static script::Type get() {
 template<> struct make_type_t<Qt::TimerType> { inline static script::Type get() { return script::Type::QtTimerType; } };
 template<> struct make_type_t<Qt::ToolBarArea> { inline static script::Type get() { return script::Type::QtToolBarArea; } };
 template<> struct make_type_t<Qt::ToolBarAreaSizes> { inline static script::Type get() { return script::Type::QtToolBarAreaSizes; } };
+template<> struct make_type_t<Qt::ToolBarAreas> { inline static script::Type get() { return script::Type::QtToolBarAreas; } };
 template<> struct make_type_t<Qt::ToolButtonStyle> { inline static script::Type get() { return script::Type::QtToolButtonStyle; } };
 template<> struct make_type_t<Qt::TouchPointState> { inline static script::Type get() { return script::Type::QtTouchPointState; } };
 template<> struct make_type_t<Qt::TransformationMode> { inline static script::Type get() { return script::Type::QtTransformationMode; } };

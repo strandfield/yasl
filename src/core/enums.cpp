@@ -1243,6 +1243,7 @@ static void register_qt_tool_bar_area_enum(script::Namespace qt)
   Enum tool_bar_area = qt.Enum("ToolBarArea").setId(script::Type::QtToolBarArea)
     .setEnumClass().get();
 
+  register_qflags_type<Qt::ToolBarArea>(qt, "ToolBarAreas", script::Type::QtToolBarAreas);
   tool_bar_area.addValue("LeftToolBarArea", Qt::LeftToolBarArea);
   tool_bar_area.addValue("RightToolBarArea", Qt::RightToolBarArea);
   tool_bar_area.addValue("TopToolBarArea", Qt::TopToolBarArea);
