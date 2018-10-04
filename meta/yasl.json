@@ -56897,6 +56897,654 @@
                     "hincludes": "<QProgressDialog>",
                     "name": "progressdialog",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QDialog",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "BackButton"
+                                        },
+                                        {
+                                            "name": "NextButton"
+                                        },
+                                        {
+                                            "name": "CommitButton"
+                                        },
+                                        {
+                                            "name": "FinishButton"
+                                        },
+                                        {
+                                            "name": "CancelButton"
+                                        },
+                                        {
+                                            "name": "HelpButton"
+                                        },
+                                        {
+                                            "name": "CustomButton1"
+                                        },
+                                        {
+                                            "name": "CustomButton2"
+                                        },
+                                        {
+                                            "name": "CustomButton3"
+                                        },
+                                        {
+                                            "name": "Stretch"
+                                        },
+                                        {
+                                            "name": "NoButton"
+                                        },
+                                        {
+                                            "name": "NStandardButtons"
+                                        },
+                                        {
+                                            "name": "NButtons"
+                                        }
+                                    ],
+                                    "name": "WizardButton",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "WatermarkPixmap"
+                                        },
+                                        {
+                                            "name": "LogoPixmap"
+                                        },
+                                        {
+                                            "name": "BannerPixmap"
+                                        },
+                                        {
+                                            "name": "BackgroundPixmap"
+                                        },
+                                        {
+                                            "name": "NPixmaps"
+                                        }
+                                    ],
+                                    "name": "WizardPixmap",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "ClassicStyle"
+                                        },
+                                        {
+                                            "name": "ModernStyle"
+                                        },
+                                        {
+                                            "name": "MacStyle"
+                                        },
+                                        {
+                                            "name": "AeroStyle"
+                                        },
+                                        {
+                                            "name": "NStyles"
+                                        }
+                                    ],
+                                    "name": "WizardStyle",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "IndependentPages"
+                                        },
+                                        {
+                                            "name": "IgnoreSubTitles"
+                                        },
+                                        {
+                                            "name": "ExtendedWatermarkPixmap"
+                                        },
+                                        {
+                                            "name": "NoDefaultButton"
+                                        },
+                                        {
+                                            "name": "NoBackButtonOnStartPage"
+                                        },
+                                        {
+                                            "name": "NoBackButtonOnLastPage"
+                                        },
+                                        {
+                                            "name": "DisabledBackButtonOnLastPage"
+                                        },
+                                        {
+                                            "name": "HaveNextButtonOnLastPage"
+                                        },
+                                        {
+                                            "name": "HaveFinishButtonOnEarlyPages"
+                                        },
+                                        {
+                                            "name": "NoCancelButton"
+                                        },
+                                        {
+                                            "name": "CancelButtonOnLeft"
+                                        },
+                                        {
+                                            "name": "HaveHelpButton"
+                                        },
+                                        {
+                                            "name": "HelpButtonOnRight"
+                                        },
+                                        {
+                                            "name": "HaveCustomButton1"
+                                        },
+                                        {
+                                            "name": "HaveCustomButton2"
+                                        },
+                                        {
+                                            "name": "HaveCustomButton3"
+                                        },
+                                        {
+                                            "name": "NoCancelButtonOnLastPage"
+                                        }
+                                    ],
+                                    "name": "WizardOption",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QWizard",
+                                    "parameters": [
+                                        "QWidget *",
+                                        "Qt::WindowFlags"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QWizard",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "addPage",
+                                    "parameters": [
+                                        "QWizardPage *"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPage",
+                                    "parameters": [
+                                        "int",
+                                        "QWizardPage *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "removePage",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "page",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QWizardPage *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasVisitedPage",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "visitedPages",
+                                    "returns": "QList<int>",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pageIds",
+                                    "returns": "QList<int>",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setStartId",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "startId",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentPage",
+                                    "returns": "QWizardPage *",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "currentId",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "validateCurrentPage",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nextId",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setField",
+                                    "parameters": [
+                                        "const QString &",
+                                        "const QVariant &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "field",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "returns": "QVariant",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setWizardStyle",
+                                    "parameters": [
+                                        "QWizard::WizardStyle"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "wizardStyle",
+                                    "returns": "QWizard::WizardStyle",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOption",
+                                    "parameters": [
+                                        "QWizard::WizardOption",
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "testOption",
+                                    "parameters": [
+                                        "QWizard::WizardOption"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOptions",
+                                    "parameters": [
+                                        "QWizard::WizardOptions"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "options",
+                                    "returns": "QWizard::WizardOptions",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setButtonText",
+                                    "parameters": [
+                                        "QWizard::WizardButton",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttonText",
+                                    "parameters": [
+                                        "QWizard::WizardButton"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setButtonLayout",
+                                    "parameters": [
+                                        "const QList<QWizard::WizardButton> &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setButton",
+                                    "parameters": [
+                                        "QWizard::WizardButton",
+                                        "QAbstractButton *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "button",
+                                    "parameters": [
+                                        "QWizard::WizardButton"
+                                    ],
+                                    "returns": "QAbstractButton *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTitleFormat",
+                                    "parameters": [
+                                        "Qt::TextFormat"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "titleFormat",
+                                    "returns": "Qt::TextFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSubTitleFormat",
+                                    "parameters": [
+                                        "Qt::TextFormat"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "subTitleFormat",
+                                    "returns": "Qt::TextFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixmap",
+                                    "parameters": [
+                                        "QWizard::WizardPixmap",
+                                        "const QPixmap &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "parameters": [
+                                        "QWizard::WizardPixmap"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSideWidget",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sideWidget",
+                                    "returns": "QWidget *",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setDefaultProperty",
+                                    "parameters": [
+                                        "const char *",
+                                        "const char *",
+                                        "const char *"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "currentIdChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "helpRequested",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "customButtonClicked",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "pageAdded",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "pageRemoved",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "back",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "next",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "restart",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QWizard",
+                            "type": "class"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QWizard::WizardOption",
+                                "QWizard::WizardOption"
+                            ],
+                            "returns": "QWizard::WizardOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QWizard::WizardOption",
+                                "QWizard::WizardOptions"
+                            ],
+                            "returns": "QWizard::WizardOptions",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator|",
+                            "parameters": [
+                                "QWizard::WizardOptions::enum_type",
+                                "int"
+                            ],
+                            "returns": "QIncompatibleFlag",
+                            "type": "function"
+                        },
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "name": "QWizardPage",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QWizardPage",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "setTitle",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "title",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setSubTitle",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "subTitle",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setPixmap",
+                                    "parameters": [
+                                        "QWizard::WizardPixmap",
+                                        "const QPixmap &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "pixmap",
+                                    "parameters": [
+                                        "QWizard::WizardPixmap"
+                                    ],
+                                    "returns": "QPixmap",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFinalPage",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isFinalPage",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setCommitPage",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isCommitPage",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setButtonText",
+                                    "parameters": [
+                                        "QWizard::WizardButton",
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "buttonText",
+                                    "parameters": [
+                                        "QWizard::WizardButton"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "initializePage",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "cleanupPage",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "validatePage",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isComplete",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nextId",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "completeChanged",
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QWizardPage",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QWizard>",
+                    "name": "wizard",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -58055,6 +58703,26 @@
                 "name": "QProgressDialog",
                 "rename": "ProgressDialog",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizard",
+                "name": "QWizard",
+                "rename": "Wizard",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizardPage",
+                "name": "QWizardPage",
+                "rename": "WizardPage",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizardWizardOptions",
+                "name": "QWizard::WizardOptions",
+                "rename": "WizardOptions"
             }
         ],
         "enums": [
@@ -59258,6 +59926,27 @@
                 "header": "yasl/widgets/inputdialog.h",
                 "id": "QInputDialogInputMode",
                 "name": "QInputDialog::InputMode"
+            },
+            {
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizardWizardButton",
+                "name": "QWizard::WizardButton"
+            },
+            {
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizardWizardPixmap",
+                "name": "QWizard::WizardPixmap"
+            },
+            {
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizardWizardStyle",
+                "name": "QWizard::WizardStyle"
+            },
+            {
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizardWizardOption",
+                "links": "flags@QWizard::WizardOptions",
+                "name": "QWizard::WizardOption"
             }
         ],
         "fundamentals": [

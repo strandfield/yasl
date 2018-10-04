@@ -42,6 +42,7 @@ void register_colordialog_file(script::Namespace n); // defined in colordialog.c
 void register_fontdialog_file(script::Namespace n); // defined in fontdialog.cpp
 void register_inputdialog_file(script::Namespace n); // defined in inputdialog.cpp
 void register_progressdialog_file(script::Namespace n); // defined in progressdialog.cpp
+void register_wizard_file(script::Namespace n); // defined in wizard.cpp
 
 void load_widgets_module(script::Module widgets)
 {
@@ -84,6 +85,7 @@ void load_widgets_module(script::Module widgets)
   register_fontdialog_file(widgets.root());
   register_inputdialog_file(widgets.root());
   register_progressdialog_file(widgets.root());
+  register_wizard_file(widgets.root());
 }
 
 void cleanup_widgets_module(script::Module gui)
