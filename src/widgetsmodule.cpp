@@ -44,6 +44,7 @@ void register_inputdialog_file(script::Namespace n); // defined in inputdialog.c
 void register_progressdialog_file(script::Namespace n); // defined in progressdialog.cpp
 void register_wizard_file(script::Namespace n); // defined in wizard.cpp
 void register_toolbar_file(script::Namespace n); // defined in toolbar.cpp
+void register_progressbar_file(script::Namespace n); // defined in progressbar.cpp
 
 void load_widgets_module(script::Module widgets)
 {
@@ -88,6 +89,7 @@ void load_widgets_module(script::Module widgets)
   register_progressdialog_file(widgets.root());
   register_wizard_file(widgets.root());
   register_toolbar_file(widgets.root());
+  register_progressbar_file(widgets.root());
 }
 
 void cleanup_widgets_module(script::Module gui)

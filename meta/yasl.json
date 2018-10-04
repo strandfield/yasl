@@ -57850,6 +57850,202 @@
                     "hincludes": "<QToolBar>",
                     "name": "toolbar",
                     "type": "file"
+                },
+                {
+                    "elements": [
+                        {
+                            "base": "QWidget",
+                            "elements": [
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "TopToBottom"
+                                        },
+                                        {
+                                            "name": "BottomToTop"
+                                        }
+                                    ],
+                                    "name": "Direction",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QProgressBar",
+                                    "parameters": [
+                                        "QWidget *"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QProgressBar",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "maximum",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "value",
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "text",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextVisible",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isTextVisible",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "alignment",
+                                    "returns": "Qt::Alignment",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setAlignment",
+                                    "parameters": [
+                                        "Qt::Alignment"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "sizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "minimumSizeHint",
+                                    "returns": "QSize",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "orientation",
+                                    "returns": "Qt::Orientation",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setInvertedAppearance",
+                                    "parameters": [
+                                        "bool"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "invertedAppearance",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setTextDirection",
+                                    "parameters": [
+                                        "QProgressBar::Direction"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "textDirection",
+                                    "returns": "QProgressBar::Direction",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setFormat",
+                                    "parameters": [
+                                        "const QString &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "resetFormat",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "format",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "reset",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setRange",
+                                    "parameters": [
+                                        "int",
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMinimum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setMaximum",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setValue",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "setOrientation",
+                                    "parameters": [
+                                        "Qt::Orientation"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "binding": "signals",
+                                    "name": "valueChanged",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QProgressBar",
+                            "type": "class"
+                        }
+                    ],
+                    "hincludes": "<QProgressBar>",
+                    "name": "progressbar",
+                    "type": "file"
                 }
             ],
             "name": "widgets",
@@ -59037,9 +59233,17 @@
                 "tag": "qobject_tag"
             },
             {
+                "header": "yasl/core/enums.h",
                 "id": "QtToolBarAreas",
                 "name": "Qt::ToolBarAreas",
                 "rename": "ToolBarAreas"
+            },
+            {
+                "header": "yasl/widgets/progressbar.h",
+                "id": "QProgressBar",
+                "name": "QProgressBar",
+                "rename": "ProgressBar",
+                "tag": "qobject_tag"
             }
         ],
         "enums": [
@@ -60265,6 +60469,11 @@
                 "id": "QWizardWizardOption",
                 "links": "flags@QWizard::WizardOptions",
                 "name": "QWizard::WizardOption"
+            },
+            {
+                "header": "yasl/widgets/progressbar.h",
+                "id": "QProgressBarDirection",
+                "name": "QProgressBar::Direction"
             }
         ],
         "fundamentals": [
