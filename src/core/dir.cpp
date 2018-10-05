@@ -235,16 +235,16 @@ void register_dir_file(script::Namespace core)
 
   // void swap(QDir &, QDir &);
   binder.add_void_fun<QDir &, QDir &, &swap>("swap");
-  // QFlags<QDir::Filters::enum_type> operator|(QDir::Filters::enum_type, QDir::Filters::enum_type);
-  /// TODO: QFlags<QDir::Filters::enum_type> operator|(QDir::Filters::enum_type, QDir::Filters::enum_type);
-  // QFlags<QDir::Filters::enum_type> operator|(QDir::Filters::enum_type, QFlags<QDir::Filters::enum_type>);
-  /// TODO: QFlags<QDir::Filters::enum_type> operator|(QDir::Filters::enum_type, QFlags<QDir::Filters::enum_type>);
+  // QDir::Filters operator|(QDir::Filter, QDir::Filter);
+  binder.operators().or<QDir::Filters, QDir::Filter, QDir::Filter>();
+  // QDir::Filters operator|(QDir::Filter, QDir::Filters);
+  binder.operators().or<QDir::Filters, QDir::Filter, QDir::Filters>();
   // QIncompatibleFlag operator|(QDir::Filters::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QDir::Filters::enum_type, int);
-  // QFlags<QDir::SortFlags::enum_type> operator|(QDir::SortFlags::enum_type, QDir::SortFlags::enum_type);
-  /// TODO: QFlags<QDir::SortFlags::enum_type> operator|(QDir::SortFlags::enum_type, QDir::SortFlags::enum_type);
-  // QFlags<QDir::SortFlags::enum_type> operator|(QDir::SortFlags::enum_type, QFlags<QDir::SortFlags::enum_type>);
-  /// TODO: QFlags<QDir::SortFlags::enum_type> operator|(QDir::SortFlags::enum_type, QFlags<QDir::SortFlags::enum_type>);
+  // QDir::SortFlags operator|(QDir::SortFlag, QDir::SortFlag);
+  binder.operators().or<QDir::SortFlags, QDir::SortFlag, QDir::SortFlag>();
+  // QDir::SortFlags operator|(QDir::SortFlag, QDir::SortFlags);
+  binder.operators().or<QDir::SortFlags, QDir::SortFlag, QDir::SortFlags>();
   // QIncompatibleFlag operator|(QDir::SortFlags::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QDir::SortFlags::enum_type, int);
   // QDebug operator<<(QDebug, QDir::Filters);

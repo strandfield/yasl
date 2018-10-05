@@ -1187,10 +1187,10 @@ void register_locale_file(script::Namespace core)
   binder.add_fun<uint, const QLocale &, uint, &qHash>("qHash");
   // void swap(QLocale &, QLocale &);
   binder.add_void_fun<QLocale &, QLocale &, &swap>("swap");
-  // QFlags<QLocale::NumberOptions::enum_type> operator|(QLocale::NumberOptions::enum_type, QLocale::NumberOptions::enum_type);
-  /// TODO: QFlags<QLocale::NumberOptions::enum_type> operator|(QLocale::NumberOptions::enum_type, QLocale::NumberOptions::enum_type);
-  // QFlags<QLocale::NumberOptions::enum_type> operator|(QLocale::NumberOptions::enum_type, QFlags<QLocale::NumberOptions::enum_type>);
-  /// TODO: QFlags<QLocale::NumberOptions::enum_type> operator|(QLocale::NumberOptions::enum_type, QFlags<QLocale::NumberOptions::enum_type>);
+  // QLocale::NumberOptions operator|(QLocale::NumberOption, QLocale::NumberOption);
+  binder.operators().or<QLocale::NumberOptions, QLocale::NumberOption, QLocale::NumberOption>();
+  // QLocale::NumberOptions operator|(QLocale::NumberOption, QLocale::NumberOptions);
+  binder.operators().or<QLocale::NumberOptions, QLocale::NumberOption, QLocale::NumberOptions>();
   // QIncompatibleFlag operator|(QLocale::NumberOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QLocale::NumberOptions::enum_type, int);
   // QDataStream & operator<<(QDataStream &, const QLocale &);

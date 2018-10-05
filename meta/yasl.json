@@ -1219,19 +1219,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QByteArray::Base64Options::enum_type",
-                                "QByteArray::Base64Options::enum_type"
+                                "QByteArray::Base64Option",
+                                "QByteArray::Base64Option"
                             ],
-                            "returns": "QFlags<QByteArray::Base64Options::enum_type>",
+                            "returns": "QByteArray::Base64Options",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QByteArray::Base64Options::enum_type",
-                                "QFlags<QByteArray::Base64Options::enum_type>"
+                                "QByteArray::Base64Option",
+                                "QByteArray::Base64Options"
                             ],
-                            "returns": "QFlags<QByteArray::Base64Options::enum_type>",
+                            "returns": "QByteArray::Base64Options",
                             "type": "function"
                         },
                         {
@@ -14095,19 +14095,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QDir::Filters::enum_type",
-                                "QDir::Filters::enum_type"
+                                "QDir::Filter",
+                                "QDir::Filter"
                             ],
-                            "returns": "QFlags<QDir::Filters::enum_type>",
+                            "returns": "QDir::Filters",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QDir::Filters::enum_type",
-                                "QFlags<QDir::Filters::enum_type>"
+                                "QDir::Filter",
+                                "QDir::Filters"
                             ],
-                            "returns": "QFlags<QDir::Filters::enum_type>",
+                            "returns": "QDir::Filters",
                             "type": "function"
                         },
                         {
@@ -14122,19 +14122,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QDir::SortFlags::enum_type",
-                                "QDir::SortFlags::enum_type"
+                                "QDir::SortFlag",
+                                "QDir::SortFlag"
                             ],
-                            "returns": "QFlags<QDir::SortFlags::enum_type>",
+                            "returns": "QDir::SortFlags",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QDir::SortFlags::enum_type",
-                                "QFlags<QDir::SortFlags::enum_type>"
+                                "QDir::SortFlag",
+                                "QDir::SortFlags"
                             ],
-                            "returns": "QFlags<QDir::SortFlags::enum_type>",
+                            "returns": "QDir::SortFlags",
                             "type": "function"
                         },
                         {
@@ -15821,19 +15821,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QUrl::ComponentFormattingOptions::enum_type",
-                                "QUrl::ComponentFormattingOptions::enum_type"
+                                "QUrl::ComponentFormattingOption",
+                                "QUrl::ComponentFormattingOption"
                             ],
-                            "returns": "QFlags<QUrl::ComponentFormattingOptions::enum_type>",
+                            "returns": "QUrl::ComponentFormattingOptions",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QUrl::ComponentFormattingOptions::enum_type",
-                                "QFlags<QUrl::ComponentFormattingOptions::enum_type>"
+                                "QUrl::ComponentFormattingOption",
+                                "QUrl::ComponentFormattingOptions"
                             ],
-                            "returns": "QFlags<QUrl::ComponentFormattingOptions::enum_type>",
+                            "returns": "QUrl::ComponentFormattingOptions",
                             "type": "function"
                         },
                         {
@@ -20163,19 +20163,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QLocale::NumberOptions::enum_type",
-                                "QLocale::NumberOptions::enum_type"
+                                "QLocale::NumberOption",
+                                "QLocale::NumberOption"
                             ],
-                            "returns": "QFlags<QLocale::NumberOptions::enum_type>",
+                            "returns": "QLocale::NumberOptions",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QLocale::NumberOptions::enum_type",
-                                "QFlags<QLocale::NumberOptions::enum_type>"
+                                "QLocale::NumberOption",
+                                "QLocale::NumberOptions"
                             ],
-                            "returns": "QFlags<QLocale::NumberOptions::enum_type>",
+                            "returns": "QLocale::NumberOptions",
                             "type": "function"
                         },
                         {
@@ -22421,19 +22421,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QRegularExpression::PatternOptions::enum_type",
-                                "QRegularExpression::PatternOptions::enum_type"
+                                "QRegularExpression::PatternOption",
+                                "QRegularExpression::PatternOption"
                             ],
-                            "returns": "QFlags<QRegularExpression::PatternOptions::enum_type>",
+                            "returns": "QRegularExpression::PatternOptions",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QRegularExpression::PatternOptions::enum_type",
-                                "QFlags<QRegularExpression::PatternOptions::enum_type>"
+                                "QRegularExpression::PatternOption",
+                                "QRegularExpression::PatternOptions"
                             ],
-                            "returns": "QFlags<QRegularExpression::PatternOptions::enum_type>",
+                            "returns": "QRegularExpression::PatternOptions",
                             "type": "function"
                         },
                         {
@@ -22448,19 +22448,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QRegularExpression::MatchOptions::enum_type",
-                                "QRegularExpression::MatchOptions::enum_type"
+                                "QRegularExpression::MatchOption",
+                                "QRegularExpression::MatchOption"
                             ],
-                            "returns": "QFlags<QRegularExpression::MatchOptions::enum_type>",
+                            "returns": "QRegularExpression::MatchOptions",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QRegularExpression::MatchOptions::enum_type",
-                                "QFlags<QRegularExpression::MatchOptions::enum_type>"
+                                "QRegularExpression::MatchOption",
+                                "QRegularExpression::MatchOptions"
                             ],
-                            "returns": "QFlags<QRegularExpression::MatchOptions::enum_type>",
+                            "returns": "QRegularExpression::MatchOptions",
                             "type": "function"
                         },
                         {
@@ -23837,19 +23837,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QIODevice::OpenMode::enum_type",
-                                "QIODevice::OpenMode::enum_type"
+                                "QIODevice::OpenModeFlag",
+                                "QIODevice::OpenModeFlag"
                             ],
-                            "returns": "QFlags<QIODevice::OpenMode::enum_type>",
+                            "returns": "QIODevice::OpenMode",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QIODevice::OpenMode::enum_type",
-                                "QFlags<QIODevice::OpenMode::enum_type>"
+                                "QIODevice::OpenModeFlag",
+                                "QIODevice::OpenMode"
                             ],
-                            "returns": "QFlags<QIODevice::OpenMode::enum_type>",
+                            "returns": "QIODevice::OpenMode",
                             "type": "function"
                         },
                         {
@@ -24151,19 +24151,19 @@
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QFileDevice::Permissions::enum_type",
-                                "QFileDevice::Permissions::enum_type"
+                                "QFileDevice::Permission",
+                                "QFileDevice::Permission"
                             ],
-                            "returns": "QFlags<QFileDevice::Permissions::enum_type>",
+                            "returns": "QFileDevice::Permissions",
                             "type": "function"
                         },
                         {
                             "name": "operator|",
                             "parameters": [
-                                "QFileDevice::Permissions::enum_type",
-                                "QFlags<QFileDevice::Permissions::enum_type>"
+                                "QFileDevice::Permission",
+                                "QFileDevice::Permissions"
                             ],
-                            "returns": "QFlags<QFileDevice::Permissions::enum_type>",
+                            "returns": "QFileDevice::Permissions",
                             "type": "function"
                         },
                         {

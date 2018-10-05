@@ -353,10 +353,10 @@ void register_bytearray_file(script::Namespace core)
 
   // int qstrcmp(const QByteArray &, const QByteArray &);
   binder.add_fun<int, const QByteArray &, const QByteArray &, &qstrcmp>("strcmp");
-  // QFlags<QByteArray::Base64Options::enum_type> operator|(QByteArray::Base64Options::enum_type, QByteArray::Base64Options::enum_type);
-  /// TODO: QFlags<QByteArray::Base64Options::enum_type> operator|(QByteArray::Base64Options::enum_type, QByteArray::Base64Options::enum_type);
-  // QFlags<QByteArray::Base64Options::enum_type> operator|(QByteArray::Base64Options::enum_type, QFlags<QByteArray::Base64Options::enum_type>);
-  /// TODO: QFlags<QByteArray::Base64Options::enum_type> operator|(QByteArray::Base64Options::enum_type, QFlags<QByteArray::Base64Options::enum_type>);
+  // QByteArray::Base64Options operator|(QByteArray::Base64Option, QByteArray::Base64Option);
+  binder.operators().or<QByteArray::Base64Options, QByteArray::Base64Option, QByteArray::Base64Option>();
+  // QByteArray::Base64Options operator|(QByteArray::Base64Option, QByteArray::Base64Options);
+  binder.operators().or<QByteArray::Base64Options, QByteArray::Base64Option, QByteArray::Base64Options>();
   // QIncompatibleFlag operator|(QByteArray::Base64Options::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QByteArray::Base64Options::enum_type, int);
   // bool operator==(const QByteArray &, const QByteArray &);

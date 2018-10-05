@@ -159,10 +159,10 @@ void register_filedevice_file(script::Namespace core)
   register_file_device_class(ns);
   binding::Namespace binder{ ns };
 
-  // QFlags<QFileDevice::Permissions::enum_type> operator|(QFileDevice::Permissions::enum_type, QFileDevice::Permissions::enum_type);
-  /// TODO: QFlags<QFileDevice::Permissions::enum_type> operator|(QFileDevice::Permissions::enum_type, QFileDevice::Permissions::enum_type);
-  // QFlags<QFileDevice::Permissions::enum_type> operator|(QFileDevice::Permissions::enum_type, QFlags<QFileDevice::Permissions::enum_type>);
-  /// TODO: QFlags<QFileDevice::Permissions::enum_type> operator|(QFileDevice::Permissions::enum_type, QFlags<QFileDevice::Permissions::enum_type>);
+  // QFileDevice::Permissions operator|(QFileDevice::Permission, QFileDevice::Permission);
+  binder.operators().or<QFileDevice::Permissions, QFileDevice::Permission, QFileDevice::Permission>();
+  // QFileDevice::Permissions operator|(QFileDevice::Permission, QFileDevice::Permissions);
+  binder.operators().or<QFileDevice::Permissions, QFileDevice::Permission, QFileDevice::Permissions>();
   // QIncompatibleFlag operator|(QFileDevice::Permissions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QFileDevice::Permissions::enum_type, int);
 }

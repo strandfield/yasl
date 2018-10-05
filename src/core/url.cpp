@@ -245,10 +245,10 @@ void register_url_file(script::Namespace core)
   binder.add_fun<uint, const QUrl &, uint, &qHash>("qHash");
   // void swap(QUrl &, QUrl &);
   binder.add_void_fun<QUrl &, QUrl &, &swap>("swap");
-  // QFlags<QUrl::ComponentFormattingOptions::enum_type> operator|(QUrl::ComponentFormattingOptions::enum_type, QUrl::ComponentFormattingOptions::enum_type);
-  /// TODO: QFlags<QUrl::ComponentFormattingOptions::enum_type> operator|(QUrl::ComponentFormattingOptions::enum_type, QUrl::ComponentFormattingOptions::enum_type);
-  // QFlags<QUrl::ComponentFormattingOptions::enum_type> operator|(QUrl::ComponentFormattingOptions::enum_type, QFlags<QUrl::ComponentFormattingOptions::enum_type>);
-  /// TODO: QFlags<QUrl::ComponentFormattingOptions::enum_type> operator|(QUrl::ComponentFormattingOptions::enum_type, QFlags<QUrl::ComponentFormattingOptions::enum_type>);
+  // QUrl::ComponentFormattingOptions operator|(QUrl::ComponentFormattingOption, QUrl::ComponentFormattingOption);
+  binder.operators().or<QUrl::ComponentFormattingOptions, QUrl::ComponentFormattingOption, QUrl::ComponentFormattingOption>();
+  // QUrl::ComponentFormattingOptions operator|(QUrl::ComponentFormattingOption, QUrl::ComponentFormattingOptions);
+  binder.operators().or<QUrl::ComponentFormattingOptions, QUrl::ComponentFormattingOption, QUrl::ComponentFormattingOptions>();
   // QIncompatibleFlag operator|(QUrl::ComponentFormattingOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QUrl::ComponentFormattingOptions::enum_type, int);
   // QUrl::FormattingOptions operator|(QUrl::UrlFormattingOption, QUrl::UrlFormattingOption);

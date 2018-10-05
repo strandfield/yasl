@@ -159,10 +159,10 @@ void register_iodevice_file(script::Namespace core)
   register_i_o_device_class(ns);
   binding::Namespace binder{ ns };
 
-  // QFlags<QIODevice::OpenMode::enum_type> operator|(QIODevice::OpenMode::enum_type, QIODevice::OpenMode::enum_type);
-  /// TODO: QFlags<QIODevice::OpenMode::enum_type> operator|(QIODevice::OpenMode::enum_type, QIODevice::OpenMode::enum_type);
-  // QFlags<QIODevice::OpenMode::enum_type> operator|(QIODevice::OpenMode::enum_type, QFlags<QIODevice::OpenMode::enum_type>);
-  /// TODO: QFlags<QIODevice::OpenMode::enum_type> operator|(QIODevice::OpenMode::enum_type, QFlags<QIODevice::OpenMode::enum_type>);
+  // QIODevice::OpenMode operator|(QIODevice::OpenModeFlag, QIODevice::OpenModeFlag);
+  binder.operators().or<QIODevice::OpenMode, QIODevice::OpenModeFlag, QIODevice::OpenModeFlag>();
+  // QIODevice::OpenMode operator|(QIODevice::OpenModeFlag, QIODevice::OpenMode);
+  binder.operators().or<QIODevice::OpenMode, QIODevice::OpenModeFlag, QIODevice::OpenMode>();
   // QIncompatibleFlag operator|(QIODevice::OpenMode::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QIODevice::OpenMode::enum_type, int);
   // QDebug operator<<(QDebug, QIODevice::OpenMode);
