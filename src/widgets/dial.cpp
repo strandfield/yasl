@@ -5,6 +5,7 @@
 #include "yasl/widgets/dial.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/widgets/widget.h"
@@ -52,5 +53,7 @@ void register_dial_file(script::Namespace widgets)
   register_dial_class(ns);
   binding::Namespace binder{ ns };
 
+  // QDial& newDial(QWidget*);
+  NewFunction(binder).add<QDial, QWidget*>("newDial");
 }
 

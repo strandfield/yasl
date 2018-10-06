@@ -50414,6 +50414,15 @@
                             ],
                             "name": "QDial",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newDial",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QDial&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QDial>",
