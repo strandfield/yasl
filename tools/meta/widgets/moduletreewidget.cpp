@@ -253,7 +253,7 @@ void ModuleTreeWidget::processCtrlN()
   if (node == nullptr)
     return;
 
-  if (!node->is<Class>())
+  if (!node->is<Class>() && !node->is<Namespace>())
     return;
 
   auto *dialog = new NewFunctionDialog(this);
@@ -263,7 +263,11 @@ void ModuleTreeWidget::processCtrlN()
     return;
 
   dialog->sync();
-  node->as<Class>().elements.append(dialog->function());
+
+  if(node->is<Class>())
+    node->as<Class>().elements.append(dialog->function());
+  else if (node->is<Namespace>())
+    node->as<Namespace>().elements.append(dialog->function());
 
   fetchNewNodes();
 }
