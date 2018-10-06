@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 #include "yasl/core/flags.h"
 
@@ -83,5 +84,7 @@ void register_fontcombobox_file(script::Namespace widgets)
   /// TODO: QFlags<QFontComboBox::FontFilters::enum_type> operator|(QFontComboBox::FontFilters::enum_type, QFlags<QFontComboBox::FontFilters::enum_type>);
   // QIncompatibleFlag operator|(QFontComboBox::FontFilters::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QFontComboBox::FontFilters::enum_type, int);
+  // QFontComboBox& newFontComboBox(QWidget*);
+  NewFunction(binder).add<QFontComboBox, QWidget*>("newFontComboBox");
 }
 

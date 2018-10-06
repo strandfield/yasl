@@ -49925,6 +49925,15 @@
                             ],
                             "returns": "QIncompatibleFlag",
                             "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newFontComboBox",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QFontComboBox&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QFontComboBox>",
