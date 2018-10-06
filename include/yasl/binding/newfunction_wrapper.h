@@ -13,10 +13,6 @@
 namespace binding
 {
 
-/****************************************************************
-Constructors
-****************************************************************/
-
 template<typename T, typename...Args>
 struct qclass_newfunction_wrapper_t;
 
