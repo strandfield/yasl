@@ -49025,7 +49025,8 @@
                             "binding": "newfunction",
                             "name": "newLineEdit",
                             "parameters": [
-                                "const QString &,QWidget*"
+                                "const QString &",
+                                "QWidget*"
                             ],
                             "returns": "QLineEdit&",
                             "type": "function"
@@ -49163,7 +49164,8 @@
                             "binding": "newfunction",
                             "name": "newGroupBox",
                             "parameters": [
-                                "const QString &,QWidget*"
+                                "const QString &",
+                                "QWidget*"
                             ],
                             "returns": "QGroupBox&",
                             "type": "function"

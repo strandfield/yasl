@@ -232,7 +232,7 @@ void register_lineedit_file(script::Namespace widgets)
 
   // QLineEdit& newLineEdit(QWidget*);
   NewFunction(binder).add<QLineEdit, QWidget*>("newLineEdit");
-  // QLineEdit& newLineEdit(const QString &,QWidget*);
-  NewFunction(binder).add<QLineEdit, const QString &,QWidget*>("newLineEdit");
+  // QLineEdit& newLineEdit(const QString &, QWidget*);
+  NewFunction(binder).add<QLineEdit, const QString &, QWidget*>("newLineEdit");
 }
 

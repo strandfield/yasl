@@ -71,7 +71,7 @@ void register_groupbox_file(script::Namespace widgets)
 
   // QGroupBox& newGroupBox(QWidget*);
   NewFunction(binder).add<QGroupBox, QWidget*>("newGroupBox");
-  // QGroupBox& newGroupBox(const QString &,QWidget*);
-  NewFunction(binder).add<QGroupBox, const QString &,QWidget*>("newGroupBox");
+  // QGroupBox& newGroupBox(const QString &, QWidget*);
+  NewFunction(binder).add<QGroupBox, const QString &, QWidget*>("newGroupBox");
 }
 
