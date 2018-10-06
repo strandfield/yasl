@@ -538,7 +538,7 @@ QString Generator::generateNewFunction(FunctionRef fn)
     rettype.chop(1);
 
   QStringList targs{ rettype };
-  targs.append(fn->parameters);
+  targs.append(checkParams(fn->parameters));
 
   QString ret = "  ";
   ret += "NewFunction(binder).add<" + targs.join(", ") + ">(\"" + fn->name + "\");";
@@ -609,6 +609,13 @@ QString Generator::fparamscomma(const FunctionRef fun)
   if (!ret.isEmpty())
     return ret + ", ";
   return ret;
+}
+
+const QStringList & Generator::checkParams(const QStringList & ps)
+{
+  for (const auto & p : ps)
+    fparam(p);
+  return ps;
 }
 
 Function::BindingMethod Generator::getBindingMethod(FunctionRef fun) const

@@ -118,6 +118,7 @@ private:
   QString fparams(const QStringList & params);
   QString fparams(const FunctionRef fun);
   QString fparamscomma(const FunctionRef fun);
+  const QStringList & checkParams(const QStringList & ps);
   Function::BindingMethod getBindingMethod(FunctionRef fun) const;
   Function::BindingMethod guessBindingMethod(FunctionRef fun) const;
 
