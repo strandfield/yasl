@@ -48447,6 +48447,15 @@
                             ],
                             "name": "QTabWidget",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newTabWidget",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QTabWidget&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QTabWidget>",

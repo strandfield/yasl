@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -174,5 +175,7 @@ void register_tabwidget_file(script::Namespace widgets)
   register_tab_widget_class(ns);
   binding::Namespace binder{ ns };
 
+  // QTabWidget& newTabWidget(QWidget*);
+  NewFunction(binder).add<QTabWidget, QWidget*>("newTabWidget");
 }
 
