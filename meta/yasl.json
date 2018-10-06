@@ -51547,6 +51547,25 @@
                             ],
                             "name": "QRadioButton",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newRadioButton",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QRadioButton&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newRadioButton",
+                            "parameters": [
+                                "const QString&",
+                                "QWidget*"
+                            ],
+                            "returns": "QRadioButton&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QRadioButton>",

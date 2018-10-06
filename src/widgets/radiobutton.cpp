@@ -5,6 +5,7 @@
 #include "yasl/widgets/radiobutton.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/widgets/widget.h"
@@ -40,5 +41,9 @@ void register_radiobutton_file(script::Namespace widgets)
   register_radio_button_class(ns);
   binding::Namespace binder{ ns };
 
+  // QRadioButton& newRadioButton(QWidget*);
+  NewFunction(binder).add<QRadioButton, QWidget*>("newRadioButton");
+  // QRadioButton& newRadioButton(const QString&, QWidget*);
+  NewFunction(binder).add<QRadioButton, const QString&, QWidget*>("newRadioButton");
 }
 
