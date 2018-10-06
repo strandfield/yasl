@@ -49790,6 +49790,15 @@
                             ],
                             "name": "QComboBox",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newComboBox",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QComboBox&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QComboBox>",

@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -232,5 +233,7 @@ void register_combobox_file(script::Namespace widgets)
   register_combo_box_class(ns);
   binding::Namespace binder{ ns };
 
+  // QComboBox& newComboBox(QWidget*);
+  NewFunction(binder).add<QComboBox, QWidget*>("newComboBox");
 }
 
