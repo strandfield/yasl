@@ -5,6 +5,7 @@
 #include "yasl/widgets/label.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -120,5 +121,9 @@ void register_label_file(script::Namespace widgets)
   register_label_class(ns);
   binding::Namespace binder{ ns };
 
+  // QLabel& newLabel(QWidget*);
+  NewFunction(binder).add<QLabel, QWidget*>("newLabel");
+  // QLabel& newLabel(const QString&, QWidget*);
+  NewFunction(binder).add<QLabel, const QString&, QWidget*>("newLabel");
 }
 

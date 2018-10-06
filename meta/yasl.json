@@ -47988,6 +47988,25 @@
                             ],
                             "name": "QLabel",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newLabel",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QLabel&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newLabel",
+                            "parameters": [
+                                "const QString&",
+                                "QWidget*"
+                            ],
+                            "returns": "QLabel&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QLabel>",
