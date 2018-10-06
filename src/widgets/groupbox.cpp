@@ -5,6 +5,7 @@
 #include "yasl/widgets/groupbox.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -68,5 +69,9 @@ void register_groupbox_file(script::Namespace widgets)
   register_group_box_class(ns);
   binding::Namespace binder{ ns };
 
+  // QGroupBox& newGroupBox(QWidget*);
+  NewFunction(binder).add<QGroupBox, QWidget*>("newGroupBox");
+  // QGroupBox& newGroupBox(const QString &,QWidget*);
+  NewFunction(binder).add<QGroupBox, const QString &,QWidget*>("newGroupBox");
 }
 

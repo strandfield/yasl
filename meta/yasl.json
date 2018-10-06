@@ -49149,6 +49149,24 @@
                             ],
                             "name": "QGroupBox",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newGroupBox",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QGroupBox&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newGroupBox",
+                            "parameters": [
+                                "const QString &,QWidget*"
+                            ],
+                            "returns": "QGroupBox&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QGroupBox>",
