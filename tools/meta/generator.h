@@ -107,6 +107,7 @@ private:
   QString generateWithMacros(FunctionRef fun);
   QString generateSignal(FunctionRef fun);
   QString generateOperator(FunctionRef fun, OperatorSymbol op);
+  QString generateNewFunction(FunctionRef fn);
   void generate(ClassRef cla);
   void generate(EnumRef enm);
   void generate(NamespaceRef ns);

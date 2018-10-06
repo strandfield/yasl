@@ -350,6 +350,10 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
   {
     return generateSignal(fun);
   }
+  else if (bm == Function::NewFunctionBinding)
+  {
+    return generateNewFunction(fun);
+  }
 
   const QString funname = fun->rename.isEmpty() ? fun->name : fun->rename;
   const QString params = fparamscomma(fun);
@@ -521,6 +525,24 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
     out += ">();";
     return out;
   }
+}
+
+QString Generator::generateNewFunction(FunctionRef fn)
+{
+  currentSource().bindingIncludes.insert("yasl/binding/newfunction.h");
+
+  QString rettype = fn->returnType;
+  if (rettype.endsWith(" &"))
+    rettype.chop(2);
+  else if (rettype.endsWith("&"))
+    rettype.chop(1);
+
+  QStringList targs{ rettype };
+  targs.append(fn->parameters);
+
+  QString ret = "  ";
+  ret += "NewFunction(binder).add<" + targs.join(", ") + ">(\"" + fn->name + "\");";
+  return ret;
 }
 
 QString Generator::fparam(FunctionRef fun, int n)
