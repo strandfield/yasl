@@ -5,6 +5,7 @@
 #include "yasl/widgets/scrollbar.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -41,5 +42,9 @@ void register_scrollbar_file(script::Namespace widgets)
   register_scroll_bar_class(ns);
   binding::Namespace binder{ ns };
 
+  // QScrollBar& newScrollBar(QWidget*);
+  NewFunction(binder).add<QScrollBar, QWidget*>("newScrollBar");
+  // QScrollBar& newScrollBar(Qt::Orientation, QWidget*);
+  NewFunction(binder).add<QScrollBar, Qt::Orientation, QWidget*>("newScrollBar");
 }
 

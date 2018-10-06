@@ -50325,6 +50325,25 @@
                             ],
                             "name": "QScrollBar",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newScrollBar",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QScrollBar&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newScrollBar",
+                            "parameters": [
+                                "Qt::Orientation",
+                                "QWidget*"
+                            ],
+                            "returns": "QScrollBar&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QScrollBar>",
