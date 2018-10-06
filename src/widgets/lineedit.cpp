@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -229,5 +230,9 @@ void register_lineedit_file(script::Namespace widgets)
   register_line_edit_class(ns);
   binding::Namespace binder{ ns };
 
+  // QLineEdit& newLineEdit(QWidget*);
+  NewFunction(binder).add<QLineEdit, QWidget*>("newLineEdit");
+  // QLineEdit& newLineEdit(const QString &,QWidget*);
+  NewFunction(binder).add<QLineEdit, const QString &,QWidget*>("newLineEdit");
 }
 

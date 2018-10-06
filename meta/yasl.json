@@ -49011,6 +49011,24 @@
                             ],
                             "name": "QLineEdit",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newLineEdit",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QLineEdit&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newLineEdit",
+                            "parameters": [
+                                "const QString &,QWidget*"
+                            ],
+                            "returns": "QLineEdit&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QLineEdit>",
