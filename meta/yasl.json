@@ -50273,6 +50273,25 @@
                             ],
                             "name": "QSlider",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newSlider",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QSlider&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newSlider",
+                            "parameters": [
+                                "Qt::Orientation",
+                                "QWidget*"
+                            ],
+                            "returns": "QSlider&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QSlider>",
