@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "boxlayout.inc"
@@ -143,5 +144,13 @@ void register_boxlayout_file(script::Namespace widgets)
   binding::Namespace binder{ ns };
 
   register_newlayout_functions(widgets);
+  // QHBoxLayout& newHBoxLayout();
+  NewFunction(binder).add<QHBoxLayout>("newHBoxLayout");
+  // QHBoxLayout& newHBoxLayout(QWidget*);
+  NewFunction(binder).add<QHBoxLayout, QWidget*>("newHBoxLayout");
+  // QVBoxLayout& newVBoxLayout();
+  NewFunction(binder).add<QVBoxLayout>("newVBoxLayout");
+  // QVBoxLayout& newVBoxLayout(QWidget*);
+  NewFunction(binder).add<QVBoxLayout, QWidget*>("newVBoxLayout");
 }
 

@@ -53194,6 +53194,36 @@
                         {
                             "type": "statement",
                             "value": "register_newlayout_functions(widgets);"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newHBoxLayout",
+                            "returns": "QHBoxLayout&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newHBoxLayout",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QHBoxLayout&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newVBoxLayout",
+                            "returns": "QVBoxLayout&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newVBoxLayout",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QVBoxLayout&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QBoxLayout>",
