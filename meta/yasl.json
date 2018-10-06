@@ -51449,6 +51449,7 @@
                     "type": "file"
                 },
                 {
+                    "cppincludes": "checkbox.inc",
                     "elements": [
                         {
                             "base": "QAbstractButton",
@@ -51509,6 +51510,10 @@
                             ],
                             "name": "QCheckBox",
                             "type": "class"
+                        },
+                        {
+                            "type": "statement",
+                            "value": "register_newcheckbox_functions(widgets);"
                         }
                     ],
                     "hincludes": "<QCheckBox>",

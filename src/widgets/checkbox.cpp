@@ -7,6 +7,7 @@
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
+#include "checkbox.inc"
 #include "yasl/core/enums.h"
 #include "yasl/widgets/widget.h"
 
@@ -51,5 +52,6 @@ void register_checkbox_file(script::Namespace widgets)
   register_check_box_class(ns);
   binding::Namespace binder{ ns };
 
+  register_newcheckbox_functions(widgets);
 }
 

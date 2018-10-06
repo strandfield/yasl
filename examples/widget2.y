@@ -7,5 +7,6 @@ BoxLayout & layout = newBoxLayout(BoxLayout::LeftToRight);
 w.setLayout(layout);
 PushButton & b = newPushButton("Close", w);
 layout.addWidget(b, 0, AlignmentFlag::AlignCenter);
+layout.addWidget(newCheckBox("Check!", w), 0, AlignmentFlag::AlignCenter);
 Object::connect(b, PushButton::clicked, w, Widget::close);
 w.show();
