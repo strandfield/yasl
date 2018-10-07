@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -105,5 +106,7 @@ void register_progressbar_file(script::Namespace widgets)
   register_progress_bar_class(ns);
   binding::Namespace binder{ ns };
 
+  // QProgressBar& newProgressBar(QWidget*);
+  NewFunction(binder).add<QProgressBar, QWidget*>("newProgressBar");
 }
 

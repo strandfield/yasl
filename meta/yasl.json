@@ -58446,6 +58446,15 @@
                             ],
                             "name": "QProgressBar",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newProgressBar",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QProgressBar&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QProgressBar>",
