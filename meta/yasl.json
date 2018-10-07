@@ -53920,6 +53920,15 @@
                             ],
                             "name": "QFormLayout",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newFormLayout",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QFormLayout&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QFormLayout>",

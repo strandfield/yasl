@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -170,5 +171,7 @@ void register_formlayout_file(script::Namespace widgets)
   register_form_layout_class(ns);
   binding::Namespace binder{ ns };
 
+  // QFormLayout& newFormLayout(QWidget*);
+  NewFunction(binder).add<QFormLayout, QWidget*>("newFormLayout");
 }
 
