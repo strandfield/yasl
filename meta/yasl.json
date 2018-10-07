@@ -51934,6 +51934,15 @@
                             ],
                             "name": "QToolButton",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newToolButton",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QToolButton&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QToolButton>",
