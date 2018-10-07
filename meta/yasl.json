@@ -51061,6 +51061,24 @@
                             ],
                             "name": "QDoubleSpinBox",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newSpinBox",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QSpinBox&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newDoubleSpinBox",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QDoubleSpinBox&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QSpinBox>",

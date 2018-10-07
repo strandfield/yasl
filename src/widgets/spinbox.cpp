@@ -5,6 +5,7 @@
 #include "yasl/widgets/spinbox.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/gui/validator.h"
@@ -138,5 +139,9 @@ void register_spinbox_file(script::Namespace widgets)
   register_double_spin_box_class(ns);
   binding::Namespace binder{ ns };
 
+  // QSpinBox& newSpinBox(QWidget*);
+  NewFunction(binder).add<QSpinBox, QWidget*>("newSpinBox");
+  // QDoubleSpinBox& newDoubleSpinBox(QWidget*);
+  NewFunction(binder).add<QDoubleSpinBox, QWidget*>("newDoubleSpinBox");
 }
 
