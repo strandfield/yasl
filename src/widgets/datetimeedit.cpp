@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 #include "yasl/core/flags.h"
 
@@ -227,5 +228,21 @@ void register_datetimeedit_file(script::Namespace widgets)
   /// TODO: QFlags<QDateTimeEdit::Sections::enum_type> operator|(QDateTimeEdit::Sections::enum_type, QFlags<QDateTimeEdit::Sections::enum_type>);
   // QIncompatibleFlag operator|(QDateTimeEdit::Sections::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QDateTimeEdit::Sections::enum_type, int);
+  // QDateTimeEdit& newDateTimeEdit(QWidget*);
+  NewFunction(binder).add<QDateTimeEdit, QWidget*>("newDateTimeEdit");
+  // QDateTimeEdit& newDateTimeEdit(const QDateTime&, QWidget*);
+  NewFunction(binder).add<QDateTimeEdit, const QDateTime&, QWidget*>("newDateTimeEdit");
+  // QDateTimeEdit& newDateTimeEdit(const QDate&, QWidget*);
+  NewFunction(binder).add<QDateTimeEdit, const QDate&, QWidget*>("newDateTimeEdit");
+  // QDateTimeEdit& newDateTimeEdit(const QTime&, QWidget*);
+  NewFunction(binder).add<QDateTimeEdit, const QTime&, QWidget*>("newDateTimeEdit");
+  // QDateEdit& newDateEdit(QWidget*);
+  NewFunction(binder).add<QDateEdit, QWidget*>("newDateEdit");
+  // QDateEdit& newDateEdit(const QDate&, QWidget*);
+  NewFunction(binder).add<QDateEdit, const QDate&, QWidget*>("newDateEdit");
+  // QTimeEdit& newTimeEdit(QWidget*);
+  NewFunction(binder).add<QTimeEdit, QWidget*>("newTimeEdit");
+  // QTimeEdit& newTimeEdit(const QTime&, QWidget*);
+  NewFunction(binder).add<QTimeEdit, const QTime&, QWidget*>("newTimeEdit");
 }
 

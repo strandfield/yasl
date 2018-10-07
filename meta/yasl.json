@@ -51591,6 +51591,83 @@
                             ],
                             "returns": "QIncompatibleFlag",
                             "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newDateTimeEdit",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QDateTimeEdit&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newDateTimeEdit",
+                            "parameters": [
+                                "const QDateTime&",
+                                "QWidget*"
+                            ],
+                            "returns": "QDateTimeEdit&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newDateTimeEdit",
+                            "parameters": [
+                                "const QDate&",
+                                "QWidget*"
+                            ],
+                            "returns": "QDateTimeEdit&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newDateTimeEdit",
+                            "parameters": [
+                                "const QTime&",
+                                "QWidget*"
+                            ],
+                            "returns": "QDateTimeEdit&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newDateEdit",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QDateEdit&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newDateEdit",
+                            "parameters": [
+                                "const QDate&",
+                                "QWidget*"
+                            ],
+                            "returns": "QDateEdit&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newTimeEdit",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QTimeEdit&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newTimeEdit",
+                            "parameters": [
+                                "const QTime&",
+                                "QWidget*"
+                            ],
+                            "returns": "QTimeEdit&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QDateTimeEdit>",
