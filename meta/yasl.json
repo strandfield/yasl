@@ -52432,6 +52432,36 @@
                             ],
                             "returns": "QDebug",
                             "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newAction",
+                            "parameters": [
+                                "QObject*"
+                            ],
+                            "returns": "QAction&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newAction",
+                            "parameters": [
+                                "const QString&",
+                                "QObject*"
+                            ],
+                            "returns": "QAction&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newAction",
+                            "parameters": [
+                                "const QIcon&",
+                                "const QString&",
+                                "QObject*"
+                            ],
+                            "returns": "QAction&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QAction>",

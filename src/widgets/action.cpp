@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 #include "yasl/core/listspecializations.h"
 #include "yasl/utils/ref.h"
@@ -221,5 +222,11 @@ void register_action_file(script::Namespace widgets)
 
   // QDebug operator<<(QDebug, const QAction *);
   /// TODO: QDebug operator<<(QDebug, const QAction *);
+  // QAction& newAction(QObject*);
+  NewFunction(binder).add<QAction, QObject*>("newAction");
+  // QAction& newAction(const QString&, QObject*);
+  NewFunction(binder).add<QAction, const QString&, QObject*>("newAction");
+  // QAction& newAction(const QIcon&, const QString&, QObject*);
+  NewFunction(binder).add<QAction, const QIcon&, const QString&, QObject*>("newAction");
 }
 
