@@ -5,6 +5,7 @@
 #include "yasl/widgets/gridlayout.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -97,5 +98,9 @@ void register_gridlayout_file(script::Namespace widgets)
   register_grid_layout_class(ns);
   binding::Namespace binder{ ns };
 
+  // QGridLayout& newGridLayout(QWidget*);
+  NewFunction(binder).add<QGridLayout, QWidget*>("newGridLayout");
+  // QGridLayout& newGridLayout();
+  NewFunction(binder).add<QGridLayout>("newGridLayout");
 }
 

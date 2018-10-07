@@ -54204,6 +54204,21 @@
                             ],
                             "name": "QGridLayout",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newGridLayout",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QGridLayout&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newGridLayout",
+                            "returns": "QGridLayout&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QGridLayout>",
