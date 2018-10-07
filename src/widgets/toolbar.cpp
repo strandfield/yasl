@@ -5,6 +5,7 @@
 #include "yasl/widgets/toolbar.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
@@ -119,5 +120,9 @@ void register_toolbar_file(script::Namespace widgets)
   register_tool_bar_class(ns);
   binding::Namespace binder{ ns };
 
+  // QToolBar& newToolBar(const QString&, QWidget*);
+  NewFunction(binder).add<QToolBar, const QString&, QWidget*>("newToolBar");
+  // QToolBar& newToolBar(QWidget*);
+  NewFunction(binder).add<QToolBar, QWidget*>("newToolBar");
 }
 

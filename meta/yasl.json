@@ -58231,6 +58231,25 @@
                             ],
                             "name": "QToolBar",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newToolBar",
+                            "parameters": [
+                                "const QString&",
+                                "QWidget*"
+                            ],
+                            "returns": "QToolBar&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newToolBar",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QToolBar&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QToolBar>",
