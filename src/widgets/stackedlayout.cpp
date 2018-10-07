@@ -6,6 +6,7 @@
 
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 
 #include "yasl/core/rect.h"
@@ -100,5 +101,11 @@ void register_stackedlayout_file(script::Namespace widgets)
   register_stacked_layout_class(ns);
   binding::Namespace binder{ ns };
 
+  // QStackedLayout& newStackedLayout();
+  NewFunction(binder).add<QStackedLayout>("newStackedLayout");
+  // QStackedLayout& newStackedLayout(QWidget*);
+  NewFunction(binder).add<QStackedLayout, QWidget*>("newStackedLayout");
+  // QStackedLayout& newStackedLayout(QLayout*);
+  NewFunction(binder).add<QStackedLayout, QLayout*>("newStackedLayout");
 }
 

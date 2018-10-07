@@ -54410,6 +54410,30 @@
                             ],
                             "name": "QStackedLayout",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newStackedLayout",
+                            "returns": "QStackedLayout&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newStackedLayout",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QStackedLayout&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newStackedLayout",
+                            "parameters": [
+                                "QLayout*"
+                            ],
+                            "returns": "QStackedLayout&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QStackedLayout>",
