@@ -52849,6 +52849,25 @@
                             ],
                             "name": "QMenu",
                             "type": "class"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newMenu",
+                            "parameters": [
+                                "QWidget*"
+                            ],
+                            "returns": "QMenu&",
+                            "type": "function"
+                        },
+                        {
+                            "binding": "newfunction",
+                            "name": "newMenu",
+                            "parameters": [
+                                "const QString&",
+                                "QWidget*"
+                            ],
+                            "returns": "QMenu&",
+                            "type": "function"
                         }
                     ],
                     "hincludes": "<QMenu>",

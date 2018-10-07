@@ -5,6 +5,7 @@
 #include "yasl/widgets/menu.h"
 
 #include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
 #include "yasl/utils/ref.h"
 
@@ -147,5 +148,9 @@ void register_menu_file(script::Namespace widgets)
   register_menu_class(ns);
   binding::Namespace binder{ ns };
 
+  // QMenu& newMenu(QWidget*);
+  NewFunction(binder).add<QMenu, QWidget*>("newMenu");
+  // QMenu& newMenu(const QString&, QWidget*);
+  NewFunction(binder).add<QMenu, const QString&, QWidget*>("newMenu");
 }
 
