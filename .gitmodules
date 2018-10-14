@@ -1,3 +1,4 @@
 [submodule "libscript"]
 	path = libscript
 	url = https://github.com/RugessNome/libscript.git
+	branch = default-arguments
