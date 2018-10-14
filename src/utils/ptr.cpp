@@ -24,7 +24,7 @@ namespace ptr
 
 script::Value copy_ctor(script::FunctionCall *c)
 {
-  script::Value other = c->arg(0);
+  script::Value other = c->arg(1);
   c->thisObject().impl()->data.ptr = other.impl()->data.ptr;
   return c->thisObject();
 }

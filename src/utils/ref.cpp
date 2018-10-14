@@ -32,7 +32,7 @@ script::Value default_ctor(script::FunctionCall *c)
 
 script::Value copy_ctor(script::FunctionCall *c)
 {
-  script::Value other = c->arg(0);
+  script::Value other = c->arg(1);
   c->thisObject().impl()->set_qobject(other.impl()->data.builtin.qobject);
   return c->thisObject();
 }
