@@ -571,6 +571,91 @@ public:
       .create();
   }
 
+
+
+  template<typename ReturnType, ReturnType(T::*fun)()const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>());
+  }
+
+  template<typename ReturnType, ReturnType(T::*fun)()>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>());
+  }
+
+  template<void(T::*fun)() const>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, const_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst();
+  }
+
+  template<void(T::*fun)()>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap);
+  }
+
+  template<void(T::*fun)()const>
+  script::FunctionBuilder const_void_fun(const std::string & name)
+  {
+    return class_.Method(name, const_void_member_wrapper_t<decltype(fun), fun>::wrap);
+  }
+
+  template<typename ReturnType, ReturnType(*fun)(), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>());
+  }
+
+  template<void(*fun)(), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic();
+  }
+
+  template<typename ReturnType, ReturnType(T::*fun)()const>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>());
+  }
+
+  template<typename ReturnType, ReturnType(T::*fun)()>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>());
+  }
+
+  template<typename ReturnType, ReturnType(*fun)(T&)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>());
+  }
+
+  template<typename ReturnType, ReturnType(*fun)(const T&)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>());
+  }
+
   /****************************************************************
   1-arg member functions
   ****************************************************************/
@@ -680,6 +765,100 @@ public:
       .create();
   }
 
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>());
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>());
+  }
+
+  template<typename A1, void(T::*fun)(A1)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>());
+  }
+
+  template<typename A1, void(T::*fun)(A1) const>
+  script::FunctionBuilder const_void_fun(const std::string & name)
+  {
+    return class_.Method(name, const_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>());
+  }
+
+  template<typename A1, T&(T::*fun)(A1)>
+  script::FunctionBuilder chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>());
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(*fun)(A1), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>());
+  }
+
+  template<typename A1, void(*fun)(A1), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>());
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)const>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>());
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>());
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(*fun)(T&, A1)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>());
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(*fun)(const T&, A1)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>());
+  }
+
   /****************************************************************
   2-arg member functions
   ****************************************************************/
@@ -781,6 +960,93 @@ public:
       .create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename A1, typename A2, void(T::*fun)(A1, A2)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename A1, typename A2, T&(T::*fun)(A1, A2)>
+  script::FunctionBuilder chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename A1, typename A2, void(*fun)(A1, A2), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)const>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(T&, A1, A2)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(const T&, A1, A2)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
   /****************************************************************
   3-arg member functions
   ****************************************************************/
@@ -861,6 +1127,76 @@ public:
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
       .create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename A1, typename A2, typename A3, void(T::*fun)(A1, A2, A3)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename A1, typename A2, typename A3, T&(T::*fun)(A1, A2, A3)>
+  script::FunctionBuilder chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename A1, typename A2, typename A3, void(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)const>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
   /****************************************************************
@@ -946,6 +1282,77 @@ public:
       .create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, void(T::*fun)(A1, A2, A3, A4)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, T&(T::*fun)(A1, A2, A3, A4)>
+  script::FunctionBuilder chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, void(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)const>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
+  script::FunctionBuilder ref_mem_getter(const std::string & name)
+  {
+    static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
+
+    return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
   /****************************************************************
   5-arg member functions
   ****************************************************************/
@@ -1005,6 +1412,55 @@ public:
       .create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, void(T::*fun)(A1, A2, A3, A4, A5)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, T&(T::*fun)(A1, A2, A3, A4, A5)>
+  script::FunctionBuilder chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, void(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
   /****************************************************************
   6-arg member functions
   ****************************************************************/
@@ -1062,6 +1518,55 @@ public:
       .setStatic()
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
       .create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, ReturnType(T::*fun)(A1, A2, A3, A4, A5, A6)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, ReturnType(T::*fun)(A1, A2, A3, A4, A5, A6)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, void(T::*fun)(A1, A2, A3, A4, A5, A6)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, T&(T::*fun)(A1, A2, A3, A4, A5, A6)>
+  script::FunctionBuilder chainable(const std::string & name)
+  {
+    return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(script::Type::cref(make_type<T>()))
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, ReturnType(*fun)(A1, A2, A3, A4, A5, A6), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, void(*fun)(A1, A2, A3, A4, A5, A6), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
   }
 
   /****************************************************************

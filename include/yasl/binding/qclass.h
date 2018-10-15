@@ -107,6 +107,14 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, ReturnType(T::*fun)()const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<ReturnType>());
+  }
+
   template<typename ReturnType, ReturnType(T::*fun)()>
   void add_fun(const std::string & name)
   {
@@ -114,6 +122,13 @@ public:
       .returns(make_type<ReturnType>());
 
     builder.create();
+  }
+
+  template<typename ReturnType, ReturnType(T::*fun)()>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<ReturnType>());
   }
 
   template<void(T::*fun)()>
@@ -124,6 +139,12 @@ public:
     builder.create();
   }
 
+  template<void(T::*fun)()>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_void_member_wrapper_t<decltype(fun), fun>::wrap);
+  }
+
   template<void(T::*fun)() const>
   void add_const_void_fun(const std::string & name)
   {
@@ -131,6 +152,13 @@ public:
       .setConst();
 
     builder.create();
+  }
+
+  template<void(T::*fun)() const>
+  script::FunctionBuilder const_void_fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_const_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst();
   }
 
   template<typename ReturnType, ReturnType(*fun)(), typename FunType = decltype(fun)>
@@ -143,6 +171,14 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, ReturnType(*fun)(), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>());
+  }
+
   template<void(*fun)(), typename FunType = decltype(fun)>
   void add_static_void_fun(const std::string & name)
   {
@@ -150,6 +186,13 @@ public:
       .setStatic();
 
     builder.create();
+  }
+
+  template<void(*fun)(), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic();
   }
 
   /****************************************************************
@@ -167,6 +210,15 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>());
+  }
+
   template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
   void add_fun(const std::string & name)
   {
@@ -175,6 +227,14 @@ public:
       .params(make_type<A1>());
 
     builder.create();
+  }
+
+  template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>());
   }
 
   template<typename A1, void(T::*fun)(A1)>
@@ -186,6 +246,13 @@ public:
     builder.create();
   }
 
+  template<typename A1, void(T::*fun)(A1)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>());
+  }
+
   template<typename A1, void(T::*fun)(A1) const>
   void add_const_void_fun(const std::string & name)
   {
@@ -193,6 +260,13 @@ public:
       .params(make_type<A1>());
 
     builder.create();
+  }
+
+  template<typename A1, void(T::*fun)(A1) const>
+  script::FunctionBuilder const_void_fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_const_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>());
   }
 
   template<typename ReturnType, typename A1, ReturnType(*fun)(A1), typename FunType = decltype(fun)>
@@ -206,6 +280,15 @@ public:
     binder.create();
   }
 
+  template<typename ReturnType, typename A1, ReturnType(*fun)(A1), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>());
+  }
+
   template<typename A1, void(*fun)(A1), typename FunType = decltype(fun)>
   void add_static_void_fun(const std::string & name)
   {
@@ -214,6 +297,14 @@ public:
       .params(make_type<A1>());
 
     builder.create();
+  }
+
+  template<typename A1, void(*fun)(A1), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>());
   }
 
   /****************************************************************
@@ -231,6 +322,15 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
   template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
   void add_fun(const std::string & name)
   {
@@ -241,6 +341,14 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
   template<typename A1, typename A2, void(T::*fun)(A1, A2)>
   void add_void_fun(const std::string & name)
   {
@@ -248,6 +356,13 @@ public:
       .params(make_type<A1>(), make_type<A2>());
 
     builder.create();
+  }
+
+  template<typename A1, typename A2, void(T::*fun)(A1, A2)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>());
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2), typename FunType = decltype(fun)>
@@ -261,6 +376,15 @@ public:
     binder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
   template<typename A1, typename A2, void(*fun)(A1, A2), typename FunType = decltype(fun)>
   void add_static_void_fun(const std::string & name)
   {
@@ -269,6 +393,14 @@ public:
       .params(make_type<A1>(), make_type<A2>());
 
     builder.create();
+  }
+
+  template<typename A1, typename A2, void(*fun)(A1, A2), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>());
   }
 
   /****************************************************************
@@ -286,6 +418,15 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
   void add_fun(const std::string & name)
   {
@@ -296,6 +437,14 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
   template<typename A1, typename A2, typename A3, void(T::*fun)(A1, A2, A3)>
   void add_void_fun(const std::string & name)
   {
@@ -303,6 +452,13 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
 
     builder.create();
+  }
+
+  template<typename A1, typename A2, typename A3, void(T::*fun)(A1, A2, A3)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
@@ -316,6 +472,15 @@ public:
     binder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
   template<typename A1, typename A2, typename A3, void(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
   void add_static_void_fun(const std::string & name)
   {
@@ -324,6 +489,14 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
 
     builder.create();
+  }
+
+  template<typename A1, typename A2, typename A3, void(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_void_fun(const std::string & name)
+  {
+    return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
   /****************************************************************
@@ -341,6 +514,15 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
   void add_fun(const std::string & name)
   {
@@ -349,6 +531,14 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
 
     builder.create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, void(T::*fun)(A1, A2, A3, A4)>
@@ -360,6 +550,13 @@ public:
     builder.create();
   }
 
+  template<typename A1, typename A2, typename A3, typename A4, void(T::*fun)(A1, A2, A3, A4)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
   void add_static(const std::string & name)
   {
@@ -369,6 +566,15 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
 
     binder.create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
   }
 
   /****************************************************************
@@ -386,6 +592,15 @@ public:
     builder.create();
   }
 
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)const>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .setConst()
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)>
   void add_fun(const std::string & name)
   {
@@ -394,6 +609,14 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
 
     builder.create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)>
+  script::FunctionBuilder fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_member_wrapper_t<decltype(fun), fun>::wrap)
+      .returns(make_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, void(T::*fun)(A1, A2, A3, A4, A5)>
@@ -405,6 +628,13 @@ public:
     builder.create();
   }
 
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, void(T::*fun)(A1, A2, A3, A4, A5)>
+  script::FunctionBuilder void_fun(const std::string & name)
+  {
+    return class_.Method(name, qclass_void_member_wrapper_t<decltype(fun), fun>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
   void add_static(const std::string & name)
   {
@@ -414,6 +644,15 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
 
     binder.create();
+  }
+
+  template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
+  script::FunctionBuilder static_fun(const std::string & name)
+  {
+    return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
+      .setStatic()
+      .returns(make_return_type<ReturnType>())
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
   }
 };
 
