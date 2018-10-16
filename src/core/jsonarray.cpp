@@ -27,11 +27,11 @@ static void register_json_array_class(script::Namespace ns)
   // ~QJsonArray();
   binder.add_dtor();
   // QJsonArray(const QJsonArray &);
-  binder.ctors().add<const QJsonArray &>();
+  binder.ctors().ctor<const QJsonArray &>().create();
   // QJsonArray & operator=(const QJsonArray &);
   binder.operators().assign<const QJsonArray &>();
   // QJsonArray(QJsonArray &&);
-  binder.ctors().add<QJsonArray &&>();
+  binder.ctors().ctor<QJsonArray &&>().create();
   // QJsonArray & operator=(QJsonArray &&);
   binder.operators().assign<QJsonArray &&>();
   // static QJsonArray fromStringList(const QStringList &);
@@ -41,35 +41,35 @@ static void register_json_array_class(script::Namespace ns)
   // QVariantList toVariantList() const;
   /// TODO: QVariantList toVariantList() const;
   // int size() const;
-  binder.add_fun<int, &QJsonArray::size>("size");
+  binder.fun<int, &QJsonArray::size>("size").create();
   // int count() const;
-  binder.add_fun<int, &QJsonArray::count>("count");
+  binder.fun<int, &QJsonArray::count>("count").create();
   // bool isEmpty() const;
-  binder.add_fun<bool, &QJsonArray::isEmpty>("isEmpty");
+  binder.fun<bool, &QJsonArray::isEmpty>("isEmpty").create();
   // QJsonValue at(int) const;
-  binder.add_fun<QJsonValue, int, &QJsonArray::at>("at");
+  binder.fun<QJsonValue, int, &QJsonArray::at>("at").create();
   // QJsonValue first() const;
-  binder.add_fun<QJsonValue, &QJsonArray::first>("first");
+  binder.fun<QJsonValue, &QJsonArray::first>("first").create();
   // QJsonValue last() const;
-  binder.add_fun<QJsonValue, &QJsonArray::last>("last");
+  binder.fun<QJsonValue, &QJsonArray::last>("last").create();
   // void prepend(const QJsonValue &);
-  binder.add_void_fun<const QJsonValue &, &QJsonArray::prepend>("prepend");
+  binder.void_fun<const QJsonValue &, &QJsonArray::prepend>("prepend").create();
   // void append(const QJsonValue &);
-  binder.add_void_fun<const QJsonValue &, &QJsonArray::append>("append");
+  binder.void_fun<const QJsonValue &, &QJsonArray::append>("append").create();
   // void removeAt(int);
-  binder.add_void_fun<int, &QJsonArray::removeAt>("removeAt");
+  binder.void_fun<int, &QJsonArray::removeAt>("removeAt").create();
   // QJsonValue takeAt(int);
-  binder.add_fun<QJsonValue, int, &QJsonArray::takeAt>("takeAt");
+  binder.fun<QJsonValue, int, &QJsonArray::takeAt>("takeAt").create();
   // void removeFirst();
-  binder.add_void_fun<&QJsonArray::removeFirst>("removeFirst");
+  binder.void_fun<&QJsonArray::removeFirst>("removeFirst").create();
   // void removeLast();
-  binder.add_void_fun<&QJsonArray::removeLast>("removeLast");
+  binder.void_fun<&QJsonArray::removeLast>("removeLast").create();
   // void insert(int, const QJsonValue &);
-  binder.add_void_fun<int, const QJsonValue &, &QJsonArray::insert>("insert");
+  binder.void_fun<int, const QJsonValue &, &QJsonArray::insert>("insert").create();
   // void replace(int, const QJsonValue &);
-  binder.add_void_fun<int, const QJsonValue &, &QJsonArray::replace>("replace");
+  binder.void_fun<int, const QJsonValue &, &QJsonArray::replace>("replace").create();
   // bool contains(const QJsonValue &) const;
-  binder.add_fun<bool, const QJsonValue &, &QJsonArray::contains>("contains");
+  binder.fun<bool, const QJsonValue &, &QJsonArray::contains>("contains").create();
   // QJsonValueRef operator[](int);
   binder.operators().subscript<QJsonValueRef, int>();
   // QJsonValue operator[](int) const;
@@ -79,7 +79,7 @@ static void register_json_array_class(script::Namespace ns)
   // bool operator!=(const QJsonArray &) const;
   binder.operators().neq<const QJsonArray &>();
   // void swap(QJsonArray &);
-  binder.add_void_fun<QJsonArray &, &QJsonArray::swap>("swap");
+  binder.void_fun<QJsonArray &, &QJsonArray::swap>("swap").create();
   // QJsonArray::iterator begin();
   /// TODO: QJsonArray::iterator begin();
   // QJsonArray::const_iterator begin() const;
@@ -101,15 +101,15 @@ static void register_json_array_class(script::Namespace ns)
   // QJsonArray & operator+=(const QJsonValue &);
   binder.operators().add_assign<const QJsonValue &>();
   // void push_back(const QJsonValue &);
-  binder.add_void_fun<const QJsonValue &, &QJsonArray::push_back>("push_back");
+  binder.void_fun<const QJsonValue &, &QJsonArray::push_back>("push_back").create();
   // void push_front(const QJsonValue &);
-  binder.add_void_fun<const QJsonValue &, &QJsonArray::push_front>("push_front");
+  binder.void_fun<const QJsonValue &, &QJsonArray::push_front>("push_front").create();
   // void pop_front();
-  binder.add_void_fun<&QJsonArray::pop_front>("pop_front");
+  binder.void_fun<&QJsonArray::pop_front>("pop_front").create();
   // void pop_back();
-  binder.add_void_fun<&QJsonArray::pop_back>("pop_back");
+  binder.void_fun<&QJsonArray::pop_back>("pop_back").create();
   // bool empty() const;
-  binder.add_fun<bool, &QJsonArray::empty>("empty");
+  binder.fun<bool, &QJsonArray::empty>("empty").create();
 }
 
 
@@ -123,7 +123,7 @@ void register_jsonarray_file(script::Namespace core)
   binding::Namespace binder{ ns };
 
   // void swap(QJsonArray &, QJsonArray &);
-  binder.add_void_fun<QJsonArray &, QJsonArray &, &swap>("swap");
+  binder.void_fun<QJsonArray &, QJsonArray &, &swap>("swap").create();
   // QDebug operator<<(QDebug, const QJsonArray &);
   /// TODO: QDebug operator<<(QDebug, const QJsonArray &);
 }

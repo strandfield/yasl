@@ -21,47 +21,47 @@ static void register_font_info_class(script::Namespace ns)
   binding::Class<QFontInfo> binder{ font_info };
 
   // QFontInfo(const QFont &);
-  binder.ctors().add<const QFont &>();
+  binder.ctors().ctor<const QFont &>().create();
   // QFontInfo(const QFontInfo &);
-  binder.ctors().add<const QFontInfo &>();
+  binder.ctors().ctor<const QFontInfo &>().create();
   // ~QFontInfo();
   binder.add_dtor();
   // QFontInfo & operator=(const QFontInfo &);
   binder.operators().assign<const QFontInfo &>();
   // void swap(QFontInfo &);
-  binder.add_void_fun<QFontInfo &, &QFontInfo::swap>("swap");
+  binder.void_fun<QFontInfo &, &QFontInfo::swap>("swap").create();
   // QString family() const;
-  binder.add_fun<QString, &QFontInfo::family>("family");
+  binder.fun<QString, &QFontInfo::family>("family").create();
   // QString styleName() const;
-  binder.add_fun<QString, &QFontInfo::styleName>("styleName");
+  binder.fun<QString, &QFontInfo::styleName>("styleName").create();
   // int pixelSize() const;
-  binder.add_fun<int, &QFontInfo::pixelSize>("pixelSize");
+  binder.fun<int, &QFontInfo::pixelSize>("pixelSize").create();
   // int pointSize() const;
-  binder.add_fun<int, &QFontInfo::pointSize>("pointSize");
+  binder.fun<int, &QFontInfo::pointSize>("pointSize").create();
   // qreal pointSizeF() const;
-  binder.add_fun<qreal, &QFontInfo::pointSizeF>("pointSizeF");
+  binder.fun<qreal, &QFontInfo::pointSizeF>("pointSizeF").create();
   // bool italic() const;
-  binder.add_fun<bool, &QFontInfo::italic>("italic");
+  binder.fun<bool, &QFontInfo::italic>("italic").create();
   // QFont::Style style() const;
-  binder.add_fun<QFont::Style, &QFontInfo::style>("style");
+  binder.fun<QFont::Style, &QFontInfo::style>("style").create();
   // int weight() const;
-  binder.add_fun<int, &QFontInfo::weight>("weight");
+  binder.fun<int, &QFontInfo::weight>("weight").create();
   // bool bold() const;
-  binder.add_fun<bool, &QFontInfo::bold>("bold");
+  binder.fun<bool, &QFontInfo::bold>("bold").create();
   // bool underline() const;
-  binder.add_fun<bool, &QFontInfo::underline>("underline");
+  binder.fun<bool, &QFontInfo::underline>("underline").create();
   // bool overline() const;
-  binder.add_fun<bool, &QFontInfo::overline>("overline");
+  binder.fun<bool, &QFontInfo::overline>("overline").create();
   // bool strikeOut() const;
-  binder.add_fun<bool, &QFontInfo::strikeOut>("strikeOut");
+  binder.fun<bool, &QFontInfo::strikeOut>("strikeOut").create();
   // bool fixedPitch() const;
-  binder.add_fun<bool, &QFontInfo::fixedPitch>("fixedPitch");
+  binder.fun<bool, &QFontInfo::fixedPitch>("fixedPitch").create();
   // QFont::StyleHint styleHint() const;
-  binder.add_fun<QFont::StyleHint, &QFontInfo::styleHint>("styleHint");
+  binder.fun<QFont::StyleHint, &QFontInfo::styleHint>("styleHint").create();
   // bool rawMode() const;
-  binder.add_fun<bool, &QFontInfo::rawMode>("rawMode");
+  binder.fun<bool, &QFontInfo::rawMode>("rawMode").create();
   // bool exactMatch() const;
-  binder.add_fun<bool, &QFontInfo::exactMatch>("exactMatch");
+  binder.fun<bool, &QFontInfo::exactMatch>("exactMatch").create();
 }
 
 
@@ -75,6 +75,6 @@ void register_fontinfo_file(script::Namespace gui)
   binding::Namespace binder{ ns };
 
   // void swap(QFontInfo &, QFontInfo &);
-  binder.add_void_fun<QFontInfo &, QFontInfo &, &swap>("swap");
+  binder.void_fun<QFontInfo &, QFontInfo &, &swap>("swap").create();
 }
 

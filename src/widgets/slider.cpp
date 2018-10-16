@@ -42,19 +42,19 @@ static void register_slider_class(script::Namespace ns)
   binding::QClass<QSlider> binder{ slider, &QSlider::staticMetaObject };
 
   // QSlider(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // QSlider(Qt::Orientation, QWidget *);
-  binder.ctors().add<Qt::Orientation, QWidget *>();
+  binder.ctors().ctor<Qt::Orientation, QWidget *>().create();
   // ~QSlider();
   binder.add_dtor();
   // void setTickPosition(QSlider::TickPosition);
-  binder.add_void_fun<QSlider::TickPosition, &QSlider::setTickPosition>("setTickPosition");
+  binder.void_fun<QSlider::TickPosition, &QSlider::setTickPosition>("setTickPosition").create();
   // QSlider::TickPosition tickPosition() const;
-  binder.add_fun<QSlider::TickPosition, &QSlider::tickPosition>("tickPosition");
+  binder.fun<QSlider::TickPosition, &QSlider::tickPosition>("tickPosition").create();
   // void setTickInterval(int);
-  binder.add_void_fun<int, &QSlider::setTickInterval>("setTickInterval");
+  binder.void_fun<int, &QSlider::setTickInterval>("setTickInterval").create();
   // int tickInterval() const;
-  binder.add_fun<int, &QSlider::tickInterval>("tickInterval");
+  binder.fun<int, &QSlider::tickInterval>("tickInterval").create();
 
   slider.engine()->registerQtType(&QSlider::staticMetaObject, slider.id());
 }

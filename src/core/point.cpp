@@ -23,25 +23,25 @@ static void register_point_class(script::Namespace ns)
   // QPoint();
   binder.ctors().add_default();
   // QPoint(int, int);
-  binder.ctors().add<int, int>();
+  binder.ctors().ctor<int, int>().create();
   // ~QPoint();
   binder.add_dtor();
   // bool isNull() const;
-  binder.add_fun<bool, &QPoint::isNull>("isNull");
+  binder.fun<bool, &QPoint::isNull>("isNull").create();
   // int x() const;
-  binder.add_fun<int, &QPoint::x>("x");
+  binder.fun<int, &QPoint::x>("x").create();
   // int y() const;
-  binder.add_fun<int, &QPoint::y>("y");
+  binder.fun<int, &QPoint::y>("y").create();
   // void setX(int);
-  binder.add_void_fun<int, &QPoint::setX>("setX");
+  binder.void_fun<int, &QPoint::setX>("setX").create();
   // void setY(int);
-  binder.add_void_fun<int, &QPoint::setY>("setY");
+  binder.void_fun<int, &QPoint::setY>("setY").create();
   // int manhattanLength() const;
-  binder.add_fun<int, &QPoint::manhattanLength>("manhattanLength");
+  binder.fun<int, &QPoint::manhattanLength>("manhattanLength").create();
   // int & rx();
-  binder.add_ref_mem<int &, &QPoint::rx>("rx");
+  binder.ref_mem_getter<int &, &QPoint::rx>("rx").create();
   // int & ry();
-  binder.add_ref_mem<int &, &QPoint::ry>("ry");
+  binder.ref_mem_getter<int &, &QPoint::ry>("ry").create();
   // QPoint & operator+=(const QPoint &);
   binder.operators().add_assign<const QPoint &>();
   // QPoint & operator-=(const QPoint &);
@@ -55,7 +55,7 @@ static void register_point_class(script::Namespace ns)
   // QPoint & operator/=(qreal);
   binder.operators().div_assign<qreal>();
   // static int dotProduct(const QPoint &, const QPoint &);
-  binder.add_static<int, const QPoint &, const QPoint &, &QPoint::dotProduct>("dotProduct");
+  binder.static_fun<int, const QPoint &, const QPoint &, &QPoint::dotProduct>("dotProduct").create();
 }
 
 
@@ -70,27 +70,27 @@ static void register_point_f_class(script::Namespace ns)
   // QPointF();
   binder.ctors().add_default();
   // QPointF(const QPoint &);
-  binder.ctors().add<const QPoint &>();
+  binder.ctors().ctor<const QPoint &>().create();
   // QPointF(qreal, qreal);
-  binder.ctors().add<qreal, qreal>();
+  binder.ctors().ctor<qreal, qreal>().create();
   // ~QPointF();
   binder.add_dtor();
   // qreal manhattanLength() const;
-  binder.add_fun<qreal, &QPointF::manhattanLength>("manhattanLength");
+  binder.fun<qreal, &QPointF::manhattanLength>("manhattanLength").create();
   // bool isNull() const;
-  binder.add_fun<bool, &QPointF::isNull>("isNull");
+  binder.fun<bool, &QPointF::isNull>("isNull").create();
   // qreal x() const;
-  binder.add_fun<qreal, &QPointF::x>("x");
+  binder.fun<qreal, &QPointF::x>("x").create();
   // qreal y() const;
-  binder.add_fun<qreal, &QPointF::y>("y");
+  binder.fun<qreal, &QPointF::y>("y").create();
   // void setX(qreal);
-  binder.add_void_fun<qreal, &QPointF::setX>("setX");
+  binder.void_fun<qreal, &QPointF::setX>("setX").create();
   // void setY(qreal);
-  binder.add_void_fun<qreal, &QPointF::setY>("setY");
+  binder.void_fun<qreal, &QPointF::setY>("setY").create();
   // qreal & rx();
-  binder.add_ref_mem<qreal &, &QPointF::rx>("rx");
+  binder.ref_mem_getter<qreal &, &QPointF::rx>("rx").create();
   // qreal & ry();
-  binder.add_ref_mem<qreal &, &QPointF::ry>("ry");
+  binder.ref_mem_getter<qreal &, &QPointF::ry>("ry").create();
   // QPointF & operator+=(const QPointF &);
   binder.operators().add_assign<const QPointF &>();
   // QPointF & operator-=(const QPointF &);
@@ -100,9 +100,9 @@ static void register_point_f_class(script::Namespace ns)
   // QPointF & operator/=(qreal);
   binder.operators().div_assign<qreal>();
   // static qreal dotProduct(const QPointF &, const QPointF &);
-  binder.add_static<qreal, const QPointF &, const QPointF &, &QPointF::dotProduct>("dotProduct");
+  binder.static_fun<qreal, const QPointF &, const QPointF &, &QPointF::dotProduct>("dotProduct").create();
   // QPoint toPoint() const;
-  binder.add_fun<QPoint, &QPointF::toPoint>("toPoint");
+  binder.fun<QPoint, &QPointF::toPoint>("toPoint").create();
 }
 
 

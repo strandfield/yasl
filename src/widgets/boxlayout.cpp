@@ -44,49 +44,49 @@ static void register_box_layout_class(script::Namespace ns)
   binding::QClass<QBoxLayout> binder{ box_layout, &QBoxLayout::staticMetaObject };
 
   // QBoxLayout(QBoxLayout::Direction, QWidget *);
-  binder.ctors().add<QBoxLayout::Direction, QWidget *>();
+  binder.ctors().ctor<QBoxLayout::Direction, QWidget *>().create();
   // ~QBoxLayout();
   binder.add_dtor();
   // QBoxLayout::Direction direction() const;
-  binder.add_fun<QBoxLayout::Direction, &QBoxLayout::direction>("direction");
+  binder.fun<QBoxLayout::Direction, &QBoxLayout::direction>("direction").create();
   // void setDirection(QBoxLayout::Direction);
-  binder.add_void_fun<QBoxLayout::Direction, &QBoxLayout::setDirection>("setDirection");
+  binder.void_fun<QBoxLayout::Direction, &QBoxLayout::setDirection>("setDirection").create();
   // void addSpacing(int);
-  binder.add_void_fun<int, &QBoxLayout::addSpacing>("addSpacing");
+  binder.void_fun<int, &QBoxLayout::addSpacing>("addSpacing").create();
   // void addStretch(int);
-  binder.add_void_fun<int, &QBoxLayout::addStretch>("addStretch");
+  binder.void_fun<int, &QBoxLayout::addStretch>("addStretch").create();
   // void addSpacerItem(QSpacerItem *);
   /// TODO: void addSpacerItem(QSpacerItem *);
   // void addWidget(QWidget *, int, Qt::Alignment);
-  binder.add_void_fun<QWidget *, int, Qt::Alignment, &QBoxLayout::addWidget>("addWidget");
+  binder.void_fun<QWidget *, int, Qt::Alignment, &QBoxLayout::addWidget>("addWidget").create();
   // void addLayout(QLayout *, int);
-  binder.add_void_fun<QLayout *, int, &QBoxLayout::addLayout>("addLayout");
+  binder.void_fun<QLayout *, int, &QBoxLayout::addLayout>("addLayout").create();
   // void addStrut(int);
-  binder.add_void_fun<int, &QBoxLayout::addStrut>("addStrut");
+  binder.void_fun<int, &QBoxLayout::addStrut>("addStrut").create();
   // void insertSpacing(int, int);
-  binder.add_void_fun<int, int, &QBoxLayout::insertSpacing>("insertSpacing");
+  binder.void_fun<int, int, &QBoxLayout::insertSpacing>("insertSpacing").create();
   // void insertStretch(int, int);
-  binder.add_void_fun<int, int, &QBoxLayout::insertStretch>("insertStretch");
+  binder.void_fun<int, int, &QBoxLayout::insertStretch>("insertStretch").create();
   // void insertSpacerItem(int, QSpacerItem *);
   /// TODO: void insertSpacerItem(int, QSpacerItem *);
   // void insertWidget(int, QWidget *, int, Qt::Alignment);
-  binder.add_void_fun<int, QWidget *, int, Qt::Alignment, &QBoxLayout::insertWidget>("insertWidget");
+  binder.void_fun<int, QWidget *, int, Qt::Alignment, &QBoxLayout::insertWidget>("insertWidget").create();
   // void insertLayout(int, QLayout *, int);
-  binder.add_void_fun<int, QLayout *, int, &QBoxLayout::insertLayout>("insertLayout");
+  binder.void_fun<int, QLayout *, int, &QBoxLayout::insertLayout>("insertLayout").create();
   // void insertItem(int, QLayoutItem *);
   /// TODO: void insertItem(int, QLayoutItem *);
   // int spacing() const;
-  binder.add_fun<int, &QBoxLayout::spacing>("spacing");
+  binder.fun<int, &QBoxLayout::spacing>("spacing").create();
   // void setSpacing(int);
-  binder.add_void_fun<int, &QBoxLayout::setSpacing>("setSpacing");
+  binder.void_fun<int, &QBoxLayout::setSpacing>("setSpacing").create();
   // bool setStretchFactor(QWidget *, int);
-  binder.add_fun<bool, QWidget *, int, &QBoxLayout::setStretchFactor>("setStretchFactor");
+  binder.fun<bool, QWidget *, int, &QBoxLayout::setStretchFactor>("setStretchFactor").create();
   // bool setStretchFactor(QLayout *, int);
-  binder.add_fun<bool, QLayout *, int, &QBoxLayout::setStretchFactor>("setStretchFactor");
+  binder.fun<bool, QLayout *, int, &QBoxLayout::setStretchFactor>("setStretchFactor").create();
   // void setStretch(int, int);
-  binder.add_void_fun<int, int, &QBoxLayout::setStretch>("setStretch");
+  binder.void_fun<int, int, &QBoxLayout::setStretch>("setStretch").create();
   // int stretch(int) const;
-  binder.add_fun<int, int, &QBoxLayout::stretch>("stretch");
+  binder.fun<int, int, &QBoxLayout::stretch>("stretch").create();
 
   box_layout.engine()->registerQtType(&QBoxLayout::staticMetaObject, box_layout.id());
 }
@@ -104,7 +104,7 @@ static void register_h_box_layout_class(script::Namespace ns)
   // QHBoxLayout();
   binder.ctors().add_default();
   // QHBoxLayout(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // ~QHBoxLayout();
   binder.add_dtor();
 
@@ -124,7 +124,7 @@ static void register_v_box_layout_class(script::Namespace ns)
   // QVBoxLayout();
   binder.ctors().add_default();
   // QVBoxLayout(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // ~QVBoxLayout();
   binder.add_dtor();
 

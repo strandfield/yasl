@@ -105,7 +105,7 @@ static void register_data_stream_class(script::Namespace ns)
   // QDataStream(QByteArray *, QIODevice::OpenMode);
   /// TODO: QDataStream(QByteArray *, QIODevice::OpenMode);
   // QDataStream(const QByteArray &);
-  binder.ctors().add<const QByteArray &>();
+  binder.ctors().ctor<const QByteArray &>().create();
   // ~QDataStream();
   binder.add_dtor();
   // QIODevice * device() const;
@@ -113,27 +113,27 @@ static void register_data_stream_class(script::Namespace ns)
   // void setDevice(QIODevice *);
   /// TODO: void setDevice(QIODevice *);
   // void unsetDevice();
-  binder.add_void_fun<&QDataStream::unsetDevice>("unsetDevice");
+  binder.void_fun<&QDataStream::unsetDevice>("unsetDevice").create();
   // bool atEnd() const;
-  binder.add_fun<bool, &QDataStream::atEnd>("atEnd");
+  binder.fun<bool, &QDataStream::atEnd>("atEnd").create();
   // QDataStream::Status status() const;
-  binder.add_fun<QDataStream::Status, &QDataStream::status>("status");
+  binder.fun<QDataStream::Status, &QDataStream::status>("status").create();
   // void setStatus(QDataStream::Status);
-  binder.add_void_fun<QDataStream::Status, &QDataStream::setStatus>("setStatus");
+  binder.void_fun<QDataStream::Status, &QDataStream::setStatus>("setStatus").create();
   // void resetStatus();
-  binder.add_void_fun<&QDataStream::resetStatus>("resetStatus");
+  binder.void_fun<&QDataStream::resetStatus>("resetStatus").create();
   // QDataStream::FloatingPointPrecision floatingPointPrecision() const;
-  binder.add_fun<QDataStream::FloatingPointPrecision, &QDataStream::floatingPointPrecision>("floatingPointPrecision");
+  binder.fun<QDataStream::FloatingPointPrecision, &QDataStream::floatingPointPrecision>("floatingPointPrecision").create();
   // void setFloatingPointPrecision(QDataStream::FloatingPointPrecision);
-  binder.add_void_fun<QDataStream::FloatingPointPrecision, &QDataStream::setFloatingPointPrecision>("setFloatingPointPrecision");
+  binder.void_fun<QDataStream::FloatingPointPrecision, &QDataStream::setFloatingPointPrecision>("setFloatingPointPrecision").create();
   // QDataStream::ByteOrder byteOrder() const;
-  binder.add_fun<QDataStream::ByteOrder, &QDataStream::byteOrder>("byteOrder");
+  binder.fun<QDataStream::ByteOrder, &QDataStream::byteOrder>("byteOrder").create();
   // void setByteOrder(QDataStream::ByteOrder);
-  binder.add_void_fun<QDataStream::ByteOrder, &QDataStream::setByteOrder>("setByteOrder");
+  binder.void_fun<QDataStream::ByteOrder, &QDataStream::setByteOrder>("setByteOrder").create();
   // int version() const;
-  binder.add_fun<int, &QDataStream::version>("version");
+  binder.fun<int, &QDataStream::version>("version").create();
   // void setVersion(int);
-  binder.add_void_fun<int, &QDataStream::setVersion>("setVersion");
+  binder.void_fun<int, &QDataStream::setVersion>("setVersion").create();
   // QDataStream & operator>>(qint8 &);
   /// TODO: QDataStream & operator>>(qint8 &);
   // QDataStream & operator>>(quint8 &);
@@ -199,15 +199,15 @@ static void register_data_stream_class(script::Namespace ns)
   // int writeRawData(const char *, int);
   /// TODO: int writeRawData(const char *, int);
   // int skipRawData(int);
-  binder.add_fun<int, int, &QDataStream::skipRawData>("skipRawData");
+  binder.fun<int, int, &QDataStream::skipRawData>("skipRawData").create();
   // void startTransaction();
-  binder.add_void_fun<&QDataStream::startTransaction>("startTransaction");
+  binder.void_fun<&QDataStream::startTransaction>("startTransaction").create();
   // bool commitTransaction();
-  binder.add_fun<bool, &QDataStream::commitTransaction>("commitTransaction");
+  binder.fun<bool, &QDataStream::commitTransaction>("commitTransaction").create();
   // void rollbackTransaction();
-  binder.add_void_fun<&QDataStream::rollbackTransaction>("rollbackTransaction");
+  binder.void_fun<&QDataStream::rollbackTransaction>("rollbackTransaction").create();
   // void abortTransaction();
-  binder.add_void_fun<&QDataStream::abortTransaction>("abortTransaction");
+  binder.void_fun<&QDataStream::abortTransaction>("abortTransaction").create();
 }
 
 

@@ -37,31 +37,31 @@ static void register_mouse_event_class(script::Namespace ns)
   // ~QMouseEvent();
   binder.add_dtor();
   // QPoint pos() const;
-  binder.add_fun<QPoint, &QMouseEvent::pos>("pos");
+  binder.fun<QPoint, &QMouseEvent::pos>("pos").create();
   // QPoint globalPos() const;
-  binder.add_fun<QPoint, &QMouseEvent::globalPos>("globalPos");
+  binder.fun<QPoint, &QMouseEvent::globalPos>("globalPos").create();
   // int x() const;
-  binder.add_fun<int, &QMouseEvent::x>("x");
+  binder.fun<int, &QMouseEvent::x>("x").create();
   // int y() const;
-  binder.add_fun<int, &QMouseEvent::y>("y");
+  binder.fun<int, &QMouseEvent::y>("y").create();
   // int globalX() const;
-  binder.add_fun<int, &QMouseEvent::globalX>("globalX");
+  binder.fun<int, &QMouseEvent::globalX>("globalX").create();
   // int globalY() const;
-  binder.add_fun<int, &QMouseEvent::globalY>("globalY");
+  binder.fun<int, &QMouseEvent::globalY>("globalY").create();
   // const QPointF & localPos() const;
-  binder.add_fun<const QPointF &, &QMouseEvent::localPos>("localPos");
+  binder.fun<const QPointF &, &QMouseEvent::localPos>("localPos").create();
   // const QPointF & windowPos() const;
-  binder.add_fun<const QPointF &, &QMouseEvent::windowPos>("windowPos");
+  binder.fun<const QPointF &, &QMouseEvent::windowPos>("windowPos").create();
   // const QPointF & screenPos() const;
-  binder.add_fun<const QPointF &, &QMouseEvent::screenPos>("screenPos");
+  binder.fun<const QPointF &, &QMouseEvent::screenPos>("screenPos").create();
   // Qt::MouseButton button() const;
-  binder.add_fun<Qt::MouseButton, &QMouseEvent::button>("button");
+  binder.fun<Qt::MouseButton, &QMouseEvent::button>("button").create();
   // Qt::MouseButtons buttons() const;
   /// TODO: Qt::MouseButtons buttons() const;
   // void setLocalPos(const QPointF &);
-  binder.add_void_fun<const QPointF &, &QMouseEvent::setLocalPos>("setLocalPos");
+  binder.void_fun<const QPointF &, &QMouseEvent::setLocalPos>("setLocalPos").create();
   // Qt::MouseEventSource source() const;
-  binder.add_fun<Qt::MouseEventSource, &QMouseEvent::source>("source");
+  binder.fun<Qt::MouseEventSource, &QMouseEvent::source>("source").create();
   // Qt::MouseEventFlags flags() const;
   /// TODO: Qt::MouseEventFlags flags() const;
 }
@@ -91,37 +91,37 @@ static void register_wheel_event_class(script::Namespace ns)
   // ~QWheelEvent();
   binder.add_dtor();
   // QPoint pixelDelta() const;
-  binder.add_fun<QPoint, &QWheelEvent::pixelDelta>("pixelDelta");
+  binder.fun<QPoint, &QWheelEvent::pixelDelta>("pixelDelta").create();
   // QPoint angleDelta() const;
-  binder.add_fun<QPoint, &QWheelEvent::angleDelta>("angleDelta");
+  binder.fun<QPoint, &QWheelEvent::angleDelta>("angleDelta").create();
   // int delta() const;
-  binder.add_fun<int, &QWheelEvent::delta>("delta");
+  binder.fun<int, &QWheelEvent::delta>("delta").create();
   // Qt::Orientation orientation() const;
-  binder.add_fun<Qt::Orientation, &QWheelEvent::orientation>("orientation");
+  binder.fun<Qt::Orientation, &QWheelEvent::orientation>("orientation").create();
   // QPoint pos() const;
-  binder.add_fun<QPoint, &QWheelEvent::pos>("pos");
+  binder.fun<QPoint, &QWheelEvent::pos>("pos").create();
   // QPoint globalPos() const;
-  binder.add_fun<QPoint, &QWheelEvent::globalPos>("globalPos");
+  binder.fun<QPoint, &QWheelEvent::globalPos>("globalPos").create();
   // int x() const;
-  binder.add_fun<int, &QWheelEvent::x>("x");
+  binder.fun<int, &QWheelEvent::x>("x").create();
   // int y() const;
-  binder.add_fun<int, &QWheelEvent::y>("y");
+  binder.fun<int, &QWheelEvent::y>("y").create();
   // int globalX() const;
-  binder.add_fun<int, &QWheelEvent::globalX>("globalX");
+  binder.fun<int, &QWheelEvent::globalX>("globalX").create();
   // int globalY() const;
-  binder.add_fun<int, &QWheelEvent::globalY>("globalY");
+  binder.fun<int, &QWheelEvent::globalY>("globalY").create();
   // const QPointF & posF() const;
-  binder.add_fun<const QPointF &, &QWheelEvent::posF>("posF");
+  binder.fun<const QPointF &, &QWheelEvent::posF>("posF").create();
   // const QPointF & globalPosF() const;
-  binder.add_fun<const QPointF &, &QWheelEvent::globalPosF>("globalPosF");
+  binder.fun<const QPointF &, &QWheelEvent::globalPosF>("globalPosF").create();
   // Qt::MouseButtons buttons() const;
   /// TODO: Qt::MouseButtons buttons() const;
   // Qt::ScrollPhase phase() const;
-  binder.add_fun<Qt::ScrollPhase, &QWheelEvent::phase>("phase");
+  binder.fun<Qt::ScrollPhase, &QWheelEvent::phase>("phase").create();
   // bool inverted() const;
-  binder.add_fun<bool, &QWheelEvent::inverted>("inverted");
+  binder.fun<bool, &QWheelEvent::inverted>("inverted").create();
   // Qt::MouseEventSource source() const;
-  binder.add_fun<Qt::MouseEventSource, &QWheelEvent::source>("source");
+  binder.fun<Qt::MouseEventSource, &QWheelEvent::source>("source").create();
 }
 
 
@@ -141,17 +141,17 @@ static void register_key_event_class(script::Namespace ns)
   // ~QKeyEvent();
   binder.add_dtor();
   // int key() const;
-  binder.add_fun<int, &QKeyEvent::key>("key");
+  binder.fun<int, &QKeyEvent::key>("key").create();
   // bool matches(QKeySequence::StandardKey) const;
-  binder.add_fun<bool, QKeySequence::StandardKey, &QKeyEvent::matches>("matches");
+  binder.fun<bool, QKeySequence::StandardKey, &QKeyEvent::matches>("matches").create();
   // Qt::KeyboardModifiers modifiers() const;
-  binder.add_fun<Qt::KeyboardModifiers, &QKeyEvent::modifiers>("modifiers");
+  binder.fun<Qt::KeyboardModifiers, &QKeyEvent::modifiers>("modifiers").create();
   // QString text() const;
-  binder.add_fun<QString, &QKeyEvent::text>("text");
+  binder.fun<QString, &QKeyEvent::text>("text").create();
   // bool isAutoRepeat() const;
-  binder.add_fun<bool, &QKeyEvent::isAutoRepeat>("isAutoRepeat");
+  binder.fun<bool, &QKeyEvent::isAutoRepeat>("isAutoRepeat").create();
   // int count() const;
-  binder.add_fun<int, &QKeyEvent::count>("count");
+  binder.fun<int, &QKeyEvent::count>("count").create();
   // quint32 nativeScanCode() const;
   /// TODO: quint32 nativeScanCode() const;
   // quint32 nativeVirtualKey() const;
@@ -171,15 +171,15 @@ static void register_paint_event_class(script::Namespace ns)
   binding::Event<QPaintEvent> binder{ paint_event };
 
   // QPaintEvent(const QRegion &);
-  binder.ctors().add<const QRegion &>();
+  binder.ctors().ctor<const QRegion &>().create();
   // QPaintEvent(const QRect &);
-  binder.ctors().add<const QRect &>();
+  binder.ctors().ctor<const QRect &>().create();
   // ~QPaintEvent();
   binder.add_dtor();
   // const QRect & rect() const;
-  binder.add_fun<const QRect &, &QPaintEvent::rect>("rect");
+  binder.fun<const QRect &, &QPaintEvent::rect>("rect").create();
   // const QRegion & region() const;
-  binder.add_fun<const QRegion &, &QPaintEvent::region>("region");
+  binder.fun<const QRegion &, &QPaintEvent::region>("region").create();
 }
 
 
@@ -193,13 +193,13 @@ static void register_move_event_class(script::Namespace ns)
   binding::Event<QMoveEvent> binder{ move_event };
 
   // QMoveEvent(const QPoint &, const QPoint &);
-  binder.ctors().add<const QPoint &, const QPoint &>();
+  binder.ctors().ctor<const QPoint &, const QPoint &>().create();
   // ~QMoveEvent();
   binder.add_dtor();
   // const QPoint & pos() const;
-  binder.add_fun<const QPoint &, &QMoveEvent::pos>("pos");
+  binder.fun<const QPoint &, &QMoveEvent::pos>("pos").create();
   // const QPoint & oldPos() const;
-  binder.add_fun<const QPoint &, &QMoveEvent::oldPos>("oldPos");
+  binder.fun<const QPoint &, &QMoveEvent::oldPos>("oldPos").create();
 }
 
 
@@ -213,13 +213,13 @@ static void register_resize_event_class(script::Namespace ns)
   binding::Event<QResizeEvent> binder{ resize_event };
 
   // QResizeEvent(const QSize &, const QSize &);
-  binder.ctors().add<const QSize &, const QSize &>();
+  binder.ctors().ctor<const QSize &, const QSize &>().create();
   // ~QResizeEvent();
   binder.add_dtor();
   // const QSize & size() const;
-  binder.add_fun<const QSize &, &QResizeEvent::size>("size");
+  binder.fun<const QSize &, &QResizeEvent::size>("size").create();
   // const QSize & oldSize() const;
-  binder.add_fun<const QSize &, &QResizeEvent::oldSize>("oldSize");
+  binder.fun<const QSize &, &QResizeEvent::oldSize>("oldSize").create();
 }
 
 

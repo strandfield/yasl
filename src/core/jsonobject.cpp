@@ -27,15 +27,15 @@ static void register_json_object_class(script::Namespace ns)
   // ~QJsonObject();
   binder.add_dtor();
   // QJsonObject(const QJsonObject &);
-  binder.ctors().add<const QJsonObject &>();
+  binder.ctors().ctor<const QJsonObject &>().create();
   // QJsonObject & operator=(const QJsonObject &);
   binder.operators().assign<const QJsonObject &>();
   // QJsonObject(QJsonObject &&);
-  binder.ctors().add<QJsonObject &&>();
+  binder.ctors().ctor<QJsonObject &&>().create();
   // QJsonObject & operator=(QJsonObject &&);
   binder.operators().assign<QJsonObject &&>();
   // void swap(QJsonObject &);
-  binder.add_void_fun<QJsonObject &, &QJsonObject::swap>("swap");
+  binder.void_fun<QJsonObject &, &QJsonObject::swap>("swap").create();
   // static QJsonObject fromVariantMap(const QVariantMap &);
   /// TODO: static QJsonObject fromVariantMap(const QVariantMap &);
   // QVariantMap toVariantMap() const;
@@ -47,15 +47,15 @@ static void register_json_object_class(script::Namespace ns)
   // QStringList keys() const;
   /// TODO: QStringList keys() const;
   // int size() const;
-  binder.add_fun<int, &QJsonObject::size>("size");
+  binder.fun<int, &QJsonObject::size>("size").create();
   // int count() const;
-  binder.add_fun<int, &QJsonObject::count>("count");
+  binder.fun<int, &QJsonObject::count>("count").create();
   // int length() const;
-  binder.add_fun<int, &QJsonObject::length>("length");
+  binder.fun<int, &QJsonObject::length>("length").create();
   // bool isEmpty() const;
-  binder.add_fun<bool, &QJsonObject::isEmpty>("isEmpty");
+  binder.fun<bool, &QJsonObject::isEmpty>("isEmpty").create();
   // QJsonValue value(const QString &) const;
-  binder.add_fun<QJsonValue, const QString &, &QJsonObject::value>("value");
+  binder.fun<QJsonValue, const QString &, &QJsonObject::value>("value").create();
   // QJsonValue value(QLatin1String) const;
   /// TODO: QJsonValue value(QLatin1String) const;
   // QJsonValue operator[](const QString &) const;
@@ -67,11 +67,11 @@ static void register_json_object_class(script::Namespace ns)
   // QJsonValueRef operator[](QLatin1String);
   /// TODO: QJsonValueRef operator[](QLatin1String);
   // void remove(const QString &);
-  binder.add_void_fun<const QString &, &QJsonObject::remove>("remove");
+  binder.void_fun<const QString &, &QJsonObject::remove>("remove").create();
   // QJsonValue take(const QString &);
-  binder.add_fun<QJsonValue, const QString &, &QJsonObject::take>("take");
+  binder.fun<QJsonValue, const QString &, &QJsonObject::take>("take").create();
   // bool contains(const QString &) const;
-  binder.add_fun<bool, const QString &, &QJsonObject::contains>("contains");
+  binder.fun<bool, const QString &, &QJsonObject::contains>("contains").create();
   // bool contains(QLatin1String) const;
   /// TODO: bool contains(QLatin1String) const;
   // bool operator==(const QJsonObject &) const;
@@ -107,7 +107,7 @@ static void register_json_object_class(script::Namespace ns)
   // QJsonObject::iterator insert(const QString &, const QJsonValue &);
   /// TODO: QJsonObject::iterator insert(const QString &, const QJsonValue &);
   // bool empty() const;
-  binder.add_fun<bool, &QJsonObject::empty>("empty");
+  binder.fun<bool, &QJsonObject::empty>("empty").create();
 }
 
 
@@ -121,7 +121,7 @@ void register_jsonobject_file(script::Namespace core)
   binding::Namespace binder{ ns };
 
   // void swap(QJsonObject &, QJsonObject &);
-  binder.add_void_fun<QJsonObject &, QJsonObject &, &swap>("swap");
+  binder.void_fun<QJsonObject &, QJsonObject &, &swap>("swap").create();
   // QDebug operator<<(QDebug, const QJsonObject &);
   /// TODO: QDebug operator<<(QDebug, const QJsonObject &);
 }

@@ -23,19 +23,19 @@ static void register_check_box_class(script::Namespace ns)
   binding::QClass<QCheckBox> binder{ check_box, &QCheckBox::staticMetaObject };
 
   // QCheckBox(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // QCheckBox(const QString &, QWidget *);
-  binder.ctors().add<const QString &, QWidget *>();
+  binder.ctors().ctor<const QString &, QWidget *>().create();
   // ~QCheckBox();
   binder.add_dtor();
   // void setTristate(bool);
-  binder.add_void_fun<bool, &QCheckBox::setTristate>("setTristate");
+  binder.void_fun<bool, &QCheckBox::setTristate>("setTristate").create();
   // bool isTristate() const;
-  binder.add_fun<bool, &QCheckBox::isTristate>("isTristate");
+  binder.fun<bool, &QCheckBox::isTristate>("isTristate").create();
   // Qt::CheckState checkState() const;
-  binder.add_fun<Qt::CheckState, &QCheckBox::checkState>("checkState");
+  binder.fun<Qt::CheckState, &QCheckBox::checkState>("checkState").create();
   // void setCheckState(Qt::CheckState);
-  binder.add_void_fun<Qt::CheckState, &QCheckBox::setCheckState>("setCheckState");
+  binder.void_fun<Qt::CheckState, &QCheckBox::setCheckState>("setCheckState").create();
   // void stateChanged(int);
   binder.sigs().add<int>("stateChanged", "stateChanged(int)");
 

@@ -23,9 +23,9 @@ static void register_scroll_bar_class(script::Namespace ns)
   binding::QClass<QScrollBar> binder{ scroll_bar, &QScrollBar::staticMetaObject };
 
   // QScrollBar(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // QScrollBar(Qt::Orientation, QWidget *);
-  binder.ctors().add<Qt::Orientation, QWidget *>();
+  binder.ctors().ctor<Qt::Orientation, QWidget *>().create();
   // ~QScrollBar();
   binder.add_dtor();
 

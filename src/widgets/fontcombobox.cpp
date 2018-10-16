@@ -45,23 +45,23 @@ static void register_font_combo_box_class(script::Namespace ns)
   binding::QClass<QFontComboBox> binder{ font_combo_box, &QFontComboBox::staticMetaObject };
 
   // QFontComboBox(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // ~QFontComboBox();
   binder.add_dtor();
   // void setWritingSystem(QFontDatabase::WritingSystem);
-  binder.add_void_fun<QFontDatabase::WritingSystem, &QFontComboBox::setWritingSystem>("setWritingSystem");
+  binder.void_fun<QFontDatabase::WritingSystem, &QFontComboBox::setWritingSystem>("setWritingSystem").create();
   // QFontDatabase::WritingSystem writingSystem() const;
-  binder.add_fun<QFontDatabase::WritingSystem, &QFontComboBox::writingSystem>("writingSystem");
+  binder.fun<QFontDatabase::WritingSystem, &QFontComboBox::writingSystem>("writingSystem").create();
   // void setFontFilters(QFontComboBox::FontFilters);
-  binder.add_void_fun<QFontComboBox::FontFilters, &QFontComboBox::setFontFilters>("setFontFilters");
+  binder.void_fun<QFontComboBox::FontFilters, &QFontComboBox::setFontFilters>("setFontFilters").create();
   // QFontComboBox::FontFilters fontFilters() const;
-  binder.add_fun<QFontComboBox::FontFilters, &QFontComboBox::fontFilters>("fontFilters");
+  binder.fun<QFontComboBox::FontFilters, &QFontComboBox::fontFilters>("fontFilters").create();
   // QFont currentFont() const;
-  binder.add_fun<QFont, &QFontComboBox::currentFont>("currentFont");
+  binder.fun<QFont, &QFontComboBox::currentFont>("currentFont").create();
   // QSize sizeHint() const;
-  binder.add_fun<QSize, &QFontComboBox::sizeHint>("sizeHint");
+  binder.fun<QSize, &QFontComboBox::sizeHint>("sizeHint").create();
   // void setCurrentFont(const QFont &);
-  binder.add_void_fun<const QFont &, &QFontComboBox::setCurrentFont>("setCurrentFont");
+  binder.void_fun<const QFont &, &QFontComboBox::setCurrentFont>("setCurrentFont").create();
   // void currentFontChanged(const QFont &);
   binder.sigs().add<const QFont &>("currentFontChanged", "currentFontChanged(const QFont &)");
 

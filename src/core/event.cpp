@@ -206,27 +206,27 @@ static void register_event_class(script::Namespace ns)
   binding::Event<QEvent> binder{ event };
 
   // QEvent(QEvent::Type);
-  binder.ctors().add<QEvent::Type>();
+  binder.ctors().ctor<QEvent::Type>().create();
   // QEvent(const QEvent &);
-  binder.ctors().add<const QEvent &>();
+  binder.ctors().ctor<const QEvent &>().create();
   // ~QEvent();
   binder.add_dtor();
   // QEvent & operator=(const QEvent &);
   binder.operators().assign<const QEvent &>();
   // QEvent::Type type() const;
-  binder.add_fun<QEvent::Type, &QEvent::type>("type");
+  binder.fun<QEvent::Type, &QEvent::type>("type").create();
   // bool spontaneous() const;
-  binder.add_fun<bool, &QEvent::spontaneous>("spontaneous");
+  binder.fun<bool, &QEvent::spontaneous>("spontaneous").create();
   // void setAccepted(bool);
-  binder.add_void_fun<bool, &QEvent::setAccepted>("setAccepted");
+  binder.void_fun<bool, &QEvent::setAccepted>("setAccepted").create();
   // bool isAccepted() const;
-  binder.add_fun<bool, &QEvent::isAccepted>("isAccepted");
+  binder.fun<bool, &QEvent::isAccepted>("isAccepted").create();
   // void accept();
-  binder.add_void_fun<&QEvent::accept>("accept");
+  binder.void_fun<&QEvent::accept>("accept").create();
   // void ignore();
-  binder.add_void_fun<&QEvent::ignore>("ignore");
+  binder.void_fun<&QEvent::ignore>("ignore").create();
   // static int registerEventType(int);
-  binder.add_static<int, int, &QEvent::registerEventType>("registerEventType");
+  binder.static_fun<int, int, &QEvent::registerEventType>("registerEventType").create();
 }
 
 
@@ -239,11 +239,11 @@ static void register_timer_event_class(script::Namespace ns)
   binding::Event<QTimerEvent> binder{ timer_event };
 
   // QTimerEvent(int);
-  binder.ctors().add<int>();
+  binder.ctors().ctor<int>().create();
   // ~QTimerEvent();
   binder.add_dtor();
   // int timerId() const;
-  binder.add_fun<int, &QTimerEvent::timerId>("timerId");
+  binder.fun<int, &QTimerEvent::timerId>("timerId").create();
 }
 
 
@@ -256,17 +256,17 @@ static void register_child_event_class(script::Namespace ns)
   binding::Event<QChildEvent> binder{ child_event };
 
   // QChildEvent(QEvent::Type, QObject *);
-  binder.ctors().add<QEvent::Type, QObject *>();
+  binder.ctors().ctor<QEvent::Type, QObject *>().create();
   // ~QChildEvent();
   binder.add_dtor();
   // QObject * child() const;
-  binder.add_fun<QObject *, &QChildEvent::child>("child");
+  binder.fun<QObject *, &QChildEvent::child>("child").create();
   // bool added() const;
-  binder.add_fun<bool, &QChildEvent::added>("added");
+  binder.fun<bool, &QChildEvent::added>("added").create();
   // bool polished() const;
-  binder.add_fun<bool, &QChildEvent::polished>("polished");
+  binder.fun<bool, &QChildEvent::polished>("polished").create();
   // bool removed() const;
-  binder.add_fun<bool, &QChildEvent::removed>("removed");
+  binder.fun<bool, &QChildEvent::removed>("removed").create();
 }
 
 
@@ -279,11 +279,11 @@ static void register_dynamic_property_change_event_class(script::Namespace ns)
   binding::Event<QDynamicPropertyChangeEvent> binder{ dynamic_property_change_event };
 
   // QDynamicPropertyChangeEvent(const QByteArray &);
-  binder.ctors().add<const QByteArray &>();
+  binder.ctors().ctor<const QByteArray &>().create();
   // ~QDynamicPropertyChangeEvent();
   binder.add_dtor();
   // QByteArray propertyName() const;
-  binder.add_fun<QByteArray, &QDynamicPropertyChangeEvent::propertyName>("propertyName");
+  binder.fun<QByteArray, &QDynamicPropertyChangeEvent::propertyName>("propertyName").create();
 }
 
 
@@ -300,7 +300,7 @@ static void register_deferred_delete_event_class(script::Namespace ns)
   // ~QDeferredDeleteEvent();
   binder.add_dtor();
   // int loopLevel() const;
-  binder.add_fun<int, &QDeferredDeleteEvent::loopLevel>("loopLevel");
+  binder.fun<int, &QDeferredDeleteEvent::loopLevel>("loopLevel").create();
 }
 
 

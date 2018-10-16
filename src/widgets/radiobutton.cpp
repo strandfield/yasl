@@ -22,9 +22,9 @@ static void register_radio_button_class(script::Namespace ns)
   binding::QClass<QRadioButton> binder{ radio_button, &QRadioButton::staticMetaObject };
 
   // QRadioButton(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // QRadioButton(const QString &, QWidget *);
-  binder.ctors().add<const QString &, QWidget *>();
+  binder.ctors().ctor<const QString &, QWidget *>().create();
   // ~QRadioButton();
   binder.add_dtor();
 

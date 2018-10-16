@@ -132,7 +132,7 @@ static void register_pixel_format_class(script::Namespace ns)
   // QPixelFormat();
   binder.ctors().add_default();
   // QPixelFormat(const QPixelFormat &);
-  binder.ctors().add<const QPixelFormat &>();
+  binder.ctors().ctor<const QPixelFormat &>().create();
   // ~QPixelFormat();
   binder.add_dtor();
   // QPixelFormat & operator=(const QPixelFormat &);
@@ -140,7 +140,7 @@ static void register_pixel_format_class(script::Namespace ns)
   // QPixelFormat(QPixelFormat::ColorModel, uchar, uchar, uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation, QPixelFormat::ByteOrder, uchar);
   /// TODO: QPixelFormat(QPixelFormat::ColorModel, uchar, uchar, uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation, QPixelFormat::ByteOrder, uchar);
   // QPixelFormat::ColorModel colorModel() const;
-  binder.add_fun<QPixelFormat::ColorModel, &QPixelFormat::colorModel>("colorModel");
+  binder.fun<QPixelFormat::ColorModel, &QPixelFormat::colorModel>("colorModel").create();
   // uchar channelCount() const;
   /// TODO: uchar channelCount() const;
   // uchar redSize() const;
@@ -170,17 +170,17 @@ static void register_pixel_format_class(script::Namespace ns)
   // uchar bitsPerPixel() const;
   /// TODO: uchar bitsPerPixel() const;
   // QPixelFormat::AlphaUsage alphaUsage() const;
-  binder.add_fun<QPixelFormat::AlphaUsage, &QPixelFormat::alphaUsage>("alphaUsage");
+  binder.fun<QPixelFormat::AlphaUsage, &QPixelFormat::alphaUsage>("alphaUsage").create();
   // QPixelFormat::AlphaPosition alphaPosition() const;
-  binder.add_fun<QPixelFormat::AlphaPosition, &QPixelFormat::alphaPosition>("alphaPosition");
+  binder.fun<QPixelFormat::AlphaPosition, &QPixelFormat::alphaPosition>("alphaPosition").create();
   // QPixelFormat::AlphaPremultiplied premultiplied() const;
-  binder.add_fun<QPixelFormat::AlphaPremultiplied, &QPixelFormat::premultiplied>("premultiplied");
+  binder.fun<QPixelFormat::AlphaPremultiplied, &QPixelFormat::premultiplied>("premultiplied").create();
   // QPixelFormat::TypeInterpretation typeInterpretation() const;
-  binder.add_fun<QPixelFormat::TypeInterpretation, &QPixelFormat::typeInterpretation>("typeInterpretation");
+  binder.fun<QPixelFormat::TypeInterpretation, &QPixelFormat::typeInterpretation>("typeInterpretation").create();
   // QPixelFormat::ByteOrder byteOrder() const;
-  binder.add_fun<QPixelFormat::ByteOrder, &QPixelFormat::byteOrder>("byteOrder");
+  binder.fun<QPixelFormat::ByteOrder, &QPixelFormat::byteOrder>("byteOrder").create();
   // QPixelFormat::YUVLayout yuvLayout() const;
-  binder.add_fun<QPixelFormat::YUVLayout, &QPixelFormat::yuvLayout>("yuvLayout");
+  binder.fun<QPixelFormat::YUVLayout, &QPixelFormat::yuvLayout>("yuvLayout").create();
   // uchar subEnum() const;
   /// TODO: uchar subEnum() const;
 }

@@ -21,13 +21,13 @@ static void register_error_message_class(script::Namespace ns)
   binding::QClass<QErrorMessage> binder{ error_message, &QErrorMessage::staticMetaObject };
 
   // QErrorMessage(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // ~QErrorMessage();
   binder.add_dtor();
   // void showMessage(const QString &);
-  binder.add_void_fun<const QString &, &QErrorMessage::showMessage>("showMessage");
+  binder.void_fun<const QString &, &QErrorMessage::showMessage>("showMessage").create();
   // void showMessage(const QString &, const QString &);
-  binder.add_void_fun<const QString &, const QString &, &QErrorMessage::showMessage>("showMessage");
+  binder.void_fun<const QString &, const QString &, &QErrorMessage::showMessage>("showMessage").create();
 
   error_message.engine()->registerQtType(&QErrorMessage::staticMetaObject, error_message.id());
 }

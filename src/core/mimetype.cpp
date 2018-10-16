@@ -22,13 +22,13 @@ static void register_mime_type_class(script::Namespace ns)
   // QMimeType();
   binder.ctors().add_default();
   // QMimeType(const QMimeType &);
-  binder.ctors().add<const QMimeType &>();
+  binder.ctors().ctor<const QMimeType &>().create();
   // QMimeType & operator=(const QMimeType &);
   binder.operators().assign<const QMimeType &>();
   // QMimeType & operator=(QMimeType &&);
   binder.operators().assign<QMimeType &&>();
   // void swap(QMimeType &);
-  binder.add_void_fun<QMimeType &, &QMimeType::swap>("swap");
+  binder.void_fun<QMimeType &, &QMimeType::swap>("swap").create();
   // QMimeType(const QMimeTypePrivate &);
   /// TODO: QMimeType(const QMimeTypePrivate &);
   // ~QMimeType();
@@ -38,17 +38,17 @@ static void register_mime_type_class(script::Namespace ns)
   // bool operator!=(const QMimeType &) const;
   binder.operators().neq<const QMimeType &>();
   // bool isValid() const;
-  binder.add_fun<bool, &QMimeType::isValid>("isValid");
+  binder.fun<bool, &QMimeType::isValid>("isValid").create();
   // bool isDefault() const;
-  binder.add_fun<bool, &QMimeType::isDefault>("isDefault");
+  binder.fun<bool, &QMimeType::isDefault>("isDefault").create();
   // QString name() const;
-  binder.add_fun<QString, &QMimeType::name>("name");
+  binder.fun<QString, &QMimeType::name>("name").create();
   // QString comment() const;
-  binder.add_fun<QString, &QMimeType::comment>("comment");
+  binder.fun<QString, &QMimeType::comment>("comment").create();
   // QString genericIconName() const;
-  binder.add_fun<QString, &QMimeType::genericIconName>("genericIconName");
+  binder.fun<QString, &QMimeType::genericIconName>("genericIconName").create();
   // QString iconName() const;
-  binder.add_fun<QString, &QMimeType::iconName>("iconName");
+  binder.fun<QString, &QMimeType::iconName>("iconName").create();
   // QStringList globPatterns() const;
   /// TODO: QStringList globPatterns() const;
   // QStringList parentMimeTypes() const;
@@ -60,11 +60,11 @@ static void register_mime_type_class(script::Namespace ns)
   // QStringList suffixes() const;
   /// TODO: QStringList suffixes() const;
   // QString preferredSuffix() const;
-  binder.add_fun<QString, &QMimeType::preferredSuffix>("preferredSuffix");
+  binder.fun<QString, &QMimeType::preferredSuffix>("preferredSuffix").create();
   // bool inherits(const QString &) const;
-  binder.add_fun<bool, const QString &, &QMimeType::inherits>("inherits");
+  binder.fun<bool, const QString &, &QMimeType::inherits>("inherits").create();
   // QString filterString() const;
-  binder.add_fun<QString, &QMimeType::filterString>("filterString");
+  binder.fun<QString, &QMimeType::filterString>("filterString").create();
 }
 
 
@@ -78,9 +78,9 @@ void register_mimetype_file(script::Namespace core)
   binding::Namespace binder{ ns };
 
   // uint qHash(const QMimeType &, uint);
-  binder.add_fun<uint, const QMimeType &, uint, &qHash>("qHash");
+  binder.fun<uint, const QMimeType &, uint, &qHash>("qHash").create();
   // void swap(QMimeType &, QMimeType &);
-  binder.add_void_fun<QMimeType &, QMimeType &, &swap>("swap");
+  binder.void_fun<QMimeType &, QMimeType &, &swap>("swap").create();
   // QDebug operator<<(QDebug, const QMimeType &);
   /// TODO: QDebug operator<<(QDebug, const QMimeType &);
 }

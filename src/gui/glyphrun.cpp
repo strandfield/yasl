@@ -40,7 +40,7 @@ static void register_glyph_run_class(script::Namespace ns)
   // QGlyphRun();
   binder.ctors().add_default();
   // QGlyphRun(const QGlyphRun &);
-  binder.ctors().add<const QGlyphRun &>();
+  binder.ctors().ctor<const QGlyphRun &>().create();
   // QGlyphRun & operator=(QGlyphRun &&);
   binder.operators().assign<QGlyphRun &&>();
   // QGlyphRun & operator=(const QGlyphRun &);
@@ -48,7 +48,7 @@ static void register_glyph_run_class(script::Namespace ns)
   // ~QGlyphRun();
   binder.add_dtor();
   // void swap(QGlyphRun &);
-  binder.add_void_fun<QGlyphRun &, &QGlyphRun::swap>("swap");
+  binder.void_fun<QGlyphRun &, &QGlyphRun::swap>("swap").create();
   // QRawFont rawFont() const;
   /// TODO: QRawFont rawFont() const;
   // void setRawFont(const QRawFont &);
@@ -64,39 +64,39 @@ static void register_glyph_run_class(script::Namespace ns)
   // void setPositions(const QVector<QPointF> &);
   /// TODO: void setPositions(const QVector<QPointF> &);
   // void clear();
-  binder.add_void_fun<&QGlyphRun::clear>("clear");
+  binder.void_fun<&QGlyphRun::clear>("clear").create();
   // bool operator==(const QGlyphRun &) const;
   binder.operators().eq<const QGlyphRun &>();
   // bool operator!=(const QGlyphRun &) const;
   binder.operators().neq<const QGlyphRun &>();
   // void setOverline(bool);
-  binder.add_void_fun<bool, &QGlyphRun::setOverline>("setOverline");
+  binder.void_fun<bool, &QGlyphRun::setOverline>("setOverline").create();
   // bool overline() const;
-  binder.add_fun<bool, &QGlyphRun::overline>("overline");
+  binder.fun<bool, &QGlyphRun::overline>("overline").create();
   // void setUnderline(bool);
-  binder.add_void_fun<bool, &QGlyphRun::setUnderline>("setUnderline");
+  binder.void_fun<bool, &QGlyphRun::setUnderline>("setUnderline").create();
   // bool underline() const;
-  binder.add_fun<bool, &QGlyphRun::underline>("underline");
+  binder.fun<bool, &QGlyphRun::underline>("underline").create();
   // void setStrikeOut(bool);
-  binder.add_void_fun<bool, &QGlyphRun::setStrikeOut>("setStrikeOut");
+  binder.void_fun<bool, &QGlyphRun::setStrikeOut>("setStrikeOut").create();
   // bool strikeOut() const;
-  binder.add_fun<bool, &QGlyphRun::strikeOut>("strikeOut");
+  binder.fun<bool, &QGlyphRun::strikeOut>("strikeOut").create();
   // void setRightToLeft(bool);
-  binder.add_void_fun<bool, &QGlyphRun::setRightToLeft>("setRightToLeft");
+  binder.void_fun<bool, &QGlyphRun::setRightToLeft>("setRightToLeft").create();
   // bool isRightToLeft() const;
-  binder.add_fun<bool, &QGlyphRun::isRightToLeft>("isRightToLeft");
+  binder.fun<bool, &QGlyphRun::isRightToLeft>("isRightToLeft").create();
   // void setFlag(QGlyphRun::GlyphRunFlag, bool);
-  binder.add_void_fun<QGlyphRun::GlyphRunFlag, bool, &QGlyphRun::setFlag>("setFlag");
+  binder.void_fun<QGlyphRun::GlyphRunFlag, bool, &QGlyphRun::setFlag>("setFlag").create();
   // void setFlags(QGlyphRun::GlyphRunFlags);
   /// TODO: void setFlags(QGlyphRun::GlyphRunFlags);
   // QGlyphRun::GlyphRunFlags flags() const;
   /// TODO: QGlyphRun::GlyphRunFlags flags() const;
   // void setBoundingRect(const QRectF &);
-  binder.add_void_fun<const QRectF &, &QGlyphRun::setBoundingRect>("setBoundingRect");
+  binder.void_fun<const QRectF &, &QGlyphRun::setBoundingRect>("setBoundingRect").create();
   // QRectF boundingRect() const;
-  binder.add_fun<QRectF, &QGlyphRun::boundingRect>("boundingRect");
+  binder.fun<QRectF, &QGlyphRun::boundingRect>("boundingRect").create();
   // bool isEmpty() const;
-  binder.add_fun<bool, &QGlyphRun::isEmpty>("isEmpty");
+  binder.fun<bool, &QGlyphRun::isEmpty>("isEmpty").create();
 }
 
 
@@ -110,6 +110,6 @@ void register_glyphrun_file(script::Namespace gui)
   binding::Namespace binder{ ns };
 
   // void swap(QGlyphRun &, QGlyphRun &);
-  binder.add_void_fun<QGlyphRun &, QGlyphRun &, &swap>("swap");
+  binder.void_fun<QGlyphRun &, QGlyphRun &, &swap>("swap").create();
 }
 

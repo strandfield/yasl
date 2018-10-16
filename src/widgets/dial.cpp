@@ -22,23 +22,23 @@ static void register_dial_class(script::Namespace ns)
   binding::QClass<QDial> binder{ dial, &QDial::staticMetaObject };
 
   // QDial(QWidget *);
-  binder.ctors().add<QWidget *>();
+  binder.ctors().ctor<QWidget *>().create();
   // ~QDial();
   binder.add_dtor();
   // bool wrapping() const;
-  binder.add_fun<bool, &QDial::wrapping>("wrapping");
+  binder.fun<bool, &QDial::wrapping>("wrapping").create();
   // int notchSize() const;
-  binder.add_fun<int, &QDial::notchSize>("notchSize");
+  binder.fun<int, &QDial::notchSize>("notchSize").create();
   // void setNotchTarget(double);
-  binder.add_void_fun<double, &QDial::setNotchTarget>("setNotchTarget");
+  binder.void_fun<double, &QDial::setNotchTarget>("setNotchTarget").create();
   // qreal notchTarget() const;
-  binder.add_fun<qreal, &QDial::notchTarget>("notchTarget");
+  binder.fun<qreal, &QDial::notchTarget>("notchTarget").create();
   // bool notchesVisible() const;
-  binder.add_fun<bool, &QDial::notchesVisible>("notchesVisible");
+  binder.fun<bool, &QDial::notchesVisible>("notchesVisible").create();
   // void setNotchesVisible(bool);
-  binder.add_void_fun<bool, &QDial::setNotchesVisible>("setNotchesVisible");
+  binder.void_fun<bool, &QDial::setNotchesVisible>("setNotchesVisible").create();
   // void setWrapping(bool);
-  binder.add_void_fun<bool, &QDial::setWrapping>("setWrapping");
+  binder.void_fun<bool, &QDial::setWrapping>("setWrapping").create();
 
   dial.engine()->registerQtType(&QDial::staticMetaObject, dial.id());
 }

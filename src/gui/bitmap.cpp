@@ -28,15 +28,15 @@ static void register_bitmap_class(script::Namespace ns)
   // QBitmap();
   binder.ctors().add_default();
   // QBitmap(const QPixmap &);
-  binder.ctors().add<const QPixmap &>();
+  binder.ctors().ctor<const QPixmap &>().create();
   // QBitmap(int, int);
-  binder.ctors().add<int, int>();
+  binder.ctors().ctor<int, int>().create();
   // QBitmap(const QSize &);
-  binder.ctors().add<const QSize &>();
+  binder.ctors().ctor<const QSize &>().create();
   // QBitmap(const QString &, const char *);
   /// TODO: QBitmap(const QString &, const char *);
   // QBitmap(const QBitmap &);
-  binder.ctors().add<const QBitmap &>();
+  binder.ctors().ctor<const QBitmap &>().create();
   // QBitmap & operator=(const QBitmap &);
   binder.operators().assign<const QBitmap &>();
   // QBitmap & operator=(QBitmap &&);
@@ -46,17 +46,17 @@ static void register_bitmap_class(script::Namespace ns)
   // QBitmap & operator=(const QPixmap &);
   binder.operators().assign<const QPixmap &>();
   // void swap(QBitmap &);
-  binder.add_void_fun<QBitmap &, &QBitmap::swap>("swap");
+  binder.void_fun<QBitmap &, &QBitmap::swap>("swap").create();
   // void clear();
-  binder.add_void_fun<&QBitmap::clear>("clear");
+  binder.void_fun<&QBitmap::clear>("clear").create();
   // static QBitmap fromImage(const QImage &, Qt::ImageConversionFlags);
-  binder.add_static<QBitmap, const QImage &, Qt::ImageConversionFlags, &QBitmap::fromImage>("fromImage");
+  binder.static_fun<QBitmap, const QImage &, Qt::ImageConversionFlags, &QBitmap::fromImage>("fromImage").create();
   // static QBitmap fromData(const QSize &, const uchar *, QImage::Format);
   /// TODO: static QBitmap fromData(const QSize &, const uchar *, QImage::Format);
   // QBitmap transformed(const QMatrix &) const;
   /// TODO: QBitmap transformed(const QMatrix &) const;
   // QBitmap transformed(const QTransform &) const;
-  binder.add_fun<QBitmap, const QTransform &, &QBitmap::transformed>("transformed");
+  binder.fun<QBitmap, const QTransform &, &QBitmap::transformed>("transformed").create();
 }
 
 
@@ -70,6 +70,6 @@ void register_bitmap_file(script::Namespace gui)
   binding::Namespace binder{ ns };
 
   // void swap(QBitmap &, QBitmap &);
-  binder.add_void_fun<QBitmap &, QBitmap &, &swap>("swap");
+  binder.void_fun<QBitmap &, QBitmap &, &swap>("swap").create();
 }
 
