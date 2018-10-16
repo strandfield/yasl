@@ -68,6 +68,50 @@ public:
     class_.Constructor(qclass_constructor_wrapper_t<T, A1, A2, A3, A4, A5>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>()).create();
   }
+
+  /****************************************************************
+  Constructors
+  ****************************************************************/
+
+  script::FunctionBuilder default_ctor()
+  {
+    return class_.Constructor(qclass_constructor_wrapper_t<T>::wrap);
+  }
+
+  template<typename A1>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(qclass_constructor_wrapper_t<T, A1>::wrap)
+      .params(make_type<A1>());
+  }
+
+  template<typename A1, typename A2>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(qclass_constructor_wrapper_t<T, A1, A2>::wrap)
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename A1, typename A2, typename A3>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(qclass_constructor_wrapper_t<T, A1, A2, A3>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(qclass_constructor_wrapper_t<T, A1, A2, A3, A4>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(qclass_constructor_wrapper_t<T, A1, A2, A3, A4, A5>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
 };
 
 template<typename T>

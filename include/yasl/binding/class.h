@@ -86,6 +86,61 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
       .create();
   }
+
+
+
+  script::FunctionBuilder default_ctor()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T>::wrap);
+  }
+
+  script::FunctionBuilder copy_ctor()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, const T&>::wrap)
+      .params(script::Type::cref(make_type<T>()));
+  }
+
+  template<typename A1>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1>::wrap)
+      .params(make_type<A1>());
+  }
+
+  template<typename A1, typename A2>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2>::wrap)
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename A1, typename A2, typename A3>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4, A5>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4, A5, A6>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+  }
 };
 
 template<typename T>
@@ -146,6 +201,60 @@ public:
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
       .create();
   }
+
+
+  script::FunctionBuilder default_ctor()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T>::wrap);
+  }
+
+  script::FunctionBuilder copy_ctor()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, const T&>::wrap)
+      .params(script::Type::cref(make_type<T>()));
+  }
+
+  template<typename A1>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, A1>::wrap)
+      .params(make_type<A1>());
+  }
+
+  template<typename A1, typename A2>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2>::wrap)
+      .params(make_type<A1>(), make_type<A2>());
+  }
+
+  template<typename A1, typename A2, typename A3>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4, A5>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+  }
+
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
+  script::FunctionBuilder ctor()
+  {
+    return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4, A5, A6>::wrap)
+      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+  }
 };
 
 
@@ -163,6 +272,11 @@ public:
   {
     return class_.Destructor(destructor_wrapper_small_object_t<T>::wrap).create();
   }
+
+  script::FunctionBuilder dtor()
+  {
+    return class_.Destructor(destructor_wrapper_small_object_t<T>::wrap);
+  }
 };
 
 template<typename T>
@@ -174,6 +288,11 @@ public:
   script::Function add()
   {
     return class_.Destructor(destructor_wrapper_large_object_t<T>::wrap).create();
+  }
+
+  script::FunctionBuilder dtor()
+  {
+    return class_.Destructor(destructor_wrapper_large_object_t<T>::wrap);
   }
 };
 
@@ -451,7 +570,6 @@ public:
       .create();
   }
 };
-
 
 template<typename T>
 class Class
