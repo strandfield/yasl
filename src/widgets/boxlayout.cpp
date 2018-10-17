@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/boxlayout.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
@@ -58,7 +59,9 @@ static void register_box_layout_class(script::Namespace ns)
   // void addSpacerItem(QSpacerItem *);
   /// TODO: void addSpacerItem(QSpacerItem *);
   // void addWidget(QWidget *, int, Qt::Alignment);
-  binder.void_fun<QWidget *, int, Qt::Alignment, &QBoxLayout::addWidget>("addWidget").create();
+  binder.void_fun<QWidget *, int, Qt::Alignment, &QBoxLayout::addWidget>("addWidget")
+    .addDefaultArgument(binding::default_argument(box_layout.engine(), Qt::Alignment()))
+    .addDefaultArgument(binding::default_argument(box_layout.engine(), 0)).create();
   // void addLayout(QLayout *, int);
   binder.void_fun<QLayout *, int, &QBoxLayout::addLayout>("addLayout").create();
   // void addStrut(int);

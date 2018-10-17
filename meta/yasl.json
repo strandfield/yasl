@@ -53305,6 +53305,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::Alignment();0",
                                     "name": "addWidget",
                                     "parameters": [
                                         "QWidget *",
