@@ -40,6 +40,7 @@ public:
   bool isConst;
   bool isDeleted;
   BindingMethod bindingMethod;
+  QStringList defaultArguments;
 
 public:
   Function(const QString & n, Qt::CheckState c = Qt::Checked);

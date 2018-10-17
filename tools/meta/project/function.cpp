@@ -48,6 +48,9 @@ void Function::fillJson(QJsonObject & obj) const
   if(isDeleted)
     obj["deleted"] = isDeleted;
   json::writeBindingMethod(obj, bindingMethod);
+
+  if (!defaultArguments.isEmpty())
+    obj["defaults"] = defaultArguments.join(';');
 }
 
 QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
@@ -73,6 +76,7 @@ QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
   ret->isConst = obj.contains("const") ? obj.value("const").toBool() : false;
   ret->isDeleted = obj.contains("deleted") ? obj.value("deleted").toBool() : false;
   ret->bindingMethod = json::readBindingMethod(obj);
+  ret->defaultArguments = obj.contains("defaults") ? obj.value("defaults").toString().split(';') : QStringList();
 
   return ret;
 }
@@ -131,6 +135,7 @@ QSharedPointer<Node> Constructor::fromJson(const QJsonObject & obj)
   ret->isConst = obj.value("const").toBool();
   ret->isDeleted = obj.value("deleted").toBool();
   ret->bindingMethod = json::readBindingMethod(obj);
+  ret->defaultArguments = obj.contains("defaults") ? obj.value("defaults").toString().split(';') : QStringList();
 
   return ret;
 }

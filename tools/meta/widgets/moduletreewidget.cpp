@@ -314,6 +314,7 @@ void ModuleTreeWidget::refreshItem(QTreeWidgetItem* item)
     item->setText(0, fun.displayedName());
     item->setText(1, Function::serialize(fun.bindingMethod));
     item->setText(2, fun.rename);
+    item->setText(3, fun.defaultArguments.join(';'));
   }
 
   blockSignals(false);
@@ -443,6 +444,7 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
     item->setIcon(0, QIcon(":/assets/func.png"));
     item->setText(1, Function::serialize(node->as<Function>().bindingMethod));
     item->setText(2, node->as<Function>().rename);
+    item->setText(3, node->as<Function>().defaultArguments.join(';'));
   }
   else if (node->is<Statement>())
   {
@@ -479,6 +481,7 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
   {
     node->as<Function>().bindingMethod = Function::deserialize<Function::BindingMethod>(item->text(1));
     node->as<Function>().rename = item->text(2);
+    node->as<Function>().defaultArguments = item->text(3).split(';');
   }
   else if (node->is<Class>())
   {
@@ -570,7 +573,7 @@ void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
 
   if (node->is<Function>())
   {
-    setHeaderLabels(QStringList() << "Function" << "binding" << "rename" << "" << "" << "");
+    setHeaderLabels(QStringList() << "Function" << "binding" << "rename" << "defaults" << "" << "");
   }
   else if (node->is<Class>())
   {
