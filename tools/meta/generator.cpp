@@ -327,12 +327,9 @@ QString Generator::generate(FunctionRef fun)
 
 QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 {
-  if (bm == Function::ConstructorBinding)
+  if (bm == Function::ConstructorBinding && fun->parameters.isEmpty())
   {
-    if (fun->parameters.isEmpty())
-      return "  binder.ctors().add_default();";
-    else
-      return "  binder.ctors().ctor<" + fparams(fun->parameters) + ">().create();";
+    return "  binder.ctors().add_default();";
   }
   else if (bm == Function::DestructorBinding)
   {
@@ -358,28 +355,46 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
   const QString funname = fun->rename.isEmpty() ? fun->name : fun->rename;
   const QString params = fparamscomma(fun);
   const QString funaddr = "&" + nameQualification() + fun->name;
-  const QString fret = fparam(fun->returnType);
+  const QString fret = bm == Function::ConstructorBinding ? QString() : fparam(fun->returnType);
 
-  if (bm == Function::StaticVoidBinding)
-    return QString("  binder.static_void_fun<%1%2>(\"%3\").create();").arg(params, funaddr, funname);
-  else if(bm == Function::ConstVoidBinding)
-    return QString("  binder.const_void_fun<%2%3>(\"%4\").create();").arg(params, funaddr, funname);
-  else if (bm == Function::VoidBinding)
-    return QString("  binder.void_fun<%2%3>(\"%4\").create();").arg(params, funaddr, funname);
-  else if (bm == Function::ChainableBinding)
-    return QString("  binder.chainable<%2%3>(\"%4\").create();").arg(params, funaddr, funname);
-  else if (bm == Function::StaticBinding)
-    return QString("  binder.static_fun<%1, %2%3>(\"%4\").create();").arg(fret, params, funaddr, funname);
-  else if (bm == Function::SimpleBinding)
-    return QString("  binder.fun<%1, %2%3>(\"%4\").create();").arg(fret, params, funaddr, funname);
-  else if (bm == Function::ReferenceBinding)
-    return QString("  binder.ref_mem_getter<%1, %2%3>(\"%4\").create();").arg(fret, params, funaddr, funname);
-  else if (bm == Function::FreeFunctionBinding)
-    return QString("  binder.fun<%1, %2%3>(\"%4\").create();").arg(fret, params, "&" + fun->name, funname);
-  else if (bm == Function::FreeFunctionAsStaticBinding)
-    return QString("  binder.static_fun<%1, %2%3>(\"%4\").create();").arg(fret, params, "&" + fun->name, funname);
+  QString ret = [&]() -> QString {
+    if (bm == Function::ConstructorBinding)
+      return "  binder.ctors().ctor<" + fparams(fun->parameters) + ">()";
+    else if (bm == Function::StaticVoidBinding)
+      return QString("  binder.static_void_fun<%1%2>(\"%3\")").arg(params, funaddr, funname);
+    else if (bm == Function::ConstVoidBinding)
+      return QString("  binder.const_void_fun<%2%3>(\"%4\")").arg(params, funaddr, funname);
+    else if (bm == Function::VoidBinding)
+      return QString("  binder.void_fun<%2%3>(\"%4\")").arg(params, funaddr, funname);
+    else if (bm == Function::ChainableBinding)
+      return QString("  binder.chainable<%2%3>(\"%4\")").arg(params, funaddr, funname);
+    else if (bm == Function::StaticBinding)
+      return QString("  binder.static_fun<%1, %2%3>(\"%4\")").arg(fret, params, funaddr, funname);
+    else if (bm == Function::SimpleBinding)
+      return QString("  binder.fun<%1, %2%3>(\"%4\")").arg(fret, params, funaddr, funname);
+    else if (bm == Function::ReferenceBinding)
+      return QString("  binder.ref_mem_getter<%1, %2%3>(\"%4\")").arg(fret, params, funaddr, funname);
+    else if (bm == Function::FreeFunctionBinding)
+      return QString("  binder.fun<%1, %2%3>(\"%4\")").arg(fret, params, "&" + fun->name, funname);
+    else if (bm == Function::FreeFunctionAsStaticBinding)
+      return QString("  binder.static_fun<%1, %2%3>(\"%4\")").arg(fret, params, "&" + fun->name, funname);
 
-  throw std::runtime_error{ "Unsupported bind method !" };
+    throw std::runtime_error{ "Unsupported bind method !" };
+  }();
+
+  if (!fun->defaultArguments.isEmpty())
+  {
+    currentSource().bindingIncludes.insert("yasl/binding/default_arguments.h");
+
+    for (const auto & da : fun->defaultArguments)
+    {
+      ret += endl;
+      ret += QString("    .addDefaultArgument(binding::default_argument(") + enclosing_snake_name() + ".engine(), " + da + "))";
+    }
+  }
+
+  ret.append(".create();");
+  return ret;
 }
 
 QString Generator::generateWithMacros(FunctionRef fun)
