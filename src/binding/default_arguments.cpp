@@ -20,6 +20,11 @@ std::shared_ptr<script::program::Expression> default_argument(script::Engine *e,
   return make_default_argument(e->newBool(val));
 }
 
+std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, char val)
+{
+  return make_default_argument(e->newChar(val));
+}
+
 std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, int val)
 {
   return make_default_argument(e->newInt(val));

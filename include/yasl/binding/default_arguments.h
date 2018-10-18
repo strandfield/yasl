@@ -13,6 +13,7 @@ namespace binding
 std::shared_ptr<script::program::Expression> make_default_argument(script::Value val);
 
 std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, bool val);
+std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, char val);
 std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, int val);
 std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, float val);
 std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, double val);
