@@ -5,6 +5,7 @@
 #include "yasl/core/bytearray.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/core/flags.h"
@@ -68,7 +69,8 @@ static void register_byte_array_class(script::Namespace ns)
   // void resize(int);
   binder.void_fun<int, &QByteArray::resize>("resize").create();
   // QByteArray & fill(char, int);
-  binder.chainable<char, int, &QByteArray::fill>("fill").create();
+  binder.chainable<char, int, &QByteArray::fill>("fill")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), -1)).create();
   // int capacity() const;
   binder.fun<int, &QByteArray::capacity>("capacity").create();
   // void reserve(int);
@@ -98,13 +100,17 @@ static void register_byte_array_class(script::Namespace ns)
   // QByteRef back();
   binder.fun<QByteRef, &QByteArray::back>("back").create();
   // int indexOf(char, int) const;
-  binder.fun<int, char, int, &QByteArray::indexOf>("indexOf").create();
+  binder.fun<int, char, int, &QByteArray::indexOf>("indexOf")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), 0)).create();
   // int indexOf(const QByteArray &, int) const;
-  binder.fun<int, const QByteArray &, int, &QByteArray::indexOf>("indexOf").create();
+  binder.fun<int, const QByteArray &, int, &QByteArray::indexOf>("indexOf")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), 0)).create();
   // int lastIndexOf(char, int) const;
-  binder.fun<int, char, int, &QByteArray::lastIndexOf>("lastIndexOf").create();
+  binder.fun<int, char, int, &QByteArray::lastIndexOf>("lastIndexOf")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), -1)).create();
   // int lastIndexOf(const QByteArray &, int) const;
-  binder.fun<int, const QByteArray &, int, &QByteArray::lastIndexOf>("lastIndexOf").create();
+  binder.fun<int, const QByteArray &, int, &QByteArray::lastIndexOf>("lastIndexOf")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), -1)).create();
   // bool contains(char) const;
   binder.fun<bool, char, &QByteArray::contains>("contains").create();
   // bool contains(const QByteArray &) const;
@@ -118,7 +124,8 @@ static void register_byte_array_class(script::Namespace ns)
   // QByteArray right(int) const;
   binder.fun<QByteArray, int, &QByteArray::right>("right").create();
   // QByteArray mid(int, int) const;
-  binder.fun<QByteArray, int, int, &QByteArray::mid>("mid").create();
+  binder.fun<QByteArray, int, int, &QByteArray::mid>("mid")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), -1)).create();
   // QByteArray chopped(int) const;
   binder.fun<QByteArray, int, &QByteArray::chopped>("chopped").create();
   // bool startsWith(const QByteArray &) const;
@@ -142,9 +149,13 @@ static void register_byte_array_class(script::Namespace ns)
   // QByteArray ba_simplified();
   binder.fun<QByteArray, &ba_simplified>("simplified").create();
   // QByteArray leftJustified(int, char, bool) const;
-  binder.fun<QByteArray, int, char, bool, &QByteArray::leftJustified>("leftJustified").create();
+  binder.fun<QByteArray, int, char, bool, &QByteArray::leftJustified>("leftJustified")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), false))
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), ' ')).create();
   // QByteArray rightJustified(int, char, bool) const;
-  binder.fun<QByteArray, int, char, bool, &QByteArray::rightJustified>("rightJustified").create();
+  binder.fun<QByteArray, int, char, bool, &QByteArray::rightJustified>("rightJustified")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), false))
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), ' ')).create();
   // QByteArray & prepend(char);
   binder.chainable<char, &QByteArray::prepend>("prepend").create();
   // QByteArray & prepend(int, char);
@@ -242,15 +253,20 @@ static void register_byte_array_class(script::Namespace ns)
   // QByteArray & setNum(ushort, int);
   /// TODO: QByteArray & setNum(ushort, int);
   // QByteArray & setNum(int, int);
-  binder.chainable<int, int, &QByteArray::setNum>("setNum").create();
+  binder.chainable<int, int, &QByteArray::setNum>("setNum")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), 10)).create();
   // QByteArray & setNum(qlonglong, int);
   /// TODO: QByteArray & setNum(qlonglong, int);
   // QByteArray & setNum(qulonglong, int);
   /// TODO: QByteArray & setNum(qulonglong, int);
   // QByteArray & setNum(float, char, int);
-  binder.chainable<float, char, int, &QByteArray::setNum>("setNum").create();
+  binder.chainable<float, char, int, &QByteArray::setNum>("setNum")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), 6))
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), 'g')).create();
   // QByteArray & setNum(double, char, int);
-  binder.chainable<double, char, int, &QByteArray::setNum>("setNum").create();
+  binder.chainable<double, char, int, &QByteArray::setNum>("setNum")
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), 6))
+    .addDefaultArgument(binding::default_argument(byte_array.engine(), 'g')).create();
   // static QByteArray number(int, int);
   binder.static_fun<QByteArray, int, int, &QByteArray::number>("number").create();
   // static QByteArray number(qlonglong, int);

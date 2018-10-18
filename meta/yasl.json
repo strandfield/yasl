@@ -119,6 +119,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "-1",
                                     "name": "fill",
                                     "parameters": [
                                         "char",
@@ -236,6 +237,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "0",
                                     "name": "indexOf",
                                     "parameters": [
                                         "char",
@@ -246,6 +248,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "0",
                                     "name": "indexOf",
                                     "parameters": [
                                         "const QByteArray &",
@@ -256,6 +259,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "-1",
                                     "name": "lastIndexOf",
                                     "parameters": [
                                         "char",
@@ -266,6 +270,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "-1",
                                     "name": "lastIndexOf",
                                     "parameters": [
                                         "const QByteArray &",
@@ -330,6 +335,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "-1",
                                     "name": "mid",
                                     "parameters": [
                                         "int",
@@ -473,6 +479,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "false;' '",
                                     "name": "leftJustified",
                                     "parameters": [
                                         "int",
@@ -484,6 +491,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "false;' '",
                                     "name": "rightJustified",
                                     "parameters": [
                                         "int",
@@ -926,6 +934,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "10",
                                     "name": "setNum",
                                     "parameters": [
                                         "int",
@@ -963,6 +972,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "6;'g'",
                                     "name": "setNum",
                                     "parameters": [
                                         "float",
@@ -973,6 +983,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "6;'g'",
                                     "name": "setNum",
                                     "parameters": [
                                         "double",
