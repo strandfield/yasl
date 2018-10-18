@@ -19172,6 +19172,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "QLocale::AnyCountry",
                                     "name": "QLocale",
                                     "parameters": [
                                         "QLocale::Language",
@@ -19560,6 +19561,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "6;'g'",
                                     "name": "toString",
                                     "parameters": [
                                         "double",
@@ -19571,6 +19573,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "6;'g'",
                                     "name": "toString",
                                     "parameters": [
                                         "float",
@@ -19672,6 +19675,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "dateFormat",
                                     "parameters": [
                                         "QLocale::FormatType"
@@ -19681,6 +19685,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "timeFormat",
                                     "parameters": [
                                         "QLocale::FormatType"
@@ -19690,6 +19695,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "dateTimeFormat",
                                     "parameters": [
                                         "QLocale::FormatType"
@@ -19699,6 +19705,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "toDate",
                                     "parameters": [
                                         "const QString &",
@@ -19709,6 +19716,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "toTime",
                                     "parameters": [
                                         "const QString &",
@@ -19719,6 +19727,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "toDateTime",
                                     "parameters": [
                                         "const QString &",
@@ -19801,6 +19810,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "monthName",
                                     "parameters": [
                                         "int",
@@ -19811,6 +19821,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "standaloneMonthName",
                                     "parameters": [
                                         "int",
@@ -19821,6 +19832,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "dayName",
                                     "parameters": [
                                         "int",
@@ -19831,6 +19843,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::LongFormat",
                                     "name": "standaloneDayName",
                                     "parameters": [
                                         "int",
@@ -19944,6 +19957,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QString()",
                                     "name": "toCurrencyString",
                                     "parameters": [
                                         "int",
@@ -19964,6 +19978,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QString()",
                                     "name": "toCurrencyString",
                                     "parameters": [
                                         "double",
@@ -19985,6 +20000,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QString()",
                                     "name": "toCurrencyString",
                                     "parameters": [
                                         "float",
@@ -20005,6 +20021,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QLocale::DataSizeIecFormat;2",
                                     "name": "formattedDataSize",
                                     "parameters": [
                                         "qint64",
@@ -20132,6 +20149,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::StandardQuotation",
                                     "name": "quoteString",
                                     "parameters": [
                                         "const QString &",
@@ -20142,6 +20160,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QLocale::StandardQuotation",
                                     "name": "quoteString",
                                     "parameters": [
                                         "const QStringRef &",

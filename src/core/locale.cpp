@@ -5,6 +5,7 @@
 #include "yasl/core/locale.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/core/flags.h"
@@ -950,7 +951,8 @@ static void register_locale_class(script::Namespace ns)
   // QLocale(const QString &);
   binder.ctors().ctor<const QString &>().create();
   // QLocale(QLocale::Language, QLocale::Country);
-  binder.ctors().ctor<QLocale::Language, QLocale::Country>().create();
+  binder.ctors().ctor<QLocale::Language, QLocale::Country>()
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::AnyCountry)).create();
   // QLocale(QLocale::Language, QLocale::Script, QLocale::Country);
   binder.ctors().ctor<QLocale::Language, QLocale::Script, QLocale::Country>().create();
   // QLocale(const QLocale &);
@@ -1038,9 +1040,13 @@ static void register_locale_class(script::Namespace ns)
   // QString toString(uint) const;
   binder.fun<QString, uint, &QLocale::toString>("toString").create();
   // QString toString(double, char, int) const;
-  binder.fun<QString, double, char, int, &QLocale::toString>("toString").create();
+  binder.fun<QString, double, char, int, &QLocale::toString>("toString")
+    .addDefaultArgument(binding::default_argument(locale.engine(), 6))
+    .addDefaultArgument(binding::default_argument(locale.engine(), 'g')).create();
   // QString toString(float, char, int) const;
-  binder.fun<QString, float, char, int, &QLocale::toString>("toString").create();
+  binder.fun<QString, float, char, int, &QLocale::toString>("toString")
+    .addDefaultArgument(binding::default_argument(locale.engine(), 6))
+    .addDefaultArgument(binding::default_argument(locale.engine(), 'g')).create();
   // QString toString(const QDate &, const QString &) const;
   binder.fun<QString, const QDate &, const QString &, &QLocale::toString>("toString").create();
   // QString toString(const QTime &, const QString &) const;
@@ -1060,17 +1066,23 @@ static void register_locale_class(script::Namespace ns)
   // QString toString(const QDateTime &, QLocale::FormatType) const;
   binder.fun<QString, const QDateTime &, QLocale::FormatType, &QLocale::toString>("toString").create();
   // QString dateFormat(QLocale::FormatType) const;
-  binder.fun<QString, QLocale::FormatType, &QLocale::dateFormat>("dateFormat").create();
+  binder.fun<QString, QLocale::FormatType, &QLocale::dateFormat>("dateFormat")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QString timeFormat(QLocale::FormatType) const;
-  binder.fun<QString, QLocale::FormatType, &QLocale::timeFormat>("timeFormat").create();
+  binder.fun<QString, QLocale::FormatType, &QLocale::timeFormat>("timeFormat")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QString dateTimeFormat(QLocale::FormatType) const;
-  binder.fun<QString, QLocale::FormatType, &QLocale::dateTimeFormat>("dateTimeFormat").create();
+  binder.fun<QString, QLocale::FormatType, &QLocale::dateTimeFormat>("dateTimeFormat")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QDate toDate(const QString &, QLocale::FormatType) const;
-  binder.fun<QDate, const QString &, QLocale::FormatType, &QLocale::toDate>("toDate").create();
+  binder.fun<QDate, const QString &, QLocale::FormatType, &QLocale::toDate>("toDate")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QTime toTime(const QString &, QLocale::FormatType) const;
-  binder.fun<QTime, const QString &, QLocale::FormatType, &QLocale::toTime>("toTime").create();
+  binder.fun<QTime, const QString &, QLocale::FormatType, &QLocale::toTime>("toTime")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QDateTime toDateTime(const QString &, QLocale::FormatType) const;
-  binder.fun<QDateTime, const QString &, QLocale::FormatType, &QLocale::toDateTime>("toDateTime").create();
+  binder.fun<QDateTime, const QString &, QLocale::FormatType, &QLocale::toDateTime>("toDateTime")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QDate toDate(const QString &, const QString &) const;
   binder.fun<QDate, const QString &, const QString &, &QLocale::toDate>("toDate").create();
   // QTime toTime(const QString &, const QString &) const;
@@ -1092,13 +1104,17 @@ static void register_locale_class(script::Namespace ns)
   // QChar exponential() const;
   binder.fun<QChar, &QLocale::exponential>("exponential").create();
   // QString monthName(int, QLocale::FormatType) const;
-  binder.fun<QString, int, QLocale::FormatType, &QLocale::monthName>("monthName").create();
+  binder.fun<QString, int, QLocale::FormatType, &QLocale::monthName>("monthName")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QString standaloneMonthName(int, QLocale::FormatType) const;
-  binder.fun<QString, int, QLocale::FormatType, &QLocale::standaloneMonthName>("standaloneMonthName").create();
+  binder.fun<QString, int, QLocale::FormatType, &QLocale::standaloneMonthName>("standaloneMonthName")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QString dayName(int, QLocale::FormatType) const;
-  binder.fun<QString, int, QLocale::FormatType, &QLocale::dayName>("dayName").create();
+  binder.fun<QString, int, QLocale::FormatType, &QLocale::dayName>("dayName")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // QString standaloneDayName(int, QLocale::FormatType) const;
-  binder.fun<QString, int, QLocale::FormatType, &QLocale::standaloneDayName>("standaloneDayName").create();
+  binder.fun<QString, int, QLocale::FormatType, &QLocale::standaloneDayName>("standaloneDayName")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::LongFormat)).create();
   // Qt::DayOfWeek firstDayOfWeek() const;
   binder.fun<Qt::DayOfWeek, &QLocale::firstDayOfWeek>("firstDayOfWeek").create();
   // QList<Qt::DayOfWeek> weekdays() const;
@@ -1126,15 +1142,18 @@ static void register_locale_class(script::Namespace ns)
   // QString toCurrencyString(ushort, const QString &) const;
   /// TODO: QString toCurrencyString(ushort, const QString &) const;
   // QString toCurrencyString(int, const QString &) const;
-  binder.fun<QString, int, const QString &, &QLocale::toCurrencyString>("toCurrencyString").create();
+  binder.fun<QString, int, const QString &, &QLocale::toCurrencyString>("toCurrencyString")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QString())).create();
   // QString toCurrencyString(uint, const QString &) const;
   binder.fun<QString, uint, const QString &, &QLocale::toCurrencyString>("toCurrencyString").create();
   // QString toCurrencyString(double, const QString &) const;
-  binder.fun<QString, double, const QString &, &QLocale::toCurrencyString>("toCurrencyString").create();
+  binder.fun<QString, double, const QString &, &QLocale::toCurrencyString>("toCurrencyString")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QString())).create();
   // QString toCurrencyString(double, const QString &, int) const;
   binder.fun<QString, double, const QString &, int, &QLocale::toCurrencyString>("toCurrencyString").create();
   // QString toCurrencyString(float, const QString &) const;
-  binder.fun<QString, float, const QString &, &QLocale::toCurrencyString>("toCurrencyString").create();
+  binder.fun<QString, float, const QString &, &QLocale::toCurrencyString>("toCurrencyString")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QString())).create();
   // QString toCurrencyString(float, const QString &, int) const;
   binder.fun<QString, float, const QString &, int, &QLocale::toCurrencyString>("toCurrencyString").create();
   // QString formattedDataSize(qint64, int, QLocale::DataSizeFormats);
@@ -1166,7 +1185,8 @@ static void register_locale_class(script::Namespace ns)
   // QLocale::NumberOptions numberOptions() const;
   binder.fun<QLocale::NumberOptions, &QLocale::numberOptions>("numberOptions").create();
   // QString quoteString(const QString &, QLocale::QuotationStyle) const;
-  binder.fun<QString, const QString &, QLocale::QuotationStyle, &QLocale::quoteString>("quoteString").create();
+  binder.fun<QString, const QString &, QLocale::QuotationStyle, &QLocale::quoteString>("quoteString")
+    .addDefaultArgument(binding::default_argument(locale.engine(), QLocale::StandardQuotation)).create();
   // QString quoteString(const QStringRef &, QLocale::QuotationStyle) const;
   /// TODO: QString quoteString(const QStringRef &, QLocale::QuotationStyle) const;
   // QString createSeparatedList(const QStringList &) const;
