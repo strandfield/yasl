@@ -12281,6 +12281,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::TextDate",
                                     "name": "toString",
                                     "parameters": [
                                         "Qt::DateFormat"
@@ -12440,6 +12441,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::TextDate",
                                     "name": "fromString",
                                     "parameters": [
                                         "const QString &",
@@ -12516,6 +12518,7 @@
                                     "type": "destructor"
                                 },
                                 {
+                                    "defaults": "0;0",
                                     "name": "QTime",
                                     "parameters": [
                                         "int",
@@ -12563,6 +12566,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::TextDate",
                                     "name": "toString",
                                     "parameters": [
                                         "Qt::DateFormat"
@@ -12589,6 +12593,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0",
                                     "name": "setHMS",
                                     "parameters": [
                                         "int",
@@ -12719,6 +12724,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::TextDate",
                                     "name": "fromString",
                                     "parameters": [
                                         "const QString &",
@@ -12739,6 +12745,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0",
                                     "name": "isValid",
                                     "parameters": [
                                         "int",
@@ -12783,6 +12790,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "Qt::LocalTime",
                                     "name": "QDateTime",
                                     "parameters": [
                                         "const QDate &",
@@ -12968,6 +12976,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::TextDate",
                                     "name": "toString",
                                     "parameters": [
                                         "Qt::DateFormat"
@@ -13184,6 +13193,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::TextDate",
                                     "name": "fromString",
                                     "parameters": [
                                         "const QString &",
@@ -13256,6 +13266,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0;Qt::LocalTime",
                                     "name": "fromMSecsSinceEpoch",
                                     "parameters": [
                                         "qint64",

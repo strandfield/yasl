@@ -5,6 +5,7 @@
 #include "yasl/core/datetime.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -73,7 +74,8 @@ static void register_date_class(script::Namespace ns)
   // static QString longDayName(int, QDate::MonthNameType);
   binder.static_fun<QString, int, QDate::MonthNameType, &QDate::longDayName>("longDayName").create();
   // QString toString(Qt::DateFormat) const;
-  binder.fun<QString, Qt::DateFormat, &QDate::toString>("toString").create();
+  binder.fun<QString, Qt::DateFormat, &QDate::toString>("toString")
+    .addDefaultArgument(binding::default_argument(date.engine(), Qt::TextDate)).create();
   // QString toString(const QString &) const;
   binder.fun<QString, const QString &, &QDate::toString>("toString").create();
   // QString toString(QStringView) const;
@@ -109,7 +111,8 @@ static void register_date_class(script::Namespace ns)
   // static QDate currentDate();
   binder.static_fun<QDate, &QDate::currentDate>("currentDate").create();
   // static QDate fromString(const QString &, Qt::DateFormat);
-  binder.static_fun<QDate, const QString &, Qt::DateFormat, &QDate::fromString>("fromString").create();
+  binder.static_fun<QDate, const QString &, Qt::DateFormat, &QDate::fromString>("fromString")
+    .addDefaultArgument(binding::default_argument(date.engine(), Qt::TextDate)).create();
   // static QDate fromString(const QString &, const QString &);
   binder.static_fun<QDate, const QString &, const QString &, &QDate::fromString>("fromString").create();
   // static bool isValid(int, int, int);
@@ -138,7 +141,9 @@ static void register_time_class(script::Namespace ns)
   // ~QTime();
   binder.add_dtor();
   // QTime(int, int, int, int);
-  binder.ctors().ctor<int, int, int, int>().create();
+  binder.ctors().ctor<int, int, int, int>()
+    .addDefaultArgument(binding::default_argument(time.engine(), 0))
+    .addDefaultArgument(binding::default_argument(time.engine(), 0)).create();
   // bool isNull() const;
   binder.fun<bool, &QTime::isNull>("isNull").create();
   // bool isValid() const;
@@ -152,13 +157,15 @@ static void register_time_class(script::Namespace ns)
   // int msec() const;
   binder.fun<int, &QTime::msec>("msec").create();
   // QString toString(Qt::DateFormat) const;
-  binder.fun<QString, Qt::DateFormat, &QTime::toString>("toString").create();
+  binder.fun<QString, Qt::DateFormat, &QTime::toString>("toString")
+    .addDefaultArgument(binding::default_argument(time.engine(), Qt::TextDate)).create();
   // QString toString(const QString &) const;
   binder.fun<QString, const QString &, &QTime::toString>("toString").create();
   // QString toString(QStringView) const;
   /// TODO: QString toString(QStringView) const;
   // bool setHMS(int, int, int, int);
-  binder.fun<bool, int, int, int, int, &QTime::setHMS>("setHMS").create();
+  binder.fun<bool, int, int, int, int, &QTime::setHMS>("setHMS")
+    .addDefaultArgument(binding::default_argument(time.engine(), 0)).create();
   // QTime addSecs(int) const;
   binder.fun<QTime, int, &QTime::addSecs>("addSecs").create();
   // int secsTo(const QTime &) const;
@@ -188,11 +195,13 @@ static void register_time_class(script::Namespace ns)
   // static QTime currentTime();
   binder.static_fun<QTime, &QTime::currentTime>("currentTime").create();
   // static QTime fromString(const QString &, Qt::DateFormat);
-  binder.static_fun<QTime, const QString &, Qt::DateFormat, &QTime::fromString>("fromString").create();
+  binder.static_fun<QTime, const QString &, Qt::DateFormat, &QTime::fromString>("fromString")
+    .addDefaultArgument(binding::default_argument(time.engine(), Qt::TextDate)).create();
   // static QTime fromString(const QString &, const QString &);
   binder.static_fun<QTime, const QString &, const QString &, &QTime::fromString>("fromString").create();
   // static bool isValid(int, int, int, int);
-  binder.static_fun<bool, int, int, int, int, &QTime::isValid>("isValid").create();
+  binder.static_fun<bool, int, int, int, int, &QTime::isValid>("isValid")
+    .addDefaultArgument(binding::default_argument(time.engine(), 0)).create();
   // void start();
   binder.void_fun<&QTime::start>("start").create();
   // int restart();
@@ -215,7 +224,8 @@ static void register_date_time_class(script::Namespace ns)
   // QDateTime(const QDate &);
   binder.ctors().ctor<const QDate &>().create();
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec);
-  binder.ctors().ctor<const QDate &, const QTime &, Qt::TimeSpec>().create();
+  binder.ctors().ctor<const QDate &, const QTime &, Qt::TimeSpec>()
+    .addDefaultArgument(binding::default_argument(date_time.engine(), Qt::LocalTime)).create();
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec, int);
   binder.ctors().ctor<const QDate &, const QTime &, Qt::TimeSpec, int>().create();
   // QDateTime(const QDate &, const QTime &, const QTimeZone &);
@@ -269,7 +279,8 @@ static void register_date_time_class(script::Namespace ns)
   // void setSecsSinceEpoch(qint64);
   /// TODO: void setSecsSinceEpoch(qint64);
   // QString toString(Qt::DateFormat) const;
-  binder.fun<QString, Qt::DateFormat, &QDateTime::toString>("toString").create();
+  binder.fun<QString, Qt::DateFormat, &QDateTime::toString>("toString")
+    .addDefaultArgument(binding::default_argument(date_time.engine(), Qt::TextDate)).create();
   // QString toString(const QString &) const;
   binder.fun<QString, const QString &, &QDateTime::toString>("toString").create();
   // QString toString(QStringView) const;
@@ -321,7 +332,8 @@ static void register_date_time_class(script::Namespace ns)
   // static QDateTime currentDateTimeUtc();
   binder.static_fun<QDateTime, &QDateTime::currentDateTimeUtc>("currentDateTimeUtc").create();
   // static QDateTime fromString(const QString &, Qt::DateFormat);
-  binder.static_fun<QDateTime, const QString &, Qt::DateFormat, &QDateTime::fromString>("fromString").create();
+  binder.static_fun<QDateTime, const QString &, Qt::DateFormat, &QDateTime::fromString>("fromString")
+    .addDefaultArgument(binding::default_argument(date_time.engine(), Qt::TextDate)).create();
   // static QDateTime fromString(const QString &, const QString &);
   binder.static_fun<QDateTime, const QString &, const QString &, &QDateTime::fromString>("fromString").create();
   // uint toTime_t() const;
