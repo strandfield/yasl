@@ -13566,6 +13566,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "QString()",
                                     "name": "QDir",
                                     "parameters": [
                                         "const QString &"
@@ -13573,6 +13574,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "QDir::Filters(QDir::AllEntries);QDir::SortFlags(QDir::Name | QDir::IgnoreCase)",
                                     "name": "QDir",
                                     "parameters": [
                                         "const QString &",
@@ -13788,6 +13790,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot)",
                                     "name": "isEmpty",
                                     "parameters": [
                                         "QDir::Filters"
@@ -13815,6 +13818,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QDir::SortFlags(QDir::NoSort);QDir::Filters(QDir::NoFilter)",
                                     "name": "entryList",
                                     "parameters": [
                                         "QDir::Filters",
@@ -13825,6 +13829,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QDir::SortFlags(QDir::NoSort);QDir::Filters(QDir::NoFilter)",
                                     "name": "entryList",
                                     "parameters": [
                                         "const QStringList &",
@@ -13836,6 +13841,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QDir::SortFlags(QDir::NoSort);QDir::Filters(QDir::NoFilter)",
                                     "name": "entryInfoList",
                                     "parameters": [
                                         "QDir::Filters",
@@ -13846,6 +13852,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QDir::SortFlags(QDir::NoSort);QDir::Filters(QDir::NoFilter)",
                                     "name": "entryInfoList",
                                     "parameters": [
                                         "const QStringList &",
