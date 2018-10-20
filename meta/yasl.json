@@ -15306,6 +15306,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::TolerantMode",
                                     "name": "QUrl",
                                     "parameters": [
                                         "const QString &",
@@ -15348,6 +15349,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::TolerantMode",
                                     "name": "setUrl",
                                     "parameters": [
                                         "const QString &",
@@ -15357,6 +15359,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::FormattingOptions(QUrl::FullyEncoded)",
                                     "name": "url",
                                     "parameters": [
                                         "QUrl::FormattingOptions"
@@ -15366,6 +15369,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::FormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "toString",
                                     "parameters": [
                                         "QUrl::FormattingOptions"
@@ -15375,6 +15379,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::FormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "toDisplayString",
                                     "parameters": [
                                         "QUrl::FormattingOptions"
@@ -15393,6 +15398,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::FormattingOptions(QUrl::FullyEncoded)",
                                     "name": "toEncoded",
                                     "parameters": [
                                         "QUrl::FormattingOptions"
@@ -15401,6 +15407,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::TolerantMode",
                                     "name": "fromEncoded",
                                     "parameters": [
                                         "const QByteArray &",
@@ -15432,6 +15439,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::UserInputResolutionOptions(QUrl::DefaultResolution)",
                                     "name": "fromUserInput",
                                     "parameters": [
                                         "const QString &",
@@ -15478,6 +15486,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::TolerantMode",
                                     "name": "setAuthority",
                                     "parameters": [
                                         "const QString &",
@@ -15487,6 +15496,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "authority",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15495,6 +15505,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::TolerantMode",
                                     "name": "setUserInfo",
                                     "parameters": [
                                         "const QString &",
@@ -15504,6 +15515,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "userInfo",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15512,6 +15524,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::DecodedMode",
                                     "name": "setUserName",
                                     "parameters": [
                                         "const QString &",
@@ -15521,6 +15534,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)",
                                     "name": "userName",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15529,6 +15543,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::DecodedMode",
                                     "name": "setPassword",
                                     "parameters": [
                                         "const QString &",
@@ -15538,6 +15553,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)",
                                     "name": "password",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15546,6 +15562,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::DecodedMode",
                                     "name": "setHost",
                                     "parameters": [
                                         "const QString &",
@@ -15555,6 +15572,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)",
                                     "name": "host",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15564,6 +15582,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)",
                                     "name": "topLevelDomain",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15580,6 +15599,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "-1",
                                     "name": "port",
                                     "parameters": [
                                         "int"
@@ -15588,6 +15608,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::DecodedMode",
                                     "name": "setPath",
                                     "parameters": [
                                         "const QString &",
@@ -15597,6 +15618,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)",
                                     "name": "path",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15606,6 +15628,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)",
                                     "name": "fileName",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15620,6 +15643,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::TolerantMode",
                                     "name": "setQuery",
                                     "parameters": [
                                         "const QString &",
@@ -15636,6 +15660,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "query",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15651,6 +15676,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "fragment",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -15768,6 +15794,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QByteArray();QByteArray()",
                                     "name": "toPercentEncoding",
                                     "parameters": [
                                         "const QString &",
@@ -15803,6 +15830,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::FormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "toStringList",
                                     "parameters": [
                                         "const QList<QUrl> &",
@@ -15813,6 +15841,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QUrl::TolerantMode",
                                     "name": "fromStringList",
                                     "parameters": [
                                         "const QStringList &",

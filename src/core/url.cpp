@@ -5,6 +5,7 @@
 #include "yasl/core/url.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/core/flags.h"
@@ -100,7 +101,8 @@ static void register_url_class(script::Namespace ns)
   // QUrl & operator=(const QUrl &);
   binder.operators().assign<const QUrl &>();
   // QUrl(const QString &, QUrl::ParsingMode);
-  binder.ctors().ctor<const QString &, QUrl::ParsingMode>().create();
+  binder.ctors().ctor<const QString &, QUrl::ParsingMode>()
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::TolerantMode)).create();
   // QUrl & operator=(const QString &);
   binder.operators().assign<const QString &>();
   // QUrl(QUrl &&);
@@ -112,7 +114,8 @@ static void register_url_class(script::Namespace ns)
   // void swap(QUrl &);
   binder.void_fun<QUrl &, &QUrl::swap>("swap").create();
   // void setUrl(const QString &, QUrl::ParsingMode);
-  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setUrl>("setUrl").create();
+  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setUrl>("setUrl")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::TolerantMode)).create();
   // QString url(QUrl::FormattingOptions) const;
   /// TODO: QString url(QUrl::FormattingOptions) const;
   // QString toString(QUrl::FormattingOptions) const;
@@ -124,11 +127,13 @@ static void register_url_class(script::Namespace ns)
   // QByteArray toEncoded(QUrl::FormattingOptions) const;
   /// TODO: QByteArray toEncoded(QUrl::FormattingOptions) const;
   // static QUrl fromEncoded(const QByteArray &, QUrl::ParsingMode);
-  binder.static_fun<QUrl, const QByteArray &, QUrl::ParsingMode, &QUrl::fromEncoded>("fromEncoded").create();
+  binder.static_fun<QUrl, const QByteArray &, QUrl::ParsingMode, &QUrl::fromEncoded>("fromEncoded")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::TolerantMode)).create();
   // static QUrl fromUserInput(const QString &);
   binder.static_fun<QUrl, const QString &, &QUrl::fromUserInput>("fromUserInput").create();
   // static QUrl fromUserInput(const QString &, const QString &, QUrl::UserInputResolutionOptions);
-  binder.static_fun<QUrl, const QString &, const QString &, QUrl::UserInputResolutionOptions, &QUrl::fromUserInput>("fromUserInput").create();
+  binder.static_fun<QUrl, const QString &, const QString &, QUrl::UserInputResolutionOptions, &QUrl::fromUserInput>("fromUserInput")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::UserInputResolutionOptions(QUrl::DefaultResolution))).create();
   // bool isValid() const;
   binder.fun<bool, &QUrl::isValid>("isValid").create();
   // QString errorString() const;
@@ -142,49 +147,67 @@ static void register_url_class(script::Namespace ns)
   // QString scheme() const;
   binder.fun<QString, &QUrl::scheme>("scheme").create();
   // void setAuthority(const QString &, QUrl::ParsingMode);
-  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setAuthority>("setAuthority").create();
+  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setAuthority>("setAuthority")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::TolerantMode)).create();
   // QString authority(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::authority>("authority").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::authority>("authority")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void setUserInfo(const QString &, QUrl::ParsingMode);
-  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setUserInfo>("setUserInfo").create();
+  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setUserInfo>("setUserInfo")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::TolerantMode)).create();
   // QString userInfo(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::userInfo>("userInfo").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::userInfo>("userInfo")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void setUserName(const QString &, QUrl::ParsingMode);
-  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setUserName>("setUserName").create();
+  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setUserName>("setUserName")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::DecodedMode)).create();
   // QString userName(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::userName>("userName").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::userName>("userName")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
   // void setPassword(const QString &, QUrl::ParsingMode);
-  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setPassword>("setPassword").create();
+  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setPassword>("setPassword")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::DecodedMode)).create();
   // QString password(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::password>("password").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::password>("password")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
   // void setHost(const QString &, QUrl::ParsingMode);
-  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setHost>("setHost").create();
+  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setHost>("setHost")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::DecodedMode)).create();
   // QString host(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::host>("host").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::host>("host")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
   // QString topLevelDomain(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::topLevelDomain>("topLevelDomain").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::topLevelDomain>("topLevelDomain")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
   // void setPort(int);
   binder.void_fun<int, &QUrl::setPort>("setPort").create();
   // int port(int) const;
-  binder.fun<int, int, &QUrl::port>("port").create();
+  binder.fun<int, int, &QUrl::port>("port")
+    .addDefaultArgument(binding::default_argument(url.engine(), -1)).create();
   // void setPath(const QString &, QUrl::ParsingMode);
-  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setPath>("setPath").create();
+  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setPath>("setPath")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::DecodedMode)).create();
   // QString path(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::path>("path").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::path>("path")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
   // QString fileName(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::fileName>("fileName").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::fileName>("fileName")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
   // bool hasQuery() const;
   binder.fun<bool, &QUrl::hasQuery>("hasQuery").create();
   // void setQuery(const QString &, QUrl::ParsingMode);
-  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setQuery>("setQuery").create();
+  binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setQuery>("setQuery")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::TolerantMode)).create();
   // void setQuery(const QUrlQuery &);
   binder.void_fun<const QUrlQuery &, &QUrl::setQuery>("setQuery").create();
   // QString query(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::query>("query").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::query>("query")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // bool hasFragment() const;
   binder.fun<bool, &QUrl::hasFragment>("hasFragment").create();
   // QString fragment(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::fragment>("fragment").create();
+  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrl::fragment>("fragment")
+    .addDefaultArgument(binding::default_argument(url.engine(), QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void setFragment(const QString &, QUrl::ParsingMode);
   binder.void_fun<const QString &, QUrl::ParsingMode, &QUrl::setFragment>("setFragment").create();
   // QUrl resolved(const QUrl &) const;
@@ -214,7 +237,9 @@ static void register_url_class(script::Namespace ns)
   // static QString fromPercentEncoding(const QByteArray &);
   binder.static_fun<QString, const QByteArray &, &QUrl::fromPercentEncoding>("fromPercentEncoding").create();
   // static QByteArray toPercentEncoding(const QString &, const QByteArray &, const QByteArray &);
-  binder.static_fun<QByteArray, const QString &, const QByteArray &, const QByteArray &, &QUrl::toPercentEncoding>("toPercentEncoding").create();
+  binder.static_fun<QByteArray, const QString &, const QByteArray &, const QByteArray &, &QUrl::toPercentEncoding>("toPercentEncoding")
+    .addDefaultArgument(binding::default_argument(url.engine(), QByteArray()))
+    .addDefaultArgument(binding::default_argument(url.engine(), QByteArray())).create();
   // static QString fromAce(const QByteArray &);
   binder.static_fun<QString, const QByteArray &, &QUrl::fromAce>("fromAce").create();
   // static QByteArray toAce(const QString &);
