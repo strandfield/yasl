@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/fontcombobox.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
@@ -45,7 +46,8 @@ static void register_font_combo_box_class(script::Namespace ns)
   binding::QClass<QFontComboBox> binder{ font_combo_box, &QFontComboBox::staticMetaObject };
 
   // QFontComboBox(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(font_combo_box.engine(), (QWidget*)nullptr)).create();
   // ~QFontComboBox();
   binder.add_dtor();
   // void setWritingSystem(QFontDatabase::WritingSystem);

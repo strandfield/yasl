@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/action.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
@@ -79,11 +80,14 @@ static void register_action_class(script::Namespace ns)
   binding::QClass<QAction> binder{ action, &QAction::staticMetaObject };
 
   // QAction(QObject *);
-  binder.ctors().ctor<QObject *>().create();
+  binder.ctors().ctor<QObject *>()
+    .addDefaultArgument(binding::default_argument(action.engine(), (QObject*)nullptr)).create();
   // QAction(const QString &, QObject *);
-  binder.ctors().ctor<const QString &, QObject *>().create();
+  binder.ctors().ctor<const QString &, QObject *>()
+    .addDefaultArgument(binding::default_argument(action.engine(), (QObject*)nullptr)).create();
   // QAction(const QIcon &, const QString &, QObject *);
-  binder.ctors().ctor<const QIcon &, const QString &, QObject *>().create();
+  binder.ctors().ctor<const QIcon &, const QString &, QObject *>()
+    .addDefaultArgument(binding::default_argument(action.engine(), (QObject*)nullptr)).create();
   // ~QAction();
   binder.add_dtor();
   // void setActionGroup(QActionGroup *);
@@ -165,7 +169,8 @@ static void register_action_class(script::Namespace ns)
   // void activate(QAction::ActionEvent);
   binder.void_fun<QAction::ActionEvent, &QAction::activate>("activate").create();
   // bool showStatusText(QWidget *);
-  binder.fun<bool, QWidget *, &QAction::showStatusText>("showStatusText").create();
+  binder.fun<bool, QWidget *, &QAction::showStatusText>("showStatusText")
+    .addDefaultArgument(binding::default_argument(action.engine(), (QWidget*)nullptr)).create();
   // void setMenuRole(QAction::MenuRole);
   binder.void_fun<QAction::MenuRole, &QAction::setMenuRole>("setMenuRole").create();
   // QAction::MenuRole menuRole() const;

@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/spinbox.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
@@ -23,7 +24,8 @@ static void register_spin_box_class(script::Namespace ns)
   binding::QClass<QSpinBox> binder{ spin_box, &QSpinBox::staticMetaObject };
 
   // QSpinBox(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(spin_box.engine(), (QWidget*)nullptr)).create();
   // ~QSpinBox();
   binder.add_dtor();
   // int value() const;

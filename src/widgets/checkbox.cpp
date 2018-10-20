@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/checkbox.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
@@ -23,13 +24,16 @@ static void register_check_box_class(script::Namespace ns)
   binding::QClass<QCheckBox> binder{ check_box, &QCheckBox::staticMetaObject };
 
   // QCheckBox(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(check_box.engine(), (QWidget*)nullptr)).create();
   // QCheckBox(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>().create();
+  binder.ctors().ctor<const QString &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(check_box.engine(), (QWidget*)nullptr)).create();
   // ~QCheckBox();
   binder.add_dtor();
   // void setTristate(bool);
-  binder.void_fun<bool, &QCheckBox::setTristate>("setTristate").create();
+  binder.void_fun<bool, &QCheckBox::setTristate>("setTristate")
+    .addDefaultArgument(binding::default_argument(check_box.engine(), true)).create();
   // bool isTristate() const;
   binder.fun<bool, &QCheckBox::isTristate>("isTristate").create();
   // Qt::CheckState checkState() const;

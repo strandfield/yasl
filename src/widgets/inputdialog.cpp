@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/inputdialog.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -67,7 +68,8 @@ static void register_input_dialog_class(script::Namespace ns)
   // QString labelText() const;
   binder.fun<QString, &QInputDialog::labelText>("labelText").create();
   // void setOption(QInputDialog::InputDialogOption, bool);
-  binder.void_fun<QInputDialog::InputDialogOption, bool, &QInputDialog::setOption>("setOption").create();
+  binder.void_fun<QInputDialog::InputDialogOption, bool, &QInputDialog::setOption>("setOption")
+    .addDefaultArgument(binding::default_argument(input_dialog.engine(), true)).create();
   // bool testOption(QInputDialog::InputDialogOption) const;
   binder.fun<bool, QInputDialog::InputDialogOption, &QInputDialog::testOption>("testOption").create();
   // void setOptions(QInputDialog::InputDialogOptions);

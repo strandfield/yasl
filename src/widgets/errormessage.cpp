@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/errormessage.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
@@ -21,7 +22,8 @@ static void register_error_message_class(script::Namespace ns)
   binding::QClass<QErrorMessage> binder{ error_message, &QErrorMessage::staticMetaObject };
 
   // QErrorMessage(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(error_message.engine(), (QWidget*)nullptr)).create();
   // ~QErrorMessage();
   binder.add_dtor();
   // void showMessage(const QString &);

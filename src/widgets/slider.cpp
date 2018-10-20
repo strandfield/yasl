@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/slider.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
@@ -42,7 +43,8 @@ static void register_slider_class(script::Namespace ns)
   binding::QClass<QSlider> binder{ slider, &QSlider::staticMetaObject };
 
   // QSlider(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(slider.engine(), (QWidget*)nullptr)).create();
   // QSlider(Qt::Orientation, QWidget *);
   binder.ctors().ctor<Qt::Orientation, QWidget *>().create();
   // ~QSlider();

@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/lineedit.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
@@ -59,9 +60,11 @@ static void register_line_edit_class(script::Namespace ns)
   binding::QClass<QLineEdit> binder{ line_edit, &QLineEdit::staticMetaObject };
 
   // QLineEdit(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(line_edit.engine(), (QWidget*)nullptr)).create();
   // QLineEdit(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>().create();
+  binder.ctors().ctor<const QString &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(line_edit.engine(), (QWidget*)nullptr)).create();
   // ~QLineEdit();
   binder.add_dtor();
   // QString text() const;
@@ -115,9 +118,11 @@ static void register_line_edit_class(script::Namespace ns)
   // Qt::Alignment alignment() const;
   binder.fun<Qt::Alignment, &QLineEdit::alignment>("alignment").create();
   // void cursorForward(bool, int);
-  binder.void_fun<bool, int, &QLineEdit::cursorForward>("cursorForward").create();
+  binder.void_fun<bool, int, &QLineEdit::cursorForward>("cursorForward")
+    .addDefaultArgument(binding::default_argument(line_edit.engine(), 1)).create();
   // void cursorBackward(bool, int);
-  binder.void_fun<bool, int, &QLineEdit::cursorBackward>("cursorBackward").create();
+  binder.void_fun<bool, int, &QLineEdit::cursorBackward>("cursorBackward")
+    .addDefaultArgument(binding::default_argument(line_edit.engine(), 1)).create();
   // void cursorWordForward(bool);
   binder.void_fun<bool, &QLineEdit::cursorWordForward>("cursorWordForward").create();
   // void cursorWordBackward(bool);

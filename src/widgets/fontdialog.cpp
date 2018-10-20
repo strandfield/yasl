@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/fontdialog.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -44,9 +45,11 @@ static void register_font_dialog_class(script::Namespace ns)
   binding::QClass<QFontDialog> binder{ font_dialog, &QFontDialog::staticMetaObject };
 
   // QFontDialog(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(font_dialog.engine(), (QWidget*)nullptr)).create();
   // QFontDialog(const QFont &, QWidget *);
-  binder.ctors().ctor<const QFont &, QWidget *>().create();
+  binder.ctors().ctor<const QFont &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(font_dialog.engine(), (QWidget*)nullptr)).create();
   // ~QFontDialog();
   binder.add_dtor();
   // void setCurrentFont(const QFont &);
@@ -56,7 +59,8 @@ static void register_font_dialog_class(script::Namespace ns)
   // QFont selectedFont() const;
   binder.fun<QFont, &QFontDialog::selectedFont>("selectedFont").create();
   // void setOption(QFontDialog::FontDialogOption, bool);
-  binder.void_fun<QFontDialog::FontDialogOption, bool, &QFontDialog::setOption>("setOption").create();
+  binder.void_fun<QFontDialog::FontDialogOption, bool, &QFontDialog::setOption>("setOption")
+    .addDefaultArgument(binding::default_argument(font_dialog.engine(), true)).create();
   // bool testOption(QFontDialog::FontDialogOption) const;
   binder.fun<bool, QFontDialog::FontDialogOption, &QFontDialog::testOption>("testOption").create();
   // void setOptions(QFontDialog::FontDialogOptions);

@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/abstractbutton.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
@@ -69,7 +70,8 @@ static void register_abstract_button_class(script::Namespace ns)
   // void setIconSize(const QSize &);
   binder.void_fun<const QSize &, &QAbstractButton::setIconSize>("setIconSize").create();
   // void animateClick(int);
-  binder.void_fun<int, &QAbstractButton::animateClick>("animateClick").create();
+  binder.void_fun<int, &QAbstractButton::animateClick>("animateClick")
+    .addDefaultArgument(binding::default_argument(abstract_button.engine(), 100)).create();
   // void click();
   binder.void_fun<&QAbstractButton::click>("click").create();
   // void toggle();

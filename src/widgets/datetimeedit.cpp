@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/datetimeedit.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
@@ -51,13 +52,17 @@ static void register_date_time_edit_class(script::Namespace ns)
   binding::QClass<QDateTimeEdit> binder{ date_time_edit, &QDateTimeEdit::staticMetaObject };
 
   // QDateTimeEdit(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(date_time_edit.engine(), (QWidget*)nullptr)).create();
   // QDateTimeEdit(const QDateTime &, QWidget *);
-  binder.ctors().ctor<const QDateTime &, QWidget *>().create();
+  binder.ctors().ctor<const QDateTime &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(date_time_edit.engine(), (QWidget*)nullptr)).create();
   // QDateTimeEdit(const QDate &, QWidget *);
-  binder.ctors().ctor<const QDate &, QWidget *>().create();
+  binder.ctors().ctor<const QDate &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(date_time_edit.engine(), (QWidget*)nullptr)).create();
   // QDateTimeEdit(const QTime &, QWidget *);
-  binder.ctors().ctor<const QTime &, QWidget *>().create();
+  binder.ctors().ctor<const QTime &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(date_time_edit.engine(), (QWidget*)nullptr)).create();
   // ~QDateTimeEdit();
   binder.add_dtor();
   // QDateTime dateTime() const;

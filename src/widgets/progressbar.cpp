@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/progressbar.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
@@ -39,7 +40,8 @@ static void register_progress_bar_class(script::Namespace ns)
   binding::QClass<QProgressBar> binder{ progress_bar, &QProgressBar::staticMetaObject };
 
   // QProgressBar(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(progress_bar.engine(), (QWidget*)nullptr)).create();
   // ~QProgressBar();
   binder.add_dtor();
   // int minimum() const;

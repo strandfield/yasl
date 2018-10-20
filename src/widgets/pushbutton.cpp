@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/pushbutton.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
@@ -24,11 +25,14 @@ static void register_push_button_class(script::Namespace ns)
   binding::QClass<QPushButton> binder{ push_button, &QPushButton::staticMetaObject };
 
   // QPushButton(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(push_button.engine(), (QWidget*)nullptr)).create();
   // QPushButton(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>().create();
+  binder.ctors().ctor<const QString &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(push_button.engine(), (QWidget*)nullptr)).create();
   // QPushButton(const QIcon &, const QString &, QWidget *);
-  binder.ctors().ctor<const QIcon &, const QString &, QWidget *>().create();
+  binder.ctors().ctor<const QIcon &, const QString &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(push_button.engine(), (QWidget*)nullptr)).create();
   // ~QPushButton();
   binder.add_dtor();
   // QSize sizeHint() const;

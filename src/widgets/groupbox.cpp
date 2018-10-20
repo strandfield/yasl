@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/groupbox.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
@@ -24,9 +25,11 @@ static void register_group_box_class(script::Namespace ns)
   binding::QClass<QGroupBox> binder{ group_box, &QGroupBox::staticMetaObject };
 
   // QGroupBox(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(group_box.engine(), (QWidget*)nullptr)).create();
   // QGroupBox(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>().create();
+  binder.ctors().ctor<const QString &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(group_box.engine(), (QWidget*)nullptr)).create();
   // ~QGroupBox();
   binder.add_dtor();
   // QString title() const;

@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/colordialog.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -41,9 +42,11 @@ static void register_color_dialog_class(script::Namespace ns)
   binding::QClass<QColorDialog> binder{ color_dialog, &QColorDialog::staticMetaObject };
 
   // QColorDialog(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(color_dialog.engine(), (QWidget*)nullptr)).create();
   // QColorDialog(const QColor &, QWidget *);
-  binder.ctors().ctor<const QColor &, QWidget *>().create();
+  binder.ctors().ctor<const QColor &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(color_dialog.engine(), (QWidget*)nullptr)).create();
   // ~QColorDialog();
   binder.add_dtor();
   // void setCurrentColor(const QColor &);
@@ -53,7 +56,8 @@ static void register_color_dialog_class(script::Namespace ns)
   // QColor selectedColor() const;
   binder.fun<QColor, &QColorDialog::selectedColor>("selectedColor").create();
   // void setOption(QColorDialog::ColorDialogOption, bool);
-  binder.void_fun<QColorDialog::ColorDialogOption, bool, &QColorDialog::setOption>("setOption").create();
+  binder.void_fun<QColorDialog::ColorDialogOption, bool, &QColorDialog::setOption>("setOption")
+    .addDefaultArgument(binding::default_argument(color_dialog.engine(), true)).create();
   // bool testOption(QColorDialog::ColorDialogOption) const;
   binder.fun<bool, QColorDialog::ColorDialogOption, &QColorDialog::testOption>("testOption").create();
   // void setOptions(QColorDialog::ColorDialogOptions);

@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/tabwidget.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
@@ -54,7 +55,8 @@ static void register_tab_widget_class(script::Namespace ns)
   binding::QClass<QTabWidget> binder{ tab_widget, &QTabWidget::staticMetaObject };
 
   // QTabWidget(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(tab_widget.engine(), (QWidget*)nullptr)).create();
   // ~QTabWidget();
   binder.add_dtor();
   // int addTab(QWidget *, const QString &);
@@ -122,9 +124,11 @@ static void register_tab_widget_class(script::Namespace ns)
   // bool hasHeightForWidth() const;
   binder.fun<bool, &QTabWidget::hasHeightForWidth>("hasHeightForWidth").create();
   // void setCornerWidget(QWidget *, Qt::Corner);
-  binder.void_fun<QWidget *, Qt::Corner, &QTabWidget::setCornerWidget>("setCornerWidget").create();
+  binder.void_fun<QWidget *, Qt::Corner, &QTabWidget::setCornerWidget>("setCornerWidget")
+    .addDefaultArgument(binding::default_argument(tab_widget.engine(), Qt::TopRightCorner)).create();
   // QWidget * cornerWidget(Qt::Corner) const;
-  binder.fun<QWidget *, Qt::Corner, &QTabWidget::cornerWidget>("cornerWidget").create();
+  binder.fun<QWidget *, Qt::Corner, &QTabWidget::cornerWidget>("cornerWidget")
+    .addDefaultArgument(binding::default_argument(tab_widget.engine(), Qt::TopRightCorner)).create();
   // Qt::TextElideMode elideMode() const;
   binder.fun<Qt::TextElideMode, &QTabWidget::elideMode>("elideMode").create();
   // void setElideMode(Qt::TextElideMode);

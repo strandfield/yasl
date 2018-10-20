@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/radiobutton.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
@@ -22,9 +23,11 @@ static void register_radio_button_class(script::Namespace ns)
   binding::QClass<QRadioButton> binder{ radio_button, &QRadioButton::staticMetaObject };
 
   // QRadioButton(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(radio_button.engine(), (QWidget*)nullptr)).create();
   // QRadioButton(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>().create();
+  binder.ctors().ctor<const QString &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(radio_button.engine(), (QWidget*)nullptr)).create();
   // ~QRadioButton();
   binder.add_dtor();
 

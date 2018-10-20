@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/scrollbar.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
@@ -23,9 +24,11 @@ static void register_scroll_bar_class(script::Namespace ns)
   binding::QClass<QScrollBar> binder{ scroll_bar, &QScrollBar::staticMetaObject };
 
   // QScrollBar(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(scroll_bar.engine(), (QWidget*)nullptr)).create();
   // QScrollBar(Qt::Orientation, QWidget *);
-  binder.ctors().ctor<Qt::Orientation, QWidget *>().create();
+  binder.ctors().ctor<Qt::Orientation, QWidget *>()
+    .addDefaultArgument(binding::default_argument(scroll_bar.engine(), (QWidget*)nullptr)).create();
   // ~QScrollBar();
   binder.add_dtor();
 

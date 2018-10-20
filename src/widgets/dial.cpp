@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/dial.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
@@ -22,7 +23,8 @@ static void register_dial_class(script::Namespace ns)
   binding::QClass<QDial> binder{ dial, &QDial::staticMetaObject };
 
   // QDial(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(dial.engine(), (QWidget*)nullptr)).create();
   // ~QDial();
   binder.add_dtor();
   // bool wrapping() const;

@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/gridlayout.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
@@ -67,9 +68,11 @@ static void register_grid_layout_class(script::Namespace ns)
   // void addWidget(QWidget *);
   binder.void_fun<QWidget *, &QGridLayout::addWidget>("addWidget").create();
   // void addWidget(QWidget *, int, int, Qt::Alignment);
-  binder.void_fun<QWidget *, int, int, Qt::Alignment, &QGridLayout::addWidget>("addWidget").create();
+  binder.void_fun<QWidget *, int, int, Qt::Alignment, &QGridLayout::addWidget>("addWidget")
+    .addDefaultArgument(binding::default_argument(grid_layout.engine(), Qt::Alignment())).create();
   // void addLayout(QLayout *, int, int, Qt::Alignment);
-  binder.void_fun<QLayout *, int, int, Qt::Alignment, &QGridLayout::addLayout>("addLayout").create();
+  binder.void_fun<QLayout *, int, int, Qt::Alignment, &QGridLayout::addLayout>("addLayout")
+    .addDefaultArgument(binding::default_argument(grid_layout.engine(), Qt::Alignment())).create();
   // void setOriginCorner(Qt::Corner);
   binder.void_fun<Qt::Corner, &QGridLayout::setOriginCorner>("setOriginCorner").create();
   // Qt::Corner originCorner() const;

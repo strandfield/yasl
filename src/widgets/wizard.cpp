@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/wizard.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -218,7 +219,8 @@ static void register_wizard_page_class(script::Namespace ns)
   binding::QClass<QWizardPage> binder{ wizard_page, &QWizardPage::staticMetaObject };
 
   // QWizardPage(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(wizard_page.engine(), (QWidget*)nullptr)).create();
   // ~QWizardPage();
   binder.add_dtor();
   // void setTitle(const QString &);

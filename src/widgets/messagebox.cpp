@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/messagebox.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -102,7 +103,8 @@ static void register_message_box_class(script::Namespace ns)
   binding::QClass<QMessageBox> binder{ message_box, &QMessageBox::staticMetaObject };
 
   // QMessageBox(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(message_box.engine(), (QWidget*)nullptr)).create();
   // QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons, QWidget *, Qt::WindowFlags);
   /// TODO: QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons, QWidget *, Qt::WindowFlags);
   // ~QMessageBox();

@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/abstractspinbox.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -68,7 +69,8 @@ static void register_abstract_spin_box_class(script::Namespace ns)
   binding::QClass<QAbstractSpinBox> binder{ abstract_spin_box, &QAbstractSpinBox::staticMetaObject };
 
   // QAbstractSpinBox(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(abstract_spin_box.engine(), (QWidget*)nullptr)).create();
   // ~QAbstractSpinBox();
   binder.add_dtor();
   // QAbstractSpinBox::ButtonSymbols buttonSymbols() const;

@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/toolbar.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
@@ -29,9 +30,11 @@ static void register_tool_bar_class(script::Namespace ns)
   binding::QClass<QToolBar> binder{ tool_bar, &QToolBar::staticMetaObject };
 
   // QToolBar(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>().create();
+  binder.ctors().ctor<const QString &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(tool_bar.engine(), (QWidget*)nullptr)).create();
   // QToolBar(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(tool_bar.engine(), (QWidget*)nullptr)).create();
   // ~QToolBar();
   binder.add_dtor();
   // void setMovable(bool);

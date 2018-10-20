@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/abstractslider.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -43,7 +44,8 @@ static void register_abstract_slider_class(script::Namespace ns)
   binding::QClass<QAbstractSlider> binder{ abstract_slider, &QAbstractSlider::staticMetaObject };
 
   // QAbstractSlider(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(abstract_slider.engine(), (QWidget*)nullptr)).create();
   // ~QAbstractSlider();
   binder.add_dtor();
   // Qt::Orientation orientation() const;

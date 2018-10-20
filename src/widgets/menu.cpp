@@ -4,6 +4,7 @@
 
 #include "yasl/widgets/menu.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/newfunction.h"
 #include "yasl/binding/qclass.h"
@@ -31,9 +32,11 @@ static void register_menu_class(script::Namespace ns)
   binding::QClass<QMenu> binder{ menu, &QMenu::staticMetaObject };
 
   // QMenu(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctors().ctor<QWidget *>()
+    .addDefaultArgument(binding::default_argument(menu.engine(), (QWidget*)nullptr)).create();
   // QMenu(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>().create();
+  binder.ctors().ctor<const QString &, QWidget *>()
+    .addDefaultArgument(binding::default_argument(menu.engine(), (QWidget*)nullptr)).create();
   // ~QMenu();
   binder.add_dtor();
   // QAction * addAction(const QString &);
@@ -89,11 +92,13 @@ static void register_menu_class(script::Namespace ns)
   // QAction * activeAction() const;
   binder.fun<QAction *, &QMenu::activeAction>("activeAction").create();
   // void popup(const QPoint &, QAction *);
-  binder.void_fun<const QPoint &, QAction *, &QMenu::popup>("popup").create();
+  binder.void_fun<const QPoint &, QAction *, &QMenu::popup>("popup")
+    .addDefaultArgument(binding::default_argument(menu.engine(), (QAction*)nullptr)).create();
   // QAction * exec();
   binder.fun<QAction *, &QMenu::exec>("exec").create();
   // QAction * exec(const QPoint &, QAction *);
-  binder.fun<QAction *, const QPoint &, QAction *, &QMenu::exec>("exec").create();
+  binder.fun<QAction *, const QPoint &, QAction *, &QMenu::exec>("exec")
+    .addDefaultArgument(binding::default_argument(menu.engine(), (QAction*)nullptr)).create();
   // static QAction * exec(QList<QAction *>, const QPoint &, QAction *, QWidget *);
   /// TODO: static QAction * exec(QList<QAction *>, const QPoint &, QAction *, QWidget *);
   // QSize sizeHint() const;

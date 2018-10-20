@@ -45719,6 +45719,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QWidget",
                                     "parameters": [
                                         "QWidget *",
@@ -46309,6 +46310,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QWidget::RenderFlags(QWidget::DrawWindowBackground | QWidget::DrawChildren)",
                                     "name": "render",
                                     "parameters": [
                                         "QPainter *",
@@ -46319,6 +46321,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QRect(QPoint(0, 0), QSize(-1, -1))",
                                     "name": "grab",
                                     "parameters": [
                                         "const QRect &"
@@ -46340,6 +46343,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::GestureFlags()",
                                     "name": "grabGesture",
                                     "parameters": [
                                         "Qt::GestureType",
@@ -46678,6 +46682,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::WindowShortcut",
                                     "name": "grabShortcut",
                                     "parameters": [
                                         "const QKeySequence &",
@@ -46694,6 +46699,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setShortcutEnabled",
                                     "parameters": [
                                         "int",
@@ -46702,6 +46708,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setShortcutAutoRepeat",
                                     "parameters": [
                                         "int",
@@ -47215,6 +47222,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setWindowFlag",
                                     "parameters": [
                                         "Qt::WindowType",
@@ -47264,6 +47272,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setAttribute",
                                     "parameters": [
                                         "Qt::WidgetAttribute",
@@ -47326,6 +47335,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "createWindowContainer",
                                     "parameters": [
                                         "QWindow *",
@@ -47595,6 +47605,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "100",
                                     "name": "animateClick",
                                     "parameters": [
                                         "int"
@@ -47657,6 +47668,7 @@
                             "base": "QAbstractButton",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QPushButton",
                                     "parameters": [
                                         "QWidget *"
@@ -47664,6 +47676,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QPushButton",
                                     "parameters": [
                                         "const QString &",
@@ -47672,6 +47685,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QPushButton",
                                     "parameters": [
                                         "const QIcon &",
@@ -47780,6 +47794,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QFrame",
                                     "parameters": [
                                         "QWidget *",
@@ -47950,6 +47965,7 @@
                             "base": "QFrame",
                             "elements": [
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QLabel",
                                     "parameters": [
                                         "QWidget *",
@@ -47958,6 +47974,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QLabel",
                                     "parameters": [
                                         "const QString &",
@@ -48252,6 +48269,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QTabWidget",
                                     "parameters": [
                                         "QWidget *"
@@ -48540,6 +48558,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::TopRightCorner",
                                     "name": "setCornerWidget",
                                     "parameters": [
                                         "QWidget *",
@@ -48549,6 +48568,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::TopRightCorner",
                                     "name": "cornerWidget",
                                     "parameters": [
                                         "Qt::Corner"
@@ -48713,6 +48733,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QLineEdit",
                                     "parameters": [
                                         "QWidget *"
@@ -48720,6 +48741,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QLineEdit",
                                     "parameters": [
                                         "const QString &",
@@ -48912,6 +48934,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "1",
                                     "name": "cursorForward",
                                     "parameters": [
                                         "bool",
@@ -48920,6 +48943,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "1",
                                     "name": "cursorBackward",
                                     "parameters": [
                                         "bool",
@@ -49275,6 +49299,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QGroupBox",
                                     "parameters": [
                                         "QWidget *"
@@ -49282,6 +49307,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QGroupBox",
                                     "parameters": [
                                         "const QString &",
@@ -49414,6 +49440,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QComboBox",
                                     "parameters": [
                                         "QWidget *"
@@ -49510,6 +49537,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "static_cast<Qt::MatchFlags>(Qt::MatchExactly | Qt::MatchCaseSensitive)",
                                     "name": "findText",
                                     "parameters": [
                                         "const QString &",
@@ -49520,6 +49548,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "static_cast<Qt::MatchFlags>(Qt::MatchExactly | Qt::MatchCaseSensitive)",
                                     "name": "findData",
                                     "parameters": [
                                         "const QVariant &",
@@ -49744,6 +49773,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "int(Qt::UserRole)",
                                     "name": "currentData",
                                     "parameters": [
                                         "int"
@@ -49771,6 +49801,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "int(Qt::UserRole)",
                                     "name": "itemData",
                                     "parameters": [
                                         "int",
@@ -49780,6 +49811,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QVariant()",
                                     "name": "addItem",
                                     "parameters": [
                                         "const QString &",
@@ -49788,6 +49820,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QVariant()",
                                     "name": "addItem",
                                     "parameters": [
                                         "const QIcon &",
@@ -49804,6 +49837,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QVariant()",
                                     "name": "insertItem",
                                     "parameters": [
                                         "int",
@@ -49813,6 +49847,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QVariant()",
                                     "name": "insertItem",
                                     "parameters": [
                                         "int",
@@ -49861,6 +49896,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "int(Qt::UserRole)",
                                     "name": "setItemData",
                                     "parameters": [
                                         "int",
@@ -50046,6 +50082,7 @@
                             "base": "QComboBox",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QFontComboBox",
                                     "parameters": [
                                         "QWidget *"
@@ -50181,6 +50218,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QAbstractSlider",
                                     "parameters": [
                                         "QWidget *"
@@ -50461,6 +50499,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QSlider",
                                     "parameters": [
                                         "QWidget *"
@@ -50539,6 +50578,7 @@
                             "base": "QAbstractSlider",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QScrollBar",
                                     "parameters": [
                                         "QWidget *"
@@ -50546,6 +50586,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QScrollBar",
                                     "parameters": [
                                         "Qt::Orientation",
@@ -50563,6 +50604,7 @@
                         },
                         {
                             "binding": "newfunction",
+                            "defaults": "(QWidget*)nullptr",
                             "name": "newScrollBar",
                             "parameters": [
                                 "QWidget*"
@@ -50572,6 +50614,7 @@
                         },
                         {
                             "binding": "newfunction",
+                            "defaults": "(QWidget*)nullptr",
                             "name": "newScrollBar",
                             "parameters": [
                                 "Qt::Orientation",
@@ -50591,6 +50634,7 @@
                             "base": "QAbstractSlider",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QDial",
                                     "parameters": [
                                         "QWidget *"
@@ -50652,6 +50696,7 @@
                         },
                         {
                             "binding": "newfunction",
+                            "defaults": "(QWidget*)nullptr",
                             "name": "newDial",
                             "parameters": [
                                 "QWidget*"
@@ -50670,6 +50715,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QAbstractSpinBox",
                                     "parameters": [
                                         "QWidget *"
@@ -50985,6 +51031,7 @@
                             "base": "QAbstractSpinBox",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QSpinBox",
                                     "parameters": [
                                         "QWidget *"
@@ -51363,6 +51410,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QDateTimeEdit",
                                     "parameters": [
                                         "QWidget *"
@@ -51370,6 +51418,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QDateTimeEdit",
                                     "parameters": [
                                         "const QDateTime &",
@@ -51378,6 +51427,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QDateTimeEdit",
                                     "parameters": [
                                         "const QDate &",
@@ -51386,6 +51436,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QDateTimeEdit",
                                     "parameters": [
                                         "const QTime &",
@@ -51914,6 +51965,7 @@
                             "base": "QAbstractButton",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QCheckBox",
                                     "parameters": [
                                         "QWidget *"
@@ -51921,6 +51973,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QCheckBox",
                                     "parameters": [
                                         "const QString &",
@@ -51933,6 +51986,7 @@
                                     "type": "destructor"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setTristate",
                                     "parameters": [
                                         "bool"
@@ -51985,6 +52039,7 @@
                             "base": "QAbstractButton",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QRadioButton",
                                     "parameters": [
                                         "QWidget *"
@@ -51992,6 +52047,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QRadioButton",
                                     "parameters": [
                                         "const QString &",
@@ -52009,6 +52065,7 @@
                         },
                         {
                             "binding": "newfunction",
+                            "defaults": "(QWidget*)nullptr",
                             "name": "newRadioButton",
                             "parameters": [
                                 "QWidget*"
@@ -52018,6 +52075,7 @@
                         },
                         {
                             "binding": "newfunction",
+                            "defaults": "(QWidget*)nullptr",
                             "name": "newRadioButton",
                             "parameters": [
                                 "const QString&",
@@ -52052,6 +52110,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QToolButton",
                                     "parameters": [
                                         "QWidget *"
@@ -52170,6 +52229,7 @@
                         },
                         {
                             "binding": "newfunction",
+                            "defaults": "(QWidget*)nullptr",
                             "name": "newToolButton",
                             "parameters": [
                                 "QWidget*"
@@ -52230,6 +52290,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QAction",
                                     "parameters": [
                                         "QObject *"
@@ -52237,6 +52298,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QAction",
                                     "parameters": [
                                         "const QString &",
@@ -52245,6 +52307,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QAction",
                                     "parameters": [
                                         "const QIcon &",
@@ -52523,6 +52586,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "showStatusText",
                                     "parameters": [
                                         "QWidget *"
@@ -52707,6 +52771,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QMenu",
                                     "parameters": [
                                         "QWidget *"
@@ -52714,6 +52779,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QMenu",
                                     "parameters": [
                                         "const QString &",
@@ -52743,6 +52809,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QKeySequence()",
                                     "name": "addAction",
                                     "parameters": [
                                         "const QString &",
@@ -52754,6 +52821,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QKeySequence()",
                                     "name": "addAction",
                                     "parameters": [
                                         "const QIcon &",
@@ -52919,6 +52987,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "(QAction*)nullptr",
                                     "name": "popup",
                                     "parameters": [
                                         "const QPoint &",
@@ -52932,6 +53001,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "(QAction*)nullptr",
                                     "name": "exec",
                                     "parameters": [
                                         "const QPoint &",
@@ -53492,6 +53562,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QBoxLayout",
                                     "parameters": [
                                         "QBoxLayout::Direction",
@@ -53524,6 +53595,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0",
                                     "name": "addStretch",
                                     "parameters": [
                                         "int"
@@ -53548,6 +53620,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0",
                                     "name": "addLayout",
                                     "parameters": [
                                         "QLayout *",
@@ -53571,6 +53644,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0",
                                     "name": "insertStretch",
                                     "parameters": [
                                         "int",
@@ -53587,6 +53661,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::Alignment();0",
                                     "name": "insertWidget",
                                     "parameters": [
                                         "int",
@@ -53597,6 +53672,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0",
                                     "name": "insertLayout",
                                     "parameters": [
                                         "int",
@@ -53749,7 +53825,6 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "base": "QLayout",
@@ -54328,6 +54403,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::Alignment()",
                                     "name": "addWidget",
                                     "parameters": [
                                         "QWidget *",
@@ -54351,6 +54427,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::Alignment()",
                                     "name": "addLayout",
                                     "parameters": [
                                         "QLayout *",
@@ -54680,6 +54757,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QDialog",
                                     "parameters": [
                                         "QWidget *",
@@ -54994,6 +55072,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QMessageBox",
                                     "parameters": [
                                         "QWidget *"
@@ -55001,6 +55080,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "Qt::WindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);(QWidget*)nullptr;QMessageBox::StandardButtons(QMessageBox::NoButton)",
                                     "name": "QMessageBox",
                                     "parameters": [
                                         "QMessageBox::Icon",
@@ -56340,13 +56420,12 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "base": "QDialog",
-                            "checked": 1,
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QErrorMessage",
                                     "parameters": [
                                         "QWidget *"
@@ -56402,6 +56481,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QColorDialog",
                                     "parameters": [
                                         "QWidget *"
@@ -56409,6 +56489,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QColorDialog",
                                     "parameters": [
                                         "const QColor &",
@@ -56440,6 +56521,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setOption",
                                     "parameters": [
                                         "QColorDialog::ColorDialogOption",
@@ -56631,6 +56713,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QFontDialog",
                                     "parameters": [
                                         "QWidget *"
@@ -56638,6 +56721,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QFontDialog",
                                     "parameters": [
                                         "const QFont &",
@@ -56669,6 +56753,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setOption",
                                     "parameters": [
                                         "QFontDialog::FontDialogOption",
@@ -56824,6 +56909,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QInputDialog",
                                     "parameters": [
                                         "QWidget *",
@@ -56862,6 +56948,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setOption",
                                     "parameters": [
                                         "QInputDialog::InputDialogOption",
@@ -57326,6 +57413,7 @@
                             "base": "QDialog",
                             "elements": [
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QProgressDialog",
                                     "parameters": [
                                         "QWidget *",
@@ -57334,6 +57422,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QProgressDialog",
                                     "parameters": [
                                         "const QString &",
@@ -57668,6 +57757,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "Qt::WindowFlags();(QWidget*)nullptr",
                                     "name": "QWizard",
                                     "parameters": [
                                         "QWidget *",
@@ -58031,6 +58121,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QWizardPage",
                                     "parameters": [
                                         "QWidget *"
@@ -58172,6 +58263,7 @@
                             "base": "QWidget",
                             "elements": [
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QToolBar",
                                     "parameters": [
                                         "const QString &",
@@ -58180,6 +58272,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QToolBar",
                                     "parameters": [
                                         "QWidget *"
@@ -58508,6 +58601,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QWidget*)nullptr",
                                     "name": "QProgressBar",
                                     "parameters": [
                                         "QWidget *"
@@ -58683,6 +58777,7 @@
                         },
                         {
                             "binding": "newfunction",
+                            "defaults": "(QWidget*)nullptr",
                             "name": "newProgressBar",
                             "parameters": [
                                 "QWidget*"
