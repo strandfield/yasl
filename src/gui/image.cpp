@@ -5,6 +5,7 @@
 #include "yasl/gui/image.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -122,13 +123,15 @@ static void register_image_class(script::Namespace ns)
   // bool isDetached() const;
   binder.fun<bool, &QImage::isDetached>("isDetached").create();
   // QImage copy(const QRect &) const;
-  binder.fun<QImage, const QRect &, &QImage::copy>("copy").create();
+  binder.fun<QImage, const QRect &, &QImage::copy>("copy")
+    .addDefaultArgument(binding::default_argument(image.engine(), QRect())).create();
   // QImage copy(int, int, int, int) const;
   binder.fun<QImage, int, int, int, int, &QImage::copy>("copy").create();
   // QImage::Format format() const;
   binder.fun<QImage::Format, &QImage::format>("format").create();
   // QImage img_convertToFormat(QImage::Format, Qt::ImageConversionFlags);
-  binder.fun<QImage, QImage::Format, Qt::ImageConversionFlags, &img_convertToFormat>("convertToFormat").create();
+  binder.fun<QImage, QImage::Format, Qt::ImageConversionFlags, &img_convertToFormat>("convertToFormat")
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // QImage convertToFormat(QImage::Format, const QVector<QRgb> &, Qt::ImageConversionFlags) const;
   /// TODO: QImage convertToFormat(QImage::Format, const QVector<QRgb> &, Qt::ImageConversionFlags) const;
   // bool reinterpretAsFormat(QImage::Format);
@@ -220,33 +223,45 @@ static void register_image_class(script::Namespace ns)
   // QImage alphaChannel() const;
   binder.fun<QImage, &QImage::alphaChannel>("alphaChannel").create();
   // QImage createAlphaMask(Qt::ImageConversionFlags) const;
-  binder.fun<QImage, Qt::ImageConversionFlags, &QImage::createAlphaMask>("createAlphaMask").create();
+  binder.fun<QImage, Qt::ImageConversionFlags, &QImage::createAlphaMask>("createAlphaMask")
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // QImage createHeuristicMask(bool) const;
-  binder.fun<QImage, bool, &QImage::createHeuristicMask>("createHeuristicMask").create();
+  binder.fun<QImage, bool, &QImage::createHeuristicMask>("createHeuristicMask")
+    .addDefaultArgument(binding::default_argument(image.engine(), true)).create();
   // QImage createMaskFromColor(QRgb, Qt::MaskMode) const;
   /// TODO: QImage createMaskFromColor(QRgb, Qt::MaskMode) const;
   // QImage scaled(int, int, Qt::AspectRatioMode, Qt::TransformationMode) const;
-  binder.fun<QImage, int, int, Qt::AspectRatioMode, Qt::TransformationMode, &QImage::scaled>("scaled").create();
+  binder.fun<QImage, int, int, Qt::AspectRatioMode, Qt::TransformationMode, &QImage::scaled>("scaled")
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::FastTransformation))
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::IgnoreAspectRatio)).create();
   // QImage scaled(const QSize &, Qt::AspectRatioMode, Qt::TransformationMode) const;
-  binder.fun<QImage, const QSize &, Qt::AspectRatioMode, Qt::TransformationMode, &QImage::scaled>("scaled").create();
+  binder.fun<QImage, const QSize &, Qt::AspectRatioMode, Qt::TransformationMode, &QImage::scaled>("scaled")
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::FastTransformation))
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::IgnoreAspectRatio)).create();
   // QImage scaledToWidth(int, Qt::TransformationMode) const;
-  binder.fun<QImage, int, Qt::TransformationMode, &QImage::scaledToWidth>("scaledToWidth").create();
+  binder.fun<QImage, int, Qt::TransformationMode, &QImage::scaledToWidth>("scaledToWidth")
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::FastTransformation)).create();
   // QImage scaledToHeight(int, Qt::TransformationMode) const;
-  binder.fun<QImage, int, Qt::TransformationMode, &QImage::scaledToHeight>("scaledToHeight").create();
+  binder.fun<QImage, int, Qt::TransformationMode, &QImage::scaledToHeight>("scaledToHeight")
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::FastTransformation)).create();
   // QImage transformed(const QMatrix &, Qt::TransformationMode) const;
   /// TODO: QImage transformed(const QMatrix &, Qt::TransformationMode) const;
   // static QMatrix trueMatrix(const QMatrix &, int, int);
   /// TODO: static QMatrix trueMatrix(const QMatrix &, int, int);
   // QImage transformed(const QTransform &, Qt::TransformationMode) const;
-  binder.fun<QImage, const QTransform &, Qt::TransformationMode, &QImage::transformed>("transformed").create();
+  binder.fun<QImage, const QTransform &, Qt::TransformationMode, &QImage::transformed>("transformed")
+    .addDefaultArgument(binding::default_argument(image.engine(), Qt::FastTransformation)).create();
   // static QTransform trueMatrix(const QTransform &, int, int);
   binder.static_fun<QTransform, const QTransform &, int, int, &QImage::trueMatrix>("trueMatrix").create();
   // QImage img_mirrored(bool, bool);
-  binder.fun<QImage, bool, bool, &img_mirrored>("mirrored").create();
+  binder.fun<QImage, bool, bool, &img_mirrored>("mirrored")
+    .addDefaultArgument(binding::default_argument(image.engine(), true))
+    .addDefaultArgument(binding::default_argument(image.engine(), false)).create();
   // QImage img_rgbSwapped();
   binder.fun<QImage, &img_rgbSwapped>("rgbSwapped").create();
   // void invertPixels(QImage::InvertMode);
-  binder.void_fun<QImage::InvertMode, &QImage::invertPixels>("invertPixels").create();
+  binder.void_fun<QImage::InvertMode, &QImage::invertPixels>("invertPixels")
+    .addDefaultArgument(binding::default_argument(image.engine(), QImage::InvertRgb)).create();
   // bool load(QIODevice *, const char *);
   /// TODO: bool load(QIODevice *, const char *);
   // bool load(const QString &, const char *);

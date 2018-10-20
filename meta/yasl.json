@@ -28470,6 +28470,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "QColor",
                                     "parameters": [
                                         "int",
@@ -28736,6 +28737,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "setRgb",
                                     "parameters": [
                                         "int",
@@ -28757,6 +28759,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "qreal(1.0)",
                                     "name": "setRgbF",
                                     "parameters": [
                                         "qreal",
@@ -28877,6 +28880,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "setHsv",
                                     "parameters": [
                                         "int",
@@ -28898,6 +28902,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "qreal(1.0)",
                                     "name": "setHsvF",
                                     "parameters": [
                                         "qreal",
@@ -28967,6 +28972,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "setCmyk",
                                     "parameters": [
                                         "int",
@@ -28989,6 +28995,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "qreal(1.0)",
                                     "name": "setCmykF",
                                     "parameters": [
                                         "qreal",
@@ -29047,6 +29054,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "setHsl",
                                     "parameters": [
                                         "int",
@@ -29068,6 +29076,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "qreal(1.0)",
                                     "name": "setHslF",
                                     "parameters": [
                                         "qreal",
@@ -29129,6 +29138,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "fromRgb",
                                     "parameters": [
                                         "int",
@@ -29141,6 +29151,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "qreal(1.0)",
                                     "name": "fromRgbF",
                                     "parameters": [
                                         "qreal",
@@ -29174,6 +29185,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "fromHsv",
                                     "parameters": [
                                         "int",
@@ -29186,6 +29198,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "qreal(1.0)",
                                     "name": "fromHsvF",
                                     "parameters": [
                                         "qreal",
@@ -29198,6 +29211,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "fromCmyk",
                                     "parameters": [
                                         "int",
@@ -29211,6 +29225,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "qreal(1.0)",
                                     "name": "fromCmykF",
                                     "parameters": [
                                         "qreal",
@@ -29224,6 +29239,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "255",
                                     "name": "fromHsl",
                                     "parameters": [
                                         "int",
@@ -29236,6 +29252,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "qreal(1.0)",
                                     "name": "fromHslF",
                                     "parameters": [
                                         "qreal",
@@ -29258,6 +29275,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "150",
                                     "name": "lighter",
                                     "parameters": [
                                         "int"
@@ -29635,6 +29653,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "false;-1;-1",
                                     "name": "QFont",
                                     "parameters": [
                                         "const QString &",
@@ -29865,6 +29884,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QFont::PreferDefault",
                                     "name": "setStyleHint",
                                     "parameters": [
                                         "QFont::StyleHint",
@@ -30214,10 +30234,8 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
-                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -30378,6 +30396,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QFontDatabase::Any",
                                     "name": "families",
                                     "parameters": [
                                         "QFontDatabase::WritingSystem"
@@ -30395,6 +30414,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QString()",
                                     "name": "pointSizes",
                                     "parameters": [
                                         "const QString &",
@@ -30441,6 +30461,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QString()",
                                     "name": "isBitmapScalable",
                                     "parameters": [
                                         "const QString &",
@@ -30451,6 +30472,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QString()",
                                     "name": "isSmoothlyScalable",
                                     "parameters": [
                                         "const QString &",
@@ -30461,6 +30483,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QString()",
                                     "name": "isScalable",
                                     "parameters": [
                                         "const QString &",
@@ -30471,6 +30494,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QString()",
                                     "name": "isFixedPitch",
                                     "parameters": [
                                         "const QString &",
@@ -30919,6 +30943,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "-1",
                                     "name": "width",
                                     "parameters": [
                                         "const QString &",
@@ -31027,6 +31052,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "0",
                                     "name": "elidedText",
                                     "parameters": [
                                         "const QString &",
@@ -31331,6 +31357,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "0",
                                     "name": "elidedText",
                                     "parameters": [
                                         "const QString &",
@@ -31417,6 +31444,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "-1;-1",
                                     "name": "QCursor",
                                     "parameters": [
                                         "const QBitmap &",
@@ -31427,6 +31455,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "-1;-1",
                                     "name": "QCursor",
                                     "parameters": [
                                         "const QPixmap &",
@@ -31756,6 +31785,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QColor(Qt::white)",
                                     "name": "fill",
                                     "parameters": [
                                         "const QColor &"
@@ -31819,6 +31849,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "true",
                                     "name": "createHeuristicMask",
                                     "parameters": [
                                         "bool"
@@ -31828,6 +31859,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::MaskInColor",
                                     "name": "createMaskFromColor",
                                     "parameters": [
                                         "const QColor &",
@@ -31874,6 +31906,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation;Qt::IgnoreAspectRatio",
                                     "name": "scaled",
                                     "parameters": [
                                         "int",
@@ -31886,6 +31919,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation;Qt::IgnoreAspectRatio",
                                     "name": "scaled",
                                     "parameters": [
                                         "const QSize &",
@@ -31897,6 +31931,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation",
                                     "name": "scaledToWidth",
                                     "parameters": [
                                         "int",
@@ -31907,6 +31942,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation",
                                     "name": "scaledToHeight",
                                     "parameters": [
                                         "int",
@@ -31917,6 +31953,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation",
                                     "name": "transformed",
                                     "parameters": [
                                         "const QMatrix &",
@@ -31938,6 +31975,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation",
                                     "name": "transformed",
                                     "parameters": [
                                         "const QTransform &",
@@ -31964,6 +32002,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "fromImage",
                                     "parameters": [
                                         "const QImage &",
@@ -31974,6 +32013,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "fromImageReader",
                                     "parameters": [
                                         "QImageReader *",
@@ -31984,6 +32024,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "fromImage",
                                     "parameters": [
                                         "QImage &&",
@@ -32047,6 +32088,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "convertFromImage",
                                     "parameters": [
                                         "const QImage &",
@@ -32069,6 +32111,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QRect()",
                                     "name": "copy",
                                     "parameters": [
                                         "const QRect &"
@@ -32275,6 +32318,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "fromImage",
                                     "parameters": [
                                         "const QImage &",
@@ -32433,6 +32477,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal",
                                     "name": "pixmap",
                                     "parameters": [
                                         "const QSize &",
@@ -32444,6 +32489,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal",
                                     "name": "pixmap",
                                     "parameters": [
                                         "int",
@@ -32456,6 +32502,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal",
                                     "name": "pixmap",
                                     "parameters": [
                                         "int",
@@ -32467,6 +32514,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal",
                                     "name": "pixmap",
                                     "parameters": [
                                         "QWindow *",
@@ -32479,6 +32527,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal",
                                     "name": "actualSize",
                                     "parameters": [
                                         "const QSize &",
@@ -32490,6 +32539,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal",
                                     "name": "actualSize",
                                     "parameters": [
                                         "QWindow *",
@@ -32508,6 +32558,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal;Qt::Alignment(Qt::AlignCenter)",
                                     "name": "paint",
                                     "parameters": [
                                         "QPainter *",
@@ -32520,6 +32571,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal;Qt::Alignment(Qt::AlignCenter)",
                                     "name": "paint",
                                     "parameters": [
                                         "QPainter *",
@@ -32556,6 +32608,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QIcon::Off;QIcon::Normal",
                                     "name": "addPixmap",
                                     "parameters": [
                                         "const QPixmap &",
@@ -32565,6 +32618,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QIcon::Off;QIcon::Normal;QSize()",
                                     "name": "addFile",
                                     "parameters": [
                                         "const QString &",
@@ -32576,6 +32630,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QIcon::Off;QIcon::Normal",
                                     "name": "availableSizes",
                                     "parameters": [
                                         "QIcon::Mode",
@@ -32984,6 +33039,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QRect()",
                                     "name": "copy",
                                     "parameters": [
                                         "const QRect &"
@@ -33022,6 +33078,7 @@
                                 },
                                 {
                                     "binding": "free",
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "img_convertToFormat",
                                     "parameters": [
                                         "QImage::Format",
@@ -33033,6 +33090,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "convertToFormat",
                                     "parameters": [
                                         "QImage::Format",
@@ -33367,6 +33425,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "createAlphaMask",
                                     "parameters": [
                                         "Qt::ImageConversionFlags"
@@ -33376,6 +33435,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "true",
                                     "name": "createHeuristicMask",
                                     "parameters": [
                                         "bool"
@@ -33385,6 +33445,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::MaskInColor",
                                     "name": "createMaskFromColor",
                                     "parameters": [
                                         "QRgb",
@@ -33395,6 +33456,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation;Qt::IgnoreAspectRatio",
                                     "name": "scaled",
                                     "parameters": [
                                         "int",
@@ -33407,6 +33469,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation;Qt::IgnoreAspectRatio",
                                     "name": "scaled",
                                     "parameters": [
                                         "const QSize &",
@@ -33418,6 +33481,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation",
                                     "name": "scaledToWidth",
                                     "parameters": [
                                         "int",
@@ -33428,6 +33492,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation",
                                     "name": "scaledToHeight",
                                     "parameters": [
                                         "int",
@@ -33438,6 +33503,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation",
                                     "name": "transformed",
                                     "parameters": [
                                         "const QMatrix &",
@@ -33459,6 +33525,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "Qt::FastTransformation",
                                     "name": "transformed",
                                     "parameters": [
                                         "const QTransform &",
@@ -33491,6 +33558,7 @@
                                 },
                                 {
                                     "binding": "free",
+                                    "defaults": "true;false",
                                     "name": "img_mirrored",
                                     "parameters": [
                                         "bool",
@@ -33515,6 +33583,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QImage::InvertRgb",
                                     "name": "invertPixels",
                                     "parameters": [
                                         "QImage::InvertMode"
@@ -33791,6 +33860,7 @@
                                 },
                                 {
                                     "checked": 0,
+                                    "defaults": "qreal(1.0)",
                                     "name": "QTransform",
                                     "parameters": [
                                         "qreal",
@@ -34039,6 +34109,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ZAxis",
                                     "name": "rotate",
                                     "parameters": [
                                         "qreal",
@@ -34048,6 +34119,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ZAxis",
                                     "name": "rotateRadians",
                                     "parameters": [
                                         "qreal",
@@ -36300,6 +36372,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "QRegion::Rectangle",
                                     "name": "QRegion",
                                     "parameters": [
                                         "int",
@@ -36311,6 +36384,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "QRegion::Rectangle",
                                     "name": "QRegion",
                                     "parameters": [
                                         "const QRect &",
@@ -36319,6 +36393,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "Qt::OddEvenFill",
                                     "name": "QRegion",
                                     "parameters": [
                                         "const QPolygon &",
@@ -36789,6 +36864,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "clear",
                                     "parameters": [
                                         "QClipboard::Mode"
@@ -36827,6 +36903,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "text",
                                     "parameters": [
                                         "QClipboard::Mode"
@@ -36836,6 +36913,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "text",
                                     "parameters": [
                                         "QString &",
@@ -36845,6 +36923,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "setText",
                                     "parameters": [
                                         "const QString &",
@@ -36854,6 +36933,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "mimeData",
                                     "parameters": [
                                         "QClipboard::Mode"
@@ -36862,6 +36942,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "setMimeData",
                                     "parameters": [
                                         "QMimeData *",
@@ -36871,6 +36952,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "image",
                                     "parameters": [
                                         "QClipboard::Mode"
@@ -36880,6 +36962,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "pixmap",
                                     "parameters": [
                                         "QClipboard::Mode"
@@ -36888,6 +36971,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "setImage",
                                     "parameters": [
                                         "const QImage &",
@@ -36896,6 +36980,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QClipboard::Clipboard",
                                     "name": "setPixmap",
                                     "parameters": [
                                         "const QPixmap &",
@@ -37203,6 +37288,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "QKeySequence::NativeText",
                                     "name": "QKeySequence",
                                     "parameters": [
                                         "const QString &",
@@ -37211,6 +37297,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "0;0;0",
                                     "name": "QKeySequence",
                                     "parameters": [
                                         "int",
@@ -37267,6 +37354,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QKeySequence::PortableText",
                                     "name": "toString",
                                     "parameters": [
                                         "QKeySequence::SequenceFormat"
@@ -37275,6 +37363,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QKeySequence::PortableText",
                                     "name": "fromString",
                                     "parameters": [
                                         "const QString &",
@@ -37285,6 +37374,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QKeySequence::PortableText",
                                     "name": "listFromString",
                                     "parameters": [
                                         "const QString &",
@@ -37295,6 +37385,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QKeySequence::PortableText",
                                     "name": "listToString",
                                     "parameters": [
                                         "const QList<QKeySequence> &",
@@ -37470,6 +37561,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "Qt::SolidPattern",
                                     "name": "QBrush",
                                     "parameters": [
                                         "const QColor &",
@@ -37478,6 +37570,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "Qt::SolidPattern",
                                     "name": "QBrush",
                                     "parameters": [
                                         "Qt::GlobalColor",
@@ -38222,7 +38315,6 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "elements": [
@@ -38408,6 +38500,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setFlag",
                                     "parameters": [
                                         "QGlyphRun::GlyphRunFlag",
@@ -38835,6 +38928,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ReplaceClip",
                                     "name": "setClipRect",
                                     "parameters": [
                                         "const QRectF &",
@@ -38843,6 +38937,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ReplaceClip",
                                     "name": "setClipRect",
                                     "parameters": [
                                         "const QRect &",
@@ -38851,6 +38946,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ReplaceClip",
                                     "name": "setClipRect",
                                     "parameters": [
                                         "int",
@@ -38862,6 +38958,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ReplaceClip",
                                     "name": "setClipRegion",
                                     "parameters": [
                                         "const QRegion &",
@@ -38870,6 +38967,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ReplaceClip",
                                     "name": "setClipPath",
                                     "parameters": [
                                         "const QPainterPath &",
@@ -38929,6 +39027,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "false",
                                     "name": "setTransform",
                                     "parameters": [
                                         "const QTransform &",
@@ -38967,6 +39066,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "false",
                                     "name": "setWorldTransform",
                                     "parameters": [
                                         "const QTransform &",
@@ -39424,6 +39524,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::OddEvenFill",
                                     "name": "drawPolygon",
                                     "parameters": [
                                         "const QPointF *",
@@ -39433,6 +39534,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::OddEvenFill",
                                     "name": "drawPolygon",
                                     "parameters": [
                                         "const QPolygonF &",
@@ -39441,6 +39543,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::OddEvenFill",
                                     "name": "drawPolygon",
                                     "parameters": [
                                         "const QPoint *",
@@ -39450,6 +39553,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::OddEvenFill",
                                     "name": "drawPolygon",
                                     "parameters": [
                                         "const QPolygon &",
@@ -39578,6 +39682,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::AbsoluteSize",
                                     "name": "drawRoundedRect",
                                     "parameters": [
                                         "const QRectF &",
@@ -39589,6 +39694,7 @@
                                 },
                                 {
                                     "checked": 0,
+                                    "defaults": "Qt::AbsoluteSize",
                                     "name": "drawRoundedRect",
                                     "parameters": [
                                         "int",
@@ -39602,6 +39708,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::AbsoluteSize",
                                     "name": "drawRoundedRect",
                                     "parameters": [
                                         "const QRect &",
@@ -39642,6 +39749,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QPointF()",
                                     "name": "drawTiledPixmap",
                                     "parameters": [
                                         "const QRectF &",
@@ -39652,6 +39760,7 @@
                                 },
                                 {
                                     "checked": 0,
+                                    "defaults": "0;0",
                                     "name": "drawTiledPixmap",
                                     "parameters": [
                                         "int",
@@ -39665,6 +39774,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QPoint()",
                                     "name": "drawTiledPixmap",
                                     "parameters": [
                                         "const QRect &",
@@ -39819,6 +39929,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "drawImage",
                                     "parameters": [
                                         "const QRectF &",
@@ -39829,6 +39940,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "drawImage",
                                     "parameters": [
                                         "const QRect &",
@@ -39839,6 +39951,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "drawImage",
                                     "parameters": [
                                         "const QPointF &",
@@ -39849,6 +39962,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor)",
                                     "name": "drawImage",
                                     "parameters": [
                                         "const QPoint &",
@@ -39892,6 +40006,7 @@
                                 },
                                 {
                                     "checked": 0,
+                                    "defaults": "Qt::ImageConversionFlags(Qt::AutoColor);-1;-1;0;0",
                                     "name": "drawImage",
                                     "parameters": [
                                         "int",
@@ -40020,6 +40135,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QTextOption()",
                                     "name": "drawText",
                                     "parameters": [
                                         "const QRectF &",
@@ -40062,6 +40178,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QTextOption()",
                                     "name": "boundingRect",
                                     "parameters": [
                                         "const QRectF &",
@@ -40609,6 +40726,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::AbsoluteSize",
                                     "name": "addRoundedRect",
                                     "parameters": [
                                         "const QRectF &",
@@ -40620,6 +40738,7 @@
                                 },
                                 {
                                     "checked": 0,
+                                    "defaults": "Qt::AbsoluteSize",
                                     "name": "addRoundedRect",
                                     "parameters": [
                                         "qreal",
@@ -41808,6 +41927,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "Qt::BevelJoin;Qt::SquareCap;Qt::SolidLine",
                                     "name": "QPen",
                                     "parameters": [
                                         "const QBrush &",
@@ -42068,6 +42188,7 @@
                         {
                             "elements": [
                                 {
+                                    "defaults": "-1",
                                     "name": "QPicture",
                                     "parameters": [
                                         "int"
@@ -43358,6 +43479,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QFont();QTransform()",
                                     "name": "prepare",
                                     "parameters": [
                                         "const QTransform &",
@@ -43741,6 +43863,7 @@
                             "base": "QValidator",
                             "elements": [
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QIntValidator",
                                     "parameters": [
                                         "QObject *"
@@ -43748,6 +43871,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QIntValidator",
                                     "parameters": [
                                         "int",
@@ -43834,6 +43958,7 @@
                             "base": "QValidator",
                             "elements": [
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QDoubleValidator",
                                     "parameters": [
                                         "QObject *"
@@ -43841,6 +43966,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QDoubleValidator",
                                     "parameters": [
                                         "double",
@@ -43877,6 +44003,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0",
                                     "name": "setRange",
                                     "parameters": [
                                         "double",
@@ -43973,6 +44100,7 @@
                             "base": "QValidator",
                             "elements": [
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QRegularExpressionValidator",
                                     "parameters": [
                                         "QObject *"
@@ -43980,6 +44108,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QRegularExpressionValidator",
                                     "parameters": [
                                         "const QRegularExpression &",
@@ -44074,6 +44203,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QScreen*)nullptr",
                                     "name": "QWindow",
                                     "parameters": [
                                         "QScreen *"
@@ -44213,6 +44343,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "true",
                                     "name": "setFlag",
                                     "parameters": [
                                         "Qt::WindowType",
@@ -44324,6 +44455,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QWindow::IncludeTransients",
                                     "name": "isAncestorOf",
                                     "parameters": [
                                         "const QWindow *",

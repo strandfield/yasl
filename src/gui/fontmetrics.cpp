@@ -5,6 +5,7 @@
 #include "yasl/gui/fontmetrics.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/char.h"
@@ -68,7 +69,8 @@ static void register_font_metrics_class(script::Namespace ns)
   // int rightBearing(QChar) const;
   binder.fun<int, QChar, &QFontMetrics::rightBearing>("rightBearing").create();
   // int width(const QString &, int) const;
-  binder.fun<int, const QString &, int, &QFontMetrics::width>("width").create();
+  binder.fun<int, const QString &, int, &QFontMetrics::width>("width")
+    .addDefaultArgument(binding::default_argument(font_metrics.engine(), -1)).create();
   // int width(const QString &, int, int) const;
   binder.fun<int, const QString &, int, int, &QFontMetrics::width>("width").create();
   // int width(QChar) const;
@@ -88,7 +90,8 @@ static void register_font_metrics_class(script::Namespace ns)
   // QRect tightBoundingRect(const QString &) const;
   binder.fun<QRect, const QString &, &QFontMetrics::tightBoundingRect>("tightBoundingRect").create();
   // QString elidedText(const QString &, Qt::TextElideMode, int, int) const;
-  binder.fun<QString, const QString &, Qt::TextElideMode, int, int, &QFontMetrics::elidedText>("elidedText").create();
+  binder.fun<QString, const QString &, Qt::TextElideMode, int, int, &QFontMetrics::elidedText>("elidedText")
+    .addDefaultArgument(binding::default_argument(font_metrics.engine(), 0)).create();
   // int underlinePos() const;
   binder.fun<int, &QFontMetrics::underlinePos>("underlinePos").create();
   // int overlinePos() const;
@@ -175,7 +178,8 @@ static void register_font_metrics_f_class(script::Namespace ns)
   // QRectF tightBoundingRect(const QString &) const;
   binder.fun<QRectF, const QString &, &QFontMetricsF::tightBoundingRect>("tightBoundingRect").create();
   // QString elidedText(const QString &, Qt::TextElideMode, qreal, int) const;
-  binder.fun<QString, const QString &, Qt::TextElideMode, qreal, int, &QFontMetricsF::elidedText>("elidedText").create();
+  binder.fun<QString, const QString &, Qt::TextElideMode, qreal, int, &QFontMetricsF::elidedText>("elidedText")
+    .addDefaultArgument(binding::default_argument(font_metrics_f.engine(), 0)).create();
   // qreal underlinePos() const;
   binder.fun<qreal, &QFontMetricsF::underlinePos>("underlinePos").create();
   // qreal overlinePos() const;

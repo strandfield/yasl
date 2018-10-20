@@ -5,6 +5,7 @@
 #include "yasl/gui/region.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -40,9 +41,11 @@ static void register_region_class(script::Namespace ns)
   // QRegion();
   binder.ctors().add_default();
   // QRegion(int, int, int, int, QRegion::RegionType);
-  binder.ctors().ctor<int, int, int, int, QRegion::RegionType>().create();
+  binder.ctors().ctor<int, int, int, int, QRegion::RegionType>()
+    .addDefaultArgument(binding::default_argument(region.engine(), QRegion::Rectangle)).create();
   // QRegion(const QRect &, QRegion::RegionType);
-  binder.ctors().ctor<const QRect &, QRegion::RegionType>().create();
+  binder.ctors().ctor<const QRect &, QRegion::RegionType>()
+    .addDefaultArgument(binding::default_argument(region.engine(), QRegion::Rectangle)).create();
   // QRegion(const QPolygon &, Qt::FillRule);
   /// TODO: QRegion(const QPolygon &, Qt::FillRule);
   // QRegion(const QRegion &);

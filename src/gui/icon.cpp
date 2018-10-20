@@ -5,6 +5,7 @@
 #include "yasl/gui/icon.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -72,17 +73,29 @@ static void register_icon_class(script::Namespace ns)
   // void swap(QIcon &);
   binder.void_fun<QIcon &, &QIcon::swap>("swap").create();
   // QPixmap pixmap(const QSize &, QIcon::Mode, QIcon::State) const;
-  binder.fun<QPixmap, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap").create();
+  binder.fun<QPixmap, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap")
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Off))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Normal)).create();
   // QPixmap pixmap(int, int, QIcon::Mode, QIcon::State) const;
-  binder.fun<QPixmap, int, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap").create();
+  binder.fun<QPixmap, int, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap")
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Off))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Normal)).create();
   // QPixmap pixmap(int, QIcon::Mode, QIcon::State) const;
-  binder.fun<QPixmap, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap").create();
+  binder.fun<QPixmap, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap")
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Off))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Normal)).create();
   // QPixmap pixmap(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
-  binder.fun<QPixmap, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap").create();
+  binder.fun<QPixmap, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap")
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Off))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Normal)).create();
   // QSize actualSize(const QSize &, QIcon::Mode, QIcon::State) const;
-  binder.fun<QSize, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>("actualSize").create();
+  binder.fun<QSize, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>("actualSize")
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Off))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Normal)).create();
   // QSize actualSize(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
-  binder.fun<QSize, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>("actualSize").create();
+  binder.fun<QSize, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>("actualSize")
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Off))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Normal)).create();
   // QString name() const;
   binder.fun<QString, &QIcon::name>("name").create();
   // void paint(QPainter *, const QRect &, Qt::Alignment, QIcon::Mode, QIcon::State) const;
@@ -98,9 +111,14 @@ static void register_icon_class(script::Namespace ns)
   // qint64 cacheKey() const;
   /// TODO: qint64 cacheKey() const;
   // void addPixmap(const QPixmap &, QIcon::Mode, QIcon::State);
-  binder.void_fun<const QPixmap &, QIcon::Mode, QIcon::State, &QIcon::addPixmap>("addPixmap").create();
+  binder.void_fun<const QPixmap &, QIcon::Mode, QIcon::State, &QIcon::addPixmap>("addPixmap")
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Off))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Normal)).create();
   // void addFile(const QString &, const QSize &, QIcon::Mode, QIcon::State);
-  binder.void_fun<const QString &, const QSize &, QIcon::Mode, QIcon::State, &QIcon::addFile>("addFile").create();
+  binder.void_fun<const QString &, const QSize &, QIcon::Mode, QIcon::State, &QIcon::addFile>("addFile")
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Off))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QIcon::Normal))
+    .addDefaultArgument(binding::default_argument(icon.engine(), QSize())).create();
   // QList<QSize> availableSizes(QIcon::Mode, QIcon::State) const;
   /// TODO: QList<QSize> availableSizes(QIcon::Mode, QIcon::State) const;
   // void setIsMask(bool);

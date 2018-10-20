@@ -5,6 +5,7 @@
 #include "yasl/gui/glyphrun.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -86,7 +87,8 @@ static void register_glyph_run_class(script::Namespace ns)
   // bool isRightToLeft() const;
   binder.fun<bool, &QGlyphRun::isRightToLeft>("isRightToLeft").create();
   // void setFlag(QGlyphRun::GlyphRunFlag, bool);
-  binder.void_fun<QGlyphRun::GlyphRunFlag, bool, &QGlyphRun::setFlag>("setFlag").create();
+  binder.void_fun<QGlyphRun::GlyphRunFlag, bool, &QGlyphRun::setFlag>("setFlag")
+    .addDefaultArgument(binding::default_argument(glyph_run.engine(), true)).create();
   // void setFlags(QGlyphRun::GlyphRunFlags);
   /// TODO: void setFlags(QGlyphRun::GlyphRunFlags);
   // QGlyphRun::GlyphRunFlags flags() const;

@@ -5,6 +5,7 @@
 #include "yasl/gui/fontdatabase.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -107,13 +108,17 @@ static void register_font_database_class(script::Namespace ns)
   // QFont font(const QString &, const QString &, int) const;
   binder.fun<QFont, const QString &, const QString &, int, &QFontDatabase::font>("font").create();
   // bool isBitmapScalable(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isBitmapScalable>("isBitmapScalable").create();
+  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isBitmapScalable>("isBitmapScalable")
+    .addDefaultArgument(binding::default_argument(font_database.engine(), QString())).create();
   // bool isSmoothlyScalable(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isSmoothlyScalable>("isSmoothlyScalable").create();
+  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isSmoothlyScalable>("isSmoothlyScalable")
+    .addDefaultArgument(binding::default_argument(font_database.engine(), QString())).create();
   // bool isScalable(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isScalable>("isScalable").create();
+  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isScalable>("isScalable")
+    .addDefaultArgument(binding::default_argument(font_database.engine(), QString())).create();
   // bool isFixedPitch(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isFixedPitch>("isFixedPitch").create();
+  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isFixedPitch>("isFixedPitch")
+    .addDefaultArgument(binding::default_argument(font_database.engine(), QString())).create();
   // bool italic(const QString &, const QString &) const;
   binder.fun<bool, const QString &, const QString &, &QFontDatabase::italic>("italic").create();
   // bool bold(const QString &, const QString &) const;

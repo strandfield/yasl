@@ -5,6 +5,7 @@
 #include "yasl/gui/transform.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -113,9 +114,11 @@ static void register_transform_class(script::Namespace ns)
   // QTransform & shear(qreal, qreal);
   binder.chainable<qreal, qreal, &QTransform::shear>("shear").create();
   // QTransform & rotate(qreal, Qt::Axis);
-  binder.chainable<qreal, Qt::Axis, &QTransform::rotate>("rotate").create();
+  binder.chainable<qreal, Qt::Axis, &QTransform::rotate>("rotate")
+    .addDefaultArgument(binding::default_argument(transform.engine(), Qt::ZAxis)).create();
   // QTransform & rotateRadians(qreal, Qt::Axis);
-  binder.chainable<qreal, Qt::Axis, &QTransform::rotateRadians>("rotateRadians").create();
+  binder.chainable<qreal, Qt::Axis, &QTransform::rotateRadians>("rotateRadians")
+    .addDefaultArgument(binding::default_argument(transform.engine(), Qt::ZAxis)).create();
   // static bool squareToQuad(const QPolygonF &, QTransform &);
   /// TODO: static bool squareToQuad(const QPolygonF &, QTransform &);
   // static bool quadToSquare(const QPolygonF &, QTransform &);

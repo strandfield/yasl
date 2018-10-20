@@ -5,6 +5,7 @@
 #include "yasl/gui/pen.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/datastream.h"
@@ -30,7 +31,10 @@ static void register_pen_class(script::Namespace ns)
   // QPen(const QColor &);
   binder.ctors().ctor<const QColor &>().create();
   // QPen(const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle);
-  binder.ctors().ctor<const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle>().create();
+  binder.ctors().ctor<const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle>()
+    .addDefaultArgument(binding::default_argument(pen.engine(), Qt::BevelJoin))
+    .addDefaultArgument(binding::default_argument(pen.engine(), Qt::SquareCap))
+    .addDefaultArgument(binding::default_argument(pen.engine(), Qt::SolidLine)).create();
   // QPen(const QPen &);
   binder.ctors().ctor<const QPen &>().create();
   // ~QPen();

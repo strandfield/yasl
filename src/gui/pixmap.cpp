@@ -5,6 +5,7 @@
 #include "yasl/gui/pixmap.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
@@ -68,7 +69,8 @@ static void register_pixmap_class(script::Namespace ns)
   // static int defaultDepth();
   binder.static_fun<int, &QPixmap::defaultDepth>("defaultDepth").create();
   // void fill(const QColor &);
-  binder.void_fun<const QColor &, &QPixmap::fill>("fill").create();
+  binder.void_fun<const QColor &, &QPixmap::fill>("fill")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), QColor(Qt::white))).create();
   // void fill(const QPaintDevice *, const QPoint &);
   /// TODO: void fill(const QPaintDevice *, const QPoint &);
   // void fill(const QPaintDevice *, int, int);
@@ -86,9 +88,11 @@ static void register_pixmap_class(script::Namespace ns)
   // bool hasAlphaChannel() const;
   binder.fun<bool, &QPixmap::hasAlphaChannel>("hasAlphaChannel").create();
   // QBitmap createHeuristicMask(bool) const;
-  binder.fun<QBitmap, bool, &QPixmap::createHeuristicMask>("createHeuristicMask").create();
+  binder.fun<QBitmap, bool, &QPixmap::createHeuristicMask>("createHeuristicMask")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), true)).create();
   // QBitmap createMaskFromColor(const QColor &, Qt::MaskMode) const;
-  binder.fun<QBitmap, const QColor &, Qt::MaskMode, &QPixmap::createMaskFromColor>("createMaskFromColor").create();
+  binder.fun<QBitmap, const QColor &, Qt::MaskMode, &QPixmap::createMaskFromColor>("createMaskFromColor")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::MaskInColor)).create();
   // static QPixmap grabWindow(WId, int, int, int, int);
   /// TODO: static QPixmap grabWindow(WId, int, int, int, int);
   // static QPixmap grabWidget(QObject *, const QRect &);
@@ -96,29 +100,38 @@ static void register_pixmap_class(script::Namespace ns)
   // static QPixmap grabWidget(QObject *, int, int, int, int);
   binder.static_fun<QPixmap, QObject *, int, int, int, int, &QPixmap::grabWidget>("grabWidget").create();
   // QPixmap scaled(int, int, Qt::AspectRatioMode, Qt::TransformationMode) const;
-  binder.fun<QPixmap, int, int, Qt::AspectRatioMode, Qt::TransformationMode, &QPixmap::scaled>("scaled").create();
+  binder.fun<QPixmap, int, int, Qt::AspectRatioMode, Qt::TransformationMode, &QPixmap::scaled>("scaled")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::FastTransformation))
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::IgnoreAspectRatio)).create();
   // QPixmap scaled(const QSize &, Qt::AspectRatioMode, Qt::TransformationMode) const;
-  binder.fun<QPixmap, const QSize &, Qt::AspectRatioMode, Qt::TransformationMode, &QPixmap::scaled>("scaled").create();
+  binder.fun<QPixmap, const QSize &, Qt::AspectRatioMode, Qt::TransformationMode, &QPixmap::scaled>("scaled")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::FastTransformation))
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::IgnoreAspectRatio)).create();
   // QPixmap scaledToWidth(int, Qt::TransformationMode) const;
-  binder.fun<QPixmap, int, Qt::TransformationMode, &QPixmap::scaledToWidth>("scaledToWidth").create();
+  binder.fun<QPixmap, int, Qt::TransformationMode, &QPixmap::scaledToWidth>("scaledToWidth")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::FastTransformation)).create();
   // QPixmap scaledToHeight(int, Qt::TransformationMode) const;
-  binder.fun<QPixmap, int, Qt::TransformationMode, &QPixmap::scaledToHeight>("scaledToHeight").create();
+  binder.fun<QPixmap, int, Qt::TransformationMode, &QPixmap::scaledToHeight>("scaledToHeight")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::FastTransformation)).create();
   // QPixmap transformed(const QMatrix &, Qt::TransformationMode) const;
   /// TODO: QPixmap transformed(const QMatrix &, Qt::TransformationMode) const;
   // static QMatrix trueMatrix(const QMatrix &, int, int);
   /// TODO: static QMatrix trueMatrix(const QMatrix &, int, int);
   // QPixmap transformed(const QTransform &, Qt::TransformationMode) const;
-  binder.fun<QPixmap, const QTransform &, Qt::TransformationMode, &QPixmap::transformed>("transformed").create();
+  binder.fun<QPixmap, const QTransform &, Qt::TransformationMode, &QPixmap::transformed>("transformed")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::FastTransformation)).create();
   // static QTransform trueMatrix(const QTransform &, int, int);
   binder.static_fun<QTransform, const QTransform &, int, int, &QPixmap::trueMatrix>("trueMatrix").create();
   // QImage toImage() const;
   binder.fun<QImage, &QPixmap::toImage>("toImage").create();
   // static QPixmap fromImage(const QImage &, Qt::ImageConversionFlags);
-  binder.static_fun<QPixmap, const QImage &, Qt::ImageConversionFlags, &QPixmap::fromImage>("fromImage").create();
+  binder.static_fun<QPixmap, const QImage &, Qt::ImageConversionFlags, &QPixmap::fromImage>("fromImage")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags);
   /// TODO: static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags);
   // static QPixmap fromImage(QImage &&, Qt::ImageConversionFlags);
-  binder.static_fun<QPixmap, QImage &&, Qt::ImageConversionFlags, &QPixmap::fromImage>("fromImage").create();
+  binder.static_fun<QPixmap, QImage &&, Qt::ImageConversionFlags, &QPixmap::fromImage>("fromImage")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // bool load(const QString &, const char *, Qt::ImageConversionFlags);
   /// TODO: bool load(const QString &, const char *, Qt::ImageConversionFlags);
   // bool loadFromData(const uchar *, uint, const char *, Qt::ImageConversionFlags);
@@ -130,11 +143,13 @@ static void register_pixmap_class(script::Namespace ns)
   // bool save(QIODevice *, const char *, int) const;
   /// TODO: bool save(QIODevice *, const char *, int) const;
   // bool convertFromImage(const QImage &, Qt::ImageConversionFlags);
-  binder.fun<bool, const QImage &, Qt::ImageConversionFlags, &QPixmap::convertFromImage>("convertFromImage").create();
+  binder.fun<bool, const QImage &, Qt::ImageConversionFlags, &QPixmap::convertFromImage>("convertFromImage")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // QPixmap copy(int, int, int, int) const;
   binder.fun<QPixmap, int, int, int, int, &QPixmap::copy>("copy").create();
   // QPixmap copy(const QRect &) const;
-  binder.fun<QPixmap, const QRect &, &QPixmap::copy>("copy").create();
+  binder.fun<QPixmap, const QRect &, &QPixmap::copy>("copy")
+    .addDefaultArgument(binding::default_argument(pixmap.engine(), QRect())).create();
   // void scroll(int, int, int, int, int, int, QRegion *);
   /// TODO: void scroll(int, int, int, int, int, int, QRegion *);
   // void scroll(int, int, const QRect &, QRegion *);

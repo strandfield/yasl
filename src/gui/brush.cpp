@@ -5,6 +5,7 @@
 #include "yasl/gui/brush.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -33,9 +34,11 @@ static void register_brush_class(script::Namespace ns)
   // QBrush(Qt::BrushStyle);
   binder.ctors().ctor<Qt::BrushStyle>().create();
   // QBrush(const QColor &, Qt::BrushStyle);
-  binder.ctors().ctor<const QColor &, Qt::BrushStyle>().create();
+  binder.ctors().ctor<const QColor &, Qt::BrushStyle>()
+    .addDefaultArgument(binding::default_argument(brush.engine(), Qt::SolidPattern)).create();
   // QBrush(Qt::GlobalColor, Qt::BrushStyle);
-  binder.ctors().ctor<Qt::GlobalColor, Qt::BrushStyle>().create();
+  binder.ctors().ctor<Qt::GlobalColor, Qt::BrushStyle>()
+    .addDefaultArgument(binding::default_argument(brush.engine(), Qt::SolidPattern)).create();
   // QBrush(const QColor &, const QPixmap &);
   binder.ctors().ctor<const QColor &, const QPixmap &>().create();
   // QBrush(Qt::GlobalColor, const QPixmap &);

@@ -5,6 +5,7 @@
 #include "yasl/gui/keysequence.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -131,9 +132,13 @@ static void register_key_sequence_class(script::Namespace ns)
   // QKeySequence();
   binder.ctors().add_default();
   // QKeySequence(const QString &, QKeySequence::SequenceFormat);
-  binder.ctors().ctor<const QString &, QKeySequence::SequenceFormat>().create();
+  binder.ctors().ctor<const QString &, QKeySequence::SequenceFormat>()
+    .addDefaultArgument(binding::default_argument(key_sequence.engine(), QKeySequence::NativeText)).create();
   // QKeySequence(int, int, int, int);
-  binder.ctors().ctor<int, int, int, int>().create();
+  binder.ctors().ctor<int, int, int, int>()
+    .addDefaultArgument(binding::default_argument(key_sequence.engine(), 0))
+    .addDefaultArgument(binding::default_argument(key_sequence.engine(), 0))
+    .addDefaultArgument(binding::default_argument(key_sequence.engine(), 0)).create();
   // QKeySequence(const QKeySequence &);
   binder.ctors().ctor<const QKeySequence &>().create();
   // QKeySequence(QKeySequence::StandardKey);
@@ -145,9 +150,11 @@ static void register_key_sequence_class(script::Namespace ns)
   // bool isEmpty() const;
   binder.fun<bool, &QKeySequence::isEmpty>("isEmpty").create();
   // QString toString(QKeySequence::SequenceFormat) const;
-  binder.fun<QString, QKeySequence::SequenceFormat, &QKeySequence::toString>("toString").create();
+  binder.fun<QString, QKeySequence::SequenceFormat, &QKeySequence::toString>("toString")
+    .addDefaultArgument(binding::default_argument(key_sequence.engine(), QKeySequence::PortableText)).create();
   // static QKeySequence fromString(const QString &, QKeySequence::SequenceFormat);
-  binder.static_fun<QKeySequence, const QString &, QKeySequence::SequenceFormat, &QKeySequence::fromString>("fromString").create();
+  binder.static_fun<QKeySequence, const QString &, QKeySequence::SequenceFormat, &QKeySequence::fromString>("fromString")
+    .addDefaultArgument(binding::default_argument(key_sequence.engine(), QKeySequence::PortableText)).create();
   // static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat);
   /// TODO: static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat);
   // static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat);

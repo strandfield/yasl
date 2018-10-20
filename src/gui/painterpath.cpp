@@ -5,6 +5,7 @@
 #include "yasl/gui/painterpath.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -106,7 +107,8 @@ static void register_painter_path_class(script::Namespace ns)
   // void addRegion(const QRegion &);
   binder.void_fun<const QRegion &, &QPainterPath::addRegion>("addRegion").create();
   // void addRoundedRect(const QRectF &, qreal, qreal, Qt::SizeMode);
-  binder.void_fun<const QRectF &, qreal, qreal, Qt::SizeMode, &QPainterPath::addRoundedRect>("addRoundedRect").create();
+  binder.void_fun<const QRectF &, qreal, qreal, Qt::SizeMode, &QPainterPath::addRoundedRect>("addRoundedRect")
+    .addDefaultArgument(binding::default_argument(painter_path.engine(), Qt::AbsoluteSize)).create();
   // void addRoundRect(const QRectF &, int, int);
   binder.void_fun<const QRectF &, int, int, &QPainterPath::addRoundRect>("addRoundRect").create();
   // void addRoundRect(qreal, qreal, qreal, qreal, int, int);

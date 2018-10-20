@@ -4,6 +4,7 @@
 
 #include "yasl/gui/window.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -106,7 +107,8 @@ static void register_window_class(script::Namespace ns)
   // Qt::WindowFlags flags() const;
   /// TODO: Qt::WindowFlags flags() const;
   // void setFlag(Qt::WindowType, bool);
-  binder.void_fun<Qt::WindowType, bool, &QWindow::setFlag>("setFlag").create();
+  binder.void_fun<Qt::WindowType, bool, &QWindow::setFlag>("setFlag")
+    .addDefaultArgument(binding::default_argument(window.engine(), true)).create();
   // Qt::WindowType type() const;
   binder.fun<Qt::WindowType, &QWindow::type>("type").create();
   // QString title() const;
@@ -140,7 +142,8 @@ static void register_window_class(script::Namespace ns)
   // QWindow * transientParent() const;
   binder.fun<QWindow *, &QWindow::transientParent>("transientParent").create();
   // bool isAncestorOf(const QWindow *, QWindow::AncestorMode) const;
-  binder.fun<bool, const QWindow *, QWindow::AncestorMode, &QWindow::isAncestorOf>("isAncestorOf").create();
+  binder.fun<bool, const QWindow *, QWindow::AncestorMode, &QWindow::isAncestorOf>("isAncestorOf")
+    .addDefaultArgument(binding::default_argument(window.engine(), QWindow::IncludeTransients)).create();
   // bool isExposed() const;
   binder.fun<bool, &QWindow::isExposed>("isExposed").create();
   // int minimumWidth() const;

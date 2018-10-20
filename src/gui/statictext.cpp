@@ -5,6 +5,7 @@
 #include "yasl/gui/statictext.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -71,7 +72,9 @@ static void register_static_text_class(script::Namespace ns)
   // QSizeF size() const;
   binder.fun<QSizeF, &QStaticText::size>("size").create();
   // void prepare(const QTransform &, const QFont &);
-  binder.void_fun<const QTransform &, const QFont &, &QStaticText::prepare>("prepare").create();
+  binder.void_fun<const QTransform &, const QFont &, &QStaticText::prepare>("prepare")
+    .addDefaultArgument(binding::default_argument(static_text.engine(), QFont()))
+    .addDefaultArgument(binding::default_argument(static_text.engine(), QTransform())).create();
   // void setPerformanceHint(QStaticText::PerformanceHint);
   binder.void_fun<QStaticText::PerformanceHint, &QStaticText::setPerformanceHint>("setPerformanceHint").create();
   // QStaticText::PerformanceHint performanceHint() const;

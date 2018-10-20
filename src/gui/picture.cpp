@@ -5,6 +5,7 @@
 #include "yasl/gui/picture.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
@@ -23,7 +24,8 @@ static void register_picture_class(script::Namespace ns)
   binding::Class<QPicture> binder{ picture };
 
   // QPicture(int);
-  binder.ctors().ctor<int>().create();
+  binder.ctors().ctor<int>()
+    .addDefaultArgument(binding::default_argument(picture.engine(), -1)).create();
   // QPicture(const QPicture &);
   binder.ctors().ctor<const QPicture &>().create();
   // ~QPicture();
