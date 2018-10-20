@@ -5,6 +5,7 @@
 #include "yasl/core/timezone.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -59,7 +60,9 @@ static void register_time_zone_class(script::Namespace ns)
   // QTimeZone(int);
   binder.ctors().ctor<int>().create();
   // QTimeZone(const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &);
-  binder.ctors().ctor<const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &>().create();
+  binder.ctors().ctor<const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &>()
+    .addDefaultArgument(binding::default_argument(time_zone.engine(), QString()))
+    .addDefaultArgument(binding::default_argument(time_zone.engine(), QLocale::AnyCountry)).create();
   // QTimeZone(const QTimeZone &);
   binder.ctors().ctor<const QTimeZone &>().create();
   // ~QTimeZone();
@@ -83,9 +86,13 @@ static void register_time_zone_class(script::Namespace ns)
   // QString comment() const;
   binder.fun<QString, &QTimeZone::comment>("comment").create();
   // QString displayName(const QDateTime &, QTimeZone::NameType, const QLocale &) const;
-  binder.fun<QString, const QDateTime &, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>("displayName").create();
+  binder.fun<QString, const QDateTime &, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>("displayName")
+    .addDefaultArgument(binding::default_argument(time_zone.engine(), QLocale()))
+    .addDefaultArgument(binding::default_argument(time_zone.engine(),  QTimeZone::DefaultName)).create();
   // QString displayName(QTimeZone::TimeType, QTimeZone::NameType, const QLocale &) const;
-  binder.fun<QString, QTimeZone::TimeType, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>("displayName").create();
+  binder.fun<QString, QTimeZone::TimeType, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>("displayName")
+    .addDefaultArgument(binding::default_argument(time_zone.engine(), QLocale()))
+    .addDefaultArgument(binding::default_argument(time_zone.engine(),  QTimeZone::DefaultName)).create();
   // QString abbreviation(const QDateTime &) const;
   binder.fun<QString, const QDateTime &, &QTimeZone::abbreviation>("abbreviation").create();
   // int offsetFromUtc(const QDateTime &) const;

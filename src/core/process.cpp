@@ -5,6 +5,7 @@
 #include "yasl/core/process.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -154,19 +155,22 @@ static void register_process_class(script::Namespace ns)
   binding::QClass<QProcess> binder{ process, &QProcess::staticMetaObject };
 
   // QProcess(QObject *);
-  binder.ctors().ctor<QObject *>().create();
+  binder.ctors().ctor<QObject *>()
+    .addDefaultArgument(binding::default_argument(process.engine(), (QObject*) nullptr)).create();
   // ~QProcess();
   binder.add_dtor();
   // void start(const QString &, const QStringList &, QIODevice::OpenMode);
   /// TODO: void start(const QString &, const QStringList &, QIODevice::OpenMode);
   // void start(const QString &, QIODevice::OpenMode);
-  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::start>("start").create();
+  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::start>("start")
+    .addDefaultArgument(binding::default_argument(process.engine(), QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // void start(QIODevice::OpenMode);
   binder.void_fun<QIODevice::OpenMode, &QProcess::start>("start").create();
   // bool startDetached(qint64 *);
   /// TODO: bool startDetached(qint64 *);
   // bool open(QIODevice::OpenMode);
-  binder.fun<bool, QIODevice::OpenMode, &QProcess::open>("open").create();
+  binder.fun<bool, QIODevice::OpenMode, &QProcess::open>("open")
+    .addDefaultArgument(binding::default_argument(process.engine(), QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // QString program() const;
   binder.fun<QString, &QProcess::program>("program").create();
   // void setProgram(const QString &);
@@ -198,9 +202,11 @@ static void register_process_class(script::Namespace ns)
   // void setStandardInputFile(const QString &);
   binder.void_fun<const QString &, &QProcess::setStandardInputFile>("setStandardInputFile").create();
   // void setStandardOutputFile(const QString &, QIODevice::OpenMode);
-  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::setStandardOutputFile>("setStandardOutputFile").create();
+  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::setStandardOutputFile>("setStandardOutputFile")
+    .addDefaultArgument(binding::default_argument(process.engine(), QIODevice::OpenMode(QIODevice::Truncate))).create();
   // void setStandardErrorFile(const QString &, QIODevice::OpenMode);
-  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::setStandardErrorFile>("setStandardErrorFile").create();
+  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::setStandardErrorFile>("setStandardErrorFile")
+    .addDefaultArgument(binding::default_argument(process.engine(), QIODevice::OpenMode(QIODevice::Truncate))).create();
   // void setStandardOutputProcess(QProcess *);
   /// TODO: void setStandardOutputProcess(QProcess *);
   // QString nativeArguments() const;
@@ -232,13 +238,17 @@ static void register_process_class(script::Namespace ns)
   // qint64 processId() const;
   /// TODO: qint64 processId() const;
   // bool waitForStarted(int);
-  binder.fun<bool, int, &QProcess::waitForStarted>("waitForStarted").create();
+  binder.fun<bool, int, &QProcess::waitForStarted>("waitForStarted")
+    .addDefaultArgument(binding::default_argument(process.engine(), 30000)).create();
   // bool waitForReadyRead(int);
-  binder.fun<bool, int, &QProcess::waitForReadyRead>("waitForReadyRead").create();
+  binder.fun<bool, int, &QProcess::waitForReadyRead>("waitForReadyRead")
+    .addDefaultArgument(binding::default_argument(process.engine(), 30000)).create();
   // bool waitForBytesWritten(int);
-  binder.fun<bool, int, &QProcess::waitForBytesWritten>("waitForBytesWritten").create();
+  binder.fun<bool, int, &QProcess::waitForBytesWritten>("waitForBytesWritten")
+    .addDefaultArgument(binding::default_argument(process.engine(), 30000)).create();
   // bool waitForFinished(int);
-  binder.fun<bool, int, &QProcess::waitForFinished>("waitForFinished").create();
+  binder.fun<bool, int, &QProcess::waitForFinished>("waitForFinished")
+    .addDefaultArgument(binding::default_argument(process.engine(), 30000)).create();
   // QByteArray readAllStandardOutput();
   binder.fun<QByteArray, &QProcess::readAllStandardOutput>("readAllStandardOutput").create();
   // QByteArray readAllStandardError();

@@ -16135,6 +16135,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "query",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -16151,6 +16152,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "toString",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -16187,6 +16189,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "queryItems",
                                     "parameters": [
                                         "QUrl::ComponentFormattingOptions"
@@ -16220,6 +16223,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "queryItemValue",
                                     "parameters": [
                                         "const QString &",
@@ -16230,6 +16234,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)",
                                     "name": "allQueryItemValues",
                                     "parameters": [
                                         "const QString &",
@@ -16277,424 +16282,6 @@
                     ],
                     "hincludes": "<QUrlQuery>",
                     "name": "urlquery",
-                    "type": "file"
-                },
-                {
-                    "checked": 1,
-                    "elements": [
-                        {
-                            "checked": 1,
-                            "elements": [
-                                {
-                                    "checked": 0,
-                                    "enumerators": [
-                                        {
-                                            "checked": 0,
-                                            "name": "MinUtcOffsetSecs"
-                                        },
-                                        {
-                                            "checked": 0,
-                                            "name": "MaxUtcOffsetSecs"
-                                        }
-                                    ],
-                                    "name": "",
-                                    "type": "enum"
-                                },
-                                {
-                                    "enumerators": [
-                                        {
-                                            "name": "StandardTime"
-                                        },
-                                        {
-                                            "name": "DaylightTime"
-                                        },
-                                        {
-                                            "name": "GenericTime"
-                                        }
-                                    ],
-                                    "name": "TimeType",
-                                    "type": "enum"
-                                },
-                                {
-                                    "enumerators": [
-                                        {
-                                            "name": "DefaultName"
-                                        },
-                                        {
-                                            "name": "LongName"
-                                        },
-                                        {
-                                            "name": "ShortName"
-                                        },
-                                        {
-                                            "name": "OffsetName"
-                                        }
-                                    ],
-                                    "name": "NameType",
-                                    "type": "enum"
-                                },
-                                {
-                                    "name": "QTimeZone",
-                                    "type": "constructor"
-                                },
-                                {
-                                    "name": "QTimeZone",
-                                    "parameters": [
-                                        "const QByteArray &"
-                                    ],
-                                    "type": "constructor"
-                                },
-                                {
-                                    "name": "QTimeZone",
-                                    "parameters": [
-                                        "int"
-                                    ],
-                                    "type": "constructor"
-                                },
-                                {
-                                    "name": "QTimeZone",
-                                    "parameters": [
-                                        "const QByteArray &",
-                                        "int",
-                                        "const QString &",
-                                        "const QString &",
-                                        "QLocale::Country",
-                                        "const QString &"
-                                    ],
-                                    "type": "constructor"
-                                },
-                                {
-                                    "name": "QTimeZone",
-                                    "parameters": [
-                                        "const QTimeZone &"
-                                    ],
-                                    "type": "constructor"
-                                },
-                                {
-                                    "name": "~QTimeZone",
-                                    "type": "destructor"
-                                },
-                                {
-                                    "name": "operator=",
-                                    "parameters": [
-                                        "const QTimeZone &"
-                                    ],
-                                    "returns": "QTimeZone &",
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "operator=",
-                                    "parameters": [
-                                        "QTimeZone &&"
-                                    ],
-                                    "returns": "QTimeZone &",
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "swap",
-                                    "parameters": [
-                                        "QTimeZone &"
-                                    ],
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "operator==",
-                                    "parameters": [
-                                        "const QTimeZone &"
-                                    ],
-                                    "returns": "bool",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "operator!=",
-                                    "parameters": [
-                                        "const QTimeZone &"
-                                    ],
-                                    "returns": "bool",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "isValid",
-                                    "returns": "bool",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "id",
-                                    "returns": "QByteArray",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "country",
-                                    "returns": "QLocale::Country",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "comment",
-                                    "returns": "QString",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "displayName",
-                                    "parameters": [
-                                        "const QDateTime &",
-                                        "QTimeZone::NameType",
-                                        "const QLocale &"
-                                    ],
-                                    "returns": "QString",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "displayName",
-                                    "parameters": [
-                                        "QTimeZone::TimeType",
-                                        "QTimeZone::NameType",
-                                        "const QLocale &"
-                                    ],
-                                    "returns": "QString",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "abbreviation",
-                                    "parameters": [
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "QString",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "offsetFromUtc",
-                                    "parameters": [
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "int",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "standardTimeOffset",
-                                    "parameters": [
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "int",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "daylightTimeOffset",
-                                    "parameters": [
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "int",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "hasDaylightTime",
-                                    "returns": "bool",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "isDaylightTime",
-                                    "parameters": [
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "bool",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "offsetData",
-                                    "parameters": [
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "QTimeZone::OffsetData",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "hasTransitions",
-                                    "returns": "bool",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "nextTransition",
-                                    "parameters": [
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "QTimeZone::OffsetData",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "previousTransition",
-                                    "parameters": [
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "QTimeZone::OffsetData",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "transitions",
-                                    "parameters": [
-                                        "const QDateTime &",
-                                        "const QDateTime &"
-                                    ],
-                                    "returns": "QTimeZone::OffsetDataList",
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "systemTimeZoneId",
-                                    "returns": "QByteArray",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "systemTimeZone",
-                                    "returns": "QTimeZone",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "utc",
-                                    "returns": "QTimeZone",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "isTimeZoneIdAvailable",
-                                    "parameters": [
-                                        "const QByteArray &"
-                                    ],
-                                    "returns": "bool",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "availableTimeZoneIds",
-                                    "returns": "QList<QByteArray>",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "availableTimeZoneIds",
-                                    "parameters": [
-                                        "QLocale::Country"
-                                    ],
-                                    "returns": "QList<QByteArray>",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "availableTimeZoneIds",
-                                    "parameters": [
-                                        "int"
-                                    ],
-                                    "returns": "QList<QByteArray>",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "ianaIdToWindowsId",
-                                    "parameters": [
-                                        "const QByteArray &"
-                                    ],
-                                    "returns": "QByteArray",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "windowsIdToDefaultIanaId",
-                                    "parameters": [
-                                        "const QByteArray &"
-                                    ],
-                                    "returns": "QByteArray",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "windowsIdToDefaultIanaId",
-                                    "parameters": [
-                                        "const QByteArray &",
-                                        "QLocale::Country"
-                                    ],
-                                    "returns": "QByteArray",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "windowsIdToIanaIds",
-                                    "parameters": [
-                                        "const QByteArray &"
-                                    ],
-                                    "returns": "QList<QByteArray>",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "windowsIdToIanaIds",
-                                    "parameters": [
-                                        "const QByteArray &",
-                                        "QLocale::Country"
-                                    ],
-                                    "returns": "QList<QByteArray>",
-                                    "static": true,
-                                    "type": "function"
-                                }
-                            ],
-                            "name": "QTimeZone",
-                            "type": "class"
-                        },
-                        {
-                            "name": "swap",
-                            "parameters": [
-                                "QTimeZone &",
-                                "QTimeZone &"
-                            ],
-                            "type": "function"
-                        },
-                        {
-                            "name": "operator<<",
-                            "parameters": [
-                                "QDataStream &",
-                                "const QTimeZone &"
-                            ],
-                            "returns": "QDataStream &",
-                            "type": "function"
-                        },
-                        {
-                            "name": "operator>>",
-                            "parameters": [
-                                "QDataStream &",
-                                "QTimeZone &"
-                            ],
-                            "returns": "QDataStream &",
-                            "type": "function"
-                        },
-                        {
-                            "name": "operator<<",
-                            "parameters": [
-                                "QDebug",
-                                "const QTimeZone &"
-                            ],
-                            "returns": "QDebug",
-                            "type": "function"
-                        }
-                    ],
-                    "hincludes": "<QTimeZone>",
-                    "name": "timezone",
                     "type": "file"
                 },
                 {
@@ -20303,6 +19890,427 @@
                             "checked": 1,
                             "elements": [
                                 {
+                                    "checked": 0,
+                                    "enumerators": [
+                                        {
+                                            "checked": 0,
+                                            "name": "MinUtcOffsetSecs"
+                                        },
+                                        {
+                                            "checked": 0,
+                                            "name": "MaxUtcOffsetSecs"
+                                        }
+                                    ],
+                                    "name": "",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "StandardTime"
+                                        },
+                                        {
+                                            "name": "DaylightTime"
+                                        },
+                                        {
+                                            "name": "GenericTime"
+                                        }
+                                    ],
+                                    "name": "TimeType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "enumerators": [
+                                        {
+                                            "name": "DefaultName"
+                                        },
+                                        {
+                                            "name": "LongName"
+                                        },
+                                        {
+                                            "name": "ShortName"
+                                        },
+                                        {
+                                            "name": "OffsetName"
+                                        }
+                                    ],
+                                    "name": "NameType",
+                                    "type": "enum"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "defaults": "QString();QLocale::AnyCountry",
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "int",
+                                        "const QString &",
+                                        "const QString &",
+                                        "QLocale::Country",
+                                        "const QString &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "QTimeZone",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "type": "constructor"
+                                },
+                                {
+                                    "name": "~QTimeZone",
+                                    "type": "destructor"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "QTimeZone &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "operator=",
+                                    "parameters": [
+                                        "QTimeZone &&"
+                                    ],
+                                    "returns": "QTimeZone &",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "swap",
+                                    "parameters": [
+                                        "QTimeZone &"
+                                    ],
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator==",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "operator!=",
+                                    "parameters": [
+                                        "const QTimeZone &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isValid",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "id",
+                                    "returns": "QByteArray",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "country",
+                                    "returns": "QLocale::Country",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "comment",
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "defaults": "QLocale(); QTimeZone::DefaultName",
+                                    "name": "displayName",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "QTimeZone::NameType",
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "defaults": "QLocale(); QTimeZone::DefaultName",
+                                    "name": "displayName",
+                                    "parameters": [
+                                        "QTimeZone::TimeType",
+                                        "QTimeZone::NameType",
+                                        "const QLocale &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "abbreviation",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QString",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "offsetFromUtc",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "standardTimeOffset",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "daylightTimeOffset",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "int",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasDaylightTime",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "isDaylightTime",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "offsetData",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QTimeZone::OffsetData",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "hasTransitions",
+                                    "returns": "bool",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "nextTransition",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QTimeZone::OffsetData",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "previousTransition",
+                                    "parameters": [
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QTimeZone::OffsetData",
+                                    "type": "function"
+                                },
+                                {
+                                    "const": true,
+                                    "name": "transitions",
+                                    "parameters": [
+                                        "const QDateTime &",
+                                        "const QDateTime &"
+                                    ],
+                                    "returns": "QTimeZone::OffsetDataList",
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "systemTimeZoneId",
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "systemTimeZone",
+                                    "returns": "QTimeZone",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "utc",
+                                    "returns": "QTimeZone",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "isTimeZoneIdAvailable",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "bool",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "availableTimeZoneIds",
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "availableTimeZoneIds",
+                                    "parameters": [
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "availableTimeZoneIds",
+                                    "parameters": [
+                                        "int"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "ianaIdToWindowsId",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "windowsIdToDefaultIanaId",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "windowsIdToDefaultIanaId",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "QByteArray",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "windowsIdToIanaIds",
+                                    "parameters": [
+                                        "const QByteArray &"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                },
+                                {
+                                    "name": "windowsIdToIanaIds",
+                                    "parameters": [
+                                        "const QByteArray &",
+                                        "QLocale::Country"
+                                    ],
+                                    "returns": "QList<QByteArray>",
+                                    "static": true,
+                                    "type": "function"
+                                }
+                            ],
+                            "name": "QTimeZone",
+                            "type": "class"
+                        },
+                        {
+                            "name": "swap",
+                            "parameters": [
+                                "QTimeZone &",
+                                "QTimeZone &"
+                            ],
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDataStream &",
+                                "const QTimeZone &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator>>",
+                            "parameters": [
+                                "QDataStream &",
+                                "QTimeZone &"
+                            ],
+                            "returns": "QDataStream &",
+                            "type": "function"
+                        },
+                        {
+                            "name": "operator<<",
+                            "parameters": [
+                                "QDebug",
+                                "const QTimeZone &"
+                            ],
+                            "returns": "QDebug",
+                            "type": "function"
+                        }
+                    ],
+                    "hincludes": "<QTimeZone>",
+                    "name": "timezone",
+                    "type": "file"
+                },
+                {
+                    "checked": 1,
+                    "elements": [
+                        {
+                            "checked": 1,
+                            "elements": [
+                                {
                                     "const": true,
                                     "name": "metaObject",
                                     "returns": "const QMetaObject *",
@@ -20331,6 +20339,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QObject",
                                     "parameters": [
                                         "QObject *"
@@ -20411,6 +20420,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "Qt::CoarseTimer",
                                     "name": "startTimer",
                                     "parameters": [
                                         "int",
@@ -22286,6 +22296,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "QRegularExpression::PatternOptions(QRegularExpression::NoPatternOption)",
                                     "name": "QRegularExpression",
                                     "parameters": [
                                         "const QString &",
@@ -22405,6 +22416,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption);QRegularExpression::NormalMatch",
                                     "name": "match",
                                     "parameters": [
                                         "const QString &",
@@ -22429,21 +22441,10 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption);QRegularExpression::NormalMatch",
                                     "name": "globalMatch",
                                     "parameters": [
                                         "const QString &",
-                                        "int",
-                                        "QRegularExpression::MatchType",
-                                        "QRegularExpression::MatchOptions"
-                                    ],
-                                    "returns": "QRegularExpressionMatchIterator",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "globalMatch",
-                                    "parameters": [
-                                        "const QStringRef &",
                                         "int",
                                         "QRegularExpression::MatchType",
                                         "QRegularExpression::MatchOptions"
@@ -23047,6 +23048,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr;QString()",
                                     "name": "QSettings",
                                     "parameters": [
                                         "const QString &",
@@ -23056,6 +23058,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr;QString()",
                                     "name": "QSettings",
                                     "parameters": [
                                         "QSettings::Scope",
@@ -23066,6 +23069,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr;QString()",
                                     "name": "QSettings",
                                     "parameters": [
                                         "QSettings::Format",
@@ -23077,6 +23081,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QSettings",
                                     "parameters": [
                                         "const QString &",
@@ -23086,6 +23091,7 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QSettings",
                                     "parameters": [
                                         "QObject *"
@@ -23149,6 +23155,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "-1",
                                     "name": "beginWriteArray",
                                     "parameters": [
                                         "const QString &",
@@ -23201,6 +23208,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QVariant()",
                                     "name": "value",
                                     "parameters": [
                                         "const QString &",
@@ -23355,6 +23363,7 @@
                             "base": "QObject",
                             "elements": [
                                 {
+                                    "defaults": "(QObject*)nullptr",
                                     "name": "QTimer",
                                     "parameters": [
                                         "QObject *"
@@ -25282,6 +25291,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "QJsonValue::Null",
                                     "name": "QJsonValue",
                                     "parameters": [
                                         "QJsonValue::Type"
@@ -25457,6 +25467,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "false",
                                     "name": "toBool",
                                     "parameters": [
                                         "bool"
@@ -25466,6 +25477,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "0",
                                     "name": "toInt",
                                     "parameters": [
                                         "int"
@@ -25475,6 +25487,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "double(0)",
                                     "name": "toDouble",
                                     "parameters": [
                                         "double"
@@ -25490,6 +25503,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QString()",
                                     "name": "toString",
                                     "parameters": [
                                         "const QString &"
@@ -25505,6 +25519,7 @@
                                 },
                                 {
                                     "const": true,
+                                    "defaults": "QJsonArray()",
                                     "name": "toArray",
                                     "parameters": [
                                         "const QJsonArray &"
@@ -26485,7 +26500,6 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
                             "elements": [
@@ -26581,6 +26595,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QJsonDocument::Validate",
                                     "name": "fromBinaryData",
                                     "parameters": [
                                         "const QByteArray &",
@@ -27146,6 +27161,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "defaults": "(QObject*) nullptr",
                                     "name": "QProcess",
                                     "parameters": [
                                         "QObject *"
@@ -27166,6 +27182,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QIODevice::OpenMode(QIODevice::ReadWrite)",
                                     "name": "start",
                                     "parameters": [
                                         "const QString &",
@@ -27189,6 +27206,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QIODevice::OpenMode(QIODevice::ReadWrite)",
                                     "name": "open",
                                     "parameters": [
                                         "QIODevice::OpenMode"
@@ -27293,6 +27311,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QIODevice::OpenMode(QIODevice::Truncate)",
                                     "name": "setStandardOutputFile",
                                     "parameters": [
                                         "const QString &",
@@ -27301,6 +27320,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "QIODevice::OpenMode(QIODevice::Truncate)",
                                     "name": "setStandardErrorFile",
                                     "parameters": [
                                         "const QString &",
@@ -27405,6 +27425,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "30000",
                                     "name": "waitForStarted",
                                     "parameters": [
                                         "int"
@@ -27413,6 +27434,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "30000",
                                     "name": "waitForReadyRead",
                                     "parameters": [
                                         "int"
@@ -27421,6 +27443,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "30000",
                                     "name": "waitForBytesWritten",
                                     "parameters": [
                                         "int"
@@ -27429,6 +27452,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "30000",
                                     "name": "waitForFinished",
                                     "parameters": [
                                         "int"

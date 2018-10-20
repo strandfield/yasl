@@ -5,6 +5,7 @@
 #include "yasl/core/regularexpression.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/core/flags.h"
@@ -79,7 +80,8 @@ static void register_regular_expression_class(script::Namespace ns)
   // QRegularExpression();
   binder.ctors().add_default();
   // QRegularExpression(const QString &, QRegularExpression::PatternOptions);
-  binder.ctors().ctor<const QString &, QRegularExpression::PatternOptions>().create();
+  binder.ctors().ctor<const QString &, QRegularExpression::PatternOptions>()
+    .addDefaultArgument(binding::default_argument(regular_expression.engine(), QRegularExpression::PatternOptions(QRegularExpression::NoPatternOption))).create();
   // QRegularExpression(const QRegularExpression &);
   binder.ctors().ctor<const QRegularExpression &>().create();
   // ~QRegularExpression();
@@ -105,13 +107,15 @@ static void register_regular_expression_class(script::Namespace ns)
   // QStringList namedCaptureGroups() const;
   /// TODO: QStringList namedCaptureGroups() const;
   // QRegularExpressionMatch match(const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
-  binder.fun<QRegularExpressionMatch, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::match>("match").create();
+  binder.fun<QRegularExpressionMatch, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::match>("match")
+    .addDefaultArgument(binding::default_argument(regular_expression.engine(), QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption)))
+    .addDefaultArgument(binding::default_argument(regular_expression.engine(), QRegularExpression::NormalMatch)).create();
   // QRegularExpressionMatch match(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
   /// TODO: QRegularExpressionMatch match(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
   // QRegularExpressionMatchIterator globalMatch(const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
-  binder.fun<QRegularExpressionMatchIterator, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::globalMatch>("globalMatch").create();
-  // QRegularExpressionMatchIterator globalMatch(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
-  /// TODO: QRegularExpressionMatchIterator globalMatch(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
+  binder.fun<QRegularExpressionMatchIterator, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::globalMatch>("globalMatch")
+    .addDefaultArgument(binding::default_argument(regular_expression.engine(), QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption)))
+    .addDefaultArgument(binding::default_argument(regular_expression.engine(), QRegularExpression::NormalMatch)).create();
   // void optimize() const;
   binder.const_void_fun<&QRegularExpression::optimize>("optimize").create();
   // static QString escape(const QString &);

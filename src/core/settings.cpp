@@ -4,6 +4,7 @@
 
 #include "yasl/core/settings.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
@@ -81,15 +82,23 @@ static void register_settings_class(script::Namespace ns)
   binding::QClass<QSettings> binder{ settings, &QSettings::staticMetaObject };
 
   // QSettings(const QString &, const QString &, QObject *);
-  binder.ctors().ctor<const QString &, const QString &, QObject *>().create();
+  binder.ctors().ctor<const QString &, const QString &, QObject *>()
+    .addDefaultArgument(binding::default_argument(settings.engine(), (QObject*)nullptr))
+    .addDefaultArgument(binding::default_argument(settings.engine(), QString())).create();
   // QSettings(QSettings::Scope, const QString &, const QString &, QObject *);
-  binder.ctors().ctor<QSettings::Scope, const QString &, const QString &, QObject *>().create();
+  binder.ctors().ctor<QSettings::Scope, const QString &, const QString &, QObject *>()
+    .addDefaultArgument(binding::default_argument(settings.engine(), (QObject*)nullptr))
+    .addDefaultArgument(binding::default_argument(settings.engine(), QString())).create();
   // QSettings(QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *);
-  binder.ctors().ctor<QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *>().create();
+  binder.ctors().ctor<QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *>()
+    .addDefaultArgument(binding::default_argument(settings.engine(), (QObject*)nullptr))
+    .addDefaultArgument(binding::default_argument(settings.engine(), QString())).create();
   // QSettings(const QString &, QSettings::Format, QObject *);
-  binder.ctors().ctor<const QString &, QSettings::Format, QObject *>().create();
+  binder.ctors().ctor<const QString &, QSettings::Format, QObject *>()
+    .addDefaultArgument(binding::default_argument(settings.engine(), (QObject*)nullptr)).create();
   // QSettings(QObject *);
-  binder.ctors().ctor<QObject *>().create();
+  binder.ctors().ctor<QObject *>()
+    .addDefaultArgument(binding::default_argument(settings.engine(), (QObject*)nullptr)).create();
   // ~QSettings();
   binder.add_dtor();
   // void clear();
@@ -111,7 +120,8 @@ static void register_settings_class(script::Namespace ns)
   // int beginReadArray(const QString &);
   binder.fun<int, const QString &, &QSettings::beginReadArray>("beginReadArray").create();
   // void beginWriteArray(const QString &, int);
-  binder.void_fun<const QString &, int, &QSettings::beginWriteArray>("beginWriteArray").create();
+  binder.void_fun<const QString &, int, &QSettings::beginWriteArray>("beginWriteArray")
+    .addDefaultArgument(binding::default_argument(settings.engine(), -1)).create();
   // void endArray();
   binder.void_fun<&QSettings::endArray>("endArray").create();
   // void setArrayIndex(int);
@@ -127,7 +137,8 @@ static void register_settings_class(script::Namespace ns)
   // void setValue(const QString &, const QVariant &);
   binder.void_fun<const QString &, const QVariant &, &QSettings::setValue>("setValue").create();
   // QVariant value(const QString &, const QVariant &) const;
-  binder.fun<QVariant, const QString &, const QVariant &, &QSettings::value>("value").create();
+  binder.fun<QVariant, const QString &, const QVariant &, &QSettings::value>("value")
+    .addDefaultArgument(binding::default_argument(settings.engine(), QVariant())).create();
   // void remove(const QString &);
   binder.void_fun<const QString &, &QSettings::remove>("remove").create();
   // bool contains(const QString &) const;

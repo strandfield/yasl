@@ -5,6 +5,7 @@
 #include "yasl/core/object.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 #include "yasl/core/listspecializations.h"
@@ -34,7 +35,8 @@ static void register_object_class(script::Namespace ns)
   // static QString trUtf8(const char *, const char *, int);
   /// TODO: static QString trUtf8(const char *, const char *, int);
   // QObject(QObject *);
-  binder.ctors().ctor<QObject *>().create();
+  binder.ctors().ctor<QObject *>()
+    .addDefaultArgument(binding::default_argument(object.engine(), (QObject*)nullptr)).create();
   // ~QObject();
   binder.add_dtor();
   // bool event(QEvent *);
@@ -58,7 +60,8 @@ static void register_object_class(script::Namespace ns)
   // void moveToThread(QThread *);
   /// TODO: void moveToThread(QThread *);
   // int startTimer(int, Qt::TimerType);
-  binder.fun<int, int, Qt::TimerType, &QObject::startTimer>("startTimer").create();
+  binder.fun<int, int, Qt::TimerType, &QObject::startTimer>("startTimer")
+    .addDefaultArgument(binding::default_argument(object.engine(), Qt::CoarseTimer)).create();
   // int startTimer(std::chrono::milliseconds, Qt::TimerType);
   /// TODO: int startTimer(std::chrono::milliseconds, Qt::TimerType);
   // void killTimer(int);

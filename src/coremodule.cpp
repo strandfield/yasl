@@ -72,8 +72,8 @@ void load_core_module(script::Module core)
   register_line_file(core.root());
   register_url_file(core.root());
   register_urlquery_file(core.root());
-  register_timezone_file(core.root());
   register_locale_file(core.root());
+  register_timezone_file(core.root());
   register_object_file(core.root());
   register_uuid_file(core.root());
   register_variant_file(core.root());

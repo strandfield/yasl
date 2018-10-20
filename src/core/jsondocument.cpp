@@ -5,6 +5,7 @@
 #include "yasl/core/jsondocument.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -73,7 +74,8 @@ static void register_json_document_class(script::Namespace ns)
   // const char * rawData(int *) const;
   /// TODO: const char * rawData(int *) const;
   // static QJsonDocument fromBinaryData(const QByteArray &, QJsonDocument::DataValidation);
-  binder.static_fun<QJsonDocument, const QByteArray &, QJsonDocument::DataValidation, &QJsonDocument::fromBinaryData>("fromBinaryData").create();
+  binder.static_fun<QJsonDocument, const QByteArray &, QJsonDocument::DataValidation, &QJsonDocument::fromBinaryData>("fromBinaryData")
+    .addDefaultArgument(binding::default_argument(json_document.engine(), QJsonDocument::Validate)).create();
   // QByteArray toBinaryData() const;
   binder.fun<QByteArray, &QJsonDocument::toBinaryData>("toBinaryData").create();
   // static QJsonDocument fromVariant(const QVariant &);

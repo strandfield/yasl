@@ -4,6 +4,7 @@
 
 #include "yasl/core/timer.h"
 
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 #include "yasl/binding/qclass.h"
 
@@ -22,7 +23,8 @@ static void register_timer_class(script::Namespace ns)
   binding::QClass<QTimer> binder{ timer, &QTimer::staticMetaObject };
 
   // QTimer(QObject *);
-  binder.ctors().ctor<QObject *>().create();
+  binder.ctors().ctor<QObject *>()
+    .addDefaultArgument(binding::default_argument(timer.engine(), (QObject*)nullptr)).create();
   // ~QTimer();
   binder.add_dtor();
   // bool isActive() const;

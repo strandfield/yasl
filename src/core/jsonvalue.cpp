@@ -5,6 +5,7 @@
 #include "yasl/core/jsonvalue.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/enum.h"
 #include "yasl/binding/namespace.h"
 
@@ -42,7 +43,8 @@ static void register_json_value_class(script::Namespace ns)
   binding::Class<QJsonValue> binder{ json_value };
 
   // QJsonValue(QJsonValue::Type);
-  binder.ctors().ctor<QJsonValue::Type>().create();
+  binder.ctors().ctor<QJsonValue::Type>()
+    .addDefaultArgument(binding::default_argument(json_value.engine(), QJsonValue::Null)).create();
   // QJsonValue(bool);
   binder.ctors().ctor<bool>().create();
   // QJsonValue(double);
@@ -94,19 +96,24 @@ static void register_json_value_class(script::Namespace ns)
   // bool isUndefined() const;
   binder.fun<bool, &QJsonValue::isUndefined>("isUndefined").create();
   // bool toBool(bool) const;
-  binder.fun<bool, bool, &QJsonValue::toBool>("toBool").create();
+  binder.fun<bool, bool, &QJsonValue::toBool>("toBool")
+    .addDefaultArgument(binding::default_argument(json_value.engine(), false)).create();
   // int toInt(int) const;
-  binder.fun<int, int, &QJsonValue::toInt>("toInt").create();
+  binder.fun<int, int, &QJsonValue::toInt>("toInt")
+    .addDefaultArgument(binding::default_argument(json_value.engine(), 0)).create();
   // double toDouble(double) const;
-  binder.fun<double, double, &QJsonValue::toDouble>("toDouble").create();
+  binder.fun<double, double, &QJsonValue::toDouble>("toDouble")
+    .addDefaultArgument(binding::default_argument(json_value.engine(), double(0))).create();
   // QString toString() const;
   binder.fun<QString, &QJsonValue::toString>("toString").create();
   // QString toString(const QString &) const;
-  binder.fun<QString, const QString &, &QJsonValue::toString>("toString").create();
+  binder.fun<QString, const QString &, &QJsonValue::toString>("toString")
+    .addDefaultArgument(binding::default_argument(json_value.engine(), QString())).create();
   // QJsonArray toArray() const;
   binder.fun<QJsonArray, &QJsonValue::toArray>("toArray").create();
   // QJsonArray toArray(const QJsonArray &) const;
-  binder.fun<QJsonArray, const QJsonArray &, &QJsonValue::toArray>("toArray").create();
+  binder.fun<QJsonArray, const QJsonArray &, &QJsonValue::toArray>("toArray")
+    .addDefaultArgument(binding::default_argument(json_value.engine(), QJsonArray())).create();
   // QJsonObject toObject() const;
   binder.fun<QJsonObject, &QJsonValue::toObject>("toObject").create();
   // QJsonObject toObject(const QJsonObject &) const;
