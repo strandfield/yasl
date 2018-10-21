@@ -650,10 +650,10 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   /// TODO: QVector::iterator erase(QVector::iterator pos);
   /// TODO; QVector::iterator erase(QVector::iterator begin, QVector::iterator end);
   // QVector<T> & fill(const T &value, int size = ...);
-  Function fill = vector.Method("fill", callbacks::fill)
+  vector.Method("fill", callbacks::fill)
     .returns(Type::ref(vector.id()))
-    .params(Type::cref(element_type), Type::Int).create();
-  fill.addDefaultArgument(vector.engine()->newInt(-1), Value::Take);
+    .params(Type::cref(element_type), Type::Int)
+    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
   // T & first();
   vector.Method("first", callbacks::const_first)
     .returns(Type::ref(element_type)).create();
@@ -669,11 +669,11 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
     .setConst()
     .returns(Type::cref(element_type)).create();
   // int indexOf(const T &value, int from = ...) const;
-  Function index_of = vector.Method("indexOf", callbacks::index_of)
+  vector.Method("indexOf", callbacks::index_of)
     .setConst()
     .returns(Type::Int)
-    .params(Type::cref(element_type), Type::Int).create();
-  index_of.addDefaultArgument(vector.engine()->newInt(0), Value::Take);
+    .params(Type::cref(element_type), Type::Int)
+    .addDefaultArgument(binding::default_argument(vector.engine(), 0)).create();
   /// TODO: void insert(int i, T &&value);
   // void insert(int i, const T &value);
   vector.Method("insert", callbacks::insert)
@@ -696,21 +696,21 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
     .setConst()
     .returns(Type::cref(element_type)).create();
   // int lastIndexOf(const T &value, int from = ...) const;
-  Function last_index_of = vector.Method("lastIndexOf", callbacks::last_index_of)
+  vector.Method("lastIndexOf", callbacks::last_index_of)
     .setConst()
     .returns(Type::Int)
-    .params(Type::cref(element_type), Type::Int).create();
-  last_index_of.addDefaultArgument(vector.engine()->newInt(-1), Value::Take);
+    .params(Type::cref(element_type), Type::Int)
+    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
   // int length() const;
   vector.Method("length", callbacks::count)
     .setConst()
     .returns(Type::Int).create();
   // QVector<T> mid(int pos, int length = ...) const;
-  Function mid = vector.Method("mid", callbacks::mid)
+  vector.Method("mid", callbacks::mid)
     .setConst()
     .returns(vector.id())
-    .params(Type::Int, Type::Int).create();
-  mid.addDefaultArgument(vector.engine()->newInt(-1), Value::Take);
+    .params(Type::Int, Type::Int)
+    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
   // void move(int from, int to);
   vector.Method("move", callbacks::move)
     .params(Type::Int, Type::Int).create();

@@ -8,6 +8,7 @@
 #include "yasl/core/vector.h"
 
 #include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 
 #include "yasl/utils/ptr.h"
@@ -124,8 +125,8 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   /// TODO: QVector::iterator erase(QVector::iterator pos);
   /// TODO; QVector::iterator erase(QVector::iterator begin, QVector::iterator end);
   // QVector<T> & fill(const T &value, int size = ...);
-  Function fill = binder.add_chainable<const T&, int, &QVector<T>::fill>("fill");
-  fill.addDefaultArgument(vector_template.engine()->newInt(-1), Value::Take);
+  binder.chainable<const T&, int, &QVector<T>::fill>("fill")
+    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
   // T & first();
   vector.Method("first", callbacks::vector::first<T>)
     .returns(binding::make_type<Ptr<T>>())
@@ -139,8 +140,8 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   // QVector::const_reference front() const;
   binder.add_fun<const T &, &QVector<T>::front>("front");
   // int indexOf(const T &value, int from = ...) const;
-  Function index_of = binder.add_fun<int, const T&, int, &QVector<T>::indexOf>("indexOf");
-  index_of.addDefaultArgument(vector_template.engine()->newInt(0), Value::Take);
+  binder.fun<int, const T&, int, &QVector<T>::indexOf>("indexOf")
+    .addDefaultArgument(binding::default_argument(vector.engine(), 0)).create();
   /// TODO: void insert(int i, T &&value);
   // void insert(int i, const T &value);
   binder.add_void_fun<int, const T &, &QVector<T>::insert>("insert");
@@ -158,13 +159,13 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   // const T & last() const;
   binder.add_fun<const T &, &QVector<T>::back>("last");
   // int lastIndexOf(const T &value, int from = ...) const;
-  Function last_index_of = binder.add_fun<int, const T&, int, &QVector<T>::lastIndexOf>("lastIndexOf");
-  last_index_of.addDefaultArgument(vector_template.engine()->newInt(-1), Value::Take);
+  binder.fun<int, const T&, int, &QVector<T>::lastIndexOf>("lastIndexOf")
+    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
   // int length() const;
   binder.add_fun<int, &QVector<T>::length>("length");
   // QVector<T> mid(int pos, int length = ...) const;
-  Function mid = binder.add_fun<QVector<T>, int, int, &QVector<T>::mid>("mid");
-  mid.addDefaultArgument(vector_template.engine()->newInt(-1), Value::Take);
+  binder.fun<QVector<T>, int, int, &QVector<T>::mid>("mid")
+    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
   // void move(int from, int to);
   binder.add_void_fun<int, int, &QVector<T>::move>("move");
   // void pop_back();
