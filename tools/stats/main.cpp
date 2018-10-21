@@ -19,6 +19,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include <iostream>
 
 QString repr(const script::Type & t, const script::Engine *e);
 QString get_type_name(const script::Type & t, const script::Engine *e);
@@ -575,11 +576,148 @@ void dump_stats(script::Engine *engine)
   QTextStream(stdout) << doc.toJson();
 }
 
+/**************************************************************
+ Short stats
+***************************************************************/
+
+struct short_stats_t
+{
+  int num_class;
+  int num_constructors;
+  int num_ctors_with_default_args;
+  int num_ctors_default_args;
+  int num_functions;
+  int num_functions_with_default_args;
+  int num_default_args;
+
+  short_stats_t()
+    : num_class(0)
+    , num_constructors(0)
+    , num_ctors_with_default_args(0)
+    , num_ctors_default_args(0)
+    , num_functions(0)
+    , num_functions_with_default_args(0)
+    , num_default_args(0)
+  {
+
+  }
+
+  short_stats_t(int ncla, int nctor, int nctorwithdargs, int nctordargs, int nfun, int nfundefarg, int ndefarg)
+    : num_class(ncla)
+    , num_constructors(nctor)
+    , num_ctors_with_default_args(nctorwithdargs)
+    , num_ctors_default_args(nctordargs)
+    , num_functions(nfun)
+    , num_functions_with_default_args(nfundefarg)
+    , num_default_args(ndefarg)
+  {
+
+  }
+};
+
+short_stats_t operator+(const short_stats_t &a, const short_stats_t &b)
+{
+  return short_stats_t{ 
+    a.num_class + b.num_class,
+    a.num_constructors + b.num_constructors,
+    a.num_ctors_with_default_args + b.num_ctors_with_default_args,
+    a.num_ctors_default_args + b.num_ctors_default_args,
+    a.num_functions + b.num_functions,
+    a.num_functions_with_default_args + b.num_functions_with_default_args,
+    a.num_default_args + b.num_default_args
+  };
+}
+
+short_stats_t get_short_stats(script::Class cla)
+{
+  short_stats_t ret;
+
+  for (const auto & ctor : cla.constructors())
+  {
+    ret.num_constructors += 1;
+    if (ctor.hasDefaultArguments())
+    {
+      ret.num_ctors_with_default_args += 1;
+      ret.num_ctors_default_args += ctor.defaultArguments().size();
+    }
+  }
+
+  for (const auto & f : cla.memberFunctions())
+  {
+    ret.num_functions += 1;
+    if (f.hasDefaultArguments())
+    {
+      ret.num_functions_with_default_args += 1;
+      ret.num_default_args += f.defaultArguments().size();
+    }
+  }
+
+  for (const auto & cla : cla.classes())
+  {
+    ret.num_class += 1;
+    ret = ret + get_short_stats(cla);
+  }
+
+  return ret;
+}
+
+short_stats_t get_short_stats(script::Namespace n)
+{
+  short_stats_t ret;
+
+  for (const auto & f : n.functions())
+  {
+    ret.num_functions += 1;
+    if (f.hasDefaultArguments())
+    {
+      ret.num_functions_with_default_args += 1;
+      ret.num_default_args += f.defaultArguments().size();
+    }
+  }
+
+  for (const auto & cla : n.classes())
+  {
+    ret.num_class += 1;
+    ret = ret + get_short_stats(cla);
+  }
+
+  for (const auto & nested_ns : n.namespaces())
+  {
+    ret = ret + get_short_stats(nested_ns);
+  }
+
+  return ret;
+}
+
+void print_short_stats(script::Engine *e)
+{
+  auto stats = get_short_stats(e->rootNamespace());
+
+  for (const auto & m : e->modules())
+  {
+    stats = stats + get_short_stats(m.root());
+  }
+
+  std::cout << "Number of classes : " << stats.num_class << std::endl;
+  std::cout << "Number of constructors : " << stats.num_constructors << std::endl;
+  std::cout << "with default args : " << stats.num_ctors_with_default_args << std::endl;
+  std::cout << "total number of default args : " << stats.num_ctors_default_args << std::endl;
+  std::cout << "Number of functions : " << stats.num_functions << std::endl;
+  std::cout << "with default args : " << stats.num_functions_with_default_args << std::endl;
+  std::cout << "total number of default args : " << stats.num_default_args << std::endl;
+
+}
+
 int main(int argc, char *argv[])
 {
   Application app(argc, argv);
 
-  app.scriptEngine()->getModule("gui").load();
+  app.scriptEngine()->getModule("widgets").load();
+
+  if (app.arguments().size() < 2)
+  {
+    print_short_stats(app.scriptEngine());
+  }
 
   for (const auto & arg : app.arguments())
   {
