@@ -589,6 +589,8 @@ struct short_stats_t
   int num_functions;
   int num_functions_with_default_args;
   int num_default_args;
+  int num_parameters;
+  int num_operators;
 
   short_stats_t()
     : num_class(0)
@@ -598,104 +600,114 @@ struct short_stats_t
     , num_functions(0)
     , num_functions_with_default_args(0)
     , num_default_args(0)
+    , num_parameters(0)
+    , num_operators(0)
   {
 
   }
 
-  short_stats_t(int ncla, int nctor, int nctorwithdargs, int nctordargs, int nfun, int nfundefarg, int ndefarg)
-    : num_class(ncla)
-    , num_constructors(nctor)
-    , num_ctors_with_default_args(nctorwithdargs)
-    , num_ctors_default_args(nctordargs)
-    , num_functions(nfun)
-    , num_functions_with_default_args(nfundefarg)
-    , num_default_args(ndefarg)
-  {
 
+  short_stats_t(const script::Class & cla)
+    : short_stats_t()
+  {
+    addClass(cla);
   }
+
+  short_stats_t(const script::Namespace & ns)
+    : short_stats_t()
+  {
+    addNamespace(ns);
+  }
+
+  short_stats_t & numberOfClasses(int n) { num_class = n; return *this; }
+  short_stats_t & numberOfConstructors(int n) { num_constructors = n; return *this; }
+  short_stats_t & numberOfConstructorsWithDefaults(int n) { num_ctors_with_default_args = n; return *this; }
+  short_stats_t & numberOfDefaultsInConstructors(int n) { num_ctors_default_args = n; return *this; }
+  short_stats_t & numberOfFunctions(int n) { num_functions = n; return *this; }
+  short_stats_t & numberOfFunctionsWithDefaults(int n) { num_functions_with_default_args = n; return *this; }
+  short_stats_t & numberOfDefaultsInFunction(int n) { num_default_args = n; return *this; }
+  short_stats_t & numberOfParameters(int n) { num_parameters = n; return *this; }
+  short_stats_t & numberOfOperators(int n) { num_operators = n; return *this; }
+
+  short_stats_t & addFunction(const script::Function & f)
+  {
+    if (f.isConstructor())
+    {
+      num_constructors += 1;
+      num_ctors_with_default_args += (f.defaultArguments().size() > 0 ? 1 : 0);
+      num_ctors_default_args += f.defaultArguments().size();
+    }
+    else if (f.isOperator())
+    {
+      num_operators += 1;
+    }
+    else
+    {
+      num_functions += 1;
+      num_functions_with_default_args += (f.defaultArguments().size() > 0 ? 1 : 0);
+      num_default_args += f.defaultArguments().size();
+      num_parameters += f.prototype().count();
+    }
+
+    return *this;
+  }
+
+  short_stats_t & addClass(const script::Class & cla)
+  {
+    num_class += 1;
+
+    for (const auto & f : cla.constructors())
+      addFunction(f);
+
+    for (const auto & f : cla.memberFunctions())
+      addFunction(f);
+
+    for (const auto & f : cla.operators())
+      addFunction(f);
+
+    for (const auto & c : cla.classes())
+      addClass(c);
+
+    return *this;
+  }
+
+
+  short_stats_t & addNamespace(const script::Namespace & ns)
+  {
+    for (const auto & c : ns.classes())
+      addClass(c);
+
+    for (const auto & f : ns.functions())
+      addFunction(f);
+
+    for (const auto & f : ns.operators())
+      addFunction(f);
+
+    return *this;
+  }
+
 };
 
 short_stats_t operator+(const short_stats_t &a, const short_stats_t &b)
 {
-  return short_stats_t{ 
-    a.num_class + b.num_class,
-    a.num_constructors + b.num_constructors,
-    a.num_ctors_with_default_args + b.num_ctors_with_default_args,
-    a.num_ctors_default_args + b.num_ctors_default_args,
-    a.num_functions + b.num_functions,
-    a.num_functions_with_default_args + b.num_functions_with_default_args,
-    a.num_default_args + b.num_default_args
-  };
-}
-
-short_stats_t get_short_stats(script::Class cla)
-{
-  short_stats_t ret;
-
-  for (const auto & ctor : cla.constructors())
-  {
-    ret.num_constructors += 1;
-    if (ctor.hasDefaultArguments())
-    {
-      ret.num_ctors_with_default_args += 1;
-      ret.num_ctors_default_args += ctor.defaultArguments().size();
-    }
-  }
-
-  for (const auto & f : cla.memberFunctions())
-  {
-    ret.num_functions += 1;
-    if (f.hasDefaultArguments())
-    {
-      ret.num_functions_with_default_args += 1;
-      ret.num_default_args += f.defaultArguments().size();
-    }
-  }
-
-  for (const auto & cla : cla.classes())
-  {
-    ret.num_class += 1;
-    ret = ret + get_short_stats(cla);
-  }
-
-  return ret;
-}
-
-short_stats_t get_short_stats(script::Namespace n)
-{
-  short_stats_t ret;
-
-  for (const auto & f : n.functions())
-  {
-    ret.num_functions += 1;
-    if (f.hasDefaultArguments())
-    {
-      ret.num_functions_with_default_args += 1;
-      ret.num_default_args += f.defaultArguments().size();
-    }
-  }
-
-  for (const auto & cla : n.classes())
-  {
-    ret.num_class += 1;
-    ret = ret + get_short_stats(cla);
-  }
-
-  for (const auto & nested_ns : n.namespaces())
-  {
-    ret = ret + get_short_stats(nested_ns);
-  }
-
-  return ret;
+  return short_stats_t().numberOfClasses(a.num_class + b.num_class)
+    .numberOfConstructors(a.num_constructors + b.num_constructors)
+    .numberOfConstructorsWithDefaults(a.num_ctors_with_default_args + b.num_ctors_with_default_args)
+    .numberOfDefaultsInConstructors(a.num_ctors_default_args + b.num_ctors_default_args)
+    .numberOfFunctions(a.num_functions + b.num_functions)
+    .numberOfFunctionsWithDefaults(a.num_functions_with_default_args + b.num_functions_with_default_args)
+    .numberOfDefaultsInFunction(a.num_default_args + b.num_default_args)
+    .numberOfParameters(a.num_parameters + b.num_parameters)
+    .numberOfOperators(a.num_operators + b.num_operators);
 }
 
 void print_short_stats(script::Engine *e)
 {
-  auto stats = get_short_stats(e->rootNamespace());
+  auto stats = short_stats_t(e->rootNamespace());
 
   for (const auto & m : e->modules())
   {
-    stats = stats + get_short_stats(m.root());
+    stats = stats + short_stats_t(m.root());
   }
 
   std::cout << "Number of classes : " << stats.num_class << std::endl;
@@ -705,7 +717,9 @@ void print_short_stats(script::Engine *e)
   std::cout << "Number of functions : " << stats.num_functions << std::endl;
   std::cout << "with default args : " << stats.num_functions_with_default_args << std::endl;
   std::cout << "total number of default args : " << stats.num_default_args << std::endl;
-
+  std::cout << "total number of parameters : " << stats.num_parameters << std::endl;
+  std::cout << "average number of parameters per function : " << (stats.num_parameters / float(stats.num_functions)) << std::endl;
+  std::cout << "Number of operators: " << stats.num_operators << std::endl;
 }
 
 int main(int argc, char *argv[])
