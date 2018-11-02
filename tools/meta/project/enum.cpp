@@ -49,7 +49,10 @@ void Enum::fillJson(QJsonObject & obj) const
   QJsonArray enms;
   for (const auto & e : enumerators)
   {
-    enms.append(e->toJson());
+    QString entry = e->name + "@" + e->rename;
+    if (entry.endsWith('@'))
+      entry.chop(1);
+    enms.append(entry);
   }
   obj["enumerators"] = enms;
 
@@ -66,7 +69,13 @@ QSharedPointer<Node> Enum::fromJson(const QJsonObject & obj)
 
   QJsonArray enumerators = obj.value("enumerators").toArray();
   for (const auto & item : enumerators)
-    ret->enumerators.push_back(qSharedPointerCast<Enumerator>(Enumerator::fromJson(item.toObject())));
+  {
+    QStringList fields = item.toString().split('@', QString::SkipEmptyParts);
+    auto enumerator = QSharedPointer<Enumerator>::create(fields.front());
+    if (fields.size() == 2)
+      enumerator->rename = fields.back();
+    ret->enumerators.append(enumerator);
+  }
 
   if (!obj.contains("enumclass"))
     ret->isEnumClass = false;
