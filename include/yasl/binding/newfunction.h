@@ -27,7 +27,7 @@ public:
   {
     return namespace_.Function(name, binding::qclass_newfunction_wrapper_t<T>::wrap)
       .returns(make_type<T&>())
-      .create();
+      .get();
   }
 
   template<typename T, typename A1>
@@ -36,7 +36,7 @@ public:
     return namespace_.Function(name, binding::qclass_newfunction_wrapper_t<T, A1>::wrap)
       .returns(make_type<T&>())
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename T, typename A1, typename A2>
@@ -45,7 +45,7 @@ public:
     return namespace_.Function(name, binding::qclass_newfunction_wrapper_t<T, A1, A2>::wrap)
       .returns(make_type<T&>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename T, typename A1, typename A2, typename A3>
@@ -54,7 +54,7 @@ public:
     return namespace_.Function(name, binding::qclass_newfunction_wrapper_t<T, A1, A2, A3>::wrap)
       .returns(make_type<T&>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename T, typename A1, typename A2, typename A3, typename A4>
@@ -63,7 +63,7 @@ public:
     return namespace_.Function(name, binding::qclass_newfunction_wrapper_t<T, A1, A2, A3, A4>::wrap)
       .returns(make_type<T&>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5>
@@ -72,7 +72,7 @@ public:
     return namespace_.Function(name, binding::qclass_newfunction_wrapper_t<T, A1, A2, A3, A4, A5>::wrap)
       .returns(make_type<T&>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 };
 

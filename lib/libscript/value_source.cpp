@@ -77,6 +77,26 @@ void ValueImpl::init_object()
   }
 }
 
+void ValueImpl::push_member(const Value & val)
+{
+  data.builtin.object.push(val);
+}
+
+Value ValueImpl::pop_member()
+{
+  return data.builtin.object.pop();
+}
+
+Value ValueImpl::get_member(size_t i) const
+{
+  return data.builtin.object.at(i);
+}
+
+size_t ValueImpl::member_count() const
+{
+  return data.builtin.object.size();
+}
+
 
 bool ValueImpl::is_array() const
 {

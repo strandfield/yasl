@@ -7,6 +7,10 @@
 
 #include "yasl/binding/values.h"
 
+#include <script/castbuilder.h>
+#include <script/constructorbuilder.h>
+#include <script/destructorbuilder.h>
+#include <script/operatorbuilder.h>
 #include <script/classtemplatespecializationbuilder.h>
 
 namespace script

@@ -13,6 +13,7 @@
 
 #include <script/classtemplate.h>
 #include <script/classtemplateinstancebuilder.h>
+#include <script/constructorbuilder.h>
 #include <script/private/engine_p.h>
 #include <script/templatebuilder.h>
 

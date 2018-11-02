@@ -5,6 +5,7 @@
 #ifndef YASL_UTILS_CONTAINER_VALUE_H
 #define YASL_UTILS_CONTAINER_VALUE_H
 
+#include <script/function.h>
 #include <script/value.h>
 #include <script/userdata.h>
 

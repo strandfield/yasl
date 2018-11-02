@@ -8,11 +8,14 @@
 
 #include <script/classtemplate.h>
 #include <script/classtemplateinstancebuilder.h>
+#include <script/constructorbuilder.h>
+#include <script/destructorbuilder.h>
 #include <script/engine.h>
 #include <script/interpreter/executioncontext.h>
 #include <script/functionbuilder.h>
 #include <script/functiontemplate.h>
 #include <script/namespace.h>
+#include <script/operatorbuilder.h>
 #include <script/private/engine_p.h>
 #include <script/private/function_p.h>
 #include <script/private/value_p.h>

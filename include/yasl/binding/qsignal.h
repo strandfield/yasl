@@ -29,7 +29,7 @@ struct QSignal
   script::Function add(const std::string & name, const std::string & signature)
   {
     auto ret = class_.Method(name, callbacks::signal_callback)
-      .create();
+      .get();
     register_qsignal(ret, signature);
     return ret;
   }
@@ -39,7 +39,7 @@ struct QSignal
   {
     auto ret = class_.Method(name, callbacks::signal_callback)
       .params(make_type<A1>())
-      .create();
+      .get();
     register_qsignal(ret, signature);
     return ret;
   }
@@ -49,7 +49,7 @@ struct QSignal
   {
     auto ret = class_.Method(name, callbacks::signal_callback)
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
     register_qsignal(ret, signature);
     return ret;
   }
@@ -59,7 +59,7 @@ struct QSignal
   {
     auto ret = class_.Method(name, callbacks::signal_callback)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
     register_qsignal(ret, signature);
     return ret;
   }

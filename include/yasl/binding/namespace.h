@@ -9,6 +9,9 @@
 #include "yasl/binding/operator_wrapper.h"
 
 #include <script/functionbuilder.h>
+#include <script/operator.h>
+#include <script/operatorbuilder.h>
+#include <script/literaloperatorbuilder.h>
 #include <script/namespace.h>
 
 namespace binding
@@ -25,7 +28,7 @@ public:
     return namespace_.Operation(script::AdditionOperator, add_wrapper<LHS, RHS>)
       .returns(make_return_type<ReturnType>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename LHS, typename RHS>
@@ -34,7 +37,7 @@ public:
     return namespace_.Operation(script::SubstractionOperator, sub_wrapper<LHS, RHS>)
       .returns(make_return_type<ReturnType>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename LHS, typename RHS>
@@ -43,7 +46,7 @@ public:
     return namespace_.Operation(script::MultiplicationOperator, mul_wrapper<LHS, RHS>)
       .returns(make_return_type<ReturnType>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename LHS, typename RHS>
@@ -52,7 +55,7 @@ public:
     return namespace_.Operation(script::DivisionOperator, div_wrapper<LHS, RHS>)
       .returns(make_return_type<ReturnType>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -61,7 +64,7 @@ public:
     return namespace_.Operation(script::EqualOperator, eq_wrapper<LHS, RHS>)
       .returns(script::Type::Boolean)
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -70,7 +73,7 @@ public:
     return namespace_.Operation(script::InequalOperator, neq_wrapper<LHS, RHS>)
       .returns(script::Type::Boolean)
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -79,7 +82,7 @@ public:
     return namespace_.Operation(script::LessOperator, less_wrapper<LHS, RHS>)
       .returns(script::Type::Boolean)
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -88,7 +91,7 @@ public:
     return namespace_.Operation(script::LessEqualOperator, leq_wrapper<LHS, RHS>)
       .returns(script::Type::Boolean)
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -97,7 +100,7 @@ public:
     return namespace_.Operation(script::GreaterOperator, greater_wrapper<LHS, RHS>)
       .returns(script::Type::Boolean)
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -106,7 +109,7 @@ public:
     return namespace_.Operation(script::GreaterEqualOperator, geq_wrapper<LHS, RHS>)
       .returns(script::Type::Boolean)
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename LHS, typename RHS>
@@ -115,7 +118,7 @@ public:
     return namespace_.Operation(script::LeftShiftOperator, left_shift_wrapper<LHS, RHS>)
       .returns(make_return_type<ReturnType>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename LHS, typename RHS>
@@ -124,7 +127,7 @@ public:
     return namespace_.Operation(script::RightShiftOperator, right_shift_wrapper<LHS, RHS>)
       .returns(make_return_type<ReturnType>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -133,7 +136,7 @@ public:
     return namespace_.Operation(script::LeftShiftOperator, put_to_wrapper<LHS, RHS>)
       .returns(make_type<LHS>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -142,7 +145,7 @@ public:
     return namespace_.Operation(script::RightShiftOperator, read_from_wrapper<LHS, RHS>)
       .returns(make_type<LHS>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename LHS, typename RHS>
@@ -151,7 +154,7 @@ public:
     return namespace_.Operation(script::BitwiseOrOperator, or_wrapper<LHS, RHS>)
       .returns(make_return_type<ReturnType>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename LHS, typename RHS>
@@ -160,7 +163,7 @@ public:
     return namespace_.Operation(script::BitwiseAndOperator, and_wrapper<LHS, RHS>)
       .returns(make_return_type<ReturnType>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -169,7 +172,7 @@ public:
     return namespace_.Operation(script::BitwiseOrAssignmentOperator, or_assign_wrapper<LHS, RHS>)
       .returns(make_type<LHS&>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename LHS, typename RHS>
@@ -178,7 +181,7 @@ public:
     return namespace_.Operation(script::BitwiseAndAssignmentOperator, and_assign_wrapper<LHS, RHS>)
       .returns(make_type<LHS&>())
       .params(make_type<LHS>(), make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename Arg>
@@ -187,7 +190,7 @@ public:
     return namespace_.Operation(script::UnaryPlusOperator, unary_plus_wrapper<Arg>)
       .returns(make_type<ReturnType>())
       .params(make_type<Arg>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename Arg>
@@ -196,7 +199,7 @@ public:
     return namespace_.Operation(script::UnaryMinusOperator, unary_minus_wrapper<Arg>)
       .returns(make_type<ReturnType>())
       .params(make_type<Arg>())
-      .create();
+      .get();
   }
 };
 
@@ -219,7 +222,7 @@ public:
   {
     return namespace_.Function(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<ReturnType>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, ReturnType(*fun)()>
@@ -235,7 +238,7 @@ public:
     return namespace_.Function(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<ReturnType>())
       .params(make_type<Arg>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename Arg, ReturnType(*fun)(Arg)>
@@ -252,7 +255,7 @@ public:
     return namespace_.Function(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2)>
@@ -271,7 +274,7 @@ public:
   script::Function add_void_fun(const std::string & name)
   {
     return namespace_.Function(name, void_function_wrapper_t<decltype(fun), fun>::wrap)
-      .create();
+      .get();
   }
 
   template<void(*fun)()>
@@ -285,7 +288,7 @@ public:
   {
     return namespace_.Function(name, void_function_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<Arg>())
-      .create();
+      .get();
   }
 
   template<typename Arg, void(*fun)(Arg)>
@@ -300,7 +303,7 @@ public:
   {
     return namespace_.Function(name, void_function_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, void(*fun)(A1, A2)>

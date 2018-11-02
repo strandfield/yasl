@@ -94,7 +94,7 @@ public:
 
   script::Function add_default()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T>::wrap).create();
+    return class_.Constructor(constructor_wrapper_event_t<T>::wrap).get();
   }
 
   script::Function add_copy()
@@ -149,46 +149,46 @@ public:
   {
     return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
   template<typename A1>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_event_t<T, A1>::wrap)
       .params(make_type<A1>());
   }
 
   template<typename A1, typename A2>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_event_t<T, A1, A2>::wrap)
       .params(make_type<A1>(), make_type<A2>());
   }
 
   template<typename A1, typename A2, typename A3>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());

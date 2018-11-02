@@ -13,7 +13,11 @@
 #include "yasl/binding/reference_member_wrapper.h"
 
 #include <script/class.h>
+#include <script/constructorbuilder.h>
+#include <script/destructorbuilder.h>
 #include <script/functionbuilder.h>
+#include <script/operator.h>
+#include <script/operatorbuilder.h>
 
 namespace binding
 {
@@ -29,14 +33,14 @@ public:
 
   script::Function add_default()
   {
-    return class_.Constructor(constructor_wrapper_small_object_t<T>::wrap).create();
+    return class_.Constructor(constructor_wrapper_small_object_t<T>::wrap).get();
   }
 
   script::Function add_copy()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, const T&>::wrap)
       .params(script::Type::cref(make_type<T>()))
-      .create();
+      .get();
   }
 
   template<typename A1>
@@ -44,7 +48,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1>::wrap)
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2>
@@ -52,7 +56,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2>::wrap)
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3>
@@ -60,7 +64,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4>
@@ -68,7 +72,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5>
@@ -76,7 +80,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4, A5>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
@@ -84,59 +88,59 @@ public:
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4, A5, A6>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
 
 
-  script::FunctionBuilder default_ctor()
+  script::ConstructorBuilder default_ctor()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T>::wrap);
   }
 
-  script::FunctionBuilder copy_ctor()
+  script::ConstructorBuilder copy_ctor()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, const T&>::wrap)
       .params(script::Type::cref(make_type<T>()));
   }
 
   template<typename A1>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1>::wrap)
       .params(make_type<A1>());
   }
 
   template<typename A1, typename A2>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2>::wrap)
       .params(make_type<A1>(), make_type<A2>());
   }
 
   template<typename A1, typename A2, typename A3>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4, A5>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_small_object_t<T, A1, A2, A3, A4, A5, A6>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
@@ -151,7 +155,7 @@ public:
 
   script::Function add_default()
   {
-    return class_.Constructor(constructor_wrapper_large_object_t<T>::wrap).create();
+    return class_.Constructor(constructor_wrapper_large_object_t<T>::wrap).get();
   }
 
   template<typename A1>
@@ -159,7 +163,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1>::wrap)
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2>
@@ -167,7 +171,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2>::wrap)
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3>
@@ -175,7 +179,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4>
@@ -183,7 +187,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5>
@@ -191,7 +195,7 @@ public:
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4, A5>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
@@ -199,58 +203,58 @@ public:
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4, A5, A6>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
 
-  script::FunctionBuilder default_ctor()
+  script::ConstructorBuilder default_ctor()
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T>::wrap);
   }
 
-  script::FunctionBuilder copy_ctor()
+  script::ConstructorBuilder copy_ctor()
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, const T&>::wrap)
       .params(script::Type::cref(make_type<T>()));
   }
 
   template<typename A1>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1>::wrap)
       .params(make_type<A1>());
   }
 
   template<typename A1, typename A2>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2>::wrap)
       .params(make_type<A1>(), make_type<A2>());
   }
 
   template<typename A1, typename A2, typename A3>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4, A5>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
-  script::FunctionBuilder ctor()
+  script::ConstructorBuilder ctor()
   {
     return class_.Constructor(constructor_wrapper_large_object_t<T, A1, A2, A3, A4, A5, A6>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
@@ -270,10 +274,10 @@ public:
 
   script::Function add()
   {
-    return class_.Destructor(destructor_wrapper_small_object_t<T>::wrap).create();
+    return class_.Destructor(destructor_wrapper_small_object_t<T>::wrap).get();
   }
 
-  script::FunctionBuilder dtor()
+  script::DestructorBuilder dtor()
   {
     return class_.Destructor(destructor_wrapper_small_object_t<T>::wrap);
   }
@@ -287,10 +291,10 @@ public:
 
   script::Function add()
   {
-    return class_.Destructor(destructor_wrapper_large_object_t<T>::wrap).create();
+    return class_.Destructor(destructor_wrapper_large_object_t<T>::wrap).get();
   }
 
-  script::FunctionBuilder dtor()
+  script::DestructorBuilder dtor()
   {
     return class_.Destructor(destructor_wrapper_large_object_t<T>::wrap);
   }
@@ -310,7 +314,7 @@ public:
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename RHS>
@@ -320,7 +324,7 @@ public:
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename RHS>
@@ -330,7 +334,7 @@ public:
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename RHS>
@@ -340,7 +344,7 @@ public:
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -349,7 +353,7 @@ public:
     return class_.Operation(script::AssignmentOperator, assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -358,7 +362,7 @@ public:
     return class_.Operation(script::AdditionAssignmentOperator, add_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -367,7 +371,7 @@ public:
     return class_.Operation(script::AdditionAssignmentOperator, sub_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -376,7 +380,7 @@ public:
     return class_.Operation(script::MultiplicationAssignmentOperator, mul_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -385,7 +389,7 @@ public:
     return class_.Operation(script::DivisionAssignmentOperator, div_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -395,7 +399,7 @@ public:
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -405,7 +409,7 @@ public:
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -415,7 +419,7 @@ public:
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -425,7 +429,7 @@ public:
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -435,7 +439,7 @@ public:
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -445,7 +449,7 @@ public:
       .setConst()
       .returns(script::Type::Boolean)
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename RHS>
@@ -455,7 +459,7 @@ public:
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename RHS>
@@ -465,7 +469,7 @@ public:
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename RHS>
@@ -475,7 +479,7 @@ public:
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -484,7 +488,7 @@ public:
     return class_.Operation(script::BitwiseAndAssignmentOperator, and_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -493,7 +497,7 @@ public:
     return class_.Operation(script::BitwiseOrAssignmentOperator, or_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -502,7 +506,7 @@ public:
     return class_.Operation(script::BitwiseXorAssignmentOperator, xor_assign_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename IndexType>
@@ -512,7 +516,7 @@ public:
     return class_.Operation(script::SubscriptOperator, subscript_wrapper<ReturnType, T&, IndexType>)
       .returns(make_type<ReturnType>())
       .params(make_type<IndexType>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename IndexType>
@@ -522,7 +526,7 @@ public:
       .setConst()
       .returns(make_type<ReturnType>())
       .params(make_type<IndexType>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType>
@@ -531,7 +535,7 @@ public:
     return class_.Operation(script::LogicalNotOperator, logical_not_wrapper<ReturnType, const T&>)
       .setConst()
       .returns(make_type<ReturnType>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType>
@@ -540,7 +544,7 @@ public:
     return class_.Operation(script::UnaryPlusOperator, unary_plus_wrapper<T&>)
       .setConst()
       .returns(make_type<ReturnType>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType>
@@ -549,7 +553,7 @@ public:
     return class_.Operation(script::UnaryMinusOperator, unary_minus_wrapper<T&>)
       .setConst()
       .returns(make_type<ReturnType>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -558,7 +562,7 @@ public:
     return class_.Operation(script::LeftShiftOperator, put_to_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 
   template<typename RHS>
@@ -567,7 +571,7 @@ public:
     return class_.Operation(script::RightShiftOperator, read_from_wrapper<T&, RHS>)
       .returns(make_type<T&>())
       .params(make_type<RHS>())
-      .create();
+      .get();
   }
 };
 
@@ -601,7 +605,7 @@ public:
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
       .returns(make_return_type<ReturnType>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, ReturnType(T::*fun)()>
@@ -609,7 +613,7 @@ public:
   {
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
-      .create();
+      .get();
   }
 
   template<void(T::*fun)() const>
@@ -617,21 +621,21 @@ public:
   {
     return class_.Method(name, const_void_member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
-      .create();
+      .get();
   }
 
   template<void(T::*fun)()>
   script::Function add_void_fun(const std::string & name)
   {
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
-      .create();
+      .get();
   }
 
   template<void(T::*fun)()const>
   script::Function add_const_void_fun(const std::string & name)
   {
     return class_.Method(name, const_void_member_wrapper_t<decltype(fun), fun>::wrap)
-      .create();
+      .get();
   }
 
   template<typename ReturnType, ReturnType(*fun)(), typename FunType = decltype(fun)>
@@ -640,7 +644,7 @@ public:
     return class_.Method(name, function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .returns(make_return_type<ReturnType>())
-      .create();
+      .get();
   }
 
   template<void(*fun)(), typename FunType = decltype(fun)>
@@ -648,7 +652,7 @@ public:
   {
     return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
-      .create();
+      .get();
   }
 
   template<typename ReturnType, ReturnType(T::*fun)()const>
@@ -659,7 +663,7 @@ public:
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, ReturnType(T::*fun)()>
@@ -669,7 +673,7 @@ public:
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, ReturnType(*fun)(T&)>
@@ -677,7 +681,7 @@ public:
   {
     return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, ReturnType(*fun)(const T&)>
@@ -686,7 +690,7 @@ public:
     return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
       .returns(make_return_type<ReturnType>())
-      .create();
+      .get();
   }
 
 
@@ -785,7 +789,7 @@ public:
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
@@ -794,7 +798,7 @@ public:
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename A1, void(T::*fun)(A1)>
@@ -802,7 +806,7 @@ public:
   {
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename A1, void(T::*fun)(A1) const>
@@ -810,7 +814,7 @@ public:
   {
     return class_.Method(name, const_void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename A1, T&(T::*fun)(A1)>
@@ -819,7 +823,7 @@ public:
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, ReturnType(*fun)(A1), typename FunType = decltype(fun)>
@@ -829,7 +833,7 @@ public:
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename A1, void(*fun)(A1), typename FunType = decltype(fun)>
@@ -838,7 +842,7 @@ public:
     return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)const>
@@ -850,7 +854,7 @@ public:
       .setConst()
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)>
@@ -861,7 +865,7 @@ public:
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, ReturnType(*fun)(T&, A1)>
@@ -870,7 +874,7 @@ public:
     return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, ReturnType(*fun)(const T&, A1)>
@@ -880,7 +884,7 @@ public:
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, ReturnType(T::*fun)(A1)const>
@@ -988,7 +992,7 @@ public:
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
@@ -997,7 +1001,7 @@ public:
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, void(T::*fun)(A1, A2)>
@@ -1005,7 +1009,7 @@ public:
   {
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, T&(T::*fun)(A1, A2)>
@@ -1014,7 +1018,7 @@ public:
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2), typename FunType = decltype(fun)>
@@ -1024,7 +1028,7 @@ public:
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, void(*fun)(A1, A2), typename FunType = decltype(fun)>
@@ -1033,7 +1037,7 @@ public:
     return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)const>
@@ -1045,7 +1049,7 @@ public:
       .setConst()
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)>
@@ -1056,7 +1060,7 @@ public:
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(T&, A1, A2)>
@@ -1065,7 +1069,7 @@ public:
     return class_.Method(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(const T&, A1, A2)>
@@ -1075,7 +1079,7 @@ public:
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(T::*fun)(A1, A2)const>
@@ -1176,7 +1180,7 @@ public:
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
@@ -1185,7 +1189,7 @@ public:
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, void(T::*fun)(A1, A2, A3)>
@@ -1193,7 +1197,7 @@ public:
   {
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, T&(T::*fun)(A1, A2, A3)>
@@ -1202,7 +1206,7 @@ public:
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
@@ -1212,7 +1216,7 @@ public:
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, void(*fun)(A1, A2, A3), typename FunType = decltype(fun)>
@@ -1221,7 +1225,7 @@ public:
     return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)const>
@@ -1233,7 +1237,7 @@ public:
       .setConst()
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)>
@@ -1244,7 +1248,7 @@ public:
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, ReturnType(T::*fun)(A1, A2, A3)const>
@@ -1328,7 +1332,7 @@ public:
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
@@ -1337,7 +1341,7 @@ public:
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, void(T::*fun)(A1, A2, A3, A4)>
@@ -1345,7 +1349,7 @@ public:
   {
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, T&(T::*fun)(A1, A2, A3, A4)>
@@ -1354,7 +1358,7 @@ public:
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
@@ -1364,7 +1368,7 @@ public:
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, void(*fun)(A1, A2, A3, A4), typename FunType = decltype(fun)>
@@ -1373,7 +1377,7 @@ public:
     return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)const>
@@ -1385,7 +1389,7 @@ public:
       .setConst()
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)>
@@ -1397,7 +1401,7 @@ public:
       .setConst()
       .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, ReturnType(T::*fun)(A1, A2, A3, A4)const>
@@ -1482,7 +1486,7 @@ public:
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)>
@@ -1491,7 +1495,7 @@ public:
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, void(T::*fun)(A1, A2, A3, A4, A5)>
@@ -1499,7 +1503,7 @@ public:
   {
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, T&(T::*fun)(A1, A2, A3, A4, A5)>
@@ -1508,7 +1512,7 @@ public:
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
@@ -1518,7 +1522,7 @@ public:
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, void(*fun)(A1, A2, A3, A4, A5), typename FunType = decltype(fun)>
@@ -1527,7 +1531,7 @@ public:
     return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, ReturnType(T::*fun)(A1, A2, A3, A4, A5)const>
@@ -1590,7 +1594,7 @@ public:
       .setConst()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, ReturnType(T::*fun)(A1, A2, A3, A4, A5, A6)>
@@ -1599,7 +1603,7 @@ public:
     return class_.Method(name, member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, void(T::*fun)(A1, A2, A3, A4, A5, A6)>
@@ -1607,7 +1611,7 @@ public:
   {
     return class_.Method(name, void_member_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, T&(T::*fun)(A1, A2, A3, A4, A5, A6)>
@@ -1616,7 +1620,7 @@ public:
     return class_.Method(name, chainable_member_wrapper_t<decltype(fun), fun>::wrap)
       .returns(script::Type::cref(make_type<T>()))
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, ReturnType(*fun)(A1, A2, A3, A4, A5, A6), typename FunType = decltype(fun)>
@@ -1626,7 +1630,7 @@ public:
       .setStatic()
       .returns(make_return_type<ReturnType>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, void(*fun)(A1, A2, A3, A4, A5, A6), typename FunType = decltype(fun)>
@@ -1635,7 +1639,7 @@ public:
     return class_.Method(name, void_function_wrapper_t<FunType, fun>::wrap)
       .setStatic()
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .create();
+      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, ReturnType(T::*fun)(A1, A2, A3, A4, A5, A6)const>
