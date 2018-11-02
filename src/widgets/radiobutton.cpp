@@ -24,10 +24,10 @@ static void register_radio_button_class(script::Namespace ns)
 
   // QRadioButton(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(radio_button.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QRadioButton(const QString &, QWidget *);
   binder.ctors().ctor<const QString &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(radio_button.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QRadioButton();
   binder.add_dtor();
 

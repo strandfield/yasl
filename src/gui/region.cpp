@@ -42,10 +42,10 @@ static void register_region_class(script::Namespace ns)
   binder.ctors().add_default();
   // QRegion(int, int, int, int, QRegion::RegionType);
   binder.ctors().ctor<int, int, int, int, QRegion::RegionType>()
-    .addDefaultArgument(binding::default_argument(region.engine(), QRegion::Rectangle)).create();
+    .apply(binding::default_arguments(QRegion::Rectangle)).create();
   // QRegion(const QRect &, QRegion::RegionType);
   binder.ctors().ctor<const QRect &, QRegion::RegionType>()
-    .addDefaultArgument(binding::default_argument(region.engine(), QRegion::Rectangle)).create();
+    .apply(binding::default_arguments(QRegion::Rectangle)).create();
   // QRegion(const QPolygon &, Qt::FillRule);
   /// TODO: QRegion(const QPolygon &, Qt::FillRule);
   // QRegion(const QRegion &);

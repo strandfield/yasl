@@ -35,10 +35,10 @@ static void register_brush_class(script::Namespace ns)
   binder.ctors().ctor<Qt::BrushStyle>().create();
   // QBrush(const QColor &, Qt::BrushStyle);
   binder.ctors().ctor<const QColor &, Qt::BrushStyle>()
-    .addDefaultArgument(binding::default_argument(brush.engine(), Qt::SolidPattern)).create();
+    .apply(binding::default_arguments(Qt::SolidPattern)).create();
   // QBrush(Qt::GlobalColor, Qt::BrushStyle);
   binder.ctors().ctor<Qt::GlobalColor, Qt::BrushStyle>()
-    .addDefaultArgument(binding::default_argument(brush.engine(), Qt::SolidPattern)).create();
+    .apply(binding::default_arguments(Qt::SolidPattern)).create();
   // QBrush(const QColor &, const QPixmap &);
   binder.ctors().ctor<const QColor &, const QPixmap &>().create();
   // QBrush(Qt::GlobalColor, const QPixmap &);

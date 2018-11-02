@@ -109,16 +109,16 @@ static void register_font_database_class(script::Namespace ns)
   binder.fun<QFont, const QString &, const QString &, int, &QFontDatabase::font>("font").create();
   // bool isBitmapScalable(const QString &, const QString &) const;
   binder.fun<bool, const QString &, const QString &, &QFontDatabase::isBitmapScalable>("isBitmapScalable")
-    .addDefaultArgument(binding::default_argument(font_database.engine(), QString())).create();
+    .apply(binding::default_arguments(QString())).create();
   // bool isSmoothlyScalable(const QString &, const QString &) const;
   binder.fun<bool, const QString &, const QString &, &QFontDatabase::isSmoothlyScalable>("isSmoothlyScalable")
-    .addDefaultArgument(binding::default_argument(font_database.engine(), QString())).create();
+    .apply(binding::default_arguments(QString())).create();
   // bool isScalable(const QString &, const QString &) const;
   binder.fun<bool, const QString &, const QString &, &QFontDatabase::isScalable>("isScalable")
-    .addDefaultArgument(binding::default_argument(font_database.engine(), QString())).create();
+    .apply(binding::default_arguments(QString())).create();
   // bool isFixedPitch(const QString &, const QString &) const;
   binder.fun<bool, const QString &, const QString &, &QFontDatabase::isFixedPitch>("isFixedPitch")
-    .addDefaultArgument(binding::default_argument(font_database.engine(), QString())).create();
+    .apply(binding::default_arguments(QString())).create();
   // bool italic(const QString &, const QString &) const;
   binder.fun<bool, const QString &, const QString &, &QFontDatabase::italic>("italic").create();
   // bool bold(const QString &, const QString &) const;

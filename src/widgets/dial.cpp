@@ -24,7 +24,7 @@ static void register_dial_class(script::Namespace ns)
 
   // QDial(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(dial.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QDial();
   binder.add_dtor();
   // bool wrapping() const;

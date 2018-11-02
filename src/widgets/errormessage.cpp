@@ -23,7 +23,7 @@ static void register_error_message_class(script::Namespace ns)
 
   // QErrorMessage(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(error_message.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QErrorMessage();
   binder.add_dtor();
   // void showMessage(const QString &);

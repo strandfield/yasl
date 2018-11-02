@@ -82,11 +82,10 @@ static void register_dir_class(script::Namespace ns)
   binder.ctors().ctor<const QDir &>().create();
   // QDir(const QString &);
   binder.ctors().ctor<const QString &>()
-    .addDefaultArgument(binding::default_argument(dir.engine(), QString())).create();
+    .apply(binding::default_arguments(QString())).create();
   // QDir(const QString &, const QString &, QDir::SortFlags, QDir::Filters);
   binder.ctors().ctor<const QString &, const QString &, QDir::SortFlags, QDir::Filters>()
-    .addDefaultArgument(binding::default_argument(dir.engine(), QDir::Filters(QDir::AllEntries)))
-    .addDefaultArgument(binding::default_argument(dir.engine(), QDir::SortFlags(QDir::Name | QDir::IgnoreCase))).create();
+    .apply(binding::default_arguments(QDir::Filters(QDir::AllEntries), QDir::SortFlags(QDir::Name | QDir::IgnoreCase))).create();
   // ~QDir();
   binder.add_dtor();
   // QDir & operator=(const QDir &);
@@ -145,7 +144,7 @@ static void register_dir_class(script::Namespace ns)
   binder.fun<uint, &QDir::count>("count").create();
   // bool isEmpty(QDir::Filters) const;
   binder.fun<bool, QDir::Filters, &QDir::isEmpty>("isEmpty")
-    .addDefaultArgument(binding::default_argument(dir.engine(), QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot))).create();
+    .apply(binding::default_arguments(QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot))).create();
   // QString operator[](int) const;
   binder.operators().const_subscript<QString, int>();
   // static QStringList nameFiltersFromString(const QString &);

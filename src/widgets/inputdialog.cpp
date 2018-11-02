@@ -69,7 +69,7 @@ static void register_input_dialog_class(script::Namespace ns)
   binder.fun<QString, &QInputDialog::labelText>("labelText").create();
   // void setOption(QInputDialog::InputDialogOption, bool);
   binder.void_fun<QInputDialog::InputDialogOption, bool, &QInputDialog::setOption>("setOption")
-    .addDefaultArgument(binding::default_argument(input_dialog.engine(), true)).create();
+    .apply(binding::default_arguments(true)).create();
   // bool testOption(QInputDialog::InputDialogOption) const;
   binder.fun<bool, QInputDialog::InputDialogOption, &QInputDialog::testOption>("testOption").create();
   // void setOptions(QInputDialog::InputDialogOptions);

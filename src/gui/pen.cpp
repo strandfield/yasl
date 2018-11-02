@@ -32,9 +32,7 @@ static void register_pen_class(script::Namespace ns)
   binder.ctors().ctor<const QColor &>().create();
   // QPen(const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle);
   binder.ctors().ctor<const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle>()
-    .addDefaultArgument(binding::default_argument(pen.engine(), Qt::BevelJoin))
-    .addDefaultArgument(binding::default_argument(pen.engine(), Qt::SquareCap))
-    .addDefaultArgument(binding::default_argument(pen.engine(), Qt::SolidLine)).create();
+    .apply(binding::default_arguments(Qt::BevelJoin, Qt::SquareCap, Qt::SolidLine)).create();
   // QPen(const QPen &);
   binder.ctors().ctor<const QPen &>().create();
   // ~QPen();

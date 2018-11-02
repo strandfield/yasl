@@ -56,7 +56,7 @@ static void register_tab_widget_class(script::Namespace ns)
 
   // QTabWidget(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(tab_widget.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QTabWidget();
   binder.add_dtor();
   // int addTab(QWidget *, const QString &);
@@ -125,10 +125,10 @@ static void register_tab_widget_class(script::Namespace ns)
   binder.fun<bool, &QTabWidget::hasHeightForWidth>("hasHeightForWidth").create();
   // void setCornerWidget(QWidget *, Qt::Corner);
   binder.void_fun<QWidget *, Qt::Corner, &QTabWidget::setCornerWidget>("setCornerWidget")
-    .addDefaultArgument(binding::default_argument(tab_widget.engine(), Qt::TopRightCorner)).create();
+    .apply(binding::default_arguments(Qt::TopRightCorner)).create();
   // QWidget * cornerWidget(Qt::Corner) const;
   binder.fun<QWidget *, Qt::Corner, &QTabWidget::cornerWidget>("cornerWidget")
-    .addDefaultArgument(binding::default_argument(tab_widget.engine(), Qt::TopRightCorner)).create();
+    .apply(binding::default_arguments(Qt::TopRightCorner)).create();
   // Qt::TextElideMode elideMode() const;
   binder.fun<Qt::TextElideMode, &QTabWidget::elideMode>("elideMode").create();
   // void setElideMode(Qt::TextElideMode);

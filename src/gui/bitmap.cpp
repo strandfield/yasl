@@ -52,7 +52,7 @@ static void register_bitmap_class(script::Namespace ns)
   binder.void_fun<&QBitmap::clear>("clear").create();
   // static QBitmap fromImage(const QImage &, Qt::ImageConversionFlags);
   binder.static_fun<QBitmap, const QImage &, Qt::ImageConversionFlags, &QBitmap::fromImage>("fromImage")
-    .addDefaultArgument(binding::default_argument(bitmap.engine(), Qt::ImageConversionFlags(Qt::AutoColor))).create();
+    .apply(binding::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // static QBitmap fromData(const QSize &, const uchar *, QImage::Format);
   /// TODO: static QBitmap fromData(const QSize &, const uchar *, QImage::Format);
   // QBitmap transformed(const QMatrix &) const;

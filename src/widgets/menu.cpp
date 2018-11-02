@@ -33,10 +33,10 @@ static void register_menu_class(script::Namespace ns)
 
   // QMenu(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(menu.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QMenu(const QString &, QWidget *);
   binder.ctors().ctor<const QString &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(menu.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QMenu();
   binder.add_dtor();
   // QAction * addAction(const QString &);
@@ -93,12 +93,12 @@ static void register_menu_class(script::Namespace ns)
   binder.fun<QAction *, &QMenu::activeAction>("activeAction").create();
   // void popup(const QPoint &, QAction *);
   binder.void_fun<const QPoint &, QAction *, &QMenu::popup>("popup")
-    .addDefaultArgument(binding::default_argument(menu.engine(), (QAction*)nullptr)).create();
+    .apply(binding::default_arguments((QAction*)nullptr)).create();
   // QAction * exec();
   binder.fun<QAction *, &QMenu::exec>("exec").create();
   // QAction * exec(const QPoint &, QAction *);
   binder.fun<QAction *, const QPoint &, QAction *, &QMenu::exec>("exec")
-    .addDefaultArgument(binding::default_argument(menu.engine(), (QAction*)nullptr)).create();
+    .apply(binding::default_arguments((QAction*)nullptr)).create();
   // static QAction * exec(QList<QAction *>, const QPoint &, QAction *, QWidget *);
   /// TODO: static QAction * exec(QList<QAction *>, const QPoint &, QAction *, QWidget *);
   // QSize sizeHint() const;

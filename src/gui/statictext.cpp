@@ -73,8 +73,7 @@ static void register_static_text_class(script::Namespace ns)
   binder.fun<QSizeF, &QStaticText::size>("size").create();
   // void prepare(const QTransform &, const QFont &);
   binder.void_fun<const QTransform &, const QFont &, &QStaticText::prepare>("prepare")
-    .addDefaultArgument(binding::default_argument(static_text.engine(), QFont()))
-    .addDefaultArgument(binding::default_argument(static_text.engine(), QTransform())).create();
+    .apply(binding::default_arguments(QFont(), QTransform())).create();
   // void setPerformanceHint(QStaticText::PerformanceHint);
   binder.void_fun<QStaticText::PerformanceHint, &QStaticText::setPerformanceHint>("setPerformanceHint").create();
   // QStaticText::PerformanceHint performanceHint() const;

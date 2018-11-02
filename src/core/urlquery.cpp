@@ -50,12 +50,12 @@ static void register_url_query_class(script::Namespace ns)
   binder.void_fun<&QUrlQuery::clear>("clear").create();
   // QString query(QUrl::ComponentFormattingOptions) const;
   binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrlQuery::query>("query")
-    .addDefaultArgument(binding::default_argument(url_query.engine(), QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
+    .apply(binding::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void setQuery(const QString &);
   binder.void_fun<const QString &, &QUrlQuery::setQuery>("setQuery").create();
   // QString toString(QUrl::ComponentFormattingOptions) const;
   binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrlQuery::toString>("toString")
-    .addDefaultArgument(binding::default_argument(url_query.engine(), QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
+    .apply(binding::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void setQueryDelimiters(QChar, QChar);
   binder.void_fun<QChar, QChar, &QUrlQuery::setQueryDelimiters>("setQueryDelimiters").create();
   // QChar queryValueDelimiter() const;
@@ -74,7 +74,7 @@ static void register_url_query_class(script::Namespace ns)
   binder.void_fun<const QString &, &QUrlQuery::removeQueryItem>("removeQueryItem").create();
   // QString queryItemValue(const QString &, QUrl::ComponentFormattingOptions) const;
   binder.fun<QString, const QString &, QUrl::ComponentFormattingOptions, &QUrlQuery::queryItemValue>("queryItemValue")
-    .addDefaultArgument(binding::default_argument(url_query.engine(), QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
+    .apply(binding::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // QStringList allQueryItemValues(const QString &, QUrl::ComponentFormattingOptions) const;
   /// TODO: QStringList allQueryItemValues(const QString &, QUrl::ComponentFormattingOptions) const;
   // void removeAllQueryItems(const QString &);

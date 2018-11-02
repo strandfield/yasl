@@ -25,7 +25,7 @@ static void register_picture_class(script::Namespace ns)
 
   // QPicture(int);
   binder.ctors().ctor<int>()
-    .addDefaultArgument(binding::default_argument(picture.engine(), -1)).create();
+    .apply(binding::default_arguments(-1)).create();
   // QPicture(const QPicture &);
   binder.ctors().ctor<const QPicture &>().create();
   // ~QPicture();

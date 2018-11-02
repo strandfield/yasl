@@ -53,16 +53,16 @@ static void register_date_time_edit_class(script::Namespace ns)
 
   // QDateTimeEdit(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(date_time_edit.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QDateTime &, QWidget *);
   binder.ctors().ctor<const QDateTime &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(date_time_edit.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QDate &, QWidget *);
   binder.ctors().ctor<const QDate &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(date_time_edit.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QTime &, QWidget *);
   binder.ctors().ctor<const QTime &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(date_time_edit.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QDateTimeEdit();
   binder.add_dtor();
   // QDateTime dateTime() const;

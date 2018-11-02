@@ -195,9 +195,7 @@ static void register_font_class(script::Namespace ns)
   binder.ctors().add_default();
   // QFont(const QString &, int, int, bool);
   binder.ctors().ctor<const QString &, int, int, bool>()
-    .addDefaultArgument(binding::default_argument(font.engine(), false))
-    .addDefaultArgument(binding::default_argument(font.engine(), -1))
-    .addDefaultArgument(binding::default_argument(font.engine(), -1)).create();
+    .apply(binding::default_arguments(false, -1, -1)).create();
   // QFont(const QFont &, QPaintDevice *);
   /// TODO: QFont(const QFont &, QPaintDevice *);
   // QFont(const QFont &);
@@ -268,7 +266,7 @@ static void register_font_class(script::Namespace ns)
   binder.fun<QFont::StyleStrategy, &QFont::styleStrategy>("styleStrategy").create();
   // void setStyleHint(QFont::StyleHint, QFont::StyleStrategy);
   binder.void_fun<QFont::StyleHint, QFont::StyleStrategy, &QFont::setStyleHint>("setStyleHint")
-    .addDefaultArgument(binding::default_argument(font.engine(), QFont::PreferDefault)).create();
+    .apply(binding::default_arguments(QFont::PreferDefault)).create();
   // void setStyleStrategy(QFont::StyleStrategy);
   binder.void_fun<QFont::StyleStrategy, &QFont::setStyleStrategy>("setStyleStrategy").create();
   // int stretch() const;

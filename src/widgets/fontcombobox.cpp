@@ -47,7 +47,7 @@ static void register_font_combo_box_class(script::Namespace ns)
 
   // QFontComboBox(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(font_combo_box.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QFontComboBox();
   binder.add_dtor();
   // void setWritingSystem(QFontDatabase::WritingSystem);

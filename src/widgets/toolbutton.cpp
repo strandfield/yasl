@@ -44,7 +44,7 @@ static void register_tool_button_class(script::Namespace ns)
 
   // QToolButton(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(tool_button.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QToolButton();
   binder.add_dtor();
   // QSize sizeHint() const;

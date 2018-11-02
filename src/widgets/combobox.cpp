@@ -62,7 +62,7 @@ static void register_combo_box_class(script::Namespace ns)
 
   // QComboBox(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(combo_box.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QComboBox();
   binder.add_dtor();
   // int maxVisibleItems() const;
@@ -149,28 +149,28 @@ static void register_combo_box_class(script::Namespace ns)
   binder.fun<QString, &QComboBox::currentText>("currentText").create();
   // QVariant currentData(int) const;
   binder.fun<QVariant, int, &QComboBox::currentData>("currentData")
-    .addDefaultArgument(binding::default_argument(combo_box.engine(), int(Qt::UserRole))).create();
+    .apply(binding::default_arguments(int(Qt::UserRole))).create();
   // QString itemText(int) const;
   binder.fun<QString, int, &QComboBox::itemText>("itemText").create();
   // QIcon itemIcon(int) const;
   binder.fun<QIcon, int, &QComboBox::itemIcon>("itemIcon").create();
   // QVariant itemData(int, int) const;
   binder.fun<QVariant, int, int, &QComboBox::itemData>("itemData")
-    .addDefaultArgument(binding::default_argument(combo_box.engine(), int(Qt::UserRole))).create();
+    .apply(binding::default_arguments(int(Qt::UserRole))).create();
   // void addItem(const QString &, const QVariant &);
   binder.void_fun<const QString &, const QVariant &, &QComboBox::addItem>("addItem")
-    .addDefaultArgument(binding::default_argument(combo_box.engine(), QVariant())).create();
+    .apply(binding::default_arguments(QVariant())).create();
   // void addItem(const QIcon &, const QString &, const QVariant &);
   binder.void_fun<const QIcon &, const QString &, const QVariant &, &QComboBox::addItem>("addItem")
-    .addDefaultArgument(binding::default_argument(combo_box.engine(), QVariant())).create();
+    .apply(binding::default_arguments(QVariant())).create();
   // void addItems(const QStringList &);
   /// TODO: void addItems(const QStringList &);
   // void insertItem(int, const QString &, const QVariant &);
   binder.void_fun<int, const QString &, const QVariant &, &QComboBox::insertItem>("insertItem")
-    .addDefaultArgument(binding::default_argument(combo_box.engine(), QVariant())).create();
+    .apply(binding::default_arguments(QVariant())).create();
   // void insertItem(int, const QIcon &, const QString &, const QVariant &);
   binder.void_fun<int, const QIcon &, const QString &, const QVariant &, &QComboBox::insertItem>("insertItem")
-    .addDefaultArgument(binding::default_argument(combo_box.engine(), QVariant())).create();
+    .apply(binding::default_arguments(QVariant())).create();
   // void insertItems(int, const QStringList &);
   /// TODO: void insertItems(int, const QStringList &);
   // void insertSeparator(int);
@@ -183,7 +183,7 @@ static void register_combo_box_class(script::Namespace ns)
   binder.void_fun<int, const QIcon &, &QComboBox::setItemIcon>("setItemIcon").create();
   // void setItemData(int, const QVariant &, int);
   binder.void_fun<int, const QVariant &, int, &QComboBox::setItemData>("setItemData")
-    .addDefaultArgument(binding::default_argument(combo_box.engine(), int(Qt::UserRole))).create();
+    .apply(binding::default_arguments(int(Qt::UserRole))).create();
   // QAbstractItemView * view() const;
   /// TODO: QAbstractItemView * view() const;
   // void setView(QAbstractItemView *);

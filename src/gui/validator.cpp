@@ -67,10 +67,10 @@ static void register_int_validator_class(script::Namespace ns)
 
   // QIntValidator(QObject *);
   binder.ctors().ctor<QObject *>()
-    .addDefaultArgument(binding::default_argument(int_validator.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // QIntValidator(int, int, QObject *);
   binder.ctors().ctor<int, int, QObject *>()
-    .addDefaultArgument(binding::default_argument(int_validator.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QIntValidator();
   binder.add_dtor();
   // QValidator::State validate(QString &, int &) const;
@@ -119,17 +119,17 @@ static void register_double_validator_class(script::Namespace ns)
 
   // QDoubleValidator(QObject *);
   binder.ctors().ctor<QObject *>()
-    .addDefaultArgument(binding::default_argument(double_validator.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // QDoubleValidator(double, double, int, QObject *);
   binder.ctors().ctor<double, double, int, QObject *>()
-    .addDefaultArgument(binding::default_argument(double_validator.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QDoubleValidator();
   binder.add_dtor();
   // QValidator::State validate(QString &, int &) const;
   binder.fun<QValidator::State, QString &, int &, &QDoubleValidator::validate>("validate").create();
   // void setRange(double, double, int);
   binder.void_fun<double, double, int, &QDoubleValidator::setRange>("setRange")
-    .addDefaultArgument(binding::default_argument(double_validator.engine(), 0)).create();
+    .apply(binding::default_arguments(0)).create();
   // void setBottom(double);
   binder.void_fun<double, &QDoubleValidator::setBottom>("setBottom").create();
   // void setTop(double);
@@ -170,10 +170,10 @@ static void register_regular_expression_validator_class(script::Namespace ns)
 
   // QRegularExpressionValidator(QObject *);
   binder.ctors().ctor<QObject *>()
-    .addDefaultArgument(binding::default_argument(regular_expression_validator.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // QRegularExpressionValidator(const QRegularExpression &, QObject *);
   binder.ctors().ctor<const QRegularExpression &, QObject *>()
-    .addDefaultArgument(binding::default_argument(regular_expression_validator.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QRegularExpressionValidator();
   binder.add_dtor();
   // QValidator::State validate(QString &, int &) const;

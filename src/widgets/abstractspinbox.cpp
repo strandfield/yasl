@@ -70,7 +70,7 @@ static void register_abstract_spin_box_class(script::Namespace ns)
 
   // QAbstractSpinBox(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(abstract_spin_box.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QAbstractSpinBox();
   binder.add_dtor();
   // QAbstractSpinBox::ButtonSymbols buttonSymbols() const;

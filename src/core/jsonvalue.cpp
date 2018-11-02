@@ -44,7 +44,7 @@ static void register_json_value_class(script::Namespace ns)
 
   // QJsonValue(QJsonValue::Type);
   binder.ctors().ctor<QJsonValue::Type>()
-    .addDefaultArgument(binding::default_argument(json_value.engine(), QJsonValue::Null)).create();
+    .apply(binding::default_arguments(QJsonValue::Null)).create();
   // QJsonValue(bool);
   binder.ctors().ctor<bool>().create();
   // QJsonValue(double);
@@ -97,23 +97,23 @@ static void register_json_value_class(script::Namespace ns)
   binder.fun<bool, &QJsonValue::isUndefined>("isUndefined").create();
   // bool toBool(bool) const;
   binder.fun<bool, bool, &QJsonValue::toBool>("toBool")
-    .addDefaultArgument(binding::default_argument(json_value.engine(), false)).create();
+    .apply(binding::default_arguments(false)).create();
   // int toInt(int) const;
   binder.fun<int, int, &QJsonValue::toInt>("toInt")
-    .addDefaultArgument(binding::default_argument(json_value.engine(), 0)).create();
+    .apply(binding::default_arguments(0)).create();
   // double toDouble(double) const;
   binder.fun<double, double, &QJsonValue::toDouble>("toDouble")
-    .addDefaultArgument(binding::default_argument(json_value.engine(), double(0))).create();
+    .apply(binding::default_arguments(double(0))).create();
   // QString toString() const;
   binder.fun<QString, &QJsonValue::toString>("toString").create();
   // QString toString(const QString &) const;
   binder.fun<QString, const QString &, &QJsonValue::toString>("toString")
-    .addDefaultArgument(binding::default_argument(json_value.engine(), QString())).create();
+    .apply(binding::default_arguments(QString())).create();
   // QJsonArray toArray() const;
   binder.fun<QJsonArray, &QJsonValue::toArray>("toArray").create();
   // QJsonArray toArray(const QJsonArray &) const;
   binder.fun<QJsonArray, const QJsonArray &, &QJsonValue::toArray>("toArray")
-    .addDefaultArgument(binding::default_argument(json_value.engine(), QJsonArray())).create();
+    .apply(binding::default_arguments(QJsonArray())).create();
   // QJsonObject toObject() const;
   binder.fun<QJsonObject, &QJsonValue::toObject>("toObject").create();
   // QJsonObject toObject(const QJsonObject &) const;

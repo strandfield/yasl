@@ -654,7 +654,7 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   vector.Method("fill", callbacks::fill)
     .returns(Type::ref(vector.id()))
     .params(Type::cref(element_type), Type::Int)
-    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
+    .apply(binding::default_arguments(-1)).create();
   // T & first();
   vector.Method("first", callbacks::const_first)
     .returns(Type::ref(element_type)).create();
@@ -674,7 +674,7 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
     .setConst()
     .returns(Type::Int)
     .params(Type::cref(element_type), Type::Int)
-    .addDefaultArgument(binding::default_argument(vector.engine(), 0)).create();
+    .apply(binding::default_arguments(0)).create();
   /// TODO: void insert(int i, T &&value);
   // void insert(int i, const T &value);
   vector.Method("insert", callbacks::insert)
@@ -701,7 +701,7 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
     .setConst()
     .returns(Type::Int)
     .params(Type::cref(element_type), Type::Int)
-    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
+    .apply(binding::default_arguments(-1)).create();
   // int length() const;
   vector.Method("length", callbacks::count)
     .setConst()
@@ -711,7 +711,7 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
     .setConst()
     .returns(vector.id())
     .params(Type::Int, Type::Int)
-    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
+    .apply(binding::default_arguments(-1)).create();
   // void move(int from, int to);
   vector.Method("move", callbacks::move)
     .params(Type::Int, Type::Int).create();

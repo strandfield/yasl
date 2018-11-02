@@ -43,10 +43,10 @@ static void register_color_dialog_class(script::Namespace ns)
 
   // QColorDialog(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(color_dialog.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QColorDialog(const QColor &, QWidget *);
   binder.ctors().ctor<const QColor &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(color_dialog.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QColorDialog();
   binder.add_dtor();
   // void setCurrentColor(const QColor &);
@@ -57,7 +57,7 @@ static void register_color_dialog_class(script::Namespace ns)
   binder.fun<QColor, &QColorDialog::selectedColor>("selectedColor").create();
   // void setOption(QColorDialog::ColorDialogOption, bool);
   binder.void_fun<QColorDialog::ColorDialogOption, bool, &QColorDialog::setOption>("setOption")
-    .addDefaultArgument(binding::default_argument(color_dialog.engine(), true)).create();
+    .apply(binding::default_arguments(true)).create();
   // bool testOption(QColorDialog::ColorDialogOption) const;
   binder.fun<bool, QColorDialog::ColorDialogOption, &QColorDialog::testOption>("testOption").create();
   // void setOptions(QColorDialog::ColorDialogOptions);

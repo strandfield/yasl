@@ -220,7 +220,7 @@ static void register_wizard_page_class(script::Namespace ns)
 
   // QWizardPage(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(wizard_page.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QWizardPage();
   binder.add_dtor();
   // void setTitle(const QString &);

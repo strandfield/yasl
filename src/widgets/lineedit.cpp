@@ -61,10 +61,10 @@ static void register_line_edit_class(script::Namespace ns)
 
   // QLineEdit(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(line_edit.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QLineEdit(const QString &, QWidget *);
   binder.ctors().ctor<const QString &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(line_edit.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QLineEdit();
   binder.add_dtor();
   // QString text() const;
@@ -119,10 +119,10 @@ static void register_line_edit_class(script::Namespace ns)
   binder.fun<Qt::Alignment, &QLineEdit::alignment>("alignment").create();
   // void cursorForward(bool, int);
   binder.void_fun<bool, int, &QLineEdit::cursorForward>("cursorForward")
-    .addDefaultArgument(binding::default_argument(line_edit.engine(), 1)).create();
+    .apply(binding::default_arguments(1)).create();
   // void cursorBackward(bool, int);
   binder.void_fun<bool, int, &QLineEdit::cursorBackward>("cursorBackward")
-    .addDefaultArgument(binding::default_argument(line_edit.engine(), 1)).create();
+    .apply(binding::default_arguments(1)).create();
   // void cursorWordForward(bool);
   binder.void_fun<bool, &QLineEdit::cursorWordForward>("cursorWordForward").create();
   // void cursorWordBackward(bool);

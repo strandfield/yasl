@@ -26,13 +26,13 @@ static void register_push_button_class(script::Namespace ns)
 
   // QPushButton(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(push_button.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QPushButton(const QString &, QWidget *);
   binder.ctors().ctor<const QString &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(push_button.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QPushButton(const QIcon &, const QString &, QWidget *);
   binder.ctors().ctor<const QIcon &, const QString &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(push_button.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QPushButton();
   binder.add_dtor();
   // QSize sizeHint() const;

@@ -36,7 +36,7 @@ static void register_object_class(script::Namespace ns)
   /// TODO: static QString trUtf8(const char *, const char *, int);
   // QObject(QObject *);
   binder.ctors().ctor<QObject *>()
-    .addDefaultArgument(binding::default_argument(object.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QObject();
   binder.add_dtor();
   // bool event(QEvent *);
@@ -61,7 +61,7 @@ static void register_object_class(script::Namespace ns)
   /// TODO: void moveToThread(QThread *);
   // int startTimer(int, Qt::TimerType);
   binder.fun<int, int, Qt::TimerType, &QObject::startTimer>("startTimer")
-    .addDefaultArgument(binding::default_argument(object.engine(), Qt::CoarseTimer)).create();
+    .apply(binding::default_arguments(Qt::CoarseTimer)).create();
   // int startTimer(std::chrono::milliseconds, Qt::TimerType);
   /// TODO: int startTimer(std::chrono::milliseconds, Qt::TimerType);
   // void killTimer(int);

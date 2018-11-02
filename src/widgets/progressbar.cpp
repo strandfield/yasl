@@ -41,7 +41,7 @@ static void register_progress_bar_class(script::Namespace ns)
 
   // QProgressBar(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(progress_bar.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QProgressBar();
   binder.add_dtor();
   // int minimum() const;

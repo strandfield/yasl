@@ -44,7 +44,7 @@ static void register_slider_class(script::Namespace ns)
 
   // QSlider(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(slider.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QSlider(Qt::Orientation, QWidget *);
   binder.ctors().ctor<Qt::Orientation, QWidget *>().create();
   // ~QSlider();

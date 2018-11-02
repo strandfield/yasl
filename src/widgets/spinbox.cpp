@@ -25,7 +25,7 @@ static void register_spin_box_class(script::Namespace ns)
 
   // QSpinBox(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(spin_box.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QSpinBox();
   binder.add_dtor();
   // int value() const;

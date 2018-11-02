@@ -108,7 +108,7 @@ static void register_painter_path_class(script::Namespace ns)
   binder.void_fun<const QRegion &, &QPainterPath::addRegion>("addRegion").create();
   // void addRoundedRect(const QRectF &, qreal, qreal, Qt::SizeMode);
   binder.void_fun<const QRectF &, qreal, qreal, Qt::SizeMode, &QPainterPath::addRoundedRect>("addRoundedRect")
-    .addDefaultArgument(binding::default_argument(painter_path.engine(), Qt::AbsoluteSize)).create();
+    .apply(binding::default_arguments(Qt::AbsoluteSize)).create();
   // void addRoundRect(const QRectF &, int, int);
   binder.void_fun<const QRectF &, int, int, &QPainterPath::addRoundRect>("addRoundRect").create();
   // void addRoundRect(qreal, qreal, qreal, qreal, int, int);

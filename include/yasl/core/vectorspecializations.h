@@ -126,7 +126,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   /// TODO; QVector::iterator erase(QVector::iterator begin, QVector::iterator end);
   // QVector<T> & fill(const T &value, int size = ...);
   binder.chainable<const T&, int, &QVector<T>::fill>("fill")
-    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
+    .apply(binding::default_arguments(-1)).create();
   // T & first();
   vector.Method("first", callbacks::vector::first<T>)
     .returns(binding::make_type<Ptr<T>>())
@@ -141,7 +141,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   binder.add_fun<const T &, &QVector<T>::front>("front");
   // int indexOf(const T &value, int from = ...) const;
   binder.fun<int, const T&, int, &QVector<T>::indexOf>("indexOf")
-    .addDefaultArgument(binding::default_argument(vector.engine(), 0)).create();
+    .apply(binding::default_arguments(0)).create();
   /// TODO: void insert(int i, T &&value);
   // void insert(int i, const T &value);
   binder.add_void_fun<int, const T &, &QVector<T>::insert>("insert");
@@ -160,12 +160,12 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   binder.add_fun<const T &, &QVector<T>::back>("last");
   // int lastIndexOf(const T &value, int from = ...) const;
   binder.fun<int, const T&, int, &QVector<T>::lastIndexOf>("lastIndexOf")
-    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
+    .apply(binding::default_arguments(-1)).create();
   // int length() const;
   binder.add_fun<int, &QVector<T>::length>("length");
   // QVector<T> mid(int pos, int length = ...) const;
   binder.fun<QVector<T>, int, int, &QVector<T>::mid>("mid")
-    .addDefaultArgument(binding::default_argument(vector.engine(), -1)).create();
+    .apply(binding::default_arguments(-1)).create();
   // void move(int from, int to);
   binder.add_void_fun<int, int, &QVector<T>::move>("move");
   // void pop_back();

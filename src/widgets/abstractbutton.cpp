@@ -71,7 +71,7 @@ static void register_abstract_button_class(script::Namespace ns)
   binder.void_fun<const QSize &, &QAbstractButton::setIconSize>("setIconSize").create();
   // void animateClick(int);
   binder.void_fun<int, &QAbstractButton::animateClick>("animateClick")
-    .addDefaultArgument(binding::default_argument(abstract_button.engine(), 100)).create();
+    .apply(binding::default_arguments(100)).create();
   // void click();
   binder.void_fun<&QAbstractButton::click>("click").create();
   // void toggle();

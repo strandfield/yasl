@@ -26,10 +26,10 @@ static void register_group_box_class(script::Namespace ns)
 
   // QGroupBox(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(group_box.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QGroupBox(const QString &, QWidget *);
   binder.ctors().ctor<const QString &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(group_box.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QGroupBox();
   binder.add_dtor();
   // QString title() const;

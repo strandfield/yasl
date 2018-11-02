@@ -31,12 +31,10 @@ static void register_cursor_class(script::Namespace ns)
   binder.ctors().ctor<Qt::CursorShape>().create();
   // QCursor(const QBitmap &, const QBitmap &, int, int);
   binder.ctors().ctor<const QBitmap &, const QBitmap &, int, int>()
-    .addDefaultArgument(binding::default_argument(cursor.engine(), -1))
-    .addDefaultArgument(binding::default_argument(cursor.engine(), -1)).create();
+    .apply(binding::default_arguments(-1, -1)).create();
   // QCursor(const QPixmap &, int, int);
   binder.ctors().ctor<const QPixmap &, int, int>()
-    .addDefaultArgument(binding::default_argument(cursor.engine(), -1))
-    .addDefaultArgument(binding::default_argument(cursor.engine(), -1)).create();
+    .apply(binding::default_arguments(-1, -1)).create();
   // QCursor(const QCursor &);
   binder.ctors().ctor<const QCursor &>().create();
   // ~QCursor();

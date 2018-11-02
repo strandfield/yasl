@@ -108,7 +108,7 @@ static void register_window_class(script::Namespace ns)
   /// TODO: Qt::WindowFlags flags() const;
   // void setFlag(Qt::WindowType, bool);
   binder.void_fun<Qt::WindowType, bool, &QWindow::setFlag>("setFlag")
-    .addDefaultArgument(binding::default_argument(window.engine(), true)).create();
+    .apply(binding::default_arguments(true)).create();
   // Qt::WindowType type() const;
   binder.fun<Qt::WindowType, &QWindow::type>("type").create();
   // QString title() const;
@@ -143,7 +143,7 @@ static void register_window_class(script::Namespace ns)
   binder.fun<QWindow *, &QWindow::transientParent>("transientParent").create();
   // bool isAncestorOf(const QWindow *, QWindow::AncestorMode) const;
   binder.fun<bool, const QWindow *, QWindow::AncestorMode, &QWindow::isAncestorOf>("isAncestorOf")
-    .addDefaultArgument(binding::default_argument(window.engine(), QWindow::IncludeTransients)).create();
+    .apply(binding::default_arguments(QWindow::IncludeTransients)).create();
   // bool isExposed() const;
   binder.fun<bool, &QWindow::isExposed>("isExposed").create();
   // int minimumWidth() const;

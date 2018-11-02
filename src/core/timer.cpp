@@ -24,7 +24,7 @@ static void register_timer_class(script::Namespace ns)
 
   // QTimer(QObject *);
   binder.ctors().ctor<QObject *>()
-    .addDefaultArgument(binding::default_argument(timer.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QTimer();
   binder.add_dtor();
   // bool isActive() const;

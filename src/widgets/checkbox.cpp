@@ -25,15 +25,15 @@ static void register_check_box_class(script::Namespace ns)
 
   // QCheckBox(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(check_box.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QCheckBox(const QString &, QWidget *);
   binder.ctors().ctor<const QString &, QWidget *>()
-    .addDefaultArgument(binding::default_argument(check_box.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QCheckBox();
   binder.add_dtor();
   // void setTristate(bool);
   binder.void_fun<bool, &QCheckBox::setTristate>("setTristate")
-    .addDefaultArgument(binding::default_argument(check_box.engine(), true)).create();
+    .apply(binding::default_arguments(true)).create();
   // bool isTristate() const;
   binder.fun<bool, &QCheckBox::isTristate>("isTristate").create();
   // Qt::CheckState checkState() const;

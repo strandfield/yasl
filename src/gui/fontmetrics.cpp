@@ -70,7 +70,7 @@ static void register_font_metrics_class(script::Namespace ns)
   binder.fun<int, QChar, &QFontMetrics::rightBearing>("rightBearing").create();
   // int width(const QString &, int) const;
   binder.fun<int, const QString &, int, &QFontMetrics::width>("width")
-    .addDefaultArgument(binding::default_argument(font_metrics.engine(), -1)).create();
+    .apply(binding::default_arguments(-1)).create();
   // int width(const QString &, int, int) const;
   binder.fun<int, const QString &, int, int, &QFontMetrics::width>("width").create();
   // int width(QChar) const;
@@ -91,7 +91,7 @@ static void register_font_metrics_class(script::Namespace ns)
   binder.fun<QRect, const QString &, &QFontMetrics::tightBoundingRect>("tightBoundingRect").create();
   // QString elidedText(const QString &, Qt::TextElideMode, int, int) const;
   binder.fun<QString, const QString &, Qt::TextElideMode, int, int, &QFontMetrics::elidedText>("elidedText")
-    .addDefaultArgument(binding::default_argument(font_metrics.engine(), 0)).create();
+    .apply(binding::default_arguments(0)).create();
   // int underlinePos() const;
   binder.fun<int, &QFontMetrics::underlinePos>("underlinePos").create();
   // int overlinePos() const;
@@ -179,7 +179,7 @@ static void register_font_metrics_f_class(script::Namespace ns)
   binder.fun<QRectF, const QString &, &QFontMetricsF::tightBoundingRect>("tightBoundingRect").create();
   // QString elidedText(const QString &, Qt::TextElideMode, qreal, int) const;
   binder.fun<QString, const QString &, Qt::TextElideMode, qreal, int, &QFontMetricsF::elidedText>("elidedText")
-    .addDefaultArgument(binding::default_argument(font_metrics_f.engine(), 0)).create();
+    .apply(binding::default_arguments(0)).create();
   // qreal underlinePos() const;
   binder.fun<qreal, &QFontMetricsF::underlinePos>("underlinePos").create();
   // qreal overlinePos() const;

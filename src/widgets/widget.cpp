@@ -244,7 +244,7 @@ static void register_widget_class(script::Namespace ns)
   /// TODO: void render(QPainter *, const QPoint &, const QRegion &, QWidget::RenderFlags);
   // QPixmap grab(const QRect &);
   binder.fun<QPixmap, const QRect &, &QWidget::grab>("grab")
-    .addDefaultArgument(binding::default_argument(widget.engine(), QRect(QPoint(0, 0), QSize(-1, -1)))).create();
+    .apply(binding::default_arguments(QRect(QPoint(0, 0), QSize(-1, -1)))).create();
   // QGraphicsEffect * graphicsEffect() const;
   /// TODO: QGraphicsEffect * graphicsEffect() const;
   // void setGraphicsEffect(QGraphicsEffect *);
@@ -361,15 +361,15 @@ static void register_widget_class(script::Namespace ns)
   binder.void_fun<&QWidget::releaseKeyboard>("releaseKeyboard").create();
   // int grabShortcut(const QKeySequence &, Qt::ShortcutContext);
   binder.fun<int, const QKeySequence &, Qt::ShortcutContext, &QWidget::grabShortcut>("grabShortcut")
-    .addDefaultArgument(binding::default_argument(widget.engine(), Qt::WindowShortcut)).create();
+    .apply(binding::default_arguments(Qt::WindowShortcut)).create();
   // void releaseShortcut(int);
   binder.void_fun<int, &QWidget::releaseShortcut>("releaseShortcut").create();
   // void setShortcutEnabled(int, bool);
   binder.void_fun<int, bool, &QWidget::setShortcutEnabled>("setShortcutEnabled")
-    .addDefaultArgument(binding::default_argument(widget.engine(), true)).create();
+    .apply(binding::default_arguments(true)).create();
   // void setShortcutAutoRepeat(int, bool);
   binder.void_fun<int, bool, &QWidget::setShortcutAutoRepeat>("setShortcutAutoRepeat")
-    .addDefaultArgument(binding::default_argument(widget.engine(), true)).create();
+    .apply(binding::default_arguments(true)).create();
   // static QWidget * mouseGrabber();
   binder.static_fun<QWidget *, &QWidget::mouseGrabber>("mouseGrabber").create();
   // static QWidget * keyboardGrabber();
@@ -526,7 +526,7 @@ static void register_widget_class(script::Namespace ns)
   /// TODO: Qt::WindowFlags windowFlags() const;
   // void setWindowFlag(Qt::WindowType, bool);
   binder.void_fun<Qt::WindowType, bool, &QWidget::setWindowFlag>("setWindowFlag")
-    .addDefaultArgument(binding::default_argument(widget.engine(), true)).create();
+    .apply(binding::default_arguments(true)).create();
   // void overrideWindowFlags(Qt::WindowFlags);
   /// TODO: void overrideWindowFlags(Qt::WindowFlags);
   // Qt::WindowType windowType() const;
@@ -539,7 +539,7 @@ static void register_widget_class(script::Namespace ns)
   binder.fun<QWidget *, const QPoint &, &QWidget::childAt>("childAt").create();
   // void setAttribute(Qt::WidgetAttribute, bool);
   binder.void_fun<Qt::WidgetAttribute, bool, &QWidget::setAttribute>("setAttribute")
-    .addDefaultArgument(binding::default_argument(widget.engine(), true)).create();
+    .apply(binding::default_arguments(true)).create();
   // bool testAttribute(Qt::WidgetAttribute) const;
   binder.fun<bool, Qt::WidgetAttribute, &QWidget::testAttribute>("testAttribute").create();
   // QPaintEngine * paintEngine() const;

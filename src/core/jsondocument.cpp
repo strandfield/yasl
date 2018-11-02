@@ -75,7 +75,7 @@ static void register_json_document_class(script::Namespace ns)
   /// TODO: const char * rawData(int *) const;
   // static QJsonDocument fromBinaryData(const QByteArray &, QJsonDocument::DataValidation);
   binder.static_fun<QJsonDocument, const QByteArray &, QJsonDocument::DataValidation, &QJsonDocument::fromBinaryData>("fromBinaryData")
-    .addDefaultArgument(binding::default_argument(json_document.engine(), QJsonDocument::Validate)).create();
+    .apply(binding::default_arguments(QJsonDocument::Validate)).create();
   // QByteArray toBinaryData() const;
   binder.fun<QByteArray, &QJsonDocument::toBinaryData>("toBinaryData").create();
   // static QJsonDocument fromVariant(const QVariant &);

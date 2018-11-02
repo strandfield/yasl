@@ -386,11 +386,8 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
   {
     currentSource().bindingIncludes.insert("yasl/binding/default_arguments.h");
 
-    for (const auto & da : fun->defaultArguments)
-    {
-      ret += endl;
-      ret += QString("    .addDefaultArgument(binding::default_argument(") + enclosing_snake_name() + ".engine(), " + da + "))";
-    }
+    ret += endl;
+    ret += QString("    .apply(binding::default_arguments(") + fun->defaultArguments.join(", ") + "))";
   }
 
   ret.append(".create();");

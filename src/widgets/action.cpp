@@ -81,13 +81,13 @@ static void register_action_class(script::Namespace ns)
 
   // QAction(QObject *);
   binder.ctors().ctor<QObject *>()
-    .addDefaultArgument(binding::default_argument(action.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // QAction(const QString &, QObject *);
   binder.ctors().ctor<const QString &, QObject *>()
-    .addDefaultArgument(binding::default_argument(action.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // QAction(const QIcon &, const QString &, QObject *);
   binder.ctors().ctor<const QIcon &, const QString &, QObject *>()
-    .addDefaultArgument(binding::default_argument(action.engine(), (QObject*)nullptr)).create();
+    .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QAction();
   binder.add_dtor();
   // void setActionGroup(QActionGroup *);
@@ -170,7 +170,7 @@ static void register_action_class(script::Namespace ns)
   binder.void_fun<QAction::ActionEvent, &QAction::activate>("activate").create();
   // bool showStatusText(QWidget *);
   binder.fun<bool, QWidget *, &QAction::showStatusText>("showStatusText")
-    .addDefaultArgument(binding::default_argument(action.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // void setMenuRole(QAction::MenuRole);
   binder.void_fun<QAction::MenuRole, &QAction::setMenuRole>("setMenuRole").create();
   // QAction::MenuRole menuRole() const;

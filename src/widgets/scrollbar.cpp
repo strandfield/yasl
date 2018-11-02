@@ -25,10 +25,10 @@ static void register_scroll_bar_class(script::Namespace ns)
 
   // QScrollBar(QWidget *);
   binder.ctors().ctor<QWidget *>()
-    .addDefaultArgument(binding::default_argument(scroll_bar.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QScrollBar(Qt::Orientation, QWidget *);
   binder.ctors().ctor<Qt::Orientation, QWidget *>()
-    .addDefaultArgument(binding::default_argument(scroll_bar.engine(), (QWidget*)nullptr)).create();
+    .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QScrollBar();
   binder.add_dtor();
 

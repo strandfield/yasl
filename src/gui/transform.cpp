@@ -115,10 +115,10 @@ static void register_transform_class(script::Namespace ns)
   binder.chainable<qreal, qreal, &QTransform::shear>("shear").create();
   // QTransform & rotate(qreal, Qt::Axis);
   binder.chainable<qreal, Qt::Axis, &QTransform::rotate>("rotate")
-    .addDefaultArgument(binding::default_argument(transform.engine(), Qt::ZAxis)).create();
+    .apply(binding::default_arguments(Qt::ZAxis)).create();
   // QTransform & rotateRadians(qreal, Qt::Axis);
   binder.chainable<qreal, Qt::Axis, &QTransform::rotateRadians>("rotateRadians")
-    .addDefaultArgument(binding::default_argument(transform.engine(), Qt::ZAxis)).create();
+    .apply(binding::default_arguments(Qt::ZAxis)).create();
   // static bool squareToQuad(const QPolygonF &, QTransform &);
   /// TODO: static bool squareToQuad(const QPolygonF &, QTransform &);
   // static bool quadToSquare(const QPolygonF &, QTransform &);

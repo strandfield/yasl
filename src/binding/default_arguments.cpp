@@ -15,29 +15,4 @@ std::shared_ptr<script::program::Expression> make_default_argument(script::Value
   return script::program::VariableAccess::New(val);
 }
 
-std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, bool val)
-{
-  return make_default_argument(e->newBool(val));
-}
-
-std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, char val)
-{
-  return make_default_argument(e->newChar(val));
-}
-
-std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, int val)
-{
-  return make_default_argument(e->newInt(val));
-}
-
-std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, float val)
-{
-  return make_default_argument(e->newFloat(val));
-}
-
-std::shared_ptr<script::program::Expression> default_argument(script::Engine *e, double val)
-{
-  return make_default_argument(e->newDouble(val));
-}
-
 } // namespace binding

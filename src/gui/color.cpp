@@ -59,7 +59,7 @@ static void register_color_class(script::Namespace ns)
   binder.ctors().ctor<Qt::GlobalColor>().create();
   // QColor(int, int, int, int);
   binder.ctors().ctor<int, int, int, int>()
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // QColor(QRgb);
   /// TODO: QColor(QRgb);
   // QColor(QRgba64);
@@ -136,12 +136,12 @@ static void register_color_class(script::Namespace ns)
   /// TODO: void getRgb(int *, int *, int *, int *) const;
   // void setRgb(int, int, int, int);
   binder.void_fun<int, int, int, int, &QColor::setRgb>("setRgb")
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // void getRgbF(qreal *, qreal *, qreal *, qreal *) const;
   /// TODO: void getRgbF(qreal *, qreal *, qreal *, qreal *) const;
   // void setRgbF(qreal, qreal, qreal, qreal);
   binder.void_fun<qreal, qreal, qreal, qreal, &QColor::setRgbF>("setRgbF")
-    .addDefaultArgument(binding::default_argument(color.engine(), qreal(1.0))).create();
+    .apply(binding::default_arguments(qreal(1.0))).create();
   // QRgba64 rgba64() const;
   /// TODO: QRgba64 rgba64() const;
   // void setRgba64(QRgba64);
@@ -178,12 +178,12 @@ static void register_color_class(script::Namespace ns)
   /// TODO: void getHsv(int *, int *, int *, int *) const;
   // void setHsv(int, int, int, int);
   binder.void_fun<int, int, int, int, &QColor::setHsv>("setHsv")
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // void getHsvF(qreal *, qreal *, qreal *, qreal *) const;
   /// TODO: void getHsvF(qreal *, qreal *, qreal *, qreal *) const;
   // void setHsvF(qreal, qreal, qreal, qreal);
   binder.void_fun<qreal, qreal, qreal, qreal, &QColor::setHsvF>("setHsvF")
-    .addDefaultArgument(binding::default_argument(color.engine(), qreal(1.0))).create();
+    .apply(binding::default_arguments(qreal(1.0))).create();
   // int cyan() const;
   binder.fun<int, &QColor::cyan>("cyan").create();
   // int magenta() const;
@@ -204,12 +204,12 @@ static void register_color_class(script::Namespace ns)
   /// TODO: void getCmyk(int *, int *, int *, int *, int *);
   // void setCmyk(int, int, int, int, int);
   binder.void_fun<int, int, int, int, int, &QColor::setCmyk>("setCmyk")
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // void getCmykF(qreal *, qreal *, qreal *, qreal *, qreal *);
   /// TODO: void getCmykF(qreal *, qreal *, qreal *, qreal *, qreal *);
   // void setCmykF(qreal, qreal, qreal, qreal, qreal);
   binder.void_fun<qreal, qreal, qreal, qreal, qreal, &QColor::setCmykF>("setCmykF")
-    .addDefaultArgument(binding::default_argument(color.engine(), qreal(1.0))).create();
+    .apply(binding::default_arguments(qreal(1.0))).create();
   // int hslHue() const;
   binder.fun<int, &QColor::hslHue>("hslHue").create();
   // int hslSaturation() const;
@@ -226,12 +226,12 @@ static void register_color_class(script::Namespace ns)
   /// TODO: void getHsl(int *, int *, int *, int *) const;
   // void setHsl(int, int, int, int);
   binder.void_fun<int, int, int, int, &QColor::setHsl>("setHsl")
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // void getHslF(qreal *, qreal *, qreal *, qreal *) const;
   /// TODO: void getHslF(qreal *, qreal *, qreal *, qreal *) const;
   // void setHslF(qreal, qreal, qreal, qreal);
   binder.void_fun<qreal, qreal, qreal, qreal, &QColor::setHslF>("setHslF")
-    .addDefaultArgument(binding::default_argument(color.engine(), qreal(1.0))).create();
+    .apply(binding::default_arguments(qreal(1.0))).create();
   // QColor toRgb() const;
   binder.fun<QColor, &QColor::toRgb>("toRgb").create();
   // QColor toHsv() const;
@@ -248,37 +248,37 @@ static void register_color_class(script::Namespace ns)
   /// TODO: static QColor fromRgba(QRgb);
   // static QColor fromRgb(int, int, int, int);
   binder.static_fun<QColor, int, int, int, int, &QColor::fromRgb>("fromRgb")
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // static QColor fromRgbF(qreal, qreal, qreal, qreal);
   binder.static_fun<QColor, qreal, qreal, qreal, qreal, &QColor::fromRgbF>("fromRgbF")
-    .addDefaultArgument(binding::default_argument(color.engine(), qreal(1.0))).create();
+    .apply(binding::default_arguments(qreal(1.0))).create();
   // static QColor fromRgba64(ushort, ushort, ushort, ushort);
   /// TODO: static QColor fromRgba64(ushort, ushort, ushort, ushort);
   // static QColor fromRgba64(QRgba64);
   /// TODO: static QColor fromRgba64(QRgba64);
   // static QColor fromHsv(int, int, int, int);
   binder.static_fun<QColor, int, int, int, int, &QColor::fromHsv>("fromHsv")
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // static QColor fromHsvF(qreal, qreal, qreal, qreal);
   binder.static_fun<QColor, qreal, qreal, qreal, qreal, &QColor::fromHsvF>("fromHsvF")
-    .addDefaultArgument(binding::default_argument(color.engine(), qreal(1.0))).create();
+    .apply(binding::default_arguments(qreal(1.0))).create();
   // static QColor fromCmyk(int, int, int, int, int);
   binder.static_fun<QColor, int, int, int, int, int, &QColor::fromCmyk>("fromCmyk")
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // static QColor fromCmykF(qreal, qreal, qreal, qreal, qreal);
   binder.static_fun<QColor, qreal, qreal, qreal, qreal, qreal, &QColor::fromCmykF>("fromCmykF")
-    .addDefaultArgument(binding::default_argument(color.engine(), qreal(1.0))).create();
+    .apply(binding::default_arguments(qreal(1.0))).create();
   // static QColor fromHsl(int, int, int, int);
   binder.static_fun<QColor, int, int, int, int, &QColor::fromHsl>("fromHsl")
-    .addDefaultArgument(binding::default_argument(color.engine(), 255)).create();
+    .apply(binding::default_arguments(255)).create();
   // static QColor fromHslF(qreal, qreal, qreal, qreal);
   binder.static_fun<QColor, qreal, qreal, qreal, qreal, &QColor::fromHslF>("fromHslF")
-    .addDefaultArgument(binding::default_argument(color.engine(), qreal(1.0))).create();
+    .apply(binding::default_arguments(qreal(1.0))).create();
   // QColor light(int) const;
   binder.fun<QColor, int, &QColor::light>("light").create();
   // QColor lighter(int) const;
   binder.fun<QColor, int, &QColor::lighter>("lighter")
-    .addDefaultArgument(binding::default_argument(color.engine(), 150)).create();
+    .apply(binding::default_arguments(150)).create();
   // QColor dark(int) const;
   binder.fun<QColor, int, &QColor::dark>("dark").create();
   // QColor darker(int) const;
