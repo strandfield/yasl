@@ -39,6 +39,8 @@ void Function::fillJson(QJsonObject & obj) const
   if(!params.isEmpty())
     obj["parameters"] = params;
 
+  obj["signature"] = parameters.join(";") + "->" + returnType;
+
   if(isExplicit)
     obj["explicit"] = isExplicit;
   if(isStatic)
@@ -117,6 +119,7 @@ Constructor::Constructor(const QString & n, Qt::CheckState cs)
 void Constructor::fillJson(QJsonObject & obj) const
 {
   Function::fillJson(obj);
+  obj["signature"] = obj.value("signature").toString().chopped(2);
 }
 
 QSharedPointer<Node> Constructor::fromJson(const QJsonObject & obj)
@@ -180,6 +183,7 @@ void Destructor::fillJson(QJsonObject & obj) const
   obj.remove("static");
   obj.remove("const");
   obj.remove("macros");
+  obj.remove("signature");
 }
 
 QSharedPointer<Node> Destructor::fromJson(const QJsonObject & obj)
