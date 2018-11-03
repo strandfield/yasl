@@ -108,12 +108,12 @@ static void register_wizard_class(script::Namespace ns)
   register_wizard_wizard_pixmap_enum(wizard);
   register_wizard_wizard_style_enum(wizard);
   register_wizard_wizard_option_enum(wizard);
-  binding::QClass<QWizard> binder{ wizard, &QWizard::staticMetaObject };
+  binding::ClassBinder<QWizard> binder{ wizard, &QWizard::staticMetaObject };
 
   // QWizard(QWidget *, Qt::WindowFlags);
   /// TODO: QWizard(QWidget *, Qt::WindowFlags);
   // ~QWizard();
-  binder.add_dtor();
+  binder.dtor().create();
   // int addPage(QWizardPage *);
   /// TODO: int addPage(QWizardPage *);
   // void setPage(int, QWizardPage *);
@@ -216,13 +216,13 @@ static void register_wizard_page_class(script::Namespace ns)
   Class wizard_page = ns.Class("WizardPage").setId(script::Type::QWizardPage)
     .setBase(script::Type::QWidget).get();
 
-  binding::QClass<QWizardPage> binder{ wizard_page, &QWizardPage::staticMetaObject };
+  binding::ClassBinder<QWizardPage> binder{ wizard_page, &QWizardPage::staticMetaObject };
 
   // QWizardPage(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QWizardPage();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setTitle(const QString &);
   binder.void_fun<const QString &, &QWizardPage::setTitle>("setTitle").create();
   // QString title() const;

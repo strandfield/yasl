@@ -18,16 +18,16 @@ static void register_margins_class(script::Namespace ns)
 
   Class margins = ns.Class("Margins").setId(script::Type::QMargins).get();
 
-  binding::Class<QMargins> binder{ margins };
+  binding::ClassBinder<QMargins> binder{ margins };
 
   // QMargins();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QMargins(const QMargins &);
-  binder.ctors().ctor<const QMargins &>().create();
+  binder.ctor<const QMargins &>().create();
   // ~QMargins();
-  binder.add_dtor();
+  binder.dtor().create();
   // QMargins(int, int, int, int);
-  binder.ctors().ctor<int, int, int, int>().create();
+  binder.ctor<int, int, int, int>().create();
   // bool isNull() const;
   binder.fun<bool, &QMargins::isNull>("isNull").create();
   // int left() const;
@@ -71,18 +71,18 @@ static void register_margins_f_class(script::Namespace ns)
 
   Class margins_f = ns.Class("MarginsF").setId(script::Type::QMarginsF).get();
 
-  binding::Class<QMarginsF> binder{ margins_f };
+  binding::ClassBinder<QMarginsF> binder{ margins_f };
 
   // QMarginsF();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QMargins(const QMargins &);
-  binder.ctors().ctor<const QMargins &>().create();
+  binder.ctor<const QMargins &>().create();
   // ~QMarginsF();
-  binder.add_dtor();
+  binder.dtor().create();
   // QMarginsF(qreal, qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal, qreal>().create();
   // QMarginsF(const QMargins &);
-  binder.ctors().ctor<const QMargins &>().create();
+  binder.ctor<const QMargins &>().create();
   // bool isNull() const;
   binder.fun<bool, &QMarginsF::isNull>("isNull").create();
   // qreal left() const;

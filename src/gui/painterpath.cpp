@@ -42,20 +42,20 @@ static void register_painter_path_class(script::Namespace ns)
   Class painter_path = ns.Class("PainterPath").setId(script::Type::QPainterPath).get();
 
   register_painter_path_element_type_enum(painter_path);
-  binding::Class<QPainterPath> binder{ painter_path };
+  binding::ClassBinder<QPainterPath> binder{ painter_path };
 
   // QPainterPath();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPainterPath(const QPointF &);
-  binder.ctors().ctor<const QPointF &>().create();
+  binder.ctor<const QPointF &>().create();
   // QPainterPath(const QPainterPath &);
-  binder.ctors().ctor<const QPainterPath &>().create();
+  binder.ctor<const QPainterPath &>().create();
   // QPainterPath & operator=(const QPainterPath &);
   binder.operators().assign<const QPainterPath &>();
   // QPainterPath & operator=(QPainterPath &&);
   binder.operators().assign<QPainterPath &&>();
   // ~QPainterPath();
-  binder.add_dtor();
+  binder.dtor().create();
   // void swap(QPainterPath &);
   binder.void_fun<QPainterPath &, &QPainterPath::swap>("swap").create();
   // void closeSubpath();
@@ -216,14 +216,14 @@ static void register_painter_path_stroker_class(script::Namespace ns)
 
   Class painter_path_stroker = ns.Class("PainterPathStroker").setId(script::Type::QPainterPathStroker).get();
 
-  binding::Class<QPainterPathStroker> binder{ painter_path_stroker };
+  binding::ClassBinder<QPainterPathStroker> binder{ painter_path_stroker };
 
   // QPainterPathStroker();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPainterPathStroker(const QPen &);
-  binder.ctors().ctor<const QPen &>().create();
+  binder.ctor<const QPen &>().create();
   // ~QPainterPathStroker();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setWidth(qreal);
   binder.void_fun<qreal, &QPainterPathStroker::setWidth>("setWidth").create();
   // qreal width() const;

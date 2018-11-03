@@ -21,18 +21,18 @@ static void register_file_class(script::Namespace ns)
   Class file = ns.Class("File").setId(script::Type::QFile)
     .setBase(script::Type::QFileDevice).get();
 
-  binding::QClass<QFile> binder{ file, &QFile::staticMetaObject };
+  binding::ClassBinder<QFile> binder{ file, &QFile::staticMetaObject };
 
   // QFile();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QFile(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // QFile(QObject *);
-  binder.ctors().ctor<QObject *>().create();
+  binder.ctor<QObject *>().create();
   // QFile(const QString &, QObject *);
-  binder.ctors().ctor<const QString &, QObject *>().create();
+  binder.ctor<const QString &, QObject *>().create();
   // ~QFile();
-  binder.add_dtor();
+  binder.dtor().create();
   // QString fileName() const;
   binder.fun<QString, &QFile::fileName>("fileName").create();
   // void setFileName(const QString &);

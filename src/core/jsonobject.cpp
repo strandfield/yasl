@@ -18,20 +18,20 @@ static void register_json_object_class(script::Namespace ns)
 
   Class json_object = ns.Class("JsonObject").setId(script::Type::QJsonObject).get();
 
-  binding::Class<QJsonObject> binder{ json_object };
+  binding::ClassBinder<QJsonObject> binder{ json_object };
 
   // QJsonObject();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QJsonObject(std::initializer_list<QPair<QString, QJsonValue> >);
   /// TODO: QJsonObject(std::initializer_list<QPair<QString, QJsonValue> >);
   // ~QJsonObject();
-  binder.add_dtor();
+  binder.dtor().create();
   // QJsonObject(const QJsonObject &);
-  binder.ctors().ctor<const QJsonObject &>().create();
+  binder.ctor<const QJsonObject &>().create();
   // QJsonObject & operator=(const QJsonObject &);
   binder.operators().assign<const QJsonObject &>();
   // QJsonObject(QJsonObject &&);
-  binder.ctors().ctor<QJsonObject &&>().create();
+  binder.ctor<QJsonObject &&>().create();
   // QJsonObject & operator=(QJsonObject &&);
   binder.operators().assign<QJsonObject &&>();
   // void swap(QJsonObject &);

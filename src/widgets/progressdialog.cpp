@@ -20,14 +20,14 @@ static void register_progress_dialog_class(script::Namespace ns)
   Class progress_dialog = ns.Class("ProgressDialog").setId(script::Type::QProgressDialog)
     .setBase(script::Type::QDialog).get();
 
-  binding::QClass<QProgressDialog> binder{ progress_dialog, &QProgressDialog::staticMetaObject };
+  binding::ClassBinder<QProgressDialog> binder{ progress_dialog, &QProgressDialog::staticMetaObject };
 
   // QProgressDialog(QWidget *, Qt::WindowFlags);
   /// TODO: QProgressDialog(QWidget *, Qt::WindowFlags);
   // QProgressDialog(const QString &, const QString &, int, int, QWidget *, Qt::WindowFlags);
   /// TODO: QProgressDialog(const QString &, const QString &, int, int, QWidget *, Qt::WindowFlags);
   // ~QProgressDialog();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setLabel(QLabel *);
   /// TODO: void setLabel(QLabel *);
   // void setCancelButton(QPushButton *);

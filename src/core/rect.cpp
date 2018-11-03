@@ -21,20 +21,20 @@ static void register_rect_class(script::Namespace ns)
 
   Class rect = ns.Class("Rect").setId(script::Type::QRect).get();
 
-  binding::Class<QRect> binder{ rect };
+  binding::ClassBinder<QRect> binder{ rect };
 
   // QRect();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QRect(const QRect &);
-  binder.ctors().ctor<const QRect &>().create();
+  binder.ctor<const QRect &>().create();
   // ~QRect();
-  binder.add_dtor();
+  binder.dtor().create();
   // QRect(const QPoint &, const QPoint &);
-  binder.ctors().ctor<const QPoint &, const QPoint &>().create();
+  binder.ctor<const QPoint &, const QPoint &>().create();
   // QRect(const QPoint &, const QSize &);
-  binder.ctors().ctor<const QPoint &, const QSize &>().create();
+  binder.ctor<const QPoint &, const QSize &>().create();
   // QRect(int, int, int, int);
-  binder.ctors().ctor<int, int, int, int>().create();
+  binder.ctor<int, int, int, int>().create();
   // bool isNull() const;
   binder.fun<bool, &QRect::isNull>("isNull").create();
   // bool isEmpty() const;
@@ -180,22 +180,22 @@ static void register_rect_f_class(script::Namespace ns)
 
   Class rect_f = ns.Class("RectF").setId(script::Type::QRectF).get();
 
-  binding::Class<QRectF> binder{ rect_f };
+  binding::ClassBinder<QRectF> binder{ rect_f };
 
   // QRectF();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QRectF(const QRectF &);
-  binder.ctors().ctor<const QRectF &>().create();
+  binder.ctor<const QRectF &>().create();
   // ~QRectF();
-  binder.add_dtor();
+  binder.dtor().create();
   // QRectF(const QPointF &, const QSizeF &);
-  binder.ctors().ctor<const QPointF &, const QSizeF &>().create();
+  binder.ctor<const QPointF &, const QSizeF &>().create();
   // QRectF(const QPointF &, const QPointF &);
-  binder.ctors().ctor<const QPointF &, const QPointF &>().create();
+  binder.ctor<const QPointF &, const QPointF &>().create();
   // QRectF(qreal, qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal, qreal>().create();
   // QRectF(const QRect &);
-  binder.ctors().ctor<const QRect &>().create();
+  binder.ctor<const QRect &>().create();
   // bool isNull() const;
   binder.fun<bool, &QRectF::isNull>("isNull").create();
   // bool isEmpty() const;

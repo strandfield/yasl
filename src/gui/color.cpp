@@ -49,23 +49,23 @@ static void register_color_class(script::Namespace ns)
 
   register_color_spec_enum(color);
   register_color_name_format_enum(color);
-  binding::Class<QColor> binder{ color };
+  binding::ClassBinder<QColor> binder{ color };
 
   // QColor();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QColor();
-  binder.add_dtor();
+  binder.dtor().create();
   // QColor(Qt::GlobalColor);
-  binder.ctors().ctor<Qt::GlobalColor>().create();
+  binder.ctor<Qt::GlobalColor>().create();
   // QColor(int, int, int, int);
-  binder.ctors().ctor<int, int, int, int>()
+  binder.ctor<int, int, int, int>()
     .apply(binding::default_arguments(255)).create();
   // QColor(QRgb);
   /// TODO: QColor(QRgb);
   // QColor(QRgba64);
   /// TODO: QColor(QRgba64);
   // QColor(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // QColor(QStringView);
   /// TODO: QColor(QStringView);
   // QColor(const char *);
@@ -73,11 +73,11 @@ static void register_color_class(script::Namespace ns)
   // QColor(QLatin1String);
   /// TODO: QColor(QLatin1String);
   // QColor(QColor::Spec);
-  binder.ctors().ctor<QColor::Spec>().create();
+  binder.ctor<QColor::Spec>().create();
   // QColor(const QColor &);
-  binder.ctors().ctor<const QColor &>().create();
+  binder.ctor<const QColor &>().create();
   // QColor(QColor &&);
-  binder.ctors().ctor<QColor &&>().create();
+  binder.ctor<QColor &&>().create();
   // QColor & operator=(QColor &&);
   binder.operators().assign<QColor &&>();
   // QColor & operator=(const QColor &);

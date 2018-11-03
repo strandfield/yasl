@@ -76,18 +76,18 @@ static void register_dir_class(script::Namespace ns)
 
   register_dir_filter_enum(dir);
   register_dir_sort_flag_enum(dir);
-  binding::Class<QDir> binder{ dir };
+  binding::ClassBinder<QDir> binder{ dir };
 
   // QDir(const QDir &);
-  binder.ctors().ctor<const QDir &>().create();
+  binder.ctor<const QDir &>().create();
   // QDir(const QString &);
-  binder.ctors().ctor<const QString &>()
+  binder.ctor<const QString &>()
     .apply(binding::default_arguments(QString())).create();
   // QDir(const QString &, const QString &, QDir::SortFlags, QDir::Filters);
-  binder.ctors().ctor<const QString &, const QString &, QDir::SortFlags, QDir::Filters>()
+  binder.ctor<const QString &, const QString &, QDir::SortFlags, QDir::Filters>()
     .apply(binding::default_arguments(QDir::Filters(QDir::AllEntries), QDir::SortFlags(QDir::Name | QDir::IgnoreCase))).create();
   // ~QDir();
-  binder.add_dtor();
+  binder.dtor().create();
   // QDir & operator=(const QDir &);
   binder.operators().assign<const QDir &>();
   // QDir & operator=(const QString &);

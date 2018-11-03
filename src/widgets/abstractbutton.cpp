@@ -21,10 +21,10 @@ static void register_abstract_button_class(script::Namespace ns)
   Class abstract_button = ns.Class("AbstractButton").setId(script::Type::QAbstractButton)
     .setBase(script::Type::QWidget).get();
 
-  binding::QClass<QAbstractButton> binder{ abstract_button, &QAbstractButton::staticMetaObject };
+  binding::ClassBinder<QAbstractButton> binder{ abstract_button, &QAbstractButton::staticMetaObject };
 
   // ~QAbstractButton();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setText(const QString &);
   binder.void_fun<const QString &, &QAbstractButton::setText>("setText").create();
   // QString text() const;

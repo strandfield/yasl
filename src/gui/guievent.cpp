@@ -24,7 +24,7 @@ static void register_mouse_event_class(script::Namespace ns)
   Class mouse_event = ns.Class("MouseEvent").setId(script::Type::QMouseEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QMouseEvent> binder{ mouse_event };
+  binding::ClassBinder<QMouseEvent> binder{ mouse_event };
 
   // QMouseEvent(QEvent::Type, const QPointF &, Qt::MouseButton, Qt::MouseButtons, Qt::KeyboardModifiers);
   /// TODO: QMouseEvent(QEvent::Type, const QPointF &, Qt::MouseButton, Qt::MouseButtons, Qt::KeyboardModifiers);
@@ -35,7 +35,7 @@ static void register_mouse_event_class(script::Namespace ns)
   // QMouseEvent(QEvent::Type, const QPointF &, const QPointF &, const QPointF &, Qt::MouseButton, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::MouseEventSource);
   /// TODO: QMouseEvent(QEvent::Type, const QPointF &, const QPointF &, const QPointF &, Qt::MouseButton, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::MouseEventSource);
   // ~QMouseEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // QPoint pos() const;
   binder.fun<QPoint, &QMouseEvent::pos>("pos").create();
   // QPoint globalPos() const;
@@ -74,7 +74,7 @@ static void register_wheel_event_class(script::Namespace ns)
   Class wheel_event = ns.Class("WheelEvent").setId(script::Type::QWheelEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QWheelEvent> binder{ wheel_event };
+  binding::ClassBinder<QWheelEvent> binder{ wheel_event };
 
   // QWheelEvent(const QPointF &, int, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::Orientation);
   /// TODO: QWheelEvent(const QPointF &, int, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::Orientation);
@@ -89,7 +89,7 @@ static void register_wheel_event_class(script::Namespace ns)
   // QWheelEvent(const QPointF &, const QPointF &, QPoint, QPoint, int, Qt::Orientation, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::ScrollPhase, Qt::MouseEventSource, bool);
   /// TODO: QWheelEvent(const QPointF &, const QPointF &, QPoint, QPoint, int, Qt::Orientation, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::ScrollPhase, Qt::MouseEventSource, bool);
   // ~QWheelEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // QPoint pixelDelta() const;
   binder.fun<QPoint, &QWheelEvent::pixelDelta>("pixelDelta").create();
   // QPoint angleDelta() const;
@@ -132,14 +132,14 @@ static void register_key_event_class(script::Namespace ns)
   Class key_event = ns.Class("KeyEvent").setId(script::Type::QKeyEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QKeyEvent> binder{ key_event };
+  binding::ClassBinder<QKeyEvent> binder{ key_event };
 
   // QKeyEvent(QEvent::Type, int, Qt::KeyboardModifiers, const QString &, bool, ushort);
   /// TODO: QKeyEvent(QEvent::Type, int, Qt::KeyboardModifiers, const QString &, bool, ushort);
   // QKeyEvent(QEvent::Type, int, Qt::KeyboardModifiers, quint32, quint32, quint32, const QString &, bool, ushort);
   /// TODO: QKeyEvent(QEvent::Type, int, Qt::KeyboardModifiers, quint32, quint32, quint32, const QString &, bool, ushort);
   // ~QKeyEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // int key() const;
   binder.fun<int, &QKeyEvent::key>("key").create();
   // bool matches(QKeySequence::StandardKey) const;
@@ -168,14 +168,14 @@ static void register_paint_event_class(script::Namespace ns)
   Class paint_event = ns.Class("PaintEvent").setId(script::Type::QPaintEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QPaintEvent> binder{ paint_event };
+  binding::ClassBinder<QPaintEvent> binder{ paint_event };
 
   // QPaintEvent(const QRegion &);
-  binder.ctors().ctor<const QRegion &>().create();
+  binder.ctor<const QRegion &>().create();
   // QPaintEvent(const QRect &);
-  binder.ctors().ctor<const QRect &>().create();
+  binder.ctor<const QRect &>().create();
   // ~QPaintEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // const QRect & rect() const;
   binder.fun<const QRect &, &QPaintEvent::rect>("rect").create();
   // const QRegion & region() const;
@@ -190,12 +190,12 @@ static void register_move_event_class(script::Namespace ns)
   Class move_event = ns.Class("MoveEvent").setId(script::Type::QMoveEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QMoveEvent> binder{ move_event };
+  binding::ClassBinder<QMoveEvent> binder{ move_event };
 
   // QMoveEvent(const QPoint &, const QPoint &);
-  binder.ctors().ctor<const QPoint &, const QPoint &>().create();
+  binder.ctor<const QPoint &, const QPoint &>().create();
   // ~QMoveEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // const QPoint & pos() const;
   binder.fun<const QPoint &, &QMoveEvent::pos>("pos").create();
   // const QPoint & oldPos() const;
@@ -210,12 +210,12 @@ static void register_resize_event_class(script::Namespace ns)
   Class resize_event = ns.Class("ResizeEvent").setId(script::Type::QResizeEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QResizeEvent> binder{ resize_event };
+  binding::ClassBinder<QResizeEvent> binder{ resize_event };
 
   // QResizeEvent(const QSize &, const QSize &);
-  binder.ctors().ctor<const QSize &, const QSize &>().create();
+  binder.ctor<const QSize &, const QSize &>().create();
   // ~QResizeEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // const QSize & size() const;
   binder.fun<const QSize &, &QResizeEvent::size>("size").create();
   // const QSize & oldSize() const;
@@ -230,12 +230,12 @@ static void register_close_event_class(script::Namespace ns)
   Class close_event = ns.Class("CloseEvent").setId(script::Type::QCloseEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QCloseEvent> binder{ close_event };
+  binding::ClassBinder<QCloseEvent> binder{ close_event };
 
   // QCloseEvent();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QCloseEvent();
-  binder.add_dtor();
+  binder.dtor().create();
 }
 
 
@@ -246,12 +246,12 @@ static void register_show_event_class(script::Namespace ns)
   Class show_event = ns.Class("ShowEvent").setId(script::Type::QShowEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QShowEvent> binder{ show_event };
+  binding::ClassBinder<QShowEvent> binder{ show_event };
 
   // QShowEvent();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QShowEvent();
-  binder.add_dtor();
+  binder.dtor().create();
 }
 
 
@@ -262,12 +262,12 @@ static void register_hide_event_class(script::Namespace ns)
   Class hide_event = ns.Class("HideEvent").setId(script::Type::QHideEvent)
     .setBase(script::Type::QEvent).get();
 
-  binding::Event<QHideEvent> binder{ hide_event };
+  binding::ClassBinder<QHideEvent> binder{ hide_event };
 
   // QHideEvent();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QHideEvent();
-  binder.add_dtor();
+  binder.dtor().create();
 }
 
 

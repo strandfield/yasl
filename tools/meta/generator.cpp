@@ -329,11 +329,11 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 {
   if (bm == Function::ConstructorBinding && fun->parameters.isEmpty())
   {
-    return "  binder.ctors().default_ctor().create();";
+    return "  binder.default_ctor().create();";
   }
   else if (bm == Function::DestructorBinding)
   {
-    return "  binder.add_dtor();";
+    return "  binder.dtor().create();";
   }
   else if (bm == Function::OperatorBinding)
   {
@@ -359,7 +359,7 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 
   QString ret = [&]() -> QString {
     if (bm == Function::ConstructorBinding)
-      return "  binder.ctors().ctor<" + fparams(fun->parameters) + ">()";
+      return "  binder.ctor<" + fparams(fun->parameters) + ">()";
     else if (bm == Function::StaticVoidBinding)
       return QString("  binder.static_void_fun<%1%2>(\"%3\")").arg(params, funaddr, funname);
     else if (bm == Function::ConstVoidBinding)
@@ -791,17 +791,17 @@ void Generator::generate(ClassRef cla)
   if (is_qclass)
   {
     currentSource().bindingIncludes.insert(QClassBinderInclude);
-    out += "  binding::QClass<" + cla->name + "> binder{ " + snake + ", &" + cla->name + "::staticMetaObject };" + endl;
+    out += "  binding::ClassBinder<" + cla->name + "> binder{ " + snake + ", &" + cla->name + "::staticMetaObject };" + endl;
   }
   else if (class_info.tag == "qevent_tag")
   {
     currentSource().bindingIncludes.insert(QEventBinderInclude);
-    out += "  binding::Event<" + cla->name + "> binder{ " + snake + " };" + endl;
+    out += "  binding::ClassBinder<" + cla->name + "> binder{ " + snake + " };" + endl;
   }
   else
   {
     currentSource().bindingIncludes.insert(ClassBinderInclude);
-    out += "  binding::Class<" + cla->name + "> binder{ " + snake + " };" + endl;
+    out += "  binding::ClassBinder<" + cla->name + "> binder{ " + snake + " };" + endl;
   }
 
   out += endl;

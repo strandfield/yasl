@@ -944,25 +944,25 @@ static void register_locale_class(script::Namespace ns)
   register_locale_currency_symbol_format_enum(locale);
   register_locale_data_size_format_enum(locale);
   register_locale_quotation_style_enum(locale);
-  binding::Class<QLocale> binder{ locale };
+  binding::ClassBinder<QLocale> binder{ locale };
 
   // QLocale();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QLocale(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // QLocale(QLocale::Language, QLocale::Country);
-  binder.ctors().ctor<QLocale::Language, QLocale::Country>()
+  binder.ctor<QLocale::Language, QLocale::Country>()
     .apply(binding::default_arguments(QLocale::AnyCountry)).create();
   // QLocale(QLocale::Language, QLocale::Script, QLocale::Country);
-  binder.ctors().ctor<QLocale::Language, QLocale::Script, QLocale::Country>().create();
+  binder.ctor<QLocale::Language, QLocale::Script, QLocale::Country>().create();
   // QLocale(const QLocale &);
-  binder.ctors().ctor<const QLocale &>().create();
+  binder.ctor<const QLocale &>().create();
   // QLocale & operator=(QLocale &&);
   binder.operators().assign<QLocale &&>();
   // QLocale & operator=(const QLocale &);
   binder.operators().assign<const QLocale &>();
   // ~QLocale();
-  binder.add_dtor();
+  binder.dtor().create();
   // void swap(QLocale &);
   binder.void_fun<QLocale &, &QLocale::swap>("swap").create();
   // QLocale::Language language() const;

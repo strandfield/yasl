@@ -117,14 +117,14 @@ static void register_painter_class(script::Namespace ns)
   register_painter_render_hint_enum(painter);
   register_painter_pixmap_fragment_hint_enum(painter);
   register_painter_composition_mode_enum(painter);
-  binding::Class<QPainter> binder{ painter };
+  binding::ClassBinder<QPainter> binder{ painter };
 
   // QPainter();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPainter(QPaintDevice *);
   /// TODO: QPainter(QPaintDevice *);
   // ~QPainter();
-  binder.add_dtor();
+  binder.dtor().create();
   // QPaintDevice * device() const;
   /// TODO: QPaintDevice * device() const;
   // bool begin(QPaintDevice *);

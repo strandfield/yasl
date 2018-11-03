@@ -203,14 +203,14 @@ static void register_event_class(script::Namespace ns)
   Class event = ns.Class("Event").setId(script::Type::QEvent).get();
 
   register_event_type_enum(event);
-  binding::Event<QEvent> binder{ event };
+  binding::ClassBinder<QEvent> binder{ event };
 
   // QEvent(QEvent::Type);
-  binder.ctors().ctor<QEvent::Type>().create();
+  binder.ctor<QEvent::Type>().create();
   // QEvent(const QEvent &);
-  binder.ctors().ctor<const QEvent &>().create();
+  binder.ctor<const QEvent &>().create();
   // ~QEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // QEvent & operator=(const QEvent &);
   binder.operators().assign<const QEvent &>();
   // QEvent::Type type() const;
@@ -236,12 +236,12 @@ static void register_timer_event_class(script::Namespace ns)
 
   Class timer_event = ns.Class("TimerEvent").setId(script::Type::QTimerEvent).get();
 
-  binding::Event<QTimerEvent> binder{ timer_event };
+  binding::ClassBinder<QTimerEvent> binder{ timer_event };
 
   // QTimerEvent(int);
-  binder.ctors().ctor<int>().create();
+  binder.ctor<int>().create();
   // ~QTimerEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // int timerId() const;
   binder.fun<int, &QTimerEvent::timerId>("timerId").create();
 }
@@ -253,12 +253,12 @@ static void register_child_event_class(script::Namespace ns)
 
   Class child_event = ns.Class("ChildEvent").setId(script::Type::QChildEvent).get();
 
-  binding::Event<QChildEvent> binder{ child_event };
+  binding::ClassBinder<QChildEvent> binder{ child_event };
 
   // QChildEvent(QEvent::Type, QObject *);
-  binder.ctors().ctor<QEvent::Type, QObject *>().create();
+  binder.ctor<QEvent::Type, QObject *>().create();
   // ~QChildEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // QObject * child() const;
   binder.fun<QObject *, &QChildEvent::child>("child").create();
   // bool added() const;
@@ -276,12 +276,12 @@ static void register_dynamic_property_change_event_class(script::Namespace ns)
 
   Class dynamic_property_change_event = ns.Class("DynamicPropertyChangeEvent").setId(script::Type::QDynamicPropertyChangeEvent).get();
 
-  binding::Event<QDynamicPropertyChangeEvent> binder{ dynamic_property_change_event };
+  binding::ClassBinder<QDynamicPropertyChangeEvent> binder{ dynamic_property_change_event };
 
   // QDynamicPropertyChangeEvent(const QByteArray &);
-  binder.ctors().ctor<const QByteArray &>().create();
+  binder.ctor<const QByteArray &>().create();
   // ~QDynamicPropertyChangeEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // QByteArray propertyName() const;
   binder.fun<QByteArray, &QDynamicPropertyChangeEvent::propertyName>("propertyName").create();
 }
@@ -293,12 +293,12 @@ static void register_deferred_delete_event_class(script::Namespace ns)
 
   Class deferred_delete_event = ns.Class("DeferredDeleteEvent").setId(script::Type::QDeferredDeleteEvent).get();
 
-  binding::Event<QDeferredDeleteEvent> binder{ deferred_delete_event };
+  binding::ClassBinder<QDeferredDeleteEvent> binder{ deferred_delete_event };
 
   // QDeferredDeleteEvent();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QDeferredDeleteEvent();
-  binder.add_dtor();
+  binder.dtor().create();
   // int loopLevel() const;
   binder.fun<int, &QDeferredDeleteEvent::loopLevel>("loopLevel").create();
 }

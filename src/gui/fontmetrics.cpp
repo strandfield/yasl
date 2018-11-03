@@ -22,16 +22,16 @@ static void register_font_metrics_class(script::Namespace ns)
 
   Class font_metrics = ns.Class("FontMetrics").setId(script::Type::QFontMetrics).get();
 
-  binding::Class<QFontMetrics> binder{ font_metrics };
+  binding::ClassBinder<QFontMetrics> binder{ font_metrics };
 
   // QFontMetrics(const QFont &);
-  binder.ctors().ctor<const QFont &>().create();
+  binder.ctor<const QFont &>().create();
   // QFontMetrics(const QFont &, QPaintDevice *);
   /// TODO: QFontMetrics(const QFont &, QPaintDevice *);
   // QFontMetrics(const QFontMetrics &);
-  binder.ctors().ctor<const QFontMetrics &>().create();
+  binder.ctor<const QFontMetrics &>().create();
   // ~QFontMetrics();
-  binder.add_dtor();
+  binder.dtor().create();
   // QFontMetrics & operator=(const QFontMetrics &);
   binder.operators().assign<const QFontMetrics &>();
   // QFontMetrics & operator=(QFontMetrics &&);
@@ -113,18 +113,18 @@ static void register_font_metrics_f_class(script::Namespace ns)
 
   Class font_metrics_f = ns.Class("FontMetricsF").setId(script::Type::QFontMetricsF).get();
 
-  binding::Class<QFontMetricsF> binder{ font_metrics_f };
+  binding::ClassBinder<QFontMetricsF> binder{ font_metrics_f };
 
   // QFontMetricsF(const QFont &);
-  binder.ctors().ctor<const QFont &>().create();
+  binder.ctor<const QFont &>().create();
   // QFontMetricsF(const QFont &, QPaintDevice *);
   /// TODO: QFontMetricsF(const QFont &, QPaintDevice *);
   // QFontMetricsF(const QFontMetrics &);
-  binder.ctors().ctor<const QFontMetrics &>().create();
+  binder.ctor<const QFontMetrics &>().create();
   // QFontMetricsF(const QFontMetricsF &);
-  binder.ctors().ctor<const QFontMetricsF &>().create();
+  binder.ctor<const QFontMetricsF &>().create();
   // ~QFontMetricsF();
-  binder.add_dtor();
+  binder.dtor().create();
   // QFontMetricsF & operator=(const QFontMetricsF &);
   binder.operators().assign<const QFontMetricsF &>();
   // QFontMetricsF & operator=(const QFontMetrics &);

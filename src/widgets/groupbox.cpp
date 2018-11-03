@@ -22,16 +22,16 @@ static void register_group_box_class(script::Namespace ns)
   Class group_box = ns.Class("GroupBox").setId(script::Type::QGroupBox)
     .setBase(script::Type::QWidget).get();
 
-  binding::QClass<QGroupBox> binder{ group_box, &QGroupBox::staticMetaObject };
+  binding::ClassBinder<QGroupBox> binder{ group_box, &QGroupBox::staticMetaObject };
 
   // QGroupBox(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QGroupBox(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>()
+  binder.ctor<const QString &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QGroupBox();
-  binder.add_dtor();
+  binder.dtor().create();
   // QString title() const;
   binder.fun<QString, &QGroupBox::title>("title").create();
   // void setTitle(const QString &);

@@ -22,28 +22,28 @@ static void register_vector2_d_class(script::Namespace ns)
 
   Class vector2_d = ns.Class("Vector2D").setId(script::Type::QVector2D).get();
 
-  binding::Class<QVector2D> binder{ vector2_d };
+  binding::ClassBinder<QVector2D> binder{ vector2_d };
 
   // QVector2D();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QVector2D(Qt::Initialization);
-  binder.ctors().ctor<Qt::Initialization>().create();
+  binder.ctor<Qt::Initialization>().create();
   // QVector2D(const QVector2D &);
-  binder.ctors().ctor<const QVector2D &>().create();
+  binder.ctor<const QVector2D &>().create();
   // ~QVector2D();
-  binder.add_dtor();
+  binder.dtor().create();
   // QVector2D & operator=(const QVector2D &);
   binder.operators().assign<const QVector2D &>();
   // QVector2D(float, float);
-  binder.ctors().ctor<float, float>().create();
+  binder.ctor<float, float>().create();
   // QVector2D(const QPoint &);
-  binder.ctors().ctor<const QPoint &>().create();
+  binder.ctor<const QPoint &>().create();
   // QVector2D(const QPointF &);
-  binder.ctors().ctor<const QPointF &>().create();
+  binder.ctor<const QPointF &>().create();
   // QVector2D(const QVector3D &);
-  binder.ctors().ctor<const QVector3D &>().create();
+  binder.ctor<const QVector3D &>().create();
   // QVector2D(const QVector4D &);
-  binder.ctors().ctor<const QVector4D &>().create();
+  binder.ctor<const QVector4D &>().create();
   // bool isNull() const;
   binder.fun<bool, &QVector2D::isNull>("isNull").create();
   // float x() const;

@@ -37,13 +37,13 @@ static void register_progress_bar_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
   register_progress_bar_direction_enum(progress_bar);
-  binding::QClass<QProgressBar> binder{ progress_bar, &QProgressBar::staticMetaObject };
+  binding::ClassBinder<QProgressBar> binder{ progress_bar, &QProgressBar::staticMetaObject };
 
   // QProgressBar(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QProgressBar();
-  binder.add_dtor();
+  binder.dtor().create();
   // int minimum() const;
   binder.fun<int, &QProgressBar::minimum>("minimum").create();
   // int maximum() const;

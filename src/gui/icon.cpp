@@ -50,22 +50,22 @@ static void register_icon_class(script::Namespace ns)
 
   register_icon_mode_enum(icon);
   register_icon_state_enum(icon);
-  binding::Class<QIcon> binder{ icon };
+  binding::ClassBinder<QIcon> binder{ icon };
 
   // QIcon();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QIcon(const QPixmap &);
-  binder.ctors().ctor<const QPixmap &>().create();
+  binder.ctor<const QPixmap &>().create();
   // QIcon(const QIcon &);
-  binder.ctors().ctor<const QIcon &>().create();
+  binder.ctor<const QIcon &>().create();
   // QIcon(QIcon &&);
-  binder.ctors().ctor<QIcon &&>().create();
+  binder.ctor<QIcon &&>().create();
   // QIcon(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // QIcon(QIconEngine *);
   /// TODO: QIcon(QIconEngine *);
   // ~QIcon();
-  binder.add_dtor();
+  binder.dtor().create();
   // QIcon & operator=(const QIcon &);
   binder.operators().assign<const QIcon &>();
   // QIcon & operator=(QIcon &&);

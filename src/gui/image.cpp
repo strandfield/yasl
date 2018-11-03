@@ -78,14 +78,14 @@ static void register_image_class(script::Namespace ns)
 
   register_image_invert_mode_enum(image);
   register_image_format_enum(image);
-  binding::Class<QImage> binder{ image };
+  binding::ClassBinder<QImage> binder{ image };
 
   // QImage();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QImage(const QSize &, QImage::Format);
-  binder.ctors().ctor<const QSize &, QImage::Format>().create();
+  binder.ctor<const QSize &, QImage::Format>().create();
   // QImage(int, int, QImage::Format);
-  binder.ctors().ctor<int, int, QImage::Format>().create();
+  binder.ctor<int, int, QImage::Format>().create();
   // QImage(uchar *, int, int, QImage::Format, QImageCleanupFunction, void *);
   /// TODO: QImage(uchar *, int, int, QImage::Format, QImageCleanupFunction, void *);
   // QImage(const uchar *, int, int, QImage::Format, QImageCleanupFunction, void *);
@@ -99,11 +99,11 @@ static void register_image_class(script::Namespace ns)
   // QImage(const QString &, const char *);
   /// TODO: QImage(const QString &, const char *);
   // QImage(const QImage &);
-  binder.ctors().ctor<const QImage &>().create();
+  binder.ctor<const QImage &>().create();
   // QImage(QImage &&);
-  binder.ctors().ctor<QImage &&>().create();
+  binder.ctor<QImage &&>().create();
   // ~QImage();
-  binder.add_dtor();
+  binder.dtor().create();
   // QImage & operator=(const QImage &);
   binder.operators().assign<const QImage &>();
   // QImage & operator=(QImage &&);

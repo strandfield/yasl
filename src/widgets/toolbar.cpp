@@ -27,16 +27,16 @@ static void register_tool_bar_class(script::Namespace ns)
   Class tool_bar = ns.Class("ToolBar").setId(script::Type::QToolBar)
     .setBase(script::Type::QWidget).get();
 
-  binding::QClass<QToolBar> binder{ tool_bar, &QToolBar::staticMetaObject };
+  binding::ClassBinder<QToolBar> binder{ tool_bar, &QToolBar::staticMetaObject };
 
   // QToolBar(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>()
+  binder.ctor<const QString &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QToolBar(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QToolBar();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setMovable(bool);
   binder.void_fun<bool, &QToolBar::setMovable>("setMovable").create();
   // bool isMovable() const;

@@ -21,13 +21,13 @@ static void register_spin_box_class(script::Namespace ns)
   Class spin_box = ns.Class("SpinBox").setId(script::Type::QSpinBox)
     .setBase(script::Type::QAbstractSpinBox).get();
 
-  binding::QClass<QSpinBox> binder{ spin_box, &QSpinBox::staticMetaObject };
+  binding::ClassBinder<QSpinBox> binder{ spin_box, &QSpinBox::staticMetaObject };
 
   // QSpinBox(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QSpinBox();
-  binder.add_dtor();
+  binder.dtor().create();
   // int value() const;
   binder.fun<int, &QSpinBox::value>("value").create();
   // QString prefix() const;
@@ -76,12 +76,12 @@ static void register_double_spin_box_class(script::Namespace ns)
   Class double_spin_box = ns.Class("DoubleSpinBox").setId(script::Type::QDoubleSpinBox)
     .setBase(script::Type::QAbstractSpinBox).get();
 
-  binding::QClass<QDoubleSpinBox> binder{ double_spin_box, &QDoubleSpinBox::staticMetaObject };
+  binding::ClassBinder<QDoubleSpinBox> binder{ double_spin_box, &QDoubleSpinBox::staticMetaObject };
 
   // QDoubleSpinBox(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctor<QWidget *>().create();
   // ~QDoubleSpinBox();
-  binder.add_dtor();
+  binder.dtor().create();
   // double value() const;
   binder.fun<double, &QDoubleSpinBox::value>("value").create();
   // QString prefix() const;

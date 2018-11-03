@@ -66,13 +66,13 @@ static void register_abstract_spin_box_class(script::Namespace ns)
   register_abstract_spin_box_step_enabled_flag_enum(abstract_spin_box);
   register_abstract_spin_box_button_symbols_enum(abstract_spin_box);
   register_abstract_spin_box_correction_mode_enum(abstract_spin_box);
-  binding::QClass<QAbstractSpinBox> binder{ abstract_spin_box, &QAbstractSpinBox::staticMetaObject };
+  binding::ClassBinder<QAbstractSpinBox> binder{ abstract_spin_box, &QAbstractSpinBox::staticMetaObject };
 
   // QAbstractSpinBox(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QAbstractSpinBox();
-  binder.add_dtor();
+  binder.dtor().create();
   // QAbstractSpinBox::ButtonSymbols buttonSymbols() const;
   binder.fun<QAbstractSpinBox::ButtonSymbols, &QAbstractSpinBox::buttonSymbols>("buttonSymbols").create();
   // void setButtonSymbols(QAbstractSpinBox::ButtonSymbols);

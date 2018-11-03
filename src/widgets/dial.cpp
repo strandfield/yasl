@@ -20,13 +20,13 @@ static void register_dial_class(script::Namespace ns)
   Class dial = ns.Class("Dial").setId(script::Type::QDial)
     .setBase(script::Type::QAbstractSlider).get();
 
-  binding::QClass<QDial> binder{ dial, &QDial::staticMetaObject };
+  binding::ClassBinder<QDial> binder{ dial, &QDial::staticMetaObject };
 
   // QDial(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QDial();
-  binder.add_dtor();
+  binder.dtor().create();
   // bool wrapping() const;
   binder.fun<bool, &QDial::wrapping>("wrapping").create();
   // int notchSize() const;

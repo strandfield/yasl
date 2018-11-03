@@ -22,25 +22,25 @@ static void register_pen_class(script::Namespace ns)
 
   Class pen = ns.Class("Pen").setId(script::Type::QPen).get();
 
-  binding::Class<QPen> binder{ pen };
+  binding::ClassBinder<QPen> binder{ pen };
 
   // QPen();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPen(Qt::PenStyle);
-  binder.ctors().ctor<Qt::PenStyle>().create();
+  binder.ctor<Qt::PenStyle>().create();
   // QPen(const QColor &);
-  binder.ctors().ctor<const QColor &>().create();
+  binder.ctor<const QColor &>().create();
   // QPen(const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle);
-  binder.ctors().ctor<const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle>()
+  binder.ctor<const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle>()
     .apply(binding::default_arguments(Qt::BevelJoin, Qt::SquareCap, Qt::SolidLine)).create();
   // QPen(const QPen &);
-  binder.ctors().ctor<const QPen &>().create();
+  binder.ctor<const QPen &>().create();
   // ~QPen();
-  binder.add_dtor();
+  binder.dtor().create();
   // QPen & operator=(const QPen &);
   binder.operators().assign<const QPen &>();
   // QPen(QPen &&);
-  binder.ctors().ctor<QPen &&>().create();
+  binder.ctor<QPen &&>().create();
   // QPen & operator=(QPen &&);
   binder.operators().assign<QPen &&>();
   // void swap(QPen &);

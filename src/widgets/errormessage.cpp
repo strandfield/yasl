@@ -19,13 +19,13 @@ static void register_error_message_class(script::Namespace ns)
   Class error_message = ns.Class("ErrorMessage").setId(script::Type::QErrorMessage)
     .setBase(script::Type::QDialog).get();
 
-  binding::QClass<QErrorMessage> binder{ error_message, &QErrorMessage::staticMetaObject };
+  binding::ClassBinder<QErrorMessage> binder{ error_message, &QErrorMessage::staticMetaObject };
 
   // QErrorMessage(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QErrorMessage();
-  binder.add_dtor();
+  binder.dtor().create();
   // void showMessage(const QString &);
   binder.void_fun<const QString &, &QErrorMessage::showMessage>("showMessage").create();
   // void showMessage(const QString &, const QString &);

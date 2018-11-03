@@ -35,16 +35,16 @@ static void register_date_class(script::Namespace ns)
   Class date = ns.Class("Date").setId(script::Type::QDate).get();
 
   register_date_month_name_type_enum(date);
-  binding::Class<QDate> binder{ date };
+  binding::ClassBinder<QDate> binder{ date };
 
   // QDate();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QDate(const QDate &);
-  binder.ctors().ctor<const QDate &>().create();
+  binder.ctor<const QDate &>().create();
   // ~QDate();
-  binder.add_dtor();
+  binder.dtor().create();
   // QDate(int, int, int);
-  binder.ctors().ctor<int, int, int>().create();
+  binder.ctor<int, int, int>().create();
   // bool isNull() const;
   binder.fun<bool, &QDate::isNull>("isNull").create();
   // bool isValid() const;
@@ -132,16 +132,16 @@ static void register_time_class(script::Namespace ns)
 
   Class time = ns.Class("Time").setId(script::Type::QTime).get();
 
-  binding::Class<QTime> binder{ time };
+  binding::ClassBinder<QTime> binder{ time };
 
   // QTime();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QTime(const QTime &);
-  binder.ctors().ctor<const QTime &>().create();
+  binder.ctor<const QTime &>().create();
   // ~QTime();
-  binder.add_dtor();
+  binder.dtor().create();
   // QTime(int, int, int, int);
-  binder.ctors().ctor<int, int, int, int>()
+  binder.ctor<int, int, int, int>()
     .apply(binding::default_arguments(0, 0)).create();
   // bool isNull() const;
   binder.fun<bool, &QTime::isNull>("isNull").create();
@@ -216,25 +216,25 @@ static void register_date_time_class(script::Namespace ns)
 
   Class date_time = ns.Class("DateTime").setId(script::Type::QDateTime).get();
 
-  binding::Class<QDateTime> binder{ date_time };
+  binding::ClassBinder<QDateTime> binder{ date_time };
 
   // QDateTime();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QDateTime(const QDate &);
-  binder.ctors().ctor<const QDate &>().create();
+  binder.ctor<const QDate &>().create();
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec);
-  binder.ctors().ctor<const QDate &, const QTime &, Qt::TimeSpec>()
+  binder.ctor<const QDate &, const QTime &, Qt::TimeSpec>()
     .apply(binding::default_arguments(Qt::LocalTime)).create();
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec, int);
-  binder.ctors().ctor<const QDate &, const QTime &, Qt::TimeSpec, int>().create();
+  binder.ctor<const QDate &, const QTime &, Qt::TimeSpec, int>().create();
   // QDateTime(const QDate &, const QTime &, const QTimeZone &);
-  binder.ctors().ctor<const QDate &, const QTime &, const QTimeZone &>().create();
+  binder.ctor<const QDate &, const QTime &, const QTimeZone &>().create();
   // QDateTime(const QDateTime &);
-  binder.ctors().ctor<const QDateTime &>().create();
+  binder.ctor<const QDateTime &>().create();
   // QDateTime(QDateTime &&);
-  binder.ctors().ctor<QDateTime &&>().create();
+  binder.ctor<QDateTime &&>().create();
   // ~QDateTime();
-  binder.add_dtor();
+  binder.dtor().create();
   // QDateTime & operator=(QDateTime &&);
   binder.operators().assign<QDateTime &&>();
   // QDateTime & operator=(const QDateTime &);

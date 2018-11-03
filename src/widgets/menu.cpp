@@ -29,16 +29,16 @@ static void register_menu_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
   register_ref_specialization(menu.engine(), script::Type::QMenu, script::Type::QMenuStar);
-  binding::QClass<QMenu> binder{ menu, &QMenu::staticMetaObject };
+  binding::ClassBinder<QMenu> binder{ menu, &QMenu::staticMetaObject };
 
   // QMenu(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QMenu(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>()
+  binder.ctor<const QString &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QMenu();
-  binder.add_dtor();
+  binder.dtor().create();
   // QAction * addAction(const QString &);
   binder.fun<QAction *, const QString &, &QMenu::addAction>("addAction").create();
   // QAction * addAction(const QIcon &, const QString &);

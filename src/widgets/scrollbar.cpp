@@ -21,16 +21,16 @@ static void register_scroll_bar_class(script::Namespace ns)
   Class scroll_bar = ns.Class("ScrollBar").setId(script::Type::QScrollBar)
     .setBase(script::Type::QAbstractSlider).get();
 
-  binding::QClass<QScrollBar> binder{ scroll_bar, &QScrollBar::staticMetaObject };
+  binding::ClassBinder<QScrollBar> binder{ scroll_bar, &QScrollBar::staticMetaObject };
 
   // QScrollBar(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QScrollBar(Qt::Orientation, QWidget *);
-  binder.ctors().ctor<Qt::Orientation, QWidget *>()
+  binder.ctor<Qt::Orientation, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QScrollBar();
-  binder.add_dtor();
+  binder.dtor().create();
 
   scroll_bar.engine()->registerQtType(&QScrollBar::staticMetaObject, scroll_bar.id());
 }

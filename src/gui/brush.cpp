@@ -27,32 +27,32 @@ static void register_brush_class(script::Namespace ns)
 
   Class brush = ns.Class("Brush").setId(script::Type::QBrush).get();
 
-  binding::Class<QBrush> binder{ brush };
+  binding::ClassBinder<QBrush> binder{ brush };
 
   // QBrush();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QBrush(Qt::BrushStyle);
-  binder.ctors().ctor<Qt::BrushStyle>().create();
+  binder.ctor<Qt::BrushStyle>().create();
   // QBrush(const QColor &, Qt::BrushStyle);
-  binder.ctors().ctor<const QColor &, Qt::BrushStyle>()
+  binder.ctor<const QColor &, Qt::BrushStyle>()
     .apply(binding::default_arguments(Qt::SolidPattern)).create();
   // QBrush(Qt::GlobalColor, Qt::BrushStyle);
-  binder.ctors().ctor<Qt::GlobalColor, Qt::BrushStyle>()
+  binder.ctor<Qt::GlobalColor, Qt::BrushStyle>()
     .apply(binding::default_arguments(Qt::SolidPattern)).create();
   // QBrush(const QColor &, const QPixmap &);
-  binder.ctors().ctor<const QColor &, const QPixmap &>().create();
+  binder.ctor<const QColor &, const QPixmap &>().create();
   // QBrush(Qt::GlobalColor, const QPixmap &);
-  binder.ctors().ctor<Qt::GlobalColor, const QPixmap &>().create();
+  binder.ctor<Qt::GlobalColor, const QPixmap &>().create();
   // QBrush(const QPixmap &);
-  binder.ctors().ctor<const QPixmap &>().create();
+  binder.ctor<const QPixmap &>().create();
   // QBrush(const QImage &);
-  binder.ctors().ctor<const QImage &>().create();
+  binder.ctor<const QImage &>().create();
   // QBrush(const QBrush &);
-  binder.ctors().ctor<const QBrush &>().create();
+  binder.ctor<const QBrush &>().create();
   // QBrush(const QGradient &);
-  binder.ctors().ctor<const QGradient &>().create();
+  binder.ctor<const QGradient &>().create();
   // ~QBrush();
-  binder.add_dtor();
+  binder.dtor().create();
   // QBrush & operator=(const QBrush &);
   binder.operators().assign<const QBrush &>();
   // QBrush & operator=(QBrush &&);
@@ -158,10 +158,10 @@ static void register_gradient_class(script::Namespace ns)
   register_gradient_spread_enum(gradient);
   register_gradient_coordinate_mode_enum(gradient);
   register_gradient_interpolation_mode_enum(gradient);
-  binding::Class<QGradient> binder{ gradient };
+  binding::ClassBinder<QGradient> binder{ gradient };
 
   // QGradient();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QGradient::Type type() const;
   binder.fun<QGradient::Type, &QGradient::type>("type").create();
   // void setSpread(QGradient::Spread);
@@ -196,20 +196,20 @@ static void register_linear_gradient_class(script::Namespace ns)
   Class linear_gradient = ns.Class("LinearGradient").setId(script::Type::QLinearGradient)
     .setBase(script::Type::QGradient).get();
 
-  binding::Class<QLinearGradient> binder{ linear_gradient };
+  binding::ClassBinder<QLinearGradient> binder{ linear_gradient };
 
   // QLinearGradient();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QLinearGradient(const QLinearGradient &);
-  binder.ctors().ctor<const QLinearGradient &>().create();
+  binder.ctor<const QLinearGradient &>().create();
   // ~QLinearGradient();
-  binder.add_dtor();
+  binder.dtor().create();
   // QLinearGradient & operator=(const QLinearGradient &);
   binder.operators().assign<const QLinearGradient &>();
   // QLinearGradient(const QPointF &, const QPointF &);
-  binder.ctors().ctor<const QPointF &, const QPointF &>().create();
+  binder.ctor<const QPointF &, const QPointF &>().create();
   // QLinearGradient(qreal, qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal, qreal>().create();
   // QPointF start() const;
   binder.fun<QPointF, &QLinearGradient::start>("start").create();
   // void setStart(const QPointF &);
@@ -232,28 +232,28 @@ static void register_radial_gradient_class(script::Namespace ns)
   Class radial_gradient = ns.Class("RadialGradient").setId(script::Type::QRadialGradient)
     .setBase(script::Type::QGradient).get();
 
-  binding::Class<QRadialGradient> binder{ radial_gradient };
+  binding::ClassBinder<QRadialGradient> binder{ radial_gradient };
 
   // QRadialGradient();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QRadialGradient(const QRadialGradient &);
-  binder.ctors().ctor<const QRadialGradient &>().create();
+  binder.ctor<const QRadialGradient &>().create();
   // QRadialGradient & operator=(const QRadialGradient &);
   binder.operators().assign<const QRadialGradient &>();
   // ~QRadialGradient();
-  binder.add_dtor();
+  binder.dtor().create();
   // QRadialGradient(const QPointF &, qreal, const QPointF &);
-  binder.ctors().ctor<const QPointF &, qreal, const QPointF &>().create();
+  binder.ctor<const QPointF &, qreal, const QPointF &>().create();
   // QRadialGradient(qreal, qreal, qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal, qreal, qreal>().create();
   // QRadialGradient(const QPointF &, qreal);
-  binder.ctors().ctor<const QPointF &, qreal>().create();
+  binder.ctor<const QPointF &, qreal>().create();
   // QRadialGradient(qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal>().create();
   // QRadialGradient(const QPointF &, qreal, const QPointF &, qreal);
-  binder.ctors().ctor<const QPointF &, qreal, const QPointF &, qreal>().create();
+  binder.ctor<const QPointF &, qreal, const QPointF &, qreal>().create();
   // QRadialGradient(qreal, qreal, qreal, qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal, qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal, qreal, qreal, qreal>().create();
   // QPointF center() const;
   binder.fun<QPointF, &QRadialGradient::center>("center").create();
   // void setCenter(const QPointF &);
@@ -288,20 +288,20 @@ static void register_conical_gradient_class(script::Namespace ns)
   Class conical_gradient = ns.Class("ConicalGradient").setId(script::Type::QConicalGradient)
     .setBase(script::Type::QGradient).get();
 
-  binding::Class<QConicalGradient> binder{ conical_gradient };
+  binding::ClassBinder<QConicalGradient> binder{ conical_gradient };
 
   // QConicalGradient();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QConicalGradient(const QConicalGradient &);
-  binder.ctors().ctor<const QConicalGradient &>().create();
+  binder.ctor<const QConicalGradient &>().create();
   // QConicalGradient & operator=(const QConicalGradient &);
   binder.operators().assign<const QConicalGradient &>();
   // ~QConicalGradient();
-  binder.add_dtor();
+  binder.dtor().create();
   // QConicalGradient(const QPointF &, qreal);
-  binder.ctors().ctor<const QPointF &, qreal>().create();
+  binder.ctor<const QPointF &, qreal>().create();
   // QConicalGradient(qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal>().create();
   // QPointF center() const;
   binder.fun<QPointF, &QConicalGradient::center>("center").create();
   // void setCenter(const QPointF &);

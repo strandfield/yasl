@@ -26,7 +26,7 @@ static void register_object_class(script::Namespace ns)
   register_ref_specialization(object.engine(), script::Type::QObject, script::Type::QObjectStar);
   register_ptr_specialization<QObject*>(object.engine()->getTemplate(Engine::PtrTemplate), script::Type::PtrQObject);
   register_list_specialization<QObject*>(object.engine(), script::Type::QListQObject);
-  binding::QClass<QObject> binder{ object, &QObject::staticMetaObject };
+  binding::ClassBinder<QObject> binder{ object, &QObject::staticMetaObject };
 
   // const QMetaObject * metaObject() const;
   /// TODO: const QMetaObject * metaObject() const;
@@ -35,10 +35,10 @@ static void register_object_class(script::Namespace ns)
   // static QString trUtf8(const char *, const char *, int);
   /// TODO: static QString trUtf8(const char *, const char *, int);
   // QObject(QObject *);
-  binder.ctors().ctor<QObject *>()
+  binder.ctor<QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QObject();
-  binder.add_dtor();
+  binder.dtor().create();
   // bool event(QEvent *);
   /// TODO: bool event(QEvent *);
   // bool eventFilter(QObject *, QEvent *);
@@ -119,16 +119,16 @@ static void register_signal_blocker_class(script::Namespace ns)
 
   Class signal_blocker = ns.Class("SignalBlocker").setId(script::Type::QSignalBlocker).get();
 
-  binding::Class<QSignalBlocker> binder{ signal_blocker };
+  binding::ClassBinder<QSignalBlocker> binder{ signal_blocker };
 
   // QSignalBlocker(QObject *);
-  binder.ctors().ctor<QObject *>().create();
+  binder.ctor<QObject *>().create();
   // QSignalBlocker(QObject &);
-  binder.ctors().ctor<QObject &>().create();
+  binder.ctor<QObject &>().create();
   // ~QSignalBlocker();
-  binder.add_dtor();
+  binder.dtor().create();
   // QSignalBlocker(QSignalBlocker &&);
-  binder.ctors().ctor<QSignalBlocker &&>().create();
+  binder.ctor<QSignalBlocker &&>().create();
   // QSignalBlocker & operator=(QSignalBlocker &&);
   binder.operators().assign<QSignalBlocker &&>();
   // void reblock();

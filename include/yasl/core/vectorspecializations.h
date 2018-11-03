@@ -64,20 +64,20 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
     .setFinal()
     .get();
 
-  binding::Class<QVector<T>> binder{ vector };
+  binding::ClassBinder<QVector<T>> binder{ vector };
 
   // QVector();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QVector(int size);
-  binder.ctors().ctor<int>().create();
+  binder.ctor<int>().create();
   // QVector(int size, const T &value);
-  binder.ctors().ctor<int, const T &>().create();
+  binder.ctor<int, const T &>().create();
   // QVector(const QVector<T> &other);
-  binder.ctors().ctor<const QVector<T> &>().create();
+  binder.ctor<const QVector<T> &>().create();
   /// TODO: QVector(QVector<T> &&other);
   /// TODO: QVector(std::initializer_list<T> args);
   // ~QVector();
-  binder.add_dtor();
+  binder.dtor().create();
   // void append(const T &value);
   binder.void_fun<const T &, &QVector<T>::append>("append").create();
   /// TODO: void append(T &&value);

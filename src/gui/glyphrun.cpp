@@ -36,18 +36,18 @@ static void register_glyph_run_class(script::Namespace ns)
   Class glyph_run = ns.Class("GlyphRun").setId(script::Type::QGlyphRun).get();
 
   register_glyph_run_glyph_run_flag_enum(glyph_run);
-  binding::Class<QGlyphRun> binder{ glyph_run };
+  binding::ClassBinder<QGlyphRun> binder{ glyph_run };
 
   // QGlyphRun();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QGlyphRun(const QGlyphRun &);
-  binder.ctors().ctor<const QGlyphRun &>().create();
+  binder.ctor<const QGlyphRun &>().create();
   // QGlyphRun & operator=(QGlyphRun &&);
   binder.operators().assign<QGlyphRun &&>();
   // QGlyphRun & operator=(const QGlyphRun &);
   binder.operators().assign<const QGlyphRun &>();
   // ~QGlyphRun();
-  binder.add_dtor();
+  binder.dtor().create();
   // void swap(QGlyphRun &);
   binder.void_fun<QGlyphRun &, &QGlyphRun::swap>("swap").create();
   // QRawFont rawFont() const;

@@ -58,13 +58,13 @@ static void register_combo_box_class(script::Namespace ns)
 
   register_combo_box_insert_policy_enum(combo_box);
   register_combo_box_size_adjust_policy_enum(combo_box);
-  binding::QClass<QComboBox> binder{ combo_box, &QComboBox::staticMetaObject };
+  binding::ClassBinder<QComboBox> binder{ combo_box, &QComboBox::staticMetaObject };
 
   // QComboBox(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QComboBox();
-  binder.add_dtor();
+  binder.dtor().create();
   // int maxVisibleItems() const;
   binder.fun<int, &QComboBox::maxVisibleItems>("maxVisibleItems").create();
   // void setMaxVisibleItems(int);

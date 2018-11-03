@@ -42,22 +42,22 @@ static void register_byte_array_class(script::Namespace ns)
   register_ptr_specialization<QByteArray>(byte_array.engine()->getTemplate(Engine::PtrTemplate), script::Type::PtrQByteArray);
   register_list_specialization<QByteArray>(byte_array.engine(), script::Type::QListQByteArray);
   register_byte_array_base64_option_enum(byte_array);
-  binding::Class<QByteArray> binder{ byte_array };
+  binding::ClassBinder<QByteArray> binder{ byte_array };
 
   // QByteArray();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QByteArray(int, char);
-  binder.ctors().ctor<int, char>().create();
+  binder.ctor<int, char>().create();
   // QByteArray(int, Qt::Initialization);
-  binder.ctors().ctor<int, Qt::Initialization>().create();
+  binder.ctor<int, Qt::Initialization>().create();
   // QByteArray(const QByteArray &);
-  binder.ctors().ctor<const QByteArray &>().create();
+  binder.ctor<const QByteArray &>().create();
   // ~QByteArray();
-  binder.add_dtor();
+  binder.dtor().create();
   // QByteArray & operator=(const QByteArray &);
   binder.operators().assign<const QByteArray &>();
   // QByteArray(QByteArray &&);
-  binder.ctors().ctor<QByteArray &&>().create();
+  binder.ctor<QByteArray &&>().create();
   // QByteArray & operator=(QByteArray &&);
   binder.operators().assign<QByteArray &&>();
   // void swap(QByteArray &);
@@ -332,7 +332,7 @@ static void register_byte_ref_class(script::Namespace ns)
 
   Class byte_ref = ns.Class("ByteRef").setId(script::Type::QByteRef).get();
 
-  binding::Class<QByteRef> binder{ byte_ref };
+  binding::ClassBinder<QByteRef> binder{ byte_ref };
 
   // QByteRef & operator=(char);
   binder.operators().assign<char>();

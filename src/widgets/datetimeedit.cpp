@@ -49,22 +49,22 @@ static void register_date_time_edit_class(script::Namespace ns)
     .setBase(script::Type::QAbstractSpinBox).get();
 
   register_date_time_edit_section_enum(date_time_edit);
-  binding::QClass<QDateTimeEdit> binder{ date_time_edit, &QDateTimeEdit::staticMetaObject };
+  binding::ClassBinder<QDateTimeEdit> binder{ date_time_edit, &QDateTimeEdit::staticMetaObject };
 
   // QDateTimeEdit(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QDateTime &, QWidget *);
-  binder.ctors().ctor<const QDateTime &, QWidget *>()
+  binder.ctor<const QDateTime &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QDate &, QWidget *);
-  binder.ctors().ctor<const QDate &, QWidget *>()
+  binder.ctor<const QDate &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QTime &, QWidget *);
-  binder.ctors().ctor<const QTime &, QWidget *>()
+  binder.ctor<const QTime &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QDateTimeEdit();
-  binder.add_dtor();
+  binder.dtor().create();
   // QDateTime dateTime() const;
   binder.fun<QDateTime, &QDateTimeEdit::dateTime>("dateTime").create();
   // QDate date() const;
@@ -179,14 +179,14 @@ static void register_time_edit_class(script::Namespace ns)
   Class time_edit = ns.Class("TimeEdit").setId(script::Type::QTimeEdit)
     .setBase(script::Type::QDateTimeEdit).get();
 
-  binding::QClass<QTimeEdit> binder{ time_edit, &QTimeEdit::staticMetaObject };
+  binding::ClassBinder<QTimeEdit> binder{ time_edit, &QTimeEdit::staticMetaObject };
 
   // QTimeEdit(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctor<QWidget *>().create();
   // QTimeEdit(const QTime &, QWidget *);
-  binder.ctors().ctor<const QTime &, QWidget *>().create();
+  binder.ctor<const QTime &, QWidget *>().create();
   // ~QTimeEdit();
-  binder.add_dtor();
+  binder.dtor().create();
   // void userTimeChanged(const QTime &);
   binder.sigs().add<const QTime &>("userTimeChanged", "userTimeChanged(const QTime &)");
 
@@ -201,14 +201,14 @@ static void register_date_edit_class(script::Namespace ns)
   Class date_edit = ns.Class("DateEdit").setId(script::Type::QDateEdit)
     .setBase(script::Type::QDateTimeEdit).get();
 
-  binding::QClass<QDateEdit> binder{ date_edit, &QDateEdit::staticMetaObject };
+  binding::ClassBinder<QDateEdit> binder{ date_edit, &QDateEdit::staticMetaObject };
 
   // QDateEdit(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctor<QWidget *>().create();
   // QDateEdit(const QDate &, QWidget *);
-  binder.ctors().ctor<const QDate &, QWidget *>().create();
+  binder.ctor<const QDate &, QWidget *>().create();
   // ~QDateEdit();
-  binder.add_dtor();
+  binder.dtor().create();
   // void userDateChanged(const QDate &);
   binder.sigs().add<const QDate &>("userDateChanged", "userDateChanged(const QDate &)");
 

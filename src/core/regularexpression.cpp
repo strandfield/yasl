@@ -71,21 +71,21 @@ static void register_regular_expression_class(script::Namespace ns)
   register_regular_expression_pattern_option_enum(regular_expression);
   register_regular_expression_match_type_enum(regular_expression);
   register_regular_expression_match_option_enum(regular_expression);
-  binding::Class<QRegularExpression> binder{ regular_expression };
+  binding::ClassBinder<QRegularExpression> binder{ regular_expression };
 
   // QRegularExpression::PatternOptions patternOptions() const;
   binder.fun<QRegularExpression::PatternOptions, &QRegularExpression::patternOptions>("patternOptions").create();
   // void setPatternOptions(QRegularExpression::PatternOptions);
   binder.void_fun<QRegularExpression::PatternOptions, &QRegularExpression::setPatternOptions>("setPatternOptions").create();
   // QRegularExpression();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QRegularExpression(const QString &, QRegularExpression::PatternOptions);
-  binder.ctors().ctor<const QString &, QRegularExpression::PatternOptions>()
+  binder.ctor<const QString &, QRegularExpression::PatternOptions>()
     .apply(binding::default_arguments(QRegularExpression::PatternOptions(QRegularExpression::NoPatternOption))).create();
   // QRegularExpression(const QRegularExpression &);
-  binder.ctors().ctor<const QRegularExpression &>().create();
+  binder.ctor<const QRegularExpression &>().create();
   // ~QRegularExpression();
-  binder.add_dtor();
+  binder.dtor().create();
   // QRegularExpression & operator=(const QRegularExpression &);
   binder.operators().assign<const QRegularExpression &>();
   // QRegularExpression & operator=(QRegularExpression &&);
@@ -131,14 +131,14 @@ static void register_regular_expression_match_class(script::Namespace ns)
 
   Class regular_expression_match = ns.Class("RegularExpressionMatch").setId(script::Type::QRegularExpressionMatch).get();
 
-  binding::Class<QRegularExpressionMatch> binder{ regular_expression_match };
+  binding::ClassBinder<QRegularExpressionMatch> binder{ regular_expression_match };
 
   // QRegularExpressionMatch();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QRegularExpressionMatch();
-  binder.add_dtor();
+  binder.dtor().create();
   // QRegularExpressionMatch(const QRegularExpressionMatch &);
-  binder.ctors().ctor<const QRegularExpressionMatch &>().create();
+  binder.ctor<const QRegularExpressionMatch &>().create();
   // QRegularExpressionMatch & operator=(const QRegularExpressionMatch &);
   binder.operators().assign<const QRegularExpressionMatch &>();
   // QRegularExpressionMatch & operator=(QRegularExpressionMatch &&);
@@ -204,14 +204,14 @@ static void register_regular_expression_match_iterator_class(script::Namespace n
 
   Class regular_expression_match_iterator = ns.Class("RegularExpressionMatchIterator").setId(script::Type::QRegularExpressionMatchIterator).get();
 
-  binding::Class<QRegularExpressionMatchIterator> binder{ regular_expression_match_iterator };
+  binding::ClassBinder<QRegularExpressionMatchIterator> binder{ regular_expression_match_iterator };
 
   // QRegularExpressionMatchIterator();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QRegularExpressionMatchIterator();
-  binder.add_dtor();
+  binder.dtor().create();
   // QRegularExpressionMatchIterator(const QRegularExpressionMatchIterator &);
-  binder.ctors().ctor<const QRegularExpressionMatchIterator &>().create();
+  binder.ctor<const QRegularExpressionMatchIterator &>().create();
   // QRegularExpressionMatchIterator & operator=(const QRegularExpressionMatchIterator &);
   binder.operators().assign<const QRegularExpressionMatchIterator &>();
   // QRegularExpressionMatchIterator & operator=(QRegularExpressionMatchIterator &&);

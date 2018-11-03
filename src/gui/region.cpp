@@ -36,26 +36,26 @@ static void register_region_class(script::Namespace ns)
   Class region = ns.Class("Region").setId(script::Type::QRegion).get();
 
   register_region_region_type_enum(region);
-  binding::Class<QRegion> binder{ region };
+  binding::ClassBinder<QRegion> binder{ region };
 
   // QRegion();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QRegion(int, int, int, int, QRegion::RegionType);
-  binder.ctors().ctor<int, int, int, int, QRegion::RegionType>()
+  binder.ctor<int, int, int, int, QRegion::RegionType>()
     .apply(binding::default_arguments(QRegion::Rectangle)).create();
   // QRegion(const QRect &, QRegion::RegionType);
-  binder.ctors().ctor<const QRect &, QRegion::RegionType>()
+  binder.ctor<const QRect &, QRegion::RegionType>()
     .apply(binding::default_arguments(QRegion::Rectangle)).create();
   // QRegion(const QPolygon &, Qt::FillRule);
   /// TODO: QRegion(const QPolygon &, Qt::FillRule);
   // QRegion(const QRegion &);
-  binder.ctors().ctor<const QRegion &>().create();
+  binder.ctor<const QRegion &>().create();
   // QRegion(QRegion &&);
-  binder.ctors().ctor<QRegion &&>().create();
+  binder.ctor<QRegion &&>().create();
   // QRegion(const QBitmap &);
-  binder.ctors().ctor<const QBitmap &>().create();
+  binder.ctor<const QBitmap &>().create();
   // ~QRegion();
-  binder.add_dtor();
+  binder.dtor().create();
   // QRegion & operator=(const QRegion &);
   binder.operators().assign<const QRegion &>();
   // QRegion & operator=(QRegion &&);

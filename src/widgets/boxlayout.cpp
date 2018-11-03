@@ -42,13 +42,13 @@ static void register_box_layout_class(script::Namespace ns)
     .setBase(script::Type::QLayout).get();
 
   register_box_layout_direction_enum(box_layout);
-  binding::QClass<QBoxLayout> binder{ box_layout, &QBoxLayout::staticMetaObject };
+  binding::ClassBinder<QBoxLayout> binder{ box_layout, &QBoxLayout::staticMetaObject };
 
   // QBoxLayout(QBoxLayout::Direction, QWidget *);
-  binder.ctors().ctor<QBoxLayout::Direction, QWidget *>()
+  binder.ctor<QBoxLayout::Direction, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QBoxLayout();
-  binder.add_dtor();
+  binder.dtor().create();
   // QBoxLayout::Direction direction() const;
   binder.fun<QBoxLayout::Direction, &QBoxLayout::direction>("direction").create();
   // void setDirection(QBoxLayout::Direction);
@@ -107,14 +107,14 @@ static void register_h_box_layout_class(script::Namespace ns)
   Class h_box_layout = ns.Class("QHBoxLayout").setId(script::Type::QHBoxLayout)
     .setBase(script::Type::QBoxLayout).get();
 
-  binding::QClass<QHBoxLayout> binder{ h_box_layout, &QHBoxLayout::staticMetaObject };
+  binding::ClassBinder<QHBoxLayout> binder{ h_box_layout, &QHBoxLayout::staticMetaObject };
 
   // QHBoxLayout();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QHBoxLayout(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctor<QWidget *>().create();
   // ~QHBoxLayout();
-  binder.add_dtor();
+  binder.dtor().create();
 
   h_box_layout.engine()->registerQtType(&QHBoxLayout::staticMetaObject, h_box_layout.id());
 }
@@ -127,14 +127,14 @@ static void register_v_box_layout_class(script::Namespace ns)
   Class v_box_layout = ns.Class("QVBoxLayout").setId(script::Type::QVBoxLayout)
     .setBase(script::Type::QBoxLayout).get();
 
-  binding::QClass<QVBoxLayout> binder{ v_box_layout, &QVBoxLayout::staticMetaObject };
+  binding::ClassBinder<QVBoxLayout> binder{ v_box_layout, &QVBoxLayout::staticMetaObject };
 
   // QVBoxLayout();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QVBoxLayout(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctor<QWidget *>().create();
   // ~QVBoxLayout();
-  binder.add_dtor();
+  binder.dtor().create();
 
   v_box_layout.engine()->registerQtType(&QVBoxLayout::staticMetaObject, v_box_layout.id());
 }

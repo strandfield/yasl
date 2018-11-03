@@ -34,12 +34,12 @@ static void register_dialog_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
   register_dialog_dialog_code_enum(dialog);
-  binding::QClass<QDialog> binder{ dialog, &QDialog::staticMetaObject };
+  binding::ClassBinder<QDialog> binder{ dialog, &QDialog::staticMetaObject };
 
   // QDialog(QWidget *, Qt::WindowFlags);
   /// TODO: QDialog(QWidget *, Qt::WindowFlags);
   // ~QDialog();
-  binder.add_dtor();
+  binder.dtor().create();
   // int result() const;
   binder.fun<int, &QDialog::result>("result").create();
   // void setVisible(bool);

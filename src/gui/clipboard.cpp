@@ -37,7 +37,7 @@ static void register_clipboard_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_clipboard_mode_enum(clipboard);
-  binding::QClass<QClipboard> binder{ clipboard, &QClipboard::staticMetaObject };
+  binding::ClassBinder<QClipboard> binder{ clipboard, &QClipboard::staticMetaObject };
 
   // void clear(QClipboard::Mode);
   binder.void_fun<QClipboard::Mode, &QClipboard::clear>("clear")

@@ -60,14 +60,14 @@ static void register_window_class(script::Namespace ns)
   register_ref_specialization(window.engine(), script::Type::QWindow, script::Type::QWindowStar);
   register_window_visibility_enum(window);
   register_window_ancestor_mode_enum(window);
-  binding::QClass<QWindow> binder{ window, &QWindow::staticMetaObject };
+  binding::ClassBinder<QWindow> binder{ window, &QWindow::staticMetaObject };
 
   // QWindow(QScreen *);
   /// TODO: QWindow(QScreen *);
   // QWindow(QWindow *);
-  binder.ctors().ctor<QWindow *>().create();
+  binder.ctor<QWindow *>().create();
   // ~QWindow();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setSurfaceType(QSurface::SurfaceType);
   /// TODO: void setSurfaceType(QSurface::SurfaceType);
   // QSurface::SurfaceType surfaceType() const;

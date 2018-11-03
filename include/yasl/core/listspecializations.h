@@ -26,14 +26,14 @@ void register_list_specialization(script::Engine *e, script::Type::BuiltInType t
     .setFinal()
     .get();
 
-  binding::Class<QList<T>> l{ list };
+  binding::ClassBinder<QList<T>> l{ list };
 
   // QList<T>();
-  l.ctors().default_ctor().create();
+  l.default_ctor().create();
   // QList<T>(const QList<T> &);
-  l.ctors().ctor<const QList<T> &>().create();
+  l.ctor<const QList<T> &>().create();
   // ~QList<T>();
-  l.add_dtor();
+  l.dtor().create();
 
   // void append(const T &value)
   l.void_fun<const T &, &QList<T>::append>("append").create();

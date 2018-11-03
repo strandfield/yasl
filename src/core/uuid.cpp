@@ -53,18 +53,18 @@ static void register_uuid_class(script::Namespace ns)
 
   register_uuid_variant_enum(uuid);
   register_uuid_version_enum(uuid);
-  binding::Class<QUuid> binder{ uuid };
+  binding::ClassBinder<QUuid> binder{ uuid };
 
   // QUuid();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QUuid(const QUuid &);
-  binder.ctors().ctor<const QUuid &>().create();
+  binder.ctor<const QUuid &>().create();
   // ~QUuid();
-  binder.add_dtor();
+  binder.dtor().create();
   // QUuid(uint, ushort, ushort, uchar, uchar, uchar, uchar, uchar, uchar, uchar, uchar);
   /// TODO: QUuid(uint, ushort, ushort, uchar, uchar, uchar, uchar, uchar, uchar, uchar, uchar);
   // QUuid(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // static QUuid fromString(QStringView);
   /// TODO: static QUuid fromString(QStringView);
   // static QUuid fromString(QLatin1String);
@@ -74,7 +74,7 @@ static void register_uuid_class(script::Namespace ns)
   // QString toString() const;
   binder.fun<QString, &QUuid::toString>("toString").create();
   // QUuid(const QByteArray &);
-  binder.ctors().ctor<const QByteArray &>().create();
+  binder.ctor<const QByteArray &>().create();
   // QByteArray toByteArray() const;
   binder.fun<QByteArray, &QUuid::toByteArray>("toByteArray").create();
   // QByteArray toRfc4122() const;

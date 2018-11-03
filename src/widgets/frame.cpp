@@ -65,12 +65,12 @@ static void register_frame_class(script::Namespace ns)
   register_frame_shape_enum(frame);
   register_frame_shadow_enum(frame);
   register_frame_style_mask_enum(frame);
-  binding::QClass<QFrame> binder{ frame, &QFrame::staticMetaObject };
+  binding::ClassBinder<QFrame> binder{ frame, &QFrame::staticMetaObject };
 
   // QFrame(QWidget *, Qt::WindowFlags);
   /// TODO: QFrame(QWidget *, Qt::WindowFlags);
   // ~QFrame();
-  binder.add_dtor();
+  binder.dtor().create();
   // int frameStyle() const;
   binder.fun<int, &QFrame::frameStyle>("frameStyle").create();
   // void setFrameStyle(int);

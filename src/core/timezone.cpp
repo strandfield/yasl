@@ -51,21 +51,21 @@ static void register_time_zone_class(script::Namespace ns)
 
   register_time_zone_time_type_enum(time_zone);
   register_time_zone_name_type_enum(time_zone);
-  binding::Class<QTimeZone> binder{ time_zone };
+  binding::ClassBinder<QTimeZone> binder{ time_zone };
 
   // QTimeZone();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QTimeZone(const QByteArray &);
-  binder.ctors().ctor<const QByteArray &>().create();
+  binder.ctor<const QByteArray &>().create();
   // QTimeZone(int);
-  binder.ctors().ctor<int>().create();
+  binder.ctor<int>().create();
   // QTimeZone(const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &);
-  binder.ctors().ctor<const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &>()
+  binder.ctor<const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &>()
     .apply(binding::default_arguments(QString(), QLocale::AnyCountry)).create();
   // QTimeZone(const QTimeZone &);
-  binder.ctors().ctor<const QTimeZone &>().create();
+  binder.ctor<const QTimeZone &>().create();
   // ~QTimeZone();
-  binder.add_dtor();
+  binder.dtor().create();
   // QTimeZone & operator=(const QTimeZone &);
   binder.operators().assign<const QTimeZone &>();
   // QTimeZone & operator=(QTimeZone &&);

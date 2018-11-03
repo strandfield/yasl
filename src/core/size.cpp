@@ -19,16 +19,16 @@ static void register_size_class(script::Namespace ns)
 
   Class size = ns.Class("Size").setId(script::Type::QSize).get();
 
-  binding::Class<QSize> binder{ size };
+  binding::ClassBinder<QSize> binder{ size };
 
   // QSize();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QSize(const QSize &);
-  binder.ctors().ctor<const QSize &>().create();
+  binder.ctor<const QSize &>().create();
   // ~QSize();
-  binder.add_dtor();
+  binder.dtor().create();
   // QSize(int, int);
-  binder.ctors().ctor<int, int>().create();
+  binder.ctor<int, int>().create();
   // bool isNull() const;
   binder.fun<bool, &QSize::isNull>("isNull").create();
   // bool isEmpty() const;
@@ -80,18 +80,18 @@ static void register_size_f_class(script::Namespace ns)
 
   Class size_f = ns.Class("SizeF").setId(script::Type::QSizeF).get();
 
-  binding::Class<QSizeF> binder{ size_f };
+  binding::ClassBinder<QSizeF> binder{ size_f };
 
   // QSizeF();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QSizeF(const QSizeF &);
-  binder.ctors().ctor<const QSizeF &>().create();
+  binder.ctor<const QSizeF &>().create();
   // QSizeF(const QSize &);
-  binder.ctors().ctor<const QSize &>().create();
+  binder.ctor<const QSize &>().create();
   // QSizeF(qreal, qreal);
-  binder.ctors().ctor<qreal, qreal>().create();
+  binder.ctor<qreal, qreal>().create();
   // ~QSizeF();
-  binder.add_dtor();
+  binder.dtor().create();
   // bool isNull() const;
   binder.fun<bool, &QSizeF::isNull>("isNull").create();
   // bool isEmpty() const;

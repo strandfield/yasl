@@ -21,24 +21,24 @@ static void register_quaternion_class(script::Namespace ns)
 
   Class quaternion = ns.Class("Quaternion").setId(script::Type::QQuaternion).get();
 
-  binding::Class<QQuaternion> binder{ quaternion };
+  binding::ClassBinder<QQuaternion> binder{ quaternion };
 
   // QQuaternion();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QQuaternion(const QQuaternion &);
-  binder.ctors().ctor<const QQuaternion &>().create();
+  binder.ctor<const QQuaternion &>().create();
   // ~QQuaternion();
-  binder.add_dtor();
+  binder.dtor().create();
   // QQuaternion & operator=(const QQuaternion &);
   binder.operators().assign<const QQuaternion &>();
   // QQuaternion(Qt::Initialization);
-  binder.ctors().ctor<Qt::Initialization>().create();
+  binder.ctor<Qt::Initialization>().create();
   // QQuaternion(float, float, float, float);
-  binder.ctors().ctor<float, float, float, float>().create();
+  binder.ctor<float, float, float, float>().create();
   // QQuaternion(float, const QVector3D &);
-  binder.ctors().ctor<float, const QVector3D &>().create();
+  binder.ctor<float, const QVector3D &>().create();
   // QQuaternion(const QVector4D &);
-  binder.ctors().ctor<const QVector4D &>().create();
+  binder.ctor<const QVector4D &>().create();
   // bool isNull() const;
   binder.fun<bool, &QQuaternion::isNull>("isNull").create();
   // bool isIdentity() const;

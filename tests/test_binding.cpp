@@ -128,21 +128,21 @@ TEST(BindingTests, prototypes_member_functions) {
   e.setup();
 
   Class pt = e.rootNamespace().Class("Point").setId(binding::make_type<Point>().data()).get();
-  binding::Class<Point> binder{ pt };
+  binding::ClassBinder<Point> binder{ pt };
 
-  Function ctor = binder.ctors().default_ctor().get();
+  Function ctor = binder.default_ctor().get();
   ASSERT_TRUE(ctor.isConstructor());
   ASSERT_EQ(ctor.memberOf(), pt);
   ASSERT_EQ(ctor.prototype().size(), 1);
 
-  ctor = binder.ctors().ctor<int, int>().get();
+  ctor = binder.ctor<int, int>().get();
   ASSERT_TRUE(ctor.isConstructor());
   ASSERT_EQ(ctor.memberOf(), pt);
   ASSERT_EQ(ctor.prototype().size(), 3);
   ASSERT_EQ(ctor.parameter(1), Type::Int);
   ASSERT_EQ(ctor.parameter(2), Type::Int);
 
-  binder.add_dtor();
+  binder.dtor().create();
   Function dtor = pt.destructor();
   ASSERT_FALSE(dtor.isNull());
   ASSERT_EQ(dtor.memberOf(), pt);
@@ -210,12 +210,12 @@ TEST(BindingTests, value_cast_2) {
   e.setup();
 
   Class point_class = e.rootNamespace().Class("Point").setId(binding::make_type<Point>().data()).get();
-  binding::Class<Point> binder{ point_class };
+  binding::ClassBinder<Point> binder{ point_class };
 
-  binder.ctors().default_ctor().create();
-  binder.ctors().ctor<const Point &>().create();
-  binder.ctors().ctor<int, int>().create();
-  binder.add_dtor();
+  binder.default_ctor().create();
+  binder.ctor<const Point &>().create();
+  binder.ctor<int, int>().create();
+  binder.dtor().create();
 
   binder.fun<int, &Point::x>("x").create();
   binder.static_fun<Point, const Point &, const Point &, &Point::max>("max").create();
@@ -281,10 +281,10 @@ TEST(BindingTests, class_1) {
 
   Class point_class = e.rootNamespace().Class("Point").get();
 
-  auto point = binding::Class<Point>{ point_class };
-  point.ctors().default_ctor().create();
-  point.ctors().ctor<int, int>().create();
-  point.add_dtor();
+  auto point = binding::ClassBinder<Point>{ point_class };
+  point.default_ctor().create();
+  point.ctor<int, int>().create();
+  point.dtor().create();
   point.fun<int, &Point::get2X>("get2X").create();
   
   Value p = e.eval("p = Point(3, 4)");

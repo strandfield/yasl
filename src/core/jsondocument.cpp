@@ -49,22 +49,22 @@ static void register_json_document_class(script::Namespace ns)
 
   register_json_document_data_validation_enum(json_document);
   register_json_document_json_format_enum(json_document);
-  binding::Class<QJsonDocument> binder{ json_document };
+  binding::ClassBinder<QJsonDocument> binder{ json_document };
 
   // QJsonDocument();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QJsonDocument(const QJsonObject &);
-  binder.ctors().ctor<const QJsonObject &>().create();
+  binder.ctor<const QJsonObject &>().create();
   // QJsonDocument(const QJsonArray &);
-  binder.ctors().ctor<const QJsonArray &>().create();
+  binder.ctor<const QJsonArray &>().create();
   // ~QJsonDocument();
-  binder.add_dtor();
+  binder.dtor().create();
   // QJsonDocument(const QJsonDocument &);
-  binder.ctors().ctor<const QJsonDocument &>().create();
+  binder.ctor<const QJsonDocument &>().create();
   // QJsonDocument & operator=(const QJsonDocument &);
   binder.operators().assign<const QJsonDocument &>();
   // QJsonDocument(QJsonDocument &&);
-  binder.ctors().ctor<QJsonDocument &&>().create();
+  binder.ctor<QJsonDocument &&>().create();
   // QJsonDocument & operator=(QJsonDocument &&);
   binder.operators().assign<QJsonDocument &&>();
   // void swap(QJsonDocument &);

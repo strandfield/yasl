@@ -40,13 +40,13 @@ static void register_tool_button_class(script::Namespace ns)
     .setBase(script::Type::QAbstractButton).get();
 
   register_tool_button_tool_button_popup_mode_enum(tool_button);
-  binding::QClass<QToolButton> binder{ tool_button, &QToolButton::staticMetaObject };
+  binding::ClassBinder<QToolButton> binder{ tool_button, &QToolButton::staticMetaObject };
 
   // QToolButton(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QToolButton();
-  binder.add_dtor();
+  binder.dtor().create();
   // QSize sizeHint() const;
   binder.fun<QSize, &QToolButton::sizeHint>("sizeHint").create();
   // QSize minimumSizeHint() const;

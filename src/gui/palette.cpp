@@ -73,24 +73,24 @@ static void register_palette_class(script::Namespace ns)
 
   register_palette_color_group_enum(palette);
   register_palette_color_role_enum(palette);
-  binding::Class<QPalette> binder{ palette };
+  binding::ClassBinder<QPalette> binder{ palette };
 
   // QPalette();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPalette(const QColor &);
-  binder.ctors().ctor<const QColor &>().create();
+  binder.ctor<const QColor &>().create();
   // QPalette(Qt::GlobalColor);
-  binder.ctors().ctor<Qt::GlobalColor>().create();
+  binder.ctor<Qt::GlobalColor>().create();
   // QPalette(const QColor &, const QColor &);
-  binder.ctors().ctor<const QColor &, const QColor &>().create();
+  binder.ctor<const QColor &, const QColor &>().create();
   // QPalette(const QPalette &);
-  binder.ctors().ctor<const QPalette &>().create();
+  binder.ctor<const QPalette &>().create();
   // ~QPalette();
-  binder.add_dtor();
+  binder.dtor().create();
   // QPalette & operator=(const QPalette &);
   binder.operators().assign<const QPalette &>();
   // QPalette(QPalette &&);
-  binder.ctors().ctor<QPalette &&>().create();
+  binder.ctor<QPalette &&>().create();
   // QPalette & operator=(QPalette &&);
   binder.operators().assign<QPalette &&>();
   // void swap(QPalette &);

@@ -39,16 +39,16 @@ static void register_color_dialog_class(script::Namespace ns)
     .setBase(script::Type::QDialog).get();
 
   register_color_dialog_color_dialog_option_enum(color_dialog);
-  binding::QClass<QColorDialog> binder{ color_dialog, &QColorDialog::staticMetaObject };
+  binding::ClassBinder<QColorDialog> binder{ color_dialog, &QColorDialog::staticMetaObject };
 
   // QColorDialog(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QColorDialog(const QColor &, QWidget *);
-  binder.ctors().ctor<const QColor &, QWidget *>()
+  binder.ctor<const QColor &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QColorDialog();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setCurrentColor(const QColor &);
   binder.void_fun<const QColor &, &QColorDialog::setCurrentColor>("setCurrentColor").create();
   // QColor currentColor() const;

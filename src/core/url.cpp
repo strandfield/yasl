@@ -92,25 +92,25 @@ static void register_url_class(script::Namespace ns)
   register_url_url_formatting_option_enum(url);
   register_url_component_formatting_option_enum(url);
   register_url_user_input_resolution_option_enum(url);
-  binding::Class<QUrl> binder{ url };
+  binding::ClassBinder<QUrl> binder{ url };
 
   // QUrl();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QUrl(const QUrl &);
-  binder.ctors().ctor<const QUrl &>().create();
+  binder.ctor<const QUrl &>().create();
   // QUrl & operator=(const QUrl &);
   binder.operators().assign<const QUrl &>();
   // QUrl(const QString &, QUrl::ParsingMode);
-  binder.ctors().ctor<const QString &, QUrl::ParsingMode>()
+  binder.ctor<const QString &, QUrl::ParsingMode>()
     .apply(binding::default_arguments(QUrl::TolerantMode)).create();
   // QUrl & operator=(const QString &);
   binder.operators().assign<const QString &>();
   // QUrl(QUrl &&);
-  binder.ctors().ctor<QUrl &&>().create();
+  binder.ctor<QUrl &&>().create();
   // QUrl & operator=(QUrl &&);
   binder.operators().assign<QUrl &&>();
   // ~QUrl();
-  binder.add_dtor();
+  binder.dtor().create();
   // void swap(QUrl &);
   binder.void_fun<QUrl &, &QUrl::swap>("swap").create();
   // void setUrl(const QString &, QUrl::ParsingMode);

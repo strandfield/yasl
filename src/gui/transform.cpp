@@ -43,14 +43,14 @@ static void register_transform_class(script::Namespace ns)
   Class transform = ns.Class("Transform").setId(script::Type::QTransform).get();
 
   register_transform_transformation_type_enum(transform);
-  binding::Class<QTransform> binder{ transform };
+  binding::ClassBinder<QTransform> binder{ transform };
 
   // QTransform(Qt::Initialization);
-  binder.ctors().ctor<Qt::Initialization>().create();
+  binder.ctor<Qt::Initialization>().create();
   // QTransform();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QTransform(qreal, qreal, qreal, qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal, qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal, qreal, qreal, qreal>().create();
   // QTransform(const QMatrix &);
   /// TODO: QTransform(const QMatrix &);
   // QTransform & operator=(QTransform &&);
@@ -58,9 +58,9 @@ static void register_transform_class(script::Namespace ns)
   // QTransform & operator=(const QTransform &);
   binder.operators().assign<const QTransform &>();
   // QTransform(QTransform &&);
-  binder.ctors().ctor<QTransform &&>().create();
+  binder.ctor<QTransform &&>().create();
   // QTransform(const QTransform &);
-  binder.ctors().ctor<const QTransform &>().create();
+  binder.ctor<const QTransform &>().create();
   // bool isAffine() const;
   binder.fun<bool, &QTransform::isAffine>("isAffine").create();
   // bool isIdentity() const;

@@ -21,15 +21,15 @@ static void register_picture_class(script::Namespace ns)
 
   Class picture = ns.Class("Picture").setId(script::Type::QPicture).get();
 
-  binding::Class<QPicture> binder{ picture };
+  binding::ClassBinder<QPicture> binder{ picture };
 
   // QPicture(int);
-  binder.ctors().ctor<int>()
+  binder.ctor<int>()
     .apply(binding::default_arguments(-1)).create();
   // QPicture(const QPicture &);
-  binder.ctors().ctor<const QPicture &>().create();
+  binder.ctor<const QPicture &>().create();
   // ~QPicture();
-  binder.add_dtor();
+  binder.dtor().create();
   // bool isNull() const;
   binder.fun<bool, &QPicture::isNull>("isNull").create();
   // int devType() const;
@@ -87,16 +87,16 @@ static void register_picture_i_o_class(script::Namespace ns)
 
   Class picture_i_o = ns.Class("PictureIO").setId(script::Type::QPictureIO).get();
 
-  binding::Class<QPictureIO> binder{ picture_i_o };
+  binding::ClassBinder<QPictureIO> binder{ picture_i_o };
 
   // QPictureIO();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPictureIO(QIODevice *, const char *);
   /// TODO: QPictureIO(QIODevice *, const char *);
   // QPictureIO(const QString &, const char *);
   /// TODO: QPictureIO(const QString &, const char *);
   // ~QPictureIO();
-  binder.add_dtor();
+  binder.dtor().create();
   // const QPicture & picture() const;
   binder.fun<const QPicture &, &QPictureIO::picture>("picture").create();
   // int status() const;

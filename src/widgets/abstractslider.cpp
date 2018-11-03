@@ -41,13 +41,13 @@ static void register_abstract_slider_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
   register_abstract_slider_slider_action_enum(abstract_slider);
-  binding::QClass<QAbstractSlider> binder{ abstract_slider, &QAbstractSlider::staticMetaObject };
+  binding::ClassBinder<QAbstractSlider> binder{ abstract_slider, &QAbstractSlider::staticMetaObject };
 
   // QAbstractSlider(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QAbstractSlider();
-  binder.add_dtor();
+  binder.dtor().create();
   // Qt::Orientation orientation() const;
   binder.fun<Qt::Orientation, &QAbstractSlider::orientation>("orientation").create();
   // void setMinimum(int);

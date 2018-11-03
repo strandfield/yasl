@@ -63,12 +63,12 @@ static void register_form_layout_class(script::Namespace ns)
   register_form_layout_field_growth_policy_enum(form_layout);
   register_form_layout_row_wrap_policy_enum(form_layout);
   register_form_layout_item_role_enum(form_layout);
-  binding::QClass<QFormLayout> binder{ form_layout, &QFormLayout::staticMetaObject };
+  binding::ClassBinder<QFormLayout> binder{ form_layout, &QFormLayout::staticMetaObject };
 
   // QFormLayout(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctor<QWidget *>().create();
   // ~QFormLayout();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setFieldGrowthPolicy(QFormLayout::FieldGrowthPolicy);
   binder.void_fun<QFormLayout::FieldGrowthPolicy, &QFormLayout::setFieldGrowthPolicy>("setFieldGrowthPolicy").create();
   // QFormLayout::FieldGrowthPolicy fieldGrowthPolicy() const;

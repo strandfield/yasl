@@ -40,37 +40,37 @@ static void register_json_value_class(script::Namespace ns)
   Class json_value = ns.Class("JsonValue").setId(script::Type::QJsonValue).get();
 
   register_json_value_type_enum(json_value);
-  binding::Class<QJsonValue> binder{ json_value };
+  binding::ClassBinder<QJsonValue> binder{ json_value };
 
   // QJsonValue(QJsonValue::Type);
-  binder.ctors().ctor<QJsonValue::Type>()
+  binder.ctor<QJsonValue::Type>()
     .apply(binding::default_arguments(QJsonValue::Null)).create();
   // QJsonValue(bool);
-  binder.ctors().ctor<bool>().create();
+  binder.ctor<bool>().create();
   // QJsonValue(double);
-  binder.ctors().ctor<double>().create();
+  binder.ctor<double>().create();
   // QJsonValue(int);
-  binder.ctors().ctor<int>().create();
+  binder.ctor<int>().create();
   // QJsonValue(qint64);
   /// TODO: QJsonValue(qint64);
   // QJsonValue(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // QJsonValue(QLatin1String);
   /// TODO: QJsonValue(QLatin1String);
   // QJsonValue(const char *);
   /// TODO: QJsonValue(const char *);
   // QJsonValue(const QJsonArray &);
-  binder.ctors().ctor<const QJsonArray &>().create();
+  binder.ctor<const QJsonArray &>().create();
   // QJsonValue(const QJsonObject &);
-  binder.ctors().ctor<const QJsonObject &>().create();
+  binder.ctor<const QJsonObject &>().create();
   // ~QJsonValue();
-  binder.add_dtor();
+  binder.dtor().create();
   // QJsonValue(const QJsonValue &);
-  binder.ctors().ctor<const QJsonValue &>().create();
+  binder.ctor<const QJsonValue &>().create();
   // QJsonValue & operator=(const QJsonValue &);
   binder.operators().assign<const QJsonValue &>();
   // QJsonValue(QJsonValue &&);
-  binder.ctors().ctor<QJsonValue &&>().create();
+  binder.ctor<QJsonValue &&>().create();
   // QJsonValue & operator=(QJsonValue &&);
   binder.operators().assign<QJsonValue &&>();
   // void swap(QJsonValue &);
@@ -137,7 +137,7 @@ static void register_json_value_ref_class(script::Namespace ns)
 
   Class json_value_ref = ns.Class("JsonValueRef").setId(script::Type::QJsonValueRef).get();
 
-  binding::Class<QJsonValueRef> binder{ json_value_ref };
+  binding::ClassBinder<QJsonValueRef> binder{ json_value_ref };
 
   // QJsonValueRef(QJsonArray *, int);
   /// TODO: QJsonValueRef(QJsonArray *, int);

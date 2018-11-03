@@ -18,20 +18,20 @@ static void register_json_array_class(script::Namespace ns)
 
   Class json_array = ns.Class("JsonArray").setId(script::Type::QJsonArray).get();
 
-  binding::Class<QJsonArray> binder{ json_array };
+  binding::ClassBinder<QJsonArray> binder{ json_array };
 
   // QJsonArray();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QJsonArray(std::initializer_list<QJsonValue>);
   /// TODO: QJsonArray(std::initializer_list<QJsonValue>);
   // ~QJsonArray();
-  binder.add_dtor();
+  binder.dtor().create();
   // QJsonArray(const QJsonArray &);
-  binder.ctors().ctor<const QJsonArray &>().create();
+  binder.ctor<const QJsonArray &>().create();
   // QJsonArray & operator=(const QJsonArray &);
   binder.operators().assign<const QJsonArray &>();
   // QJsonArray(QJsonArray &&);
-  binder.ctors().ctor<QJsonArray &&>().create();
+  binder.ctor<QJsonArray &&>().create();
   // QJsonArray & operator=(QJsonArray &&);
   binder.operators().assign<QJsonArray &&>();
   // static QJsonArray fromStringList(const QStringList &);

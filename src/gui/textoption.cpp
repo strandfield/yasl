@@ -67,16 +67,16 @@ static void register_text_option_class(script::Namespace ns)
   register_text_option_tab_type_enum(text_option);
   register_text_option_wrap_mode_enum(text_option);
   register_text_option_flag_enum(text_option);
-  binding::Class<QTextOption> binder{ text_option };
+  binding::ClassBinder<QTextOption> binder{ text_option };
 
   // QTextOption();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QTextOption(Qt::Alignment);
-  binder.ctors().ctor<Qt::Alignment>().create();
+  binder.ctor<Qt::Alignment>().create();
   // ~QTextOption();
-  binder.add_dtor();
+  binder.dtor().create();
   // QTextOption(const QTextOption &);
-  binder.ctors().ctor<const QTextOption &>().create();
+  binder.ctor<const QTextOption &>().create();
   // QTextOption & operator=(const QTextOption &);
   binder.operators().assign<const QTextOption &>();
   // void setAlignment(Qt::Alignment);

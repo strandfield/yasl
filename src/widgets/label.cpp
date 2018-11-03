@@ -23,14 +23,14 @@ static void register_label_class(script::Namespace ns)
   Class label = ns.Class("Label").setId(script::Type::QLabel)
     .setBase(script::Type::QFrame).get();
 
-  binding::QClass<QLabel> binder{ label, &QLabel::staticMetaObject };
+  binding::ClassBinder<QLabel> binder{ label, &QLabel::staticMetaObject };
 
   // QLabel(QWidget *, Qt::WindowFlags);
   /// TODO: QLabel(QWidget *, Qt::WindowFlags);
   // QLabel(const QString &, QWidget *, Qt::WindowFlags);
   /// TODO: QLabel(const QString &, QWidget *, Qt::WindowFlags);
   // ~QLabel();
-  binder.add_dtor();
+  binder.dtor().create();
   // QString text() const;
   binder.fun<QString, &QLabel::text>("text").create();
   // const QPixmap * pixmap() const;

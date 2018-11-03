@@ -22,19 +22,19 @@ static void register_push_button_class(script::Namespace ns)
   Class push_button = ns.Class("PushButton").setId(script::Type::QPushButton)
     .setBase(script::Type::QAbstractButton).get();
 
-  binding::QClass<QPushButton> binder{ push_button, &QPushButton::staticMetaObject };
+  binding::ClassBinder<QPushButton> binder{ push_button, &QPushButton::staticMetaObject };
 
   // QPushButton(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QPushButton(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>()
+  binder.ctor<const QString &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QPushButton(const QIcon &, const QString &, QWidget *);
-  binder.ctors().ctor<const QIcon &, const QString &, QWidget *>()
+  binder.ctor<const QIcon &, const QString &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QPushButton();
-  binder.add_dtor();
+  binder.dtor().create();
   // QSize sizeHint() const;
   binder.fun<QSize, &QPushButton::sizeHint>("sizeHint").create();
   // QSize minimumSizeHint() const;

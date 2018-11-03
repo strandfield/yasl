@@ -79,25 +79,25 @@ static void register_settings_class(script::Namespace ns)
   register_settings_status_enum(settings);
   register_settings_format_enum(settings);
   register_settings_scope_enum(settings);
-  binding::QClass<QSettings> binder{ settings, &QSettings::staticMetaObject };
+  binding::ClassBinder<QSettings> binder{ settings, &QSettings::staticMetaObject };
 
   // QSettings(const QString &, const QString &, QObject *);
-  binder.ctors().ctor<const QString &, const QString &, QObject *>()
+  binder.ctor<const QString &, const QString &, QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr, QString())).create();
   // QSettings(QSettings::Scope, const QString &, const QString &, QObject *);
-  binder.ctors().ctor<QSettings::Scope, const QString &, const QString &, QObject *>()
+  binder.ctor<QSettings::Scope, const QString &, const QString &, QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr, QString())).create();
   // QSettings(QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *);
-  binder.ctors().ctor<QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *>()
+  binder.ctor<QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr, QString())).create();
   // QSettings(const QString &, QSettings::Format, QObject *);
-  binder.ctors().ctor<const QString &, QSettings::Format, QObject *>()
+  binder.ctor<const QString &, QSettings::Format, QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr)).create();
   // QSettings(QObject *);
-  binder.ctors().ctor<QObject *>()
+  binder.ctor<QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QSettings();
-  binder.add_dtor();
+  binder.dtor().create();
   // void clear();
   binder.void_fun<&QSettings::clear>("clear").create();
   // void sync();

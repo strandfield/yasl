@@ -100,15 +100,15 @@ static void register_message_box_class(script::Namespace ns)
   register_message_box_icon_enum(message_box);
   register_message_box_button_role_enum(message_box);
   register_message_box_standard_button_enum(message_box);
-  binding::QClass<QMessageBox> binder{ message_box, &QMessageBox::staticMetaObject };
+  binding::ClassBinder<QMessageBox> binder{ message_box, &QMessageBox::staticMetaObject };
 
   // QMessageBox(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons, QWidget *, Qt::WindowFlags);
   /// TODO: QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons, QWidget *, Qt::WindowFlags);
   // ~QMessageBox();
-  binder.add_dtor();
+  binder.dtor().create();
   // void addButton(QAbstractButton *, QMessageBox::ButtonRole);
   /// TODO: void addButton(QAbstractButton *, QMessageBox::ButtonRole);
   // QPushButton * addButton(const QString &, QMessageBox::ButtonRole);

@@ -127,14 +127,14 @@ static void register_pixel_format_class(script::Namespace ns)
   register_pixel_format_type_interpretation_enum(pixel_format);
   register_pixel_format_y_u_v_layout_enum(pixel_format);
   register_pixel_format_byte_order_enum(pixel_format);
-  binding::Class<QPixelFormat> binder{ pixel_format };
+  binding::ClassBinder<QPixelFormat> binder{ pixel_format };
 
   // QPixelFormat();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPixelFormat(const QPixelFormat &);
-  binder.ctors().ctor<const QPixelFormat &>().create();
+  binder.ctor<const QPixelFormat &>().create();
   // ~QPixelFormat();
-  binder.add_dtor();
+  binder.dtor().create();
   // QPixelFormat & operator=(const QPixelFormat &);
   binder.operators().assign<const QPixelFormat &>();
   // QPixelFormat(QPixelFormat::ColorModel, uchar, uchar, uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation, QPixelFormat::ByteOrder, uchar);

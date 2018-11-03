@@ -40,15 +40,15 @@ static void register_slider_class(script::Namespace ns)
     .setBase(script::Type::QAbstractSlider).get();
 
   register_slider_tick_position_enum(slider);
-  binding::QClass<QSlider> binder{ slider, &QSlider::staticMetaObject };
+  binding::ClassBinder<QSlider> binder{ slider, &QSlider::staticMetaObject };
 
   // QSlider(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QSlider(Qt::Orientation, QWidget *);
-  binder.ctors().ctor<Qt::Orientation, QWidget *>().create();
+  binder.ctor<Qt::Orientation, QWidget *>().create();
   // ~QSlider();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setTickPosition(QSlider::TickPosition);
   binder.void_fun<QSlider::TickPosition, &QSlider::setTickPosition>("setTickPosition").create();
   // QSlider::TickPosition tickPosition() const;

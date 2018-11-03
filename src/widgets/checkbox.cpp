@@ -21,16 +21,16 @@ static void register_check_box_class(script::Namespace ns)
   Class check_box = ns.Class("CheckBox").setId(script::Type::QCheckBox)
     .setBase(script::Type::QAbstractButton).get();
 
-  binding::QClass<QCheckBox> binder{ check_box, &QCheckBox::staticMetaObject };
+  binding::ClassBinder<QCheckBox> binder{ check_box, &QCheckBox::staticMetaObject };
 
   // QCheckBox(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QCheckBox(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>()
+  binder.ctor<const QString &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QCheckBox();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setTristate(bool);
   binder.void_fun<bool, &QCheckBox::setTristate>("setTristate")
     .apply(binding::default_arguments(true)).create();

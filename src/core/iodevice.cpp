@@ -41,10 +41,10 @@ static void register_i_o_device_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_i_o_device_open_mode_flag_enum(i_o_device);
-  binding::QClass<QIODevice> binder{ i_o_device, &QIODevice::staticMetaObject };
+  binding::ClassBinder<QIODevice> binder{ i_o_device, &QIODevice::staticMetaObject };
 
   // ~QIODevice();
-  binder.add_dtor();
+  binder.dtor().create();
   // QIODevice::OpenMode openMode() const;
   binder.fun<QIODevice::OpenMode, &QIODevice::openMode>("openMode").create();
   // void setTextModeEnabled(bool);

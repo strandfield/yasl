@@ -18,14 +18,14 @@ static void register_font_info_class(script::Namespace ns)
 
   Class font_info = ns.Class("FontInfo").setId(script::Type::QFontInfo).get();
 
-  binding::Class<QFontInfo> binder{ font_info };
+  binding::ClassBinder<QFontInfo> binder{ font_info };
 
   // QFontInfo(const QFont &);
-  binder.ctors().ctor<const QFont &>().create();
+  binder.ctor<const QFont &>().create();
   // QFontInfo(const QFontInfo &);
-  binder.ctors().ctor<const QFontInfo &>().create();
+  binder.ctor<const QFontInfo &>().create();
   // ~QFontInfo();
-  binder.add_dtor();
+  binder.dtor().create();
   // QFontInfo & operator=(const QFontInfo &);
   binder.operators().assign<const QFontInfo &>();
   // void swap(QFontInfo &);

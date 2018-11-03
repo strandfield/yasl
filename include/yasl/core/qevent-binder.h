@@ -85,12 +85,20 @@ struct constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6> {
 };
 
 
-
 template<typename T>
-class EventConstructor
+class ClassBinder<T, qevent_tag> : public GenericClassBinder<T>
 {
 public:
-  script::Class class_;
+
+  ClassBinder(const script::Class c)
+    : GenericClassBinder<T>(c)
+  { }
+
+public:
+
+  /****************************************************************
+  Constructors
+  ****************************************************************/
 
   script::ConstructorBuilder default_ctor()
   {
@@ -144,26 +152,16 @@ public:
     return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
   }
-};
 
-template<typename T>
-class Event : public binding::Class<T>
-{
-public:
-  Event(const script::Class & cla)
+  /****************************************************************
+  Destructor
+  ****************************************************************/
+
+  script::DestructorBuilder dtor()
   {
-    class_ = cla;
+    return class_.Destructor(callbacks::qevent_dtor);
   }
 
-  EventConstructor<T> ctors() const
-  {
-    return EventConstructor<T>{ class_ };
-  }
-
-  void add_dtor()
-  {
-    class_.Destructor(callbacks::qevent_dtor).create();
-  }
 };
 
 } // namespace binding

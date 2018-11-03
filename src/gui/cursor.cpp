@@ -23,26 +23,26 @@ static void register_cursor_class(script::Namespace ns)
 
   Class cursor = ns.Class("Cursor").setId(script::Type::QCursor).get();
 
-  binding::Class<QCursor> binder{ cursor };
+  binding::ClassBinder<QCursor> binder{ cursor };
 
   // QCursor();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QCursor(Qt::CursorShape);
-  binder.ctors().ctor<Qt::CursorShape>().create();
+  binder.ctor<Qt::CursorShape>().create();
   // QCursor(const QBitmap &, const QBitmap &, int, int);
-  binder.ctors().ctor<const QBitmap &, const QBitmap &, int, int>()
+  binder.ctor<const QBitmap &, const QBitmap &, int, int>()
     .apply(binding::default_arguments(-1, -1)).create();
   // QCursor(const QPixmap &, int, int);
-  binder.ctors().ctor<const QPixmap &, int, int>()
+  binder.ctor<const QPixmap &, int, int>()
     .apply(binding::default_arguments(-1, -1)).create();
   // QCursor(const QCursor &);
-  binder.ctors().ctor<const QCursor &>().create();
+  binder.ctor<const QCursor &>().create();
   // ~QCursor();
-  binder.add_dtor();
+  binder.dtor().create();
   // QCursor & operator=(const QCursor &);
   binder.operators().assign<const QCursor &>();
   // QCursor(QCursor &&);
-  binder.ctors().ctor<QCursor &&>().create();
+  binder.ctor<QCursor &&>().create();
   // QCursor & operator=(QCursor &&);
   binder.operators().assign<QCursor &&>();
   // void swap(QCursor &);

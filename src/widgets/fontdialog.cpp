@@ -42,16 +42,16 @@ static void register_font_dialog_class(script::Namespace ns)
     .setBase(script::Type::QDialog).get();
 
   register_font_dialog_font_dialog_option_enum(font_dialog);
-  binding::QClass<QFontDialog> binder{ font_dialog, &QFontDialog::staticMetaObject };
+  binding::ClassBinder<QFontDialog> binder{ font_dialog, &QFontDialog::staticMetaObject };
 
   // QFontDialog(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QFontDialog(const QFont &, QWidget *);
-  binder.ctors().ctor<const QFont &, QWidget *>()
+  binder.ctor<const QFont &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QFontDialog();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setCurrentFont(const QFont &);
   binder.void_fun<const QFont &, &QFontDialog::setCurrentFont>("setCurrentFont").create();
   // QFont currentFont() const;

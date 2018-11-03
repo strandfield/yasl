@@ -18,14 +18,14 @@ static void register_point_class(script::Namespace ns)
 
   Class point = ns.Class("Point").setId(script::Type::QPoint).get();
 
-  binding::Class<QPoint> binder{ point };
+  binding::ClassBinder<QPoint> binder{ point };
 
   // QPoint();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPoint(int, int);
-  binder.ctors().ctor<int, int>().create();
+  binder.ctor<int, int>().create();
   // ~QPoint();
-  binder.add_dtor();
+  binder.dtor().create();
   // bool isNull() const;
   binder.fun<bool, &QPoint::isNull>("isNull").create();
   // int x() const;
@@ -65,16 +65,16 @@ static void register_point_f_class(script::Namespace ns)
 
   Class point_f = ns.Class("PointF").setId(script::Type::QPointF).get();
 
-  binding::Class<QPointF> binder{ point_f };
+  binding::ClassBinder<QPointF> binder{ point_f };
 
   // QPointF();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPointF(const QPoint &);
-  binder.ctors().ctor<const QPoint &>().create();
+  binder.ctor<const QPoint &>().create();
   // QPointF(qreal, qreal);
-  binder.ctors().ctor<qreal, qreal>().create();
+  binder.ctor<qreal, qreal>().create();
   // ~QPointF();
-  binder.add_dtor();
+  binder.dtor().create();
   // qreal manhattanLength() const;
   binder.fun<qreal, &QPointF::manhattanLength>("manhattanLength").create();
   // bool isNull() const;

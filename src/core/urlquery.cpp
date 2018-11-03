@@ -20,22 +20,22 @@ static void register_url_query_class(script::Namespace ns)
 
   Class url_query = ns.Class("UrlQuery").setId(script::Type::QUrlQuery).get();
 
-  binding::Class<QUrlQuery> binder{ url_query };
+  binding::ClassBinder<QUrlQuery> binder{ url_query };
 
   // QUrlQuery();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QUrlQuery(const QUrl &);
-  binder.ctors().ctor<const QUrl &>().create();
+  binder.ctor<const QUrl &>().create();
   // QUrlQuery(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // QUrlQuery(const QUrlQuery &);
-  binder.ctors().ctor<const QUrlQuery &>().create();
+  binder.ctor<const QUrlQuery &>().create();
   // QUrlQuery & operator=(const QUrlQuery &);
   binder.operators().assign<const QUrlQuery &>();
   // QUrlQuery & operator=(QUrlQuery &&);
   binder.operators().assign<QUrlQuery &&>();
   // ~QUrlQuery();
-  binder.add_dtor();
+  binder.dtor().create();
   // bool operator==(const QUrlQuery &) const;
   binder.operators().eq<const QUrlQuery &>();
   // bool operator!=(const QUrlQuery &) const;

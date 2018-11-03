@@ -189,19 +189,19 @@ static void register_font_class(script::Namespace ns)
   register_font_capitalization_enum(font);
   register_font_spacing_type_enum(font);
   register_font_resolve_properties_enum(font);
-  binding::Class<QFont> binder{ font };
+  binding::ClassBinder<QFont> binder{ font };
 
   // QFont();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QFont(const QString &, int, int, bool);
-  binder.ctors().ctor<const QString &, int, int, bool>()
+  binder.ctor<const QString &, int, int, bool>()
     .apply(binding::default_arguments(false, -1, -1)).create();
   // QFont(const QFont &, QPaintDevice *);
   /// TODO: QFont(const QFont &, QPaintDevice *);
   // QFont(const QFont &);
-  binder.ctors().ctor<const QFont &>().create();
+  binder.ctor<const QFont &>().create();
   // ~QFont();
-  binder.add_dtor();
+  binder.dtor().create();
   // void swap(QFont &);
   binder.void_fun<QFont &, &QFont::swap>("swap").create();
   // QString family() const;

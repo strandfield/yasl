@@ -96,18 +96,18 @@ static void register_data_stream_class(script::Namespace ns)
   register_data_stream_byte_order_enum(data_stream);
   register_data_stream_status_enum(data_stream);
   register_data_stream_floating_point_precision_enum(data_stream);
-  binding::Class<QDataStream> binder{ data_stream };
+  binding::ClassBinder<QDataStream> binder{ data_stream };
 
   // QDataStream();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QDataStream(QIODevice *);
   /// TODO: QDataStream(QIODevice *);
   // QDataStream(QByteArray *, QIODevice::OpenMode);
   /// TODO: QDataStream(QByteArray *, QIODevice::OpenMode);
   // QDataStream(const QByteArray &);
-  binder.ctors().ctor<const QByteArray &>().create();
+  binder.ctor<const QByteArray &>().create();
   // ~QDataStream();
-  binder.add_dtor();
+  binder.dtor().create();
   // QIODevice * device() const;
   /// TODO: QIODevice * device() const;
   // void setDevice(QIODevice *);

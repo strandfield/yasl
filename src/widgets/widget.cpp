@@ -60,12 +60,12 @@ static void register_widget_class(script::Namespace ns)
   register_ptr_specialization<QWidget*>(widget.engine()->getTemplate(Engine::PtrTemplate), script::Type::PtrQWidget);
   register_list_specialization<QWidget*>(widget.engine(), script::Type::QListQWidget);
   register_widget_render_flag_enum(widget);
-  binding::QClass<QWidget> binder{ widget, &QWidget::staticMetaObject };
+  binding::ClassBinder<QWidget> binder{ widget, &QWidget::staticMetaObject };
 
   // QWidget(QWidget *, Qt::WindowFlags);
   /// TODO: QWidget(QWidget *, Qt::WindowFlags);
   // ~QWidget();
-  binder.add_dtor();
+  binder.dtor().create();
   // int devType() const;
   binder.fun<int, &QWidget::devType>("devType").create();
   // WId winId() const;

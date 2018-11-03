@@ -37,20 +37,20 @@ static void register_static_text_class(script::Namespace ns)
   Class static_text = ns.Class("StaticText").setId(script::Type::QStaticText).get();
 
   register_static_text_performance_hint_enum(static_text);
-  binding::Class<QStaticText> binder{ static_text };
+  binding::ClassBinder<QStaticText> binder{ static_text };
 
   // QStaticText();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QStaticText(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // QStaticText(const QStaticText &);
-  binder.ctors().ctor<const QStaticText &>().create();
+  binder.ctor<const QStaticText &>().create();
   // QStaticText & operator=(QStaticText &&);
   binder.operators().assign<QStaticText &&>();
   // QStaticText & operator=(const QStaticText &);
   binder.operators().assign<const QStaticText &>();
   // ~QStaticText();
-  binder.add_dtor();
+  binder.dtor().create();
   // void swap(QStaticText &);
   binder.void_fun<QStaticText &, &QStaticText::swap>("swap").create();
   // void setText(const QString &);

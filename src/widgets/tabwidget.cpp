@@ -52,13 +52,13 @@ static void register_tab_widget_class(script::Namespace ns)
 
   register_tab_widget_tab_position_enum(tab_widget);
   register_tab_widget_tab_shape_enum(tab_widget);
-  binding::QClass<QTabWidget> binder{ tab_widget, &QTabWidget::staticMetaObject };
+  binding::ClassBinder<QTabWidget> binder{ tab_widget, &QTabWidget::staticMetaObject };
 
   // QTabWidget(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QTabWidget();
-  binder.add_dtor();
+  binder.dtor().create();
   // int addTab(QWidget *, const QString &);
   binder.fun<int, QWidget *, const QString &, &QTabWidget::addTab>("addTab").create();
   // int addTab(QWidget *, const QIcon &, const QString &);

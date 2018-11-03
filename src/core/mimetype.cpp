@@ -17,12 +17,12 @@ static void register_mime_type_class(script::Namespace ns)
 
   Class mime_type = ns.Class("MimeType").setId(script::Type::QMimeType).get();
 
-  binding::Class<QMimeType> binder{ mime_type };
+  binding::ClassBinder<QMimeType> binder{ mime_type };
 
   // QMimeType();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QMimeType(const QMimeType &);
-  binder.ctors().ctor<const QMimeType &>().create();
+  binder.ctor<const QMimeType &>().create();
   // QMimeType & operator=(const QMimeType &);
   binder.operators().assign<const QMimeType &>();
   // QMimeType & operator=(QMimeType &&);
@@ -32,7 +32,7 @@ static void register_mime_type_class(script::Namespace ns)
   // QMimeType(const QMimeTypePrivate &);
   /// TODO: QMimeType(const QMimeTypePrivate &);
   // ~QMimeType();
-  binder.add_dtor();
+  binder.dtor().create();
   // bool operator==(const QMimeType &) const;
   binder.operators().eq<const QMimeType &>();
   // bool operator!=(const QMimeType &) const;

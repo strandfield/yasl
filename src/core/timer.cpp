@@ -20,13 +20,13 @@ static void register_timer_class(script::Namespace ns)
   Class timer = ns.Class("Timer").setId(script::Type::QTimer)
     .setBase(script::Type::QObject).get();
 
-  binding::QClass<QTimer> binder{ timer, &QTimer::staticMetaObject };
+  binding::ClassBinder<QTimer> binder{ timer, &QTimer::staticMetaObject };
 
   // QTimer(QObject *);
-  binder.ctors().ctor<QObject *>()
+  binder.ctor<QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QTimer();
-  binder.add_dtor();
+  binder.dtor().create();
   // bool isActive() const;
   binder.fun<bool, &QTimer::isActive>("isActive").create();
   // int timerId() const;

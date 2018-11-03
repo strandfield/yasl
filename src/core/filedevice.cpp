@@ -109,10 +109,10 @@ static void register_file_device_class(script::Namespace ns)
   register_file_device_permission_enum(file_device);
   register_file_device_file_handle_flag_enum(file_device);
   register_file_device_memory_map_flags_enum(file_device);
-  binding::QClass<QFileDevice> binder{ file_device, &QFileDevice::staticMetaObject };
+  binding::ClassBinder<QFileDevice> binder{ file_device, &QFileDevice::staticMetaObject };
 
   // ~QFileDevice();
-  binder.add_dtor();
+  binder.dtor().create();
   // QFileDevice::FileError error() const;
   binder.fun<QFileDevice::FileError, &QFileDevice::error>("error").create();
   // void unsetError();

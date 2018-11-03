@@ -24,26 +24,26 @@ static void register_bitmap_class(script::Namespace ns)
   Class bitmap = ns.Class("Bitmap").setId(script::Type::QBitmap)
     .setBase(script::Type::QPixmap).get();
 
-  binding::Class<QBitmap> binder{ bitmap };
+  binding::ClassBinder<QBitmap> binder{ bitmap };
 
   // QBitmap();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QBitmap(const QPixmap &);
-  binder.ctors().ctor<const QPixmap &>().create();
+  binder.ctor<const QPixmap &>().create();
   // QBitmap(int, int);
-  binder.ctors().ctor<int, int>().create();
+  binder.ctor<int, int>().create();
   // QBitmap(const QSize &);
-  binder.ctors().ctor<const QSize &>().create();
+  binder.ctor<const QSize &>().create();
   // QBitmap(const QString &, const char *);
   /// TODO: QBitmap(const QString &, const char *);
   // QBitmap(const QBitmap &);
-  binder.ctors().ctor<const QBitmap &>().create();
+  binder.ctor<const QBitmap &>().create();
   // QBitmap & operator=(const QBitmap &);
   binder.operators().assign<const QBitmap &>();
   // QBitmap & operator=(QBitmap &&);
   binder.operators().assign<QBitmap &&>();
   // ~QBitmap();
-  binder.add_dtor();
+  binder.dtor().create();
   // QBitmap & operator=(const QPixmap &);
   binder.operators().assign<const QPixmap &>();
   // void swap(QBitmap &);

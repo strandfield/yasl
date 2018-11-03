@@ -57,16 +57,16 @@ static void register_line_edit_class(script::Namespace ns)
 
   register_line_edit_action_position_enum(line_edit);
   register_line_edit_echo_mode_enum(line_edit);
-  binding::QClass<QLineEdit> binder{ line_edit, &QLineEdit::staticMetaObject };
+  binding::ClassBinder<QLineEdit> binder{ line_edit, &QLineEdit::staticMetaObject };
 
   // QLineEdit(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QLineEdit(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>()
+  binder.ctor<const QString &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QLineEdit();
-  binder.add_dtor();
+  binder.dtor().create();
   // QString text() const;
   binder.fun<QString, &QLineEdit::text>("text").create();
   // QString displayText() const;

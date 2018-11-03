@@ -21,10 +21,10 @@ static void register_screen_class(script::Namespace ns)
   Class screen = ns.Class("Screen").setId(script::Type::QScreen)
     .setBase(script::Type::QObject).get();
 
-  binding::QClass<QScreen> binder{ screen, &QScreen::staticMetaObject };
+  binding::ClassBinder<QScreen> binder{ screen, &QScreen::staticMetaObject };
 
   // ~QScreen();
-  binder.add_dtor();
+  binder.dtor().create();
   // QPlatformScreen * handle() const;
   /// TODO: QPlatformScreen * handle() const;
   // QString name() const;

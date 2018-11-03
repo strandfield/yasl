@@ -37,16 +37,16 @@ static void register_stacked_layout_class(script::Namespace ns)
     .setBase(script::Type::QLayout).get();
 
   register_stacked_layout_stacking_mode_enum(stacked_layout);
-  binding::QClass<QStackedLayout> binder{ stacked_layout, &QStackedLayout::staticMetaObject };
+  binding::ClassBinder<QStackedLayout> binder{ stacked_layout, &QStackedLayout::staticMetaObject };
 
   // QStackedLayout();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QStackedLayout(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctor<QWidget *>().create();
   // QStackedLayout(QLayout *);
-  binder.ctors().ctor<QLayout *>().create();
+  binder.ctor<QLayout *>().create();
   // ~QStackedLayout();
-  binder.add_dtor();
+  binder.dtor().create();
   // int addWidget(QWidget *);
   binder.fun<int, QWidget *, &QStackedLayout::addWidget>("addWidget").create();
   // int insertWidget(int, QWidget *);

@@ -77,19 +77,19 @@ static void register_action_class(script::Namespace ns)
   register_action_menu_role_enum(action);
   register_action_priority_enum(action);
   register_action_action_event_enum(action);
-  binding::QClass<QAction> binder{ action, &QAction::staticMetaObject };
+  binding::ClassBinder<QAction> binder{ action, &QAction::staticMetaObject };
 
   // QAction(QObject *);
-  binder.ctors().ctor<QObject *>()
+  binder.ctor<QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr)).create();
   // QAction(const QString &, QObject *);
-  binder.ctors().ctor<const QString &, QObject *>()
+  binder.ctor<const QString &, QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr)).create();
   // QAction(const QIcon &, const QString &, QObject *);
-  binder.ctors().ctor<const QIcon &, const QString &, QObject *>()
+  binder.ctor<const QIcon &, const QString &, QObject *>()
     .apply(binding::default_arguments((QObject*)nullptr)).create();
   // ~QAction();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setActionGroup(QActionGroup *);
   /// TODO: void setActionGroup(QActionGroup *);
   // QActionGroup * actionGroup() const;

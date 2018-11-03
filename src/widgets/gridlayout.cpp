@@ -23,14 +23,14 @@ static void register_grid_layout_class(script::Namespace ns)
   Class grid_layout = ns.Class("GridLayout").setId(script::Type::QGridLayout)
     .setBase(script::Type::QLayout).get();
 
-  binding::QClass<QGridLayout> binder{ grid_layout, &QGridLayout::staticMetaObject };
+  binding::ClassBinder<QGridLayout> binder{ grid_layout, &QGridLayout::staticMetaObject };
 
   // QGridLayout(QWidget *);
-  binder.ctors().ctor<QWidget *>().create();
+  binder.ctor<QWidget *>().create();
   // QGridLayout();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QGridLayout();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setHorizontalSpacing(int);
   binder.void_fun<int, &QGridLayout::setHorizontalSpacing>("setHorizontalSpacing").create();
   // int horizontalSpacing() const;

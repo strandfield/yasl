@@ -18,18 +18,18 @@ script::Class register_qflags_type_impl(script::Class flags)
 {
   using namespace script;
 
-  binding::Class<QFlags<T>> f{ flags };
+  binding::ClassBinder<QFlags<T>> f{ flags };
 
   // QFlags(const QFlags<T> & other);
-  f.ctors().ctor<const QFlags<T> &>().create();
+  f.ctor<const QFlags<T> &>().create();
   // QFlags(T flags);
-  f.ctors().ctor<T>().create();
+  f.ctor<T>().create();
   // QFlag(Flag flag); // almost equivalent to QFlag(int);
-  f.ctors().ctor<int>().create();
+  f.ctor<int>().create();
   // QFlags(std::initializer_list<T> flags)
   /// TODO !!
   // ~QFlags();
-  f.add_dtor();
+  f.dtor().create();
 
   // QFlags<T> & setFlag(T flag, bool on = true);
   //f.chainable<T, bool, &QFlags<T>::setFlag>("setFlag").create();

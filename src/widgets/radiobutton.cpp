@@ -20,16 +20,16 @@ static void register_radio_button_class(script::Namespace ns)
   Class radio_button = ns.Class("RadioButton").setId(script::Type::QRadioButton)
     .setBase(script::Type::QAbstractButton).get();
 
-  binding::QClass<QRadioButton> binder{ radio_button, &QRadioButton::staticMetaObject };
+  binding::ClassBinder<QRadioButton> binder{ radio_button, &QRadioButton::staticMetaObject };
 
   // QRadioButton(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // QRadioButton(const QString &, QWidget *);
-  binder.ctors().ctor<const QString &, QWidget *>()
+  binder.ctor<const QString &, QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QRadioButton();
-  binder.add_dtor();
+  binder.dtor().create();
 
   radio_button.engine()->registerQtType(&QRadioButton::staticMetaObject, radio_button.id());
 }

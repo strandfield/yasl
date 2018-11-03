@@ -43,13 +43,13 @@ static void register_font_combo_box_class(script::Namespace ns)
     .setBase(script::Type::QComboBox).get();
 
   register_font_combo_box_font_filter_enum(font_combo_box);
-  binding::QClass<QFontComboBox> binder{ font_combo_box, &QFontComboBox::staticMetaObject };
+  binding::ClassBinder<QFontComboBox> binder{ font_combo_box, &QFontComboBox::staticMetaObject };
 
   // QFontComboBox(QWidget *);
-  binder.ctors().ctor<QWidget *>()
+  binder.ctor<QWidget *>()
     .apply(binding::default_arguments((QWidget*)nullptr)).create();
   // ~QFontComboBox();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setWritingSystem(QFontDatabase::WritingSystem);
   binder.void_fun<QFontDatabase::WritingSystem, &QFontComboBox::setWritingSystem>("setWritingSystem").create();
   // QFontDatabase::WritingSystem writingSystem() const;

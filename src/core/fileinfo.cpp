@@ -20,22 +20,22 @@ static void register_file_info_class(script::Namespace ns)
 
   Class file_info = ns.Class("FileInfo").setId(script::Type::QFileInfo).get();
 
-  binding::Class<QFileInfo> binder{ file_info };
+  binding::ClassBinder<QFileInfo> binder{ file_info };
 
   // QFileInfo(QFileInfoPrivate *);
   /// TODO: QFileInfo(QFileInfoPrivate *);
   // QFileInfo();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QFileInfo(const QString &);
-  binder.ctors().ctor<const QString &>().create();
+  binder.ctor<const QString &>().create();
   // QFileInfo(const QFile &);
-  binder.ctors().ctor<const QFile &>().create();
+  binder.ctor<const QFile &>().create();
   // QFileInfo(const QDir &, const QString &);
-  binder.ctors().ctor<const QDir &, const QString &>().create();
+  binder.ctor<const QDir &, const QString &>().create();
   // QFileInfo(const QFileInfo &);
-  binder.ctors().ctor<const QFileInfo &>().create();
+  binder.ctor<const QFileInfo &>().create();
   // ~QFileInfo();
-  binder.add_dtor();
+  binder.dtor().create();
   // QFileInfo & operator=(const QFileInfo &);
   binder.operators().assign<const QFileInfo &>();
   // QFileInfo & operator=(QFileInfo &&);

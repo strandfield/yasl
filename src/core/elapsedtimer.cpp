@@ -34,12 +34,12 @@ static void register_elapsed_timer_class(script::Namespace ns)
   Class elapsed_timer = ns.Class("ElapsedTimer").setId(script::Type::QElapsedTimer).get();
 
   register_elapsed_timer_clock_type_enum(elapsed_timer);
-  binding::Class<QElapsedTimer> binder{ elapsed_timer };
+  binding::ClassBinder<QElapsedTimer> binder{ elapsed_timer };
 
   // QElapsedTimer();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // ~QElapsedTimer();
-  binder.add_dtor();
+  binder.dtor().create();
   // static QElapsedTimer::ClockType clockType();
   binder.static_fun<QElapsedTimer::ClockType, &QElapsedTimer::clockType>("clockType").create();
   // static bool isMonotonic();

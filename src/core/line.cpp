@@ -21,18 +21,18 @@ static void register_line_class(script::Namespace ns)
 
   Class line = ns.Class("Line").setId(script::Type::QLine).get();
 
-  binding::Class<QLine> binder{ line };
+  binding::ClassBinder<QLine> binder{ line };
 
   // QLine();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QLine(const QLine &);
-  binder.ctors().ctor<const QLine &>().create();
+  binder.ctor<const QLine &>().create();
   // ~QLine();
-  binder.add_dtor();
+  binder.dtor().create();
   // QLine(const QPoint &, const QPoint &);
-  binder.ctors().ctor<const QPoint &, const QPoint &>().create();
+  binder.ctor<const QPoint &, const QPoint &>().create();
   // QLine(int, int, int, int);
-  binder.ctors().ctor<int, int, int, int>().create();
+  binder.ctor<int, int, int, int>().create();
   // bool isNull() const;
   binder.fun<bool, &QLine::isNull>("isNull").create();
   // QPoint p1() const;
@@ -97,20 +97,20 @@ static void register_line_f_class(script::Namespace ns)
   Class line_f = ns.Class("LineF").setId(script::Type::QLineF).get();
 
   register_line_f_intersect_type_enum(line_f);
-  binding::Class<QLineF> binder{ line_f };
+  binding::ClassBinder<QLineF> binder{ line_f };
 
   // QLineF();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QLineF(const QLineF &);
-  binder.ctors().ctor<const QLineF &>().create();
+  binder.ctor<const QLineF &>().create();
   // ~QLineF();
-  binder.add_dtor();
+  binder.dtor().create();
   // QLineF(const QPointF &, const QPointF &);
-  binder.ctors().ctor<const QPointF &, const QPointF &>().create();
+  binder.ctor<const QPointF &, const QPointF &>().create();
   // QLineF(qreal, qreal, qreal, qreal);
-  binder.ctors().ctor<qreal, qreal, qreal, qreal>().create();
+  binder.ctor<qreal, qreal, qreal, qreal>().create();
   // QLineF(const QLine &);
-  binder.ctors().ctor<const QLine &>().create();
+  binder.ctor<const QLine &>().create();
   // static QLineF fromPolar(qreal, qreal);
   binder.static_fun<QLineF, qreal, qreal, &QLineF::fromPolar>("fromPolar").create();
   // bool isNull() const;

@@ -83,12 +83,12 @@ static void register_font_database_class(script::Namespace ns)
 
   register_font_database_writing_system_enum(font_database);
   register_font_database_system_font_enum(font_database);
-  binding::Class<QFontDatabase> binder{ font_database };
+  binding::ClassBinder<QFontDatabase> binder{ font_database };
 
   // static QList<int> standardSizes();
   /// TODO: static QList<int> standardSizes();
   // QFontDatabase();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QList<QFontDatabase::WritingSystem> writingSystems() const;
   /// TODO: QList<QFontDatabase::WritingSystem> writingSystems() const;
   // QList<QFontDatabase::WritingSystem> writingSystems(const QString &) const;

@@ -99,14 +99,14 @@ static void register_file_dialog_class(script::Namespace ns)
   register_file_dialog_accept_mode_enum(file_dialog);
   register_file_dialog_dialog_label_enum(file_dialog);
   register_file_dialog_option_enum(file_dialog);
-  binding::QClass<QFileDialog> binder{ file_dialog, &QFileDialog::staticMetaObject };
+  binding::ClassBinder<QFileDialog> binder{ file_dialog, &QFileDialog::staticMetaObject };
 
   // QFileDialog(QWidget *, Qt::WindowFlags);
   /// TODO: QFileDialog(QWidget *, Qt::WindowFlags);
   // QFileDialog(QWidget *, const QString &, const QString &, const QString &);
-  binder.ctors().ctor<QWidget *, const QString &, const QString &, const QString &>().create();
+  binder.ctor<QWidget *, const QString &, const QString &, const QString &>().create();
   // ~QFileDialog();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setDirectory(const QString &);
   binder.void_fun<const QString &, &QFileDialog::setDirectory>("setDirectory").create();
   // void setDirectory(const QDir &);

@@ -43,10 +43,10 @@ static void register_layout_class(script::Namespace ns)
 
   register_ref_specialization(layout.engine(), script::Type::QLayout, script::Type::QLayoutStar);
   register_layout_size_constraint_enum(layout);
-  binding::QClass<QLayout> binder{ layout, &QLayout::staticMetaObject };
+  binding::ClassBinder<QLayout> binder{ layout, &QLayout::staticMetaObject };
 
   // ~QLayout();
-  binder.add_dtor();
+  binder.dtor().create();
   // int margin() const;
   binder.fun<int, &QLayout::margin>("margin").create();
   // int spacing() const;

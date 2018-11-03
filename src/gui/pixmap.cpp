@@ -28,24 +28,24 @@ static void register_pixmap_class(script::Namespace ns)
 
   Class pixmap = ns.Class("Pixmap").setId(script::Type::QPixmap).get();
 
-  binding::Class<QPixmap> binder{ pixmap };
+  binding::ClassBinder<QPixmap> binder{ pixmap };
 
   // QPixmap();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QPixmap(QPlatformPixmap *);
   /// TODO: QPixmap(QPlatformPixmap *);
   // QPixmap(int, int);
-  binder.ctors().ctor<int, int>().create();
+  binder.ctor<int, int>().create();
   // QPixmap(const QSize &);
-  binder.ctors().ctor<const QSize &>().create();
+  binder.ctor<const QSize &>().create();
   // QPixmap(const QString &, const char *, Qt::ImageConversionFlags);
   /// TODO: QPixmap(const QString &, const char *, Qt::ImageConversionFlags);
   // QPixmap(const char *const []);
   /// TODO: QPixmap(const char *const []);
   // QPixmap(const QPixmap &);
-  binder.ctors().ctor<const QPixmap &>().create();
+  binder.ctor<const QPixmap &>().create();
   // ~QPixmap();
-  binder.add_dtor();
+  binder.dtor().create();
   // QPixmap & operator=(const QPixmap &);
   binder.operators().assign<const QPixmap &>();
   // QPixmap & operator=(QPixmap &&);

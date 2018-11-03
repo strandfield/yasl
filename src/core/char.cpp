@@ -376,12 +376,12 @@ static void register_char__class(script::Namespace ns)
   register_char__joining_enum(char_);
   register_char__combining_class_enum(char_);
   register_char__unicode_version_enum(char_);
-  binding::Class<QChar> binder{ char_ };
+  binding::ClassBinder<QChar> binder{ char_ };
 
   // ~QChar();
-  binder.add_dtor();
+  binder.dtor().create();
   // QChar();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QChar(ushort);
   /// TODO: QChar(ushort);
   // QChar(uchar, uchar);
@@ -389,11 +389,11 @@ static void register_char__class(script::Namespace ns)
   // QChar(short);
   /// TODO: QChar(short);
   // QChar(uint);
-  binder.ctors().ctor<uint>().create();
+  binder.ctor<uint>().create();
   // QChar(int);
-  binder.ctors().ctor<int>().create();
+  binder.ctor<int>().create();
   // QChar(QChar::SpecialCharacter);
-  binder.ctors().ctor<QChar::SpecialCharacter>().create();
+  binder.ctor<QChar::SpecialCharacter>().create();
   // QChar(QLatin1Char);
   /// TODO: QChar(QLatin1Char);
   // QChar(char16_t);
@@ -401,7 +401,7 @@ static void register_char__class(script::Namespace ns)
   // QChar(wchar_t);
   /// TODO: QChar(wchar_t);
   // QChar(char);
-  binder.ctors().ctor<char>().create();
+  binder.ctor<char>().create();
   // QChar(uchar);
   /// TODO: QChar(uchar);
   // QChar::Category category() const;

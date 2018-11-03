@@ -53,12 +53,12 @@ static void register_input_dialog_class(script::Namespace ns)
 
   register_input_dialog_input_dialog_option_enum(input_dialog);
   register_input_dialog_input_mode_enum(input_dialog);
-  binding::QClass<QInputDialog> binder{ input_dialog, &QInputDialog::staticMetaObject };
+  binding::ClassBinder<QInputDialog> binder{ input_dialog, &QInputDialog::staticMetaObject };
 
   // QInputDialog(QWidget *, Qt::WindowFlags);
   /// TODO: QInputDialog(QWidget *, Qt::WindowFlags);
   // ~QInputDialog();
-  binder.add_dtor();
+  binder.dtor().create();
   // void setInputMode(QInputDialog::InputMode);
   binder.void_fun<QInputDialog::InputMode, &QInputDialog::setInputMode>("setInputMode").create();
   // QInputDialog::InputMode inputMode() const;

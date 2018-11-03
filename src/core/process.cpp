@@ -24,14 +24,14 @@ static void register_process_environment_class(script::Namespace ns)
 
   Class process_environment = ns.Class("ProcessEnvironment").setId(script::Type::QProcessEnvironment).get();
 
-  binding::Class<QProcessEnvironment> binder{ process_environment };
+  binding::ClassBinder<QProcessEnvironment> binder{ process_environment };
 
   // QProcessEnvironment();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QProcessEnvironment(const QProcessEnvironment &);
-  binder.ctors().ctor<const QProcessEnvironment &>().create();
+  binder.ctor<const QProcessEnvironment &>().create();
   // ~QProcessEnvironment();
-  binder.add_dtor();
+  binder.dtor().create();
   // QProcessEnvironment & operator=(QProcessEnvironment &&);
   binder.operators().assign<QProcessEnvironment &&>();
   // QProcessEnvironment & operator=(const QProcessEnvironment &);
@@ -152,13 +152,13 @@ static void register_process_class(script::Namespace ns)
   register_process_process_channel_mode_enum(process);
   register_process_input_channel_mode_enum(process);
   register_process_exit_status_enum(process);
-  binding::QClass<QProcess> binder{ process, &QProcess::staticMetaObject };
+  binding::ClassBinder<QProcess> binder{ process, &QProcess::staticMetaObject };
 
   // QProcess(QObject *);
-  binder.ctors().ctor<QObject *>()
+  binder.ctor<QObject *>()
     .apply(binding::default_arguments((QObject*) nullptr)).create();
   // ~QProcess();
-  binder.add_dtor();
+  binder.dtor().create();
   // void start(const QString &, const QStringList &, QIODevice::OpenMode);
   /// TODO: void start(const QString &, const QStringList &, QIODevice::OpenMode);
   // void start(const QString &, QIODevice::OpenMode);

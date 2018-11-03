@@ -127,22 +127,22 @@ static void register_key_sequence_class(script::Namespace ns)
   register_key_sequence_standard_key_enum(key_sequence);
   register_key_sequence_sequence_format_enum(key_sequence);
   register_key_sequence_sequence_match_enum(key_sequence);
-  binding::Class<QKeySequence> binder{ key_sequence };
+  binding::ClassBinder<QKeySequence> binder{ key_sequence };
 
   // QKeySequence();
-  binder.ctors().default_ctor().create();
+  binder.default_ctor().create();
   // QKeySequence(const QString &, QKeySequence::SequenceFormat);
-  binder.ctors().ctor<const QString &, QKeySequence::SequenceFormat>()
+  binder.ctor<const QString &, QKeySequence::SequenceFormat>()
     .apply(binding::default_arguments(QKeySequence::NativeText)).create();
   // QKeySequence(int, int, int, int);
-  binder.ctors().ctor<int, int, int, int>()
+  binder.ctor<int, int, int, int>()
     .apply(binding::default_arguments(0, 0, 0)).create();
   // QKeySequence(const QKeySequence &);
-  binder.ctors().ctor<const QKeySequence &>().create();
+  binder.ctor<const QKeySequence &>().create();
   // QKeySequence(QKeySequence::StandardKey);
-  binder.ctors().ctor<QKeySequence::StandardKey>().create();
+  binder.ctor<QKeySequence::StandardKey>().create();
   // ~QKeySequence();
-  binder.add_dtor();
+  binder.dtor().create();
   // int count() const;
   binder.fun<int, &QKeySequence::count>("count").create();
   // bool isEmpty() const;
