@@ -27,7 +27,7 @@ static void register_process_environment_class(script::Namespace ns)
   binding::Class<QProcessEnvironment> binder{ process_environment };
 
   // QProcessEnvironment();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QProcessEnvironment(const QProcessEnvironment &);
   binder.ctors().ctor<const QProcessEnvironment &>().create();
   // ~QProcessEnvironment();

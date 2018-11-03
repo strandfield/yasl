@@ -92,64 +92,15 @@ class EventConstructor
 public:
   script::Class class_;
 
-  script::Function add_default()
+  script::ConstructorBuilder default_ctor()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T>::wrap).get();
+    return class_.Constructor(constructor_wrapper_small_object_t<T>::wrap);
   }
 
-  script::Function add_copy()
+  script::ConstructorBuilder copy_ctor()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T, const T&>::wrap)
-      .params(script::Type::cref(make_type<T>()))
-      .create();
-  }
-
-  template<typename A1>
-  script::Function add()
-  {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1>::wrap)
-      .params(make_type<A1>())
-      .create();
-  }
-
-  template<typename A1, typename A2>
-  script::Function add()
-  {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2>::wrap)
-      .params(make_type<A1>(), make_type<A2>())
-      .create();
-  }
-
-  template<typename A1, typename A2, typename A3>
-  script::Function add()
-  {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
-      .create();
-  }
-
-  template<typename A1, typename A2, typename A3, typename A4>
-  script::Function add()
-  {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
-      .create();
-  }
-
-  template<typename A1, typename A2, typename A3, typename A4, typename A5>
-  script::Function add()
-  {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>())
-      .create();
-  }
-
-  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
-  script::Function add()
-  {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>())
-      .get();
+    return class_.Constructor(constructor_wrapper_small_object_t<T, const T&>::wrap)
+      .params(script::Type::cref(make_type<T>()));
   }
 
   template<typename A1>

@@ -52,7 +52,7 @@ static void register_color_class(script::Namespace ns)
   binding::Class<QColor> binder{ color };
 
   // QColor();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // ~QColor();
   binder.add_dtor();
   // QColor(Qt::GlobalColor);

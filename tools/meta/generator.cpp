@@ -329,7 +329,7 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 {
   if (bm == Function::ConstructorBinding && fun->parameters.isEmpty())
   {
-    return "  binder.ctors().add_default();";
+    return "  binder.ctors().default_ctor().create();";
   }
   else if (bm == Function::DestructorBinding)
   {

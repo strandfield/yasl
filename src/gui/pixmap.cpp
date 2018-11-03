@@ -31,7 +31,7 @@ static void register_pixmap_class(script::Namespace ns)
   binding::Class<QPixmap> binder{ pixmap };
 
   // QPixmap();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPixmap(QPlatformPixmap *);
   /// TODO: QPixmap(QPlatformPixmap *);
   // QPixmap(int, int);

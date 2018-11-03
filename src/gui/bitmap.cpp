@@ -27,7 +27,7 @@ static void register_bitmap_class(script::Namespace ns)
   binding::Class<QBitmap> binder{ bitmap };
 
   // QBitmap();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QBitmap(const QPixmap &);
   binder.ctors().ctor<const QPixmap &>().create();
   // QBitmap(int, int);

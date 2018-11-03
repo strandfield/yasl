@@ -947,7 +947,7 @@ static void register_locale_class(script::Namespace ns)
   binding::Class<QLocale> binder{ locale };
 
   // QLocale();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QLocale(const QString &);
   binder.ctors().ctor<const QString &>().create();
   // QLocale(QLocale::Language, QLocale::Country);

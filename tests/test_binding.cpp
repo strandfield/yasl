@@ -71,11 +71,11 @@ TEST(BindingTests, prototypes_free_functions) {
 
   binding::Namespace ns{ e.rootNamespace() };
   
-  Function bar_fun = ns.add_fun<int, bar>("bar");
+  Function bar_fun = ns.fun<int, bar>("bar").get();
   ASSERT_EQ(bar_fun.returnType(), Type::Int);
   ASSERT_EQ(bar_fun.prototype().size(), 0);
 
-  Function incr_fun = ns.add_void_fun<int&, incr>("incr");
+  Function incr_fun = ns.void_fun<int&, incr>("incr").get();
   ASSERT_EQ(incr_fun.returnType(), Type::Void);
   ASSERT_EQ(incr_fun.prototype().size(), 1);
   ASSERT_EQ(incr_fun.parameter(0), Type::ref(Type::Int));
@@ -130,24 +130,24 @@ TEST(BindingTests, prototypes_member_functions) {
   Class pt = e.rootNamespace().Class("Point").setId(binding::make_type<Point>().data()).get();
   binding::Class<Point> binder{ pt };
 
-  Function ctor = binder.ctors().add_default();
+  Function ctor = binder.ctors().default_ctor().get();
   ASSERT_TRUE(ctor.isConstructor());
   ASSERT_EQ(ctor.memberOf(), pt);
-  ASSERT_EQ(ctor.prototype().size(), 0);
+  ASSERT_EQ(ctor.prototype().size(), 1);
 
-  ctor = binder.ctors().add<int, int>();
+  ctor = binder.ctors().ctor<int, int>().get();
   ASSERT_TRUE(ctor.isConstructor());
   ASSERT_EQ(ctor.memberOf(), pt);
-  ASSERT_EQ(ctor.prototype().size(), 2);
-  ASSERT_EQ(ctor.parameter(0), Type::Int);
+  ASSERT_EQ(ctor.prototype().size(), 3);
   ASSERT_EQ(ctor.parameter(1), Type::Int);
+  ASSERT_EQ(ctor.parameter(2), Type::Int);
 
   binder.add_dtor();
   Function dtor = pt.destructor();
   ASSERT_FALSE(dtor.isNull());
   ASSERT_EQ(dtor.memberOf(), pt);
 
-  Function x = binder.add_fun<int, &Point::x>("x");
+  Function x = binder.fun<int, &Point::x>("x").get();
   ASSERT_TRUE(x.isMemberFunction());
   ASSERT_EQ(x.memberOf(), pt);
   ASSERT_EQ(x.name(), "x");
@@ -155,7 +155,7 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(x.prototype().size(), 1);
   ASSERT_TRUE(x.isConst());
 
-  Function y = binder.add_fun<int, &point_y>("y");
+  Function y = binder.fun<int, &point_y>("y").get();
   ASSERT_TRUE(y.isMemberFunction());
   ASSERT_EQ(y.memberOf(), pt);
   ASSERT_EQ(y.name(), "y");
@@ -163,7 +163,7 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(y.prototype().size(), 1);
   ASSERT_TRUE(y.isConst());
 
-  Function rx = binder.add_ref_mem<int&, &Point::rx>("rx");
+  Function rx = binder.ref_mem_getter<int&, &Point::rx>("rx").get();
   ASSERT_TRUE(rx.isMemberFunction());
   ASSERT_EQ(rx.memberOf(), pt);
   ASSERT_EQ(rx.name(), "rx");
@@ -171,7 +171,7 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(rx.prototype().size(), 1);
   ASSERT_FALSE(rx.isConst());
 
-  Function max = binder.add_static<Point, const Point &, const Point &, &Point::max>("max");
+  Function max = binder.static_fun<Point, const Point &, const Point &, &Point::max>("max").get();
   ASSERT_TRUE(max.isMemberFunction());
   ASSERT_TRUE(max.isStatic());
   ASSERT_EQ(max.memberOf(), pt);
@@ -181,7 +181,7 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(max.parameter(0), Type::cref(pt.id()));
   ASSERT_FALSE(max.isConst());
 
-  Function print = binder.add_static_void_fun<const Point &, &Point::print>("print");
+  Function print = binder.static_void_fun<const Point &, &Point::print>("print").get();
   ASSERT_TRUE(print.isMemberFunction());
   ASSERT_TRUE(print.isStatic());
   ASSERT_EQ(print.memberOf(), pt);
@@ -212,14 +212,14 @@ TEST(BindingTests, value_cast_2) {
   Class point_class = e.rootNamespace().Class("Point").setId(binding::make_type<Point>().data()).get();
   binding::Class<Point> binder{ point_class };
 
-  binder.ctors().add_default();
-  binder.ctors().add<const Point &>();
-  binder.ctors().add<int, int>();
+  binder.ctors().default_ctor().create();
+  binder.ctors().ctor<const Point &>().create();
+  binder.ctors().ctor<int, int>().create();
   binder.add_dtor();
 
-  binder.add_fun<int, &Point::x>("x");
-  binder.add_static<Point, const Point &, const Point &, &Point::max>("max");
-  binder.add_static_void_fun<const Point &, &Point::print>("print");
+  binder.fun<int, &Point::x>("x").create();
+  binder.static_fun<Point, const Point &, const Point &, &Point::max>("max").create();
+  binder.static_void_fun<const Point &, &Point::print>("print").create();
   binder.operators().assign<const Point &>();
 
   {
@@ -261,8 +261,8 @@ TEST(BindingTests, free_functions_1) {
   e.setup();
 
   binding::Namespace ns{ e.rootNamespace() };
-  Function bar_fun = ns.add_fun<int, bar>("bar");
-  Function incr_fun = ns.add_void_fun<int&, incr>("incr");
+  Function bar_fun = ns.fun<int, bar>("bar").get();
+  Function incr_fun = ns.void_fun<int&, incr>("incr").get();
 
   Value n = e.eval("bar()");
   ASSERT_EQ(n.toInt(), 42);
@@ -282,10 +282,10 @@ TEST(BindingTests, class_1) {
   Class point_class = e.rootNamespace().Class("Point").get();
 
   auto point = binding::Class<Point>{ point_class };
-  point.ctors().add_default();
-  point.ctors().add<int, int>();
+  point.ctors().default_ctor().create();
+  point.ctors().ctor<int, int>().create();
   point.add_dtor();
-  point.add_fun<int, &Point::get2X>("get2X");
+  point.fun<int, &Point::get2X>("get2X").create();
   
   Value p = e.eval("p = Point(3, 4)");
   Point & point_ref = binding::value_cast<Point&>(p);

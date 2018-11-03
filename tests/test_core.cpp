@@ -54,8 +54,8 @@ void register_assert_functions(script::Engine *e)
   using namespace script;
   
   binding::Namespace ns{ e->rootNamespace() };
-  ns.add_void_fun<bool, Assert>("Assert");
-  ns.add_void_fun<bool, AssertFalse>("AssertFalse");
+  ns.void_fun<bool, Assert>("Assert").create();
+  ns.void_fun<bool, AssertFalse>("AssertFalse").create();
 }
 
 TEST(CoreModule, all) {

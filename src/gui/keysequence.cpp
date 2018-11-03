@@ -130,7 +130,7 @@ static void register_key_sequence_class(script::Namespace ns)
   binding::Class<QKeySequence> binder{ key_sequence };
 
   // QKeySequence();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QKeySequence(const QString &, QKeySequence::SequenceFormat);
   binder.ctors().ctor<const QString &, QKeySequence::SequenceFormat>()
     .apply(binding::default_arguments(QKeySequence::NativeText)).create();

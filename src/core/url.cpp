@@ -95,7 +95,7 @@ static void register_url_class(script::Namespace ns)
   binding::Class<QUrl> binder{ url };
 
   // QUrl();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QUrl(const QUrl &);
   binder.ctors().ctor<const QUrl &>().create();
   // QUrl & operator=(const QUrl &);

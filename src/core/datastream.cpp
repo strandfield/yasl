@@ -99,7 +99,7 @@ static void register_data_stream_class(script::Namespace ns)
   binding::Class<QDataStream> binder{ data_stream };
 
   // QDataStream();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QDataStream(QIODevice *);
   /// TODO: QDataStream(QIODevice *);
   // QDataStream(QByteArray *, QIODevice::OpenMode);

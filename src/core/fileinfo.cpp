@@ -25,7 +25,7 @@ static void register_file_info_class(script::Namespace ns)
   // QFileInfo(QFileInfoPrivate *);
   /// TODO: QFileInfo(QFileInfoPrivate *);
   // QFileInfo();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QFileInfo(const QString &);
   binder.ctors().ctor<const QString &>().create();
   // QFileInfo(const QFile &);

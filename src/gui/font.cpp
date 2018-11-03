@@ -192,7 +192,7 @@ static void register_font_class(script::Namespace ns)
   binding::Class<QFont> binder{ font };
 
   // QFont();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QFont(const QString &, int, int, bool);
   binder.ctors().ctor<const QString &, int, int, bool>()
     .apply(binding::default_arguments(false, -1, -1)).create();

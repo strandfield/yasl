@@ -160,9 +160,7 @@ static script::Value ends_with(script::FunctionCall *c)
 }
 
 // iterator erase(iterator pos)
-/// l.add_fun<QList<T>::iterator, QList<T>::iterator, &QList<T>::erase>("erase");
 // iterator erase(iterator begin, iterator end)
-/// l.add_fun<QList<T>::iterator, QList<T>::iterator, QList<T>::iterator, &QList<T>::erase>("erase");
 
 // T & first()
 // const T & first() const
@@ -196,7 +194,6 @@ static script::Value insert(script::FunctionCall *c)
 }
 
 // iterator insert(iterator before, const T &value)
-/// l.add_fun<QList<T>::iterator, QList<T>::iterator, const T &, &QList<T>::insert>("insert");
 
 // T & last()
 // const T & last() const
@@ -594,7 +591,7 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
   list.Method("insert", callbacks::insert)
     .params(Type::Int, Type::cref(element_type)).create();
   // iterator insert(iterator before, const T &value)
-  /// l.add_fun<QList<T>::iterator, QList<T>::iterator, const T &, &QList<T>::insert>("insert");
+  /// l.fun<QList<T>::iterator, QList<T>::iterator, const T &, &QList<T>::insert>("insert").create();
   // bool isEmpty() const
   list.Method("isEmpty", callbacks::empty)
     .setConst()

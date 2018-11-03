@@ -30,7 +30,7 @@ static void register_brush_class(script::Namespace ns)
   binding::Class<QBrush> binder{ brush };
 
   // QBrush();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QBrush(Qt::BrushStyle);
   binder.ctors().ctor<Qt::BrushStyle>().create();
   // QBrush(const QColor &, Qt::BrushStyle);
@@ -161,7 +161,7 @@ static void register_gradient_class(script::Namespace ns)
   binding::Class<QGradient> binder{ gradient };
 
   // QGradient();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QGradient::Type type() const;
   binder.fun<QGradient::Type, &QGradient::type>("type").create();
   // void setSpread(QGradient::Spread);
@@ -199,7 +199,7 @@ static void register_linear_gradient_class(script::Namespace ns)
   binding::Class<QLinearGradient> binder{ linear_gradient };
 
   // QLinearGradient();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QLinearGradient(const QLinearGradient &);
   binder.ctors().ctor<const QLinearGradient &>().create();
   // ~QLinearGradient();
@@ -235,7 +235,7 @@ static void register_radial_gradient_class(script::Namespace ns)
   binding::Class<QRadialGradient> binder{ radial_gradient };
 
   // QRadialGradient();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QRadialGradient(const QRadialGradient &);
   binder.ctors().ctor<const QRadialGradient &>().create();
   // QRadialGradient & operator=(const QRadialGradient &);
@@ -291,7 +291,7 @@ static void register_conical_gradient_class(script::Namespace ns)
   binding::Class<QConicalGradient> binder{ conical_gradient };
 
   // QConicalGradient();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QConicalGradient(const QConicalGradient &);
   binder.ctors().ctor<const QConicalGradient &>().create();
   // QConicalGradient & operator=(const QConicalGradient &);

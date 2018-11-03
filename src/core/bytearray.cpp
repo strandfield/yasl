@@ -45,7 +45,7 @@ static void register_byte_array_class(script::Namespace ns)
   binding::Class<QByteArray> binder{ byte_array };
 
   // QByteArray();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QByteArray(int, char);
   binder.ctors().ctor<int, char>().create();
   // QByteArray(int, Qt::Initialization);

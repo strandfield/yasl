@@ -88,7 +88,7 @@ static void register_font_database_class(script::Namespace ns)
   // static QList<int> standardSizes();
   /// TODO: static QList<int> standardSizes();
   // QFontDatabase();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QList<QFontDatabase::WritingSystem> writingSystems() const;
   /// TODO: QList<QFontDatabase::WritingSystem> writingSystems() const;
   // QList<QFontDatabase::WritingSystem> writingSystems(const QString &) const;

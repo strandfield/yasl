@@ -53,7 +53,7 @@ static void register_icon_class(script::Namespace ns)
   binding::Class<QIcon> binder{ icon };
 
   // QIcon();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QIcon(const QPixmap &);
   binder.ctors().ctor<const QPixmap &>().create();
   // QIcon(const QIcon &);

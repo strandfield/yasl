@@ -45,7 +45,7 @@ static void register_painter_path_class(script::Namespace ns)
   binding::Class<QPainterPath> binder{ painter_path };
 
   // QPainterPath();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPainterPath(const QPointF &);
   binder.ctors().ctor<const QPointF &>().create();
   // QPainterPath(const QPainterPath &);
@@ -219,7 +219,7 @@ static void register_painter_path_stroker_class(script::Namespace ns)
   binding::Class<QPainterPathStroker> binder{ painter_path_stroker };
 
   // QPainterPathStroker();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPainterPathStroker(const QPen &);
   binder.ctors().ctor<const QPen &>().create();
   // ~QPainterPathStroker();

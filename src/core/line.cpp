@@ -24,7 +24,7 @@ static void register_line_class(script::Namespace ns)
   binding::Class<QLine> binder{ line };
 
   // QLine();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QLine(const QLine &);
   binder.ctors().ctor<const QLine &>().create();
   // ~QLine();
@@ -100,7 +100,7 @@ static void register_line_f_class(script::Namespace ns)
   binding::Class<QLineF> binder{ line_f };
 
   // QLineF();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QLineF(const QLineF &);
   binder.ctors().ctor<const QLineF &>().create();
   // ~QLineF();

@@ -25,7 +25,7 @@ static void register_vector4_d_class(script::Namespace ns)
   binding::Class<QVector4D> binder{ vector4_d };
 
   // QVector4D();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QVector4D(const QVector4D &);
   binder.ctors().ctor<const QVector4D &>().create();
   // ~QVector4D();

@@ -21,7 +21,7 @@ static void register_json_object_class(script::Namespace ns)
   binding::Class<QJsonObject> binder{ json_object };
 
   // QJsonObject();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QJsonObject(std::initializer_list<QPair<QString, QJsonValue> >);
   /// TODO: QJsonObject(std::initializer_list<QPair<QString, QJsonValue> >);
   // ~QJsonObject();

@@ -76,7 +76,7 @@ static void register_palette_class(script::Namespace ns)
   binding::Class<QPalette> binder{ palette };
 
   // QPalette();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPalette(const QColor &);
   binder.ctors().ctor<const QColor &>().create();
   // QPalette(Qt::GlobalColor);

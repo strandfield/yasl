@@ -90,7 +90,7 @@ static void register_picture_i_o_class(script::Namespace ns)
   binding::Class<QPictureIO> binder{ picture_i_o };
 
   // QPictureIO();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPictureIO(QIODevice *, const char *);
   /// TODO: QPictureIO(QIODevice *, const char *);
   // QPictureIO(const QString &, const char *);

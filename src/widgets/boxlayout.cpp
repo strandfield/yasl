@@ -110,7 +110,7 @@ static void register_h_box_layout_class(script::Namespace ns)
   binding::QClass<QHBoxLayout> binder{ h_box_layout, &QHBoxLayout::staticMetaObject };
 
   // QHBoxLayout();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QHBoxLayout(QWidget *);
   binder.ctors().ctor<QWidget *>().create();
   // ~QHBoxLayout();
@@ -130,7 +130,7 @@ static void register_v_box_layout_class(script::Namespace ns)
   binding::QClass<QVBoxLayout> binder{ v_box_layout, &QVBoxLayout::staticMetaObject };
 
   // QVBoxLayout();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QVBoxLayout(QWidget *);
   binder.ctors().ctor<QWidget *>().create();
   // ~QVBoxLayout();

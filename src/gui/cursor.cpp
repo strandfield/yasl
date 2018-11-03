@@ -26,7 +26,7 @@ static void register_cursor_class(script::Namespace ns)
   binding::Class<QCursor> binder{ cursor };
 
   // QCursor();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QCursor(Qt::CursorShape);
   binder.ctors().ctor<Qt::CursorShape>().create();
   // QCursor(const QBitmap &, const QBitmap &, int, int);

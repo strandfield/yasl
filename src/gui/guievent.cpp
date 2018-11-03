@@ -233,7 +233,7 @@ static void register_close_event_class(script::Namespace ns)
   binding::Event<QCloseEvent> binder{ close_event };
 
   // QCloseEvent();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // ~QCloseEvent();
   binder.add_dtor();
 }
@@ -249,7 +249,7 @@ static void register_show_event_class(script::Namespace ns)
   binding::Event<QShowEvent> binder{ show_event };
 
   // QShowEvent();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // ~QShowEvent();
   binder.add_dtor();
 }
@@ -265,7 +265,7 @@ static void register_hide_event_class(script::Namespace ns)
   binding::Event<QHideEvent> binder{ hide_event };
 
   // QHideEvent();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // ~QHideEvent();
   binder.add_dtor();
 }

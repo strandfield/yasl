@@ -28,7 +28,7 @@ static void register_grid_layout_class(script::Namespace ns)
   // QGridLayout(QWidget *);
   binder.ctors().ctor<QWidget *>().create();
   // QGridLayout();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // ~QGridLayout();
   binder.add_dtor();
   // void setHorizontalSpacing(int);

@@ -39,7 +39,7 @@ static void register_region_class(script::Namespace ns)
   binding::Class<QRegion> binder{ region };
 
   // QRegion();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QRegion(int, int, int, int, QRegion::RegionType);
   binder.ctors().ctor<int, int, int, int, QRegion::RegionType>()
     .apply(binding::default_arguments(QRegion::Rectangle)).create();

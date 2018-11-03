@@ -39,7 +39,7 @@ static void register_glyph_run_class(script::Namespace ns)
   binding::Class<QGlyphRun> binder{ glyph_run };
 
   // QGlyphRun();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QGlyphRun(const QGlyphRun &);
   binder.ctors().ctor<const QGlyphRun &>().create();
   // QGlyphRun & operator=(QGlyphRun &&);

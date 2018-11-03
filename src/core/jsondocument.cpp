@@ -52,7 +52,7 @@ static void register_json_document_class(script::Namespace ns)
   binding::Class<QJsonDocument> binder{ json_document };
 
   // QJsonDocument();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QJsonDocument(const QJsonObject &);
   binder.ctors().ctor<const QJsonObject &>().create();
   // QJsonDocument(const QJsonArray &);

@@ -70,7 +70,7 @@ static void register_text_option_class(script::Namespace ns)
   binding::Class<QTextOption> binder{ text_option };
 
   // QTextOption();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QTextOption(Qt::Alignment);
   binder.ctors().ctor<Qt::Alignment>().create();
   // ~QTextOption();

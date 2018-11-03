@@ -21,7 +21,7 @@ static void register_margins_class(script::Namespace ns)
   binding::Class<QMargins> binder{ margins };
 
   // QMargins();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QMargins(const QMargins &);
   binder.ctors().ctor<const QMargins &>().create();
   // ~QMargins();
@@ -74,7 +74,7 @@ static void register_margins_f_class(script::Namespace ns)
   binding::Class<QMarginsF> binder{ margins_f };
 
   // QMarginsF();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QMargins(const QMargins &);
   binder.ctors().ctor<const QMargins &>().create();
   // ~QMarginsF();

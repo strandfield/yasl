@@ -22,7 +22,7 @@ static void register_size_class(script::Namespace ns)
   binding::Class<QSize> binder{ size };
 
   // QSize();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QSize(const QSize &);
   binder.ctors().ctor<const QSize &>().create();
   // ~QSize();
@@ -83,7 +83,7 @@ static void register_size_f_class(script::Namespace ns)
   binding::Class<QSizeF> binder{ size_f };
 
   // QSizeF();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QSizeF(const QSizeF &);
   binder.ctors().ctor<const QSizeF &>().create();
   // QSizeF(const QSize &);

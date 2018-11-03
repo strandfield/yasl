@@ -111,7 +111,7 @@ static void register_variant_class(script::Namespace ns)
   binding::Class<QVariant> binder{ variant };
 
   // QVariant();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // ~QVariant();
   binder.add_dtor();
   // QVariant(QVariant::Type);

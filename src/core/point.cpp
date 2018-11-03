@@ -21,7 +21,7 @@ static void register_point_class(script::Namespace ns)
   binding::Class<QPoint> binder{ point };
 
   // QPoint();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPoint(int, int);
   binder.ctors().ctor<int, int>().create();
   // ~QPoint();
@@ -68,7 +68,7 @@ static void register_point_f_class(script::Namespace ns)
   binding::Class<QPointF> binder{ point_f };
 
   // QPointF();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPointF(const QPoint &);
   binder.ctors().ctor<const QPoint &>().create();
   // QPointF(qreal, qreal);

@@ -81,7 +81,7 @@ static void register_image_class(script::Namespace ns)
   binding::Class<QImage> binder{ image };
 
   // QImage();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QImage(const QSize &, QImage::Format);
   binder.ctors().ctor<const QSize &, QImage::Format>().create();
   // QImage(int, int, QImage::Format);

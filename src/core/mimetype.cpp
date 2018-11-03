@@ -20,7 +20,7 @@ static void register_mime_type_class(script::Namespace ns)
   binding::Class<QMimeType> binder{ mime_type };
 
   // QMimeType();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QMimeType(const QMimeType &);
   binder.ctors().ctor<const QMimeType &>().create();
   // QMimeType & operator=(const QMimeType &);

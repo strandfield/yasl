@@ -296,7 +296,7 @@ static void register_deferred_delete_event_class(script::Namespace ns)
   binding::Event<QDeferredDeleteEvent> binder{ deferred_delete_event };
 
   // QDeferredDeleteEvent();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // ~QDeferredDeleteEvent();
   binder.add_dtor();
   // int loopLevel() const;

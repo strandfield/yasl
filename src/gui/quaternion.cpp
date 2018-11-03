@@ -24,7 +24,7 @@ static void register_quaternion_class(script::Namespace ns)
   binding::Class<QQuaternion> binder{ quaternion };
 
   // QQuaternion();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QQuaternion(const QQuaternion &);
   binder.ctors().ctor<const QQuaternion &>().create();
   // ~QQuaternion();

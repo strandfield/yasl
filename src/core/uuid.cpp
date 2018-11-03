@@ -56,7 +56,7 @@ static void register_uuid_class(script::Namespace ns)
   binding::Class<QUuid> binder{ uuid };
 
   // QUuid();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QUuid(const QUuid &);
   binder.ctors().ctor<const QUuid &>().create();
   // ~QUuid();

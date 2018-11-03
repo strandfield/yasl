@@ -130,7 +130,7 @@ static void register_pixel_format_class(script::Namespace ns)
   binding::Class<QPixelFormat> binder{ pixel_format };
 
   // QPixelFormat();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPixelFormat(const QPixelFormat &);
   binder.ctors().ctor<const QPixelFormat &>().create();
   // ~QPixelFormat();

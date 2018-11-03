@@ -21,21 +21,21 @@ script::Class register_qflags_type_impl(script::Class flags)
   binding::Class<QFlags<T>> f{ flags };
 
   // QFlags(const QFlags<T> & other);
-  f.ctors().add<const QFlags<T> &>();
+  f.ctors().ctor<const QFlags<T> &>().create();
   // QFlags(T flags);
-  f.ctors().add<T>();
+  f.ctors().ctor<T>().create();
   // QFlag(Flag flag); // almost equivalent to QFlag(int);
-  f.ctors().add<int>();
+  f.ctors().ctor<int>().create();
   // QFlags(std::initializer_list<T> flags)
   /// TODO !!
   // ~QFlags();
   f.add_dtor();
 
   // QFlags<T> & setFlag(T flag, bool on = true);
-  //f.add_chainable<T, bool, &QFlags<T>::setFlag>("setFlag");
+  //f.chainable<T, bool, &QFlags<T>::setFlag>("setFlag").create();
   YASL_CHAINABLE_METHOD_2(flags, "setFlag", QFlags<T>, setFlag, T, bool).create();
   // bool testFlag(T flag) const;
-  //f.add_fun<bool, T, &QFlags<T>::testFlag>("testFlag");
+  //f.fun<bool, T, &QFlags<T>::testFlag>("testFlag").create();
   YASL_METHOD_1(flags, "testFlag", bool, QFlags<T>, testFlag, T).setConst().create();
 
   // operator QFlags::Int() const

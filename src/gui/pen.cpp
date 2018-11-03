@@ -25,7 +25,7 @@ static void register_pen_class(script::Namespace ns)
   binding::Class<QPen> binder{ pen };
 
   // QPen();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPen(Qt::PenStyle);
   binder.ctors().ctor<Qt::PenStyle>().create();
   // QPen(const QColor &);

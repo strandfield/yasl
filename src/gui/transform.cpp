@@ -48,7 +48,7 @@ static void register_transform_class(script::Namespace ns)
   // QTransform(Qt::Initialization);
   binder.ctors().ctor<Qt::Initialization>().create();
   // QTransform();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QTransform(qreal, qreal, qreal, qreal, qreal, qreal);
   binder.ctors().ctor<qreal, qreal, qreal, qreal, qreal, qreal>().create();
   // QTransform(const QMatrix &);

@@ -218,27 +218,10 @@ public:
   NamespaceOperator operators() const { return NamespaceOperator{ namespace_ }; }
 
   template<typename ReturnType, ReturnType(*fun)()>
-  script::Function add_fun(const std::string & name)
-  {
-    return namespace_.Function(name, function_wrapper_t<decltype(fun), fun>::wrap)
-      .returns(make_type<ReturnType>())
-      .get();
-  }
-
-  template<typename ReturnType, ReturnType(*fun)()>
   script::FunctionBuilder fun(const std::string & name)
   {
     return namespace_.Function(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<ReturnType>());
-  }
-
-  template<typename ReturnType, typename Arg, ReturnType(*fun)(Arg)>
-  script::Function add_fun(const std::string & name)
-  {
-    return namespace_.Function(name, function_wrapper_t<decltype(fun), fun>::wrap)
-      .returns(make_type<ReturnType>())
-      .params(make_type<Arg>())
-      .get();
   }
 
   template<typename ReturnType, typename Arg, ReturnType(*fun)(Arg)>
@@ -247,15 +230,6 @@ public:
     return namespace_.Function(name, function_wrapper_t<decltype(fun), fun>::wrap)
       .returns(make_type<ReturnType>())
       .params(make_type<Arg>());
-  }
-
-  template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2)>
-  script::Function add_fun(const std::string & name)
-  {
-    return namespace_.Function(name, function_wrapper_t<decltype(fun), fun>::wrap)
-      .returns(make_type<ReturnType>())
-      .params(make_type<A1>(), make_type<A2>())
-      .get();
   }
 
   template<typename ReturnType, typename A1, typename A2, ReturnType(*fun)(A1, A2)>
@@ -271,24 +245,9 @@ public:
   ****************************************************************/
 
   template<void(*fun)()>
-  script::Function add_void_fun(const std::string & name)
-  {
-    return namespace_.Function(name, void_function_wrapper_t<decltype(fun), fun>::wrap)
-      .get();
-  }
-
-  template<void(*fun)()>
   script::FunctionBuilder void_fun(const std::string & name)
   {
     return namespace_.Function(name, void_function_wrapper_t<decltype(fun), fun>::wrap);
-  }
-
-  template<typename Arg, void(*fun)(Arg)>
-  script::Function add_void_fun(const std::string & name)
-  {
-    return namespace_.Function(name, void_function_wrapper_t<decltype(fun), fun>::wrap)
-      .params(make_type<Arg>())
-      .get();
   }
 
   template<typename Arg, void(*fun)(Arg)>
@@ -296,14 +255,6 @@ public:
   {
     return namespace_.Function(name, void_function_wrapper_t<decltype(fun), fun>::wrap)
       .params(make_type<Arg>());
-  }
-
-  template<typename A1, typename A2, void(*fun)(A1, A2)>
-  script::Function add_void_fun(const std::string & name)
-  {
-    return namespace_.Function(name, void_function_wrapper_t<decltype(fun), fun>::wrap)
-      .params(make_type<A1>(), make_type<A2>())
-      .get();
   }
 
   template<typename A1, typename A2, void(*fun)(A1, A2)>

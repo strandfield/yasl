@@ -120,7 +120,7 @@ static void register_painter_class(script::Namespace ns)
   binding::Class<QPainter> binder{ painter };
 
   // QPainter();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QPainter(QPaintDevice *);
   /// TODO: QPainter(QPaintDevice *);
   // ~QPainter();

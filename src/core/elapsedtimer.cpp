@@ -37,7 +37,7 @@ static void register_elapsed_timer_class(script::Namespace ns)
   binding::Class<QElapsedTimer> binder{ elapsed_timer };
 
   // QElapsedTimer();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // ~QElapsedTimer();
   binder.add_dtor();
   // static QElapsedTimer::ClockType clockType();

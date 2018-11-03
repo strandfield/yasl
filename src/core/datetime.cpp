@@ -38,7 +38,7 @@ static void register_date_class(script::Namespace ns)
   binding::Class<QDate> binder{ date };
 
   // QDate();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QDate(const QDate &);
   binder.ctors().ctor<const QDate &>().create();
   // ~QDate();
@@ -135,7 +135,7 @@ static void register_time_class(script::Namespace ns)
   binding::Class<QTime> binder{ time };
 
   // QTime();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QTime(const QTime &);
   binder.ctors().ctor<const QTime &>().create();
   // ~QTime();
@@ -219,7 +219,7 @@ static void register_date_time_class(script::Namespace ns)
   binding::Class<QDateTime> binder{ date_time };
 
   // QDateTime();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QDateTime(const QDate &);
   binder.ctors().ctor<const QDate &>().create();
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec);

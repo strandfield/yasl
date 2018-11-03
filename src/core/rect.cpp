@@ -24,7 +24,7 @@ static void register_rect_class(script::Namespace ns)
   binding::Class<QRect> binder{ rect };
 
   // QRect();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QRect(const QRect &);
   binder.ctors().ctor<const QRect &>().create();
   // ~QRect();
@@ -183,7 +183,7 @@ static void register_rect_f_class(script::Namespace ns)
   binding::Class<QRectF> binder{ rect_f };
 
   // QRectF();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QRectF(const QRectF &);
   binder.ctors().ctor<const QRectF &>().create();
   // ~QRectF();

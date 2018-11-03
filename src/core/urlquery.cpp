@@ -23,7 +23,7 @@ static void register_url_query_class(script::Namespace ns)
   binding::Class<QUrlQuery> binder{ url_query };
 
   // QUrlQuery();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QUrlQuery(const QUrl &);
   binder.ctors().ctor<const QUrl &>().create();
   // QUrlQuery(const QString &);

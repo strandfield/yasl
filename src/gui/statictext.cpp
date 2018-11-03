@@ -40,7 +40,7 @@ static void register_static_text_class(script::Namespace ns)
   binding::Class<QStaticText> binder{ static_text };
 
   // QStaticText();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QStaticText(const QString &);
   binder.ctors().ctor<const QString &>().create();
   // QStaticText(const QStaticText &);

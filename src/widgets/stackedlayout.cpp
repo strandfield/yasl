@@ -40,7 +40,7 @@ static void register_stacked_layout_class(script::Namespace ns)
   binding::QClass<QStackedLayout> binder{ stacked_layout, &QStackedLayout::staticMetaObject };
 
   // QStackedLayout();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QStackedLayout(QWidget *);
   binder.ctors().ctor<QWidget *>().create();
   // QStackedLayout(QLayout *);

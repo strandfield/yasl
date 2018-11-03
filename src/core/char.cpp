@@ -381,7 +381,7 @@ static void register_char__class(script::Namespace ns)
   // ~QChar();
   binder.add_dtor();
   // QChar();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QChar(ushort);
   /// TODO: QChar(ushort);
   // QChar(uchar, uchar);

@@ -21,7 +21,7 @@ static void register_json_array_class(script::Namespace ns)
   binding::Class<QJsonArray> binder{ json_array };
 
   // QJsonArray();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QJsonArray(std::initializer_list<QJsonValue>);
   /// TODO: QJsonArray(std::initializer_list<QJsonValue>);
   // ~QJsonArray();

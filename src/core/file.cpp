@@ -24,7 +24,7 @@ static void register_file_class(script::Namespace ns)
   binding::QClass<QFile> binder{ file, &QFile::staticMetaObject };
 
   // QFile();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QFile(const QString &);
   binder.ctors().ctor<const QString &>().create();
   // QFile(QObject *);

@@ -25,7 +25,7 @@ static void register_vector3_d_class(script::Namespace ns)
   binding::Class<QVector3D> binder{ vector3_d };
 
   // QVector3D();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QVector3D(const QVector3D &);
   binder.ctors().ctor<const QVector3D &>().create();
   // ~QVector3D();

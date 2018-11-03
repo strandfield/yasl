@@ -25,7 +25,7 @@ static void register_vector2_d_class(script::Namespace ns)
   binding::Class<QVector2D> binder{ vector2_d };
 
   // QVector2D();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QVector2D(Qt::Initialization);
   binder.ctors().ctor<Qt::Initialization>().create();
   // QVector2D(const QVector2D &);

@@ -54,7 +54,7 @@ static void register_time_zone_class(script::Namespace ns)
   binding::Class<QTimeZone> binder{ time_zone };
 
   // QTimeZone();
-  binder.ctors().add_default();
+  binder.ctors().default_ctor().create();
   // QTimeZone(const QByteArray &);
   binder.ctors().ctor<const QByteArray &>().create();
   // QTimeZone(int);
