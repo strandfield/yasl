@@ -7,12 +7,12 @@
 
 #include "yasl/binding/types.h"
 #include "yasl/core/qobject-binding.h"
-#include "yasl/utils/ptr.h"
+#include "yasl/utils/proxy.h"
 
 #include <QAction>
 
 namespace binding {
-template<> struct make_type_t<Ptr<QAction*>> { inline static script::Type get() { return script::Type::PtrQAction; } };
+template<> struct make_type_t<Proxy<QAction*>> { inline static script::Type get() { return script::Type::ProxyQAction; } };
 template<> struct make_type_t<QAction> { inline static script::Type get() { return script::Type::QAction; } };
 template<> struct tag_resolver<QAction> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QAction*> { inline static script::Type get() { return script::Type::QActionStar; } };

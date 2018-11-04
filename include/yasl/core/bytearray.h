@@ -6,12 +6,12 @@
 #define YASL_CORE_BYTEARRAY_H
 
 #include "yasl/binding/types.h"
-#include "yasl/utils/ptr.h"
+#include "yasl/utils/proxy.h"
 
 #include <QByteArray>
 
 namespace binding {
-template<> struct make_type_t<Ptr<QByteArray>> { inline static script::Type get() { return script::Type::PtrQByteArray; } };
+template<> struct make_type_t<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
 template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
 template<> struct make_type_t<QByteArray::Base64Option> { inline static script::Type get() { return script::Type::QByteArrayBase64Option; } };
 template<> struct make_type_t<QByteArray::Base64Options> { inline static script::Type get() { return script::Type::QByteArrayBase64Options; } };

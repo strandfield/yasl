@@ -11,7 +11,7 @@
 #include "yasl/binding/default_arguments.h"
 #include "yasl/binding/namespace.h"
 
-#include "yasl/utils/ptr.h"
+#include "yasl/utils/proxy.h"
 
 #include <script/namespace.h>
 #include <script/userdata.h>
@@ -87,7 +87,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   binder.fun<const T &, int, &QVector<T>::at>("at").create();
   // QVector::reference back();
   vector.Method("back", callbacks::vector::back<T>)
-    .returns(binding::make_type<Ptr<T>>())
+    .returns(binding::make_type<Proxy<T>>())
     .create();
   // QVector::const_reference back() const;
   binder.fun<const T &, &QVector<T>::back>("back").create();
@@ -129,13 +129,13 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
     .apply(binding::default_arguments(-1)).create();
   // T & first();
   vector.Method("first", callbacks::vector::first<T>)
-    .returns(binding::make_type<Ptr<T>>())
+    .returns(binding::make_type<Proxy<T>>())
     .create();
   // const T & first() const;
   binder.fun<const T &, &QVector<T>::first>("first");
   // T & front();
   vector.Method("front", callbacks::vector::first<T>)
-    .returns(binding::make_type<Ptr<T>>())
+    .returns(binding::make_type<Proxy<T>>())
     .create();
   // QVector::const_reference front() const;
   binder.fun<const T &, &QVector<T>::front>("front").create();
@@ -154,7 +154,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   binder.fun<bool, &QVector<T>::isEmpty>("isEmpty").create();
   // T & last();
   vector.Method("last", callbacks::vector::back<T>)
-    .returns(binding::make_type<Ptr<T>>())
+    .returns(binding::make_type<Proxy<T>>())
     .create();
   // const T & last() const;
   binder.fun<const T &, &QVector<T>::back>("last").create();
@@ -247,7 +247,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   binder.operators().eq<const QVector<T> &>();
   // T & operator[](int i);
   vector.Operation(SubscriptOperator, callbacks::vector::subscript<T>)
-    .returns(binding::make_type<Ptr<T>>())
+    .returns(binding::make_type<Proxy<T>>())
     .params(Type::cref(Type::Int))
     .create();
   // const T & operator[](int i) const

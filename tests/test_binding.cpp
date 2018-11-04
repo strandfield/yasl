@@ -167,7 +167,7 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_TRUE(rx.isMemberFunction());
   ASSERT_EQ(rx.memberOf(), pt);
   ASSERT_EQ(rx.name(), "rx");
-  ASSERT_EQ(rx.returnType(), Type::Ptrint);
+  ASSERT_EQ(rx.returnType(), Type::Proxyint);
   ASSERT_EQ(rx.prototype().size(), 1);
   ASSERT_FALSE(rx.isConst());
 

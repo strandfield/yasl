@@ -72,7 +72,7 @@ static void register_action_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(action.engine(), script::Type::QAction, script::Type::QActionStar);
-  register_ptr_specialization<QAction*>(action.engine()->getTemplate(Engine::PtrTemplate), script::Type::PtrQAction);
+  register_proxy_specialization<QAction*>(action.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQAction);
   register_list_specialization<QAction*>(action.engine(), script::Type::QListQAction);
   register_action_menu_role_enum(action);
   register_action_priority_enum(action);

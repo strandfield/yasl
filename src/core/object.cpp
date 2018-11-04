@@ -24,7 +24,7 @@ static void register_object_class(script::Namespace ns)
   Class object = ns.Class("Object").setId(script::Type::QObject).get();
 
   register_ref_specialization(object.engine(), script::Type::QObject, script::Type::QObjectStar);
-  register_ptr_specialization<QObject*>(object.engine()->getTemplate(Engine::PtrTemplate), script::Type::PtrQObject);
+  register_proxy_specialization<QObject*>(object.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQObject);
   register_list_specialization<QObject*>(object.engine(), script::Type::QListQObject);
   binding::ClassBinder<QObject> binder{ object, &QObject::staticMetaObject };
 

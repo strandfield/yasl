@@ -2,7 +2,7 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/utils/ptr.h"
+#include "yasl/utils/proxy.h"
 
 #include "yasl/application.h"
 
@@ -19,7 +19,7 @@
 namespace callbacks
 {
 
-namespace ptr
+namespace proxy
 {
 
 script::Value copy_ctor(script::FunctionCall *c)
@@ -35,19 +35,19 @@ script::Value dtor(script::FunctionCall *c)
   return c->thisObject();
 }
 
-} // namespace ptr
+} // namespace proxy
 
 } // namespace callbacks
 
 
 
-script::Class ptr_template_instantiate(script::ClassTemplateInstanceBuilder &)
+script::Class proxy_template_instantiate(script::ClassTemplateInstanceBuilder &)
 {
-  throw script::TemplateInstantiationError{ "Ptr template cannot be instantiated" };
+  throw script::TemplateInstantiationError{ "Proxy template cannot be instantiated" };
 }
 
 
-void register_ptr_template(script::Namespace ns)
+void register_proxy_template(script::Namespace ns)
 {
   using namespace script;
 
@@ -55,18 +55,18 @@ void register_ptr_template(script::Namespace ns)
     TemplateParameter{TemplateParameter::TypeParameter{}, "T"}
   };
 
-  ClassTemplate ptr = Symbol{ ns }.ClassTemplate("Ptr")
+  ClassTemplate proxy = Symbol{ ns }.ClassTemplate("Proxy")
     .setParams(std::move(params))
     .setScope(Scope{ ns })
-    .setCallback(ptr_template_instantiate)
+    .setCallback(proxy_template_instantiate)
     .get();
 
-  register_ptr_specialization<bool>(ptr, Type::Ptrbool);
-  register_ptr_specialization<char>(ptr, Type::Ptrchar);
-  register_ptr_specialization<int>(ptr, Type::Ptrint);
-  register_ptr_specialization<float>(ptr, Type::Ptrfloat);
-  register_ptr_specialization<double>(ptr, Type::Ptrdouble);
+  register_proxy_specialization<bool>(proxy, Type::Proxybool);
+  register_proxy_specialization<char>(proxy, Type::Proxychar);
+  register_proxy_specialization<int>(proxy, Type::Proxyint);
+  register_proxy_specialization<float>(proxy, Type::Proxyfloat);
+  register_proxy_specialization<double>(proxy, Type::Proxydouble);
   
-  ns.engine()->implementation()->ptr_template_ = ptr;
+  ns.engine()->implementation()->proxy_template_ = proxy;
 }
 

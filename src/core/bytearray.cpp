@@ -39,7 +39,7 @@ static void register_byte_array_class(script::Namespace ns)
 
   Class byte_array = ns.Class("ByteArray").setId(script::Type::QByteArray).get();
 
-  register_ptr_specialization<QByteArray>(byte_array.engine()->getTemplate(Engine::PtrTemplate), script::Type::PtrQByteArray);
+  register_proxy_specialization<QByteArray>(byte_array.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQByteArray);
   register_list_specialization<QByteArray>(byte_array.engine(), script::Type::QListQByteArray);
   register_byte_array_base64_option_enum(byte_array);
   binding::ClassBinder<QByteArray> binder{ byte_array };

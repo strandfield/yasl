@@ -40096,14 +40096,14 @@
             {
                 "header": "yasl/core/bytearray.h",
                 "id": "QByteArray",
-                "links": "ptr@Ptr<QByteArray>;list@QList<QByteArray>",
+                "links": "proxy@Proxy<QByteArray>;list@QList<QByteArray>",
                 "name": "QByteArray",
                 "rename": "ByteArray"
             },
             {
                 "header": "yasl/core/bytearray.h",
-                "id": "PtrQByteArray",
-                "name": "Ptr<QByteArray>"
+                "id": "ProxyQByteArray",
+                "name": "Proxy<QByteArray>"
             },
             {
                 "header": "yasl/core/bytearray.h",
@@ -40258,14 +40258,14 @@
             {
                 "header": "yasl/core/locale.h",
                 "id": "QLocale",
-                "links": "ptr@Ptr<QLocale>;list@QList<QLocale>",
+                "links": "proxy@Proxy<QLocale>;list@QList<QLocale>",
                 "name": "QLocale",
                 "rename": "Locale"
             },
             {
                 "header": "yasl/core/locale.h",
-                "id": "PtrQLocale",
-                "name": "Ptr<QLocale>"
+                "id": "ProxyQLocale",
+                "name": "Proxy<QLocale>"
             },
             {
                 "header": "yasl/core/locale.h",
@@ -40317,7 +40317,7 @@
             {
                 "header": "yasl/core/object.h",
                 "id": "QObject",
-                "links": "ref@QObject*;ptr@Ptr<QObject*>;list@QList<QObject*>",
+                "links": "ref@QObject*;proxy@Proxy<QObject*>;list@QList<QObject*>",
                 "name": "QObject",
                 "rename": "Object",
                 "tag": "qobject_tag"
@@ -40329,8 +40329,8 @@
             },
             {
                 "header": "yasl/core/object.h",
-                "id": "PtrQObject",
-                "name": "Ptr<QObject*>"
+                "id": "ProxyQObject",
+                "name": "Proxy<QObject*>"
             },
             {
                 "header": "yasl/core/object.h",
@@ -40827,7 +40827,7 @@
             {
                 "header": "yasl/widgets/widget.h",
                 "id": "QWidget",
-                "links": "ref@QWidget*;ptr@Ptr<QWidget*>;list@QList<QWidget*>",
+                "links": "ref@QWidget*;proxy@Proxy<QWidget*>;list@QList<QWidget*>",
                 "name": "QWidget",
                 "rename": "Widget",
                 "tag": "qobject_tag"
@@ -40839,8 +40839,8 @@
             },
             {
                 "header": "yasl/widgets/widget.h",
-                "id": "PtrQWidget",
-                "name": "Ptr<QWidget*>"
+                "id": "ProxyQWidget",
+                "name": "Proxy<QWidget*>"
             },
             {
                 "header": "yasl/widgets/widget.h",
@@ -41052,7 +41052,7 @@
             {
                 "header": "yasl/widgets/action.h",
                 "id": "QAction",
-                "links": "ref@QAction*;ptr@Ptr<QAction*>;list@QList<QAction*>",
+                "links": "ref@QAction*;proxy@Proxy<QAction*>;list@QList<QAction*>",
                 "name": "QAction",
                 "rename": "Action",
                 "tag": "qobject_tag"
@@ -41064,8 +41064,8 @@
             },
             {
                 "header": "yasl/widgets/action.h",
-                "id": "PtrQAction",
-                "name": "Ptr<QAction*>"
+                "id": "ProxyQAction",
+                "name": "Proxy<QAction*>"
             },
             {
                 "header": "yasl/widgets/action.h",

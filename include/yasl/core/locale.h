@@ -6,12 +6,12 @@
 #define YASL_CORE_LOCALE_H
 
 #include "yasl/binding/types.h"
-#include "yasl/utils/ptr.h"
+#include "yasl/utils/proxy.h"
 
 #include <QLocale>
 
 namespace binding {
-template<> struct make_type_t<Ptr<QLocale>> { inline static script::Type get() { return script::Type::PtrQLocale; } };
+template<> struct make_type_t<Proxy<QLocale>> { inline static script::Type get() { return script::Type::ProxyQLocale; } };
 template<> struct make_type_t<QList<QLocale>> { inline static script::Type get() { return script::Type::QListQLocale; } };
 template<> struct make_type_t<QLocale> { inline static script::Type get() { return script::Type::QLocale; } };
 template<> struct make_type_t<QLocale::Country> { inline static script::Type get() { return script::Type::QLocaleCountry; } };

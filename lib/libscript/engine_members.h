@@ -5,9 +5,9 @@ struct list_template_t {};
 static const list_template_t ListTemplate;
 ClassTemplate getTemplate(list_template_t) const;
 
-struct ptr_template_t {};
-static const ptr_template_t PtrTemplate;
-ClassTemplate getTemplate(ptr_template_t) const;
+struct proxy_template_t {};
+static const proxy_template_t ProxyTemplate;
+ClassTemplate getTemplate(proxy_template_t) const;
 
 struct ref_template_t {};
 static const ref_template_t RefTemplate;

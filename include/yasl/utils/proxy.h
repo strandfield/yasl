@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_UTILS_PTR_H
-#define YASL_UTILS_PTR_H
+#ifndef YASL_UTILS_PROXY_H
+#define YASL_UTILS_PROXY_H
 
 #include "yasl/binding/values.h"
 
@@ -22,14 +22,14 @@ class Type;
 class Value;
 } // namespace script
 
-void register_ptr_template(script::Namespace ns);
+void register_proxy_template(script::Namespace ns);
 
 template<typename T>
-struct Ptr
+struct Proxy
 {
   T *value;
 
-  Ptr(T *val) : value(val) { }
+  Proxy(T *val) : value(val) { }
 
 
   T & get() { return *value; }
@@ -42,7 +42,7 @@ struct Ptr
 namespace callbacks
 {
 
-namespace ptr
+namespace proxy
 {
 
 script::Value copy_ctor(script::FunctionCall *c);
@@ -63,13 +63,13 @@ script::Value assign(script::FunctionCall *c)
   return script::Value::Void;
 }
 
-} // namespace ptr
+} // namespace proxy
 
 } // namespace callbacks
 
 
 template<typename T>
-void register_ptr_specialization(script::ClassTemplate ptr_template, script::Type::BuiltInType type_id)
+void register_proxy_specialization(script::ClassTemplate proxy_template, script::Type::BuiltInType type_id)
 {
   using namespace script;
 
@@ -79,33 +79,33 @@ void register_ptr_specialization(script::ClassTemplate ptr_template, script::Typ
     TemplateArgument{ element_type },
   };
 
-  Class ptr_type = ptr_template.Specialization(std::move(targs))
+  Class proxy_type = proxy_template.Specialization(std::move(targs))
     .setId(type_id)
     .setFinal()
     .get();
 
-  // Ptr(const Ptr<T> & other);
-  ptr_type.Constructor(callbacks::ptr::copy_ctor).params(Type::cref(ptr_type.id())).create();
-  // ~Ptr();
-  ptr_type.Destructor(callbacks::ptr::dtor).create();
+  // Proxy(const Proxy<T> & other);
+  proxy_type.Constructor(callbacks::proxy::copy_ctor).params(Type::cref(proxy_type.id())).create();
+  // ~Proxy();
+  proxy_type.Destructor(callbacks::proxy::dtor).create();
 
   // void operator=(const T & value);
-  ptr_type.Operation(AssignmentOperator, callbacks::ptr::assign<T>)
+  proxy_type.Operation(AssignmentOperator, callbacks::proxy::assign<T>)
     .params(Type::cref(element_type)).create();
 
   // operator T() const;
-  ptr_type.Conversion(element_type, callbacks::ptr::get<T>).setConst().create();
+  proxy_type.Conversion(element_type, callbacks::proxy::get<T>).setConst().create();
 }
 
 
 namespace binding
 {
-template<> struct make_type_t<Ptr<bool>> { inline static script::Type get() { return script::Type::Ptrbool; } };
-template<> struct make_type_t<Ptr<char>> { inline static script::Type get() { return script::Type::Ptrchar; } };
-template<> struct make_type_t<Ptr<int>> { inline static script::Type get() { return script::Type::Ptrint; } };
-template<> struct make_type_t<Ptr<float>> { inline static script::Type get() { return script::Type::Ptrfloat; } };
-template<> struct make_type_t<Ptr<double>> { inline static script::Type get() { return script::Type::Ptrdouble; } };
+template<> struct make_type_t<Proxy<bool>> { inline static script::Type get() { return script::Type::Proxybool; } };
+template<> struct make_type_t<Proxy<char>> { inline static script::Type get() { return script::Type::Proxychar; } };
+template<> struct make_type_t<Proxy<int>> { inline static script::Type get() { return script::Type::Proxyint; } };
+template<> struct make_type_t<Proxy<float>> { inline static script::Type get() { return script::Type::Proxyfloat; } };
+template<> struct make_type_t<Proxy<double>> { inline static script::Type get() { return script::Type::Proxydouble; } };
 
 } // namespace binding
 
-#endif // YASL_UTILS_PTR_H
+#endif // YASL_UTILS_PROXY_H

@@ -698,16 +698,16 @@ void Generator::generate(ClassRef cla)
       out += format.arg(snake, class_info.id, ref_info.id);
       recordGeneratedClass(ref_info.name);
     }
-    else if (l.first == "ptr")
+    else if (l.first == "proxy")
     {
-      Type ptr_info = typeinfo(l.second);
-      currentHeader().bindingIncludes.insert("yasl/utils/ptr.h");
-      const QString format = "  register_ptr_specialization<%1>(%2.engine()->getTemplate(Engine::PtrTemplate), script::Type::%3);" + endl;
-      QString ptrelem = ptr_info.name;
-      ptrelem.chop(QString(">").length());
-      ptrelem.remove(0, QString("Ptr<").length());
-      out += format.arg(ptrelem, snake, ptr_info.id);
-      recordGeneratedClass(ptr_info.name);
+      Type proxy_info = typeinfo(l.second);
+      currentHeader().bindingIncludes.insert("yasl/utils/proxy.h");
+      const QString format = "  register_proxy_specialization<%1>(%2.engine()->getTemplate(Engine::ProxyTemplate), script::Type::%3);" + endl;
+      QString proxyelem = proxy_info.name;
+      proxyelem.chop(QString(">").length());
+      proxyelem.remove(0, proxyelem.indexOf('<') + 1);
+      out += format.arg(proxyelem, snake, proxy_info.id);
+      recordGeneratedClass(proxy_info.name);
     }
     else if (l.first == "list")
     {

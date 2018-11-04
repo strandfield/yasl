@@ -57,7 +57,7 @@ static void register_widget_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(widget.engine(), script::Type::QWidget, script::Type::QWidgetStar);
-  register_ptr_specialization<QWidget*>(widget.engine()->getTemplate(Engine::PtrTemplate), script::Type::PtrQWidget);
+  register_proxy_specialization<QWidget*>(widget.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQWidget);
   register_list_specialization<QWidget*>(widget.engine(), script::Type::QListQWidget);
   register_widget_render_flag_enum(widget);
   binding::ClassBinder<QWidget> binder{ widget, &QWidget::staticMetaObject };

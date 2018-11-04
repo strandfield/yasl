@@ -1,7 +1,7 @@
 
 public:
   ClassTemplate list_template_;
-  ClassTemplate ptr_template_;
+  ClassTemplate proxy_template_;
   ClassTemplate ref_template_;
   ClassTemplate vector_template_;
 

@@ -6,14 +6,14 @@
 #define YASL_CORE_STRING_H
 
 #include "yasl/binding/types.h"
-#include "yasl/utils/ptr.h"
+#include "yasl/utils/proxy.h"
 
 #include <QStringList>
 
 namespace binding
 {
 
-template<> struct make_type_t<Ptr<QString>> { inline static script::Type get() { return script::Type::PtrQString; } };
+template<> struct make_type_t<Proxy<QString>> { inline static script::Type get() { return script::Type::ProxyQString; } };
 template<> struct make_type_t<QList<QString>> { inline static script::Type get() { return script::Type::QListQString; } };
 template<> struct make_type_t<QStringList> { inline static script::Type get() { return script::Type::QStringList; } };
 

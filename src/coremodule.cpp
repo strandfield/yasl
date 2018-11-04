@@ -42,7 +42,7 @@ void register_mimetype_file(script::Namespace n); // defined in mimetype.cpp
 void register_datastream_file(script::Namespace n); // defined in datastream.cpp
 
 // Start of non-generated code
-void register_ptr_template(script::Namespace n); // defined in ptr.cpp
+void register_proxy_template(script::Namespace n); // defined in proxy.cpp
 void register_vector_template(script::Namespace n); // defined in vector.cpp
 void register_qlist_template(script::Namespace n); // defined in list.cpp
 void register_newobject_file(script::Namespace n); // defined in newobject.cpp
@@ -53,7 +53,7 @@ void register_stringlist_class(script::Namespace n); // defined in string.cpp
 void load_core_module(script::Module core)
 {
   // Start of non-generated code
-  register_ptr_template(core.root());
+  register_proxy_template(core.root());
   register_qlist_template(core.root());
   register_vector_template(core.root());
   register_stringlist_class(core.root());

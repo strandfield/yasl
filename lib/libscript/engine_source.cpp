@@ -22,11 +22,11 @@ ClassTemplate Engine::getTemplate(list_template_t) const
 }
 
 
-const Engine::ptr_template_t Engine::PtrTemplate = Engine::ptr_template_t{};
+const Engine::proxy_template_t Engine::ProxyTemplate = Engine::proxy_template_t{};
 
-ClassTemplate Engine::getTemplate(ptr_template_t) const
+ClassTemplate Engine::getTemplate(proxy_template_t) const
 {
-  return d->ptr_template_;
+  return d->proxy_template_;
 }
 
 

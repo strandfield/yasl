@@ -932,7 +932,7 @@ static void register_locale_class(script::Namespace ns)
 
   Class locale = ns.Class("Locale").setId(script::Type::QLocale).get();
 
-  register_ptr_specialization<QLocale>(locale.engine()->getTemplate(Engine::PtrTemplate), script::Type::PtrQLocale);
+  register_proxy_specialization<QLocale>(locale.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQLocale);
   register_list_specialization<QLocale>(locale.engine(), script::Type::QListQLocale);
   register_locale_language_enum(locale);
   register_locale_script_enum(locale);

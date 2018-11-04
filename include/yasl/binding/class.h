@@ -378,7 +378,7 @@ public:
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>());
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>());
   }
 
   template<typename ReturnType, ReturnType(T::*fun)()>
@@ -387,7 +387,7 @@ public:
     static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>());
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>());
   }
 
   template<typename ReturnType, ReturnType(*fun)(T&)>
@@ -472,7 +472,7 @@ public:
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>());
   }
 
@@ -482,7 +482,7 @@ public:
     static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>());
   }
 
@@ -563,7 +563,7 @@ public:
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>());
   }
 
@@ -573,7 +573,7 @@ public:
     static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>());
   }
 
@@ -654,7 +654,7 @@ public:
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
@@ -664,7 +664,7 @@ public:
     static_assert(std::is_reference<ReturnType>::value, "Return type must be a reference");
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
@@ -728,7 +728,7 @@ public:
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
   }
 
@@ -739,7 +739,7 @@ public:
 
     return class_.Method(name, ref_member_wrapper_t<decltype(fun), fun>::wrap)
       .setConst()
-      .returns(make_type<Ptr<std::remove_reference<ReturnType>::type>>())
+      .returns(make_type<Proxy<std::remove_reference<ReturnType>::type>>())
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
   }
 
