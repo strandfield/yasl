@@ -91,10 +91,6 @@ static CXChildVisitResult class_visitor(CXCursor cursor, CXCursor parent, CXClie
     auto type = clang_getCursorType(cursor);
     func->returnType = convert(clang_getTypeSpelling(clang_getResultType(type)));
 
-    CXCallingConv calling_convention = clang_getFunctionTypeCallingConv(type);
-    if (calling_convention == CXCallingConv_X86FastCall)
-      func->bindingMethod = Function::MacroBinding;
-
     const int num_args = clang_Cursor_getNumArguments(cursor);
     for (int i = 0; i < num_args; ++i)
     {

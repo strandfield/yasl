@@ -13,7 +13,6 @@ public:
   enum BindingMethod{
     FirstBindingMethod = 0,
     AutoBinding = FirstBindingMethod,
-    MacroBinding,
     SignalBinding,
     ChainableBinding,
     ReferenceBinding,
@@ -61,8 +60,6 @@ public:
     {
     case Function::AutoBinding:
       break;
-    case Function::MacroBinding:
-      return "macros";
     case Function::SignalBinding:
       return "signals";
     case Function::ChainableBinding:
@@ -104,9 +101,7 @@ public:
   template<>
   static BindingMethod deserialize<BindingMethod>(const QString & str)
   {
-    if (str == "macros")
-      return MacroBinding;
-    else if (str == "signals")
+    if (str == "signals")
       return SignalBinding;
     else if (str == "chainable")
       return ChainableBinding;

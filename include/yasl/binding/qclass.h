@@ -8,7 +8,6 @@
 #include "yasl/binding/class.h"
 #include "yasl/binding/qclass_constructor_wrapper.h"
 #include "yasl/binding/qclass_destructor_wrapper.h"
-#include "yasl/binding/qclass_member_wrapper.h"
 #include "yasl/binding/qsignal.h"
 
 #include <script/class.h>

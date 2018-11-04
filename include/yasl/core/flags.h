@@ -6,7 +6,6 @@
 #define YASL_CORE_FLAGS_H
 
 #include "yasl/binding/class.h"
-#include "yasl/binding/macros.h"
 
 #include <script/classbuilder.h>
 #include <script/namespace.h>
@@ -32,11 +31,9 @@ script::Class register_qflags_type_impl(script::Class flags)
   f.dtor().create();
 
   // QFlags<T> & setFlag(T flag, bool on = true);
-  //f.chainable<T, bool, &QFlags<T>::setFlag>("setFlag").create();
-  YASL_CHAINABLE_METHOD_2(flags, "setFlag", QFlags<T>, setFlag, T, bool).create();
+  f.chainable<T, bool, &QFlags<T>::setFlag>("setFlag").create();
   // bool testFlag(T flag) const;
-  //f.fun<bool, T, &QFlags<T>::testFlag>("testFlag").create();
-  YASL_METHOD_1(flags, "testFlag", bool, QFlags<T>, testFlag, T).setConst().create();
+  f.fun<bool, T, &QFlags<T>::testFlag>("testFlag").create();
 
   // operator QFlags::Int() const
   /// TODO !!

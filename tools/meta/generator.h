@@ -104,7 +104,6 @@ private:
   void generate(FileRef file);
   QString generate(FunctionRef fun);
   QString generate(FunctionRef fun, Function::BindingMethod bm);
-  QString generateWithMacros(FunctionRef fun);
   QString generateSignal(FunctionRef fun);
   QString generateOperator(FunctionRef fun, OperatorSymbol op);
   QString generateNewFunction(FunctionRef fn);

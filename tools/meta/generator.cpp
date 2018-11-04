@@ -339,10 +339,6 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
   {
     return generateOperator(fun, getOperatorSymbol(fun->name));
   }
-  else if (fun->bindingMethod == Function::MacroBinding)
-  {
-    return generateWithMacros(fun);
-  }
   else if (fun->bindingMethod == Function::SignalBinding)
   {
     return generateSignal(fun);
@@ -392,56 +388,6 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 
   ret.append(".create();");
   return ret;
-}
-
-QString Generator::generateWithMacros(FunctionRef fun)
-{
-  auto get_format = [&]() -> QString {
-    if (isMember() && !fun->isStatic)
-    {
-      if (fun->returnType == "void")
-        return "YASL_VOID_METHOD___nb_params__(__script_symbol__, \"__name__\", void, __cpp_class__, __func_name____parameters__)";
-      else if (fun->returnType == enclosingName() + " &")
-        return "YASL_CHAINABLE_METHOD___nb_params__(__script_symbol__, \"__name__\", __return_type__, __cpp_class__, __func_name____parameters__)";
-      else
-        return "YASL_METHOD___nb_params__(__script_symbol__, \"__name__\", __return_type__, __cpp_class__, __func_name____parameters__)";
-    }
-    else
-    {
-      if (fun->returnType == "void")
-        return "YASL_VOID_FUN___nb_params__(__script_symbol__, \"__name__\", void, __func_name____parameters__)";
-      else
-        return "YASL_FUNCTION___nb_params__(__script_symbol__, \"__name__\", __return_type__, __func_name____parameters__)";
-    }
-  };
-
-  if (fun->name.startsWith("operator"))
-  {
-    OperatorSymbol sym = getOperatorSymbol(fun->name);
-    if (sym != Invalid)
-    {
-      throw std::runtime_error{ "Argh!" };
-      //out << "  /// TODO !!!" << endl;
-      
-      return "";
-    }
-  }
-
-  QString result = "  " + get_format()
-    .replace("__nb_params__", QString::number(fun->parameters.size()))
-    .replace("__parameters__", fun->parameters.isEmpty() ? "" : ", " + fparams(fun))
-    .replace("__script_symbol__", isMember() ? "binder.class_" : "binder.namespace_")
-    .replace("__name__", fun->rename.isEmpty() ? fun->name : fun->rename)
-    .replace("__return_type__", fun->returnType)
-    .replace("__cpp_class__", enclosingName())
-    .replace("__func_name__", isMember() && !fun->isStatic ? fun->name : nameQualification() + fun->name)
-    .append(fun->isConst ? ".setConst()" : "")
-    .append(fun->isStatic ? ".setStatic()" : "")
-    .append(".create()");
-
-  currentSource().bindingIncludes.insert("yasl/binding/macros.h");
-
-  return result + ";";
 }
 
 QString Generator::generateSignal(FunctionRef fun)
