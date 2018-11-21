@@ -1,5 +1,5 @@
 
-set(YASL_BUILD_GEN_TOOL FALSE CACHE BOOL "Check if you want to build the binding yasl-metaerator")
+set(YASL_BUILD_GEN_TOOL FALSE CACHE BOOL "Check if you want to build the binding yasl-meta")
 
 if(YASL_BUILD_GEN_TOOL)
 
