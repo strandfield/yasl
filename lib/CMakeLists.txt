@@ -6,8 +6,10 @@ file(GLOB_RECURSE LIBSCRIPT_HDR_FILES
 )
 
 add_library(libscript SHARED ${LIBSCRIPT_HDR_FILES} ${LIBSCRIPT_SRC_FILES})
-target_include_directories(libscript PRIVATE "${LIBSCRIPT_PROJECT_DIR}/include")
-target_include_directories(libscript PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+target_include_directories(libscript PUBLIC "${LIBSCRIPT_PROJECT_DIR}/include")
+target_compile_definitions(libscript PUBLIC -DLIBSCRIPT_HAS_CONFIG)
+target_include_directories(libscript PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+target_compile_definitions(libscript PRIVATE -DLIBSCRIPT_COMPILE_LIBRARY)
 target_link_libraries(libscript Qt5::Core)
 target_link_libraries(libscript Qt5::Widgets)
 
@@ -18,9 +20,6 @@ foreach(_source IN ITEMS ${LIBSCRIPT_HDR_FILES} ${LIBSCRIPT_SRC_FILES})
     source_group("${_group_path}" FILES "${_source}")
 endforeach()
 
-target_compile_definitions(libscript PUBLIC -DLIBSCRIPT_HAS_CONFIG)
-target_include_directories(libscript PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
-target_compile_definitions(libscript PRIVATE -DLIBSCRIPT_COMPILE_LIBRARY)
 set_target_properties(libscript PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 set_target_properties(libscript PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 
