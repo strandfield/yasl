@@ -24,7 +24,7 @@ static void register_tool_bar_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class tool_bar = ns.Class("ToolBar").setId(script::Type::QToolBar)
+  Class tool_bar = ns.newClass("ToolBar").setId(script::Type::QToolBar)
     .setBase(script::Type::QWidget).get();
 
   binding::ClassBinder<QToolBar> binder{ tool_bar, &QToolBar::staticMetaObject };

@@ -432,7 +432,7 @@ static void register_connect_template(script::Namespace core)
     TemplateParameter{ TemplateParameter::TypeParameter{}, "SlotType" },
   };
 
-  Symbol{ object }.FunctionTemplate("connect")
+  Symbol{ object }.newFunctionTemplate("connect")
     .setParams(std::move(params))
     .setScope(Scope{ core })
     .deduce(connect_template_deduce).substitute(connect_template_substitute).instantiate(connect_template_instantiate)
@@ -449,7 +449,7 @@ static void register_emit_template(script::Namespace core)
     TemplateParameter{ TemplateParameter::TypeParameter{}, "SignalType" },
   };
 
-  Symbol{ object }.FunctionTemplate("emit")
+  Symbol{ object }.newFunctionTemplate("emit")
     .setParams(std::move(params))
     .setScope(Scope{ core })
     .deduce(emit_template_deduce).substitute(emit_template_substitute).instantiate(emit_template_instantiate)

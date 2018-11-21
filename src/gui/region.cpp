@@ -22,7 +22,7 @@ static void register_region_region_type_enum(script::Class region)
 {
   using namespace script;
 
-  Enum region_type = region.Enum("RegionType").setId(script::Type::QRegionRegionType).get();
+  Enum region_type = region.newEnum("RegionType").setId(script::Type::QRegionRegionType).get();
 
   region_type.addValue("Rectangle", QRegion::Rectangle);
   region_type.addValue("Ellipse", QRegion::Ellipse);
@@ -33,7 +33,7 @@ static void register_region_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class region = ns.Class("Region").setId(script::Type::QRegion).get();
+  Class region = ns.newClass("Region").setId(script::Type::QRegion).get();
 
   register_region_region_type_enum(region);
   binding::ClassBinder<QRegion> binder{ region };

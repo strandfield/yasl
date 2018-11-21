@@ -21,7 +21,7 @@ static void register_date_month_name_type_enum(script::Class date)
 {
   using namespace script;
 
-  Enum month_name_type = date.Enum("MonthNameType").setId(script::Type::QDateMonthNameType).get();
+  Enum month_name_type = date.newEnum("MonthNameType").setId(script::Type::QDateMonthNameType).get();
 
   month_name_type.addValue("DateFormat", QDate::DateFormat);
   month_name_type.addValue("StandaloneFormat", QDate::StandaloneFormat);
@@ -32,7 +32,7 @@ static void register_date_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class date = ns.Class("Date").setId(script::Type::QDate).get();
+  Class date = ns.newClass("Date").setId(script::Type::QDate).get();
 
   register_date_month_name_type_enum(date);
   binding::ClassBinder<QDate> binder{ date };
@@ -130,7 +130,7 @@ static void register_time_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class time = ns.Class("Time").setId(script::Type::QTime).get();
+  Class time = ns.newClass("Time").setId(script::Type::QTime).get();
 
   binding::ClassBinder<QTime> binder{ time };
 
@@ -214,7 +214,7 @@ static void register_date_time_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class date_time = ns.Class("DateTime").setId(script::Type::QDateTime).get();
+  Class date_time = ns.newClass("DateTime").setId(script::Type::QDateTime).get();
 
   binding::ClassBinder<QDateTime> binder{ date_time };
 

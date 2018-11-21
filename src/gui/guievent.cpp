@@ -21,7 +21,7 @@ static void register_mouse_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class mouse_event = ns.Class("MouseEvent").setId(script::Type::QMouseEvent)
+  Class mouse_event = ns.newClass("MouseEvent").setId(script::Type::QMouseEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QMouseEvent> binder{ mouse_event };
@@ -71,7 +71,7 @@ static void register_wheel_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class wheel_event = ns.Class("WheelEvent").setId(script::Type::QWheelEvent)
+  Class wheel_event = ns.newClass("WheelEvent").setId(script::Type::QWheelEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QWheelEvent> binder{ wheel_event };
@@ -129,7 +129,7 @@ static void register_key_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class key_event = ns.Class("KeyEvent").setId(script::Type::QKeyEvent)
+  Class key_event = ns.newClass("KeyEvent").setId(script::Type::QKeyEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QKeyEvent> binder{ key_event };
@@ -165,7 +165,7 @@ static void register_paint_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class paint_event = ns.Class("PaintEvent").setId(script::Type::QPaintEvent)
+  Class paint_event = ns.newClass("PaintEvent").setId(script::Type::QPaintEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QPaintEvent> binder{ paint_event };
@@ -187,7 +187,7 @@ static void register_move_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class move_event = ns.Class("MoveEvent").setId(script::Type::QMoveEvent)
+  Class move_event = ns.newClass("MoveEvent").setId(script::Type::QMoveEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QMoveEvent> binder{ move_event };
@@ -207,7 +207,7 @@ static void register_resize_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class resize_event = ns.Class("ResizeEvent").setId(script::Type::QResizeEvent)
+  Class resize_event = ns.newClass("ResizeEvent").setId(script::Type::QResizeEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QResizeEvent> binder{ resize_event };
@@ -227,7 +227,7 @@ static void register_close_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class close_event = ns.Class("CloseEvent").setId(script::Type::QCloseEvent)
+  Class close_event = ns.newClass("CloseEvent").setId(script::Type::QCloseEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QCloseEvent> binder{ close_event };
@@ -243,7 +243,7 @@ static void register_show_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class show_event = ns.Class("ShowEvent").setId(script::Type::QShowEvent)
+  Class show_event = ns.newClass("ShowEvent").setId(script::Type::QShowEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QShowEvent> binder{ show_event };
@@ -259,7 +259,7 @@ static void register_hide_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class hide_event = ns.Class("HideEvent").setId(script::Type::QHideEvent)
+  Class hide_event = ns.newClass("HideEvent").setId(script::Type::QHideEvent)
     .setBase(script::Type::QEvent).get();
 
   binding::ClassBinder<QHideEvent> binder{ hide_event };

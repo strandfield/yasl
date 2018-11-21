@@ -22,7 +22,7 @@ static void register_icon_mode_enum(script::Class icon)
 {
   using namespace script;
 
-  Enum mode = icon.Enum("Mode").setId(script::Type::QIconMode).get();
+  Enum mode = icon.newEnum("Mode").setId(script::Type::QIconMode).get();
 
   mode.addValue("Normal", QIcon::Normal);
   mode.addValue("Disabled", QIcon::Disabled);
@@ -35,7 +35,7 @@ static void register_icon_state_enum(script::Class icon)
 {
   using namespace script;
 
-  Enum state = icon.Enum("State").setId(script::Type::QIconState).get();
+  Enum state = icon.newEnum("State").setId(script::Type::QIconState).get();
 
   state.addValue("On", QIcon::On);
   state.addValue("Off", QIcon::Off);
@@ -46,7 +46,7 @@ static void register_icon_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class icon = ns.Class("Icon").setId(script::Type::QIcon).get();
+  Class icon = ns.newClass("Icon").setId(script::Type::QIcon).get();
 
   register_icon_mode_enum(icon);
   register_icon_state_enum(icon);

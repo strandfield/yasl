@@ -21,7 +21,7 @@ static void register_object_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class object = ns.Class("Object").setId(script::Type::QObject).get();
+  Class object = ns.newClass("Object").setId(script::Type::QObject).get();
 
   register_ref_specialization(object.engine(), script::Type::QObject, script::Type::QObjectStar);
   register_proxy_specialization<QObject*>(object.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQObject);
@@ -117,7 +117,7 @@ static void register_signal_blocker_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class signal_blocker = ns.Class("SignalBlocker").setId(script::Type::QSignalBlocker).get();
+  Class signal_blocker = ns.newClass("SignalBlocker").setId(script::Type::QSignalBlocker).get();
 
   binding::ClassBinder<QSignalBlocker> binder{ signal_blocker };
 

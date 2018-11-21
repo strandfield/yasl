@@ -24,7 +24,7 @@ static void register_wizard_wizard_button_enum(script::Class wizard)
 {
   using namespace script;
 
-  Enum wizard_button = wizard.Enum("WizardButton").setId(script::Type::QWizardWizardButton).get();
+  Enum wizard_button = wizard.newEnum("WizardButton").setId(script::Type::QWizardWizardButton).get();
 
   wizard_button.addValue("BackButton", QWizard::BackButton);
   wizard_button.addValue("NextButton", QWizard::NextButton);
@@ -46,7 +46,7 @@ static void register_wizard_wizard_pixmap_enum(script::Class wizard)
 {
   using namespace script;
 
-  Enum wizard_pixmap = wizard.Enum("WizardPixmap").setId(script::Type::QWizardWizardPixmap).get();
+  Enum wizard_pixmap = wizard.newEnum("WizardPixmap").setId(script::Type::QWizardWizardPixmap).get();
 
   wizard_pixmap.addValue("WatermarkPixmap", QWizard::WatermarkPixmap);
   wizard_pixmap.addValue("LogoPixmap", QWizard::LogoPixmap);
@@ -60,7 +60,7 @@ static void register_wizard_wizard_style_enum(script::Class wizard)
 {
   using namespace script;
 
-  Enum wizard_style = wizard.Enum("WizardStyle").setId(script::Type::QWizardWizardStyle).get();
+  Enum wizard_style = wizard.newEnum("WizardStyle").setId(script::Type::QWizardWizardStyle).get();
 
   wizard_style.addValue("ClassicStyle", QWizard::ClassicStyle);
   wizard_style.addValue("ModernStyle", QWizard::ModernStyle);
@@ -74,7 +74,7 @@ static void register_wizard_wizard_option_enum(script::Class wizard)
 {
   using namespace script;
 
-  Enum wizard_option = wizard.Enum("WizardOption").setId(script::Type::QWizardWizardOption).get();
+  Enum wizard_option = wizard.newEnum("WizardOption").setId(script::Type::QWizardWizardOption).get();
 
   register_qflags_type<QWizard::WizardOption>(wizard, "WizardOptions", script::Type::QWizardWizardOptions);
   wizard_option.addValue("IndependentPages", QWizard::IndependentPages);
@@ -101,7 +101,7 @@ static void register_wizard_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class wizard = ns.Class("Wizard").setId(script::Type::QWizard)
+  Class wizard = ns.newClass("Wizard").setId(script::Type::QWizard)
     .setBase(script::Type::QDialog).get();
 
   register_wizard_wizard_button_enum(wizard);
@@ -213,7 +213,7 @@ static void register_wizard_page_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class wizard_page = ns.Class("WizardPage").setId(script::Type::QWizardPage)
+  Class wizard_page = ns.newClass("WizardPage").setId(script::Type::QWizardPage)
     .setBase(script::Type::QWidget).get();
 
   binding::ClassBinder<QWizardPage> binder{ wizard_page, &QWizardPage::staticMetaObject };

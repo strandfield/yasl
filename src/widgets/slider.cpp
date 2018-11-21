@@ -21,7 +21,7 @@ static void register_slider_tick_position_enum(script::Class slider)
 {
   using namespace script;
 
-  Enum tick_position = slider.Enum("TickPosition").setId(script::Type::QSliderTickPosition).get();
+  Enum tick_position = slider.newEnum("TickPosition").setId(script::Type::QSliderTickPosition).get();
 
   tick_position.addValue("NoTicks", QSlider::NoTicks);
   tick_position.addValue("TicksAbove", QSlider::TicksAbove);
@@ -36,7 +36,7 @@ static void register_slider_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class slider = ns.Class("Slider").setId(script::Type::QSlider)
+  Class slider = ns.newClass("Slider").setId(script::Type::QSlider)
     .setBase(script::Type::QAbstractSlider).get();
 
   register_slider_tick_position_enum(slider);

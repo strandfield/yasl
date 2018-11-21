@@ -23,7 +23,7 @@ static void register_layout_size_constraint_enum(script::Class layout)
 {
   using namespace script;
 
-  Enum size_constraint = layout.Enum("SizeConstraint").setId(script::Type::QLayoutSizeConstraint).get();
+  Enum size_constraint = layout.newEnum("SizeConstraint").setId(script::Type::QLayoutSizeConstraint).get();
 
   size_constraint.addValue("SetDefaultConstraint", QLayout::SetDefaultConstraint);
   size_constraint.addValue("SetNoConstraint", QLayout::SetNoConstraint);
@@ -38,7 +38,7 @@ static void register_layout_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class layout = ns.Class("Layout").setId(script::Type::QLayout)
+  Class layout = ns.newClass("Layout").setId(script::Type::QLayout)
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(layout.engine(), script::Type::QLayout, script::Type::QLayoutStar);

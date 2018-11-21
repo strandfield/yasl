@@ -127,7 +127,7 @@ TEST(BindingTests, prototypes_member_functions) {
   Engine e;
   e.setup();
 
-  Class pt = e.rootNamespace().Class("Point").setId(binding::make_type<Point>().data()).get();
+  Class pt = e.rootNamespace().newClass("Point").setId(binding::make_type<Point>().data()).get();
   binding::ClassBinder<Point> binder{ pt };
 
   Function ctor = binder.default_ctor().get();
@@ -209,7 +209,7 @@ TEST(BindingTests, value_cast_2) {
   Engine e;
   e.setup();
 
-  Class point_class = e.rootNamespace().Class("Point").setId(binding::make_type<Point>().data()).get();
+  Class point_class = e.rootNamespace().newClass("Point").setId(binding::make_type<Point>().data()).get();
   binding::ClassBinder<Point> binder{ point_class };
 
   binder.default_ctor().create();
@@ -279,7 +279,7 @@ TEST(BindingTests, class_1) {
   Engine e;
   e.setup();
 
-  Class point_class = e.rootNamespace().Class("Point").get();
+  Class point_class = e.rootNamespace().newClass("Point").get();
 
   auto point = binding::ClassBinder<Point>{ point_class };
   point.default_ctor().create();

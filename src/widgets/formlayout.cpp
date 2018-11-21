@@ -21,7 +21,7 @@ static void register_form_layout_field_growth_policy_enum(script::Class form_lay
 {
   using namespace script;
 
-  Enum field_growth_policy = form_layout.Enum("FieldGrowthPolicy").setId(script::Type::QFormLayoutFieldGrowthPolicy).get();
+  Enum field_growth_policy = form_layout.newEnum("FieldGrowthPolicy").setId(script::Type::QFormLayoutFieldGrowthPolicy).get();
 
   field_growth_policy.addValue("FieldsStayAtSizeHint", QFormLayout::FieldsStayAtSizeHint);
   field_growth_policy.addValue("ExpandingFieldsGrow", QFormLayout::ExpandingFieldsGrow);
@@ -33,7 +33,7 @@ static void register_form_layout_row_wrap_policy_enum(script::Class form_layout)
 {
   using namespace script;
 
-  Enum row_wrap_policy = form_layout.Enum("RowWrapPolicy").setId(script::Type::QFormLayoutRowWrapPolicy).get();
+  Enum row_wrap_policy = form_layout.newEnum("RowWrapPolicy").setId(script::Type::QFormLayoutRowWrapPolicy).get();
 
   row_wrap_policy.addValue("DontWrapRows", QFormLayout::DontWrapRows);
   row_wrap_policy.addValue("WrapLongRows", QFormLayout::WrapLongRows);
@@ -45,7 +45,7 @@ static void register_form_layout_item_role_enum(script::Class form_layout)
 {
   using namespace script;
 
-  Enum item_role = form_layout.Enum("ItemRole").setId(script::Type::QFormLayoutItemRole).get();
+  Enum item_role = form_layout.newEnum("ItemRole").setId(script::Type::QFormLayoutItemRole).get();
 
   item_role.addValue("LabelRole", QFormLayout::LabelRole);
   item_role.addValue("FieldRole", QFormLayout::FieldRole);
@@ -57,7 +57,7 @@ static void register_form_layout_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class form_layout = ns.Class("FormLayout").setId(script::Type::QFormLayout)
+  Class form_layout = ns.newClass("FormLayout").setId(script::Type::QFormLayout)
     .setBase(script::Type::QLayout).get();
 
   register_form_layout_field_growth_policy_enum(form_layout);

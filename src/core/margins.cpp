@@ -16,7 +16,7 @@ static void register_margins_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class margins = ns.Class("Margins").setId(script::Type::QMargins).get();
+  Class margins = ns.newClass("Margins").setId(script::Type::QMargins).get();
 
   binding::ClassBinder<QMargins> binder{ margins };
 
@@ -69,7 +69,7 @@ static void register_margins_f_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class margins_f = ns.Class("MarginsF").setId(script::Type::QMarginsF).get();
+  Class margins_f = ns.newClass("MarginsF").setId(script::Type::QMarginsF).get();
 
   binding::ClassBinder<QMarginsF> binder{ margins_f };
 

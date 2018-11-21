@@ -18,7 +18,7 @@ static void register_screen_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class screen = ns.Class("Screen").setId(script::Type::QScreen)
+  Class screen = ns.newClass("Screen").setId(script::Type::QScreen)
     .setBase(script::Type::QObject).get();
 
   binding::ClassBinder<QScreen> binder{ screen, &QScreen::staticMetaObject };

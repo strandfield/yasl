@@ -85,16 +85,16 @@ void register_proxy_specialization(script::ClassTemplate proxy_template, script:
     .get();
 
   // Proxy(const Proxy<T> & other);
-  proxy_type.Constructor(callbacks::proxy::copy_ctor).params(Type::cref(proxy_type.id())).create();
+  proxy_type.newConstructor(callbacks::proxy::copy_ctor).params(Type::cref(proxy_type.id())).create();
   // ~Proxy();
-  proxy_type.Destructor(callbacks::proxy::dtor).create();
+  proxy_type.newDestructor(callbacks::proxy::dtor).create();
 
   // void operator=(const T & value);
-  proxy_type.Operation(AssignmentOperator, callbacks::proxy::assign<T>)
+  proxy_type.newOperator(AssignmentOperator, callbacks::proxy::assign<T>)
     .params(Type::cref(element_type)).create();
 
   // operator T() const;
-  proxy_type.Conversion(element_type, callbacks::proxy::get<T>).setConst().create();
+  proxy_type.newConversion(element_type, callbacks::proxy::get<T>).setConst().create();
 }
 
 

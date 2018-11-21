@@ -25,7 +25,7 @@ static void register_transform_transformation_type_enum(script::Class transform)
 {
   using namespace script;
 
-  Enum transformation_type = transform.Enum("TransformationType").setId(script::Type::QTransformTransformationType).get();
+  Enum transformation_type = transform.newEnum("TransformationType").setId(script::Type::QTransformTransformationType).get();
 
   transformation_type.addValue("TxNone", QTransform::TxNone);
   transformation_type.addValue("TxTranslate", QTransform::TxTranslate);
@@ -40,7 +40,7 @@ static void register_transform_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class transform = ns.Class("Transform").setId(script::Type::QTransform).get();
+  Class transform = ns.newClass("Transform").setId(script::Type::QTransform).get();
 
   register_transform_transformation_type_enum(transform);
   binding::ClassBinder<QTransform> binder{ transform };

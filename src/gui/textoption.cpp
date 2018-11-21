@@ -19,7 +19,7 @@ static void register_text_option_tab_type_enum(script::Class text_option)
 {
   using namespace script;
 
-  Enum tab_type = text_option.Enum("TabType").setId(script::Type::QTextOptionTabType).get();
+  Enum tab_type = text_option.newEnum("TabType").setId(script::Type::QTextOptionTabType).get();
 
   tab_type.addValue("LeftTab", QTextOption::LeftTab);
   tab_type.addValue("RightTab", QTextOption::RightTab);
@@ -32,7 +32,7 @@ static void register_text_option_wrap_mode_enum(script::Class text_option)
 {
   using namespace script;
 
-  Enum wrap_mode = text_option.Enum("WrapMode").setId(script::Type::QTextOptionWrapMode).get();
+  Enum wrap_mode = text_option.newEnum("WrapMode").setId(script::Type::QTextOptionWrapMode).get();
 
   wrap_mode.addValue("NoWrap", QTextOption::NoWrap);
   wrap_mode.addValue("WordWrap", QTextOption::WordWrap);
@@ -46,7 +46,7 @@ static void register_text_option_flag_enum(script::Class text_option)
 {
   using namespace script;
 
-  Enum flag = text_option.Enum("Flag").setId(script::Type::QTextOptionFlag).get();
+  Enum flag = text_option.newEnum("Flag").setId(script::Type::QTextOptionFlag).get();
 
   register_qflags_type<QTextOption::Flag>(text_option, "Flags", script::Type::QTextOptionFlags);
   flag.addValue("ShowTabsAndSpaces", QTextOption::ShowTabsAndSpaces);
@@ -62,7 +62,7 @@ static void register_text_option_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class text_option = ns.Class("TextOption").setId(script::Type::QTextOption).get();
+  Class text_option = ns.newClass("TextOption").setId(script::Type::QTextOption).get();
 
   register_text_option_tab_type_enum(text_option);
   register_text_option_wrap_mode_enum(text_option);

@@ -50,21 +50,21 @@ void register_newpushbutton_file(script::Namespace gui)
 {
   using namespace script;
 
-  gui.Function("newPushButton", callbacks::new_pushbutton)
+  gui.newFunction("newPushButton", callbacks::new_pushbutton)
     .returns(Type::ref(script::Type::QPushButton))
     .create();
 
-  gui.Function("newPushButton", callbacks::new_pushbutton_parent)
+  gui.newFunction("newPushButton", callbacks::new_pushbutton_parent)
     .returns(Type::ref(script::Type::QPushButton))
     .params(binding::make_type<QWidget*>())
     .create();
 
-  gui.Function("newPushButton", callbacks::new_pushbutton_text)
+  gui.newFunction("newPushButton", callbacks::new_pushbutton_text)
     .returns(Type::ref(script::Type::QPushButton))
     .params(binding::make_type<const QString &>())
     .create();
 
-  gui.Function("newPushButton", callbacks::new_pushbutton_text_parent)
+  gui.newFunction("newPushButton", callbacks::new_pushbutton_text_parent)
     .returns(Type::ref(script::Type::QPushButton))
     .params(binding::make_type<const QString &>(), binding::make_type<QWidget*>())
     .create();

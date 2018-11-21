@@ -22,7 +22,7 @@ static void register_url_parsing_mode_enum(script::Class url)
 {
   using namespace script;
 
-  Enum parsing_mode = url.Enum("ParsingMode").setId(script::Type::QUrlParsingMode).get();
+  Enum parsing_mode = url.newEnum("ParsingMode").setId(script::Type::QUrlParsingMode).get();
 
   parsing_mode.addValue("TolerantMode", QUrl::TolerantMode);
   parsing_mode.addValue("StrictMode", QUrl::StrictMode);
@@ -34,7 +34,7 @@ static void register_url_url_formatting_option_enum(script::Class url)
 {
   using namespace script;
 
-  Enum url_formatting_option = url.Enum("UrlFormattingOption").setId(script::Type::QUrlUrlFormattingOption).get();
+  Enum url_formatting_option = url.newEnum("UrlFormattingOption").setId(script::Type::QUrlUrlFormattingOption).get();
 
   url_formatting_option.addValue("None", QUrl::None);
   url_formatting_option.addValue("RemoveScheme", QUrl::RemoveScheme);
@@ -56,7 +56,7 @@ static void register_url_component_formatting_option_enum(script::Class url)
 {
   using namespace script;
 
-  Enum component_formatting_option = url.Enum("ComponentFormattingOption").setId(script::Type::QUrlComponentFormattingOption).get();
+  Enum component_formatting_option = url.newEnum("ComponentFormattingOption").setId(script::Type::QUrlComponentFormattingOption).get();
 
   register_qflags_type<QUrl::ComponentFormattingOption>(url, "ComponentFormattingOptions", script::Type::QUrlComponentFormattingOptions);
   component_formatting_option.addValue("PrettyDecoded", QUrl::PrettyDecoded);
@@ -74,7 +74,7 @@ static void register_url_user_input_resolution_option_enum(script::Class url)
 {
   using namespace script;
 
-  Enum user_input_resolution_option = url.Enum("UserInputResolutionOption").setId(script::Type::QUrlUserInputResolutionOption).get();
+  Enum user_input_resolution_option = url.newEnum("UserInputResolutionOption").setId(script::Type::QUrlUserInputResolutionOption).get();
 
   register_qflags_type<QUrl::UserInputResolutionOption>(url, "UserInputResolutionOptions", script::Type::QUrlUserInputResolutionOptions);
   user_input_resolution_option.addValue("DefaultResolution", QUrl::DefaultResolution);
@@ -86,7 +86,7 @@ static void register_url_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class url = ns.Class("Url").setId(script::Type::QUrl).get();
+  Class url = ns.newClass("Url").setId(script::Type::QUrl).get();
 
   register_url_parsing_mode_enum(url);
   register_url_url_formatting_option_enum(url);

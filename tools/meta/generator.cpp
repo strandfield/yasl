@@ -671,9 +671,9 @@ void Generator::generate(ClassRef cla)
   out += endl;
   out += "  Class " + snake + " = " + enclosing_snake;
   if (enclosing_entity == "Namespace")
-    out += ".Class";
+    out += ".newClass";
   else
-    out += ".NestedClass";
+    out += ".newNestedClass";
   out += "(\"" + claname + "\").setId(script::Type::" + class_info.id + ")";
   if (!cla->base.isEmpty()) 
   {
@@ -802,7 +802,7 @@ void Generator::generate(EnumRef enm)
   out += "{" + endl;
   out += "  using namespace script;" + endl;
   out += endl;
-  out += "  Enum " + snake + " = " + enclosing_snake_name() + ".Enum(\"" + enmname + "\").setId(script::Type::" + enum_info.id + ")";
+  out += "  Enum " + snake + " = " + enclosing_snake_name() + ".newEnum(\"" + enmname + "\").setId(script::Type::" + enum_info.id + ")";
   if (enm->isEnumClass)
     out += endl + "    .setEnumClass()";
   out += ".get();" + endl;

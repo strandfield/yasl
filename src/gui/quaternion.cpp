@@ -19,7 +19,7 @@ static void register_quaternion_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class quaternion = ns.Class("Quaternion").setId(script::Type::QQuaternion).get();
+  Class quaternion = ns.newClass("Quaternion").setId(script::Type::QQuaternion).get();
 
   binding::ClassBinder<QQuaternion> binder{ quaternion };
 

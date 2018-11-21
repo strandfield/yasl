@@ -23,7 +23,7 @@ static void register_static_text_performance_hint_enum(script::Class static_text
 {
   using namespace script;
 
-  Enum performance_hint = static_text.Enum("PerformanceHint").setId(script::Type::QStaticTextPerformanceHint).get();
+  Enum performance_hint = static_text.newEnum("PerformanceHint").setId(script::Type::QStaticTextPerformanceHint).get();
 
   performance_hint.addValue("ModerateCaching", QStaticText::ModerateCaching);
   performance_hint.addValue("AggressiveCaching", QStaticText::AggressiveCaching);
@@ -34,7 +34,7 @@ static void register_static_text_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class static_text = ns.Class("StaticText").setId(script::Type::QStaticText).get();
+  Class static_text = ns.newClass("StaticText").setId(script::Type::QStaticText).get();
 
   register_static_text_performance_hint_enum(static_text);
   binding::ClassBinder<QStaticText> binder{ static_text };

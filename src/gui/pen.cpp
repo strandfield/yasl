@@ -20,7 +20,7 @@ static void register_pen_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class pen = ns.Class("Pen").setId(script::Type::QPen).get();
+  Class pen = ns.newClass("Pen").setId(script::Type::QPen).get();
 
   binding::ClassBinder<QPen> binder{ pen };
 

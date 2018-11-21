@@ -17,7 +17,7 @@ static void register_progress_dialog_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class progress_dialog = ns.Class("ProgressDialog").setId(script::Type::QProgressDialog)
+  Class progress_dialog = ns.newClass("ProgressDialog").setId(script::Type::QProgressDialog)
     .setBase(script::Type::QDialog).get();
 
   binding::ClassBinder<QProgressDialog> binder{ progress_dialog, &QProgressDialog::staticMetaObject };

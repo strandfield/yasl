@@ -19,7 +19,7 @@ static void register_dialog_dialog_code_enum(script::Class dialog)
 {
   using namespace script;
 
-  Enum dialog_code = dialog.Enum("DialogCode").setId(script::Type::QDialogDialogCode).get();
+  Enum dialog_code = dialog.newEnum("DialogCode").setId(script::Type::QDialogDialogCode).get();
 
   dialog_code.addValue("Rejected", QDialog::Rejected);
   dialog_code.addValue("Accepted", QDialog::Accepted);
@@ -30,7 +30,7 @@ static void register_dialog_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class dialog = ns.Class("Dialog").setId(script::Type::QDialog)
+  Class dialog = ns.newClass("Dialog").setId(script::Type::QDialog)
     .setBase(script::Type::QWidget).get();
 
   register_dialog_dialog_code_enum(dialog);

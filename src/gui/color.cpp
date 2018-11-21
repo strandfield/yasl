@@ -20,7 +20,7 @@ static void register_color_spec_enum(script::Class color)
 {
   using namespace script;
 
-  Enum spec = color.Enum("Spec").setId(script::Type::QColorSpec).get();
+  Enum spec = color.newEnum("Spec").setId(script::Type::QColorSpec).get();
 
   spec.addValue("Invalid", QColor::Invalid);
   spec.addValue("Rgb", QColor::Rgb);
@@ -34,7 +34,7 @@ static void register_color_name_format_enum(script::Class color)
 {
   using namespace script;
 
-  Enum name_format = color.Enum("NameFormat").setId(script::Type::QColorNameFormat).get();
+  Enum name_format = color.newEnum("NameFormat").setId(script::Type::QColorNameFormat).get();
 
   name_format.addValue("HexRgb", QColor::HexRgb);
   name_format.addValue("HexArgb", QColor::HexArgb);
@@ -45,7 +45,7 @@ static void register_color_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class color = ns.Class("Color").setId(script::Type::QColor).get();
+  Class color = ns.newClass("Color").setId(script::Type::QColor).get();
 
   register_color_spec_enum(color);
   register_color_name_format_enum(color);

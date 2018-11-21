@@ -78,7 +78,7 @@ script::Class register_qflags_type(script::Namespace root, const std::string & n
 {
   using namespace script;
 
-  Class flags = root.Class(name).setFinal().setId(type_id).get();
+  Class flags = root.newClass(name).setFinal().setId(type_id).get();
   register_qflags_type_impl<T>(flags);
   return flags;
 }
@@ -88,7 +88,7 @@ script::Class register_qflags_type(script::Class c, const std::string & name, in
 {
   using namespace script;
 
-  Class flags = c.NestedClass(name).setFinal().setId(type_id).get();
+  Class flags = c.newNestedClass(name).setFinal().setId(type_id).get();
   register_qflags_type_impl<T>(flags);
   return flags;
 }

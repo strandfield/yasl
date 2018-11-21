@@ -23,7 +23,7 @@ static void register_input_dialog_input_dialog_option_enum(script::Class input_d
 {
   using namespace script;
 
-  Enum input_dialog_option = input_dialog.Enum("InputDialogOption").setId(script::Type::QInputDialogInputDialogOption).get();
+  Enum input_dialog_option = input_dialog.newEnum("InputDialogOption").setId(script::Type::QInputDialogInputDialogOption).get();
 
   register_qflags_type<QInputDialog::InputDialogOption>(input_dialog, "InputDialogOptions", script::Type::QInputDialogInputDialogOptions);
   input_dialog_option.addValue("NoButtons", QInputDialog::NoButtons);
@@ -36,7 +36,7 @@ static void register_input_dialog_input_mode_enum(script::Class input_dialog)
 {
   using namespace script;
 
-  Enum input_mode = input_dialog.Enum("InputMode").setId(script::Type::QInputDialogInputMode).get();
+  Enum input_mode = input_dialog.newEnum("InputMode").setId(script::Type::QInputDialogInputMode).get();
 
   input_mode.addValue("TextInput", QInputDialog::TextInput);
   input_mode.addValue("IntInput", QInputDialog::IntInput);
@@ -48,7 +48,7 @@ static void register_input_dialog_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class input_dialog = ns.Class("InputDialog").setId(script::Type::QInputDialog)
+  Class input_dialog = ns.newClass("InputDialog").setId(script::Type::QInputDialog)
     .setBase(script::Type::QDialog).get();
 
   register_input_dialog_input_dialog_option_enum(input_dialog);

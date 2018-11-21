@@ -22,7 +22,7 @@ static void register_color_dialog_color_dialog_option_enum(script::Class color_d
 {
   using namespace script;
 
-  Enum color_dialog_option = color_dialog.Enum("ColorDialogOption").setId(script::Type::QColorDialogColorDialogOption).get();
+  Enum color_dialog_option = color_dialog.newEnum("ColorDialogOption").setId(script::Type::QColorDialogColorDialogOption).get();
 
   register_qflags_type<QColorDialog::ColorDialogOption>(color_dialog, "ColorDialogOptions", script::Type::QColorDialogColorDialogOptions);
   color_dialog_option.addValue("ShowAlphaChannel", QColorDialog::ShowAlphaChannel);
@@ -35,7 +35,7 @@ static void register_color_dialog_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class color_dialog = ns.Class("ColorDialog").setId(script::Type::QColorDialog)
+  Class color_dialog = ns.newClass("ColorDialog").setId(script::Type::QColorDialog)
     .setBase(script::Type::QDialog).get();
 
   register_color_dialog_color_dialog_option_enum(color_dialog);

@@ -20,7 +20,7 @@ static void register_font_metrics_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class font_metrics = ns.Class("FontMetrics").setId(script::Type::QFontMetrics).get();
+  Class font_metrics = ns.newClass("FontMetrics").setId(script::Type::QFontMetrics).get();
 
   binding::ClassBinder<QFontMetrics> binder{ font_metrics };
 
@@ -111,7 +111,7 @@ static void register_font_metrics_f_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class font_metrics_f = ns.Class("FontMetricsF").setId(script::Type::QFontMetricsF).get();
+  Class font_metrics_f = ns.newClass("FontMetricsF").setId(script::Type::QFontMetricsF).get();
 
   binding::ClassBinder<QFontMetricsF> binder{ font_metrics_f };
 

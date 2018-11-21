@@ -102,54 +102,54 @@ public:
 
   script::ConstructorBuilder default_ctor()
   {
-    return class_.Constructor(constructor_wrapper_small_object_t<T>::wrap);
+    return class_.newConstructor(constructor_wrapper_small_object_t<T>::wrap);
   }
 
   script::ConstructorBuilder copy_ctor()
   {
-    return class_.Constructor(constructor_wrapper_small_object_t<T, const T&>::wrap)
+    return class_.newConstructor(constructor_wrapper_small_object_t<T, const T&>::wrap)
       .params(script::Type::cref(make_type<T>()));
   }
 
   template<typename A1>
   script::ConstructorBuilder ctor()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1>::wrap)
+    return class_.newConstructor(constructor_wrapper_event_t<T, A1>::wrap)
       .params(make_type<A1>());
   }
 
   template<typename A1, typename A2>
   script::ConstructorBuilder ctor()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2>::wrap)
+    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2>::wrap)
       .params(make_type<A1>(), make_type<A2>());
   }
 
   template<typename A1, typename A2, typename A3>
   script::ConstructorBuilder ctor()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3>::wrap)
+    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2, A3>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4>
   script::ConstructorBuilder ctor()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4>::wrap)
+    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2, A3, A4>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5>
   script::ConstructorBuilder ctor()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5>::wrap)
+    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
   script::ConstructorBuilder ctor()
   {
-    return class_.Constructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6>::wrap)
+    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6>::wrap)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
   }
 
@@ -159,7 +159,7 @@ public:
 
   script::DestructorBuilder dtor()
   {
-    return class_.Destructor(callbacks::qevent_dtor);
+    return class_.newDestructor(callbacks::qevent_dtor);
   }
 
 };

@@ -19,7 +19,7 @@ static void register_group_box_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class group_box = ns.Class("GroupBox").setId(script::Type::QGroupBox)
+  Class group_box = ns.newClass("GroupBox").setId(script::Type::QGroupBox)
     .setBase(script::Type::QWidget).get();
 
   binding::ClassBinder<QGroupBox> binder{ group_box, &QGroupBox::staticMetaObject };

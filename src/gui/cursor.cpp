@@ -21,7 +21,7 @@ static void register_cursor_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class cursor = ns.Class("Cursor").setId(script::Type::QCursor).get();
+  Class cursor = ns.newClass("Cursor").setId(script::Type::QCursor).get();
 
   binding::ClassBinder<QCursor> binder{ cursor };
 

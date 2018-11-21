@@ -24,7 +24,7 @@ static void register_abstract_spin_box_step_enabled_flag_enum(script::Class abst
 {
   using namespace script;
 
-  Enum step_enabled_flag = abstract_spin_box.Enum("StepEnabledFlag").setId(script::Type::QAbstractSpinBoxStepEnabledFlag).get();
+  Enum step_enabled_flag = abstract_spin_box.newEnum("StepEnabledFlag").setId(script::Type::QAbstractSpinBoxStepEnabledFlag).get();
 
   register_qflags_type<QAbstractSpinBox::StepEnabledFlag>(abstract_spin_box, "StepEnabled", script::Type::QAbstractSpinBoxStepEnabled);
   step_enabled_flag.addValue("StepNone", QAbstractSpinBox::StepNone);
@@ -37,7 +37,7 @@ static void register_abstract_spin_box_button_symbols_enum(script::Class abstrac
 {
   using namespace script;
 
-  Enum button_symbols = abstract_spin_box.Enum("ButtonSymbols").setId(script::Type::QAbstractSpinBoxButtonSymbols).get();
+  Enum button_symbols = abstract_spin_box.newEnum("ButtonSymbols").setId(script::Type::QAbstractSpinBoxButtonSymbols).get();
 
   button_symbols.addValue("UpDownArrows", QAbstractSpinBox::UpDownArrows);
   button_symbols.addValue("PlusMinus", QAbstractSpinBox::PlusMinus);
@@ -49,7 +49,7 @@ static void register_abstract_spin_box_correction_mode_enum(script::Class abstra
 {
   using namespace script;
 
-  Enum correction_mode = abstract_spin_box.Enum("CorrectionMode").setId(script::Type::QAbstractSpinBoxCorrectionMode).get();
+  Enum correction_mode = abstract_spin_box.newEnum("CorrectionMode").setId(script::Type::QAbstractSpinBoxCorrectionMode).get();
 
   correction_mode.addValue("CorrectToPreviousValue", QAbstractSpinBox::CorrectToPreviousValue);
   correction_mode.addValue("CorrectToNearestValue", QAbstractSpinBox::CorrectToNearestValue);
@@ -60,7 +60,7 @@ static void register_abstract_spin_box_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class abstract_spin_box = ns.Class("AbstractSpinBox").setId(script::Type::QAbstractSpinBox)
+  Class abstract_spin_box = ns.newClass("AbstractSpinBox").setId(script::Type::QAbstractSpinBox)
     .setBase(script::Type::QWidget).get();
 
   register_abstract_spin_box_step_enabled_flag_enum(abstract_spin_box);

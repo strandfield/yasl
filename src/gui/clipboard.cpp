@@ -20,7 +20,7 @@ static void register_clipboard_mode_enum(script::Class clipboard)
 {
   using namespace script;
 
-  Enum mode = clipboard.Enum("Mode").setId(script::Type::QClipboardMode).get();
+  Enum mode = clipboard.newEnum("Mode").setId(script::Type::QClipboardMode).get();
 
   mode.addValue("Clipboard", QClipboard::Clipboard);
   mode.addValue("Selection", QClipboard::Selection);
@@ -33,7 +33,7 @@ static void register_clipboard_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class clipboard = ns.Class("Clipboard").setId(script::Type::QClipboard)
+  Class clipboard = ns.newClass("Clipboard").setId(script::Type::QClipboard)
     .setBase(script::Type::QObject).get();
 
   register_clipboard_mode_enum(clipboard);

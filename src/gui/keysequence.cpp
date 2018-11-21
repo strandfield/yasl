@@ -19,7 +19,7 @@ static void register_key_sequence_standard_key_enum(script::Class key_sequence)
 {
   using namespace script;
 
-  Enum standard_key = key_sequence.Enum("StandardKey").setId(script::Type::QKeySequenceStandardKey).get();
+  Enum standard_key = key_sequence.newEnum("StandardKey").setId(script::Type::QKeySequenceStandardKey).get();
 
   standard_key.addValue("UnknownKey", QKeySequence::UnknownKey);
   standard_key.addValue("HelpContents", QKeySequence::HelpContents);
@@ -99,7 +99,7 @@ static void register_key_sequence_sequence_format_enum(script::Class key_sequenc
 {
   using namespace script;
 
-  Enum sequence_format = key_sequence.Enum("SequenceFormat").setId(script::Type::QKeySequenceSequenceFormat).get();
+  Enum sequence_format = key_sequence.newEnum("SequenceFormat").setId(script::Type::QKeySequenceSequenceFormat).get();
 
   sequence_format.addValue("NativeText", QKeySequence::NativeText);
   sequence_format.addValue("PortableText", QKeySequence::PortableText);
@@ -110,7 +110,7 @@ static void register_key_sequence_sequence_match_enum(script::Class key_sequence
 {
   using namespace script;
 
-  Enum sequence_match = key_sequence.Enum("SequenceMatch").setId(script::Type::QKeySequenceSequenceMatch).get();
+  Enum sequence_match = key_sequence.newEnum("SequenceMatch").setId(script::Type::QKeySequenceSequenceMatch).get();
 
   sequence_match.addValue("NoMatch", QKeySequence::NoMatch);
   sequence_match.addValue("PartialMatch", QKeySequence::PartialMatch);
@@ -122,7 +122,7 @@ static void register_key_sequence_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class key_sequence = ns.Class("KeySequence").setId(script::Type::QKeySequence).get();
+  Class key_sequence = ns.newClass("KeySequence").setId(script::Type::QKeySequence).get();
 
   register_key_sequence_standard_key_enum(key_sequence);
   register_key_sequence_sequence_format_enum(key_sequence);

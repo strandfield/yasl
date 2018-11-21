@@ -23,7 +23,7 @@ static void register_json_document_data_validation_enum(script::Class json_docum
 {
   using namespace script;
 
-  Enum data_validation = json_document.Enum("DataValidation").setId(script::Type::QJsonDocumentDataValidation).get();
+  Enum data_validation = json_document.newEnum("DataValidation").setId(script::Type::QJsonDocumentDataValidation).get();
 
   data_validation.addValue("Validate", QJsonDocument::Validate);
   data_validation.addValue("BypassValidation", QJsonDocument::BypassValidation);
@@ -34,7 +34,7 @@ static void register_json_document_json_format_enum(script::Class json_document)
 {
   using namespace script;
 
-  Enum json_format = json_document.Enum("JsonFormat").setId(script::Type::QJsonDocumentJsonFormat).get();
+  Enum json_format = json_document.newEnum("JsonFormat").setId(script::Type::QJsonDocumentJsonFormat).get();
 
   json_format.addValue("Indented", QJsonDocument::Indented);
   json_format.addValue("Compact", QJsonDocument::Compact);
@@ -45,7 +45,7 @@ static void register_json_document_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class json_document = ns.Class("JsonDocument").setId(script::Type::QJsonDocument).get();
+  Class json_document = ns.newClass("JsonDocument").setId(script::Type::QJsonDocument).get();
 
   register_json_document_data_validation_enum(json_document);
   register_json_document_json_format_enum(json_document);

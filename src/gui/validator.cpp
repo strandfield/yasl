@@ -21,7 +21,7 @@ static void register_validator_state_enum(script::Class validator)
 {
   using namespace script;
 
-  Enum state = validator.Enum("State").setId(script::Type::QValidatorState).get();
+  Enum state = validator.newEnum("State").setId(script::Type::QValidatorState).get();
 
   state.addValue("Invalid", QValidator::Invalid);
   state.addValue("Intermediate", QValidator::Intermediate);
@@ -33,7 +33,7 @@ static void register_validator_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class validator = ns.Class("Validator").setId(script::Type::QValidator)
+  Class validator = ns.newClass("Validator").setId(script::Type::QValidator)
     .setBase(script::Type::QObject).get();
 
   register_validator_state_enum(validator);
@@ -60,7 +60,7 @@ static void register_int_validator_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class int_validator = ns.Class("IntValidator").setId(script::Type::QIntValidator)
+  Class int_validator = ns.newClass("IntValidator").setId(script::Type::QIntValidator)
     .setBase(script::Type::QValidator).get();
 
   binding::ClassBinder<QIntValidator> binder{ int_validator, &QIntValidator::staticMetaObject };
@@ -100,7 +100,7 @@ static void register_double_validator_notation_enum(script::Class double_validat
 {
   using namespace script;
 
-  Enum notation = double_validator.Enum("Notation").setId(script::Type::QDoubleValidatorNotation).get();
+  Enum notation = double_validator.newEnum("Notation").setId(script::Type::QDoubleValidatorNotation).get();
 
   notation.addValue("StandardNotation", QDoubleValidator::StandardNotation);
   notation.addValue("ScientificNotation", QDoubleValidator::ScientificNotation);
@@ -111,7 +111,7 @@ static void register_double_validator_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class double_validator = ns.Class("DoubleValidator").setId(script::Type::QDoubleValidator)
+  Class double_validator = ns.newClass("DoubleValidator").setId(script::Type::QDoubleValidator)
     .setBase(script::Type::QValidator).get();
 
   register_double_validator_notation_enum(double_validator);
@@ -163,7 +163,7 @@ static void register_regular_expression_validator_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class regular_expression_validator = ns.Class("RegularExpressionValidator").setId(script::Type::QRegularExpressionValidator)
+  Class regular_expression_validator = ns.newClass("RegularExpressionValidator").setId(script::Type::QRegularExpressionValidator)
     .setBase(script::Type::QValidator).get();
 
   binding::ClassBinder<QRegularExpressionValidator> binder{ regular_expression_validator, &QRegularExpressionValidator::staticMetaObject };

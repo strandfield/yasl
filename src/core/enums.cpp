@@ -16,7 +16,7 @@ static void register_qt_global_color_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum global_color = qt.Enum("GlobalColor").setId(script::Type::QtGlobalColor)
+  Enum global_color = qt.newEnum("GlobalColor").setId(script::Type::QtGlobalColor)
     .setEnumClass().get();
 
   global_color.addValue("color0", Qt::color0);
@@ -46,7 +46,7 @@ static void register_qt_keyboard_modifier_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum keyboard_modifier = qt.Enum("KeyboardModifier").setId(script::Type::QtKeyboardModifier)
+  Enum keyboard_modifier = qt.newEnum("KeyboardModifier").setId(script::Type::QtKeyboardModifier)
     .setEnumClass().get();
 
   register_qflags_type<Qt::KeyboardModifier>(qt, "KeyboardModifiers", script::Type::QtKeyboardModifiers);
@@ -65,7 +65,7 @@ static void register_qt_modifier_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum modifier = qt.Enum("Modifier").setId(script::Type::QtModifier)
+  Enum modifier = qt.newEnum("Modifier").setId(script::Type::QtModifier)
     .setEnumClass().get();
 
   modifier.addValue("META", Qt::META);
@@ -81,7 +81,7 @@ static void register_qt_mouse_button_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum mouse_button = qt.Enum("MouseButton").setId(script::Type::QtMouseButton)
+  Enum mouse_button = qt.newEnum("MouseButton").setId(script::Type::QtMouseButton)
     .setEnumClass().get();
 
   mouse_button.addValue("NoButton", Qt::NoButton);
@@ -128,7 +128,7 @@ static void register_qt_orientation_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum orientation = qt.Enum("Orientation").setId(script::Type::QtOrientation)
+  Enum orientation = qt.newEnum("Orientation").setId(script::Type::QtOrientation)
     .setEnumClass().get();
 
   orientation.addValue("Horizontal", Qt::Horizontal);
@@ -140,7 +140,7 @@ static void register_qt_focus_policy_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum focus_policy = qt.Enum("FocusPolicy").setId(script::Type::QtFocusPolicy)
+  Enum focus_policy = qt.newEnum("FocusPolicy").setId(script::Type::QtFocusPolicy)
     .setEnumClass().get();
 
   focus_policy.addValue("NoFocus", Qt::NoFocus);
@@ -155,7 +155,7 @@ static void register_qt_tab_focus_behavior_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum tab_focus_behavior = qt.Enum("TabFocusBehavior").setId(script::Type::QtTabFocusBehavior)
+  Enum tab_focus_behavior = qt.newEnum("TabFocusBehavior").setId(script::Type::QtTabFocusBehavior)
     .setEnumClass().get();
 
   tab_focus_behavior.addValue("NoTabFocus", Qt::NoTabFocus);
@@ -169,7 +169,7 @@ static void register_qt_sort_order_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum sort_order = qt.Enum("SortOrder").setId(script::Type::QtSortOrder)
+  Enum sort_order = qt.newEnum("SortOrder").setId(script::Type::QtSortOrder)
     .setEnumClass().get();
 
   sort_order.addValue("AscendingOrder", Qt::AscendingOrder);
@@ -181,7 +181,7 @@ static void register_qt_tile_rule_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum tile_rule = qt.Enum("TileRule").setId(script::Type::QtTileRule)
+  Enum tile_rule = qt.newEnum("TileRule").setId(script::Type::QtTileRule)
     .setEnumClass().get();
 
   tile_rule.addValue("StretchTile", Qt::StretchTile);
@@ -194,7 +194,7 @@ static void register_qt_alignment_flag_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum alignment_flag = qt.Enum("AlignmentFlag").setId(script::Type::QtAlignmentFlag)
+  Enum alignment_flag = qt.newEnum("AlignmentFlag").setId(script::Type::QtAlignmentFlag)
     .setEnumClass().get();
 
   register_qflags_type<Qt::AlignmentFlag>(qt, "Alignment", script::Type::QtAlignment);
@@ -219,7 +219,7 @@ static void register_qt_text_flag_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum text_flag = qt.Enum("TextFlag").setId(script::Type::QtTextFlag)
+  Enum text_flag = qt.newEnum("TextFlag").setId(script::Type::QtTextFlag)
     .setEnumClass().get();
 
   text_flag.addValue("TextSingleLine", Qt::TextSingleLine);
@@ -243,7 +243,7 @@ static void register_qt_text_elide_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum text_elide_mode = qt.Enum("TextElideMode").setId(script::Type::QtTextElideMode)
+  Enum text_elide_mode = qt.newEnum("TextElideMode").setId(script::Type::QtTextElideMode)
     .setEnumClass().get();
 
   text_elide_mode.addValue("ElideLeft", Qt::ElideLeft);
@@ -257,7 +257,7 @@ static void register_qt_white_space_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum white_space_mode = qt.Enum("WhiteSpaceMode").setId(script::Type::QtWhiteSpaceMode)
+  Enum white_space_mode = qt.newEnum("WhiteSpaceMode").setId(script::Type::QtWhiteSpaceMode)
     .setEnumClass().get();
 
   white_space_mode.addValue("WhiteSpaceNormal", Qt::WhiteSpaceNormal);
@@ -271,7 +271,7 @@ static void register_qt_hit_test_accuracy_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum hit_test_accuracy = qt.Enum("HitTestAccuracy").setId(script::Type::QtHitTestAccuracy)
+  Enum hit_test_accuracy = qt.newEnum("HitTestAccuracy").setId(script::Type::QtHitTestAccuracy)
     .setEnumClass().get();
 
   hit_test_accuracy.addValue("ExactHit", Qt::ExactHit);
@@ -283,7 +283,7 @@ static void register_qt_window_type_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum window_type = qt.Enum("WindowType").setId(script::Type::QtWindowType)
+  Enum window_type = qt.newEnum("WindowType").setId(script::Type::QtWindowType)
     .setEnumClass().get();
 
   window_type.addValue("Widget", Qt::Widget);
@@ -331,7 +331,7 @@ static void register_qt_window_state_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum window_state = qt.Enum("WindowState").setId(script::Type::QtWindowState)
+  Enum window_state = qt.newEnum("WindowState").setId(script::Type::QtWindowState)
     .setEnumClass().get();
 
   window_state.addValue("WindowNoState", Qt::WindowNoState);
@@ -346,7 +346,7 @@ static void register_qt_application_state_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum application_state = qt.Enum("ApplicationState").setId(script::Type::QtApplicationState)
+  Enum application_state = qt.newEnum("ApplicationState").setId(script::Type::QtApplicationState)
     .setEnumClass().get();
 
   application_state.addValue("ApplicationSuspended", Qt::ApplicationSuspended);
@@ -360,7 +360,7 @@ static void register_qt_screen_orientation_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum screen_orientation = qt.Enum("ScreenOrientation").setId(script::Type::QtScreenOrientation)
+  Enum screen_orientation = qt.newEnum("ScreenOrientation").setId(script::Type::QtScreenOrientation)
     .setEnumClass().get();
 
   screen_orientation.addValue("PrimaryOrientation", Qt::PrimaryOrientation);
@@ -375,7 +375,7 @@ static void register_qt_widget_attribute_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum widget_attribute = qt.Enum("WidgetAttribute").setId(script::Type::QtWidgetAttribute)
+  Enum widget_attribute = qt.newEnum("WidgetAttribute").setId(script::Type::QtWidgetAttribute)
     .setEnumClass().get();
 
   widget_attribute.addValue("WA_Disabled", Qt::WA_Disabled);
@@ -498,7 +498,7 @@ static void register_qt_application_attribute_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum application_attribute = qt.Enum("ApplicationAttribute").setId(script::Type::QtApplicationAttribute)
+  Enum application_attribute = qt.newEnum("ApplicationAttribute").setId(script::Type::QtApplicationAttribute)
     .setEnumClass().get();
 
   application_attribute.addValue("AA_ImmediateWidgetCreation", Qt::AA_ImmediateWidgetCreation);
@@ -540,7 +540,7 @@ static void register_qt_image_conversion_flag_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum image_conversion_flag = qt.Enum("ImageConversionFlag").setId(script::Type::QtImageConversionFlag)
+  Enum image_conversion_flag = qt.newEnum("ImageConversionFlag").setId(script::Type::QtImageConversionFlag)
     .setEnumClass().get();
 
   register_qflags_type<Qt::ImageConversionFlag>(qt, "ImageConversionFlags", script::Type::QtImageConversionFlags);
@@ -570,7 +570,7 @@ static void register_qt_b_g_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum b_g_mode = qt.Enum("BGMode").setId(script::Type::QtBGMode)
+  Enum b_g_mode = qt.newEnum("BGMode").setId(script::Type::QtBGMode)
     .setEnumClass().get();
 
   b_g_mode.addValue("TransparentMode", Qt::TransparentMode);
@@ -582,7 +582,7 @@ static void register_qt_key_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum key = qt.Enum("Key").setId(script::Type::QtKey)
+  Enum key = qt.newEnum("Key").setId(script::Type::QtKey)
     .setEnumClass().get();
 
   key.addValue("Key_Escape", Qt::Key_Escape);
@@ -1031,7 +1031,7 @@ static void register_qt_arrow_type_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum arrow_type = qt.Enum("ArrowType").setId(script::Type::QtArrowType)
+  Enum arrow_type = qt.newEnum("ArrowType").setId(script::Type::QtArrowType)
     .setEnumClass().get();
 
   arrow_type.addValue("NoArrow", Qt::NoArrow);
@@ -1046,7 +1046,7 @@ static void register_qt_pen_style_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum pen_style = qt.Enum("PenStyle").setId(script::Type::QtPenStyle)
+  Enum pen_style = qt.newEnum("PenStyle").setId(script::Type::QtPenStyle)
     .setEnumClass().get();
 
   pen_style.addValue("NoPen", Qt::NoPen);
@@ -1064,7 +1064,7 @@ static void register_qt_pen_cap_style_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum pen_cap_style = qt.Enum("PenCapStyle").setId(script::Type::QtPenCapStyle)
+  Enum pen_cap_style = qt.newEnum("PenCapStyle").setId(script::Type::QtPenCapStyle)
     .setEnumClass().get();
 
   pen_cap_style.addValue("FlatCap", Qt::FlatCap);
@@ -1078,7 +1078,7 @@ static void register_qt_pen_join_style_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum pen_join_style = qt.Enum("PenJoinStyle").setId(script::Type::QtPenJoinStyle)
+  Enum pen_join_style = qt.newEnum("PenJoinStyle").setId(script::Type::QtPenJoinStyle)
     .setEnumClass().get();
 
   pen_join_style.addValue("MiterJoin", Qt::MiterJoin);
@@ -1093,7 +1093,7 @@ static void register_qt_brush_style_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum brush_style = qt.Enum("BrushStyle").setId(script::Type::QtBrushStyle)
+  Enum brush_style = qt.newEnum("BrushStyle").setId(script::Type::QtBrushStyle)
     .setEnumClass().get();
 
   brush_style.addValue("NoBrush", Qt::NoBrush);
@@ -1122,7 +1122,7 @@ static void register_qt_size_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum size_mode = qt.Enum("SizeMode").setId(script::Type::QtSizeMode)
+  Enum size_mode = qt.newEnum("SizeMode").setId(script::Type::QtSizeMode)
     .setEnumClass().get();
 
   size_mode.addValue("AbsoluteSize", Qt::AbsoluteSize);
@@ -1134,7 +1134,7 @@ static void register_qt_u_i_effect_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum u_i_effect = qt.Enum("UIEffect").setId(script::Type::QtUIEffect)
+  Enum u_i_effect = qt.newEnum("UIEffect").setId(script::Type::QtUIEffect)
     .setEnumClass().get();
 
   u_i_effect.addValue("UI_General", Qt::UI_General);
@@ -1151,7 +1151,7 @@ static void register_qt_cursor_shape_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum cursor_shape = qt.Enum("CursorShape").setId(script::Type::QtCursorShape)
+  Enum cursor_shape = qt.newEnum("CursorShape").setId(script::Type::QtCursorShape)
     .setEnumClass().get();
 
   cursor_shape.addValue("ArrowCursor", Qt::ArrowCursor);
@@ -1186,7 +1186,7 @@ static void register_qt_text_format_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum text_format = qt.Enum("TextFormat").setId(script::Type::QtTextFormat)
+  Enum text_format = qt.newEnum("TextFormat").setId(script::Type::QtTextFormat)
     .setEnumClass().get();
 
   text_format.addValue("PlainText", Qt::PlainText);
@@ -1199,7 +1199,7 @@ static void register_qt_aspect_ratio_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum aspect_ratio_mode = qt.Enum("AspectRatioMode").setId(script::Type::QtAspectRatioMode)
+  Enum aspect_ratio_mode = qt.newEnum("AspectRatioMode").setId(script::Type::QtAspectRatioMode)
     .setEnumClass().get();
 
   aspect_ratio_mode.addValue("IgnoreAspectRatio", Qt::IgnoreAspectRatio);
@@ -1212,7 +1212,7 @@ static void register_qt_dock_widget_area_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum dock_widget_area = qt.Enum("DockWidgetArea").setId(script::Type::QtDockWidgetArea)
+  Enum dock_widget_area = qt.newEnum("DockWidgetArea").setId(script::Type::QtDockWidgetArea)
     .setEnumClass().get();
 
   dock_widget_area.addValue("LeftDockWidgetArea", Qt::LeftDockWidgetArea);
@@ -1229,7 +1229,7 @@ static void register_qt_dock_widget_area_sizes_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum dock_widget_area_sizes = qt.Enum("DockWidgetAreaSizes").setId(script::Type::QtDockWidgetAreaSizes)
+  Enum dock_widget_area_sizes = qt.newEnum("DockWidgetAreaSizes").setId(script::Type::QtDockWidgetAreaSizes)
     .setEnumClass().get();
 
   dock_widget_area_sizes.addValue("NDockWidgetAreas", Qt::NDockWidgetAreas);
@@ -1240,7 +1240,7 @@ static void register_qt_tool_bar_area_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum tool_bar_area = qt.Enum("ToolBarArea").setId(script::Type::QtToolBarArea)
+  Enum tool_bar_area = qt.newEnum("ToolBarArea").setId(script::Type::QtToolBarArea)
     .setEnumClass().get();
 
   register_qflags_type<Qt::ToolBarArea>(qt, "ToolBarAreas", script::Type::QtToolBarAreas);
@@ -1258,7 +1258,7 @@ static void register_qt_tool_bar_area_sizes_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum tool_bar_area_sizes = qt.Enum("ToolBarAreaSizes").setId(script::Type::QtToolBarAreaSizes)
+  Enum tool_bar_area_sizes = qt.newEnum("ToolBarAreaSizes").setId(script::Type::QtToolBarAreaSizes)
     .setEnumClass().get();
 
   tool_bar_area_sizes.addValue("NToolBarAreas", Qt::NToolBarAreas);
@@ -1269,7 +1269,7 @@ static void register_qt_date_format_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum date_format = qt.Enum("DateFormat").setId(script::Type::QtDateFormat)
+  Enum date_format = qt.newEnum("DateFormat").setId(script::Type::QtDateFormat)
     .setEnumClass().get();
 
   date_format.addValue("TextDate", Qt::TextDate);
@@ -1290,7 +1290,7 @@ static void register_qt_time_spec_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum time_spec = qt.Enum("TimeSpec").setId(script::Type::QtTimeSpec)
+  Enum time_spec = qt.newEnum("TimeSpec").setId(script::Type::QtTimeSpec)
     .setEnumClass().get();
 
   time_spec.addValue("LocalTime", Qt::LocalTime);
@@ -1304,7 +1304,7 @@ static void register_qt_day_of_week_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum day_of_week = qt.Enum("DayOfWeek").setId(script::Type::QtDayOfWeek)
+  Enum day_of_week = qt.newEnum("DayOfWeek").setId(script::Type::QtDayOfWeek)
     .setEnumClass().get();
 
   day_of_week.addValue("Monday", Qt::Monday);
@@ -1321,7 +1321,7 @@ static void register_qt_scroll_bar_policy_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum scroll_bar_policy = qt.Enum("ScrollBarPolicy").setId(script::Type::QtScrollBarPolicy)
+  Enum scroll_bar_policy = qt.newEnum("ScrollBarPolicy").setId(script::Type::QtScrollBarPolicy)
     .setEnumClass().get();
 
   scroll_bar_policy.addValue("ScrollBarAsNeeded", Qt::ScrollBarAsNeeded);
@@ -1334,7 +1334,7 @@ static void register_qt_case_sensitivity_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum case_sensitivity = qt.Enum("CaseSensitivity").setId(script::Type::QtCaseSensitivity)
+  Enum case_sensitivity = qt.newEnum("CaseSensitivity").setId(script::Type::QtCaseSensitivity)
     .setEnumClass().get();
 
   case_sensitivity.addValue("CaseInsensitive", Qt::CaseInsensitive);
@@ -1346,7 +1346,7 @@ static void register_qt_corner_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum corner = qt.Enum("Corner").setId(script::Type::QtCorner)
+  Enum corner = qt.newEnum("Corner").setId(script::Type::QtCorner)
     .setEnumClass().get();
 
   corner.addValue("TopLeftCorner", Qt::TopLeftCorner);
@@ -1360,7 +1360,7 @@ static void register_qt_edge_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum edge = qt.Enum("Edge").setId(script::Type::QtEdge)
+  Enum edge = qt.newEnum("Edge").setId(script::Type::QtEdge)
     .setEnumClass().get();
 
   edge.addValue("TopEdge", Qt::TopEdge);
@@ -1374,7 +1374,7 @@ static void register_qt_connection_type_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum connection_type = qt.Enum("ConnectionType").setId(script::Type::QtConnectionType)
+  Enum connection_type = qt.newEnum("ConnectionType").setId(script::Type::QtConnectionType)
     .setEnumClass().get();
 
   connection_type.addValue("AutoConnection", Qt::AutoConnection);
@@ -1389,7 +1389,7 @@ static void register_qt_shortcut_context_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum shortcut_context = qt.Enum("ShortcutContext").setId(script::Type::QtShortcutContext)
+  Enum shortcut_context = qt.newEnum("ShortcutContext").setId(script::Type::QtShortcutContext)
     .setEnumClass().get();
 
   shortcut_context.addValue("WidgetShortcut", Qt::WidgetShortcut);
@@ -1403,7 +1403,7 @@ static void register_qt_fill_rule_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum fill_rule = qt.Enum("FillRule").setId(script::Type::QtFillRule)
+  Enum fill_rule = qt.newEnum("FillRule").setId(script::Type::QtFillRule)
     .setEnumClass().get();
 
   fill_rule.addValue("OddEvenFill", Qt::OddEvenFill);
@@ -1415,7 +1415,7 @@ static void register_qt_mask_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum mask_mode = qt.Enum("MaskMode").setId(script::Type::QtMaskMode)
+  Enum mask_mode = qt.newEnum("MaskMode").setId(script::Type::QtMaskMode)
     .setEnumClass().get();
 
   mask_mode.addValue("MaskInColor", Qt::MaskInColor);
@@ -1427,7 +1427,7 @@ static void register_qt_clip_operation_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum clip_operation = qt.Enum("ClipOperation").setId(script::Type::QtClipOperation)
+  Enum clip_operation = qt.newEnum("ClipOperation").setId(script::Type::QtClipOperation)
     .setEnumClass().get();
 
   clip_operation.addValue("NoClip", Qt::NoClip);
@@ -1440,7 +1440,7 @@ static void register_qt_item_selection_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum item_selection_mode = qt.Enum("ItemSelectionMode").setId(script::Type::QtItemSelectionMode)
+  Enum item_selection_mode = qt.newEnum("ItemSelectionMode").setId(script::Type::QtItemSelectionMode)
     .setEnumClass().get();
 
   item_selection_mode.addValue("ContainsItemShape", Qt::ContainsItemShape);
@@ -1454,7 +1454,7 @@ static void register_qt_item_selection_operation_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum item_selection_operation = qt.Enum("ItemSelectionOperation").setId(script::Type::QtItemSelectionOperation)
+  Enum item_selection_operation = qt.newEnum("ItemSelectionOperation").setId(script::Type::QtItemSelectionOperation)
     .setEnumClass().get();
 
   item_selection_operation.addValue("ReplaceSelection", Qt::ReplaceSelection);
@@ -1466,7 +1466,7 @@ static void register_qt_transformation_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum transformation_mode = qt.Enum("TransformationMode").setId(script::Type::QtTransformationMode)
+  Enum transformation_mode = qt.newEnum("TransformationMode").setId(script::Type::QtTransformationMode)
     .setEnumClass().get();
 
   transformation_mode.addValue("FastTransformation", Qt::FastTransformation);
@@ -1478,7 +1478,7 @@ static void register_qt_axis_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum axis = qt.Enum("Axis").setId(script::Type::QtAxis)
+  Enum axis = qt.newEnum("Axis").setId(script::Type::QtAxis)
     .setEnumClass().get();
 
   axis.addValue("XAxis", Qt::XAxis);
@@ -1491,7 +1491,7 @@ static void register_qt_focus_reason_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum focus_reason = qt.Enum("FocusReason").setId(script::Type::QtFocusReason)
+  Enum focus_reason = qt.newEnum("FocusReason").setId(script::Type::QtFocusReason)
     .setEnumClass().get();
 
   focus_reason.addValue("MouseFocusReason", Qt::MouseFocusReason);
@@ -1510,7 +1510,7 @@ static void register_qt_context_menu_policy_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum context_menu_policy = qt.Enum("ContextMenuPolicy").setId(script::Type::QtContextMenuPolicy)
+  Enum context_menu_policy = qt.newEnum("ContextMenuPolicy").setId(script::Type::QtContextMenuPolicy)
     .setEnumClass().get();
 
   context_menu_policy.addValue("NoContextMenu", Qt::NoContextMenu);
@@ -1525,7 +1525,7 @@ static void register_qt_input_method_query_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum input_method_query = qt.Enum("InputMethodQuery").setId(script::Type::QtInputMethodQuery)
+  Enum input_method_query = qt.newEnum("InputMethodQuery").setId(script::Type::QtInputMethodQuery)
     .setEnumClass().get();
 
   input_method_query.addValue("ImEnabled", Qt::ImEnabled);
@@ -1555,7 +1555,7 @@ static void register_qt_input_method_hint_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum input_method_hint = qt.Enum("InputMethodHint").setId(script::Type::QtInputMethodHint)
+  Enum input_method_hint = qt.newEnum("InputMethodHint").setId(script::Type::QtInputMethodHint)
     .setEnumClass().get();
 
   input_method_hint.addValue("ImhNone", Qt::ImhNone);
@@ -1586,7 +1586,7 @@ static void register_qt_enter_key_type_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum enter_key_type = qt.Enum("EnterKeyType").setId(script::Type::QtEnterKeyType)
+  Enum enter_key_type = qt.newEnum("EnterKeyType").setId(script::Type::QtEnterKeyType)
     .setEnumClass().get();
 
   enter_key_type.addValue("EnterKeyDefault", Qt::EnterKeyDefault);
@@ -1604,7 +1604,7 @@ static void register_qt_tool_button_style_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum tool_button_style = qt.Enum("ToolButtonStyle").setId(script::Type::QtToolButtonStyle)
+  Enum tool_button_style = qt.newEnum("ToolButtonStyle").setId(script::Type::QtToolButtonStyle)
     .setEnumClass().get();
 
   tool_button_style.addValue("ToolButtonIconOnly", Qt::ToolButtonIconOnly);
@@ -1619,7 +1619,7 @@ static void register_qt_layout_direction_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum layout_direction = qt.Enum("LayoutDirection").setId(script::Type::QtLayoutDirection)
+  Enum layout_direction = qt.newEnum("LayoutDirection").setId(script::Type::QtLayoutDirection)
     .setEnumClass().get();
 
   layout_direction.addValue("LeftToRight", Qt::LeftToRight);
@@ -1632,7 +1632,7 @@ static void register_qt_anchor_point_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum anchor_point = qt.Enum("AnchorPoint").setId(script::Type::QtAnchorPoint)
+  Enum anchor_point = qt.newEnum("AnchorPoint").setId(script::Type::QtAnchorPoint)
     .setEnumClass().get();
 
   anchor_point.addValue("AnchorLeft", Qt::AnchorLeft);
@@ -1648,7 +1648,7 @@ static void register_qt_find_child_option_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum find_child_option = qt.Enum("FindChildOption").setId(script::Type::QtFindChildOption)
+  Enum find_child_option = qt.newEnum("FindChildOption").setId(script::Type::QtFindChildOption)
     .setEnumClass().get();
 
   find_child_option.addValue("FindDirectChildrenOnly", Qt::FindDirectChildrenOnly);
@@ -1660,7 +1660,7 @@ static void register_qt_drop_action_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum drop_action = qt.Enum("DropAction").setId(script::Type::QtDropAction)
+  Enum drop_action = qt.newEnum("DropAction").setId(script::Type::QtDropAction)
     .setEnumClass().get();
 
   drop_action.addValue("CopyAction", Qt::CopyAction);
@@ -1676,7 +1676,7 @@ static void register_qt_check_state_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum check_state = qt.Enum("CheckState").setId(script::Type::QtCheckState)
+  Enum check_state = qt.newEnum("CheckState").setId(script::Type::QtCheckState)
     .setEnumClass().get();
 
   check_state.addValue("Unchecked", Qt::Unchecked);
@@ -1689,7 +1689,7 @@ static void register_qt_item_data_role_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum item_data_role = qt.Enum("ItemDataRole").setId(script::Type::QtItemDataRole)
+  Enum item_data_role = qt.newEnum("ItemDataRole").setId(script::Type::QtItemDataRole)
     .setEnumClass().get();
 
   item_data_role.addValue("DisplayRole", Qt::DisplayRole);
@@ -1722,7 +1722,7 @@ static void register_qt_item_flag_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum item_flag = qt.Enum("ItemFlag").setId(script::Type::QtItemFlag)
+  Enum item_flag = qt.newEnum("ItemFlag").setId(script::Type::QtItemFlag)
     .setEnumClass().get();
 
   item_flag.addValue("NoItemFlags", Qt::NoItemFlags);
@@ -1743,7 +1743,7 @@ static void register_qt_match_flag_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum match_flag = qt.Enum("MatchFlag").setId(script::Type::QtMatchFlag)
+  Enum match_flag = qt.newEnum("MatchFlag").setId(script::Type::QtMatchFlag)
     .setEnumClass().get();
 
   match_flag.addValue("MatchExactly", Qt::MatchExactly);
@@ -1763,7 +1763,7 @@ static void register_qt_window_modality_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum window_modality = qt.Enum("WindowModality").setId(script::Type::QtWindowModality)
+  Enum window_modality = qt.newEnum("WindowModality").setId(script::Type::QtWindowModality)
     .setEnumClass().get();
 
   window_modality.addValue("NonModal", Qt::NonModal);
@@ -1776,7 +1776,7 @@ static void register_qt_text_interaction_flag_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum text_interaction_flag = qt.Enum("TextInteractionFlag").setId(script::Type::QtTextInteractionFlag)
+  Enum text_interaction_flag = qt.newEnum("TextInteractionFlag").setId(script::Type::QtTextInteractionFlag)
     .setEnumClass().get();
 
   text_interaction_flag.addValue("NoTextInteraction", Qt::NoTextInteraction);
@@ -1794,7 +1794,7 @@ static void register_qt_event_priority_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum event_priority = qt.Enum("EventPriority").setId(script::Type::QtEventPriority)
+  Enum event_priority = qt.newEnum("EventPriority").setId(script::Type::QtEventPriority)
     .setEnumClass().get();
 
   event_priority.addValue("HighEventPriority", Qt::HighEventPriority);
@@ -1807,7 +1807,7 @@ static void register_qt_size_hint_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum size_hint = qt.Enum("SizeHint").setId(script::Type::QtSizeHint)
+  Enum size_hint = qt.newEnum("SizeHint").setId(script::Type::QtSizeHint)
     .setEnumClass().get();
 
   size_hint.addValue("MinimumSize", Qt::MinimumSize);
@@ -1822,7 +1822,7 @@ static void register_qt_window_frame_section_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum window_frame_section = qt.Enum("WindowFrameSection").setId(script::Type::QtWindowFrameSection)
+  Enum window_frame_section = qt.newEnum("WindowFrameSection").setId(script::Type::QtWindowFrameSection)
     .setEnumClass().get();
 
   window_frame_section.addValue("NoSection", Qt::NoSection);
@@ -1842,7 +1842,7 @@ static void register_qt_initialization_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum initialization = qt.Enum("Initialization").setId(script::Type::QtInitialization)
+  Enum initialization = qt.newEnum("Initialization").setId(script::Type::QtInitialization)
     .setEnumClass().get();
 
   initialization.addValue("Uninitialized", static_cast<int>(Qt::Uninitialized));
@@ -1853,7 +1853,7 @@ static void register_qt_coordinate_system_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum coordinate_system = qt.Enum("CoordinateSystem").setId(script::Type::QtCoordinateSystem)
+  Enum coordinate_system = qt.newEnum("CoordinateSystem").setId(script::Type::QtCoordinateSystem)
     .setEnumClass().get();
 
   coordinate_system.addValue("DeviceCoordinates", Qt::DeviceCoordinates);
@@ -1865,7 +1865,7 @@ static void register_qt_touch_point_state_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum touch_point_state = qt.Enum("TouchPointState").setId(script::Type::QtTouchPointState)
+  Enum touch_point_state = qt.newEnum("TouchPointState").setId(script::Type::QtTouchPointState)
     .setEnumClass().get();
 
   touch_point_state.addValue("TouchPointPressed", Qt::TouchPointPressed);
@@ -1879,7 +1879,7 @@ static void register_qt_gesture_state_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum gesture_state = qt.Enum("GestureState").setId(script::Type::QtGestureState)
+  Enum gesture_state = qt.newEnum("GestureState").setId(script::Type::QtGestureState)
     .setEnumClass().get();
 
   gesture_state.addValue("NoGesture", Qt::NoGesture);
@@ -1894,7 +1894,7 @@ static void register_qt_gesture_type_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum gesture_type = qt.Enum("GestureType").setId(script::Type::QtGestureType)
+  Enum gesture_type = qt.newEnum("GestureType").setId(script::Type::QtGestureType)
     .setEnumClass().get();
 
   gesture_type.addValue("TapGesture", Qt::TapGesture);
@@ -1911,7 +1911,7 @@ static void register_qt_gesture_flag_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum gesture_flag = qt.Enum("GestureFlag").setId(script::Type::QtGestureFlag)
+  Enum gesture_flag = qt.newEnum("GestureFlag").setId(script::Type::QtGestureFlag)
     .setEnumClass().get();
 
   gesture_flag.addValue("DontStartGestureOnChildren", Qt::DontStartGestureOnChildren);
@@ -1924,7 +1924,7 @@ static void register_qt_native_gesture_type_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum native_gesture_type = qt.Enum("NativeGestureType").setId(script::Type::QtNativeGestureType)
+  Enum native_gesture_type = qt.newEnum("NativeGestureType").setId(script::Type::QtNativeGestureType)
     .setEnumClass().get();
 
   native_gesture_type.addValue("BeginNativeGesture", Qt::BeginNativeGesture);
@@ -1941,7 +1941,7 @@ static void register_qt_navigation_mode_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum navigation_mode = qt.Enum("NavigationMode").setId(script::Type::QtNavigationMode)
+  Enum navigation_mode = qt.newEnum("NavigationMode").setId(script::Type::QtNavigationMode)
     .setEnumClass().get();
 
   navigation_mode.addValue("NavigationModeNone", Qt::NavigationModeNone);
@@ -1956,7 +1956,7 @@ static void register_qt_cursor_move_style_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum cursor_move_style = qt.Enum("CursorMoveStyle").setId(script::Type::QtCursorMoveStyle)
+  Enum cursor_move_style = qt.newEnum("CursorMoveStyle").setId(script::Type::QtCursorMoveStyle)
     .setEnumClass().get();
 
   cursor_move_style.addValue("LogicalMoveStyle", Qt::LogicalMoveStyle);
@@ -1968,7 +1968,7 @@ static void register_qt_timer_type_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum timer_type = qt.Enum("TimerType").setId(script::Type::QtTimerType)
+  Enum timer_type = qt.newEnum("TimerType").setId(script::Type::QtTimerType)
     .setEnumClass().get();
 
   timer_type.addValue("PreciseTimer", Qt::PreciseTimer);
@@ -1981,7 +1981,7 @@ static void register_qt_scroll_phase_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum scroll_phase = qt.Enum("ScrollPhase").setId(script::Type::QtScrollPhase)
+  Enum scroll_phase = qt.newEnum("ScrollPhase").setId(script::Type::QtScrollPhase)
     .setEnumClass().get();
 
   scroll_phase.addValue("NoScrollPhase", Qt::NoScrollPhase);
@@ -1995,7 +1995,7 @@ static void register_qt_mouse_event_source_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum mouse_event_source = qt.Enum("MouseEventSource").setId(script::Type::QtMouseEventSource)
+  Enum mouse_event_source = qt.newEnum("MouseEventSource").setId(script::Type::QtMouseEventSource)
     .setEnumClass().get();
 
   mouse_event_source.addValue("MouseEventNotSynthesized", Qt::MouseEventNotSynthesized);
@@ -2009,7 +2009,7 @@ static void register_qt_mouse_event_flag_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum mouse_event_flag = qt.Enum("MouseEventFlag").setId(script::Type::QtMouseEventFlag)
+  Enum mouse_event_flag = qt.newEnum("MouseEventFlag").setId(script::Type::QtMouseEventFlag)
     .setEnumClass().get();
 
   mouse_event_flag.addValue("MouseEventCreatedDoubleClick", Qt::MouseEventCreatedDoubleClick);
@@ -2021,7 +2021,7 @@ static void register_qt_checksum_type_enum(script::Namespace qt)
 {
   using namespace script;
 
-  Enum checksum_type = qt.Enum("ChecksumType").setId(script::Type::QtChecksumType)
+  Enum checksum_type = qt.newEnum("ChecksumType").setId(script::Type::QtChecksumType)
     .setEnumClass().get();
 
   checksum_type.addValue("ChecksumIso3309", Qt::ChecksumIso3309);

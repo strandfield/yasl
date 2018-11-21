@@ -25,7 +25,7 @@ static void register_menu_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class menu = ns.Class("Menu").setId(script::Type::QMenu)
+  Class menu = ns.newClass("Menu").setId(script::Type::QMenu)
     .setBase(script::Type::QWidget).get();
 
   register_ref_specialization(menu.engine(), script::Type::QMenu, script::Type::QMenuStar);

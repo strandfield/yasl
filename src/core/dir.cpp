@@ -20,7 +20,7 @@ static void register_dir_filter_enum(script::Class dir)
 {
   using namespace script;
 
-  Enum filter = dir.Enum("Filter").setId(script::Type::QDirFilter).get();
+  Enum filter = dir.newEnum("Filter").setId(script::Type::QDirFilter).get();
 
   register_qflags_type<QDir::Filter>(dir, "Filters", script::Type::QDirFilters);
   filter.addValue("Dirs", QDir::Dirs);
@@ -50,7 +50,7 @@ static void register_dir_sort_flag_enum(script::Class dir)
 {
   using namespace script;
 
-  Enum sort_flag = dir.Enum("SortFlag").setId(script::Type::QDirSortFlag).get();
+  Enum sort_flag = dir.newEnum("SortFlag").setId(script::Type::QDirSortFlag).get();
 
   register_qflags_type<QDir::SortFlag>(dir, "SortFlags", script::Type::QDirSortFlags);
   sort_flag.addValue("Name", QDir::Name);
@@ -72,7 +72,7 @@ static void register_dir_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class dir = ns.Class("Dir").setId(script::Type::QDir).get();
+  Class dir = ns.newClass("Dir").setId(script::Type::QDir).get();
 
   register_dir_filter_enum(dir);
   register_dir_sort_flag_enum(dir);

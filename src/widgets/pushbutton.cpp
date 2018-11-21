@@ -19,7 +19,7 @@ static void register_push_button_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class push_button = ns.Class("PushButton").setId(script::Type::QPushButton)
+  Class push_button = ns.newClass("PushButton").setId(script::Type::QPushButton)
     .setBase(script::Type::QAbstractButton).get();
 
   binding::ClassBinder<QPushButton> binder{ push_button, &QPushButton::staticMetaObject };

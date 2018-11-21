@@ -18,7 +18,7 @@ static void register_check_box_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class check_box = ns.Class("CheckBox").setId(script::Type::QCheckBox)
+  Class check_box = ns.newClass("CheckBox").setId(script::Type::QCheckBox)
     .setBase(script::Type::QAbstractButton).get();
 
   binding::ClassBinder<QCheckBox> binder{ check_box, &QCheckBox::staticMetaObject };

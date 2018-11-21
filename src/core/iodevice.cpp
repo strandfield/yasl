@@ -19,7 +19,7 @@ static void register_i_o_device_open_mode_flag_enum(script::Class i_o_device)
 {
   using namespace script;
 
-  Enum open_mode_flag = i_o_device.Enum("OpenModeFlag").setId(script::Type::QIODeviceOpenModeFlag).get();
+  Enum open_mode_flag = i_o_device.newEnum("OpenModeFlag").setId(script::Type::QIODeviceOpenModeFlag).get();
 
   register_qflags_type<QIODevice::OpenModeFlag>(i_o_device, "OpenMode", script::Type::QIODeviceOpenMode);
   open_mode_flag.addValue("NotOpen", QIODevice::NotOpen);
@@ -37,7 +37,7 @@ static void register_i_o_device_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class i_o_device = ns.Class("IODevice").setId(script::Type::QIODevice)
+  Class i_o_device = ns.newClass("IODevice").setId(script::Type::QIODevice)
     .setBase(script::Type::QObject).get();
 
   register_i_o_device_open_mode_flag_enum(i_o_device);

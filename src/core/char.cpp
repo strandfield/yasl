@@ -19,7 +19,7 @@ static void register_char__special_character_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum special_character = char_.Enum("SpecialCharacter").setId(script::Type::QCharSpecialCharacter).get();
+  Enum special_character = char_.newEnum("SpecialCharacter").setId(script::Type::QCharSpecialCharacter).get();
 
   special_character.addValue("Null", QChar::Null);
   special_character.addValue("Tabulation", QChar::Tabulation);
@@ -42,7 +42,7 @@ static void register_char__category_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum category = char_.Enum("Category").setId(script::Type::QCharCategory).get();
+  Enum category = char_.newEnum("Category").setId(script::Type::QCharCategory).get();
 
   category.addValue("Mark_NonSpacing", QChar::Mark_NonSpacing);
   category.addValue("Mark_SpacingCombining", QChar::Mark_SpacingCombining);
@@ -81,7 +81,7 @@ static void register_char__script_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum script = char_.Enum("Script").setId(script::Type::QCharScript).get();
+  Enum script = char_.newEnum("Script").setId(script::Type::QCharScript).get();
 
   script.addValue("Script_Unknown", QChar::Script_Unknown);
   script.addValue("Script_Inherited", QChar::Script_Inherited);
@@ -223,7 +223,7 @@ static void register_char__direction_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum direction = char_.Enum("Direction").setId(script::Type::QCharDirection).get();
+  Enum direction = char_.newEnum("Direction").setId(script::Type::QCharDirection).get();
 
   direction.addValue("DirL", QChar::DirL);
   direction.addValue("DirR", QChar::DirR);
@@ -255,7 +255,7 @@ static void register_char__decomposition_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum decomposition = char_.Enum("Decomposition").setId(script::Type::QCharDecomposition).get();
+  Enum decomposition = char_.newEnum("Decomposition").setId(script::Type::QCharDecomposition).get();
 
   decomposition.addValue("NoDecomposition", QChar::NoDecomposition);
   decomposition.addValue("Canonical", QChar::Canonical);
@@ -282,7 +282,7 @@ static void register_char__joining_type_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum joining_type = char_.Enum("JoiningType").setId(script::Type::QCharJoiningType).get();
+  Enum joining_type = char_.newEnum("JoiningType").setId(script::Type::QCharJoiningType).get();
 
   joining_type.addValue("Joining_None", QChar::Joining_None);
   joining_type.addValue("Joining_Causing", QChar::Joining_Causing);
@@ -297,7 +297,7 @@ static void register_char__joining_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum joining = char_.Enum("Joining").setId(script::Type::QCharJoining).get();
+  Enum joining = char_.newEnum("Joining").setId(script::Type::QCharJoining).get();
 
   joining.addValue("OtherJoining", QChar::OtherJoining);
   joining.addValue("Dual", QChar::Dual);
@@ -310,7 +310,7 @@ static void register_char__combining_class_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum combining_class = char_.Enum("CombiningClass").setId(script::Type::QCharCombiningClass).get();
+  Enum combining_class = char_.newEnum("CombiningClass").setId(script::Type::QCharCombiningClass).get();
 
   combining_class.addValue("Combining_BelowLeftAttached", QChar::Combining_BelowLeftAttached);
   combining_class.addValue("Combining_BelowAttached", QChar::Combining_BelowAttached);
@@ -338,7 +338,7 @@ static void register_char__unicode_version_enum(script::Class char_)
 {
   using namespace script;
 
-  Enum unicode_version = char_.Enum("UnicodeVersion").setId(script::Type::QCharUnicodeVersion).get();
+  Enum unicode_version = char_.newEnum("UnicodeVersion").setId(script::Type::QCharUnicodeVersion).get();
 
   unicode_version.addValue("Unicode_Unassigned", QChar::Unicode_Unassigned);
   unicode_version.addValue("Unicode_1_1", QChar::Unicode_1_1);
@@ -365,7 +365,7 @@ static void register_char__class(script::Namespace ns)
 {
   using namespace script;
 
-  Class char_ = ns.Class("Char").setId(script::Type::QChar).get();
+  Class char_ = ns.newClass("Char").setId(script::Type::QChar).get();
 
   register_char__special_character_enum(char_);
   register_char__category_enum(char_);

@@ -105,7 +105,7 @@ static void inject_conversions(script::Class & ref, const script::Class & src)
     return;
 
   // we add a conversion from Ref<T> to Ref<Base>
-  ref.Conversion(get_ref_instance(src).id(), callbacks::cast).create();
+  ref.newConversion(get_ref_instance(src).id(), callbacks::cast).create();
 }
 
 static void inject_conversions_recursively(script::Class & ref, const script::Class & src, const script::Class & qobject)
@@ -123,32 +123,32 @@ static void fill_ref_instance(script::Class & instance, const script::Class & qc
 {
   using namespace script;
 
-  instance.Constructor(callbacks::default_ctor).create();
-  instance.Constructor(callbacks::copy_ctor).params(Type::cref(instance.id())).create();
-  instance.Constructor(callbacks::copy_ctor).params(Type::cref(qclass.id())).create();
+  instance.newConstructor(callbacks::default_ctor).create();
+  instance.newConstructor(callbacks::copy_ctor).params(Type::cref(instance.id())).create();
+  instance.newConstructor(callbacks::copy_ctor).params(Type::cref(qclass.id())).create();
 
-  instance.Destructor(callbacks::dtor).create();
+  instance.newDestructor(callbacks::dtor).create();
 
-  instance.Method("get", callbacks::get)
+  instance.newMethod("get", callbacks::get)
     .setConst()
     .returns(Type::ref(qclass.id()))
     .create();
 
-  instance.Method("isNull", callbacks::is_null)
+  instance.newMethod("isNull", callbacks::is_null)
     .setConst()
     .returns(Type::Boolean)
     .create();
 
-  instance.Method("isValid", callbacks::is_valid)
+  instance.newMethod("isValid", callbacks::is_valid)
     .setConst()
     .returns(Type::Boolean)
     .create();
 
-  instance.Operation(AssignmentOperator, callbacks::assign)
+  instance.newOperator(AssignmentOperator, callbacks::assign)
     .returns(Type::ref(instance.id()))
     .params(Type::cref(instance.id())).create();
 
-  instance.Conversion(Type::ref(qclass.id()), callbacks::get)
+  instance.newConversion(Type::ref(qclass.id()), callbacks::get)
     .setConst()
     .create();
 
@@ -191,7 +191,7 @@ void register_ref_template(script::Namespace ns)
   std::vector<TemplateParameter> params;
   params.push_back(TemplateParameter{ TemplateParameter::TypeParameter{}, "T" });
 
-  ClassTemplate ref = Symbol{ ns }.ClassTemplate("Ref")
+  ClassTemplate ref = Symbol{ ns }.newClassTemplate("Ref")
     .setParams(std::move(params))
     .setScope(Scope{ ns })
     .setCallback(ref_template)

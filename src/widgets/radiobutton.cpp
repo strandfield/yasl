@@ -17,7 +17,7 @@ static void register_radio_button_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class radio_button = ns.Class("RadioButton").setId(script::Type::QRadioButton)
+  Class radio_button = ns.newClass("RadioButton").setId(script::Type::QRadioButton)
     .setBase(script::Type::QAbstractButton).get();
 
   binding::ClassBinder<QRadioButton> binder{ radio_button, &QRadioButton::staticMetaObject };

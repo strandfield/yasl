@@ -20,7 +20,7 @@ static void register_label_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class label = ns.Class("Label").setId(script::Type::QLabel)
+  Class label = ns.newClass("Label").setId(script::Type::QLabel)
     .setBase(script::Type::QFrame).get();
 
   binding::ClassBinder<QLabel> binder{ label, &QLabel::staticMetaObject };

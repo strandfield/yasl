@@ -28,7 +28,7 @@ static void register_image_invert_mode_enum(script::Class image)
 {
   using namespace script;
 
-  Enum invert_mode = image.Enum("InvertMode").setId(script::Type::QImageInvertMode).get();
+  Enum invert_mode = image.newEnum("InvertMode").setId(script::Type::QImageInvertMode).get();
 
   invert_mode.addValue("InvertRgb", QImage::InvertRgb);
   invert_mode.addValue("InvertRgba", QImage::InvertRgba);
@@ -39,7 +39,7 @@ static void register_image_format_enum(script::Class image)
 {
   using namespace script;
 
-  Enum format = image.Enum("Format").setId(script::Type::QImageFormat).get();
+  Enum format = image.newEnum("Format").setId(script::Type::QImageFormat).get();
 
   format.addValue("Format_Invalid", QImage::Format_Invalid);
   format.addValue("Format_Mono", QImage::Format_Mono);
@@ -74,7 +74,7 @@ static void register_image_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class image = ns.Class("Image").setId(script::Type::QImage).get();
+  Class image = ns.newClass("Image").setId(script::Type::QImage).get();
 
   register_image_invert_mode_enum(image);
   register_image_format_enum(image);

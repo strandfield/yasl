@@ -41,7 +41,7 @@ static void register_widget_render_flag_enum(script::Class widget)
 {
   using namespace script;
 
-  Enum render_flag = widget.Enum("RenderFlag").setId(script::Type::QWidgetRenderFlag).get();
+  Enum render_flag = widget.newEnum("RenderFlag").setId(script::Type::QWidgetRenderFlag).get();
 
   render_flag.addValue("DrawWindowBackground", QWidget::DrawWindowBackground);
   render_flag.addValue("DrawChildren", QWidget::DrawChildren);
@@ -53,7 +53,7 @@ static void register_widget_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class widget = ns.Class("Widget").setId(script::Type::QWidget)
+  Class widget = ns.newClass("Widget").setId(script::Type::QWidget)
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(widget.engine(), script::Type::QWidget, script::Type::QWidgetStar);

@@ -17,7 +17,7 @@ static void register_timer_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class timer = ns.Class("Timer").setId(script::Type::QTimer)
+  Class timer = ns.newClass("Timer").setId(script::Type::QTimer)
     .setBase(script::Type::QObject).get();
 
   binding::ClassBinder<QTimer> binder{ timer, &QTimer::staticMetaObject };

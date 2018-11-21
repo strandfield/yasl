@@ -19,7 +19,7 @@ static void register_uuid_variant_enum(script::Class uuid)
 {
   using namespace script;
 
-  Enum variant = uuid.Enum("Variant").setId(script::Type::QUuidVariant).get();
+  Enum variant = uuid.newEnum("Variant").setId(script::Type::QUuidVariant).get();
 
   variant.addValue("VarUnknown", QUuid::VarUnknown);
   variant.addValue("NCS", QUuid::NCS);
@@ -33,7 +33,7 @@ static void register_uuid_version_enum(script::Class uuid)
 {
   using namespace script;
 
-  Enum version = uuid.Enum("Version").setId(script::Type::QUuidVersion).get();
+  Enum version = uuid.newEnum("Version").setId(script::Type::QUuidVersion).get();
 
   version.addValue("VerUnknown", QUuid::VerUnknown);
   version.addValue("Time", QUuid::Time);
@@ -49,7 +49,7 @@ static void register_uuid_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class uuid = ns.Class("Uuid").setId(script::Type::QUuid).get();
+  Class uuid = ns.newClass("Uuid").setId(script::Type::QUuid).get();
 
   register_uuid_variant_enum(uuid);
   register_uuid_version_enum(uuid);

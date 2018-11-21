@@ -23,7 +23,7 @@ static void register_file_dialog_view_mode_enum(script::Class file_dialog)
 {
   using namespace script;
 
-  Enum view_mode = file_dialog.Enum("ViewMode").setId(script::Type::QFileDialogViewMode).get();
+  Enum view_mode = file_dialog.newEnum("ViewMode").setId(script::Type::QFileDialogViewMode).get();
 
   view_mode.addValue("Detail", QFileDialog::Detail);
   view_mode.addValue("List", QFileDialog::List);
@@ -34,7 +34,7 @@ static void register_file_dialog_file_mode_enum(script::Class file_dialog)
 {
   using namespace script;
 
-  Enum file_mode = file_dialog.Enum("FileMode").setId(script::Type::QFileDialogFileMode).get();
+  Enum file_mode = file_dialog.newEnum("FileMode").setId(script::Type::QFileDialogFileMode).get();
 
   file_mode.addValue("AnyFile", QFileDialog::AnyFile);
   file_mode.addValue("ExistingFile", QFileDialog::ExistingFile);
@@ -48,7 +48,7 @@ static void register_file_dialog_accept_mode_enum(script::Class file_dialog)
 {
   using namespace script;
 
-  Enum accept_mode = file_dialog.Enum("AcceptMode").setId(script::Type::QFileDialogAcceptMode).get();
+  Enum accept_mode = file_dialog.newEnum("AcceptMode").setId(script::Type::QFileDialogAcceptMode).get();
 
   accept_mode.addValue("AcceptOpen", QFileDialog::AcceptOpen);
   accept_mode.addValue("AcceptSave", QFileDialog::AcceptSave);
@@ -59,7 +59,7 @@ static void register_file_dialog_dialog_label_enum(script::Class file_dialog)
 {
   using namespace script;
 
-  Enum dialog_label = file_dialog.Enum("DialogLabel").setId(script::Type::QFileDialogDialogLabel).get();
+  Enum dialog_label = file_dialog.newEnum("DialogLabel").setId(script::Type::QFileDialogDialogLabel).get();
 
   dialog_label.addValue("LookIn", QFileDialog::LookIn);
   dialog_label.addValue("FileName", QFileDialog::FileName);
@@ -73,7 +73,7 @@ static void register_file_dialog_option_enum(script::Class file_dialog)
 {
   using namespace script;
 
-  Enum option = file_dialog.Enum("Option").setId(script::Type::QFileDialogOption).get();
+  Enum option = file_dialog.newEnum("Option").setId(script::Type::QFileDialogOption).get();
 
   register_qflags_type<QFileDialog::Option>(file_dialog, "Options", script::Type::QFileDialogOptions);
   option.addValue("ShowDirsOnly", QFileDialog::ShowDirsOnly);
@@ -91,7 +91,7 @@ static void register_file_dialog_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class file_dialog = ns.Class("FileDialog").setId(script::Type::QFileDialog)
+  Class file_dialog = ns.newClass("FileDialog").setId(script::Type::QFileDialog)
     .setBase(script::Type::QDialog).get();
 
   register_file_dialog_view_mode_enum(file_dialog);

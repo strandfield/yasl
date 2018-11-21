@@ -55,7 +55,7 @@ void register_proxy_template(script::Namespace ns)
     TemplateParameter{TemplateParameter::TypeParameter{}, "T"}
   };
 
-  ClassTemplate proxy = Symbol{ ns }.ClassTemplate("Proxy")
+  ClassTemplate proxy = Symbol{ ns }.newClassTemplate("Proxy")
     .setParams(std::move(params))
     .setScope(Scope{ ns })
     .setCallback(proxy_template_instantiate)

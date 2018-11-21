@@ -20,7 +20,7 @@ static void register_abstract_slider_slider_action_enum(script::Class abstract_s
 {
   using namespace script;
 
-  Enum slider_action = abstract_slider.Enum("SliderAction").setId(script::Type::QAbstractSliderSliderAction).get();
+  Enum slider_action = abstract_slider.newEnum("SliderAction").setId(script::Type::QAbstractSliderSliderAction).get();
 
   slider_action.addValue("SliderNoAction", QAbstractSlider::SliderNoAction);
   slider_action.addValue("SliderSingleStepAdd", QAbstractSlider::SliderSingleStepAdd);
@@ -37,7 +37,7 @@ static void register_abstract_slider_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class abstract_slider = ns.Class("AbstractSlider").setId(script::Type::QAbstractSlider)
+  Class abstract_slider = ns.newClass("AbstractSlider").setId(script::Type::QAbstractSlider)
     .setBase(script::Type::QWidget).get();
 
   register_abstract_slider_slider_action_enum(abstract_slider);

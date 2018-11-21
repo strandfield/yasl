@@ -24,7 +24,7 @@ static void register_combo_box_insert_policy_enum(script::Class combo_box)
 {
   using namespace script;
 
-  Enum insert_policy = combo_box.Enum("InsertPolicy").setId(script::Type::QComboBoxInsertPolicy).get();
+  Enum insert_policy = combo_box.newEnum("InsertPolicy").setId(script::Type::QComboBoxInsertPolicy).get();
 
   insert_policy.addValue("NoInsert", QComboBox::NoInsert);
   insert_policy.addValue("InsertAtTop", QComboBox::InsertAtTop);
@@ -40,7 +40,7 @@ static void register_combo_box_size_adjust_policy_enum(script::Class combo_box)
 {
   using namespace script;
 
-  Enum size_adjust_policy = combo_box.Enum("SizeAdjustPolicy").setId(script::Type::QComboBoxSizeAdjustPolicy).get();
+  Enum size_adjust_policy = combo_box.newEnum("SizeAdjustPolicy").setId(script::Type::QComboBoxSizeAdjustPolicy).get();
 
   size_adjust_policy.addValue("AdjustToContents", QComboBox::AdjustToContents);
   size_adjust_policy.addValue("AdjustToContentsOnFirstShow", QComboBox::AdjustToContentsOnFirstShow);
@@ -53,7 +53,7 @@ static void register_combo_box_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class combo_box = ns.Class("ComboBox").setId(script::Type::QComboBox)
+  Class combo_box = ns.newClass("ComboBox").setId(script::Type::QComboBox)
     .setBase(script::Type::QWidget).get();
 
   register_combo_box_insert_policy_enum(combo_box);

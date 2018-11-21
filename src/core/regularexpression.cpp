@@ -20,7 +20,7 @@ static void register_regular_expression_pattern_option_enum(script::Class regula
 {
   using namespace script;
 
-  Enum pattern_option = regular_expression.Enum("PatternOption").setId(script::Type::QRegularExpressionPatternOption).get();
+  Enum pattern_option = regular_expression.newEnum("PatternOption").setId(script::Type::QRegularExpressionPatternOption).get();
 
   register_qflags_type<QRegularExpression::PatternOption>(regular_expression, "PatternOptions", script::Type::QRegularExpressionPatternOptions);
   pattern_option.addValue("NoPatternOption", QRegularExpression::NoPatternOption);
@@ -40,7 +40,7 @@ static void register_regular_expression_match_type_enum(script::Class regular_ex
 {
   using namespace script;
 
-  Enum match_type = regular_expression.Enum("MatchType").setId(script::Type::QRegularExpressionMatchType).get();
+  Enum match_type = regular_expression.newEnum("MatchType").setId(script::Type::QRegularExpressionMatchType).get();
 
   match_type.addValue("NormalMatch", QRegularExpression::NormalMatch);
   match_type.addValue("PartialPreferCompleteMatch", QRegularExpression::PartialPreferCompleteMatch);
@@ -53,7 +53,7 @@ static void register_regular_expression_match_option_enum(script::Class regular_
 {
   using namespace script;
 
-  Enum match_option = regular_expression.Enum("MatchOption").setId(script::Type::QRegularExpressionMatchOption).get();
+  Enum match_option = regular_expression.newEnum("MatchOption").setId(script::Type::QRegularExpressionMatchOption).get();
 
   register_qflags_type<QRegularExpression::MatchOption>(regular_expression, "MatchOptions", script::Type::QRegularExpressionMatchOptions);
   match_option.addValue("NoMatchOption", QRegularExpression::NoMatchOption);
@@ -66,7 +66,7 @@ static void register_regular_expression_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class regular_expression = ns.Class("RegularExpression").setId(script::Type::QRegularExpression).get();
+  Class regular_expression = ns.newClass("RegularExpression").setId(script::Type::QRegularExpression).get();
 
   register_regular_expression_pattern_option_enum(regular_expression);
   register_regular_expression_match_type_enum(regular_expression);
@@ -129,7 +129,7 @@ static void register_regular_expression_match_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class regular_expression_match = ns.Class("RegularExpressionMatch").setId(script::Type::QRegularExpressionMatch).get();
+  Class regular_expression_match = ns.newClass("RegularExpressionMatch").setId(script::Type::QRegularExpressionMatch).get();
 
   binding::ClassBinder<QRegularExpressionMatch> binder{ regular_expression_match };
 
@@ -202,7 +202,7 @@ static void register_regular_expression_match_iterator_class(script::Namespace n
 {
   using namespace script;
 
-  Class regular_expression_match_iterator = ns.Class("RegularExpressionMatchIterator").setId(script::Type::QRegularExpressionMatchIterator).get();
+  Class regular_expression_match_iterator = ns.newClass("RegularExpressionMatchIterator").setId(script::Type::QRegularExpressionMatchIterator).get();
 
   binding::ClassBinder<QRegularExpressionMatchIterator> binder{ regular_expression_match_iterator };
 

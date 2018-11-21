@@ -20,7 +20,7 @@ static void register_grid_layout_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class grid_layout = ns.Class("GridLayout").setId(script::Type::QGridLayout)
+  Class grid_layout = ns.newClass("GridLayout").setId(script::Type::QGridLayout)
     .setBase(script::Type::QLayout).get();
 
   binding::ClassBinder<QGridLayout> binder{ grid_layout, &QGridLayout::staticMetaObject };

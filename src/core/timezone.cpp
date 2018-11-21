@@ -22,7 +22,7 @@ static void register_time_zone_time_type_enum(script::Class time_zone)
 {
   using namespace script;
 
-  Enum time_type = time_zone.Enum("TimeType").setId(script::Type::QTimeZoneTimeType).get();
+  Enum time_type = time_zone.newEnum("TimeType").setId(script::Type::QTimeZoneTimeType).get();
 
   time_type.addValue("StandardTime", QTimeZone::StandardTime);
   time_type.addValue("DaylightTime", QTimeZone::DaylightTime);
@@ -34,7 +34,7 @@ static void register_time_zone_name_type_enum(script::Class time_zone)
 {
   using namespace script;
 
-  Enum name_type = time_zone.Enum("NameType").setId(script::Type::QTimeZoneNameType).get();
+  Enum name_type = time_zone.newEnum("NameType").setId(script::Type::QTimeZoneNameType).get();
 
   name_type.addValue("DefaultName", QTimeZone::DefaultName);
   name_type.addValue("LongName", QTimeZone::LongName);
@@ -47,7 +47,7 @@ static void register_time_zone_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class time_zone = ns.Class("TimeZone").setId(script::Type::QTimeZone).get();
+  Class time_zone = ns.newClass("TimeZone").setId(script::Type::QTimeZone).get();
 
   register_time_zone_time_type_enum(time_zone);
   register_time_zone_name_type_enum(time_zone);

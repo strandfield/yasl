@@ -20,7 +20,7 @@ static void register_settings_status_enum(script::Class settings)
 {
   using namespace script;
 
-  Enum status = settings.Enum("Status").setId(script::Type::QSettingsStatus).get();
+  Enum status = settings.newEnum("Status").setId(script::Type::QSettingsStatus).get();
 
   status.addValue("NoError", QSettings::NoError);
   status.addValue("AccessError", QSettings::AccessError);
@@ -32,7 +32,7 @@ static void register_settings_format_enum(script::Class settings)
 {
   using namespace script;
 
-  Enum format = settings.Enum("Format").setId(script::Type::QSettingsFormat).get();
+  Enum format = settings.newEnum("Format").setId(script::Type::QSettingsFormat).get();
 
   format.addValue("NativeFormat", QSettings::NativeFormat);
   format.addValue("IniFormat", QSettings::IniFormat);
@@ -62,7 +62,7 @@ static void register_settings_scope_enum(script::Class settings)
 {
   using namespace script;
 
-  Enum scope = settings.Enum("Scope").setId(script::Type::QSettingsScope).get();
+  Enum scope = settings.newEnum("Scope").setId(script::Type::QSettingsScope).get();
 
   scope.addValue("UserScope", QSettings::UserScope);
   scope.addValue("SystemScope", QSettings::SystemScope);
@@ -73,7 +73,7 @@ static void register_settings_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class settings = ns.Class("Settings").setId(script::Type::QSettings)
+  Class settings = ns.newClass("Settings").setId(script::Type::QSettings)
     .setBase(script::Type::QObject).get();
 
   register_settings_status_enum(settings);

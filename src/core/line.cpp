@@ -19,7 +19,7 @@ static void register_line_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class line = ns.Class("Line").setId(script::Type::QLine).get();
+  Class line = ns.newClass("Line").setId(script::Type::QLine).get();
 
   binding::ClassBinder<QLine> binder{ line };
 
@@ -82,7 +82,7 @@ static void register_line_f_intersect_type_enum(script::Class line_f)
 {
   using namespace script;
 
-  Enum intersect_type = line_f.Enum("IntersectType").setId(script::Type::QLineFIntersectType).get();
+  Enum intersect_type = line_f.newEnum("IntersectType").setId(script::Type::QLineFIntersectType).get();
 
   intersect_type.addValue("NoIntersection", QLineF::NoIntersection);
   intersect_type.addValue("BoundedIntersection", QLineF::BoundedIntersection);
@@ -94,7 +94,7 @@ static void register_line_f_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class line_f = ns.Class("LineF").setId(script::Type::QLineF).get();
+  Class line_f = ns.newClass("LineF").setId(script::Type::QLineF).get();
 
   register_line_f_intersect_type_enum(line_f);
   binding::ClassBinder<QLineF> binder{ line_f };

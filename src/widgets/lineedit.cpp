@@ -28,7 +28,7 @@ static void register_line_edit_action_position_enum(script::Class line_edit)
 {
   using namespace script;
 
-  Enum action_position = line_edit.Enum("ActionPosition").setId(script::Type::QLineEditActionPosition).get();
+  Enum action_position = line_edit.newEnum("ActionPosition").setId(script::Type::QLineEditActionPosition).get();
 
   action_position.addValue("LeadingPosition", QLineEdit::LeadingPosition);
   action_position.addValue("TrailingPosition", QLineEdit::TrailingPosition);
@@ -39,7 +39,7 @@ static void register_line_edit_echo_mode_enum(script::Class line_edit)
 {
   using namespace script;
 
-  Enum echo_mode = line_edit.Enum("EchoMode").setId(script::Type::QLineEditEchoMode).get();
+  Enum echo_mode = line_edit.newEnum("EchoMode").setId(script::Type::QLineEditEchoMode).get();
 
   echo_mode.addValue("Normal", QLineEdit::Normal);
   echo_mode.addValue("NoEcho", QLineEdit::NoEcho);
@@ -52,7 +52,7 @@ static void register_line_edit_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class line_edit = ns.Class("LineEdit").setId(script::Type::QLineEdit)
+  Class line_edit = ns.newClass("LineEdit").setId(script::Type::QLineEdit)
     .setBase(script::Type::QWidget).get();
 
   register_line_edit_action_position_enum(line_edit);

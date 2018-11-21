@@ -23,7 +23,7 @@ static void register_box_layout_direction_enum(script::Class box_layout)
 {
   using namespace script;
 
-  Enum direction = box_layout.Enum("Direction").setId(script::Type::QBoxLayoutDirection).get();
+  Enum direction = box_layout.newEnum("Direction").setId(script::Type::QBoxLayoutDirection).get();
 
   direction.addValue("LeftToRight", QBoxLayout::LeftToRight);
   direction.addValue("RightToLeft", QBoxLayout::RightToLeft);
@@ -38,7 +38,7 @@ static void register_box_layout_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class box_layout = ns.Class("BoxLayout").setId(script::Type::QBoxLayout)
+  Class box_layout = ns.newClass("BoxLayout").setId(script::Type::QBoxLayout)
     .setBase(script::Type::QLayout).get();
 
   register_box_layout_direction_enum(box_layout);
@@ -104,7 +104,7 @@ static void register_h_box_layout_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class h_box_layout = ns.Class("QHBoxLayout").setId(script::Type::QHBoxLayout)
+  Class h_box_layout = ns.newClass("QHBoxLayout").setId(script::Type::QHBoxLayout)
     .setBase(script::Type::QBoxLayout).get();
 
   binding::ClassBinder<QHBoxLayout> binder{ h_box_layout, &QHBoxLayout::staticMetaObject };
@@ -124,7 +124,7 @@ static void register_v_box_layout_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class v_box_layout = ns.Class("QVBoxLayout").setId(script::Type::QVBoxLayout)
+  Class v_box_layout = ns.newClass("QVBoxLayout").setId(script::Type::QVBoxLayout)
     .setBase(script::Type::QBoxLayout).get();
 
   binding::ClassBinder<QVBoxLayout> binder{ v_box_layout, &QVBoxLayout::staticMetaObject };

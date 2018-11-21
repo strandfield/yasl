@@ -17,7 +17,7 @@ static void register_elapsed_timer_clock_type_enum(script::Class elapsed_timer)
 {
   using namespace script;
 
-  Enum clock_type = elapsed_timer.Enum("ClockType").setId(script::Type::QElapsedTimerClockType).get();
+  Enum clock_type = elapsed_timer.newEnum("ClockType").setId(script::Type::QElapsedTimerClockType).get();
 
   clock_type.addValue("SystemTime", QElapsedTimer::SystemTime);
   clock_type.addValue("MonotonicClock", QElapsedTimer::MonotonicClock);
@@ -31,7 +31,7 @@ static void register_elapsed_timer_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class elapsed_timer = ns.Class("ElapsedTimer").setId(script::Type::QElapsedTimer).get();
+  Class elapsed_timer = ns.newClass("ElapsedTimer").setId(script::Type::QElapsedTimer).get();
 
   register_elapsed_timer_clock_type_enum(elapsed_timer);
   binding::ClassBinder<QElapsedTimer> binder{ elapsed_timer };

@@ -23,12 +23,12 @@ void register_newlayout_functions(script::Namespace widgets)
 {
   using namespace script;
 
-  widgets.Function("newBoxLayout", callbacks::new_boxlayout)
+  widgets.newFunction("newBoxLayout", callbacks::new_boxlayout)
     .returns(Type::ref(script::Type::QBoxLayout))
 	.params(Type::QBoxLayoutDirection)
     .create();
 
-  widgets.Function("newBoxLayout", callbacks::new_boxlayout_parent)
+  widgets.newFunction("newBoxLayout", callbacks::new_boxlayout_parent)
     .returns(Type::ref(script::Type::QBoxLayout))
 	.params(Type::QBoxLayoutDirection, Type::QWidgetStar)
     .create();

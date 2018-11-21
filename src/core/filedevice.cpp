@@ -19,7 +19,7 @@ static void register_file_device_file_error_enum(script::Class file_device)
 {
   using namespace script;
 
-  Enum file_error = file_device.Enum("FileError").setId(script::Type::QFileDeviceFileError).get();
+  Enum file_error = file_device.newEnum("FileError").setId(script::Type::QFileDeviceFileError).get();
 
   file_error.addValue("NoError", QFileDevice::NoError);
   file_error.addValue("ReadError", QFileDevice::ReadError);
@@ -43,7 +43,7 @@ static void register_file_device_file_time_enum(script::Class file_device)
 {
   using namespace script;
 
-  Enum file_time = file_device.Enum("FileTime").setId(script::Type::QFileDeviceFileTime).get();
+  Enum file_time = file_device.newEnum("FileTime").setId(script::Type::QFileDeviceFileTime).get();
 
   file_time.addValue("FileAccessTime", QFileDevice::FileAccessTime);
   file_time.addValue("FileBirthTime", QFileDevice::FileBirthTime);
@@ -56,7 +56,7 @@ static void register_file_device_permission_enum(script::Class file_device)
 {
   using namespace script;
 
-  Enum permission = file_device.Enum("Permission").setId(script::Type::QFileDevicePermission).get();
+  Enum permission = file_device.newEnum("Permission").setId(script::Type::QFileDevicePermission).get();
 
   register_qflags_type<QFileDevice::Permission>(file_device, "Permissions", script::Type::QFileDevicePermissions);
   permission.addValue("ReadOwner", QFileDevice::ReadOwner);
@@ -78,7 +78,7 @@ static void register_file_device_file_handle_flag_enum(script::Class file_device
 {
   using namespace script;
 
-  Enum file_handle_flag = file_device.Enum("FileHandleFlag").setId(script::Type::QFileDeviceFileHandleFlag).get();
+  Enum file_handle_flag = file_device.newEnum("FileHandleFlag").setId(script::Type::QFileDeviceFileHandleFlag).get();
 
   register_qflags_type<QFileDevice::FileHandleFlag>(file_device, "FileHandleFlags", script::Type::QFileDeviceFileHandleFlags);
   file_handle_flag.addValue("AutoCloseHandle", QFileDevice::AutoCloseHandle);
@@ -90,7 +90,7 @@ static void register_file_device_memory_map_flags_enum(script::Class file_device
 {
   using namespace script;
 
-  Enum memory_map_flags = file_device.Enum("MemoryMapFlags").setId(script::Type::QFileDeviceMemoryMapFlags).get();
+  Enum memory_map_flags = file_device.newEnum("MemoryMapFlags").setId(script::Type::QFileDeviceMemoryMapFlags).get();
 
   memory_map_flags.addValue("NoOptions", QFileDevice::NoOptions);
   memory_map_flags.addValue("MapPrivateOption", QFileDevice::MapPrivateOption);
@@ -101,7 +101,7 @@ static void register_file_device_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class file_device = ns.Class("FileDevice").setId(script::Type::QFileDevice)
+  Class file_device = ns.newClass("FileDevice").setId(script::Type::QFileDevice)
     .setBase(script::Type::QIODevice).get();
 
   register_file_device_file_error_enum(file_device);

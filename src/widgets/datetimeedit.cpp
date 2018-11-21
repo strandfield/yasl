@@ -24,7 +24,7 @@ static void register_date_time_edit_section_enum(script::Class date_time_edit)
 {
   using namespace script;
 
-  Enum section = date_time_edit.Enum("Section").setId(script::Type::QDateTimeEditSection).get();
+  Enum section = date_time_edit.newEnum("Section").setId(script::Type::QDateTimeEditSection).get();
 
   register_qflags_type<QDateTimeEdit::Section>(date_time_edit, "Sections", script::Type::QDateTimeEditSections);
   section.addValue("NoSection", QDateTimeEdit::NoSection);
@@ -45,7 +45,7 @@ static void register_date_time_edit_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class date_time_edit = ns.Class("DateTimeEdit").setId(script::Type::QDateTimeEdit)
+  Class date_time_edit = ns.newClass("DateTimeEdit").setId(script::Type::QDateTimeEdit)
     .setBase(script::Type::QAbstractSpinBox).get();
 
   register_date_time_edit_section_enum(date_time_edit);
@@ -176,7 +176,7 @@ static void register_time_edit_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class time_edit = ns.Class("TimeEdit").setId(script::Type::QTimeEdit)
+  Class time_edit = ns.newClass("TimeEdit").setId(script::Type::QTimeEdit)
     .setBase(script::Type::QDateTimeEdit).get();
 
   binding::ClassBinder<QTimeEdit> binder{ time_edit, &QTimeEdit::staticMetaObject };
@@ -198,7 +198,7 @@ static void register_date_edit_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class date_edit = ns.Class("DateEdit").setId(script::Type::QDateEdit)
+  Class date_edit = ns.newClass("DateEdit").setId(script::Type::QDateEdit)
     .setBase(script::Type::QDateTimeEdit).get();
 
   binding::ClassBinder<QDateEdit> binder{ date_edit, &QDateEdit::staticMetaObject };

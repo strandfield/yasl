@@ -174,77 +174,77 @@ static void add_events_method(script::Engine *e)
   Class widget = e->getClass(Type::QWidget);
   
   /* Events */
-  widget.Method("closeEvent", callbacks::close_event)
+  widget.newMethod("closeEvent", callbacks::close_event)
     .setProtected()
     .params(binding::make_type<QCloseEvent &>())
     .create();
 
-  widget.Method("enterEvent", callbacks::enter_event)
+  widget.newMethod("enterEvent", callbacks::enter_event)
     .setProtected()
     .params(binding::make_type<QEvent &>())
     .create();
 
-  widget.Method("hideEvent", callbacks::hide_event)
+  widget.newMethod("hideEvent", callbacks::hide_event)
     .setProtected()
     .params(binding::make_type<QHideEvent &>())
     .create();
 
-  widget.Method("keyPressEvent", callbacks::key_press_event)
+  widget.newMethod("keyPressEvent", callbacks::key_press_event)
     .setProtected()
     .params(binding::make_type<QKeyEvent &>())
     .create();
 
-  widget.Method("keyReleaseEvent", callbacks::key_release_event)
+  widget.newMethod("keyReleaseEvent", callbacks::key_release_event)
     .setProtected()
     .params(binding::make_type<QKeyEvent &>())
     .create();
 
-  widget.Method("leaveEvent", callbacks::leave_event)
+  widget.newMethod("leaveEvent", callbacks::leave_event)
     .setProtected()
     .params(binding::make_type<QEvent &>())
     .create();
 
-  widget.Method("mouseDoubleClickEvent", callbacks::mouse_double_click_event)
+  widget.newMethod("mouseDoubleClickEvent", callbacks::mouse_double_click_event)
     .setProtected()
     .params(binding::make_type<QMouseEvent &>())
     .create();
 
-  widget.Method("mouseMoveEvent", callbacks::mouse_move_event)
+  widget.newMethod("mouseMoveEvent", callbacks::mouse_move_event)
     .setProtected()
     .params(binding::make_type<QMouseEvent &>())
     .create();
 
-  widget.Method("mousePressEvent", callbacks::mouse_press_event)
+  widget.newMethod("mousePressEvent", callbacks::mouse_press_event)
     .setProtected()
     .params(binding::make_type<QMouseEvent &>())
     .create();
 
-  widget.Method("mouseReleaseEvent", callbacks::mouse_release_event)
+  widget.newMethod("mouseReleaseEvent", callbacks::mouse_release_event)
     .setProtected()
     .params(binding::make_type<QMouseEvent &>())
     .create();
 
-  widget.Method("moveEvent", callbacks::mouse_move_event)
+  widget.newMethod("moveEvent", callbacks::mouse_move_event)
     .setProtected()
     .params(binding::make_type<QMoveEvent &>())
     .create();
 
-  widget.Method("paintEvent", callbacks::paint_event)
+  widget.newMethod("paintEvent", callbacks::paint_event)
     .setProtected()
     .params(binding::make_type<QPaintEvent &>())
     .create();
 
-  widget.Method("resizeEvent", callbacks::resize_event)
+  widget.newMethod("resizeEvent", callbacks::resize_event)
     .setProtected()
     .params(binding::make_type<QResizeEvent &>())
     .create();
 
-  widget.Method("showEvent", callbacks::show_event)
+  widget.newMethod("showEvent", callbacks::show_event)
     .setProtected()
     .params(binding::make_type<QShowEvent &>())
     .create();
 
-  widget.Method("wheelEvent", callbacks::wheel_event)
+  widget.newMethod("wheelEvent", callbacks::wheel_event)
     .setProtected()
     .params(binding::make_type<QWheelEvent &>())
     .create();
@@ -381,7 +381,7 @@ static void register_new_widget_template(script::Namespace n)
   params.push_back(TemplateParameter{ TemplateParameter::TypeParameter{}, "T" });
   params.push_back(TemplateParameter{ TemplateParameter::TypeParameter{}, TemplateParameter::ParameterPack{}, "Args" });
 
-  FunctionTemplate new_widget = Symbol{ n }.FunctionTemplate("newWidget")
+  FunctionTemplate new_widget = Symbol{ n }.newFunctionTemplate("newWidget")
     .setParams(std::move(params))
     .setScope(Scope{ n })
     .deduce(new_widget_deduce).substitute(new_widget_substitute).instantiate(new_widget_instantitate)
@@ -394,13 +394,13 @@ void register_newwidget_file(script::Namespace core)
 
   /// TODO : maybe move elsewhere
   Class widget = core.engine()->getClass(Type::QWidget);
-  widget.Constructor(callbacks::widget_ctor).create();
+  widget.newConstructor(callbacks::widget_ctor).create();
 
-  core.Function("newWidget", callbacks::new_widget)
+  core.newFunction("newWidget", callbacks::new_widget)
     .returns(Type::ref(Type::QWidget))
     .create();
 
-  core.Function("newWidget", callbacks::new_widget_window_title)
+  core.newFunction("newWidget", callbacks::new_widget_window_title)
     .returns(Type::ref(Type::QWidget))
     .params(Type::cref(Type::String))
     .create();

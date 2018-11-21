@@ -17,7 +17,7 @@ static void register_pixel_format_color_model_enum(script::Class pixel_format)
 {
   using namespace script;
 
-  Enum color_model = pixel_format.Enum("ColorModel").setId(script::Type::QPixelFormatColorModel).get();
+  Enum color_model = pixel_format.newEnum("ColorModel").setId(script::Type::QPixelFormatColorModel).get();
 
   color_model.addValue("RGB", QPixelFormat::RGB);
   color_model.addValue("BGR", QPixelFormat::BGR);
@@ -35,7 +35,7 @@ static void register_pixel_format_alpha_usage_enum(script::Class pixel_format)
 {
   using namespace script;
 
-  Enum alpha_usage = pixel_format.Enum("AlphaUsage").setId(script::Type::QPixelFormatAlphaUsage).get();
+  Enum alpha_usage = pixel_format.newEnum("AlphaUsage").setId(script::Type::QPixelFormatAlphaUsage).get();
 
   alpha_usage.addValue("UsesAlpha", QPixelFormat::UsesAlpha);
   alpha_usage.addValue("IgnoresAlpha", QPixelFormat::IgnoresAlpha);
@@ -46,7 +46,7 @@ static void register_pixel_format_alpha_position_enum(script::Class pixel_format
 {
   using namespace script;
 
-  Enum alpha_position = pixel_format.Enum("AlphaPosition").setId(script::Type::QPixelFormatAlphaPosition).get();
+  Enum alpha_position = pixel_format.newEnum("AlphaPosition").setId(script::Type::QPixelFormatAlphaPosition).get();
 
   alpha_position.addValue("AtBeginning", QPixelFormat::AtBeginning);
   alpha_position.addValue("AtEnd", QPixelFormat::AtEnd);
@@ -57,7 +57,7 @@ static void register_pixel_format_alpha_premultiplied_enum(script::Class pixel_f
 {
   using namespace script;
 
-  Enum alpha_premultiplied = pixel_format.Enum("AlphaPremultiplied").setId(script::Type::QPixelFormatAlphaPremultiplied).get();
+  Enum alpha_premultiplied = pixel_format.newEnum("AlphaPremultiplied").setId(script::Type::QPixelFormatAlphaPremultiplied).get();
 
   alpha_premultiplied.addValue("NotPremultiplied", QPixelFormat::NotPremultiplied);
   alpha_premultiplied.addValue("Premultiplied", QPixelFormat::Premultiplied);
@@ -68,7 +68,7 @@ static void register_pixel_format_type_interpretation_enum(script::Class pixel_f
 {
   using namespace script;
 
-  Enum type_interpretation = pixel_format.Enum("TypeInterpretation").setId(script::Type::QPixelFormatTypeInterpretation).get();
+  Enum type_interpretation = pixel_format.newEnum("TypeInterpretation").setId(script::Type::QPixelFormatTypeInterpretation).get();
 
   type_interpretation.addValue("UnsignedInteger", QPixelFormat::UnsignedInteger);
   type_interpretation.addValue("UnsignedShort", QPixelFormat::UnsignedShort);
@@ -81,7 +81,7 @@ static void register_pixel_format_y_u_v_layout_enum(script::Class pixel_format)
 {
   using namespace script;
 
-  Enum y_u_v_layout = pixel_format.Enum("YUVLayout").setId(script::Type::QPixelFormatYUVLayout).get();
+  Enum y_u_v_layout = pixel_format.newEnum("YUVLayout").setId(script::Type::QPixelFormatYUVLayout).get();
 
   y_u_v_layout.addValue("YUV444", QPixelFormat::YUV444);
   y_u_v_layout.addValue("YUV422", QPixelFormat::YUV422);
@@ -106,7 +106,7 @@ static void register_pixel_format_byte_order_enum(script::Class pixel_format)
 {
   using namespace script;
 
-  Enum byte_order = pixel_format.Enum("ByteOrder").setId(script::Type::QPixelFormatByteOrder).get();
+  Enum byte_order = pixel_format.newEnum("ByteOrder").setId(script::Type::QPixelFormatByteOrder).get();
 
   byte_order.addValue("LittleEndian", QPixelFormat::LittleEndian);
   byte_order.addValue("BigEndian", QPixelFormat::BigEndian);
@@ -118,7 +118,7 @@ static void register_pixel_format_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class pixel_format = ns.Class("PixelFormat").setId(script::Type::QPixelFormat).get();
+  Class pixel_format = ns.newClass("PixelFormat").setId(script::Type::QPixelFormat).get();
 
   register_pixel_format_color_model_enum(pixel_format);
   register_pixel_format_alpha_usage_enum(pixel_format);

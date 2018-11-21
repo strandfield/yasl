@@ -64,16 +64,16 @@ Application::Application(int & argc, char **argv)
   register_gui_module(&mEngine);
   register_widgets_module(&mEngine);
 
-  mEngine.rootNamespace().Function("print", callbacks::print_int)
+  mEngine.rootNamespace().newFunction("print", callbacks::print_int)
     .params(script::Type::Int).create();
 
-  mEngine.rootNamespace().Function("print", callbacks::print_bool)
+  mEngine.rootNamespace().newFunction("print", callbacks::print_bool)
     .params(script::Type::Boolean).create();
 
-  mEngine.rootNamespace().Function("print", callbacks::print_double)
+  mEngine.rootNamespace().newFunction("print", callbacks::print_double)
     .params(script::Type::Double).create();
 
-  mEngine.rootNamespace().Function("print", callbacks::print_string)
+  mEngine.rootNamespace().newFunction("print", callbacks::print_string)
     .params(script::Type::cref(script::Type::String)).create();
 }
 
@@ -102,8 +102,19 @@ void Application::interactive()
     std::getline(std::cin, command);
 
     if (command == ":q")
+    {
       return;
+    }
     else
-      mEngine.eval(command);
+    {
+      try
+      {
+        mEngine.eval(command);
+      }
+      catch (const std::runtime_error & ex)
+      {
+        std::cout << ex.what() << std::endl;
+      }
+    }
   }
 }

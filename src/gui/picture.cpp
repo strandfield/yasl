@@ -19,7 +19,7 @@ static void register_picture_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class picture = ns.Class("Picture").setId(script::Type::QPicture).get();
+  Class picture = ns.newClass("Picture").setId(script::Type::QPicture).get();
 
   binding::ClassBinder<QPicture> binder{ picture };
 
@@ -85,7 +85,7 @@ static void register_picture_i_o_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class picture_i_o = ns.Class("PictureIO").setId(script::Type::QPictureIO).get();
+  Class picture_i_o = ns.newClass("PictureIO").setId(script::Type::QPictureIO).get();
 
   binding::ClassBinder<QPictureIO> binder{ picture_i_o };
 

@@ -18,7 +18,7 @@ static void register_scroll_bar_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class scroll_bar = ns.Class("ScrollBar").setId(script::Type::QScrollBar)
+  Class scroll_bar = ns.newClass("ScrollBar").setId(script::Type::QScrollBar)
     .setBase(script::Type::QAbstractSlider).get();
 
   binding::ClassBinder<QScrollBar> binder{ scroll_bar, &QScrollBar::staticMetaObject };

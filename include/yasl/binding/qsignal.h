@@ -28,7 +28,7 @@ struct QSignal
   
   script::Function add(const std::string & name, const std::string & signature)
   {
-    auto ret = class_.Method(name, callbacks::signal_callback)
+    auto ret = class_.newMethod(name, callbacks::signal_callback)
       .get();
     register_qsignal(ret, signature);
     return ret;
@@ -37,7 +37,7 @@ struct QSignal
   template<typename A1>
   script::Function add(const std::string & name, const std::string & signature)
   {
-    auto ret = class_.Method(name, callbacks::signal_callback)
+    auto ret = class_.newMethod(name, callbacks::signal_callback)
       .params(make_type<A1>())
       .get();
     register_qsignal(ret, signature);
@@ -47,7 +47,7 @@ struct QSignal
   template<typename A1, typename A2>
   script::Function add(const std::string & name, const std::string & signature)
   {
-    auto ret = class_.Method(name, callbacks::signal_callback)
+    auto ret = class_.newMethod(name, callbacks::signal_callback)
       .params(make_type<A1>(), make_type<A2>())
       .get();
     register_qsignal(ret, signature);
@@ -57,7 +57,7 @@ struct QSignal
   template<typename A1, typename A2, typename A3>
   script::Function add(const std::string & name, const std::string & signature)
   {
-    auto ret = class_.Method(name, callbacks::signal_callback)
+    auto ret = class_.newMethod(name, callbacks::signal_callback)
       .params(make_type<A1>(), make_type<A2>(), make_type<A3>())
       .get();
     register_qsignal(ret, signature);

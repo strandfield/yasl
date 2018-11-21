@@ -23,7 +23,7 @@ static void register_tab_widget_tab_position_enum(script::Class tab_widget)
 {
   using namespace script;
 
-  Enum tab_position = tab_widget.Enum("TabPosition").setId(script::Type::QTabWidgetTabPosition).get();
+  Enum tab_position = tab_widget.newEnum("TabPosition").setId(script::Type::QTabWidgetTabPosition).get();
 
   tab_position.addValue("North", QTabWidget::North);
   tab_position.addValue("South", QTabWidget::South);
@@ -36,7 +36,7 @@ static void register_tab_widget_tab_shape_enum(script::Class tab_widget)
 {
   using namespace script;
 
-  Enum tab_shape = tab_widget.Enum("TabShape").setId(script::Type::QTabWidgetTabShape).get();
+  Enum tab_shape = tab_widget.newEnum("TabShape").setId(script::Type::QTabWidgetTabShape).get();
 
   tab_shape.addValue("Rounded", QTabWidget::Rounded);
   tab_shape.addValue("Triangular", QTabWidget::Triangular);
@@ -47,7 +47,7 @@ static void register_tab_widget_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class tab_widget = ns.Class("TabWidget").setId(script::Type::QTabWidget)
+  Class tab_widget = ns.newClass("TabWidget").setId(script::Type::QTabWidget)
     .setBase(script::Type::QWidget).get();
 
   register_tab_widget_tab_position_enum(tab_widget);

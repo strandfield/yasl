@@ -566,71 +566,71 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
 
 
   // QVector();
-  vector.Constructor(callbacks::default_ctor).create();
+  vector.newConstructor(callbacks::default_ctor).create();
   // QVector(int size);
-  vector.Constructor(callbacks::size_ctor)
+  vector.newConstructor(callbacks::size_ctor)
     .params(Type::Int).create();
   // QVector(int size, const T &value);
-  vector.Constructor(callbacks::size_value_ctor)
+  vector.newConstructor(callbacks::size_value_ctor)
     .params(Type::Int, Type::cref(element_type)).create();
   // QVector(const QVector<T> &other);
-  vector.Constructor(callbacks::copy_ctor)
+  vector.newConstructor(callbacks::copy_ctor)
     .params(Type::cref(vector.id())).create();
   /// TODO: QVector(QVector<T> &&other);
   /// TODO: QVector(std::initializer_list<T> args);
   // ~QVector();
-  vector.Destructor(callbacks::dtor).create();
+  vector.newDestructor(callbacks::dtor).create();
   // void append(const T &value);
-  vector.Method("append", callbacks::append_value)
+  vector.newMethod("append", callbacks::append_value)
     .params(Type::cref(element_type)).create();
   /// TODO: void append(T &&value);
   // void append(const QVector<T> &value);
-  vector.Method("append", callbacks::append_vector)
+  vector.newMethod("append", callbacks::append_vector)
     .params(Type::cref(vector.id())).create();
   // const T & at(int i) const;
-  vector.Method("at", callbacks::at)
+  vector.newMethod("at", callbacks::at)
     .setConst()
     .returns(Type::cref(element_type))
     .params(Type::Int).create();
   // QVector::reference back();
-  vector.Method("back", callbacks::back)
+  vector.newMethod("back", callbacks::back)
     .returns(Type::ref(element_type)).create();
   // QVector::const_reference back() const;
-  vector.Method("back", callbacks::back)
+  vector.newMethod("back", callbacks::back)
     .setConst()
     .returns(Type::cref(element_type)).create();
   /// TODO: QVector::iterator begin();
   /// TODO: QVector::const_iterator begin() const;
   // int capacity() const;
-  vector.Method("capacity", callbacks::capacity)
+  vector.newMethod("capacity", callbacks::capacity)
     .setConst()
     .returns(Type::Int)
     .create();
   /// TODO: QVector::const_iterator cbegin() const;
   /// TODO: QVector::const_iterator cend() const;
   // void clear();
-  vector.Method("clear", callbacks::clear).create();
+  vector.newMethod("clear", callbacks::clear).create();
   /// TODO: QVector::const_iterator constBegin() const;
   /// ignore: const T * constData() const;
   /// TODO: QVector::const_iterator constEnd() const;
   // const T & constFirst() const;
-  vector.Method("constFirst", callbacks::const_first)
+  vector.newMethod("constFirst", callbacks::const_first)
     .returns(Type::cref(element_type)).create();
   // const T & constLast() const;
-  vector.Method("constLast", callbacks::back)
+  vector.newMethod("constLast", callbacks::back)
     .returns(Type::cref(element_type)).create();
   // bool contains(const T &value) const;
-  vector.Method("contains", callbacks::contains)
+  vector.newMethod("contains", callbacks::contains)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(element_type)).create();
   // int count(const T &value) const;
-  vector.Method("count", callbacks::count_element)
+  vector.newMethod("count", callbacks::count_element)
     .setConst()
     .returns(Type::Int)
     .params(Type::cref(element_type)).create();
   // int count() const;
-  vector.Method("count", callbacks::count)
+  vector.newMethod("count", callbacks::count)
     .setConst()
     .returns(Type::Int).create();
   /// TODO: QVector::const_reverse_iterator crbegin() const;
@@ -638,215 +638,215 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   /// ignore: T * data();
   /// ignore: const T * data() const;
   // bool empty() const;
-  vector.Method("empty", callbacks::empty)
+  vector.newMethod("empty", callbacks::empty)
     .setConst()
     .returns(Type::Boolean).create();
   /// TODO: QVector::iterator end();
   /// TODO: QVector::const_iterator end() const;
   // bool endsWith(const T &value) const;
-  vector.Method("endsWith", callbacks::ends_with)
+  vector.newMethod("endsWith", callbacks::ends_with)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(element_type)).create();
   /// TODO: QVector::iterator erase(QVector::iterator pos);
   /// TODO; QVector::iterator erase(QVector::iterator begin, QVector::iterator end);
   // QVector<T> & fill(const T &value, int size = ...);
-  vector.Method("fill", callbacks::fill)
+  vector.newMethod("fill", callbacks::fill)
     .returns(Type::ref(vector.id()))
     .params(Type::cref(element_type), Type::Int)
     .apply(binding::default_arguments(-1)).create();
   // T & first();
-  vector.Method("first", callbacks::const_first)
+  vector.newMethod("first", callbacks::const_first)
     .returns(Type::ref(element_type)).create();
   // const T & first() const;
-  vector.Method("first", callbacks::const_first)
+  vector.newMethod("first", callbacks::const_first)
     .setConst()
     .returns(Type::cref(element_type)).create();
   // T & front();
-  vector.Method("front", callbacks::const_first)
+  vector.newMethod("front", callbacks::const_first)
     .returns(Type::ref(element_type)).create();
   // QVector::const_reference front() const;
-  vector.Method("front", callbacks::const_first)
+  vector.newMethod("front", callbacks::const_first)
     .setConst()
     .returns(Type::cref(element_type)).create();
   // int indexOf(const T &value, int from = ...) const;
-  vector.Method("indexOf", callbacks::index_of)
+  vector.newMethod("indexOf", callbacks::index_of)
     .setConst()
     .returns(Type::Int)
     .params(Type::cref(element_type), Type::Int)
     .apply(binding::default_arguments(0)).create();
   /// TODO: void insert(int i, T &&value);
   // void insert(int i, const T &value);
-  vector.Method("insert", callbacks::insert)
+  vector.newMethod("insert", callbacks::insert)
     .params(Type::Int, Type::cref(element_type)).create();
   // void insert(int i, int count, const T &value);
-  vector.Method("insert", callbacks::insert_count)
+  vector.newMethod("insert", callbacks::insert_count)
     .params(Type::Int, Type::Int, Type::cref(element_type)).create();
   /// TODO: QVector::iterator insert(QVector::iterator before, int count, const T &value);
   /// TODO: QVector::iterator insert(QVector::iterator before, const T &value);
   /// TODO: QVector::iterator insert(QVector::iterator before, T &&value);
   // bool isEmpty() const;
-  vector.Method("isEmpty", callbacks::empty)
+  vector.newMethod("isEmpty", callbacks::empty)
     .setConst()
     .returns(Type::Boolean).create();
   // T & last();
-  vector.Method("last", callbacks::back)
+  vector.newMethod("last", callbacks::back)
     .returns(Type::ref(element_type)).create();
   // const T & last() const;
-  vector.Method("last", callbacks::back)
+  vector.newMethod("last", callbacks::back)
     .setConst()
     .returns(Type::cref(element_type)).create();
   // int lastIndexOf(const T &value, int from = ...) const;
-  vector.Method("lastIndexOf", callbacks::last_index_of)
+  vector.newMethod("lastIndexOf", callbacks::last_index_of)
     .setConst()
     .returns(Type::Int)
     .params(Type::cref(element_type), Type::Int)
     .apply(binding::default_arguments(-1)).create();
   // int length() const;
-  vector.Method("length", callbacks::count)
+  vector.newMethod("length", callbacks::count)
     .setConst()
     .returns(Type::Int).create();
   // QVector<T> mid(int pos, int length = ...) const;
-  vector.Method("mid", callbacks::mid)
+  vector.newMethod("mid", callbacks::mid)
     .setConst()
     .returns(vector.id())
     .params(Type::Int, Type::Int)
     .apply(binding::default_arguments(-1)).create();
   // void move(int from, int to);
-  vector.Method("move", callbacks::move)
+  vector.newMethod("move", callbacks::move)
     .params(Type::Int, Type::Int).create();
   // void pop_back();
-  vector.Method("pop_back", callbacks::pop_back).create();
+  vector.newMethod("pop_back", callbacks::pop_back).create();
   // void pop_front();
-  vector.Method("pop_front", callbacks::pop_front).create();
+  vector.newMethod("pop_front", callbacks::pop_front).create();
   /// TODO: void prepend(T &&value);
   // void prepend(const T &value);
-  vector.Method("prepend", callbacks::prepend)
+  vector.newMethod("prepend", callbacks::prepend)
     .params(Type::cref(element_type)).create();
   // void push_back(const T &value);
-  vector.Method("push_back", callbacks::append_value)
+  vector.newMethod("push_back", callbacks::append_value)
     .params(Type::cref(element_type)).create();
   /// TODO: void push_back(T &&value);
   /// TODO: void push_front(T &&value);
   // void push_front(const T &value);
-  vector.Method("push_front", callbacks::prepend)
+  vector.newMethod("push_front", callbacks::prepend)
     .params(Type::cref(element_type)).create();
   /// TODO: QVector::reverse_iterator rbegin();
   /// TODO: QVector::const_reverse_iterator rbegin() const;
   // void remove(int i);
-  vector.Method("remove", callbacks::remove_at)
+  vector.newMethod("remove", callbacks::remove_at)
     .params(Type::Int).create();
   // void remove(int i, int count);
-  vector.Method("remove", callbacks::remove_count)
+  vector.newMethod("remove", callbacks::remove_count)
     .params(Type::Int, Type::Int).create();
   // int removeAll(const T &t);
-  vector.Method("removeAll", callbacks::remove_all)
+  vector.newMethod("removeAll", callbacks::remove_all)
     .returns(Type::Int)
     .params(Type::cref(element_type)).create();
   // void removeAt(int i);
-  vector.Method("removeAt", callbacks::remove_at)
+  vector.newMethod("removeAt", callbacks::remove_at)
     .params(Type::Int).create();
   // void removeFirst();
-  vector.Method("removeFirst", callbacks::pop_front).create();
+  vector.newMethod("removeFirst", callbacks::pop_front).create();
   // void removeLast();
-  vector.Method("removeLast", callbacks::pop_back).create();
+  vector.newMethod("removeLast", callbacks::pop_back).create();
   // bool removeOne(const T &t);
-  vector.Method("removeOne", callbacks::remove_one)
+  vector.newMethod("removeOne", callbacks::remove_one)
     .returns(Type::Boolean)
     .params(Type::cref(element_type)).create();
   /// TODO: QVector::reverse_iterator rend();
   /// TODO: QVector::const_reverse_iterator rend() const;
   // void replace(int i, const T &value);
-  vector.Method("replace", callbacks::replace)
+  vector.newMethod("replace", callbacks::replace)
     .params(Type::Int, Type::cref(element_type)).create();
   // void reserve(int size);
-  vector.Method("reserve", callbacks::reserve)
+  vector.newMethod("reserve", callbacks::reserve)
     .params(Type::Int).create();
   // void resize(int size);
-  vector.Method("resize", callbacks::resize)
+  vector.newMethod("resize", callbacks::resize)
     .params(Type::Int).create();
   // void shrink_to_fit();
-  vector.Method("shrink_to_fit", callbacks::shrink_to_fit).create();
+  vector.newMethod("shrink_to_fit", callbacks::shrink_to_fit).create();
   // int size() const;
-  vector.Method("size", callbacks::count)
+  vector.newMethod("size", callbacks::count)
     .setConst()
     .returns(Type::Int).create();
   // void squeeze();
-  vector.Method("squeeze", callbacks::shrink_to_fit).create();
+  vector.newMethod("squeeze", callbacks::shrink_to_fit).create();
   // bool startsWith(const T &value) const;
-  vector.Method("startsWith", callbacks::starts_with)
+  vector.newMethod("startsWith", callbacks::starts_with)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(element_type)).create();
   // void swap(QVector<T> &other);
-  vector.Method("swap", callbacks::swap)
+  vector.newMethod("swap", callbacks::swap)
     .params(Type::ref(vector.id())).create();
   // T takeAt(int i);
-  vector.Method("takeAt", callbacks::take_at)
+  vector.newMethod("takeAt", callbacks::take_at)
     .returns(element_type)
     .params(Type::Int).create();
   // T takeFirst();
-  vector.Method("takeFirst", callbacks::take_first)
+  vector.newMethod("takeFirst", callbacks::take_first)
     .returns(element_type).create();
   // T takeLast();
-  vector.Method("takeLast", callbacks::take_last)
+  vector.newMethod("takeLast", callbacks::take_last)
     .returns(element_type).create();
   /// TODO: QList<T> toList() const;
   /// ignore: std::vector<T> toStdVector() const;
   // T value(int i) const;
-  vector.Method("value", callbacks::value)
+  vector.newMethod("value", callbacks::value)
     .setConst()
     .returns(element_type)
     .params(Type::Int).create();
   // T value(int i, const T &defaultValue) const;
-  vector.Method("value", callbacks::value_with_default)
+  vector.newMethod("value", callbacks::value_with_default)
     .setConst()
     .returns(element_type)
     .params(Type::Int, Type::cref(element_type)).create();
   // bool operator!=(const QVector<T> &other) const;
-  vector.Operation(InequalOperator, callbacks::op_neq)
+  vector.newOperator(InequalOperator, callbacks::op_neq)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(vector.id())).create();
   // QVector<T> operator+(const QVector<T> &other) const;
-  vector.Operation(AdditionOperator, callbacks::op_add)
+  vector.newOperator(AdditionOperator, callbacks::op_add)
     .setConst()
     .returns(vector.id())
     .params(Type::cref(vector.id())).create();
   // QVector<T> & operator+=(const QVector<T> &other);
-  vector.Operation(AdditionAssignmentOperator, callbacks::op_add_assign)
+  vector.newOperator(AdditionAssignmentOperator, callbacks::op_add_assign)
     .returns(Type::ref(vector.id()))
     .params(Type::cref(vector.id())).create();
   // QVector<T> & operator+=(const T &value);
-  vector.Operation(AdditionAssignmentOperator, callbacks::op_add_assign_value)
+  vector.newOperator(AdditionAssignmentOperator, callbacks::op_add_assign_value)
     .returns(Type::ref(vector.id()))
     .params(Type::cref(element_type)).create();
   /// TODO: QVector<T> & operator+=(T &&value);
   // QVector<T> & operator<<(const T &value);
-  vector.Operation(LeftShiftOperator, callbacks::op_put_value)
+  vector.newOperator(LeftShiftOperator, callbacks::op_put_value)
     .returns(Type::ref(vector.id()))
     .params(Type::cref(element_type)).create();
   // QVector<T> & operator<<(const QVector<T> &other);
-  vector.Operation(LeftShiftOperator, callbacks::op_put_vector)
+  vector.newOperator(LeftShiftOperator, callbacks::op_put_vector)
     .returns(Type::ref(vector.id()))
     .params(Type::cref(vector.id())).create();
   /// TODO: QVector<T> & operator<<(T &&value);
   // QVector<T> & operator=(const QVector<T> &other);
-  vector.Operation(AssignmentOperator, callbacks::op_assign)
+  vector.newOperator(AssignmentOperator, callbacks::op_assign)
     .returns(Type::ref(vector.id()))
     .params(Type::cref(vector.id())).create();
   /// TODO: QVector<T> & operator=(QVector<T> &&other);
   // bool operator==(const QVector<T> &other) const;
-  vector.Operation(EqualOperator, callbacks::op_eq)
+  vector.newOperator(EqualOperator, callbacks::op_eq)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(vector.id())).create();
   // T & operator[](int i);
-  vector.Operation(SubscriptOperator, callbacks::op_subscript)
+  vector.newOperator(SubscriptOperator, callbacks::op_subscript)
     .returns(Type::ref(element_type))
     .params(Type::Int).create();
   // const T & operator[](int i) const
-  vector.Operation(SubscriptOperator, callbacks::at)
+  vector.newOperator(SubscriptOperator, callbacks::at)
     .setConst()
     .returns(Type::cref(element_type))
     .params(Type::Int).create();
@@ -862,7 +862,7 @@ void register_vector_template(script::Namespace n)
     TemplateParameter{TemplateParameter::TypeParameter{}, "T"},
   };
 
-  ClassTemplate vector_template = Symbol{ n }.ClassTemplate("Vector")
+  ClassTemplate vector_template = Symbol{ n }.newClassTemplate("Vector")
     .setParams(std::move(params))
     .setScope(Scope{ n })
     .setCallback(vector_template_instantiate)

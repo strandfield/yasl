@@ -16,7 +16,7 @@ static void register_point_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class point = ns.Class("Point").setId(script::Type::QPoint).get();
+  Class point = ns.newClass("Point").setId(script::Type::QPoint).get();
 
   binding::ClassBinder<QPoint> binder{ point };
 
@@ -63,7 +63,7 @@ static void register_point_f_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class point_f = ns.Class("PointF").setId(script::Type::QPointF).get();
+  Class point_f = ns.newClass("PointF").setId(script::Type::QPointF).get();
 
   binding::ClassBinder<QPointF> binder{ point_f };
 

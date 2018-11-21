@@ -18,7 +18,7 @@ static void register_abstract_button_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class abstract_button = ns.Class("AbstractButton").setId(script::Type::QAbstractButton)
+  Class abstract_button = ns.newClass("AbstractButton").setId(script::Type::QAbstractButton)
     .setBase(script::Type::QWidget).get();
 
   binding::ClassBinder<QAbstractButton> binder{ abstract_button, &QAbstractButton::staticMetaObject };

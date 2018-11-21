@@ -24,7 +24,7 @@ static void register_tool_button_tool_button_popup_mode_enum(script::Class tool_
 {
   using namespace script;
 
-  Enum tool_button_popup_mode = tool_button.Enum("ToolButtonPopupMode").setId(script::Type::QToolButtonToolButtonPopupMode).get();
+  Enum tool_button_popup_mode = tool_button.newEnum("ToolButtonPopupMode").setId(script::Type::QToolButtonToolButtonPopupMode).get();
 
   tool_button_popup_mode.addValue("DelayedPopup", QToolButton::DelayedPopup);
   tool_button_popup_mode.addValue("MenuButtonPopup", QToolButton::MenuButtonPopup);
@@ -36,7 +36,7 @@ static void register_tool_button_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class tool_button = ns.Class("ToolButton").setId(script::Type::QToolButton)
+  Class tool_button = ns.newClass("ToolButton").setId(script::Type::QToolButton)
     .setBase(script::Type::QAbstractButton).get();
 
   register_tool_button_tool_button_popup_mode_enum(tool_button);

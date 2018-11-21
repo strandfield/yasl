@@ -21,7 +21,7 @@ static void register_font_database_writing_system_enum(script::Class font_databa
 {
   using namespace script;
 
-  Enum writing_system = font_database.Enum("WritingSystem").setId(script::Type::QFontDatabaseWritingSystem).get();
+  Enum writing_system = font_database.newEnum("WritingSystem").setId(script::Type::QFontDatabaseWritingSystem).get();
 
   writing_system.addValue("Any", QFontDatabase::Any);
   writing_system.addValue("Latin", QFontDatabase::Latin);
@@ -66,7 +66,7 @@ static void register_font_database_system_font_enum(script::Class font_database)
 {
   using namespace script;
 
-  Enum system_font = font_database.Enum("SystemFont").setId(script::Type::QFontDatabaseSystemFont).get();
+  Enum system_font = font_database.newEnum("SystemFont").setId(script::Type::QFontDatabaseSystemFont).get();
 
   system_font.addValue("GeneralFont", QFontDatabase::GeneralFont);
   system_font.addValue("FixedFont", QFontDatabase::FixedFont);
@@ -79,7 +79,7 @@ static void register_font_database_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class font_database = ns.Class("FontDatabase").setId(script::Type::QFontDatabase).get();
+  Class font_database = ns.newClass("FontDatabase").setId(script::Type::QFontDatabase).get();
 
   register_font_database_writing_system_enum(font_database);
   register_font_database_system_font_enum(font_database);

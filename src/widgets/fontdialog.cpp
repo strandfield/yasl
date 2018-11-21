@@ -22,7 +22,7 @@ static void register_font_dialog_font_dialog_option_enum(script::Class font_dial
 {
   using namespace script;
 
-  Enum font_dialog_option = font_dialog.Enum("FontDialogOption").setId(script::Type::QFontDialogFontDialogOption).get();
+  Enum font_dialog_option = font_dialog.newEnum("FontDialogOption").setId(script::Type::QFontDialogFontDialogOption).get();
 
   register_qflags_type<QFontDialog::FontDialogOption>(font_dialog, "FontDialogOptions", script::Type::QFontDialogFontDialogOptions);
   font_dialog_option.addValue("NoButtons", QFontDialog::NoButtons);
@@ -38,7 +38,7 @@ static void register_font_dialog_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class font_dialog = ns.Class("FontDialog").setId(script::Type::QFontDialog)
+  Class font_dialog = ns.newClass("FontDialog").setId(script::Type::QFontDialog)
     .setBase(script::Type::QDialog).get();
 
   register_font_dialog_font_dialog_option_enum(font_dialog);

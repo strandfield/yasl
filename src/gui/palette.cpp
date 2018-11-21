@@ -21,7 +21,7 @@ static void register_palette_color_group_enum(script::Class palette)
 {
   using namespace script;
 
-  Enum color_group = palette.Enum("ColorGroup").setId(script::Type::QPaletteColorGroup).get();
+  Enum color_group = palette.newEnum("ColorGroup").setId(script::Type::QPaletteColorGroup).get();
 
   color_group.addValue("Active", QPalette::Active);
   color_group.addValue("Disabled", QPalette::Disabled);
@@ -37,7 +37,7 @@ static void register_palette_color_role_enum(script::Class palette)
 {
   using namespace script;
 
-  Enum color_role = palette.Enum("ColorRole").setId(script::Type::QPaletteColorRole).get();
+  Enum color_role = palette.newEnum("ColorRole").setId(script::Type::QPaletteColorRole).get();
 
   color_role.addValue("WindowText", QPalette::WindowText);
   color_role.addValue("Button", QPalette::Button);
@@ -69,7 +69,7 @@ static void register_palette_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class palette = ns.Class("Palette").setId(script::Type::QPalette).get();
+  Class palette = ns.newClass("Palette").setId(script::Type::QPalette).get();
 
   register_palette_color_group_enum(palette);
   register_palette_color_role_enum(palette);

@@ -19,7 +19,7 @@ static void register_font_style_hint_enum(script::Class font)
 {
   using namespace script;
 
-  Enum style_hint = font.Enum("StyleHint").setId(script::Type::QFontStyleHint).get();
+  Enum style_hint = font.newEnum("StyleHint").setId(script::Type::QFontStyleHint).get();
 
   style_hint.addValue("Helvetica", QFont::Helvetica);
   style_hint.addValue("SansSerif", QFont::SansSerif);
@@ -41,7 +41,7 @@ static void register_font_style_strategy_enum(script::Class font)
 {
   using namespace script;
 
-  Enum style_strategy = font.Enum("StyleStrategy").setId(script::Type::QFontStyleStrategy).get();
+  Enum style_strategy = font.newEnum("StyleStrategy").setId(script::Type::QFontStyleStrategy).get();
 
   style_strategy.addValue("PreferDefault", QFont::PreferDefault);
   style_strategy.addValue("PreferBitmap", QFont::PreferBitmap);
@@ -64,7 +64,7 @@ static void register_font_hinting_preference_enum(script::Class font)
 {
   using namespace script;
 
-  Enum hinting_preference = font.Enum("HintingPreference").setId(script::Type::QFontHintingPreference).get();
+  Enum hinting_preference = font.newEnum("HintingPreference").setId(script::Type::QFontHintingPreference).get();
 
   hinting_preference.addValue("PreferDefaultHinting", QFont::PreferDefaultHinting);
   hinting_preference.addValue("PreferNoHinting", QFont::PreferNoHinting);
@@ -77,7 +77,7 @@ static void register_font_weight_enum(script::Class font)
 {
   using namespace script;
 
-  Enum weight = font.Enum("Weight").setId(script::Type::QFontWeight).get();
+  Enum weight = font.newEnum("Weight").setId(script::Type::QFontWeight).get();
 
   weight.addValue("Thin", QFont::Thin);
   weight.addValue("ExtraLight", QFont::ExtraLight);
@@ -95,7 +95,7 @@ static void register_font_style_enum(script::Class font)
 {
   using namespace script;
 
-  Enum style = font.Enum("Style").setId(script::Type::QFontStyle).get();
+  Enum style = font.newEnum("Style").setId(script::Type::QFontStyle).get();
 
   style.addValue("StyleNormal", QFont::StyleNormal);
   style.addValue("StyleItalic", QFont::StyleItalic);
@@ -107,7 +107,7 @@ static void register_font_stretch_enum(script::Class font)
 {
   using namespace script;
 
-  Enum stretch = font.Enum("Stretch").setId(script::Type::QFontStretch).get();
+  Enum stretch = font.newEnum("Stretch").setId(script::Type::QFontStretch).get();
 
   stretch.addValue("AnyStretch", QFont::AnyStretch);
   stretch.addValue("UltraCondensed", QFont::UltraCondensed);
@@ -126,7 +126,7 @@ static void register_font_capitalization_enum(script::Class font)
 {
   using namespace script;
 
-  Enum capitalization = font.Enum("Capitalization").setId(script::Type::QFontCapitalization).get();
+  Enum capitalization = font.newEnum("Capitalization").setId(script::Type::QFontCapitalization).get();
 
   capitalization.addValue("MixedCase", QFont::MixedCase);
   capitalization.addValue("AllUppercase", QFont::AllUppercase);
@@ -140,7 +140,7 @@ static void register_font_spacing_type_enum(script::Class font)
 {
   using namespace script;
 
-  Enum spacing_type = font.Enum("SpacingType").setId(script::Type::QFontSpacingType).get();
+  Enum spacing_type = font.newEnum("SpacingType").setId(script::Type::QFontSpacingType).get();
 
   spacing_type.addValue("PercentageSpacing", QFont::PercentageSpacing);
   spacing_type.addValue("AbsoluteSpacing", QFont::AbsoluteSpacing);
@@ -151,7 +151,7 @@ static void register_font_resolve_properties_enum(script::Class font)
 {
   using namespace script;
 
-  Enum resolve_properties = font.Enum("ResolveProperties").setId(script::Type::QFontResolveProperties).get();
+  Enum resolve_properties = font.newEnum("ResolveProperties").setId(script::Type::QFontResolveProperties).get();
 
   resolve_properties.addValue("FamilyResolved", QFont::FamilyResolved);
   resolve_properties.addValue("SizeResolved", QFont::SizeResolved);
@@ -178,7 +178,7 @@ static void register_font_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class font = ns.Class("Font").setId(script::Type::QFont).get();
+  Class font = ns.newClass("Font").setId(script::Type::QFont).get();
 
   register_font_style_hint_enum(font);
   register_font_style_strategy_enum(font);

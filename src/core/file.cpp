@@ -18,7 +18,7 @@ static void register_file_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class file = ns.Class("File").setId(script::Type::QFile)
+  Class file = ns.newClass("File").setId(script::Type::QFile)
     .setBase(script::Type::QFileDevice).get();
 
   binding::ClassBinder<QFile> binder{ file, &QFile::staticMetaObject };

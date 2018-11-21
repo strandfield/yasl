@@ -26,7 +26,7 @@ static void register_painter_path_element_type_enum(script::Class painter_path)
 {
   using namespace script;
 
-  Enum element_type = painter_path.Enum("ElementType").setId(script::Type::QPainterPathElementType).get();
+  Enum element_type = painter_path.newEnum("ElementType").setId(script::Type::QPainterPathElementType).get();
 
   element_type.addValue("MoveToElement", QPainterPath::MoveToElement);
   element_type.addValue("LineToElement", QPainterPath::LineToElement);
@@ -39,7 +39,7 @@ static void register_painter_path_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class painter_path = ns.Class("PainterPath").setId(script::Type::QPainterPath).get();
+  Class painter_path = ns.newClass("PainterPath").setId(script::Type::QPainterPath).get();
 
   register_painter_path_element_type_enum(painter_path);
   binding::ClassBinder<QPainterPath> binder{ painter_path };
@@ -214,7 +214,7 @@ static void register_painter_path_stroker_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class painter_path_stroker = ns.Class("PainterPathStroker").setId(script::Type::QPainterPathStroker).get();
+  Class painter_path_stroker = ns.newClass("PainterPathStroker").setId(script::Type::QPainterPathStroker).get();
 
   binding::ClassBinder<QPainterPathStroker> binder{ painter_path_stroker };
 

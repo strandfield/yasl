@@ -20,7 +20,7 @@ static void register_vector4_d_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class vector4_d = ns.Class("Vector4D").setId(script::Type::QVector4D).get();
+  Class vector4_d = ns.newClass("Vector4D").setId(script::Type::QVector4D).get();
 
   binding::ClassBinder<QVector4D> binder{ vector4_d };
 

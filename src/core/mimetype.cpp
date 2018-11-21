@@ -15,7 +15,7 @@ static void register_mime_type_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class mime_type = ns.Class("MimeType").setId(script::Type::QMimeType).get();
+  Class mime_type = ns.newClass("MimeType").setId(script::Type::QMimeType).get();
 
   binding::ClassBinder<QMimeType> binder{ mime_type };
 

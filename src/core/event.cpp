@@ -19,7 +19,7 @@ static void register_event_type_enum(script::Class event)
 {
   using namespace script;
 
-  Enum type = event.Enum("Type").setId(script::Type::QEventType).get();
+  Enum type = event.newEnum("Type").setId(script::Type::QEventType).get();
 
   type.addValue("None", QEvent::None);
   type.addValue("Timer", QEvent::Timer);
@@ -200,7 +200,7 @@ static void register_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class event = ns.Class("Event").setId(script::Type::QEvent).get();
+  Class event = ns.newClass("Event").setId(script::Type::QEvent).get();
 
   register_event_type_enum(event);
   binding::ClassBinder<QEvent> binder{ event };
@@ -234,7 +234,7 @@ static void register_timer_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class timer_event = ns.Class("TimerEvent").setId(script::Type::QTimerEvent).get();
+  Class timer_event = ns.newClass("TimerEvent").setId(script::Type::QTimerEvent).get();
 
   binding::ClassBinder<QTimerEvent> binder{ timer_event };
 
@@ -251,7 +251,7 @@ static void register_child_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class child_event = ns.Class("ChildEvent").setId(script::Type::QChildEvent).get();
+  Class child_event = ns.newClass("ChildEvent").setId(script::Type::QChildEvent).get();
 
   binding::ClassBinder<QChildEvent> binder{ child_event };
 
@@ -274,7 +274,7 @@ static void register_dynamic_property_change_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class dynamic_property_change_event = ns.Class("DynamicPropertyChangeEvent").setId(script::Type::QDynamicPropertyChangeEvent).get();
+  Class dynamic_property_change_event = ns.newClass("DynamicPropertyChangeEvent").setId(script::Type::QDynamicPropertyChangeEvent).get();
 
   binding::ClassBinder<QDynamicPropertyChangeEvent> binder{ dynamic_property_change_event };
 
@@ -291,7 +291,7 @@ static void register_deferred_delete_event_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class deferred_delete_event = ns.Class("DeferredDeleteEvent").setId(script::Type::QDeferredDeleteEvent).get();
+  Class deferred_delete_event = ns.newClass("DeferredDeleteEvent").setId(script::Type::QDeferredDeleteEvent).get();
 
   binding::ClassBinder<QDeferredDeleteEvent> binder{ deferred_delete_event };
 

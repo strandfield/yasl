@@ -21,7 +21,7 @@ static void register_bitmap_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class bitmap = ns.Class("Bitmap").setId(script::Type::QBitmap)
+  Class bitmap = ns.newClass("Bitmap").setId(script::Type::QBitmap)
     .setBase(script::Type::QPixmap).get();
 
   binding::ClassBinder<QBitmap> binder{ bitmap };

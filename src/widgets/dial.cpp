@@ -17,7 +17,7 @@ static void register_dial_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class dial = ns.Class("Dial").setId(script::Type::QDial)
+  Class dial = ns.newClass("Dial").setId(script::Type::QDial)
     .setBase(script::Type::QAbstractSlider).get();
 
   binding::ClassBinder<QDial> binder{ dial, &QDial::staticMetaObject };

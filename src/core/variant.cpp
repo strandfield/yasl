@@ -34,7 +34,7 @@ static void register_variant_type_enum(script::Class variant)
 {
   using namespace script;
 
-  Enum type = variant.Enum("Type").setId(script::Type::QVariantType).get();
+  Enum type = variant.newEnum("Type").setId(script::Type::QVariantType).get();
 
   type.addValue("Invalid", QVariant::Invalid);
   type.addValue("Bool", QVariant::Bool);
@@ -105,7 +105,7 @@ static void register_variant_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class variant = ns.Class("Variant").setId(script::Type::QVariant).get();
+  Class variant = ns.newClass("Variant").setId(script::Type::QVariant).get();
 
   register_variant_type_enum(variant);
   binding::ClassBinder<QVariant> binder{ variant };

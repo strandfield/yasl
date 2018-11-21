@@ -29,7 +29,7 @@ static void register_action_menu_role_enum(script::Class action)
 {
   using namespace script;
 
-  Enum menu_role = action.Enum("MenuRole").setId(script::Type::QActionMenuRole).get();
+  Enum menu_role = action.newEnum("MenuRole").setId(script::Type::QActionMenuRole).get();
 
   menu_role.addValue("NoRole", QAction::NoRole);
   menu_role.addValue("TextHeuristicRole", QAction::TextHeuristicRole);
@@ -45,7 +45,7 @@ static void register_action_priority_enum(script::Class action)
 {
   using namespace script;
 
-  Enum priority = action.Enum("Priority").setId(script::Type::QActionPriority).get();
+  Enum priority = action.newEnum("Priority").setId(script::Type::QActionPriority).get();
 
   priority.addValue("LowPriority", QAction::LowPriority);
   priority.addValue("NormalPriority", QAction::NormalPriority);
@@ -57,7 +57,7 @@ static void register_action_action_event_enum(script::Class action)
 {
   using namespace script;
 
-  Enum action_event = action.Enum("ActionEvent").setId(script::Type::QActionActionEvent).get();
+  Enum action_event = action.newEnum("ActionEvent").setId(script::Type::QActionActionEvent).get();
 
   action_event.addValue("Trigger", QAction::Trigger);
   action_event.addValue("Hover", QAction::Hover);
@@ -68,7 +68,7 @@ static void register_action_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class action = ns.Class("Action").setId(script::Type::QAction)
+  Class action = ns.newClass("Action").setId(script::Type::QAction)
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(action.engine(), script::Type::QAction, script::Type::QActionStar);

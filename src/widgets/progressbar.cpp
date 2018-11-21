@@ -22,7 +22,7 @@ static void register_progress_bar_direction_enum(script::Class progress_bar)
 {
   using namespace script;
 
-  Enum direction = progress_bar.Enum("Direction").setId(script::Type::QProgressBarDirection).get();
+  Enum direction = progress_bar.newEnum("Direction").setId(script::Type::QProgressBarDirection).get();
 
   direction.addValue("TopToBottom", QProgressBar::TopToBottom);
   direction.addValue("BottomToTop", QProgressBar::BottomToTop);
@@ -33,7 +33,7 @@ static void register_progress_bar_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class progress_bar = ns.Class("ProgressBar").setId(script::Type::QProgressBar)
+  Class progress_bar = ns.newClass("ProgressBar").setId(script::Type::QProgressBar)
     .setBase(script::Type::QWidget).get();
 
   register_progress_bar_direction_enum(progress_bar);

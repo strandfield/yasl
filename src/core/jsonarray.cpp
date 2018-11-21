@@ -16,7 +16,7 @@ static void register_json_array_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class json_array = ns.Class("JsonArray").setId(script::Type::QJsonArray).get();
+  Class json_array = ns.newClass("JsonArray").setId(script::Type::QJsonArray).get();
 
   binding::ClassBinder<QJsonArray> binder{ json_array };
 

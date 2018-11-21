@@ -18,7 +18,7 @@ static void register_url_query_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class url_query = ns.Class("UrlQuery").setId(script::Type::QUrlQuery).get();
+  Class url_query = ns.newClass("UrlQuery").setId(script::Type::QUrlQuery).get();
 
   binding::ClassBinder<QUrlQuery> binder{ url_query };
 

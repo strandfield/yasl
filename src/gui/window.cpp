@@ -28,7 +28,7 @@ static void register_window_visibility_enum(script::Class window)
 {
   using namespace script;
 
-  Enum visibility = window.Enum("Visibility").setId(script::Type::QWindowVisibility).get();
+  Enum visibility = window.newEnum("Visibility").setId(script::Type::QWindowVisibility).get();
 
   visibility.addValue("Hidden", QWindow::Hidden);
   visibility.addValue("AutomaticVisibility", QWindow::AutomaticVisibility);
@@ -43,7 +43,7 @@ static void register_window_ancestor_mode_enum(script::Class window)
 {
   using namespace script;
 
-  Enum ancestor_mode = window.Enum("AncestorMode").setId(script::Type::QWindowAncestorMode).get();
+  Enum ancestor_mode = window.newEnum("AncestorMode").setId(script::Type::QWindowAncestorMode).get();
 
   ancestor_mode.addValue("ExcludeTransients", QWindow::ExcludeTransients);
   ancestor_mode.addValue("IncludeTransients", QWindow::IncludeTransients);
@@ -54,7 +54,7 @@ static void register_window_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class window = ns.Class("Window").setId(script::Type::QWindow)
+  Class window = ns.newClass("Window").setId(script::Type::QWindow)
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(window.engine(), script::Type::QWindow, script::Type::QWindowStar);

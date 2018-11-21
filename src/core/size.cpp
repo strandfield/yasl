@@ -17,7 +17,7 @@ static void register_size_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class size = ns.Class("Size").setId(script::Type::QSize).get();
+  Class size = ns.newClass("Size").setId(script::Type::QSize).get();
 
   binding::ClassBinder<QSize> binder{ size };
 
@@ -78,7 +78,7 @@ static void register_size_f_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class size_f = ns.Class("SizeF").setId(script::Type::QSizeF).get();
+  Class size_f = ns.newClass("SizeF").setId(script::Type::QSizeF).get();
 
   binding::ClassBinder<QSizeF> binder{ size_f };
 

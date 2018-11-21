@@ -16,7 +16,7 @@ static void register_json_object_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class json_object = ns.Class("JsonObject").setId(script::Type::QJsonObject).get();
+  Class json_object = ns.newClass("JsonObject").setId(script::Type::QJsonObject).get();
 
   binding::ClassBinder<QJsonObject> binder{ json_object };
 

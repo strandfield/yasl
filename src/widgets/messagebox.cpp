@@ -23,7 +23,7 @@ static void register_message_box_icon_enum(script::Class message_box)
 {
   using namespace script;
 
-  Enum icon = message_box.Enum("Icon").setId(script::Type::QMessageBoxIcon).get();
+  Enum icon = message_box.newEnum("Icon").setId(script::Type::QMessageBoxIcon).get();
 
   icon.addValue("NoIcon", QMessageBox::NoIcon);
   icon.addValue("Information", QMessageBox::Information);
@@ -37,7 +37,7 @@ static void register_message_box_button_role_enum(script::Class message_box)
 {
   using namespace script;
 
-  Enum button_role = message_box.Enum("ButtonRole").setId(script::Type::QMessageBoxButtonRole).get();
+  Enum button_role = message_box.newEnum("ButtonRole").setId(script::Type::QMessageBoxButtonRole).get();
 
   button_role.addValue("InvalidRole", QMessageBox::InvalidRole);
   button_role.addValue("AcceptRole", QMessageBox::AcceptRole);
@@ -57,7 +57,7 @@ static void register_message_box_standard_button_enum(script::Class message_box)
 {
   using namespace script;
 
-  Enum standard_button = message_box.Enum("StandardButton").setId(script::Type::QMessageBoxStandardButton).get();
+  Enum standard_button = message_box.newEnum("StandardButton").setId(script::Type::QMessageBoxStandardButton).get();
 
   register_qflags_type<QMessageBox::StandardButton>(message_box, "StandardButtons", script::Type::QMessageBoxStandardButtons);
   standard_button.addValue("NoButton", QMessageBox::NoButton);
@@ -94,7 +94,7 @@ static void register_message_box_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class message_box = ns.Class("MessageBox").setId(script::Type::QMessageBox)
+  Class message_box = ns.newClass("MessageBox").setId(script::Type::QMessageBox)
     .setBase(script::Type::QDialog).get();
 
   register_message_box_icon_enum(message_box);

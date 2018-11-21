@@ -32,7 +32,7 @@ void register_newobject_file(script::Namespace core)
 {
   using namespace script;
 
-  core.Function("newObject", callbacks::new_object)
+  core.newFunction("newObject", callbacks::new_object)
     .returns(Type::ref(Type::QObject))
     .create();
 

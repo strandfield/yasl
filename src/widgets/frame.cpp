@@ -20,7 +20,7 @@ static void register_frame_shape_enum(script::Class frame)
 {
   using namespace script;
 
-  Enum shape = frame.Enum("Shape").setId(script::Type::QFrameShape).get();
+  Enum shape = frame.newEnum("Shape").setId(script::Type::QFrameShape).get();
 
   shape.addValue("NoFrame", QFrame::NoFrame);
   shape.addValue("Box", QFrame::Box);
@@ -36,7 +36,7 @@ static void register_frame_shadow_enum(script::Class frame)
 {
   using namespace script;
 
-  Enum shadow = frame.Enum("Shadow").setId(script::Type::QFrameShadow).get();
+  Enum shadow = frame.newEnum("Shadow").setId(script::Type::QFrameShadow).get();
 
   shadow.addValue("Plain", QFrame::Plain);
   shadow.addValue("Raised", QFrame::Raised);
@@ -48,7 +48,7 @@ static void register_frame_style_mask_enum(script::Class frame)
 {
   using namespace script;
 
-  Enum style_mask = frame.Enum("StyleMask").setId(script::Type::QFrameStyleMask).get();
+  Enum style_mask = frame.newEnum("StyleMask").setId(script::Type::QFrameStyleMask).get();
 
   style_mask.addValue("Shadow_Mask", QFrame::Shadow_Mask);
   style_mask.addValue("Shape_Mask", QFrame::Shape_Mask);
@@ -59,7 +59,7 @@ static void register_frame_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class frame = ns.Class("Frame").setId(script::Type::QFrame)
+  Class frame = ns.newClass("Frame").setId(script::Type::QFrame)
     .setBase(script::Type::QWidget).get();
 
   register_frame_shape_enum(frame);

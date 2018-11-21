@@ -38,7 +38,7 @@ static void register_painter_render_hint_enum(script::Class painter)
 {
   using namespace script;
 
-  Enum render_hint = painter.Enum("RenderHint").setId(script::Type::QPainterRenderHint).get();
+  Enum render_hint = painter.newEnum("RenderHint").setId(script::Type::QPainterRenderHint).get();
 
   register_qflags_type<QPainter::RenderHint>(painter, "RenderHints", script::Type::QPainterRenderHints);
   render_hint.addValue("Antialiasing", QPainter::Antialiasing);
@@ -54,7 +54,7 @@ static void register_painter_pixmap_fragment_hint_enum(script::Class painter)
 {
   using namespace script;
 
-  Enum pixmap_fragment_hint = painter.Enum("PixmapFragmentHint").setId(script::Type::QPainterPixmapFragmentHint).get();
+  Enum pixmap_fragment_hint = painter.newEnum("PixmapFragmentHint").setId(script::Type::QPainterPixmapFragmentHint).get();
 
   register_qflags_type<QPainter::PixmapFragmentHint>(painter, "PixmapFragmentHints", script::Type::QPainterPixmapFragmentHints);
   pixmap_fragment_hint.addValue("OpaqueHint", QPainter::OpaqueHint);
@@ -65,7 +65,7 @@ static void register_painter_composition_mode_enum(script::Class painter)
 {
   using namespace script;
 
-  Enum composition_mode = painter.Enum("CompositionMode").setId(script::Type::QPainterCompositionMode).get();
+  Enum composition_mode = painter.newEnum("CompositionMode").setId(script::Type::QPainterCompositionMode).get();
 
   composition_mode.addValue("CompositionMode_SourceOver", QPainter::CompositionMode_SourceOver);
   composition_mode.addValue("CompositionMode_DestinationOver", QPainter::CompositionMode_DestinationOver);
@@ -112,7 +112,7 @@ static void register_painter_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class painter = ns.Class("Painter").setId(script::Type::QPainter).get();
+  Class painter = ns.newClass("Painter").setId(script::Type::QPainter).get();
 
   register_painter_render_hint_enum(painter);
   register_painter_pixmap_fragment_hint_enum(painter);

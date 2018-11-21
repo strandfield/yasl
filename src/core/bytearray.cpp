@@ -23,7 +23,7 @@ static void register_byte_array_base64_option_enum(script::Class byte_array)
 {
   using namespace script;
 
-  Enum base64_option = byte_array.Enum("Base64Option").setId(script::Type::QByteArrayBase64Option).get();
+  Enum base64_option = byte_array.newEnum("Base64Option").setId(script::Type::QByteArrayBase64Option).get();
 
   register_qflags_type<QByteArray::Base64Option>(byte_array, "Base64Options", script::Type::QByteArrayBase64Options);
   base64_option.addValue("Base64Encoding", QByteArray::Base64Encoding);
@@ -37,7 +37,7 @@ static void register_byte_array_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class byte_array = ns.Class("ByteArray").setId(script::Type::QByteArray).get();
+  Class byte_array = ns.newClass("ByteArray").setId(script::Type::QByteArray).get();
 
   register_proxy_specialization<QByteArray>(byte_array.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQByteArray);
   register_list_specialization<QByteArray>(byte_array.engine(), script::Type::QListQByteArray);
@@ -330,7 +330,7 @@ static void register_byte_ref_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class byte_ref = ns.Class("ByteRef").setId(script::Type::QByteRef).get();
+  Class byte_ref = ns.newClass("ByteRef").setId(script::Type::QByteRef).get();
 
   binding::ClassBinder<QByteRef> binder{ byte_ref };
 

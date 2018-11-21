@@ -16,7 +16,7 @@ static void register_error_message_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class error_message = ns.Class("ErrorMessage").setId(script::Type::QErrorMessage)
+  Class error_message = ns.newClass("ErrorMessage").setId(script::Type::QErrorMessage)
     .setBase(script::Type::QDialog).get();
 
   binding::ClassBinder<QErrorMessage> binder{ error_message, &QErrorMessage::staticMetaObject };

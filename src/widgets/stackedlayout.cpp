@@ -22,7 +22,7 @@ static void register_stacked_layout_stacking_mode_enum(script::Class stacked_lay
 {
   using namespace script;
 
-  Enum stacking_mode = stacked_layout.Enum("StackingMode").setId(script::Type::QStackedLayoutStackingMode).get();
+  Enum stacking_mode = stacked_layout.newEnum("StackingMode").setId(script::Type::QStackedLayoutStackingMode).get();
 
   stacking_mode.addValue("StackOne", QStackedLayout::StackOne);
   stacking_mode.addValue("StackAll", QStackedLayout::StackAll);
@@ -33,7 +33,7 @@ static void register_stacked_layout_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class stacked_layout = ns.Class("StackedLayout").setId(script::Type::QStackedLayout)
+  Class stacked_layout = ns.newClass("StackedLayout").setId(script::Type::QStackedLayout)
     .setBase(script::Type::QLayout).get();
 
   register_stacked_layout_stacking_mode_enum(stacked_layout);

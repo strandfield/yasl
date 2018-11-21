@@ -26,7 +26,7 @@ static void register_pixmap_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class pixmap = ns.Class("Pixmap").setId(script::Type::QPixmap).get();
+  Class pixmap = ns.newClass("Pixmap").setId(script::Type::QPixmap).get();
 
   binding::ClassBinder<QPixmap> binder{ pixmap };
 

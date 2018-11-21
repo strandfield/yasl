@@ -21,7 +21,7 @@ static void register_json_value_type_enum(script::Class json_value)
 {
   using namespace script;
 
-  Enum type = json_value.Enum("Type").setId(script::Type::QJsonValueType).get();
+  Enum type = json_value.newEnum("Type").setId(script::Type::QJsonValueType).get();
 
   type.addValue("Null", QJsonValue::Null);
   type.addValue("Bool", QJsonValue::Bool);
@@ -37,7 +37,7 @@ static void register_json_value_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class json_value = ns.Class("JsonValue").setId(script::Type::QJsonValue).get();
+  Class json_value = ns.newClass("JsonValue").setId(script::Type::QJsonValue).get();
 
   register_json_value_type_enum(json_value);
   binding::ClassBinder<QJsonValue> binder{ json_value };
@@ -135,7 +135,7 @@ static void register_json_value_ref_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class json_value_ref = ns.Class("JsonValueRef").setId(script::Type::QJsonValueRef).get();
+  Class json_value_ref = ns.newClass("JsonValueRef").setId(script::Type::QJsonValueRef).get();
 
   binding::ClassBinder<QJsonValueRef> binder{ json_value_ref };
 

@@ -19,7 +19,7 @@ static void register_rect_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class rect = ns.Class("Rect").setId(script::Type::QRect).get();
+  Class rect = ns.newClass("Rect").setId(script::Type::QRect).get();
 
   binding::ClassBinder<QRect> binder{ rect };
 
@@ -178,7 +178,7 @@ static void register_rect_f_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class rect_f = ns.Class("RectF").setId(script::Type::QRectF).get();
+  Class rect_f = ns.newClass("RectF").setId(script::Type::QRectF).get();
 
   binding::ClassBinder<QRectF> binder{ rect_f };
 

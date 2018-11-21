@@ -22,7 +22,7 @@ static void register_process_environment_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class process_environment = ns.Class("ProcessEnvironment").setId(script::Type::QProcessEnvironment).get();
+  Class process_environment = ns.newClass("ProcessEnvironment").setId(script::Type::QProcessEnvironment).get();
 
   binding::ClassBinder<QProcessEnvironment> binder{ process_environment };
 
@@ -69,7 +69,7 @@ static void register_process_process_error_enum(script::Class process)
 {
   using namespace script;
 
-  Enum process_error = process.Enum("ProcessError").setId(script::Type::QProcessProcessError).get();
+  Enum process_error = process.newEnum("ProcessError").setId(script::Type::QProcessProcessError).get();
 
   process_error.addValue("FailedToStart", QProcess::FailedToStart);
   process_error.addValue("Crashed", QProcess::Crashed);
@@ -84,7 +84,7 @@ static void register_process_process_state_enum(script::Class process)
 {
   using namespace script;
 
-  Enum process_state = process.Enum("ProcessState").setId(script::Type::QProcessProcessState).get();
+  Enum process_state = process.newEnum("ProcessState").setId(script::Type::QProcessProcessState).get();
 
   process_state.addValue("NotRunning", QProcess::NotRunning);
   process_state.addValue("Starting", QProcess::Starting);
@@ -96,7 +96,7 @@ static void register_process_process_channel_enum(script::Class process)
 {
   using namespace script;
 
-  Enum process_channel = process.Enum("ProcessChannel").setId(script::Type::QProcessProcessChannel).get();
+  Enum process_channel = process.newEnum("ProcessChannel").setId(script::Type::QProcessProcessChannel).get();
 
   process_channel.addValue("StandardOutput", QProcess::StandardOutput);
   process_channel.addValue("StandardError", QProcess::StandardError);
@@ -107,7 +107,7 @@ static void register_process_process_channel_mode_enum(script::Class process)
 {
   using namespace script;
 
-  Enum process_channel_mode = process.Enum("ProcessChannelMode").setId(script::Type::QProcessProcessChannelMode).get();
+  Enum process_channel_mode = process.newEnum("ProcessChannelMode").setId(script::Type::QProcessProcessChannelMode).get();
 
   process_channel_mode.addValue("SeparateChannels", QProcess::SeparateChannels);
   process_channel_mode.addValue("MergedChannels", QProcess::MergedChannels);
@@ -121,7 +121,7 @@ static void register_process_input_channel_mode_enum(script::Class process)
 {
   using namespace script;
 
-  Enum input_channel_mode = process.Enum("InputChannelMode").setId(script::Type::QProcessInputChannelMode).get();
+  Enum input_channel_mode = process.newEnum("InputChannelMode").setId(script::Type::QProcessInputChannelMode).get();
 
   input_channel_mode.addValue("ManagedInputChannel", QProcess::ManagedInputChannel);
   input_channel_mode.addValue("ForwardedInputChannel", QProcess::ForwardedInputChannel);
@@ -132,7 +132,7 @@ static void register_process_exit_status_enum(script::Class process)
 {
   using namespace script;
 
-  Enum exit_status = process.Enum("ExitStatus").setId(script::Type::QProcessExitStatus).get();
+  Enum exit_status = process.newEnum("ExitStatus").setId(script::Type::QProcessExitStatus).get();
 
   exit_status.addValue("NormalExit", QProcess::NormalExit);
   exit_status.addValue("CrashExit", QProcess::CrashExit);
@@ -143,7 +143,7 @@ static void register_process_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class process = ns.Class("Process").setId(script::Type::QProcess)
+  Class process = ns.newClass("Process").setId(script::Type::QProcess)
     .setBase(script::Type::QIODevice).get();
 
   register_process_process_error_enum(process);

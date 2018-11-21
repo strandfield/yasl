@@ -18,7 +18,7 @@ static void register_file_info_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class file_info = ns.Class("FileInfo").setId(script::Type::QFileInfo).get();
+  Class file_info = ns.newClass("FileInfo").setId(script::Type::QFileInfo).get();
 
   binding::ClassBinder<QFileInfo> binder{ file_info };
 

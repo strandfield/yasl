@@ -16,7 +16,7 @@ static void register_font_info_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class font_info = ns.Class("FontInfo").setId(script::Type::QFontInfo).get();
+  Class font_info = ns.newClass("FontInfo").setId(script::Type::QFontInfo).get();
 
   binding::ClassBinder<QFontInfo> binder{ font_info };
 

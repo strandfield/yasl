@@ -25,7 +25,7 @@ static void register_brush_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class brush = ns.Class("Brush").setId(script::Type::QBrush).get();
+  Class brush = ns.newClass("Brush").setId(script::Type::QBrush).get();
 
   binding::ClassBinder<QBrush> binder{ brush };
 
@@ -104,7 +104,7 @@ static void register_gradient_type_enum(script::Class gradient)
 {
   using namespace script;
 
-  Enum type = gradient.Enum("Type").setId(script::Type::QGradientType).get();
+  Enum type = gradient.newEnum("Type").setId(script::Type::QGradientType).get();
 
   type.addValue("LinearGradient", QGradient::LinearGradient);
   type.addValue("RadialGradient", QGradient::RadialGradient);
@@ -117,7 +117,7 @@ static void register_gradient_spread_enum(script::Class gradient)
 {
   using namespace script;
 
-  Enum spread = gradient.Enum("Spread").setId(script::Type::QGradientSpread).get();
+  Enum spread = gradient.newEnum("Spread").setId(script::Type::QGradientSpread).get();
 
   spread.addValue("PadSpread", QGradient::PadSpread);
   spread.addValue("ReflectSpread", QGradient::ReflectSpread);
@@ -129,7 +129,7 @@ static void register_gradient_coordinate_mode_enum(script::Class gradient)
 {
   using namespace script;
 
-  Enum coordinate_mode = gradient.Enum("CoordinateMode").setId(script::Type::QGradientCoordinateMode).get();
+  Enum coordinate_mode = gradient.newEnum("CoordinateMode").setId(script::Type::QGradientCoordinateMode).get();
 
   coordinate_mode.addValue("LogicalMode", QGradient::LogicalMode);
   coordinate_mode.addValue("StretchToDeviceMode", QGradient::StretchToDeviceMode);
@@ -141,7 +141,7 @@ static void register_gradient_interpolation_mode_enum(script::Class gradient)
 {
   using namespace script;
 
-  Enum interpolation_mode = gradient.Enum("InterpolationMode").setId(script::Type::QGradientInterpolationMode).get();
+  Enum interpolation_mode = gradient.newEnum("InterpolationMode").setId(script::Type::QGradientInterpolationMode).get();
 
   interpolation_mode.addValue("ColorInterpolation", QGradient::ColorInterpolation);
   interpolation_mode.addValue("ComponentInterpolation", QGradient::ComponentInterpolation);
@@ -152,7 +152,7 @@ static void register_gradient_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class gradient = ns.Class("Gradient").setId(script::Type::QGradient).get();
+  Class gradient = ns.newClass("Gradient").setId(script::Type::QGradient).get();
 
   register_gradient_type_enum(gradient);
   register_gradient_spread_enum(gradient);
@@ -193,7 +193,7 @@ static void register_linear_gradient_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class linear_gradient = ns.Class("LinearGradient").setId(script::Type::QLinearGradient)
+  Class linear_gradient = ns.newClass("LinearGradient").setId(script::Type::QLinearGradient)
     .setBase(script::Type::QGradient).get();
 
   binding::ClassBinder<QLinearGradient> binder{ linear_gradient };
@@ -229,7 +229,7 @@ static void register_radial_gradient_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class radial_gradient = ns.Class("RadialGradient").setId(script::Type::QRadialGradient)
+  Class radial_gradient = ns.newClass("RadialGradient").setId(script::Type::QRadialGradient)
     .setBase(script::Type::QGradient).get();
 
   binding::ClassBinder<QRadialGradient> binder{ radial_gradient };
@@ -285,7 +285,7 @@ static void register_conical_gradient_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class conical_gradient = ns.Class("ConicalGradient").setId(script::Type::QConicalGradient)
+  Class conical_gradient = ns.newClass("ConicalGradient").setId(script::Type::QConicalGradient)
     .setBase(script::Type::QGradient).get();
 
   binding::ClassBinder<QConicalGradient> binder{ conical_gradient };

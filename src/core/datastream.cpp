@@ -18,7 +18,7 @@ static void register_data_stream_version_enum(script::Class data_stream)
 {
   using namespace script;
 
-  Enum version = data_stream.Enum("Version").setId(script::Type::QDataStreamVersion).get();
+  Enum version = data_stream.newEnum("Version").setId(script::Type::QDataStreamVersion).get();
 
   version.addValue("Qt_1_0", QDataStream::Qt_1_0);
   version.addValue("Qt_2_0", QDataStream::Qt_2_0);
@@ -55,7 +55,7 @@ static void register_data_stream_byte_order_enum(script::Class data_stream)
 {
   using namespace script;
 
-  Enum byte_order = data_stream.Enum("ByteOrder").setId(script::Type::QDataStreamByteOrder).get();
+  Enum byte_order = data_stream.newEnum("ByteOrder").setId(script::Type::QDataStreamByteOrder).get();
 
   byte_order.addValue("BigEndian", QDataStream::BigEndian);
   byte_order.addValue("LittleEndian", QDataStream::LittleEndian);
@@ -66,7 +66,7 @@ static void register_data_stream_status_enum(script::Class data_stream)
 {
   using namespace script;
 
-  Enum status = data_stream.Enum("Status").setId(script::Type::QDataStreamStatus).get();
+  Enum status = data_stream.newEnum("Status").setId(script::Type::QDataStreamStatus).get();
 
   status.addValue("Ok", QDataStream::Ok);
   status.addValue("ReadPastEnd", QDataStream::ReadPastEnd);
@@ -79,7 +79,7 @@ static void register_data_stream_floating_point_precision_enum(script::Class dat
 {
   using namespace script;
 
-  Enum floating_point_precision = data_stream.Enum("FloatingPointPrecision").setId(script::Type::QDataStreamFloatingPointPrecision).get();
+  Enum floating_point_precision = data_stream.newEnum("FloatingPointPrecision").setId(script::Type::QDataStreamFloatingPointPrecision).get();
 
   floating_point_precision.addValue("SinglePrecision", QDataStream::SinglePrecision);
   floating_point_precision.addValue("DoublePrecision", QDataStream::DoublePrecision);
@@ -90,7 +90,7 @@ static void register_data_stream_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class data_stream = ns.Class("DataStream").setId(script::Type::QDataStream).get();
+  Class data_stream = ns.newClass("DataStream").setId(script::Type::QDataStream).get();
 
   register_data_stream_version_enum(data_stream);
   register_data_stream_byte_order_enum(data_stream);

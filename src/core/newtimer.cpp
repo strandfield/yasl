@@ -29,7 +29,7 @@ void register_newtimer_file(script::Namespace core)
 {
   using namespace script;
 
-  core.Function("newTimer", callbacks::new_timer)
+  core.newFunction("newTimer", callbacks::new_timer)
     .returns(Type::ref(Type::QTimer))
     .params(binding::make_type<QObject*>())
     .create();

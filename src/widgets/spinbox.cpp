@@ -18,7 +18,7 @@ static void register_spin_box_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class spin_box = ns.Class("SpinBox").setId(script::Type::QSpinBox)
+  Class spin_box = ns.newClass("SpinBox").setId(script::Type::QSpinBox)
     .setBase(script::Type::QAbstractSpinBox).get();
 
   binding::ClassBinder<QSpinBox> binder{ spin_box, &QSpinBox::staticMetaObject };
@@ -73,7 +73,7 @@ static void register_double_spin_box_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class double_spin_box = ns.Class("DoubleSpinBox").setId(script::Type::QDoubleSpinBox)
+  Class double_spin_box = ns.newClass("DoubleSpinBox").setId(script::Type::QDoubleSpinBox)
     .setBase(script::Type::QAbstractSpinBox).get();
 
   binding::ClassBinder<QDoubleSpinBox> binder{ double_spin_box, &QDoubleSpinBox::staticMetaObject };

@@ -19,7 +19,7 @@ static void register_glyph_run_glyph_run_flag_enum(script::Class glyph_run)
 {
   using namespace script;
 
-  Enum glyph_run_flag = glyph_run.Enum("GlyphRunFlag").setId(script::Type::QGlyphRunGlyphRunFlag).get();
+  Enum glyph_run_flag = glyph_run.newEnum("GlyphRunFlag").setId(script::Type::QGlyphRunGlyphRunFlag).get();
 
   glyph_run_flag.addValue("Overline", QGlyphRun::Overline);
   glyph_run_flag.addValue("Underline", QGlyphRun::Underline);
@@ -33,7 +33,7 @@ static void register_glyph_run_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class glyph_run = ns.Class("GlyphRun").setId(script::Type::QGlyphRun).get();
+  Class glyph_run = ns.newClass("GlyphRun").setId(script::Type::QGlyphRun).get();
 
   register_glyph_run_glyph_run_flag_enum(glyph_run);
   binding::ClassBinder<QGlyphRun> binder{ glyph_run };

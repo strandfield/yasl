@@ -24,7 +24,7 @@ static void register_font_combo_box_font_filter_enum(script::Class font_combo_bo
 {
   using namespace script;
 
-  Enum font_filter = font_combo_box.Enum("FontFilter").setId(script::Type::QFontComboBoxFontFilter).get();
+  Enum font_filter = font_combo_box.newEnum("FontFilter").setId(script::Type::QFontComboBoxFontFilter).get();
 
   register_qflags_type<QFontComboBox::FontFilter>(font_combo_box, "FontFilters", script::Type::QFontComboBoxFontFilters);
   font_filter.addValue("AllFonts", QFontComboBox::AllFonts);
@@ -39,7 +39,7 @@ static void register_font_combo_box_class(script::Namespace ns)
 {
   using namespace script;
 
-  Class font_combo_box = ns.Class("FontComboBox").setId(script::Type::QFontComboBox)
+  Class font_combo_box = ns.newClass("FontComboBox").setId(script::Type::QFontComboBox)
     .setBase(script::Type::QComboBox).get();
 
   register_font_combo_box_font_filter_enum(font_combo_box);
