@@ -2,15 +2,18 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_BINDING_NEW_FUNCTION_WRAPPER_H
-#define YASL_BINDING_NEW_FUNCTION_WRAPPER_H
+#ifndef YASL_BINDING2_NEW_FUNCTION_WRAPPER_H
+#define YASL_BINDING2_NEW_FUNCTION_WRAPPER_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <script/interpreter/executioncontext.h>
 #include <script/value.h>
 
-namespace binding
+namespace script
+{
+
+namespace bind
 {
 
 template<typename T, typename...Args>
@@ -64,6 +67,8 @@ struct qclass_newfunction_wrapper_t<T, A1, A2, A3, A4, A5> {
   }
 };
 
-} // namespace binding
+} // namespace bind
 
-#endif // YASL_BINDING_NEW_FUNCTION_WRAPPER_H
+} // namespace script
+
+#endif // YASL_BINDING2_NEW_FUNCTION_WRAPPER_H

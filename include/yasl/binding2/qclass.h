@@ -5,101 +5,120 @@
 #ifndef YASL_BINDING_QCLASS_H
 #define YASL_BINDING_QCLASS_H
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/qclass_constructor_wrapper.h"
-#include "yasl/binding/qclass_destructor_wrapper.h"
-#include "yasl/binding/qsignal.h"
+#include "yasl/binding2/constructor_binder.h"
+#include "yasl/binding2/destructor_binder.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/signals.h"
 
 #include <script/class.h>
 #include <script/engine.h>
 #include <script/constructorbuilder.h>
 #include <script/destructorbuilder.h>
-#include <script/functionbuilder.h>
-#include <script/operatorbuilder.h>
 #include <script/value.h>
-#include <script/private/value_p.h>
-
-#include <string>
 
 struct QMetaObject;
 
-namespace binding
+namespace script
 {
+
+namespace bind
+{
+
+inline void link(script::Class & cla, const QMetaObject *mo)
+{
+  cla.engine()->registerQtType(mo, cla.id());
+}
 
 template<typename T>
-class ClassBinder<T, qobject_tag> : public GenericClassBinder<T>
+struct constructor_binder<T, qobject_tag>
 {
-public:
-  const QMetaObject *meta_;
-
-  ClassBinder(const script::Class c, const QMetaObject *m) 
-    : GenericClassBinder<T>(c)
-    , meta_(m)
-  { }
-
-public:
-
-  /****************************************************************
-  Signals
-  ****************************************************************/
-
-  QSignal sigs() const { return QSignal{ class_, meta_ }; }
-
-  /****************************************************************
-  Constructors
-  ****************************************************************/
-
-  script::ConstructorBuilder default_ctor()
+  static script::Value default_ctor(script::FunctionCall *c)
   {
-    return class_.newConstructor(qclass_constructor_wrapper_t<T>::wrap);
+    script::Value self = c->thisObject();
+    T *obj = new T;
+    c->engine()->bind(self, obj);
+    return self;
+  }
+
+  static script::Value copy_ctor(script::FunctionCall *c)
+  {
+    script::Value self = c->thisObject();
+    T *obj = new T(value_cast<const T &>(c->arg(1)));
+    c->engine()->bind(self, obj);
+    return self;
   }
 
   template<typename A1>
-  script::ConstructorBuilder ctor()
+  static script::Value generic_ctor(script::FunctionCall *c)
   {
-    return class_.newConstructor(qclass_constructor_wrapper_t<T, A1>::wrap)
-      .params(make_type<A1>());
+    script::Value self = c->thisObject();
+    T *obj = new T(value_cast<A1>(c->arg(1)));
+    c->engine()->bind(self, obj);
+    return self;
   }
 
   template<typename A1, typename A2>
-  script::ConstructorBuilder ctor()
+  static script::Value generic_ctor(script::FunctionCall *c)
   {
-    return class_.newConstructor(qclass_constructor_wrapper_t<T, A1, A2>::wrap)
-      .params(make_type<A1>(), make_type<A2>());
+    script::Value self = c->thisObject();
+    T *obj = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)));
+    c->engine()->bind(self, obj);
+    return self;
   }
 
   template<typename A1, typename A2, typename A3>
-  script::ConstructorBuilder ctor()
+  static script::Value generic_ctor(script::FunctionCall *c)
   {
-    return class_.newConstructor(qclass_constructor_wrapper_t<T, A1, A2, A3>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+    script::Value self = c->thisObject();
+    T *obj = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)));
+    c->engine()->bind(self, obj);
+    return self;
   }
 
   template<typename A1, typename A2, typename A3, typename A4>
-  script::ConstructorBuilder ctor()
+  static script::Value generic_ctor(script::FunctionCall *c)
   {
-    return class_.newConstructor(qclass_constructor_wrapper_t<T, A1, A2, A3, A4>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+    script::Value self = c->thisObject();
+    T *obj = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)));
+    c->engine()->bind(self, obj);
+    return self;
   }
 
   template<typename A1, typename A2, typename A3, typename A4, typename A5>
-  script::ConstructorBuilder ctor()
+  static script::Value generic_ctor(script::FunctionCall *c)
   {
-    return class_.newConstructor(qclass_constructor_wrapper_t<T, A1, A2, A3, A4, A5>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+    script::Value self = c->thisObject();
+    T *obj = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)));
+    c->engine()->bind(self, obj);
+    return self;
   }
 
-  /****************************************************************
-  Destructor
-  ****************************************************************/
-
-  script::DestructorBuilder dtor()
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
+  static script::Value generic_ctor(script::FunctionCall *c)
   {
-    return class_.newDestructor(qclass_destructor_wrapper_t<T>::wrap);
+    script::Value self = c->thisObject();
+    T *obj = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6)));
+    c->engine()->bind(self, obj);
+    return self;
   }
-
 };
 
-} // namespace binding
+template<typename T>
+struct destructor_binder<T, qobject_tag>
+{
+  static script::Value destructor(script::FunctionCall *c)
+  {
+    script::Value self = c->thisObject();
+    T *ref = qobject_cast<T*>(self.impl()->data.builtin.qobject);
+    if (ref != nullptr)
+      delete ref;
+    self.impl()->data.builtin.qobject = nullptr;
+    return script::Value::Void;
+  }
+};
+
+} // namespace bind
+
+} // namespace script
 
 #endif // YASL_BINDING_QCLASS_H

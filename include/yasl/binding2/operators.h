@@ -18,6 +18,8 @@ namespace script
 namespace bind
 {
 
+/* Non-member operators */
+
 template<typename ReturnType, typename LHS, typename RHS>
 script::Function op_add(script::Namespace & ns)
 {
@@ -195,6 +197,210 @@ script::Function op_unary_minus(script::Namespace & ns)
   return ns.newOperator(script::UnaryMinusOperator, unary_minus_wrapper<Arg>)
     .returns(make_type<ReturnType>())
     .params(make_type<Arg>())
+    .get();
+}
+
+
+/* Member operators */
+
+template<typename T, typename RHS>
+script::Function memop_assign(script::Class & cla)
+{
+  return cla.newOperator(script::AssignmentOperator, assign_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_add(script::Class & cla)
+{
+  return cla.newOperator(script::AdditionOperator, add_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_sub(script::Class & cla)
+{
+  return cla.newOperator(script::SubstractionOperator, sub_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_mul(script::Class & cla)
+{
+  return cla.newOperator(script::MultiplicationOperator, mul_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_div(script::Class & cla)
+{
+  return cla.newOperator(script::DivisionOperator, div_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_eq(script::Class & cla)
+{
+  return cla.newOperator(script::EqualOperator, eq_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(script::Type::Boolean)
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_neq(script::Class & cla)
+{
+  return cla.newOperator(script::InequalOperator, neq_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(script::Type::Boolean)
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_less(script::Class & cla)
+{
+  return cla.newOperator(script::LessOperator, less_wrapper<const T&, RHS>)
+    .setConst()
+    .returns(script::Type::Boolean)
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_leq(script::Class & cla)
+{
+  return cla.newOperator(script::LessEqualOperator, leq_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(script::Type::Boolean)
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_greater(script::Class & cla)
+{
+  return cla.newOperator(script::GreaterOperator, greater_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(script::Type::Boolean)
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_geq(script::Class & cla)
+{
+  return cla.newOperator(script::GreaterEqualOperator, geq_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(script::Type::Boolean)
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_lshift(script::Class & cla)
+{
+  return cla.newOperator(script::LeftShiftOperator, left_shift_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_rshift(script::Class & cla)
+{
+  return cla.newOperator(script::RightShiftOperator, right_shift_wrapper<const T &, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_put_to(script::Class & cla)
+{
+  return cla.newOperator(script::LeftShiftOperator, put_to_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_read_from(script::Class & cla)
+{
+  return cla.newOperator(script::RightShiftOperator, read_from_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_bitor(script::Class & cla)
+{
+  return cla.newOperator(script::BitwiseOrOperator, or_wrapper<const T&, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_bitand(script::Class & cla)
+{
+  return cla.newOperator(script::BitwiseAndOperator, and_wrapper<const T&, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_or_assign(script::Class & cla)
+{
+  return cla.newOperator(script::BitwiseOrAssignmentOperator, or_assign_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_and_assign(script::Class & cla)
+{
+  return cla.newOperator(script::BitwiseAndAssignmentOperator, and_assign_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R>
+script::Function memop_unary_plus(script::Class & cla)
+{
+  return cla.newOperator(script::UnaryPlusOperator, unary_plus_wrapper<const T&>)
+    .returns(make_type<R>())
+    .get();
+}
+
+template<typename T, typename R>
+script::Function memop_unary_minus(script::Class & cla)
+{
+  return cla.newOperator(script::UnaryMinusOperator, unary_minus_wrapper<const T &>)
+    .returns(make_type<R>())
     .get();
 }
 

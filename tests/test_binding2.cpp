@@ -10,11 +10,17 @@
 #include "yasl/binding2/memberfunction.h"
 #include "yasl/binding2/fn-memfn.h"
 #include "yasl/binding2/chainable-memfn.h"
+#include "yasl/binding2/getter.h"
+#include "yasl/binding2/staticmemberfunction.h"
+#include "yasl/binding2/operators.h"
 
 #include <script/engine.h>
 #include <script/class.h>
 #include <script/classbuilder.h>
 #include <script/namespace.h>
+#include <script/operator.h>
+
+#include <QList>
 
 #include <type_traits>
 
@@ -71,7 +77,7 @@ template<> struct make_type_t<long unsigned int> { inline static script::Type ge
 }
 } // namespace script
 
-TEST(BindingTests, prototypes_member_functions) {
+TEST(BindingTests, simple_binding) {
   using namespace script;
 
   Engine e;
@@ -138,8 +144,7 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(invert.prototype().size(), 1);
   ASSERT_FALSE(invert.isConst());
 
-  /*
-  Function rx = binder.ref_mem_getter<int&, &Point::rx>("rx").get();
+  Function rx = bind::non_const_getter<Point, int&, &Point::rx>(pt, "rx").get();
   ASSERT_TRUE(rx.isMemberFunction());
   ASSERT_EQ(rx.memberOf(), pt);
   ASSERT_EQ(rx.name(), "rx");
@@ -147,7 +152,8 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(rx.prototype().size(), 1);
   ASSERT_FALSE(rx.isConst());
 
-  Function max = binder.static_fun<Point, const Point &, const Point &, &Point::max>("max").get();
+
+  Function max = bind::static_member_function<Point, Point, const Point &, const Point &, &Point::max>(pt, "max").get();
   ASSERT_TRUE(max.isMemberFunction());
   ASSERT_TRUE(max.isStatic());
   ASSERT_EQ(max.memberOf(), pt);
@@ -157,7 +163,7 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(max.parameter(0), Type::cref(pt.id()));
   ASSERT_FALSE(max.isConst());
 
-  Function print = binder.static_void_fun<const Point &, &Point::print>("print").get();
+  Function print = bind::static_void_member_function<Point, const Point &, &Point::print>(pt, "print").get();
   ASSERT_TRUE(print.isMemberFunction());
   ASSERT_TRUE(print.isStatic());
   ASSERT_EQ(print.memberOf(), pt);
@@ -167,7 +173,7 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_EQ(print.parameter(0), Type::cref(pt.id()));
   ASSERT_FALSE(print.isConst());
 
-  Function assign = binder.operators().assign<const Point &>();
+  Function assign = bind::memop_assign<Point, const Point &>(pt);
   ASSERT_TRUE(assign.isOperator());
   ASSERT_EQ(assign.toOperator().operatorId(), AssignmentOperator);
   ASSERT_EQ(assign.returnType(), Type::ref(pt.id()));
@@ -176,14 +182,66 @@ TEST(BindingTests, prototypes_member_functions) {
   ASSERT_TRUE(assign.isMemberFunction());
   ASSERT_FALSE(assign.isStatic());
   ASSERT_FALSE(assign.isConst());
-  ASSERT_EQ(assign.memberOf(), pt);*/
+  ASSERT_EQ(assign.memberOf(), pt);
+}
+
+#include <QByteArray>
+
+namespace script
+{
+namespace bind
+{
+template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
+template<> struct make_type_t<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
+template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
+}
+} // namespace script
+
+TEST(BindingTests, bytearray) {
+  using namespace script;
+
+  Engine e;
+  e.setup();
+
+  Namespace ns = e.rootNamespace();
+
+  Class ba = ns.newClass("ByteArray").setId(Type::QByteArray).get();
+
+  // QByteArray();
+  bind::default_constructor<QByteArray>(ba).create();
+  // QByteArray(int, char);
+  bind::constructor<QByteArray, int, char>(ba).create();
+  // QByteArray(const QByteArray &);
+  bind::constructor<QByteArray, const QByteArray &>(ba).create();
+  // ~QByteArray();
+  bind::destructor<QByteArray>(ba).create();
+  // QByteArray & operator=(const QByteArray &);
+  // QByteArray(QByteArray &&);
+  // QByteArray & operator=(QByteArray &&);
+  // void swap(QByteArray &);
+  bind::void_member_function<QByteArray, QByteArray&, &QByteArray::swap>(ba, "swap").create();
+  // int size() const;
+  bind::member_function<QByteArray, int, &QByteArray::size>(ba, "size").create();
+  // bool isEmpty() const;
+  bind::member_function<QByteArray, bool, &QByteArray::isEmpty>(ba, "isEmpty").create();
+  // void resize(int);
+  // QByteArray & fill(char, int);
+  bind::chainable_memfn<QByteArray, char, int, &QByteArray::fill>(ba, "fill").create();
+  // int capacity() const;
+  // void reserve(int);
+  // void squeeze();
+  // void detach();
+  // bool isDetached() const;
+  // bool isSharedWith(const QByteArray &) const;
+  // void clear();
+  // char at(int) const;
 }
 
 namespace script
 {
 namespace bind
 {
-template<> struct make_type_t<std::vector<int>> { inline static script::Type get() { return script::Type::QListint; } };
+template<> struct make_type_t<QList<int>> { inline static script::Type get() { return script::Type::QListint; } };
 }
 } // namespace script
 
@@ -192,14 +250,14 @@ script::Class parameterized_bind(script::Namespace &ns)
 {
   using namespace script;
 
-  using Vec = std::vector<T>;
+  using Vec = QList<T>;
 
-  Class vec = ns.newClass("Vector").get();
+  Class vec = ns.newClass("List<T>").get();
 
   bind::default_constructor<Vec>(vec).get();
-  bind::constructor<Vec, size_t>(vec).get();
+  bind::constructor<Vec, const Vec &>(vec).get();
 
-  bind::member_function<Vec, size_t, &Vec::size>(vec, "size").get();
+  bind::member_function<Vec, int, &Vec::size>(vec, "size").get();
 
   return vec;
 }

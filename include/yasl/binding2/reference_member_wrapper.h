@@ -2,11 +2,11 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_BINDING_REF_MEM_FUN_WRAPPER_H
-#define YASL_BINDING_REF_MEM_FUN_WRAPPER_H
+#ifndef YASL_BINDING2_REF_MEM_FUN_WRAPPER_H
+#define YASL_BINDING2_REF_MEM_FUN_WRAPPER_H
 
-#include "yasl/binding/values.h"
-#include "yasl/utils/proxy.h"
+#include "yasl/binding2/values.h"
+#include "yasl/binding2/proxy.h"
 
 #include <script/interpreter/executioncontext.h>
 
@@ -16,7 +16,10 @@
  * non-const references).
  */
 
-namespace binding
+namespace script
+{
+
+namespace bind
 {
 
 template<typename MemberType, MemberType f>
@@ -26,7 +29,7 @@ template<typename R, typename ClassType, R(ClassType::*f)()const>
 struct ref_member_wrapper_t<R(ClassType::*)()const, f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((self).*(f))());
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))());
   }
 };
 
@@ -34,7 +37,7 @@ template<typename R, typename ClassType, R(ClassType::*f)()>
 struct ref_member_wrapper_t<R(ClassType::*)(), f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((self).*(f))());
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))());
   }
 };
 
@@ -42,7 +45,7 @@ template<typename R, typename ClassType, typename A1, R(ClassType::*f)(A1)const>
 struct ref_member_wrapper_t<R(ClassType::*)(A1)const, f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1))));
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1))));
   }
 };
 
@@ -50,7 +53,7 @@ template<typename R, typename ClassType, typename A1, R(ClassType::*f)(A1)>
 struct ref_member_wrapper_t<R(ClassType::*)(A1), f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1))));
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1))));
   }
 };
 
@@ -58,7 +61,7 @@ template<typename R, typename ClassType, typename A1, typename A2, R(ClassType::
 struct ref_member_wrapper_t<R(ClassType::*)(A1, A2)const, f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))));
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))));
   }
 };
 
@@ -66,7 +69,7 @@ template<typename R, typename ClassType, typename A1, typename A2, R(ClassType::
 struct ref_member_wrapper_t<R(ClassType::*)(A1, A2), f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))));
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))));
   }
 };
 
@@ -74,7 +77,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct ref_member_wrapper_t<R(ClassType::*)(A1, A2, A3)const, f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((ref).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))));
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))));
   }
 };
 
@@ -82,7 +85,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct ref_member_wrapper_t<R(ClassType::*)(A1, A2, A3), f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((ref).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))));
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))));
   }
 };
 
@@ -90,7 +93,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct ref_member_wrapper_t<R(ClassType::*)(A1, A2, A3, A4)const, f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((ref).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))));
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))));
   }
 };
 
@@ -98,10 +101,12 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct ref_member_wrapper_t<R(ClassType::*)(A1, A2, A3, A4), f> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & self = *value_cast<ClassType*>(c->arg(0));
-    return c->engine()->newPtr(make_type<Proxy<std::decay<R>::type>>(), &((ref).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))));
+    return c->engine()->newPtr(make_type<Proxy<typename std::decay<R>::type>>(), &((self).*(f))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))));
   }
 };
 
-} // namespace binding
+} // namespace bind
 
-#endif // YASL_BINDING_REF_MEM_FUN_WRAPPER_H
+} // namespace script
+
+#endif // YASL_BINDING2_REF_MEM_FUN_WRAPPER_H
