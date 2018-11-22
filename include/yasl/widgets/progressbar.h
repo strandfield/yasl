@@ -5,15 +5,15 @@
 #ifndef YASL_WIDGETS_PROGRESSBAR_H
 #define YASL_WIDGETS_PROGRESSBAR_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QProgressBar>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QProgressBar> { inline static script::Type get() { return script::Type::QProgressBar; } };
 template<> struct tag_resolver<QProgressBar> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QProgressBar::Direction> { inline static script::Type get() { return script::Type::QProgressBarDirection; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_WIDGETS_PROGRESSBAR_H

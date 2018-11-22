@@ -5,15 +5,15 @@
 #ifndef YASL_GUI_CLIPBOARD_H
 #define YASL_GUI_CLIPBOARD_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QClipboard>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QClipboard> { inline static script::Type get() { return script::Type::QClipboard; } };
 template<> struct tag_resolver<QClipboard> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QClipboard::Mode> { inline static script::Type get() { return script::Type::QClipboardMode; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_CLIPBOARD_H

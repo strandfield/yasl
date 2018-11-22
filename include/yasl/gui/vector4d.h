@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_VECTOR4D_H
 #define YASL_GUI_VECTOR4D_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QVector4D>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QVector4D> { inline static script::Type get() { return script::Type::QVector4D; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_VECTOR4D_H

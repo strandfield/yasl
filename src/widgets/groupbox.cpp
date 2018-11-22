@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/groupbox.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -22,44 +22,43 @@ static void register_group_box_class(script::Namespace ns)
   Class group_box = ns.newClass("GroupBox").setId(script::Type::QGroupBox)
     .setBase(script::Type::QWidget).get();
 
-  binding::ClassBinder<QGroupBox> binder{ group_box, &QGroupBox::staticMetaObject };
 
   // QGroupBox(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QGroupBox, QWidget *>(group_box)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QGroupBox(const QString &, QWidget *);
-  binder.ctor<const QString &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QGroupBox, const QString &, QWidget *>(group_box)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QGroupBox();
-  binder.dtor().create();
+  bind::destructor<QGroupBox>(group_box).create();
   // QString title() const;
-  binder.fun<QString, &QGroupBox::title>("title").create();
+  bind::member_function<QGroupBox, QString, &QGroupBox::title>(group_box, "title").create();
   // void setTitle(const QString &);
-  binder.void_fun<const QString &, &QGroupBox::setTitle>("setTitle").create();
+  bind::void_member_function<QGroupBox, const QString &, &QGroupBox::setTitle>(group_box, "setTitle").create();
   // Qt::Alignment alignment() const;
-  binder.fun<Qt::Alignment, &QGroupBox::alignment>("alignment").create();
+  bind::member_function<QGroupBox, Qt::Alignment, &QGroupBox::alignment>(group_box, "alignment").create();
   // void setAlignment(int);
-  binder.void_fun<int, &QGroupBox::setAlignment>("setAlignment").create();
+  bind::void_member_function<QGroupBox, int, &QGroupBox::setAlignment>(group_box, "setAlignment").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QGroupBox::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QGroupBox, QSize, &QGroupBox::minimumSizeHint>(group_box, "minimumSizeHint").create();
   // bool isFlat() const;
-  binder.fun<bool, &QGroupBox::isFlat>("isFlat").create();
+  bind::member_function<QGroupBox, bool, &QGroupBox::isFlat>(group_box, "isFlat").create();
   // void setFlat(bool);
-  binder.void_fun<bool, &QGroupBox::setFlat>("setFlat").create();
+  bind::void_member_function<QGroupBox, bool, &QGroupBox::setFlat>(group_box, "setFlat").create();
   // bool isCheckable() const;
-  binder.fun<bool, &QGroupBox::isCheckable>("isCheckable").create();
+  bind::member_function<QGroupBox, bool, &QGroupBox::isCheckable>(group_box, "isCheckable").create();
   // void setCheckable(bool);
-  binder.void_fun<bool, &QGroupBox::setCheckable>("setCheckable").create();
+  bind::void_member_function<QGroupBox, bool, &QGroupBox::setCheckable>(group_box, "setCheckable").create();
   // bool isChecked() const;
-  binder.fun<bool, &QGroupBox::isChecked>("isChecked").create();
+  bind::member_function<QGroupBox, bool, &QGroupBox::isChecked>(group_box, "isChecked").create();
   // void setChecked(bool);
-  binder.void_fun<bool, &QGroupBox::setChecked>("setChecked").create();
+  bind::void_member_function<QGroupBox, bool, &QGroupBox::setChecked>(group_box, "setChecked").create();
   // void clicked(bool);
-  binder.sigs().add<bool>("clicked", "clicked(bool)");
+  bind::signal<QGroupBox, bool>(group_box, "clicked", "clicked(bool)");
   // void toggled(bool);
-  binder.sigs().add<bool>("toggled", "toggled(bool)");
+  bind::signal<QGroupBox, bool>(group_box, "toggled", "toggled(bool)");
 
-  group_box.engine()->registerQtType(&QGroupBox::staticMetaObject, group_box.id());
+  bind::link(group_box, &QGroupBox::staticMetaObject);
 }
 
 
@@ -70,11 +69,10 @@ void register_groupbox_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_group_box_class(ns);
-  binding::Namespace binder{ ns };
 
   // QGroupBox& newGroupBox(QWidget*);
-  NewFunction(binder).add<QGroupBox, QWidget*>("newGroupBox");
+  bind::new_function<QGroupBox, QWidget*>(ns, "newGroupBox");
   // QGroupBox& newGroupBox(const QString &, QWidget*);
-  NewFunction(binder).add<QGroupBox, const QString &, QWidget*>("newGroupBox");
+  bind::new_function<QGroupBox, const QString &, QWidget*>(ns, "newGroupBox");
 }
 

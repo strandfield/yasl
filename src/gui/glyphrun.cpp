@@ -4,10 +4,10 @@
 
 #include "yasl/gui/glyphrun.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/rect.h"
 #include "yasl/gui/glyphrun.h"
@@ -36,20 +36,19 @@ static void register_glyph_run_class(script::Namespace ns)
   Class glyph_run = ns.newClass("GlyphRun").setId(script::Type::QGlyphRun).get();
 
   register_glyph_run_glyph_run_flag_enum(glyph_run);
-  binding::ClassBinder<QGlyphRun> binder{ glyph_run };
 
   // QGlyphRun();
-  binder.default_ctor().create();
+  bind::default_constructor<QGlyphRun>(glyph_run).create();
   // QGlyphRun(const QGlyphRun &);
-  binder.ctor<const QGlyphRun &>().create();
+  bind::constructor<QGlyphRun, const QGlyphRun &>(glyph_run).create();
   // QGlyphRun & operator=(QGlyphRun &&);
-  binder.operators().assign<QGlyphRun &&>();
+  bind::memop_assign<QGlyphRun, QGlyphRun &&>(glyph_run);
   // QGlyphRun & operator=(const QGlyphRun &);
-  binder.operators().assign<const QGlyphRun &>();
+  bind::memop_assign<QGlyphRun, const QGlyphRun &>(glyph_run);
   // ~QGlyphRun();
-  binder.dtor().create();
+  bind::destructor<QGlyphRun>(glyph_run).create();
   // void swap(QGlyphRun &);
-  binder.void_fun<QGlyphRun &, &QGlyphRun::swap>("swap").create();
+  bind::void_member_function<QGlyphRun, QGlyphRun &, &QGlyphRun::swap>(glyph_run, "swap").create();
   // QRawFont rawFont() const;
   /// TODO: QRawFont rawFont() const;
   // void setRawFont(const QRawFont &);
@@ -65,40 +64,40 @@ static void register_glyph_run_class(script::Namespace ns)
   // void setPositions(const QVector<QPointF> &);
   /// TODO: void setPositions(const QVector<QPointF> &);
   // void clear();
-  binder.void_fun<&QGlyphRun::clear>("clear").create();
+  bind::void_member_function<QGlyphRun, &QGlyphRun::clear>(glyph_run, "clear").create();
   // bool operator==(const QGlyphRun &) const;
-  binder.operators().eq<const QGlyphRun &>();
+  bind::memop_eq<QGlyphRun, const QGlyphRun &>(glyph_run);
   // bool operator!=(const QGlyphRun &) const;
-  binder.operators().neq<const QGlyphRun &>();
+  bind::memop_neq<QGlyphRun, const QGlyphRun &>(glyph_run);
   // void setOverline(bool);
-  binder.void_fun<bool, &QGlyphRun::setOverline>("setOverline").create();
+  bind::void_member_function<QGlyphRun, bool, &QGlyphRun::setOverline>(glyph_run, "setOverline").create();
   // bool overline() const;
-  binder.fun<bool, &QGlyphRun::overline>("overline").create();
+  bind::member_function<QGlyphRun, bool, &QGlyphRun::overline>(glyph_run, "overline").create();
   // void setUnderline(bool);
-  binder.void_fun<bool, &QGlyphRun::setUnderline>("setUnderline").create();
+  bind::void_member_function<QGlyphRun, bool, &QGlyphRun::setUnderline>(glyph_run, "setUnderline").create();
   // bool underline() const;
-  binder.fun<bool, &QGlyphRun::underline>("underline").create();
+  bind::member_function<QGlyphRun, bool, &QGlyphRun::underline>(glyph_run, "underline").create();
   // void setStrikeOut(bool);
-  binder.void_fun<bool, &QGlyphRun::setStrikeOut>("setStrikeOut").create();
+  bind::void_member_function<QGlyphRun, bool, &QGlyphRun::setStrikeOut>(glyph_run, "setStrikeOut").create();
   // bool strikeOut() const;
-  binder.fun<bool, &QGlyphRun::strikeOut>("strikeOut").create();
+  bind::member_function<QGlyphRun, bool, &QGlyphRun::strikeOut>(glyph_run, "strikeOut").create();
   // void setRightToLeft(bool);
-  binder.void_fun<bool, &QGlyphRun::setRightToLeft>("setRightToLeft").create();
+  bind::void_member_function<QGlyphRun, bool, &QGlyphRun::setRightToLeft>(glyph_run, "setRightToLeft").create();
   // bool isRightToLeft() const;
-  binder.fun<bool, &QGlyphRun::isRightToLeft>("isRightToLeft").create();
+  bind::member_function<QGlyphRun, bool, &QGlyphRun::isRightToLeft>(glyph_run, "isRightToLeft").create();
   // void setFlag(QGlyphRun::GlyphRunFlag, bool);
-  binder.void_fun<QGlyphRun::GlyphRunFlag, bool, &QGlyphRun::setFlag>("setFlag")
-    .apply(binding::default_arguments(true)).create();
+  bind::void_member_function<QGlyphRun, QGlyphRun::GlyphRunFlag, bool, &QGlyphRun::setFlag>(glyph_run, "setFlag")
+    .apply(bind::default_arguments(true)).create();
   // void setFlags(QGlyphRun::GlyphRunFlags);
   /// TODO: void setFlags(QGlyphRun::GlyphRunFlags);
   // QGlyphRun::GlyphRunFlags flags() const;
   /// TODO: QGlyphRun::GlyphRunFlags flags() const;
   // void setBoundingRect(const QRectF &);
-  binder.void_fun<const QRectF &, &QGlyphRun::setBoundingRect>("setBoundingRect").create();
+  bind::void_member_function<QGlyphRun, const QRectF &, &QGlyphRun::setBoundingRect>(glyph_run, "setBoundingRect").create();
   // QRectF boundingRect() const;
-  binder.fun<QRectF, &QGlyphRun::boundingRect>("boundingRect").create();
+  bind::member_function<QGlyphRun, QRectF, &QGlyphRun::boundingRect>(glyph_run, "boundingRect").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QGlyphRun::isEmpty>("isEmpty").create();
+  bind::member_function<QGlyphRun, bool, &QGlyphRun::isEmpty>(glyph_run, "isEmpty").create();
 }
 
 
@@ -109,9 +108,8 @@ void register_glyphrun_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_glyph_run_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QGlyphRun &, QGlyphRun &);
-  binder.void_fun<QGlyphRun &, QGlyphRun &, &swap>("swap").create();
+  bind::void_function<QGlyphRun &, QGlyphRun &, &swap>(ns, "swap").create();
 }
 

@@ -5,11 +5,11 @@
 #ifndef YASL_CORE_REGULAREXPRESSION_H
 #define YASL_CORE_REGULAREXPRESSION_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QRegularExpression>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QRegularExpression> { inline static script::Type get() { return script::Type::QRegularExpression; } };
 template<> struct make_type_t<QRegularExpression::MatchOption> { inline static script::Type get() { return script::Type::QRegularExpressionMatchOption; } };
 template<> struct make_type_t<QRegularExpression::MatchOptions> { inline static script::Type get() { return script::Type::QRegularExpressionMatchOptions; } };
@@ -18,6 +18,6 @@ template<> struct make_type_t<QRegularExpression::PatternOption> { inline static
 template<> struct make_type_t<QRegularExpression::PatternOptions> { inline static script::Type get() { return script::Type::QRegularExpressionPatternOptions; } };
 template<> struct make_type_t<QRegularExpressionMatch> { inline static script::Type get() { return script::Type::QRegularExpressionMatch; } };
 template<> struct make_type_t<QRegularExpressionMatchIterator> { inline static script::Type get() { return script::Type::QRegularExpressionMatchIterator; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_REGULAREXPRESSION_H

@@ -5,7 +5,7 @@
 #ifndef YASL_BINDING2_VALUES_H
 #define YASL_BINDING2_VALUES_H
 
-#include "yasl/binding/enum.h"
+#include "yasl/binding2/enum.h"
 #include "yasl/binding2/types.h"
 
 #include <script/engine.h>

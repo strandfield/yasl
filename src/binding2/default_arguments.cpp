@@ -2,11 +2,14 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/binding/default_arguments.h"
+#include "yasl/binding2/default_arguments.h"
 
 #include <script/program/expression.h>
 
-namespace binding
+namespace script
+{
+
+namespace bind
 {
 
 std::shared_ptr<script::program::Expression> make_default_argument(script::Value val)
@@ -15,4 +18,6 @@ std::shared_ptr<script::program::Expression> make_default_argument(script::Value
   return script::program::VariableAccess::New(val);
 }
 
-} // namespace binding
+} // namespace bind
+
+} // namespace script

@@ -4,8 +4,8 @@
 
 #include "yasl/core/event.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 #include "yasl/core/qevent-binder.h"
 
 #include "yasl/core/bytearray.h"
@@ -203,30 +203,29 @@ static void register_event_class(script::Namespace ns)
   Class event = ns.newClass("Event").setId(script::Type::QEvent).get();
 
   register_event_type_enum(event);
-  binding::ClassBinder<QEvent> binder{ event };
 
   // QEvent(QEvent::Type);
-  binder.ctor<QEvent::Type>().create();
+  bind::constructor<QEvent, QEvent::Type>(event).create();
   // QEvent(const QEvent &);
-  binder.ctor<const QEvent &>().create();
+  bind::constructor<QEvent, const QEvent &>(event).create();
   // ~QEvent();
-  binder.dtor().create();
+  bind::destructor<QEvent>(event).create();
   // QEvent & operator=(const QEvent &);
-  binder.operators().assign<const QEvent &>();
+  bind::memop_assign<QEvent, const QEvent &>(event);
   // QEvent::Type type() const;
-  binder.fun<QEvent::Type, &QEvent::type>("type").create();
+  bind::member_function<QEvent, QEvent::Type, &QEvent::type>(event, "type").create();
   // bool spontaneous() const;
-  binder.fun<bool, &QEvent::spontaneous>("spontaneous").create();
+  bind::member_function<QEvent, bool, &QEvent::spontaneous>(event, "spontaneous").create();
   // void setAccepted(bool);
-  binder.void_fun<bool, &QEvent::setAccepted>("setAccepted").create();
+  bind::void_member_function<QEvent, bool, &QEvent::setAccepted>(event, "setAccepted").create();
   // bool isAccepted() const;
-  binder.fun<bool, &QEvent::isAccepted>("isAccepted").create();
+  bind::member_function<QEvent, bool, &QEvent::isAccepted>(event, "isAccepted").create();
   // void accept();
-  binder.void_fun<&QEvent::accept>("accept").create();
+  bind::void_member_function<QEvent, &QEvent::accept>(event, "accept").create();
   // void ignore();
-  binder.void_fun<&QEvent::ignore>("ignore").create();
+  bind::void_member_function<QEvent, &QEvent::ignore>(event, "ignore").create();
   // static int registerEventType(int);
-  binder.static_fun<int, int, &QEvent::registerEventType>("registerEventType").create();
+  bind::static_member_function<QEvent, int, int, &QEvent::registerEventType>(event, "registerEventType").create();
 }
 
 
@@ -236,14 +235,13 @@ static void register_timer_event_class(script::Namespace ns)
 
   Class timer_event = ns.newClass("TimerEvent").setId(script::Type::QTimerEvent).get();
 
-  binding::ClassBinder<QTimerEvent> binder{ timer_event };
 
   // QTimerEvent(int);
-  binder.ctor<int>().create();
+  bind::constructor<QTimerEvent, int>(timer_event).create();
   // ~QTimerEvent();
-  binder.dtor().create();
+  bind::destructor<QTimerEvent>(timer_event).create();
   // int timerId() const;
-  binder.fun<int, &QTimerEvent::timerId>("timerId").create();
+  bind::member_function<QTimerEvent, int, &QTimerEvent::timerId>(timer_event, "timerId").create();
 }
 
 
@@ -253,20 +251,19 @@ static void register_child_event_class(script::Namespace ns)
 
   Class child_event = ns.newClass("ChildEvent").setId(script::Type::QChildEvent).get();
 
-  binding::ClassBinder<QChildEvent> binder{ child_event };
 
   // QChildEvent(QEvent::Type, QObject *);
-  binder.ctor<QEvent::Type, QObject *>().create();
+  bind::constructor<QChildEvent, QEvent::Type, QObject *>(child_event).create();
   // ~QChildEvent();
-  binder.dtor().create();
+  bind::destructor<QChildEvent>(child_event).create();
   // QObject * child() const;
-  binder.fun<QObject *, &QChildEvent::child>("child").create();
+  bind::member_function<QChildEvent, QObject *, &QChildEvent::child>(child_event, "child").create();
   // bool added() const;
-  binder.fun<bool, &QChildEvent::added>("added").create();
+  bind::member_function<QChildEvent, bool, &QChildEvent::added>(child_event, "added").create();
   // bool polished() const;
-  binder.fun<bool, &QChildEvent::polished>("polished").create();
+  bind::member_function<QChildEvent, bool, &QChildEvent::polished>(child_event, "polished").create();
   // bool removed() const;
-  binder.fun<bool, &QChildEvent::removed>("removed").create();
+  bind::member_function<QChildEvent, bool, &QChildEvent::removed>(child_event, "removed").create();
 }
 
 
@@ -276,14 +273,13 @@ static void register_dynamic_property_change_event_class(script::Namespace ns)
 
   Class dynamic_property_change_event = ns.newClass("DynamicPropertyChangeEvent").setId(script::Type::QDynamicPropertyChangeEvent).get();
 
-  binding::ClassBinder<QDynamicPropertyChangeEvent> binder{ dynamic_property_change_event };
 
   // QDynamicPropertyChangeEvent(const QByteArray &);
-  binder.ctor<const QByteArray &>().create();
+  bind::constructor<QDynamicPropertyChangeEvent, const QByteArray &>(dynamic_property_change_event).create();
   // ~QDynamicPropertyChangeEvent();
-  binder.dtor().create();
+  bind::destructor<QDynamicPropertyChangeEvent>(dynamic_property_change_event).create();
   // QByteArray propertyName() const;
-  binder.fun<QByteArray, &QDynamicPropertyChangeEvent::propertyName>("propertyName").create();
+  bind::member_function<QDynamicPropertyChangeEvent, QByteArray, &QDynamicPropertyChangeEvent::propertyName>(dynamic_property_change_event, "propertyName").create();
 }
 
 
@@ -293,14 +289,13 @@ static void register_deferred_delete_event_class(script::Namespace ns)
 
   Class deferred_delete_event = ns.newClass("DeferredDeleteEvent").setId(script::Type::QDeferredDeleteEvent).get();
 
-  binding::ClassBinder<QDeferredDeleteEvent> binder{ deferred_delete_event };
 
   // QDeferredDeleteEvent();
-  binder.default_ctor().create();
+  bind::default_constructor<QDeferredDeleteEvent>(deferred_delete_event).create();
   // ~QDeferredDeleteEvent();
-  binder.dtor().create();
+  bind::destructor<QDeferredDeleteEvent>(deferred_delete_event).create();
   // int loopLevel() const;
-  binder.fun<int, &QDeferredDeleteEvent::loopLevel>("loopLevel").create();
+  bind::member_function<QDeferredDeleteEvent, int, &QDeferredDeleteEvent::loopLevel>(deferred_delete_event, "loopLevel").create();
 }
 
 
@@ -315,7 +310,6 @@ void register_event_file(script::Namespace core)
   register_child_event_class(ns);
   register_dynamic_property_change_event_class(ns);
   register_deferred_delete_event_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

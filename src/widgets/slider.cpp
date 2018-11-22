@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/slider.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/widgets/slider.h"
@@ -40,25 +40,24 @@ static void register_slider_class(script::Namespace ns)
     .setBase(script::Type::QAbstractSlider).get();
 
   register_slider_tick_position_enum(slider);
-  binding::ClassBinder<QSlider> binder{ slider, &QSlider::staticMetaObject };
 
   // QSlider(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QSlider, QWidget *>(slider)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QSlider(Qt::Orientation, QWidget *);
-  binder.ctor<Qt::Orientation, QWidget *>().create();
+  bind::constructor<QSlider, Qt::Orientation, QWidget *>(slider).create();
   // ~QSlider();
-  binder.dtor().create();
+  bind::destructor<QSlider>(slider).create();
   // void setTickPosition(QSlider::TickPosition);
-  binder.void_fun<QSlider::TickPosition, &QSlider::setTickPosition>("setTickPosition").create();
+  bind::void_member_function<QSlider, QSlider::TickPosition, &QSlider::setTickPosition>(slider, "setTickPosition").create();
   // QSlider::TickPosition tickPosition() const;
-  binder.fun<QSlider::TickPosition, &QSlider::tickPosition>("tickPosition").create();
+  bind::member_function<QSlider, QSlider::TickPosition, &QSlider::tickPosition>(slider, "tickPosition").create();
   // void setTickInterval(int);
-  binder.void_fun<int, &QSlider::setTickInterval>("setTickInterval").create();
+  bind::void_member_function<QSlider, int, &QSlider::setTickInterval>(slider, "setTickInterval").create();
   // int tickInterval() const;
-  binder.fun<int, &QSlider::tickInterval>("tickInterval").create();
+  bind::member_function<QSlider, int, &QSlider::tickInterval>(slider, "tickInterval").create();
 
-  slider.engine()->registerQtType(&QSlider::staticMetaObject, slider.id());
+  bind::link(slider, &QSlider::staticMetaObject);
 }
 
 
@@ -69,11 +68,10 @@ void register_slider_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_slider_class(ns);
-  binding::Namespace binder{ ns };
 
   // QSlider& newSlider(QWidget*);
-  NewFunction(binder).add<QSlider, QWidget*>("newSlider");
+  bind::new_function<QSlider, QWidget*>(ns, "newSlider");
   // QSlider& newSlider(Qt::Orientation, QWidget*);
-  NewFunction(binder).add<QSlider, Qt::Orientation, QWidget*>("newSlider");
+  bind::new_function<QSlider, Qt::Orientation, QWidget*>(ns, "newSlider");
 }
 

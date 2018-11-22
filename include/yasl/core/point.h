@@ -5,13 +5,13 @@
 #ifndef YASL_CORE_POINT_H
 #define YASL_CORE_POINT_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QPoint>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QPoint> { inline static script::Type get() { return script::Type::QPoint; } };
 template<> struct make_type_t<QPointF> { inline static script::Type get() { return script::Type::QPointF; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_POINT_H

@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/fontdialog.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/object.h"
@@ -42,45 +42,44 @@ static void register_font_dialog_class(script::Namespace ns)
     .setBase(script::Type::QDialog).get();
 
   register_font_dialog_font_dialog_option_enum(font_dialog);
-  binding::ClassBinder<QFontDialog> binder{ font_dialog, &QFontDialog::staticMetaObject };
 
   // QFontDialog(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QFontDialog, QWidget *>(font_dialog)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QFontDialog(const QFont &, QWidget *);
-  binder.ctor<const QFont &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QFontDialog, const QFont &, QWidget *>(font_dialog)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QFontDialog();
-  binder.dtor().create();
+  bind::destructor<QFontDialog>(font_dialog).create();
   // void setCurrentFont(const QFont &);
-  binder.void_fun<const QFont &, &QFontDialog::setCurrentFont>("setCurrentFont").create();
+  bind::void_member_function<QFontDialog, const QFont &, &QFontDialog::setCurrentFont>(font_dialog, "setCurrentFont").create();
   // QFont currentFont() const;
-  binder.fun<QFont, &QFontDialog::currentFont>("currentFont").create();
+  bind::member_function<QFontDialog, QFont, &QFontDialog::currentFont>(font_dialog, "currentFont").create();
   // QFont selectedFont() const;
-  binder.fun<QFont, &QFontDialog::selectedFont>("selectedFont").create();
+  bind::member_function<QFontDialog, QFont, &QFontDialog::selectedFont>(font_dialog, "selectedFont").create();
   // void setOption(QFontDialog::FontDialogOption, bool);
-  binder.void_fun<QFontDialog::FontDialogOption, bool, &QFontDialog::setOption>("setOption")
-    .apply(binding::default_arguments(true)).create();
+  bind::void_member_function<QFontDialog, QFontDialog::FontDialogOption, bool, &QFontDialog::setOption>(font_dialog, "setOption")
+    .apply(bind::default_arguments(true)).create();
   // bool testOption(QFontDialog::FontDialogOption) const;
-  binder.fun<bool, QFontDialog::FontDialogOption, &QFontDialog::testOption>("testOption").create();
+  bind::member_function<QFontDialog, bool, QFontDialog::FontDialogOption, &QFontDialog::testOption>(font_dialog, "testOption").create();
   // void setOptions(QFontDialog::FontDialogOptions);
-  binder.void_fun<QFontDialog::FontDialogOptions, &QFontDialog::setOptions>("setOptions").create();
+  bind::void_member_function<QFontDialog, QFontDialog::FontDialogOptions, &QFontDialog::setOptions>(font_dialog, "setOptions").create();
   // QFontDialog::FontDialogOptions options() const;
-  binder.fun<QFontDialog::FontDialogOptions, &QFontDialog::options>("options").create();
+  bind::member_function<QFontDialog, QFontDialog::FontDialogOptions, &QFontDialog::options>(font_dialog, "options").create();
   // void open(QObject *, const char *);
   /// TODO: void open(QObject *, const char *);
   // void setVisible(bool);
-  binder.void_fun<bool, &QFontDialog::setVisible>("setVisible").create();
+  bind::void_member_function<QFontDialog, bool, &QFontDialog::setVisible>(font_dialog, "setVisible").create();
   // static QFont getFont(bool *, QWidget *);
   /// TODO: static QFont getFont(bool *, QWidget *);
   // static QFont getFont(bool *, const QFont &, QWidget *, const QString &, QFontDialog::FontDialogOptions);
   /// TODO: static QFont getFont(bool *, const QFont &, QWidget *, const QString &, QFontDialog::FontDialogOptions);
   // void currentFontChanged(const QFont &);
-  binder.sigs().add<const QFont &>("currentFontChanged", "currentFontChanged(const QFont &)");
+  bind::signal<QFontDialog, const QFont &>(font_dialog, "currentFontChanged", "currentFontChanged(const QFont &)");
   // void fontSelected(const QFont &);
-  binder.sigs().add<const QFont &>("fontSelected", "fontSelected(const QFont &)");
+  bind::signal<QFontDialog, const QFont &>(font_dialog, "fontSelected", "fontSelected(const QFont &)");
 
-  font_dialog.engine()->registerQtType(&QFontDialog::staticMetaObject, font_dialog.id());
+  bind::link(font_dialog, &QFontDialog::staticMetaObject);
 }
 
 
@@ -91,12 +90,11 @@ void register_fontdialog_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_font_dialog_class(ns);
-  binding::Namespace binder{ ns };
 
   // QFontDialog::FontDialogOptions operator|(QFontDialog::FontDialogOption, QFontDialog::FontDialogOption);
-  binder.operators().or<QFontDialog::FontDialogOptions, QFontDialog::FontDialogOption, QFontDialog::FontDialogOption>();
+  bind::op_bitor<QFontDialog::FontDialogOptions, QFontDialog::FontDialogOption, QFontDialog::FontDialogOption>(ns);
   // QFontDialog::FontDialogOptions operator|(QFontDialog::FontDialogOption, QFontDialog::FontDialogOptions);
-  binder.operators().or<QFontDialog::FontDialogOptions, QFontDialog::FontDialogOption, QFontDialog::FontDialogOptions>();
+  bind::op_bitor<QFontDialog::FontDialogOptions, QFontDialog::FontDialogOption, QFontDialog::FontDialogOptions>(ns);
   // QIncompatibleFlag operator|(QFontDialog::FontDialogOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QFontDialog::FontDialogOptions::enum_type, int);
 }

@@ -5,15 +5,15 @@
 #ifndef YASL_WIDGETS_SLIDER_H
 #define YASL_WIDGETS_SLIDER_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QSlider>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QSlider> { inline static script::Type get() { return script::Type::QSlider; } };
 template<> struct tag_resolver<QSlider> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QSlider::TickPosition> { inline static script::Type get() { return script::Type::QSliderTickPosition; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_WIDGETS_SLIDER_H

@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/pushbutton.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/size.h"
 #include "yasl/gui/icon.h"
@@ -22,45 +22,44 @@ static void register_push_button_class(script::Namespace ns)
   Class push_button = ns.newClass("PushButton").setId(script::Type::QPushButton)
     .setBase(script::Type::QAbstractButton).get();
 
-  binding::ClassBinder<QPushButton> binder{ push_button, &QPushButton::staticMetaObject };
 
   // QPushButton(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QPushButton, QWidget *>(push_button)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QPushButton(const QString &, QWidget *);
-  binder.ctor<const QString &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QPushButton, const QString &, QWidget *>(push_button)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QPushButton(const QIcon &, const QString &, QWidget *);
-  binder.ctor<const QIcon &, const QString &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QPushButton, const QIcon &, const QString &, QWidget *>(push_button)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QPushButton();
-  binder.dtor().create();
+  bind::destructor<QPushButton>(push_button).create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QPushButton::sizeHint>("sizeHint").create();
+  bind::member_function<QPushButton, QSize, &QPushButton::sizeHint>(push_button, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QPushButton::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QPushButton, QSize, &QPushButton::minimumSizeHint>(push_button, "minimumSizeHint").create();
   // bool autoDefault() const;
-  binder.fun<bool, &QPushButton::autoDefault>("autoDefault").create();
+  bind::member_function<QPushButton, bool, &QPushButton::autoDefault>(push_button, "autoDefault").create();
   // void setAutoDefault(bool);
-  binder.void_fun<bool, &QPushButton::setAutoDefault>("setAutoDefault").create();
+  bind::void_member_function<QPushButton, bool, &QPushButton::setAutoDefault>(push_button, "setAutoDefault").create();
   // bool isDefault() const;
-  binder.fun<bool, &QPushButton::isDefault>("isDefault").create();
+  bind::member_function<QPushButton, bool, &QPushButton::isDefault>(push_button, "isDefault").create();
   // void setDefault(bool);
-  binder.void_fun<bool, &QPushButton::setDefault>("setDefault").create();
+  bind::void_member_function<QPushButton, bool, &QPushButton::setDefault>(push_button, "setDefault").create();
   // void setMenu(QMenu *);
-  binder.void_fun<QMenu *, &QPushButton::setMenu>("setMenu").create();
+  bind::void_member_function<QPushButton, QMenu *, &QPushButton::setMenu>(push_button, "setMenu").create();
   // QMenu * menu() const;
-  binder.fun<QMenu *, &QPushButton::menu>("menu").create();
+  bind::member_function<QPushButton, QMenu *, &QPushButton::menu>(push_button, "menu").create();
   // void setFlat(bool);
-  binder.void_fun<bool, &QPushButton::setFlat>("setFlat").create();
+  bind::void_member_function<QPushButton, bool, &QPushButton::setFlat>(push_button, "setFlat").create();
   // bool isFlat() const;
-  binder.fun<bool, &QPushButton::isFlat>("isFlat").create();
+  bind::member_function<QPushButton, bool, &QPushButton::isFlat>(push_button, "isFlat").create();
   // void showMenu();
-  binder.void_fun<&QPushButton::showMenu>("showMenu").create();
+  bind::void_member_function<QPushButton, &QPushButton::showMenu>(push_button, "showMenu").create();
   // void clicked();
-  binder.sigs().add("clicked", "clicked()");
+  bind::signal<QPushButton>(push_button, "clicked", "clicked()");
 
-  push_button.engine()->registerQtType(&QPushButton::staticMetaObject, push_button.id());
+  bind::link(push_button, &QPushButton::staticMetaObject);
 }
 
 
@@ -71,7 +70,6 @@ void register_pushbutton_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_push_button_class(ns);
-  binding::Namespace binder{ ns };
 
   void register_newpushbutton_file(script::Namespace n); // defined in newpushbutton.cpp
   register_newpushbutton_file(widgets);

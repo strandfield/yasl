@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/dialog.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -34,56 +34,55 @@ static void register_dialog_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
   register_dialog_dialog_code_enum(dialog);
-  binding::ClassBinder<QDialog> binder{ dialog, &QDialog::staticMetaObject };
 
   // QDialog(QWidget *, Qt::WindowFlags);
   /// TODO: QDialog(QWidget *, Qt::WindowFlags);
   // ~QDialog();
-  binder.dtor().create();
+  bind::destructor<QDialog>(dialog).create();
   // int result() const;
-  binder.fun<int, &QDialog::result>("result").create();
+  bind::member_function<QDialog, int, &QDialog::result>(dialog, "result").create();
   // void setVisible(bool);
-  binder.void_fun<bool, &QDialog::setVisible>("setVisible").create();
+  bind::void_member_function<QDialog, bool, &QDialog::setVisible>(dialog, "setVisible").create();
   // void setOrientation(Qt::Orientation);
-  binder.void_fun<Qt::Orientation, &QDialog::setOrientation>("setOrientation").create();
+  bind::void_member_function<QDialog, Qt::Orientation, &QDialog::setOrientation>(dialog, "setOrientation").create();
   // Qt::Orientation orientation() const;
-  binder.fun<Qt::Orientation, &QDialog::orientation>("orientation").create();
+  bind::member_function<QDialog, Qt::Orientation, &QDialog::orientation>(dialog, "orientation").create();
   // void setExtension(QWidget *);
-  binder.void_fun<QWidget *, &QDialog::setExtension>("setExtension").create();
+  bind::void_member_function<QDialog, QWidget *, &QDialog::setExtension>(dialog, "setExtension").create();
   // QWidget * extension() const;
-  binder.fun<QWidget *, &QDialog::extension>("extension").create();
+  bind::member_function<QDialog, QWidget *, &QDialog::extension>(dialog, "extension").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QDialog::sizeHint>("sizeHint").create();
+  bind::member_function<QDialog, QSize, &QDialog::sizeHint>(dialog, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QDialog::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QDialog, QSize, &QDialog::minimumSizeHint>(dialog, "minimumSizeHint").create();
   // void setSizeGripEnabled(bool);
-  binder.void_fun<bool, &QDialog::setSizeGripEnabled>("setSizeGripEnabled").create();
+  bind::void_member_function<QDialog, bool, &QDialog::setSizeGripEnabled>(dialog, "setSizeGripEnabled").create();
   // bool isSizeGripEnabled() const;
-  binder.fun<bool, &QDialog::isSizeGripEnabled>("isSizeGripEnabled").create();
+  bind::member_function<QDialog, bool, &QDialog::isSizeGripEnabled>(dialog, "isSizeGripEnabled").create();
   // void setModal(bool);
-  binder.void_fun<bool, &QDialog::setModal>("setModal").create();
+  bind::void_member_function<QDialog, bool, &QDialog::setModal>(dialog, "setModal").create();
   // void setResult(int);
-  binder.void_fun<int, &QDialog::setResult>("setResult").create();
+  bind::void_member_function<QDialog, int, &QDialog::setResult>(dialog, "setResult").create();
   // void finished(int);
-  binder.sigs().add<int>("finished", "finished(int)");
+  bind::signal<QDialog, int>(dialog, "finished", "finished(int)");
   // void accepted();
-  binder.sigs().add("accepted", "accepted()");
+  bind::signal<QDialog>(dialog, "accepted", "accepted()");
   // void rejected();
-  binder.sigs().add("rejected", "rejected()");
+  bind::signal<QDialog>(dialog, "rejected", "rejected()");
   // void open();
-  binder.void_fun<&QDialog::open>("open").create();
+  bind::void_member_function<QDialog, &QDialog::open>(dialog, "open").create();
   // int exec();
-  binder.fun<int, &QDialog::exec>("exec").create();
+  bind::member_function<QDialog, int, &QDialog::exec>(dialog, "exec").create();
   // void done(int);
-  binder.void_fun<int, &QDialog::done>("done").create();
+  bind::void_member_function<QDialog, int, &QDialog::done>(dialog, "done").create();
   // void accept();
-  binder.void_fun<&QDialog::accept>("accept").create();
+  bind::void_member_function<QDialog, &QDialog::accept>(dialog, "accept").create();
   // void reject();
-  binder.void_fun<&QDialog::reject>("reject").create();
+  bind::void_member_function<QDialog, &QDialog::reject>(dialog, "reject").create();
   // void showExtension(bool);
-  binder.void_fun<bool, &QDialog::showExtension>("showExtension").create();
+  bind::void_member_function<QDialog, bool, &QDialog::showExtension>(dialog, "showExtension").create();
 
-  dialog.engine()->registerQtType(&QDialog::staticMetaObject, dialog.id());
+  bind::link(dialog, &QDialog::staticMetaObject);
 }
 
 
@@ -94,7 +93,6 @@ void register_dialog_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_dialog_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

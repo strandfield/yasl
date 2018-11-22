@@ -284,7 +284,7 @@ TEST(BindingTests, parameterized_binding) {
 //  Engine e;
 //  e.setup();
 //
-//  Class point_class = e.rootNamespace().newClass("Point").setId(binding::make_type<Point>().data()).get();
+//  Class point_class = e.rootNamespace().newClass("Point").setId(bind::make_type<Point>().data()).get();
 //  binding::ClassBinder<Point> binder{ point_class };
 //
 //  binder.default_ctor().create();

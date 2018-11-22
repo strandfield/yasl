@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/scrollbar.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/widgets/widget.h"
@@ -21,18 +21,17 @@ static void register_scroll_bar_class(script::Namespace ns)
   Class scroll_bar = ns.newClass("ScrollBar").setId(script::Type::QScrollBar)
     .setBase(script::Type::QAbstractSlider).get();
 
-  binding::ClassBinder<QScrollBar> binder{ scroll_bar, &QScrollBar::staticMetaObject };
 
   // QScrollBar(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QScrollBar, QWidget *>(scroll_bar)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QScrollBar(Qt::Orientation, QWidget *);
-  binder.ctor<Qt::Orientation, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QScrollBar, Qt::Orientation, QWidget *>(scroll_bar)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QScrollBar();
-  binder.dtor().create();
+  bind::destructor<QScrollBar>(scroll_bar).create();
 
-  scroll_bar.engine()->registerQtType(&QScrollBar::staticMetaObject, scroll_bar.id());
+  bind::link(scroll_bar, &QScrollBar::staticMetaObject);
 }
 
 
@@ -43,11 +42,10 @@ void register_scrollbar_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_scroll_bar_class(ns);
-  binding::Namespace binder{ ns };
 
   // QScrollBar& newScrollBar(QWidget*);
-  NewFunction(binder).add<QScrollBar, QWidget*>("newScrollBar");
+  bind::new_function<QScrollBar, QWidget*>(ns, "newScrollBar");
   // QScrollBar& newScrollBar(Qt::Orientation, QWidget*);
-  NewFunction(binder).add<QScrollBar, Qt::Orientation, QWidget*>("newScrollBar");
+  bind::new_function<QScrollBar, Qt::Orientation, QWidget*>(ns, "newScrollBar");
 }
 

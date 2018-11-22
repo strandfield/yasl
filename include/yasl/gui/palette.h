@@ -5,14 +5,14 @@
 #ifndef YASL_GUI_PALETTE_H
 #define YASL_GUI_PALETTE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QPalette>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QPalette> { inline static script::Type get() { return script::Type::QPalette; } };
 template<> struct make_type_t<QPalette::ColorGroup> { inline static script::Type get() { return script::Type::QPaletteColorGroup; } };
 template<> struct make_type_t<QPalette::ColorRole> { inline static script::Type get() { return script::Type::QPaletteColorRole; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_PALETTE_H

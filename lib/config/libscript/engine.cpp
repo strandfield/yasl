@@ -1,18 +1,24 @@
 
 #include <QObject>
 
-binding::BindingData binding::BindingData::get(QObject *obj)
+namespace script
 {
-  return obj->property("_yasl_data_").value<binding::BindingData>();
+
+namespace bind
+{
+
+BindingData BindingData::get(QObject *obj)
+{
+  return obj->property("_yasl_data_").value<BindingData>();
 }
 
-void binding::BindingData::set(QObject *obj, const BindingData & d)
+void BindingData::set(QObject *obj, const BindingData & d)
 {
   obj->setProperty("_yasl_data_", QVariant::fromValue(d));
 }
 
-namespace script
-{
+} // namespace bind
+
 
 const Engine::list_template_t Engine::ListTemplate = Engine::list_template_t{};
 
@@ -59,7 +65,7 @@ Value Engine::expose(QObject *obj)
 {
   QVariant binding_data = obj->property("_yasl_data_");
   if (binding_data.isValid())
-    return binding_data.value<binding::BindingData>().value;
+    return binding_data.value<bind::BindingData>().value;
 
   script::Type t = get_qt_type(obj->metaObject(), d->qt_type_map);
   return this->construct(t, [obj, this](Value & ret) {
@@ -77,7 +83,7 @@ Value Engine::expose(QObject *obj, Type t)
 void Engine::bind(const Value & val, QObject *obj)
 {
   val.impl()->set_qobject(obj);
-  obj->setProperty("_yasl_data_", QVariant::fromValue(binding::BindingData{ val }));
+  obj->setProperty("_yasl_data_", QVariant::fromValue(bind::BindingData{ val }));
 }
 
 Value Engine::newPtr(const script::Type & ptr_type, void *value)

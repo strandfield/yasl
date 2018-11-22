@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/tabwidget.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -52,121 +52,120 @@ static void register_tab_widget_class(script::Namespace ns)
 
   register_tab_widget_tab_position_enum(tab_widget);
   register_tab_widget_tab_shape_enum(tab_widget);
-  binding::ClassBinder<QTabWidget> binder{ tab_widget, &QTabWidget::staticMetaObject };
 
   // QTabWidget(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QTabWidget, QWidget *>(tab_widget)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QTabWidget();
-  binder.dtor().create();
+  bind::destructor<QTabWidget>(tab_widget).create();
   // int addTab(QWidget *, const QString &);
-  binder.fun<int, QWidget *, const QString &, &QTabWidget::addTab>("addTab").create();
+  bind::member_function<QTabWidget, int, QWidget *, const QString &, &QTabWidget::addTab>(tab_widget, "addTab").create();
   // int addTab(QWidget *, const QIcon &, const QString &);
-  binder.fun<int, QWidget *, const QIcon &, const QString &, &QTabWidget::addTab>("addTab").create();
+  bind::member_function<QTabWidget, int, QWidget *, const QIcon &, const QString &, &QTabWidget::addTab>(tab_widget, "addTab").create();
   // int insertTab(int, QWidget *, const QString &);
-  binder.fun<int, int, QWidget *, const QString &, &QTabWidget::insertTab>("insertTab").create();
+  bind::member_function<QTabWidget, int, int, QWidget *, const QString &, &QTabWidget::insertTab>(tab_widget, "insertTab").create();
   // int insertTab(int, QWidget *, const QIcon &, const QString &);
-  binder.fun<int, int, QWidget *, const QIcon &, const QString &, &QTabWidget::insertTab>("insertTab").create();
+  bind::member_function<QTabWidget, int, int, QWidget *, const QIcon &, const QString &, &QTabWidget::insertTab>(tab_widget, "insertTab").create();
   // void removeTab(int);
-  binder.void_fun<int, &QTabWidget::removeTab>("removeTab").create();
+  bind::void_member_function<QTabWidget, int, &QTabWidget::removeTab>(tab_widget, "removeTab").create();
   // bool isTabEnabled(int) const;
-  binder.fun<bool, int, &QTabWidget::isTabEnabled>("isTabEnabled").create();
+  bind::member_function<QTabWidget, bool, int, &QTabWidget::isTabEnabled>(tab_widget, "isTabEnabled").create();
   // void setTabEnabled(int, bool);
-  binder.void_fun<int, bool, &QTabWidget::setTabEnabled>("setTabEnabled").create();
+  bind::void_member_function<QTabWidget, int, bool, &QTabWidget::setTabEnabled>(tab_widget, "setTabEnabled").create();
   // QString tabText(int) const;
-  binder.fun<QString, int, &QTabWidget::tabText>("tabText").create();
+  bind::member_function<QTabWidget, QString, int, &QTabWidget::tabText>(tab_widget, "tabText").create();
   // void setTabText(int, const QString &);
-  binder.void_fun<int, const QString &, &QTabWidget::setTabText>("setTabText").create();
+  bind::void_member_function<QTabWidget, int, const QString &, &QTabWidget::setTabText>(tab_widget, "setTabText").create();
   // QIcon tabIcon(int) const;
-  binder.fun<QIcon, int, &QTabWidget::tabIcon>("tabIcon").create();
+  bind::member_function<QTabWidget, QIcon, int, &QTabWidget::tabIcon>(tab_widget, "tabIcon").create();
   // void setTabIcon(int, const QIcon &);
-  binder.void_fun<int, const QIcon &, &QTabWidget::setTabIcon>("setTabIcon").create();
+  bind::void_member_function<QTabWidget, int, const QIcon &, &QTabWidget::setTabIcon>(tab_widget, "setTabIcon").create();
   // void setTabToolTip(int, const QString &);
-  binder.void_fun<int, const QString &, &QTabWidget::setTabToolTip>("setTabToolTip").create();
+  bind::void_member_function<QTabWidget, int, const QString &, &QTabWidget::setTabToolTip>(tab_widget, "setTabToolTip").create();
   // QString tabToolTip(int) const;
-  binder.fun<QString, int, &QTabWidget::tabToolTip>("tabToolTip").create();
+  bind::member_function<QTabWidget, QString, int, &QTabWidget::tabToolTip>(tab_widget, "tabToolTip").create();
   // void setTabWhatsThis(int, const QString &);
-  binder.void_fun<int, const QString &, &QTabWidget::setTabWhatsThis>("setTabWhatsThis").create();
+  bind::void_member_function<QTabWidget, int, const QString &, &QTabWidget::setTabWhatsThis>(tab_widget, "setTabWhatsThis").create();
   // QString tabWhatsThis(int) const;
-  binder.fun<QString, int, &QTabWidget::tabWhatsThis>("tabWhatsThis").create();
+  bind::member_function<QTabWidget, QString, int, &QTabWidget::tabWhatsThis>(tab_widget, "tabWhatsThis").create();
   // int currentIndex() const;
-  binder.fun<int, &QTabWidget::currentIndex>("currentIndex").create();
+  bind::member_function<QTabWidget, int, &QTabWidget::currentIndex>(tab_widget, "currentIndex").create();
   // QWidget * currentWidget() const;
-  binder.fun<QWidget *, &QTabWidget::currentWidget>("currentWidget").create();
+  bind::member_function<QTabWidget, QWidget *, &QTabWidget::currentWidget>(tab_widget, "currentWidget").create();
   // QWidget * widget(int) const;
-  binder.fun<QWidget *, int, &QTabWidget::widget>("widget").create();
+  bind::member_function<QTabWidget, QWidget *, int, &QTabWidget::widget>(tab_widget, "widget").create();
   // int indexOf(QWidget *) const;
-  binder.fun<int, QWidget *, &QTabWidget::indexOf>("indexOf").create();
+  bind::member_function<QTabWidget, int, QWidget *, &QTabWidget::indexOf>(tab_widget, "indexOf").create();
   // int count() const;
-  binder.fun<int, &QTabWidget::count>("count").create();
+  bind::member_function<QTabWidget, int, &QTabWidget::count>(tab_widget, "count").create();
   // QTabWidget::TabPosition tabPosition() const;
-  binder.fun<QTabWidget::TabPosition, &QTabWidget::tabPosition>("tabPosition").create();
+  bind::member_function<QTabWidget, QTabWidget::TabPosition, &QTabWidget::tabPosition>(tab_widget, "tabPosition").create();
   // void setTabPosition(QTabWidget::TabPosition);
-  binder.void_fun<QTabWidget::TabPosition, &QTabWidget::setTabPosition>("setTabPosition").create();
+  bind::void_member_function<QTabWidget, QTabWidget::TabPosition, &QTabWidget::setTabPosition>(tab_widget, "setTabPosition").create();
   // bool tabsClosable() const;
-  binder.fun<bool, &QTabWidget::tabsClosable>("tabsClosable").create();
+  bind::member_function<QTabWidget, bool, &QTabWidget::tabsClosable>(tab_widget, "tabsClosable").create();
   // void setTabsClosable(bool);
-  binder.void_fun<bool, &QTabWidget::setTabsClosable>("setTabsClosable").create();
+  bind::void_member_function<QTabWidget, bool, &QTabWidget::setTabsClosable>(tab_widget, "setTabsClosable").create();
   // bool isMovable() const;
-  binder.fun<bool, &QTabWidget::isMovable>("isMovable").create();
+  bind::member_function<QTabWidget, bool, &QTabWidget::isMovable>(tab_widget, "isMovable").create();
   // void setMovable(bool);
-  binder.void_fun<bool, &QTabWidget::setMovable>("setMovable").create();
+  bind::void_member_function<QTabWidget, bool, &QTabWidget::setMovable>(tab_widget, "setMovable").create();
   // QTabWidget::TabShape tabShape() const;
-  binder.fun<QTabWidget::TabShape, &QTabWidget::tabShape>("tabShape").create();
+  bind::member_function<QTabWidget, QTabWidget::TabShape, &QTabWidget::tabShape>(tab_widget, "tabShape").create();
   // void setTabShape(QTabWidget::TabShape);
-  binder.void_fun<QTabWidget::TabShape, &QTabWidget::setTabShape>("setTabShape").create();
+  bind::void_member_function<QTabWidget, QTabWidget::TabShape, &QTabWidget::setTabShape>(tab_widget, "setTabShape").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QTabWidget::sizeHint>("sizeHint").create();
+  bind::member_function<QTabWidget, QSize, &QTabWidget::sizeHint>(tab_widget, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QTabWidget::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QTabWidget, QSize, &QTabWidget::minimumSizeHint>(tab_widget, "minimumSizeHint").create();
   // int heightForWidth(int) const;
-  binder.fun<int, int, &QTabWidget::heightForWidth>("heightForWidth").create();
+  bind::member_function<QTabWidget, int, int, &QTabWidget::heightForWidth>(tab_widget, "heightForWidth").create();
   // bool hasHeightForWidth() const;
-  binder.fun<bool, &QTabWidget::hasHeightForWidth>("hasHeightForWidth").create();
+  bind::member_function<QTabWidget, bool, &QTabWidget::hasHeightForWidth>(tab_widget, "hasHeightForWidth").create();
   // void setCornerWidget(QWidget *, Qt::Corner);
-  binder.void_fun<QWidget *, Qt::Corner, &QTabWidget::setCornerWidget>("setCornerWidget")
-    .apply(binding::default_arguments(Qt::TopRightCorner)).create();
+  bind::void_member_function<QTabWidget, QWidget *, Qt::Corner, &QTabWidget::setCornerWidget>(tab_widget, "setCornerWidget")
+    .apply(bind::default_arguments(Qt::TopRightCorner)).create();
   // QWidget * cornerWidget(Qt::Corner) const;
-  binder.fun<QWidget *, Qt::Corner, &QTabWidget::cornerWidget>("cornerWidget")
-    .apply(binding::default_arguments(Qt::TopRightCorner)).create();
+  bind::member_function<QTabWidget, QWidget *, Qt::Corner, &QTabWidget::cornerWidget>(tab_widget, "cornerWidget")
+    .apply(bind::default_arguments(Qt::TopRightCorner)).create();
   // Qt::TextElideMode elideMode() const;
-  binder.fun<Qt::TextElideMode, &QTabWidget::elideMode>("elideMode").create();
+  bind::member_function<QTabWidget, Qt::TextElideMode, &QTabWidget::elideMode>(tab_widget, "elideMode").create();
   // void setElideMode(Qt::TextElideMode);
-  binder.void_fun<Qt::TextElideMode, &QTabWidget::setElideMode>("setElideMode").create();
+  bind::void_member_function<QTabWidget, Qt::TextElideMode, &QTabWidget::setElideMode>(tab_widget, "setElideMode").create();
   // QSize iconSize() const;
-  binder.fun<QSize, &QTabWidget::iconSize>("iconSize").create();
+  bind::member_function<QTabWidget, QSize, &QTabWidget::iconSize>(tab_widget, "iconSize").create();
   // void setIconSize(const QSize &);
-  binder.void_fun<const QSize &, &QTabWidget::setIconSize>("setIconSize").create();
+  bind::void_member_function<QTabWidget, const QSize &, &QTabWidget::setIconSize>(tab_widget, "setIconSize").create();
   // bool usesScrollButtons() const;
-  binder.fun<bool, &QTabWidget::usesScrollButtons>("usesScrollButtons").create();
+  bind::member_function<QTabWidget, bool, &QTabWidget::usesScrollButtons>(tab_widget, "usesScrollButtons").create();
   // void setUsesScrollButtons(bool);
-  binder.void_fun<bool, &QTabWidget::setUsesScrollButtons>("setUsesScrollButtons").create();
+  bind::void_member_function<QTabWidget, bool, &QTabWidget::setUsesScrollButtons>(tab_widget, "setUsesScrollButtons").create();
   // bool documentMode() const;
-  binder.fun<bool, &QTabWidget::documentMode>("documentMode").create();
+  bind::member_function<QTabWidget, bool, &QTabWidget::documentMode>(tab_widget, "documentMode").create();
   // void setDocumentMode(bool);
-  binder.void_fun<bool, &QTabWidget::setDocumentMode>("setDocumentMode").create();
+  bind::void_member_function<QTabWidget, bool, &QTabWidget::setDocumentMode>(tab_widget, "setDocumentMode").create();
   // bool tabBarAutoHide() const;
-  binder.fun<bool, &QTabWidget::tabBarAutoHide>("tabBarAutoHide").create();
+  bind::member_function<QTabWidget, bool, &QTabWidget::tabBarAutoHide>(tab_widget, "tabBarAutoHide").create();
   // void setTabBarAutoHide(bool);
-  binder.void_fun<bool, &QTabWidget::setTabBarAutoHide>("setTabBarAutoHide").create();
+  bind::void_member_function<QTabWidget, bool, &QTabWidget::setTabBarAutoHide>(tab_widget, "setTabBarAutoHide").create();
   // void clear();
-  binder.void_fun<&QTabWidget::clear>("clear").create();
+  bind::void_member_function<QTabWidget, &QTabWidget::clear>(tab_widget, "clear").create();
   // QTabBar * tabBar() const;
   /// TODO: QTabBar * tabBar() const;
   // void setCurrentIndex(int);
-  binder.void_fun<int, &QTabWidget::setCurrentIndex>("setCurrentIndex").create();
+  bind::void_member_function<QTabWidget, int, &QTabWidget::setCurrentIndex>(tab_widget, "setCurrentIndex").create();
   // void setCurrentWidget(QWidget *);
-  binder.void_fun<QWidget *, &QTabWidget::setCurrentWidget>("setCurrentWidget").create();
+  bind::void_member_function<QTabWidget, QWidget *, &QTabWidget::setCurrentWidget>(tab_widget, "setCurrentWidget").create();
   // void currentChanged(int);
-  binder.sigs().add<int>("currentChanged", "currentChanged(int)");
+  bind::signal<QTabWidget, int>(tab_widget, "currentChanged", "currentChanged(int)");
   // void tabCloseRequested(int);
-  binder.sigs().add<int>("tabCloseRequested", "tabCloseRequested(int)");
+  bind::signal<QTabWidget, int>(tab_widget, "tabCloseRequested", "tabCloseRequested(int)");
   // void tabBarClicked(int);
-  binder.sigs().add<int>("tabBarClicked", "tabBarClicked(int)");
+  bind::signal<QTabWidget, int>(tab_widget, "tabBarClicked", "tabBarClicked(int)");
   // void tabBarDoubleClicked(int);
-  binder.sigs().add<int>("tabBarDoubleClicked", "tabBarDoubleClicked(int)");
+  bind::signal<QTabWidget, int>(tab_widget, "tabBarDoubleClicked", "tabBarDoubleClicked(int)");
 
-  tab_widget.engine()->registerQtType(&QTabWidget::staticMetaObject, tab_widget.id());
+  bind::link(tab_widget, &QTabWidget::staticMetaObject);
 }
 
 
@@ -177,9 +176,8 @@ void register_tabwidget_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_tab_widget_class(ns);
-  binding::Namespace binder{ ns };
 
   // QTabWidget& newTabWidget(QWidget*);
-  NewFunction(binder).add<QTabWidget, QWidget*>("newTabWidget");
+  bind::new_function<QTabWidget, QWidget*>(ns, "newTabWidget");
 }
 

@@ -4,10 +4,10 @@
 
 #include "yasl/gui/fontdatabase.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/gui/font.h"
@@ -83,12 +83,11 @@ static void register_font_database_class(script::Namespace ns)
 
   register_font_database_writing_system_enum(font_database);
   register_font_database_system_font_enum(font_database);
-  binding::ClassBinder<QFontDatabase> binder{ font_database };
 
   // static QList<int> standardSizes();
   /// TODO: static QList<int> standardSizes();
   // QFontDatabase();
-  binder.default_ctor().create();
+  bind::default_constructor<QFontDatabase>(font_database).create();
   // QList<QFontDatabase::WritingSystem> writingSystems() const;
   /// TODO: QList<QFontDatabase::WritingSystem> writingSystems() const;
   // QList<QFontDatabase::WritingSystem> writingSystems(const QString &) const;
@@ -102,51 +101,51 @@ static void register_font_database_class(script::Namespace ns)
   // QList<int> smoothSizes(const QString &, const QString &);
   /// TODO: QList<int> smoothSizes(const QString &, const QString &);
   // QString styleString(const QFont &);
-  binder.fun<QString, const QFont &, &QFontDatabase::styleString>("styleString").create();
+  bind::member_function<QFontDatabase, QString, const QFont &, &QFontDatabase::styleString>(font_database, "styleString").create();
   // QString styleString(const QFontInfo &);
-  binder.fun<QString, const QFontInfo &, &QFontDatabase::styleString>("styleString").create();
+  bind::member_function<QFontDatabase, QString, const QFontInfo &, &QFontDatabase::styleString>(font_database, "styleString").create();
   // QFont font(const QString &, const QString &, int) const;
-  binder.fun<QFont, const QString &, const QString &, int, &QFontDatabase::font>("font").create();
+  bind::member_function<QFontDatabase, QFont, const QString &, const QString &, int, &QFontDatabase::font>(font_database, "font").create();
   // bool isBitmapScalable(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isBitmapScalable>("isBitmapScalable")
-    .apply(binding::default_arguments(QString())).create();
+  bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::isBitmapScalable>(font_database, "isBitmapScalable")
+    .apply(bind::default_arguments(QString())).create();
   // bool isSmoothlyScalable(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isSmoothlyScalable>("isSmoothlyScalable")
-    .apply(binding::default_arguments(QString())).create();
+  bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::isSmoothlyScalable>(font_database, "isSmoothlyScalable")
+    .apply(bind::default_arguments(QString())).create();
   // bool isScalable(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isScalable>("isScalable")
-    .apply(binding::default_arguments(QString())).create();
+  bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::isScalable>(font_database, "isScalable")
+    .apply(bind::default_arguments(QString())).create();
   // bool isFixedPitch(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::isFixedPitch>("isFixedPitch")
-    .apply(binding::default_arguments(QString())).create();
+  bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::isFixedPitch>(font_database, "isFixedPitch")
+    .apply(bind::default_arguments(QString())).create();
   // bool italic(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::italic>("italic").create();
+  bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::italic>(font_database, "italic").create();
   // bool bold(const QString &, const QString &) const;
-  binder.fun<bool, const QString &, const QString &, &QFontDatabase::bold>("bold").create();
+  bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::bold>(font_database, "bold").create();
   // int weight(const QString &, const QString &) const;
-  binder.fun<int, const QString &, const QString &, &QFontDatabase::weight>("weight").create();
+  bind::member_function<QFontDatabase, int, const QString &, const QString &, &QFontDatabase::weight>(font_database, "weight").create();
   // bool hasFamily(const QString &) const;
-  binder.fun<bool, const QString &, &QFontDatabase::hasFamily>("hasFamily").create();
+  bind::member_function<QFontDatabase, bool, const QString &, &QFontDatabase::hasFamily>(font_database, "hasFamily").create();
   // bool isPrivateFamily(const QString &) const;
-  binder.fun<bool, const QString &, &QFontDatabase::isPrivateFamily>("isPrivateFamily").create();
+  bind::member_function<QFontDatabase, bool, const QString &, &QFontDatabase::isPrivateFamily>(font_database, "isPrivateFamily").create();
   // static QString writingSystemName(QFontDatabase::WritingSystem);
-  binder.static_fun<QString, QFontDatabase::WritingSystem, &QFontDatabase::writingSystemName>("writingSystemName").create();
+  bind::static_member_function<QFontDatabase, QString, QFontDatabase::WritingSystem, &QFontDatabase::writingSystemName>(font_database, "writingSystemName").create();
   // static QString writingSystemSample(QFontDatabase::WritingSystem);
-  binder.static_fun<QString, QFontDatabase::WritingSystem, &QFontDatabase::writingSystemSample>("writingSystemSample").create();
+  bind::static_member_function<QFontDatabase, QString, QFontDatabase::WritingSystem, &QFontDatabase::writingSystemSample>(font_database, "writingSystemSample").create();
   // static int addApplicationFont(const QString &);
-  binder.static_fun<int, const QString &, &QFontDatabase::addApplicationFont>("addApplicationFont").create();
+  bind::static_member_function<QFontDatabase, int, const QString &, &QFontDatabase::addApplicationFont>(font_database, "addApplicationFont").create();
   // static int addApplicationFontFromData(const QByteArray &);
-  binder.static_fun<int, const QByteArray &, &QFontDatabase::addApplicationFontFromData>("addApplicationFontFromData").create();
+  bind::static_member_function<QFontDatabase, int, const QByteArray &, &QFontDatabase::addApplicationFontFromData>(font_database, "addApplicationFontFromData").create();
   // static QStringList applicationFontFamilies(int);
   /// TODO: static QStringList applicationFontFamilies(int);
   // static bool removeApplicationFont(int);
-  binder.static_fun<bool, int, &QFontDatabase::removeApplicationFont>("removeApplicationFont").create();
+  bind::static_member_function<QFontDatabase, bool, int, &QFontDatabase::removeApplicationFont>(font_database, "removeApplicationFont").create();
   // static bool removeAllApplicationFonts();
-  binder.static_fun<bool, &QFontDatabase::removeAllApplicationFonts>("removeAllApplicationFonts").create();
+  bind::static_member_function<QFontDatabase, bool, &QFontDatabase::removeAllApplicationFonts>(font_database, "removeAllApplicationFonts").create();
   // static bool supportsThreadedFontRendering();
-  binder.static_fun<bool, &QFontDatabase::supportsThreadedFontRendering>("supportsThreadedFontRendering").create();
+  bind::static_member_function<QFontDatabase, bool, &QFontDatabase::supportsThreadedFontRendering>(font_database, "supportsThreadedFontRendering").create();
   // static QFont systemFont(QFontDatabase::SystemFont);
-  binder.static_fun<QFont, QFontDatabase::SystemFont, &QFontDatabase::systemFont>("systemFont").create();
+  bind::static_member_function<QFontDatabase, QFont, QFontDatabase::SystemFont, &QFontDatabase::systemFont>(font_database, "systemFont").create();
 }
 
 
@@ -157,7 +156,6 @@ void register_fontdatabase_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_font_database_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

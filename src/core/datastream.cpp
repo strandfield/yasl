@@ -4,9 +4,9 @@
 
 #include "yasl/core/datastream.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
@@ -96,44 +96,43 @@ static void register_data_stream_class(script::Namespace ns)
   register_data_stream_byte_order_enum(data_stream);
   register_data_stream_status_enum(data_stream);
   register_data_stream_floating_point_precision_enum(data_stream);
-  binding::ClassBinder<QDataStream> binder{ data_stream };
 
   // QDataStream();
-  binder.default_ctor().create();
+  bind::default_constructor<QDataStream>(data_stream).create();
   // QDataStream(QIODevice *);
   /// TODO: QDataStream(QIODevice *);
   // QDataStream(QByteArray *, QIODevice::OpenMode);
   /// TODO: QDataStream(QByteArray *, QIODevice::OpenMode);
   // QDataStream(const QByteArray &);
-  binder.ctor<const QByteArray &>().create();
+  bind::constructor<QDataStream, const QByteArray &>(data_stream).create();
   // ~QDataStream();
-  binder.dtor().create();
+  bind::destructor<QDataStream>(data_stream).create();
   // QIODevice * device() const;
   /// TODO: QIODevice * device() const;
   // void setDevice(QIODevice *);
   /// TODO: void setDevice(QIODevice *);
   // void unsetDevice();
-  binder.void_fun<&QDataStream::unsetDevice>("unsetDevice").create();
+  bind::void_member_function<QDataStream, &QDataStream::unsetDevice>(data_stream, "unsetDevice").create();
   // bool atEnd() const;
-  binder.fun<bool, &QDataStream::atEnd>("atEnd").create();
+  bind::member_function<QDataStream, bool, &QDataStream::atEnd>(data_stream, "atEnd").create();
   // QDataStream::Status status() const;
-  binder.fun<QDataStream::Status, &QDataStream::status>("status").create();
+  bind::member_function<QDataStream, QDataStream::Status, &QDataStream::status>(data_stream, "status").create();
   // void setStatus(QDataStream::Status);
-  binder.void_fun<QDataStream::Status, &QDataStream::setStatus>("setStatus").create();
+  bind::void_member_function<QDataStream, QDataStream::Status, &QDataStream::setStatus>(data_stream, "setStatus").create();
   // void resetStatus();
-  binder.void_fun<&QDataStream::resetStatus>("resetStatus").create();
+  bind::void_member_function<QDataStream, &QDataStream::resetStatus>(data_stream, "resetStatus").create();
   // QDataStream::FloatingPointPrecision floatingPointPrecision() const;
-  binder.fun<QDataStream::FloatingPointPrecision, &QDataStream::floatingPointPrecision>("floatingPointPrecision").create();
+  bind::member_function<QDataStream, QDataStream::FloatingPointPrecision, &QDataStream::floatingPointPrecision>(data_stream, "floatingPointPrecision").create();
   // void setFloatingPointPrecision(QDataStream::FloatingPointPrecision);
-  binder.void_fun<QDataStream::FloatingPointPrecision, &QDataStream::setFloatingPointPrecision>("setFloatingPointPrecision").create();
+  bind::void_member_function<QDataStream, QDataStream::FloatingPointPrecision, &QDataStream::setFloatingPointPrecision>(data_stream, "setFloatingPointPrecision").create();
   // QDataStream::ByteOrder byteOrder() const;
-  binder.fun<QDataStream::ByteOrder, &QDataStream::byteOrder>("byteOrder").create();
+  bind::member_function<QDataStream, QDataStream::ByteOrder, &QDataStream::byteOrder>(data_stream, "byteOrder").create();
   // void setByteOrder(QDataStream::ByteOrder);
-  binder.void_fun<QDataStream::ByteOrder, &QDataStream::setByteOrder>("setByteOrder").create();
+  bind::void_member_function<QDataStream, QDataStream::ByteOrder, &QDataStream::setByteOrder>(data_stream, "setByteOrder").create();
   // int version() const;
-  binder.fun<int, &QDataStream::version>("version").create();
+  bind::member_function<QDataStream, int, &QDataStream::version>(data_stream, "version").create();
   // void setVersion(int);
-  binder.void_fun<int, &QDataStream::setVersion>("setVersion").create();
+  bind::void_member_function<QDataStream, int, &QDataStream::setVersion>(data_stream, "setVersion").create();
   // QDataStream & operator>>(qint8 &);
   /// TODO: QDataStream & operator>>(qint8 &);
   // QDataStream & operator>>(quint8 &);
@@ -153,13 +152,13 @@ static void register_data_stream_class(script::Namespace ns)
   // QDataStream & operator>>(std::nullptr_t &);
   /// TODO: QDataStream & operator>>(std::nullptr_t &);
   // QDataStream & operator>>(bool &);
-  binder.operators().read_from<bool &>();
+  bind::memop_read_from<QDataStream, bool &>(data_stream);
   // QDataStream & operator>>(qfloat16 &);
   /// TODO: QDataStream & operator>>(qfloat16 &);
   // QDataStream & operator>>(float &);
-  binder.operators().read_from<float &>();
+  bind::memop_read_from<QDataStream, float &>(data_stream);
   // QDataStream & operator>>(double &);
-  binder.operators().read_from<double &>();
+  bind::memop_read_from<QDataStream, double &>(data_stream);
   // QDataStream & operator>>(char *&);
   /// TODO: QDataStream & operator>>(char *&);
   // QDataStream & operator<<(qint8);
@@ -181,13 +180,13 @@ static void register_data_stream_class(script::Namespace ns)
   // QDataStream & operator<<(std::nullptr_t);
   /// TODO: QDataStream & operator<<(std::nullptr_t);
   // QDataStream & operator<<(bool);
-  binder.operators().put_to<bool>();
+  bind::memop_put_to<QDataStream, bool>(data_stream);
   // QDataStream & operator<<(qfloat16);
   /// TODO: QDataStream & operator<<(qfloat16);
   // QDataStream & operator<<(float);
-  binder.operators().put_to<float>();
+  bind::memop_put_to<QDataStream, float>(data_stream);
   // QDataStream & operator<<(double);
-  binder.operators().put_to<double>();
+  bind::memop_put_to<QDataStream, double>(data_stream);
   // QDataStream & operator<<(const char *);
   /// TODO: QDataStream & operator<<(const char *);
   // QDataStream & readBytes(char *&, uint &);
@@ -199,15 +198,15 @@ static void register_data_stream_class(script::Namespace ns)
   // int writeRawData(const char *, int);
   /// TODO: int writeRawData(const char *, int);
   // int skipRawData(int);
-  binder.fun<int, int, &QDataStream::skipRawData>("skipRawData").create();
+  bind::member_function<QDataStream, int, int, &QDataStream::skipRawData>(data_stream, "skipRawData").create();
   // void startTransaction();
-  binder.void_fun<&QDataStream::startTransaction>("startTransaction").create();
+  bind::void_member_function<QDataStream, &QDataStream::startTransaction>(data_stream, "startTransaction").create();
   // bool commitTransaction();
-  binder.fun<bool, &QDataStream::commitTransaction>("commitTransaction").create();
+  bind::member_function<QDataStream, bool, &QDataStream::commitTransaction>(data_stream, "commitTransaction").create();
   // void rollbackTransaction();
-  binder.void_fun<&QDataStream::rollbackTransaction>("rollbackTransaction").create();
+  bind::void_member_function<QDataStream, &QDataStream::rollbackTransaction>(data_stream, "rollbackTransaction").create();
   // void abortTransaction();
-  binder.void_fun<&QDataStream::abortTransaction>("abortTransaction").create();
+  bind::void_member_function<QDataStream, &QDataStream::abortTransaction>(data_stream, "abortTransaction").create();
 }
 
 
@@ -218,7 +217,6 @@ void register_datastream_file(script::Namespace core)
   Namespace ns = core;
 
   register_data_stream_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

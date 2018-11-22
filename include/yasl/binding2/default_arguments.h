@@ -2,12 +2,15 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_BINDING_DEFAULT_ARGUMENTS_H
-#define YASL_BINDING_DEFAULT_ARGUMENTS_H
+#ifndef YASL_BINDING2_DEFAULT_ARGUMENTS_H
+#define YASL_BINDING2_DEFAULT_ARGUMENTS_H
 
-#include "yasl/binding/values.h"
+#include "yasl/binding2/values.h"
 
-namespace binding
+namespace script
+{
+
+namespace bind
 {
 
 std::shared_ptr<script::program::Expression> make_default_argument(script::Value val);
@@ -87,7 +90,8 @@ default_arguments_t<Args...> default_arguments(const Args &... args)
   return default_arguments_t<Args...>{std::make_tuple(args...)};
 }
 
-} // namespace binding
+} // namespace bind
 
+} // namespace script
 
-#endif // YASL_BINDING_DEFAULT_ARGUMENTS_H
+#endif // YASL_BINDING2_DEFAULT_ARGUMENTS_H

@@ -5,8 +5,7 @@
 #ifndef YASL_BINDING_QCLASS_H
 #define YASL_BINDING_QCLASS_H
 
-#include "yasl/binding2/constructor_binder.h"
-#include "yasl/binding2/destructor_binder.h"
+#include "yasl/binding2/class.h"
 #include "yasl/binding2/qobject-binding.h"
 #include "yasl/binding2/signals.h"
 

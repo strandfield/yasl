@@ -4,8 +4,8 @@
 
 #include "yasl/core/size.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -19,58 +19,57 @@ static void register_size_class(script::Namespace ns)
 
   Class size = ns.newClass("Size").setId(script::Type::QSize).get();
 
-  binding::ClassBinder<QSize> binder{ size };
 
   // QSize();
-  binder.default_ctor().create();
+  bind::default_constructor<QSize>(size).create();
   // QSize(const QSize &);
-  binder.ctor<const QSize &>().create();
+  bind::constructor<QSize, const QSize &>(size).create();
   // ~QSize();
-  binder.dtor().create();
+  bind::destructor<QSize>(size).create();
   // QSize(int, int);
-  binder.ctor<int, int>().create();
+  bind::constructor<QSize, int, int>(size).create();
   // bool isNull() const;
-  binder.fun<bool, &QSize::isNull>("isNull").create();
+  bind::member_function<QSize, bool, &QSize::isNull>(size, "isNull").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QSize::isEmpty>("isEmpty").create();
+  bind::member_function<QSize, bool, &QSize::isEmpty>(size, "isEmpty").create();
   // bool isValid() const;
-  binder.fun<bool, &QSize::isValid>("isValid").create();
+  bind::member_function<QSize, bool, &QSize::isValid>(size, "isValid").create();
   // int width() const;
-  binder.fun<int, &QSize::width>("width").create();
+  bind::member_function<QSize, int, &QSize::width>(size, "width").create();
   // int height() const;
-  binder.fun<int, &QSize::height>("height").create();
+  bind::member_function<QSize, int, &QSize::height>(size, "height").create();
   // void setWidth(int);
-  binder.void_fun<int, &QSize::setWidth>("setWidth").create();
+  bind::void_member_function<QSize, int, &QSize::setWidth>(size, "setWidth").create();
   // void setHeight(int);
-  binder.void_fun<int, &QSize::setHeight>("setHeight").create();
+  bind::void_member_function<QSize, int, &QSize::setHeight>(size, "setHeight").create();
   // void transpose();
-  binder.void_fun<&QSize::transpose>("transpose").create();
+  bind::void_member_function<QSize, &QSize::transpose>(size, "transpose").create();
   // QSize transposed() const;
-  binder.fun<QSize, &QSize::transposed>("transposed").create();
+  bind::member_function<QSize, QSize, &QSize::transposed>(size, "transposed").create();
   // void scale(int, int, Qt::AspectRatioMode);
-  binder.void_fun<int, int, Qt::AspectRatioMode, &QSize::scale>("scale").create();
+  bind::void_member_function<QSize, int, int, Qt::AspectRatioMode, &QSize::scale>(size, "scale").create();
   // void scale(const QSize &, Qt::AspectRatioMode);
-  binder.void_fun<const QSize &, Qt::AspectRatioMode, &QSize::scale>("scale").create();
+  bind::void_member_function<QSize, const QSize &, Qt::AspectRatioMode, &QSize::scale>(size, "scale").create();
   // QSize scaled(int, int, Qt::AspectRatioMode) const;
-  binder.fun<QSize, int, int, Qt::AspectRatioMode, &QSize::scaled>("scaled").create();
+  bind::member_function<QSize, QSize, int, int, Qt::AspectRatioMode, &QSize::scaled>(size, "scaled").create();
   // QSize scaled(const QSize &, Qt::AspectRatioMode) const;
-  binder.fun<QSize, const QSize &, Qt::AspectRatioMode, &QSize::scaled>("scaled").create();
+  bind::member_function<QSize, QSize, const QSize &, Qt::AspectRatioMode, &QSize::scaled>(size, "scaled").create();
   // QSize expandedTo(const QSize &) const;
-  binder.fun<QSize, const QSize &, &QSize::expandedTo>("expandedTo").create();
+  bind::member_function<QSize, QSize, const QSize &, &QSize::expandedTo>(size, "expandedTo").create();
   // QSize boundedTo(const QSize &) const;
-  binder.fun<QSize, const QSize &, &QSize::boundedTo>("boundedTo").create();
+  bind::member_function<QSize, QSize, const QSize &, &QSize::boundedTo>(size, "boundedTo").create();
   // int & rwidth();
-  binder.ref_mem_getter<int &, &QSize::rwidth>("rwidth").create();
+  bind::non_const_getter<QSize, int &, &QSize::rwidth>(size, "rwidth").create();
   // int & rheight();
-  binder.ref_mem_getter<int &, &QSize::rheight>("rheight").create();
+  bind::non_const_getter<QSize, int &, &QSize::rheight>(size, "rheight").create();
   // QSize & operator+=(const QSize &);
-  binder.operators().add_assign<const QSize &>();
+  bind::memop_add_assign<QSize, const QSize &>(size);
   // QSize & operator-=(const QSize &);
-  binder.operators().sub_assign<const QSize &>();
+  bind::memop_sub_assign<QSize, const QSize &>(size);
   // QSize & operator*=(qreal);
-  binder.operators().mul_assign<qreal>();
+  bind::memop_mul_assign<QSize, qreal>(size);
   // QSize & operator/=(qreal);
-  binder.operators().div_assign<qreal>();
+  bind::memop_div_assign<QSize, qreal>(size);
 }
 
 
@@ -80,62 +79,61 @@ static void register_size_f_class(script::Namespace ns)
 
   Class size_f = ns.newClass("SizeF").setId(script::Type::QSizeF).get();
 
-  binding::ClassBinder<QSizeF> binder{ size_f };
 
   // QSizeF();
-  binder.default_ctor().create();
+  bind::default_constructor<QSizeF>(size_f).create();
   // QSizeF(const QSizeF &);
-  binder.ctor<const QSizeF &>().create();
+  bind::constructor<QSizeF, const QSizeF &>(size_f).create();
   // QSizeF(const QSize &);
-  binder.ctor<const QSize &>().create();
+  bind::constructor<QSizeF, const QSize &>(size_f).create();
   // QSizeF(qreal, qreal);
-  binder.ctor<qreal, qreal>().create();
+  bind::constructor<QSizeF, qreal, qreal>(size_f).create();
   // ~QSizeF();
-  binder.dtor().create();
+  bind::destructor<QSizeF>(size_f).create();
   // bool isNull() const;
-  binder.fun<bool, &QSizeF::isNull>("isNull").create();
+  bind::member_function<QSizeF, bool, &QSizeF::isNull>(size_f, "isNull").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QSizeF::isEmpty>("isEmpty").create();
+  bind::member_function<QSizeF, bool, &QSizeF::isEmpty>(size_f, "isEmpty").create();
   // bool isValid() const;
-  binder.fun<bool, &QSizeF::isValid>("isValid").create();
+  bind::member_function<QSizeF, bool, &QSizeF::isValid>(size_f, "isValid").create();
   // qreal width() const;
-  binder.fun<qreal, &QSizeF::width>("width").create();
+  bind::member_function<QSizeF, qreal, &QSizeF::width>(size_f, "width").create();
   // qreal height() const;
-  binder.fun<qreal, &QSizeF::height>("height").create();
+  bind::member_function<QSizeF, qreal, &QSizeF::height>(size_f, "height").create();
   // void setWidth(qreal);
-  binder.void_fun<qreal, &QSizeF::setWidth>("setWidth").create();
+  bind::void_member_function<QSizeF, qreal, &QSizeF::setWidth>(size_f, "setWidth").create();
   // void setHeight(qreal);
-  binder.void_fun<qreal, &QSizeF::setHeight>("setHeight").create();
+  bind::void_member_function<QSizeF, qreal, &QSizeF::setHeight>(size_f, "setHeight").create();
   // void transpose();
-  binder.void_fun<&QSizeF::transpose>("transpose").create();
+  bind::void_member_function<QSizeF, &QSizeF::transpose>(size_f, "transpose").create();
   // QSizeF transposed() const;
-  binder.fun<QSizeF, &QSizeF::transposed>("transposed").create();
+  bind::member_function<QSizeF, QSizeF, &QSizeF::transposed>(size_f, "transposed").create();
   // void scale(qreal, qreal, Qt::AspectRatioMode);
-  binder.void_fun<qreal, qreal, Qt::AspectRatioMode, &QSizeF::scale>("scale").create();
+  bind::void_member_function<QSizeF, qreal, qreal, Qt::AspectRatioMode, &QSizeF::scale>(size_f, "scale").create();
   // void scale(const QSizeF &, Qt::AspectRatioMode);
-  binder.void_fun<const QSizeF &, Qt::AspectRatioMode, &QSizeF::scale>("scale").create();
+  bind::void_member_function<QSizeF, const QSizeF &, Qt::AspectRatioMode, &QSizeF::scale>(size_f, "scale").create();
   // QSizeF scaled(qreal, qreal, Qt::AspectRatioMode) const;
-  binder.fun<QSizeF, qreal, qreal, Qt::AspectRatioMode, &QSizeF::scaled>("scaled").create();
+  bind::member_function<QSizeF, QSizeF, qreal, qreal, Qt::AspectRatioMode, &QSizeF::scaled>(size_f, "scaled").create();
   // QSizeF scaled(const QSizeF &, Qt::AspectRatioMode) const;
-  binder.fun<QSizeF, const QSizeF &, Qt::AspectRatioMode, &QSizeF::scaled>("scaled").create();
+  bind::member_function<QSizeF, QSizeF, const QSizeF &, Qt::AspectRatioMode, &QSizeF::scaled>(size_f, "scaled").create();
   // QSizeF expandedTo(const QSizeF &) const;
-  binder.fun<QSizeF, const QSizeF &, &QSizeF::expandedTo>("expandedTo").create();
+  bind::member_function<QSizeF, QSizeF, const QSizeF &, &QSizeF::expandedTo>(size_f, "expandedTo").create();
   // QSizeF boundedTo(const QSizeF &) const;
-  binder.fun<QSizeF, const QSizeF &, &QSizeF::boundedTo>("boundedTo").create();
+  bind::member_function<QSizeF, QSizeF, const QSizeF &, &QSizeF::boundedTo>(size_f, "boundedTo").create();
   // qreal & rwidth();
-  binder.ref_mem_getter<qreal &, &QSizeF::rwidth>("rwidth").create();
+  bind::non_const_getter<QSizeF, qreal &, &QSizeF::rwidth>(size_f, "rwidth").create();
   // qreal & rheight();
-  binder.ref_mem_getter<qreal &, &QSizeF::rheight>("rheight").create();
+  bind::non_const_getter<QSizeF, qreal &, &QSizeF::rheight>(size_f, "rheight").create();
   // QSizeF & operator+=(const QSizeF &);
-  binder.operators().add_assign<const QSizeF &>();
+  bind::memop_add_assign<QSizeF, const QSizeF &>(size_f);
   // QSizeF & operator-=(const QSizeF &);
-  binder.operators().sub_assign<const QSizeF &>();
+  bind::memop_sub_assign<QSizeF, const QSizeF &>(size_f);
   // QSizeF & operator*=(qreal);
-  binder.operators().mul_assign<qreal>();
+  bind::memop_mul_assign<QSizeF, qreal>(size_f);
   // QSizeF & operator/=(qreal);
-  binder.operators().div_assign<qreal>();
+  bind::memop_div_assign<QSizeF, qreal>(size_f);
   // QSize toSize() const;
-  binder.fun<QSize, &QSizeF::toSize>("toSize").create();
+  bind::member_function<QSizeF, QSize, &QSizeF::toSize>(size_f, "toSize").create();
 }
 
 
@@ -147,46 +145,45 @@ void register_size_file(script::Namespace core)
 
   register_size_class(ns);
   register_size_f_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QSize &);
-  binder.operators().put_to<QDataStream &, const QSize &>();
+  bind::op_put_to<QDataStream &, const QSize &>(ns);
   // QDataStream & operator>>(QDataStream &, QSize &);
-  binder.operators().read_from<QDataStream &, QSize &>();
+  bind::op_read_from<QDataStream &, QSize &>(ns);
   // bool operator==(const QSize &, const QSize &);
-  binder.operators().eq<const QSize &, const QSize &>();
+  bind::op_eq<const QSize &, const QSize &>(ns);
   // bool operator!=(const QSize &, const QSize &);
-  binder.operators().neq<const QSize &, const QSize &>();
+  bind::op_neq<const QSize &, const QSize &>(ns);
   // const QSize operator+(const QSize &, const QSize &);
-  binder.operators().add<const QSize, const QSize &, const QSize &>();
+  bind::op_add<const QSize, const QSize &, const QSize &>(ns);
   // const QSize operator-(const QSize &, const QSize &);
-  binder.operators().sub<const QSize, const QSize &, const QSize &>();
+  bind::op_sub<const QSize, const QSize &, const QSize &>(ns);
   // const QSize operator*(const QSize &, qreal);
-  binder.operators().mul<const QSize, const QSize &, qreal>();
+  bind::op_mul<const QSize, const QSize &, qreal>(ns);
   // const QSize operator*(qreal, const QSize &);
-  binder.operators().mul<const QSize, qreal, const QSize &>();
+  bind::op_mul<const QSize, qreal, const QSize &>(ns);
   // const QSize operator/(const QSize &, qreal);
-  binder.operators().div<const QSize, const QSize &, qreal>();
+  bind::op_div<const QSize, const QSize &, qreal>(ns);
   // QDebug operator<<(QDebug, const QSize &);
   /// TODO: QDebug operator<<(QDebug, const QSize &);
   // QDataStream & operator<<(QDataStream &, const QSizeF &);
-  binder.operators().put_to<QDataStream &, const QSizeF &>();
+  bind::op_put_to<QDataStream &, const QSizeF &>(ns);
   // QDataStream & operator>>(QDataStream &, QSizeF &);
-  binder.operators().read_from<QDataStream &, QSizeF &>();
+  bind::op_read_from<QDataStream &, QSizeF &>(ns);
   // bool operator==(const QSizeF &, const QSizeF &);
-  binder.operators().eq<const QSizeF &, const QSizeF &>();
+  bind::op_eq<const QSizeF &, const QSizeF &>(ns);
   // bool operator!=(const QSizeF &, const QSizeF &);
-  binder.operators().neq<const QSizeF &, const QSizeF &>();
+  bind::op_neq<const QSizeF &, const QSizeF &>(ns);
   // const QSizeF operator+(const QSizeF &, const QSizeF &);
-  binder.operators().add<const QSizeF, const QSizeF &, const QSizeF &>();
+  bind::op_add<const QSizeF, const QSizeF &, const QSizeF &>(ns);
   // const QSizeF operator-(const QSizeF &, const QSizeF &);
-  binder.operators().sub<const QSizeF, const QSizeF &, const QSizeF &>();
+  bind::op_sub<const QSizeF, const QSizeF &, const QSizeF &>(ns);
   // const QSizeF operator*(const QSizeF &, qreal);
-  binder.operators().mul<const QSizeF, const QSizeF &, qreal>();
+  bind::op_mul<const QSizeF, const QSizeF &, qreal>(ns);
   // const QSizeF operator*(qreal, const QSizeF &);
-  binder.operators().mul<const QSizeF, qreal, const QSizeF &>();
+  bind::op_mul<const QSizeF, qreal, const QSizeF &>(ns);
   // const QSizeF operator/(const QSizeF &, qreal);
-  binder.operators().div<const QSizeF, const QSizeF &, qreal>();
+  bind::op_div<const QSizeF, const QSizeF &, qreal>(ns);
   // QDebug operator<<(QDebug, const QSizeF &);
   /// TODO: QDebug operator<<(QDebug, const QSizeF &);
 }

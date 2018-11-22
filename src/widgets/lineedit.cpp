@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/lineedit.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/margins.h"
@@ -57,44 +57,43 @@ static void register_line_edit_class(script::Namespace ns)
 
   register_line_edit_action_position_enum(line_edit);
   register_line_edit_echo_mode_enum(line_edit);
-  binding::ClassBinder<QLineEdit> binder{ line_edit, &QLineEdit::staticMetaObject };
 
   // QLineEdit(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QLineEdit, QWidget *>(line_edit)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QLineEdit(const QString &, QWidget *);
-  binder.ctor<const QString &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QLineEdit, const QString &, QWidget *>(line_edit)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QLineEdit();
-  binder.dtor().create();
+  bind::destructor<QLineEdit>(line_edit).create();
   // QString text() const;
-  binder.fun<QString, &QLineEdit::text>("text").create();
+  bind::member_function<QLineEdit, QString, &QLineEdit::text>(line_edit, "text").create();
   // QString displayText() const;
-  binder.fun<QString, &QLineEdit::displayText>("displayText").create();
+  bind::member_function<QLineEdit, QString, &QLineEdit::displayText>(line_edit, "displayText").create();
   // QString placeholderText() const;
-  binder.fun<QString, &QLineEdit::placeholderText>("placeholderText").create();
+  bind::member_function<QLineEdit, QString, &QLineEdit::placeholderText>(line_edit, "placeholderText").create();
   // void setPlaceholderText(const QString &);
-  binder.void_fun<const QString &, &QLineEdit::setPlaceholderText>("setPlaceholderText").create();
+  bind::void_member_function<QLineEdit, const QString &, &QLineEdit::setPlaceholderText>(line_edit, "setPlaceholderText").create();
   // int maxLength() const;
-  binder.fun<int, &QLineEdit::maxLength>("maxLength").create();
+  bind::member_function<QLineEdit, int, &QLineEdit::maxLength>(line_edit, "maxLength").create();
   // void setMaxLength(int);
-  binder.void_fun<int, &QLineEdit::setMaxLength>("setMaxLength").create();
+  bind::void_member_function<QLineEdit, int, &QLineEdit::setMaxLength>(line_edit, "setMaxLength").create();
   // void setFrame(bool);
-  binder.void_fun<bool, &QLineEdit::setFrame>("setFrame").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::setFrame>(line_edit, "setFrame").create();
   // bool hasFrame() const;
-  binder.fun<bool, &QLineEdit::hasFrame>("hasFrame").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::hasFrame>(line_edit, "hasFrame").create();
   // void setClearButtonEnabled(bool);
-  binder.void_fun<bool, &QLineEdit::setClearButtonEnabled>("setClearButtonEnabled").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::setClearButtonEnabled>(line_edit, "setClearButtonEnabled").create();
   // bool isClearButtonEnabled() const;
-  binder.fun<bool, &QLineEdit::isClearButtonEnabled>("isClearButtonEnabled").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::isClearButtonEnabled>(line_edit, "isClearButtonEnabled").create();
   // QLineEdit::EchoMode echoMode() const;
-  binder.fun<QLineEdit::EchoMode, &QLineEdit::echoMode>("echoMode").create();
+  bind::member_function<QLineEdit, QLineEdit::EchoMode, &QLineEdit::echoMode>(line_edit, "echoMode").create();
   // void setEchoMode(QLineEdit::EchoMode);
-  binder.void_fun<QLineEdit::EchoMode, &QLineEdit::setEchoMode>("setEchoMode").create();
+  bind::void_member_function<QLineEdit, QLineEdit::EchoMode, &QLineEdit::setEchoMode>(line_edit, "setEchoMode").create();
   // bool isReadOnly() const;
-  binder.fun<bool, &QLineEdit::isReadOnly>("isReadOnly").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::isReadOnly>(line_edit, "isReadOnly").create();
   // void setReadOnly(bool);
-  binder.void_fun<bool, &QLineEdit::setReadOnly>("setReadOnly").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::setReadOnly>(line_edit, "setReadOnly").create();
   // void setValidator(const QValidator *);
   /// TODO: void setValidator(const QValidator *);
   // const QValidator * validator() const;
@@ -104,125 +103,125 @@ static void register_line_edit_class(script::Namespace ns)
   // QCompleter * completer() const;
   /// TODO: QCompleter * completer() const;
   // QSize sizeHint() const;
-  binder.fun<QSize, &QLineEdit::sizeHint>("sizeHint").create();
+  bind::member_function<QLineEdit, QSize, &QLineEdit::sizeHint>(line_edit, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QLineEdit::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QLineEdit, QSize, &QLineEdit::minimumSizeHint>(line_edit, "minimumSizeHint").create();
   // int cursorPosition() const;
-  binder.fun<int, &QLineEdit::cursorPosition>("cursorPosition").create();
+  bind::member_function<QLineEdit, int, &QLineEdit::cursorPosition>(line_edit, "cursorPosition").create();
   // void setCursorPosition(int);
-  binder.void_fun<int, &QLineEdit::setCursorPosition>("setCursorPosition").create();
+  bind::void_member_function<QLineEdit, int, &QLineEdit::setCursorPosition>(line_edit, "setCursorPosition").create();
   // int cursorPositionAt(const QPoint &);
-  binder.fun<int, const QPoint &, &QLineEdit::cursorPositionAt>("cursorPositionAt").create();
+  bind::member_function<QLineEdit, int, const QPoint &, &QLineEdit::cursorPositionAt>(line_edit, "cursorPositionAt").create();
   // void setAlignment(Qt::Alignment);
-  binder.void_fun<Qt::Alignment, &QLineEdit::setAlignment>("setAlignment").create();
+  bind::void_member_function<QLineEdit, Qt::Alignment, &QLineEdit::setAlignment>(line_edit, "setAlignment").create();
   // Qt::Alignment alignment() const;
-  binder.fun<Qt::Alignment, &QLineEdit::alignment>("alignment").create();
+  bind::member_function<QLineEdit, Qt::Alignment, &QLineEdit::alignment>(line_edit, "alignment").create();
   // void cursorForward(bool, int);
-  binder.void_fun<bool, int, &QLineEdit::cursorForward>("cursorForward")
-    .apply(binding::default_arguments(1)).create();
+  bind::void_member_function<QLineEdit, bool, int, &QLineEdit::cursorForward>(line_edit, "cursorForward")
+    .apply(bind::default_arguments(1)).create();
   // void cursorBackward(bool, int);
-  binder.void_fun<bool, int, &QLineEdit::cursorBackward>("cursorBackward")
-    .apply(binding::default_arguments(1)).create();
+  bind::void_member_function<QLineEdit, bool, int, &QLineEdit::cursorBackward>(line_edit, "cursorBackward")
+    .apply(bind::default_arguments(1)).create();
   // void cursorWordForward(bool);
-  binder.void_fun<bool, &QLineEdit::cursorWordForward>("cursorWordForward").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::cursorWordForward>(line_edit, "cursorWordForward").create();
   // void cursorWordBackward(bool);
-  binder.void_fun<bool, &QLineEdit::cursorWordBackward>("cursorWordBackward").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::cursorWordBackward>(line_edit, "cursorWordBackward").create();
   // void backspace();
-  binder.void_fun<&QLineEdit::backspace>("backspace").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::backspace>(line_edit, "backspace").create();
   // void del();
-  binder.void_fun<&QLineEdit::del>("del").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::del>(line_edit, "del").create();
   // void home(bool);
-  binder.void_fun<bool, &QLineEdit::home>("home").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::home>(line_edit, "home").create();
   // void end(bool);
-  binder.void_fun<bool, &QLineEdit::end>("end").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::end>(line_edit, "end").create();
   // bool isModified() const;
-  binder.fun<bool, &QLineEdit::isModified>("isModified").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::isModified>(line_edit, "isModified").create();
   // void setModified(bool);
-  binder.void_fun<bool, &QLineEdit::setModified>("setModified").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::setModified>(line_edit, "setModified").create();
   // void setSelection(int, int);
-  binder.void_fun<int, int, &QLineEdit::setSelection>("setSelection").create();
+  bind::void_member_function<QLineEdit, int, int, &QLineEdit::setSelection>(line_edit, "setSelection").create();
   // bool hasSelectedText() const;
-  binder.fun<bool, &QLineEdit::hasSelectedText>("hasSelectedText").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::hasSelectedText>(line_edit, "hasSelectedText").create();
   // QString selectedText() const;
-  binder.fun<QString, &QLineEdit::selectedText>("selectedText").create();
+  bind::member_function<QLineEdit, QString, &QLineEdit::selectedText>(line_edit, "selectedText").create();
   // int selectionStart() const;
-  binder.fun<int, &QLineEdit::selectionStart>("selectionStart").create();
+  bind::member_function<QLineEdit, int, &QLineEdit::selectionStart>(line_edit, "selectionStart").create();
   // int selectionEnd() const;
-  binder.fun<int, &QLineEdit::selectionEnd>("selectionEnd").create();
+  bind::member_function<QLineEdit, int, &QLineEdit::selectionEnd>(line_edit, "selectionEnd").create();
   // int selectionLength() const;
-  binder.fun<int, &QLineEdit::selectionLength>("selectionLength").create();
+  bind::member_function<QLineEdit, int, &QLineEdit::selectionLength>(line_edit, "selectionLength").create();
   // bool isUndoAvailable() const;
-  binder.fun<bool, &QLineEdit::isUndoAvailable>("isUndoAvailable").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::isUndoAvailable>(line_edit, "isUndoAvailable").create();
   // bool isRedoAvailable() const;
-  binder.fun<bool, &QLineEdit::isRedoAvailable>("isRedoAvailable").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::isRedoAvailable>(line_edit, "isRedoAvailable").create();
   // void setDragEnabled(bool);
-  binder.void_fun<bool, &QLineEdit::setDragEnabled>("setDragEnabled").create();
+  bind::void_member_function<QLineEdit, bool, &QLineEdit::setDragEnabled>(line_edit, "setDragEnabled").create();
   // bool dragEnabled() const;
-  binder.fun<bool, &QLineEdit::dragEnabled>("dragEnabled").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::dragEnabled>(line_edit, "dragEnabled").create();
   // void setCursorMoveStyle(Qt::CursorMoveStyle);
-  binder.void_fun<Qt::CursorMoveStyle, &QLineEdit::setCursorMoveStyle>("setCursorMoveStyle").create();
+  bind::void_member_function<QLineEdit, Qt::CursorMoveStyle, &QLineEdit::setCursorMoveStyle>(line_edit, "setCursorMoveStyle").create();
   // Qt::CursorMoveStyle cursorMoveStyle() const;
-  binder.fun<Qt::CursorMoveStyle, &QLineEdit::cursorMoveStyle>("cursorMoveStyle").create();
+  bind::member_function<QLineEdit, Qt::CursorMoveStyle, &QLineEdit::cursorMoveStyle>(line_edit, "cursorMoveStyle").create();
   // QString inputMask() const;
-  binder.fun<QString, &QLineEdit::inputMask>("inputMask").create();
+  bind::member_function<QLineEdit, QString, &QLineEdit::inputMask>(line_edit, "inputMask").create();
   // void setInputMask(const QString &);
-  binder.void_fun<const QString &, &QLineEdit::setInputMask>("setInputMask").create();
+  bind::void_member_function<QLineEdit, const QString &, &QLineEdit::setInputMask>(line_edit, "setInputMask").create();
   // bool hasAcceptableInput() const;
-  binder.fun<bool, &QLineEdit::hasAcceptableInput>("hasAcceptableInput").create();
+  bind::member_function<QLineEdit, bool, &QLineEdit::hasAcceptableInput>(line_edit, "hasAcceptableInput").create();
   // void setTextMargins(int, int, int, int);
-  binder.void_fun<int, int, int, int, &QLineEdit::setTextMargins>("setTextMargins").create();
+  bind::void_member_function<QLineEdit, int, int, int, int, &QLineEdit::setTextMargins>(line_edit, "setTextMargins").create();
   // void setTextMargins(const QMargins &);
-  binder.void_fun<const QMargins &, &QLineEdit::setTextMargins>("setTextMargins").create();
+  bind::void_member_function<QLineEdit, const QMargins &, &QLineEdit::setTextMargins>(line_edit, "setTextMargins").create();
   // void getTextMargins(int *, int *, int *, int *) const;
   /// TODO: void getTextMargins(int *, int *, int *, int *) const;
   // QMargins textMargins() const;
-  binder.fun<QMargins, &QLineEdit::textMargins>("textMargins").create();
+  bind::member_function<QLineEdit, QMargins, &QLineEdit::textMargins>(line_edit, "textMargins").create();
   // void addAction(QAction *, QLineEdit::ActionPosition);
-  binder.void_fun<QAction *, QLineEdit::ActionPosition, &QLineEdit::addAction>("addAction").create();
+  bind::void_member_function<QLineEdit, QAction *, QLineEdit::ActionPosition, &QLineEdit::addAction>(line_edit, "addAction").create();
   // QAction * addAction(const QIcon &, QLineEdit::ActionPosition);
-  binder.fun<QAction *, const QIcon &, QLineEdit::ActionPosition, &QLineEdit::addAction>("addAction").create();
+  bind::member_function<QLineEdit, QAction *, const QIcon &, QLineEdit::ActionPosition, &QLineEdit::addAction>(line_edit, "addAction").create();
   // void setText(const QString &);
-  binder.void_fun<const QString &, &QLineEdit::setText>("setText").create();
+  bind::void_member_function<QLineEdit, const QString &, &QLineEdit::setText>(line_edit, "setText").create();
   // void clear();
-  binder.void_fun<&QLineEdit::clear>("clear").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::clear>(line_edit, "clear").create();
   // void selectAll();
-  binder.void_fun<&QLineEdit::selectAll>("selectAll").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::selectAll>(line_edit, "selectAll").create();
   // void undo();
-  binder.void_fun<&QLineEdit::undo>("undo").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::undo>(line_edit, "undo").create();
   // void redo();
-  binder.void_fun<&QLineEdit::redo>("redo").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::redo>(line_edit, "redo").create();
   // void cut();
-  binder.void_fun<&QLineEdit::cut>("cut").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::cut>(line_edit, "cut").create();
   // void copy() const;
-  binder.const_void_fun<&QLineEdit::copy>("copy").create();
+  bind::const_void_member_function<QLineEdit, &QLineEdit::copy>(line_edit, "copy").create();
   // void paste();
-  binder.void_fun<&QLineEdit::paste>("paste").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::paste>(line_edit, "paste").create();
   // void deselect();
-  binder.void_fun<&QLineEdit::deselect>("deselect").create();
+  bind::void_member_function<QLineEdit, &QLineEdit::deselect>(line_edit, "deselect").create();
   // void insert(const QString &);
-  binder.void_fun<const QString &, &QLineEdit::insert>("insert").create();
+  bind::void_member_function<QLineEdit, const QString &, &QLineEdit::insert>(line_edit, "insert").create();
   // QMenu * createStandardContextMenu();
-  binder.fun<QMenu *, &QLineEdit::createStandardContextMenu>("createStandardContextMenu").create();
+  bind::member_function<QLineEdit, QMenu *, &QLineEdit::createStandardContextMenu>(line_edit, "createStandardContextMenu").create();
   // void textChanged(const QString &);
-  binder.sigs().add<const QString &>("textChanged", "textChanged(const QString &)");
+  bind::signal<QLineEdit, const QString &>(line_edit, "textChanged", "textChanged(const QString &)");
   // void textEdited(const QString &);
-  binder.sigs().add<const QString &>("textEdited", "textEdited(const QString &)");
+  bind::signal<QLineEdit, const QString &>(line_edit, "textEdited", "textEdited(const QString &)");
   // void cursorPositionChanged(int, int);
-  binder.sigs().add<int, int>("cursorPositionChanged", "cursorPositionChanged(int,int)");
+  bind::signal<QLineEdit, int, int>(line_edit, "cursorPositionChanged", "cursorPositionChanged(int,int)");
   // void returnPressed();
-  binder.sigs().add("returnPressed", "returnPressed()");
+  bind::signal<QLineEdit>(line_edit, "returnPressed", "returnPressed()");
   // void editingFinished();
-  binder.sigs().add("editingFinished", "editingFinished()");
+  bind::signal<QLineEdit>(line_edit, "editingFinished", "editingFinished()");
   // void selectionChanged();
-  binder.sigs().add("selectionChanged", "selectionChanged()");
+  bind::signal<QLineEdit>(line_edit, "selectionChanged", "selectionChanged()");
   // QVariant inputMethodQuery(Qt::InputMethodQuery) const;
-  binder.fun<QVariant, Qt::InputMethodQuery, &QLineEdit::inputMethodQuery>("inputMethodQuery").create();
+  bind::member_function<QLineEdit, QVariant, Qt::InputMethodQuery, &QLineEdit::inputMethodQuery>(line_edit, "inputMethodQuery").create();
   // QVariant inputMethodQuery(Qt::InputMethodQuery, QVariant) const;
-  binder.fun<QVariant, Qt::InputMethodQuery, QVariant, &QLineEdit::inputMethodQuery>("inputMethodQuery").create();
+  bind::member_function<QLineEdit, QVariant, Qt::InputMethodQuery, QVariant, &QLineEdit::inputMethodQuery>(line_edit, "inputMethodQuery").create();
   // bool event(QEvent *);
   /// TODO: bool event(QEvent *);
 
-  line_edit.engine()->registerQtType(&QLineEdit::staticMetaObject, line_edit.id());
+  bind::link(line_edit, &QLineEdit::staticMetaObject);
 }
 
 
@@ -233,11 +232,10 @@ void register_lineedit_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_line_edit_class(ns);
-  binding::Namespace binder{ ns };
 
   // QLineEdit& newLineEdit(QWidget*);
-  NewFunction(binder).add<QLineEdit, QWidget*>("newLineEdit");
+  bind::new_function<QLineEdit, QWidget*>(ns, "newLineEdit");
   // QLineEdit& newLineEdit(const QString &, QWidget*);
-  NewFunction(binder).add<QLineEdit, const QString &, QWidget*>("newLineEdit");
+  bind::new_function<QLineEdit, const QString &, QWidget*>(ns, "newLineEdit");
 }
 

@@ -5,12 +5,12 @@
 #ifndef YASL_CORE_LOCALE_H
 #define YASL_CORE_LOCALE_H
 
-#include "yasl/binding/types.h"
-#include "yasl/utils/proxy.h"
+#include "yasl/binding2/proxy.h"
+#include "yasl/binding2/types.h"
 
 #include <QLocale>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<Proxy<QLocale>> { inline static script::Type get() { return script::Type::ProxyQLocale; } };
 template<> struct make_type_t<QList<QLocale>> { inline static script::Type get() { return script::Type::QListQLocale; } };
 template<> struct make_type_t<QLocale> { inline static script::Type get() { return script::Type::QLocale; } };
@@ -26,6 +26,6 @@ template<> struct make_type_t<QLocale::NumberOption> { inline static script::Typ
 template<> struct make_type_t<QLocale::NumberOptions> { inline static script::Type get() { return script::Type::QLocaleNumberOptions; } };
 template<> struct make_type_t<QLocale::QuotationStyle> { inline static script::Type get() { return script::Type::QLocaleQuotationStyle; } };
 template<> struct make_type_t<QLocale::Script> { inline static script::Type get() { return script::Type::QLocaleScript; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_LOCALE_H

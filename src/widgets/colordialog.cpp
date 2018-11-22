@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/colordialog.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/object.h"
@@ -39,55 +39,54 @@ static void register_color_dialog_class(script::Namespace ns)
     .setBase(script::Type::QDialog).get();
 
   register_color_dialog_color_dialog_option_enum(color_dialog);
-  binding::ClassBinder<QColorDialog> binder{ color_dialog, &QColorDialog::staticMetaObject };
 
   // QColorDialog(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QColorDialog, QWidget *>(color_dialog)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QColorDialog(const QColor &, QWidget *);
-  binder.ctor<const QColor &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QColorDialog, const QColor &, QWidget *>(color_dialog)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QColorDialog();
-  binder.dtor().create();
+  bind::destructor<QColorDialog>(color_dialog).create();
   // void setCurrentColor(const QColor &);
-  binder.void_fun<const QColor &, &QColorDialog::setCurrentColor>("setCurrentColor").create();
+  bind::void_member_function<QColorDialog, const QColor &, &QColorDialog::setCurrentColor>(color_dialog, "setCurrentColor").create();
   // QColor currentColor() const;
-  binder.fun<QColor, &QColorDialog::currentColor>("currentColor").create();
+  bind::member_function<QColorDialog, QColor, &QColorDialog::currentColor>(color_dialog, "currentColor").create();
   // QColor selectedColor() const;
-  binder.fun<QColor, &QColorDialog::selectedColor>("selectedColor").create();
+  bind::member_function<QColorDialog, QColor, &QColorDialog::selectedColor>(color_dialog, "selectedColor").create();
   // void setOption(QColorDialog::ColorDialogOption, bool);
-  binder.void_fun<QColorDialog::ColorDialogOption, bool, &QColorDialog::setOption>("setOption")
-    .apply(binding::default_arguments(true)).create();
+  bind::void_member_function<QColorDialog, QColorDialog::ColorDialogOption, bool, &QColorDialog::setOption>(color_dialog, "setOption")
+    .apply(bind::default_arguments(true)).create();
   // bool testOption(QColorDialog::ColorDialogOption) const;
-  binder.fun<bool, QColorDialog::ColorDialogOption, &QColorDialog::testOption>("testOption").create();
+  bind::member_function<QColorDialog, bool, QColorDialog::ColorDialogOption, &QColorDialog::testOption>(color_dialog, "testOption").create();
   // void setOptions(QColorDialog::ColorDialogOptions);
-  binder.void_fun<QColorDialog::ColorDialogOptions, &QColorDialog::setOptions>("setOptions").create();
+  bind::void_member_function<QColorDialog, QColorDialog::ColorDialogOptions, &QColorDialog::setOptions>(color_dialog, "setOptions").create();
   // QColorDialog::ColorDialogOptions options() const;
-  binder.fun<QColorDialog::ColorDialogOptions, &QColorDialog::options>("options").create();
+  bind::member_function<QColorDialog, QColorDialog::ColorDialogOptions, &QColorDialog::options>(color_dialog, "options").create();
   // void open(QObject *, const char *);
   /// TODO: void open(QObject *, const char *);
   // void setVisible(bool);
-  binder.void_fun<bool, &QColorDialog::setVisible>("setVisible").create();
+  bind::void_member_function<QColorDialog, bool, &QColorDialog::setVisible>(color_dialog, "setVisible").create();
   // static QColor getColor(const QColor &, QWidget *, const QString &, QColorDialog::ColorDialogOptions);
-  binder.static_fun<QColor, const QColor &, QWidget *, const QString &, QColorDialog::ColorDialogOptions, &QColorDialog::getColor>("getColor").create();
+  bind::static_member_function<QColorDialog, QColor, const QColor &, QWidget *, const QString &, QColorDialog::ColorDialogOptions, &QColorDialog::getColor>(color_dialog, "getColor").create();
   // static QRgb getRgba(QRgb, bool *, QWidget *);
   /// TODO: static QRgb getRgba(QRgb, bool *, QWidget *);
   // static int customCount();
-  binder.static_fun<int, &QColorDialog::customCount>("customCount").create();
+  bind::static_member_function<QColorDialog, int, &QColorDialog::customCount>(color_dialog, "customCount").create();
   // static QColor customColor(int);
-  binder.static_fun<QColor, int, &QColorDialog::customColor>("customColor").create();
+  bind::static_member_function<QColorDialog, QColor, int, &QColorDialog::customColor>(color_dialog, "customColor").create();
   // static void setCustomColor(int, QColor);
-  binder.static_void_fun<int, QColor, &QColorDialog::setCustomColor>("setCustomColor").create();
+  bind::static_void_member_function<QColorDialog, int, QColor, &QColorDialog::setCustomColor>(color_dialog, "setCustomColor").create();
   // static QColor standardColor(int);
-  binder.static_fun<QColor, int, &QColorDialog::standardColor>("standardColor").create();
+  bind::static_member_function<QColorDialog, QColor, int, &QColorDialog::standardColor>(color_dialog, "standardColor").create();
   // static void setStandardColor(int, QColor);
-  binder.static_void_fun<int, QColor, &QColorDialog::setStandardColor>("setStandardColor").create();
+  bind::static_void_member_function<QColorDialog, int, QColor, &QColorDialog::setStandardColor>(color_dialog, "setStandardColor").create();
   // void currentColorChanged(const QColor &);
-  binder.sigs().add<const QColor &>("currentColorChanged", "currentColorChanged(const QColor &)");
+  bind::signal<QColorDialog, const QColor &>(color_dialog, "currentColorChanged", "currentColorChanged(const QColor &)");
   // void colorSelected(const QColor &);
-  binder.sigs().add<const QColor &>("colorSelected", "colorSelected(const QColor &)");
+  bind::signal<QColorDialog, const QColor &>(color_dialog, "colorSelected", "colorSelected(const QColor &)");
 
-  color_dialog.engine()->registerQtType(&QColorDialog::staticMetaObject, color_dialog.id());
+  bind::link(color_dialog, &QColorDialog::staticMetaObject);
 }
 
 
@@ -98,12 +97,11 @@ void register_colordialog_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_color_dialog_class(ns);
-  binding::Namespace binder{ ns };
 
   // QColorDialog::ColorDialogOptions operator|(QColorDialog::ColorDialogOption, QColorDialog::ColorDialogOption);
-  binder.operators().or<QColorDialog::ColorDialogOptions, QColorDialog::ColorDialogOption, QColorDialog::ColorDialogOption>();
+  bind::op_bitor<QColorDialog::ColorDialogOptions, QColorDialog::ColorDialogOption, QColorDialog::ColorDialogOption>(ns);
   // QColorDialog::ColorDialogOptions operator|(QColorDialog::ColorDialogOption, QColorDialog::ColorDialogOptions);
-  binder.operators().or<QColorDialog::ColorDialogOptions, QColorDialog::ColorDialogOption, QColorDialog::ColorDialogOptions>();
+  bind::op_bitor<QColorDialog::ColorDialogOptions, QColorDialog::ColorDialogOption, QColorDialog::ColorDialogOptions>(ns);
   // QIncompatibleFlag operator|(QColorDialog::ColorDialogOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QColorDialog::ColorDialogOptions::enum_type, int);
 }

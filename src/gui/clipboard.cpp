@@ -4,10 +4,10 @@
 
 #include "yasl/gui/clipboard.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/gui/clipboard.h"
 #include "yasl/gui/image.h"
@@ -37,56 +37,55 @@ static void register_clipboard_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_clipboard_mode_enum(clipboard);
-  binding::ClassBinder<QClipboard> binder{ clipboard, &QClipboard::staticMetaObject };
 
   // void clear(QClipboard::Mode);
-  binder.void_fun<QClipboard::Mode, &QClipboard::clear>("clear")
-    .apply(binding::default_arguments(QClipboard::Clipboard)).create();
+  bind::void_member_function<QClipboard, QClipboard::Mode, &QClipboard::clear>(clipboard, "clear")
+    .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // bool supportsSelection() const;
-  binder.fun<bool, &QClipboard::supportsSelection>("supportsSelection").create();
+  bind::member_function<QClipboard, bool, &QClipboard::supportsSelection>(clipboard, "supportsSelection").create();
   // bool supportsFindBuffer() const;
-  binder.fun<bool, &QClipboard::supportsFindBuffer>("supportsFindBuffer").create();
+  bind::member_function<QClipboard, bool, &QClipboard::supportsFindBuffer>(clipboard, "supportsFindBuffer").create();
   // bool ownsSelection() const;
-  binder.fun<bool, &QClipboard::ownsSelection>("ownsSelection").create();
+  bind::member_function<QClipboard, bool, &QClipboard::ownsSelection>(clipboard, "ownsSelection").create();
   // bool ownsClipboard() const;
-  binder.fun<bool, &QClipboard::ownsClipboard>("ownsClipboard").create();
+  bind::member_function<QClipboard, bool, &QClipboard::ownsClipboard>(clipboard, "ownsClipboard").create();
   // bool ownsFindBuffer() const;
-  binder.fun<bool, &QClipboard::ownsFindBuffer>("ownsFindBuffer").create();
+  bind::member_function<QClipboard, bool, &QClipboard::ownsFindBuffer>(clipboard, "ownsFindBuffer").create();
   // QString text(QClipboard::Mode) const;
-  binder.fun<QString, QClipboard::Mode, &QClipboard::text>("text")
-    .apply(binding::default_arguments(QClipboard::Clipboard)).create();
+  bind::member_function<QClipboard, QString, QClipboard::Mode, &QClipboard::text>(clipboard, "text")
+    .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // QString text(QString &, QClipboard::Mode) const;
-  binder.fun<QString, QString &, QClipboard::Mode, &QClipboard::text>("text")
-    .apply(binding::default_arguments(QClipboard::Clipboard)).create();
+  bind::member_function<QClipboard, QString, QString &, QClipboard::Mode, &QClipboard::text>(clipboard, "text")
+    .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // void setText(const QString &, QClipboard::Mode);
-  binder.void_fun<const QString &, QClipboard::Mode, &QClipboard::setText>("setText")
-    .apply(binding::default_arguments(QClipboard::Clipboard)).create();
+  bind::void_member_function<QClipboard, const QString &, QClipboard::Mode, &QClipboard::setText>(clipboard, "setText")
+    .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // const QMimeData * mimeData(QClipboard::Mode) const;
   /// TODO: const QMimeData * mimeData(QClipboard::Mode) const;
   // void setMimeData(QMimeData *, QClipboard::Mode);
   /// TODO: void setMimeData(QMimeData *, QClipboard::Mode);
   // QImage image(QClipboard::Mode) const;
-  binder.fun<QImage, QClipboard::Mode, &QClipboard::image>("image")
-    .apply(binding::default_arguments(QClipboard::Clipboard)).create();
+  bind::member_function<QClipboard, QImage, QClipboard::Mode, &QClipboard::image>(clipboard, "image")
+    .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // QPixmap pixmap(QClipboard::Mode) const;
-  binder.fun<QPixmap, QClipboard::Mode, &QClipboard::pixmap>("pixmap")
-    .apply(binding::default_arguments(QClipboard::Clipboard)).create();
+  bind::member_function<QClipboard, QPixmap, QClipboard::Mode, &QClipboard::pixmap>(clipboard, "pixmap")
+    .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // void setImage(const QImage &, QClipboard::Mode);
-  binder.void_fun<const QImage &, QClipboard::Mode, &QClipboard::setImage>("setImage")
-    .apply(binding::default_arguments(QClipboard::Clipboard)).create();
+  bind::void_member_function<QClipboard, const QImage &, QClipboard::Mode, &QClipboard::setImage>(clipboard, "setImage")
+    .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // void setPixmap(const QPixmap &, QClipboard::Mode);
-  binder.void_fun<const QPixmap &, QClipboard::Mode, &QClipboard::setPixmap>("setPixmap")
-    .apply(binding::default_arguments(QClipboard::Clipboard)).create();
+  bind::void_member_function<QClipboard, const QPixmap &, QClipboard::Mode, &QClipboard::setPixmap>(clipboard, "setPixmap")
+    .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // void changed(QClipboard::Mode);
-  binder.sigs().add<QClipboard::Mode>("changed", "changed(QClipboard::Mode)");
+  bind::signal<QClipboard, QClipboard::Mode>(clipboard, "changed", "changed(QClipboard::Mode)");
   // void selectionChanged();
-  binder.sigs().add("selectionChanged", "selectionChanged()");
+  bind::signal<QClipboard>(clipboard, "selectionChanged", "selectionChanged()");
   // void findBufferChanged();
-  binder.sigs().add("findBufferChanged", "findBufferChanged()");
+  bind::signal<QClipboard>(clipboard, "findBufferChanged", "findBufferChanged()");
   // void dataChanged();
-  binder.sigs().add("dataChanged", "dataChanged()");
+  bind::signal<QClipboard>(clipboard, "dataChanged", "dataChanged()");
 
-  clipboard.engine()->registerQtType(&QClipboard::staticMetaObject, clipboard.id());
+  bind::link(clipboard, &QClipboard::staticMetaObject);
 }
 
 
@@ -97,7 +96,6 @@ void register_clipboard_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_clipboard_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

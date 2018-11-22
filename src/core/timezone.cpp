@@ -4,10 +4,10 @@
 
 #include "yasl/core/timezone.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
@@ -51,61 +51,60 @@ static void register_time_zone_class(script::Namespace ns)
 
   register_time_zone_time_type_enum(time_zone);
   register_time_zone_name_type_enum(time_zone);
-  binding::ClassBinder<QTimeZone> binder{ time_zone };
 
   // QTimeZone();
-  binder.default_ctor().create();
+  bind::default_constructor<QTimeZone>(time_zone).create();
   // QTimeZone(const QByteArray &);
-  binder.ctor<const QByteArray &>().create();
+  bind::constructor<QTimeZone, const QByteArray &>(time_zone).create();
   // QTimeZone(int);
-  binder.ctor<int>().create();
+  bind::constructor<QTimeZone, int>(time_zone).create();
   // QTimeZone(const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &);
-  binder.ctor<const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &>()
-    .apply(binding::default_arguments(QString(), QLocale::AnyCountry)).create();
+  bind::constructor<QTimeZone, const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &>(time_zone)
+    .apply(bind::default_arguments(QString(), QLocale::AnyCountry)).create();
   // QTimeZone(const QTimeZone &);
-  binder.ctor<const QTimeZone &>().create();
+  bind::constructor<QTimeZone, const QTimeZone &>(time_zone).create();
   // ~QTimeZone();
-  binder.dtor().create();
+  bind::destructor<QTimeZone>(time_zone).create();
   // QTimeZone & operator=(const QTimeZone &);
-  binder.operators().assign<const QTimeZone &>();
+  bind::memop_assign<QTimeZone, const QTimeZone &>(time_zone);
   // QTimeZone & operator=(QTimeZone &&);
-  binder.operators().assign<QTimeZone &&>();
+  bind::memop_assign<QTimeZone, QTimeZone &&>(time_zone);
   // void swap(QTimeZone &);
-  binder.void_fun<QTimeZone &, &QTimeZone::swap>("swap").create();
+  bind::void_member_function<QTimeZone, QTimeZone &, &QTimeZone::swap>(time_zone, "swap").create();
   // bool operator==(const QTimeZone &) const;
-  binder.operators().eq<const QTimeZone &>();
+  bind::memop_eq<QTimeZone, const QTimeZone &>(time_zone);
   // bool operator!=(const QTimeZone &) const;
-  binder.operators().neq<const QTimeZone &>();
+  bind::memop_neq<QTimeZone, const QTimeZone &>(time_zone);
   // bool isValid() const;
-  binder.fun<bool, &QTimeZone::isValid>("isValid").create();
+  bind::member_function<QTimeZone, bool, &QTimeZone::isValid>(time_zone, "isValid").create();
   // QByteArray id() const;
-  binder.fun<QByteArray, &QTimeZone::id>("id").create();
+  bind::member_function<QTimeZone, QByteArray, &QTimeZone::id>(time_zone, "id").create();
   // QLocale::Country country() const;
-  binder.fun<QLocale::Country, &QTimeZone::country>("country").create();
+  bind::member_function<QTimeZone, QLocale::Country, &QTimeZone::country>(time_zone, "country").create();
   // QString comment() const;
-  binder.fun<QString, &QTimeZone::comment>("comment").create();
+  bind::member_function<QTimeZone, QString, &QTimeZone::comment>(time_zone, "comment").create();
   // QString displayName(const QDateTime &, QTimeZone::NameType, const QLocale &) const;
-  binder.fun<QString, const QDateTime &, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>("displayName")
-    .apply(binding::default_arguments(QLocale(),  QTimeZone::DefaultName)).create();
+  bind::member_function<QTimeZone, QString, const QDateTime &, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>(time_zone, "displayName")
+    .apply(bind::default_arguments(QLocale(),  QTimeZone::DefaultName)).create();
   // QString displayName(QTimeZone::TimeType, QTimeZone::NameType, const QLocale &) const;
-  binder.fun<QString, QTimeZone::TimeType, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>("displayName")
-    .apply(binding::default_arguments(QLocale(),  QTimeZone::DefaultName)).create();
+  bind::member_function<QTimeZone, QString, QTimeZone::TimeType, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>(time_zone, "displayName")
+    .apply(bind::default_arguments(QLocale(),  QTimeZone::DefaultName)).create();
   // QString abbreviation(const QDateTime &) const;
-  binder.fun<QString, const QDateTime &, &QTimeZone::abbreviation>("abbreviation").create();
+  bind::member_function<QTimeZone, QString, const QDateTime &, &QTimeZone::abbreviation>(time_zone, "abbreviation").create();
   // int offsetFromUtc(const QDateTime &) const;
-  binder.fun<int, const QDateTime &, &QTimeZone::offsetFromUtc>("offsetFromUtc").create();
+  bind::member_function<QTimeZone, int, const QDateTime &, &QTimeZone::offsetFromUtc>(time_zone, "offsetFromUtc").create();
   // int standardTimeOffset(const QDateTime &) const;
-  binder.fun<int, const QDateTime &, &QTimeZone::standardTimeOffset>("standardTimeOffset").create();
+  bind::member_function<QTimeZone, int, const QDateTime &, &QTimeZone::standardTimeOffset>(time_zone, "standardTimeOffset").create();
   // int daylightTimeOffset(const QDateTime &) const;
-  binder.fun<int, const QDateTime &, &QTimeZone::daylightTimeOffset>("daylightTimeOffset").create();
+  bind::member_function<QTimeZone, int, const QDateTime &, &QTimeZone::daylightTimeOffset>(time_zone, "daylightTimeOffset").create();
   // bool hasDaylightTime() const;
-  binder.fun<bool, &QTimeZone::hasDaylightTime>("hasDaylightTime").create();
+  bind::member_function<QTimeZone, bool, &QTimeZone::hasDaylightTime>(time_zone, "hasDaylightTime").create();
   // bool isDaylightTime(const QDateTime &) const;
-  binder.fun<bool, const QDateTime &, &QTimeZone::isDaylightTime>("isDaylightTime").create();
+  bind::member_function<QTimeZone, bool, const QDateTime &, &QTimeZone::isDaylightTime>(time_zone, "isDaylightTime").create();
   // QTimeZone::OffsetData offsetData(const QDateTime &) const;
   /// TODO: QTimeZone::OffsetData offsetData(const QDateTime &) const;
   // bool hasTransitions() const;
-  binder.fun<bool, &QTimeZone::hasTransitions>("hasTransitions").create();
+  bind::member_function<QTimeZone, bool, &QTimeZone::hasTransitions>(time_zone, "hasTransitions").create();
   // QTimeZone::OffsetData nextTransition(const QDateTime &) const;
   /// TODO: QTimeZone::OffsetData nextTransition(const QDateTime &) const;
   // QTimeZone::OffsetData previousTransition(const QDateTime &) const;
@@ -113,29 +112,29 @@ static void register_time_zone_class(script::Namespace ns)
   // QTimeZone::OffsetDataList transitions(const QDateTime &, const QDateTime &) const;
   /// TODO: QTimeZone::OffsetDataList transitions(const QDateTime &, const QDateTime &) const;
   // static QByteArray systemTimeZoneId();
-  binder.static_fun<QByteArray, &QTimeZone::systemTimeZoneId>("systemTimeZoneId").create();
+  bind::static_member_function<QTimeZone, QByteArray, &QTimeZone::systemTimeZoneId>(time_zone, "systemTimeZoneId").create();
   // static QTimeZone systemTimeZone();
-  binder.static_fun<QTimeZone, &QTimeZone::systemTimeZone>("systemTimeZone").create();
+  bind::static_member_function<QTimeZone, QTimeZone, &QTimeZone::systemTimeZone>(time_zone, "systemTimeZone").create();
   // static QTimeZone utc();
-  binder.static_fun<QTimeZone, &QTimeZone::utc>("utc").create();
+  bind::static_member_function<QTimeZone, QTimeZone, &QTimeZone::utc>(time_zone, "utc").create();
   // static bool isTimeZoneIdAvailable(const QByteArray &);
-  binder.static_fun<bool, const QByteArray &, &QTimeZone::isTimeZoneIdAvailable>("isTimeZoneIdAvailable").create();
+  bind::static_member_function<QTimeZone, bool, const QByteArray &, &QTimeZone::isTimeZoneIdAvailable>(time_zone, "isTimeZoneIdAvailable").create();
   // static QList<QByteArray> availableTimeZoneIds();
-  binder.static_fun<QList<QByteArray>, &QTimeZone::availableTimeZoneIds>("availableTimeZoneIds").create();
+  bind::static_member_function<QTimeZone, QList<QByteArray>, &QTimeZone::availableTimeZoneIds>(time_zone, "availableTimeZoneIds").create();
   // static QList<QByteArray> availableTimeZoneIds(QLocale::Country);
-  binder.static_fun<QList<QByteArray>, QLocale::Country, &QTimeZone::availableTimeZoneIds>("availableTimeZoneIds").create();
+  bind::static_member_function<QTimeZone, QList<QByteArray>, QLocale::Country, &QTimeZone::availableTimeZoneIds>(time_zone, "availableTimeZoneIds").create();
   // static QList<QByteArray> availableTimeZoneIds(int);
-  binder.static_fun<QList<QByteArray>, int, &QTimeZone::availableTimeZoneIds>("availableTimeZoneIds").create();
+  bind::static_member_function<QTimeZone, QList<QByteArray>, int, &QTimeZone::availableTimeZoneIds>(time_zone, "availableTimeZoneIds").create();
   // static QByteArray ianaIdToWindowsId(const QByteArray &);
-  binder.static_fun<QByteArray, const QByteArray &, &QTimeZone::ianaIdToWindowsId>("ianaIdToWindowsId").create();
+  bind::static_member_function<QTimeZone, QByteArray, const QByteArray &, &QTimeZone::ianaIdToWindowsId>(time_zone, "ianaIdToWindowsId").create();
   // static QByteArray windowsIdToDefaultIanaId(const QByteArray &);
-  binder.static_fun<QByteArray, const QByteArray &, &QTimeZone::windowsIdToDefaultIanaId>("windowsIdToDefaultIanaId").create();
+  bind::static_member_function<QTimeZone, QByteArray, const QByteArray &, &QTimeZone::windowsIdToDefaultIanaId>(time_zone, "windowsIdToDefaultIanaId").create();
   // static QByteArray windowsIdToDefaultIanaId(const QByteArray &, QLocale::Country);
-  binder.static_fun<QByteArray, const QByteArray &, QLocale::Country, &QTimeZone::windowsIdToDefaultIanaId>("windowsIdToDefaultIanaId").create();
+  bind::static_member_function<QTimeZone, QByteArray, const QByteArray &, QLocale::Country, &QTimeZone::windowsIdToDefaultIanaId>(time_zone, "windowsIdToDefaultIanaId").create();
   // static QList<QByteArray> windowsIdToIanaIds(const QByteArray &);
-  binder.static_fun<QList<QByteArray>, const QByteArray &, &QTimeZone::windowsIdToIanaIds>("windowsIdToIanaIds").create();
+  bind::static_member_function<QTimeZone, QList<QByteArray>, const QByteArray &, &QTimeZone::windowsIdToIanaIds>(time_zone, "windowsIdToIanaIds").create();
   // static QList<QByteArray> windowsIdToIanaIds(const QByteArray &, QLocale::Country);
-  binder.static_fun<QList<QByteArray>, const QByteArray &, QLocale::Country, &QTimeZone::windowsIdToIanaIds>("windowsIdToIanaIds").create();
+  bind::static_member_function<QTimeZone, QList<QByteArray>, const QByteArray &, QLocale::Country, &QTimeZone::windowsIdToIanaIds>(time_zone, "windowsIdToIanaIds").create();
 }
 
 
@@ -146,14 +145,13 @@ void register_timezone_file(script::Namespace core)
   Namespace ns = core;
 
   register_time_zone_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QTimeZone &, QTimeZone &);
-  binder.void_fun<QTimeZone &, QTimeZone &, &swap>("swap").create();
+  bind::void_function<QTimeZone &, QTimeZone &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QTimeZone &);
-  binder.operators().put_to<QDataStream &, const QTimeZone &>();
+  bind::op_put_to<QDataStream &, const QTimeZone &>(ns);
   // QDataStream & operator>>(QDataStream &, QTimeZone &);
-  binder.operators().read_from<QDataStream &, QTimeZone &>();
+  bind::op_read_from<QDataStream &, QTimeZone &>(ns);
   // QDebug operator<<(QDebug, const QTimeZone &);
   /// TODO: QDebug operator<<(QDebug, const QTimeZone &);
 }

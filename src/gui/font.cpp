@@ -4,10 +4,10 @@
 
 #include "yasl/gui/font.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/gui/font.h"
@@ -189,166 +189,165 @@ static void register_font_class(script::Namespace ns)
   register_font_capitalization_enum(font);
   register_font_spacing_type_enum(font);
   register_font_resolve_properties_enum(font);
-  binding::ClassBinder<QFont> binder{ font };
 
   // QFont();
-  binder.default_ctor().create();
+  bind::default_constructor<QFont>(font).create();
   // QFont(const QString &, int, int, bool);
-  binder.ctor<const QString &, int, int, bool>()
-    .apply(binding::default_arguments(false, -1, -1)).create();
+  bind::constructor<QFont, const QString &, int, int, bool>(font)
+    .apply(bind::default_arguments(false, -1, -1)).create();
   // QFont(const QFont &, QPaintDevice *);
   /// TODO: QFont(const QFont &, QPaintDevice *);
   // QFont(const QFont &);
-  binder.ctor<const QFont &>().create();
+  bind::constructor<QFont, const QFont &>(font).create();
   // ~QFont();
-  binder.dtor().create();
+  bind::destructor<QFont>(font).create();
   // void swap(QFont &);
-  binder.void_fun<QFont &, &QFont::swap>("swap").create();
+  bind::void_member_function<QFont, QFont &, &QFont::swap>(font, "swap").create();
   // QString family() const;
-  binder.fun<QString, &QFont::family>("family").create();
+  bind::member_function<QFont, QString, &QFont::family>(font, "family").create();
   // void setFamily(const QString &);
-  binder.void_fun<const QString &, &QFont::setFamily>("setFamily").create();
+  bind::void_member_function<QFont, const QString &, &QFont::setFamily>(font, "setFamily").create();
   // QString styleName() const;
-  binder.fun<QString, &QFont::styleName>("styleName").create();
+  bind::member_function<QFont, QString, &QFont::styleName>(font, "styleName").create();
   // void setStyleName(const QString &);
-  binder.void_fun<const QString &, &QFont::setStyleName>("setStyleName").create();
+  bind::void_member_function<QFont, const QString &, &QFont::setStyleName>(font, "setStyleName").create();
   // int pointSize() const;
-  binder.fun<int, &QFont::pointSize>("pointSize").create();
+  bind::member_function<QFont, int, &QFont::pointSize>(font, "pointSize").create();
   // void setPointSize(int);
-  binder.void_fun<int, &QFont::setPointSize>("setPointSize").create();
+  bind::void_member_function<QFont, int, &QFont::setPointSize>(font, "setPointSize").create();
   // qreal pointSizeF() const;
-  binder.fun<qreal, &QFont::pointSizeF>("pointSizeF").create();
+  bind::member_function<QFont, qreal, &QFont::pointSizeF>(font, "pointSizeF").create();
   // void setPointSizeF(qreal);
-  binder.void_fun<qreal, &QFont::setPointSizeF>("setPointSizeF").create();
+  bind::void_member_function<QFont, qreal, &QFont::setPointSizeF>(font, "setPointSizeF").create();
   // int pixelSize() const;
-  binder.fun<int, &QFont::pixelSize>("pixelSize").create();
+  bind::member_function<QFont, int, &QFont::pixelSize>(font, "pixelSize").create();
   // void setPixelSize(int);
-  binder.void_fun<int, &QFont::setPixelSize>("setPixelSize").create();
+  bind::void_member_function<QFont, int, &QFont::setPixelSize>(font, "setPixelSize").create();
   // int weight() const;
-  binder.fun<int, &QFont::weight>("weight").create();
+  bind::member_function<QFont, int, &QFont::weight>(font, "weight").create();
   // void setWeight(int);
-  binder.void_fun<int, &QFont::setWeight>("setWeight").create();
+  bind::void_member_function<QFont, int, &QFont::setWeight>(font, "setWeight").create();
   // bool bold() const;
-  binder.fun<bool, &QFont::bold>("bold").create();
+  bind::member_function<QFont, bool, &QFont::bold>(font, "bold").create();
   // void setBold(bool);
-  binder.void_fun<bool, &QFont::setBold>("setBold").create();
+  bind::void_member_function<QFont, bool, &QFont::setBold>(font, "setBold").create();
   // void setStyle(QFont::Style);
-  binder.void_fun<QFont::Style, &QFont::setStyle>("setStyle").create();
+  bind::void_member_function<QFont, QFont::Style, &QFont::setStyle>(font, "setStyle").create();
   // QFont::Style style() const;
-  binder.fun<QFont::Style, &QFont::style>("style").create();
+  bind::member_function<QFont, QFont::Style, &QFont::style>(font, "style").create();
   // bool italic() const;
-  binder.fun<bool, &QFont::italic>("italic").create();
+  bind::member_function<QFont, bool, &QFont::italic>(font, "italic").create();
   // void setItalic(bool);
-  binder.void_fun<bool, &QFont::setItalic>("setItalic").create();
+  bind::void_member_function<QFont, bool, &QFont::setItalic>(font, "setItalic").create();
   // bool underline() const;
-  binder.fun<bool, &QFont::underline>("underline").create();
+  bind::member_function<QFont, bool, &QFont::underline>(font, "underline").create();
   // void setUnderline(bool);
-  binder.void_fun<bool, &QFont::setUnderline>("setUnderline").create();
+  bind::void_member_function<QFont, bool, &QFont::setUnderline>(font, "setUnderline").create();
   // bool overline() const;
-  binder.fun<bool, &QFont::overline>("overline").create();
+  bind::member_function<QFont, bool, &QFont::overline>(font, "overline").create();
   // void setOverline(bool);
-  binder.void_fun<bool, &QFont::setOverline>("setOverline").create();
+  bind::void_member_function<QFont, bool, &QFont::setOverline>(font, "setOverline").create();
   // bool strikeOut() const;
-  binder.fun<bool, &QFont::strikeOut>("strikeOut").create();
+  bind::member_function<QFont, bool, &QFont::strikeOut>(font, "strikeOut").create();
   // void setStrikeOut(bool);
-  binder.void_fun<bool, &QFont::setStrikeOut>("setStrikeOut").create();
+  bind::void_member_function<QFont, bool, &QFont::setStrikeOut>(font, "setStrikeOut").create();
   // bool fixedPitch() const;
-  binder.fun<bool, &QFont::fixedPitch>("fixedPitch").create();
+  bind::member_function<QFont, bool, &QFont::fixedPitch>(font, "fixedPitch").create();
   // void setFixedPitch(bool);
-  binder.void_fun<bool, &QFont::setFixedPitch>("setFixedPitch").create();
+  bind::void_member_function<QFont, bool, &QFont::setFixedPitch>(font, "setFixedPitch").create();
   // bool kerning() const;
-  binder.fun<bool, &QFont::kerning>("kerning").create();
+  bind::member_function<QFont, bool, &QFont::kerning>(font, "kerning").create();
   // void setKerning(bool);
-  binder.void_fun<bool, &QFont::setKerning>("setKerning").create();
+  bind::void_member_function<QFont, bool, &QFont::setKerning>(font, "setKerning").create();
   // QFont::StyleHint styleHint() const;
-  binder.fun<QFont::StyleHint, &QFont::styleHint>("styleHint").create();
+  bind::member_function<QFont, QFont::StyleHint, &QFont::styleHint>(font, "styleHint").create();
   // QFont::StyleStrategy styleStrategy() const;
-  binder.fun<QFont::StyleStrategy, &QFont::styleStrategy>("styleStrategy").create();
+  bind::member_function<QFont, QFont::StyleStrategy, &QFont::styleStrategy>(font, "styleStrategy").create();
   // void setStyleHint(QFont::StyleHint, QFont::StyleStrategy);
-  binder.void_fun<QFont::StyleHint, QFont::StyleStrategy, &QFont::setStyleHint>("setStyleHint")
-    .apply(binding::default_arguments(QFont::PreferDefault)).create();
+  bind::void_member_function<QFont, QFont::StyleHint, QFont::StyleStrategy, &QFont::setStyleHint>(font, "setStyleHint")
+    .apply(bind::default_arguments(QFont::PreferDefault)).create();
   // void setStyleStrategy(QFont::StyleStrategy);
-  binder.void_fun<QFont::StyleStrategy, &QFont::setStyleStrategy>("setStyleStrategy").create();
+  bind::void_member_function<QFont, QFont::StyleStrategy, &QFont::setStyleStrategy>(font, "setStyleStrategy").create();
   // int stretch() const;
-  binder.fun<int, &QFont::stretch>("stretch").create();
+  bind::member_function<QFont, int, &QFont::stretch>(font, "stretch").create();
   // void setStretch(int);
-  binder.void_fun<int, &QFont::setStretch>("setStretch").create();
+  bind::void_member_function<QFont, int, &QFont::setStretch>(font, "setStretch").create();
   // qreal letterSpacing() const;
-  binder.fun<qreal, &QFont::letterSpacing>("letterSpacing").create();
+  bind::member_function<QFont, qreal, &QFont::letterSpacing>(font, "letterSpacing").create();
   // QFont::SpacingType letterSpacingType() const;
-  binder.fun<QFont::SpacingType, &QFont::letterSpacingType>("letterSpacingType").create();
+  bind::member_function<QFont, QFont::SpacingType, &QFont::letterSpacingType>(font, "letterSpacingType").create();
   // void setLetterSpacing(QFont::SpacingType, qreal);
-  binder.void_fun<QFont::SpacingType, qreal, &QFont::setLetterSpacing>("setLetterSpacing").create();
+  bind::void_member_function<QFont, QFont::SpacingType, qreal, &QFont::setLetterSpacing>(font, "setLetterSpacing").create();
   // qreal wordSpacing() const;
-  binder.fun<qreal, &QFont::wordSpacing>("wordSpacing").create();
+  bind::member_function<QFont, qreal, &QFont::wordSpacing>(font, "wordSpacing").create();
   // void setWordSpacing(qreal);
-  binder.void_fun<qreal, &QFont::setWordSpacing>("setWordSpacing").create();
+  bind::void_member_function<QFont, qreal, &QFont::setWordSpacing>(font, "setWordSpacing").create();
   // void setCapitalization(QFont::Capitalization);
-  binder.void_fun<QFont::Capitalization, &QFont::setCapitalization>("setCapitalization").create();
+  bind::void_member_function<QFont, QFont::Capitalization, &QFont::setCapitalization>(font, "setCapitalization").create();
   // QFont::Capitalization capitalization() const;
-  binder.fun<QFont::Capitalization, &QFont::capitalization>("capitalization").create();
+  bind::member_function<QFont, QFont::Capitalization, &QFont::capitalization>(font, "capitalization").create();
   // void setHintingPreference(QFont::HintingPreference);
-  binder.void_fun<QFont::HintingPreference, &QFont::setHintingPreference>("setHintingPreference").create();
+  bind::void_member_function<QFont, QFont::HintingPreference, &QFont::setHintingPreference>(font, "setHintingPreference").create();
   // QFont::HintingPreference hintingPreference() const;
-  binder.fun<QFont::HintingPreference, &QFont::hintingPreference>("hintingPreference").create();
+  bind::member_function<QFont, QFont::HintingPreference, &QFont::hintingPreference>(font, "hintingPreference").create();
   // bool rawMode() const;
-  binder.fun<bool, &QFont::rawMode>("rawMode").create();
+  bind::member_function<QFont, bool, &QFont::rawMode>(font, "rawMode").create();
   // void setRawMode(bool);
-  binder.void_fun<bool, &QFont::setRawMode>("setRawMode").create();
+  bind::void_member_function<QFont, bool, &QFont::setRawMode>(font, "setRawMode").create();
   // bool exactMatch() const;
-  binder.fun<bool, &QFont::exactMatch>("exactMatch").create();
+  bind::member_function<QFont, bool, &QFont::exactMatch>(font, "exactMatch").create();
   // QFont & operator=(const QFont &);
-  binder.operators().assign<const QFont &>();
+  bind::memop_assign<QFont, const QFont &>(font);
   // bool operator==(const QFont &) const;
-  binder.operators().eq<const QFont &>();
+  bind::memop_eq<QFont, const QFont &>(font);
   // bool operator!=(const QFont &) const;
-  binder.operators().neq<const QFont &>();
+  bind::memop_neq<QFont, const QFont &>(font);
   // bool operator<(const QFont &) const;
-  binder.operators().less<const QFont &>();
+  bind::memop_less<QFont, const QFont &>(font);
   // bool isCopyOf(const QFont &) const;
-  binder.fun<bool, const QFont &, &QFont::isCopyOf>("isCopyOf").create();
+  bind::member_function<QFont, bool, const QFont &, &QFont::isCopyOf>(font, "isCopyOf").create();
   // QFont & operator=(QFont &&);
-  binder.operators().assign<QFont &&>();
+  bind::memop_assign<QFont, QFont &&>(font);
   // void setRawName(const QString &);
-  binder.void_fun<const QString &, &QFont::setRawName>("setRawName").create();
+  bind::void_member_function<QFont, const QString &, &QFont::setRawName>(font, "setRawName").create();
   // QString rawName() const;
-  binder.fun<QString, &QFont::rawName>("rawName").create();
+  bind::member_function<QFont, QString, &QFont::rawName>(font, "rawName").create();
   // QString key() const;
-  binder.fun<QString, &QFont::key>("key").create();
+  bind::member_function<QFont, QString, &QFont::key>(font, "key").create();
   // QString toString() const;
-  binder.fun<QString, &QFont::toString>("toString").create();
+  bind::member_function<QFont, QString, &QFont::toString>(font, "toString").create();
   // bool fromString(const QString &);
-  binder.fun<bool, const QString &, &QFont::fromString>("fromString").create();
+  bind::member_function<QFont, bool, const QString &, &QFont::fromString>(font, "fromString").create();
   // static QString substitute(const QString &);
-  binder.static_fun<QString, const QString &, &QFont::substitute>("substitute").create();
+  bind::static_member_function<QFont, QString, const QString &, &QFont::substitute>(font, "substitute").create();
   // static QStringList substitutes(const QString &);
   /// TODO: static QStringList substitutes(const QString &);
   // static QStringList substitutions();
   /// TODO: static QStringList substitutions();
   // static void insertSubstitution(const QString &, const QString &);
-  binder.static_void_fun<const QString &, const QString &, &QFont::insertSubstitution>("insertSubstitution").create();
+  bind::static_void_member_function<QFont, const QString &, const QString &, &QFont::insertSubstitution>(font, "insertSubstitution").create();
   // static void insertSubstitutions(const QString &, const QStringList &);
   /// TODO: static void insertSubstitutions(const QString &, const QStringList &);
   // static void removeSubstitutions(const QString &);
-  binder.static_void_fun<const QString &, &QFont::removeSubstitutions>("removeSubstitutions").create();
+  bind::static_void_member_function<QFont, const QString &, &QFont::removeSubstitutions>(font, "removeSubstitutions").create();
   // static void initialize();
-  binder.static_void_fun<&QFont::initialize>("initialize").create();
+  bind::static_void_member_function<QFont, &QFont::initialize>(font, "initialize").create();
   // static void cleanup();
-  binder.static_void_fun<&QFont::cleanup>("cleanup").create();
+  bind::static_void_member_function<QFont, &QFont::cleanup>(font, "cleanup").create();
   // static void cacheStatistics();
-  binder.static_void_fun<&QFont::cacheStatistics>("cacheStatistics").create();
+  bind::static_void_member_function<QFont, &QFont::cacheStatistics>(font, "cacheStatistics").create();
   // QString defaultFamily() const;
-  binder.fun<QString, &QFont::defaultFamily>("defaultFamily").create();
+  bind::member_function<QFont, QString, &QFont::defaultFamily>(font, "defaultFamily").create();
   // QString lastResortFamily() const;
-  binder.fun<QString, &QFont::lastResortFamily>("lastResortFamily").create();
+  bind::member_function<QFont, QString, &QFont::lastResortFamily>(font, "lastResortFamily").create();
   // QString lastResortFont() const;
-  binder.fun<QString, &QFont::lastResortFont>("lastResortFont").create();
+  bind::member_function<QFont, QString, &QFont::lastResortFont>(font, "lastResortFont").create();
   // QFont resolve(const QFont &) const;
-  binder.fun<QFont, const QFont &, &QFont::resolve>("resolve").create();
+  bind::member_function<QFont, QFont, const QFont &, &QFont::resolve>(font, "resolve").create();
   // uint resolve() const;
-  binder.fun<uint, &QFont::resolve>("resolve").create();
+  bind::member_function<QFont, uint, &QFont::resolve>(font, "resolve").create();
   // void resolve(uint);
-  binder.void_fun<uint, &QFont::resolve>("resolve").create();
+  bind::void_member_function<QFont, uint, &QFont::resolve>(font, "resolve").create();
 }
 
 
@@ -359,16 +358,15 @@ void register_font_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_font_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QFont &, QFont &);
-  binder.void_fun<QFont &, QFont &, &swap>("swap").create();
+  bind::void_function<QFont &, QFont &, &swap>(ns, "swap").create();
   // uint qHash(const QFont &, uint);
-  binder.fun<uint, const QFont &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QFont &, uint, &qHash>(ns, "qHash").create();
   // QDataStream & operator<<(QDataStream &, const QFont &);
-  binder.operators().put_to<QDataStream &, const QFont &>();
+  bind::op_put_to<QDataStream &, const QFont &>(ns);
   // QDataStream & operator>>(QDataStream &, QFont &);
-  binder.operators().read_from<QDataStream &, QFont &>();
+  bind::op_read_from<QDataStream &, QFont &>(ns);
   // QDebug operator<<(QDebug, const QFont &);
   /// TODO: QDebug operator<<(QDebug, const QFont &);
 }

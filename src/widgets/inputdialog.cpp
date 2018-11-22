@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/inputdialog.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/object.h"
@@ -53,97 +53,96 @@ static void register_input_dialog_class(script::Namespace ns)
 
   register_input_dialog_input_dialog_option_enum(input_dialog);
   register_input_dialog_input_mode_enum(input_dialog);
-  binding::ClassBinder<QInputDialog> binder{ input_dialog, &QInputDialog::staticMetaObject };
 
   // QInputDialog(QWidget *, Qt::WindowFlags);
   /// TODO: QInputDialog(QWidget *, Qt::WindowFlags);
   // ~QInputDialog();
-  binder.dtor().create();
+  bind::destructor<QInputDialog>(input_dialog).create();
   // void setInputMode(QInputDialog::InputMode);
-  binder.void_fun<QInputDialog::InputMode, &QInputDialog::setInputMode>("setInputMode").create();
+  bind::void_member_function<QInputDialog, QInputDialog::InputMode, &QInputDialog::setInputMode>(input_dialog, "setInputMode").create();
   // QInputDialog::InputMode inputMode() const;
-  binder.fun<QInputDialog::InputMode, &QInputDialog::inputMode>("inputMode").create();
+  bind::member_function<QInputDialog, QInputDialog::InputMode, &QInputDialog::inputMode>(input_dialog, "inputMode").create();
   // void setLabelText(const QString &);
-  binder.void_fun<const QString &, &QInputDialog::setLabelText>("setLabelText").create();
+  bind::void_member_function<QInputDialog, const QString &, &QInputDialog::setLabelText>(input_dialog, "setLabelText").create();
   // QString labelText() const;
-  binder.fun<QString, &QInputDialog::labelText>("labelText").create();
+  bind::member_function<QInputDialog, QString, &QInputDialog::labelText>(input_dialog, "labelText").create();
   // void setOption(QInputDialog::InputDialogOption, bool);
-  binder.void_fun<QInputDialog::InputDialogOption, bool, &QInputDialog::setOption>("setOption")
-    .apply(binding::default_arguments(true)).create();
+  bind::void_member_function<QInputDialog, QInputDialog::InputDialogOption, bool, &QInputDialog::setOption>(input_dialog, "setOption")
+    .apply(bind::default_arguments(true)).create();
   // bool testOption(QInputDialog::InputDialogOption) const;
-  binder.fun<bool, QInputDialog::InputDialogOption, &QInputDialog::testOption>("testOption").create();
+  bind::member_function<QInputDialog, bool, QInputDialog::InputDialogOption, &QInputDialog::testOption>(input_dialog, "testOption").create();
   // void setOptions(QInputDialog::InputDialogOptions);
-  binder.void_fun<QInputDialog::InputDialogOptions, &QInputDialog::setOptions>("setOptions").create();
+  bind::void_member_function<QInputDialog, QInputDialog::InputDialogOptions, &QInputDialog::setOptions>(input_dialog, "setOptions").create();
   // QInputDialog::InputDialogOptions options() const;
-  binder.fun<QInputDialog::InputDialogOptions, &QInputDialog::options>("options").create();
+  bind::member_function<QInputDialog, QInputDialog::InputDialogOptions, &QInputDialog::options>(input_dialog, "options").create();
   // void setTextValue(const QString &);
-  binder.void_fun<const QString &, &QInputDialog::setTextValue>("setTextValue").create();
+  bind::void_member_function<QInputDialog, const QString &, &QInputDialog::setTextValue>(input_dialog, "setTextValue").create();
   // QString textValue() const;
-  binder.fun<QString, &QInputDialog::textValue>("textValue").create();
+  bind::member_function<QInputDialog, QString, &QInputDialog::textValue>(input_dialog, "textValue").create();
   // void setTextEchoMode(QLineEdit::EchoMode);
-  binder.void_fun<QLineEdit::EchoMode, &QInputDialog::setTextEchoMode>("setTextEchoMode").create();
+  bind::void_member_function<QInputDialog, QLineEdit::EchoMode, &QInputDialog::setTextEchoMode>(input_dialog, "setTextEchoMode").create();
   // QLineEdit::EchoMode textEchoMode() const;
-  binder.fun<QLineEdit::EchoMode, &QInputDialog::textEchoMode>("textEchoMode").create();
+  bind::member_function<QInputDialog, QLineEdit::EchoMode, &QInputDialog::textEchoMode>(input_dialog, "textEchoMode").create();
   // void setComboBoxEditable(bool);
-  binder.void_fun<bool, &QInputDialog::setComboBoxEditable>("setComboBoxEditable").create();
+  bind::void_member_function<QInputDialog, bool, &QInputDialog::setComboBoxEditable>(input_dialog, "setComboBoxEditable").create();
   // bool isComboBoxEditable() const;
-  binder.fun<bool, &QInputDialog::isComboBoxEditable>("isComboBoxEditable").create();
+  bind::member_function<QInputDialog, bool, &QInputDialog::isComboBoxEditable>(input_dialog, "isComboBoxEditable").create();
   // void setComboBoxItems(const QStringList &);
   /// TODO: void setComboBoxItems(const QStringList &);
   // QStringList comboBoxItems() const;
   /// TODO: QStringList comboBoxItems() const;
   // void setIntValue(int);
-  binder.void_fun<int, &QInputDialog::setIntValue>("setIntValue").create();
+  bind::void_member_function<QInputDialog, int, &QInputDialog::setIntValue>(input_dialog, "setIntValue").create();
   // int intValue() const;
-  binder.fun<int, &QInputDialog::intValue>("intValue").create();
+  bind::member_function<QInputDialog, int, &QInputDialog::intValue>(input_dialog, "intValue").create();
   // void setIntMinimum(int);
-  binder.void_fun<int, &QInputDialog::setIntMinimum>("setIntMinimum").create();
+  bind::void_member_function<QInputDialog, int, &QInputDialog::setIntMinimum>(input_dialog, "setIntMinimum").create();
   // int intMinimum() const;
-  binder.fun<int, &QInputDialog::intMinimum>("intMinimum").create();
+  bind::member_function<QInputDialog, int, &QInputDialog::intMinimum>(input_dialog, "intMinimum").create();
   // void setIntMaximum(int);
-  binder.void_fun<int, &QInputDialog::setIntMaximum>("setIntMaximum").create();
+  bind::void_member_function<QInputDialog, int, &QInputDialog::setIntMaximum>(input_dialog, "setIntMaximum").create();
   // int intMaximum() const;
-  binder.fun<int, &QInputDialog::intMaximum>("intMaximum").create();
+  bind::member_function<QInputDialog, int, &QInputDialog::intMaximum>(input_dialog, "intMaximum").create();
   // void setIntRange(int, int);
-  binder.void_fun<int, int, &QInputDialog::setIntRange>("setIntRange").create();
+  bind::void_member_function<QInputDialog, int, int, &QInputDialog::setIntRange>(input_dialog, "setIntRange").create();
   // void setIntStep(int);
-  binder.void_fun<int, &QInputDialog::setIntStep>("setIntStep").create();
+  bind::void_member_function<QInputDialog, int, &QInputDialog::setIntStep>(input_dialog, "setIntStep").create();
   // int intStep() const;
-  binder.fun<int, &QInputDialog::intStep>("intStep").create();
+  bind::member_function<QInputDialog, int, &QInputDialog::intStep>(input_dialog, "intStep").create();
   // void setDoubleValue(double);
-  binder.void_fun<double, &QInputDialog::setDoubleValue>("setDoubleValue").create();
+  bind::void_member_function<QInputDialog, double, &QInputDialog::setDoubleValue>(input_dialog, "setDoubleValue").create();
   // double doubleValue() const;
-  binder.fun<double, &QInputDialog::doubleValue>("doubleValue").create();
+  bind::member_function<QInputDialog, double, &QInputDialog::doubleValue>(input_dialog, "doubleValue").create();
   // void setDoubleMinimum(double);
-  binder.void_fun<double, &QInputDialog::setDoubleMinimum>("setDoubleMinimum").create();
+  bind::void_member_function<QInputDialog, double, &QInputDialog::setDoubleMinimum>(input_dialog, "setDoubleMinimum").create();
   // double doubleMinimum() const;
-  binder.fun<double, &QInputDialog::doubleMinimum>("doubleMinimum").create();
+  bind::member_function<QInputDialog, double, &QInputDialog::doubleMinimum>(input_dialog, "doubleMinimum").create();
   // void setDoubleMaximum(double);
-  binder.void_fun<double, &QInputDialog::setDoubleMaximum>("setDoubleMaximum").create();
+  bind::void_member_function<QInputDialog, double, &QInputDialog::setDoubleMaximum>(input_dialog, "setDoubleMaximum").create();
   // double doubleMaximum() const;
-  binder.fun<double, &QInputDialog::doubleMaximum>("doubleMaximum").create();
+  bind::member_function<QInputDialog, double, &QInputDialog::doubleMaximum>(input_dialog, "doubleMaximum").create();
   // void setDoubleRange(double, double);
-  binder.void_fun<double, double, &QInputDialog::setDoubleRange>("setDoubleRange").create();
+  bind::void_member_function<QInputDialog, double, double, &QInputDialog::setDoubleRange>(input_dialog, "setDoubleRange").create();
   // void setDoubleDecimals(int);
-  binder.void_fun<int, &QInputDialog::setDoubleDecimals>("setDoubleDecimals").create();
+  bind::void_member_function<QInputDialog, int, &QInputDialog::setDoubleDecimals>(input_dialog, "setDoubleDecimals").create();
   // int doubleDecimals() const;
-  binder.fun<int, &QInputDialog::doubleDecimals>("doubleDecimals").create();
+  bind::member_function<QInputDialog, int, &QInputDialog::doubleDecimals>(input_dialog, "doubleDecimals").create();
   // void setOkButtonText(const QString &);
-  binder.void_fun<const QString &, &QInputDialog::setOkButtonText>("setOkButtonText").create();
+  bind::void_member_function<QInputDialog, const QString &, &QInputDialog::setOkButtonText>(input_dialog, "setOkButtonText").create();
   // QString okButtonText() const;
-  binder.fun<QString, &QInputDialog::okButtonText>("okButtonText").create();
+  bind::member_function<QInputDialog, QString, &QInputDialog::okButtonText>(input_dialog, "okButtonText").create();
   // void setCancelButtonText(const QString &);
-  binder.void_fun<const QString &, &QInputDialog::setCancelButtonText>("setCancelButtonText").create();
+  bind::void_member_function<QInputDialog, const QString &, &QInputDialog::setCancelButtonText>(input_dialog, "setCancelButtonText").create();
   // QString cancelButtonText() const;
-  binder.fun<QString, &QInputDialog::cancelButtonText>("cancelButtonText").create();
+  bind::member_function<QInputDialog, QString, &QInputDialog::cancelButtonText>(input_dialog, "cancelButtonText").create();
   // void open(QObject *, const char *);
   /// TODO: void open(QObject *, const char *);
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QInputDialog::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QInputDialog, QSize, &QInputDialog::minimumSizeHint>(input_dialog, "minimumSizeHint").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QInputDialog::sizeHint>("sizeHint").create();
+  bind::member_function<QInputDialog, QSize, &QInputDialog::sizeHint>(input_dialog, "sizeHint").create();
   // void setVisible(bool);
-  binder.void_fun<bool, &QInputDialog::setVisible>("setVisible").create();
+  bind::void_member_function<QInputDialog, bool, &QInputDialog::setVisible>(input_dialog, "setVisible").create();
   // static QString getText(QWidget *, const QString &, const QString &, QLineEdit::EchoMode, const QString &, bool *, Qt::WindowFlags, Qt::InputMethodHints);
   /// TODO: static QString getText(QWidget *, const QString &, const QString &, QLineEdit::EchoMode, const QString &, bool *, Qt::WindowFlags, Qt::InputMethodHints);
   // static QString getMultiLineText(QWidget *, const QString &, const QString &, const QString &, bool *, Qt::WindowFlags, Qt::InputMethodHints);
@@ -157,25 +156,25 @@ static void register_input_dialog_class(script::Namespace ns)
   // static double getDouble(QWidget *, const QString &, const QString &, double, double, double, int, bool *, Qt::WindowFlags, double);
   /// TODO: static double getDouble(QWidget *, const QString &, const QString &, double, double, double, int, bool *, Qt::WindowFlags, double);
   // void setDoubleStep(double);
-  binder.void_fun<double, &QInputDialog::setDoubleStep>("setDoubleStep").create();
+  bind::void_member_function<QInputDialog, double, &QInputDialog::setDoubleStep>(input_dialog, "setDoubleStep").create();
   // double doubleStep() const;
-  binder.fun<double, &QInputDialog::doubleStep>("doubleStep").create();
+  bind::member_function<QInputDialog, double, &QInputDialog::doubleStep>(input_dialog, "doubleStep").create();
   // void textValueChanged(const QString &);
-  binder.sigs().add<const QString &>("textValueChanged", "textValueChanged(const QString &)");
+  bind::signal<QInputDialog, const QString &>(input_dialog, "textValueChanged", "textValueChanged(const QString &)");
   // void textValueSelected(const QString &);
-  binder.sigs().add<const QString &>("textValueSelected", "textValueSelected(const QString &)");
+  bind::signal<QInputDialog, const QString &>(input_dialog, "textValueSelected", "textValueSelected(const QString &)");
   // void intValueChanged(int);
-  binder.sigs().add<int>("intValueChanged", "intValueChanged(int)");
+  bind::signal<QInputDialog, int>(input_dialog, "intValueChanged", "intValueChanged(int)");
   // void intValueSelected(int);
-  binder.sigs().add<int>("intValueSelected", "intValueSelected(int)");
+  bind::signal<QInputDialog, int>(input_dialog, "intValueSelected", "intValueSelected(int)");
   // void doubleValueChanged(double);
-  binder.sigs().add<double>("doubleValueChanged", "doubleValueChanged(double)");
+  bind::signal<QInputDialog, double>(input_dialog, "doubleValueChanged", "doubleValueChanged(double)");
   // void doubleValueSelected(double);
-  binder.sigs().add<double>("doubleValueSelected", "doubleValueSelected(double)");
+  bind::signal<QInputDialog, double>(input_dialog, "doubleValueSelected", "doubleValueSelected(double)");
   // void done(int);
-  binder.void_fun<int, &QInputDialog::done>("done").create();
+  bind::void_member_function<QInputDialog, int, &QInputDialog::done>(input_dialog, "done").create();
 
-  input_dialog.engine()->registerQtType(&QInputDialog::staticMetaObject, input_dialog.id());
+  bind::link(input_dialog, &QInputDialog::staticMetaObject);
 }
 
 
@@ -186,12 +185,11 @@ void register_inputdialog_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_input_dialog_class(ns);
-  binding::Namespace binder{ ns };
 
   // QInputDialog::InputDialogOptions operator|(QInputDialog::InputDialogOption, QInputDialog::InputDialogOption);
-  binder.operators().or<QInputDialog::InputDialogOptions, QInputDialog::InputDialogOption, QInputDialog::InputDialogOption>();
+  bind::op_bitor<QInputDialog::InputDialogOptions, QInputDialog::InputDialogOption, QInputDialog::InputDialogOption>(ns);
   // QInputDialog::InputDialogOptions operator|(QInputDialog::InputDialogOption, QInputDialog::InputDialogOptions);
-  binder.operators().or<QInputDialog::InputDialogOptions, QInputDialog::InputDialogOption, QInputDialog::InputDialogOptions>();
+  bind::op_bitor<QInputDialog::InputDialogOptions, QInputDialog::InputDialogOption, QInputDialog::InputDialogOptions>(ns);
   // QIncompatibleFlag operator|(QInputDialog::InputDialogOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QInputDialog::InputDialogOptions::enum_type, int);
 }

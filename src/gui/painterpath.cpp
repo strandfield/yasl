@@ -4,10 +4,10 @@
 
 #include "yasl/gui/painterpath.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -42,109 +42,108 @@ static void register_painter_path_class(script::Namespace ns)
   Class painter_path = ns.newClass("PainterPath").setId(script::Type::QPainterPath).get();
 
   register_painter_path_element_type_enum(painter_path);
-  binding::ClassBinder<QPainterPath> binder{ painter_path };
 
   // QPainterPath();
-  binder.default_ctor().create();
+  bind::default_constructor<QPainterPath>(painter_path).create();
   // QPainterPath(const QPointF &);
-  binder.ctor<const QPointF &>().create();
+  bind::constructor<QPainterPath, const QPointF &>(painter_path).create();
   // QPainterPath(const QPainterPath &);
-  binder.ctor<const QPainterPath &>().create();
+  bind::constructor<QPainterPath, const QPainterPath &>(painter_path).create();
   // QPainterPath & operator=(const QPainterPath &);
-  binder.operators().assign<const QPainterPath &>();
+  bind::memop_assign<QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath & operator=(QPainterPath &&);
-  binder.operators().assign<QPainterPath &&>();
+  bind::memop_assign<QPainterPath, QPainterPath &&>(painter_path);
   // ~QPainterPath();
-  binder.dtor().create();
+  bind::destructor<QPainterPath>(painter_path).create();
   // void swap(QPainterPath &);
-  binder.void_fun<QPainterPath &, &QPainterPath::swap>("swap").create();
+  bind::void_member_function<QPainterPath, QPainterPath &, &QPainterPath::swap>(painter_path, "swap").create();
   // void closeSubpath();
-  binder.void_fun<&QPainterPath::closeSubpath>("closeSubpath").create();
+  bind::void_member_function<QPainterPath, &QPainterPath::closeSubpath>(painter_path, "closeSubpath").create();
   // void moveTo(const QPointF &);
-  binder.void_fun<const QPointF &, &QPainterPath::moveTo>("moveTo").create();
+  bind::void_member_function<QPainterPath, const QPointF &, &QPainterPath::moveTo>(painter_path, "moveTo").create();
   // void moveTo(qreal, qreal);
-  binder.void_fun<qreal, qreal, &QPainterPath::moveTo>("moveTo").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, &QPainterPath::moveTo>(painter_path, "moveTo").create();
   // void lineTo(const QPointF &);
-  binder.void_fun<const QPointF &, &QPainterPath::lineTo>("lineTo").create();
+  bind::void_member_function<QPainterPath, const QPointF &, &QPainterPath::lineTo>(painter_path, "lineTo").create();
   // void lineTo(qreal, qreal);
-  binder.void_fun<qreal, qreal, &QPainterPath::lineTo>("lineTo").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, &QPainterPath::lineTo>(painter_path, "lineTo").create();
   // void arcMoveTo(const QRectF &, qreal);
-  binder.void_fun<const QRectF &, qreal, &QPainterPath::arcMoveTo>("arcMoveTo").create();
+  bind::void_member_function<QPainterPath, const QRectF &, qreal, &QPainterPath::arcMoveTo>(painter_path, "arcMoveTo").create();
   // void arcMoveTo(qreal, qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, qreal, &QPainterPath::arcMoveTo>("arcMoveTo").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, qreal, qreal, qreal, &QPainterPath::arcMoveTo>(painter_path, "arcMoveTo").create();
   // void arcTo(const QRectF &, qreal, qreal);
-  binder.void_fun<const QRectF &, qreal, qreal, &QPainterPath::arcTo>("arcTo").create();
+  bind::void_member_function<QPainterPath, const QRectF &, qreal, qreal, &QPainterPath::arcTo>(painter_path, "arcTo").create();
   // void arcTo(qreal, qreal, qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, qreal, qreal, &QPainterPath::arcTo>("arcTo").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, qreal, qreal, qreal, qreal, &QPainterPath::arcTo>(painter_path, "arcTo").create();
   // void cubicTo(const QPointF &, const QPointF &, const QPointF &);
-  binder.void_fun<const QPointF &, const QPointF &, const QPointF &, &QPainterPath::cubicTo>("cubicTo").create();
+  bind::void_member_function<QPainterPath, const QPointF &, const QPointF &, const QPointF &, &QPainterPath::cubicTo>(painter_path, "cubicTo").create();
   // void cubicTo(qreal, qreal, qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, qreal, qreal, &QPainterPath::cubicTo>("cubicTo").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, qreal, qreal, qreal, qreal, &QPainterPath::cubicTo>(painter_path, "cubicTo").create();
   // void quadTo(const QPointF &, const QPointF &);
-  binder.void_fun<const QPointF &, const QPointF &, &QPainterPath::quadTo>("quadTo").create();
+  bind::void_member_function<QPainterPath, const QPointF &, const QPointF &, &QPainterPath::quadTo>(painter_path, "quadTo").create();
   // void quadTo(qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, &QPainterPath::quadTo>("quadTo").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, qreal, qreal, &QPainterPath::quadTo>(painter_path, "quadTo").create();
   // QPointF currentPosition() const;
-  binder.fun<QPointF, &QPainterPath::currentPosition>("currentPosition").create();
+  bind::member_function<QPainterPath, QPointF, &QPainterPath::currentPosition>(painter_path, "currentPosition").create();
   // void addRect(const QRectF &);
-  binder.void_fun<const QRectF &, &QPainterPath::addRect>("addRect").create();
+  bind::void_member_function<QPainterPath, const QRectF &, &QPainterPath::addRect>(painter_path, "addRect").create();
   // void addRect(qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, &QPainterPath::addRect>("addRect").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, qreal, qreal, &QPainterPath::addRect>(painter_path, "addRect").create();
   // void addEllipse(const QRectF &);
-  binder.void_fun<const QRectF &, &QPainterPath::addEllipse>("addEllipse").create();
+  bind::void_member_function<QPainterPath, const QRectF &, &QPainterPath::addEllipse>(painter_path, "addEllipse").create();
   // void addEllipse(qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, &QPainterPath::addEllipse>("addEllipse").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, qreal, qreal, &QPainterPath::addEllipse>(painter_path, "addEllipse").create();
   // void addEllipse(const QPointF &, qreal, qreal);
-  binder.void_fun<const QPointF &, qreal, qreal, &QPainterPath::addEllipse>("addEllipse").create();
+  bind::void_member_function<QPainterPath, const QPointF &, qreal, qreal, &QPainterPath::addEllipse>(painter_path, "addEllipse").create();
   // void addPolygon(const QPolygonF &);
   /// TODO: void addPolygon(const QPolygonF &);
   // void addText(const QPointF &, const QFont &, const QString &);
-  binder.void_fun<const QPointF &, const QFont &, const QString &, &QPainterPath::addText>("addText").create();
+  bind::void_member_function<QPainterPath, const QPointF &, const QFont &, const QString &, &QPainterPath::addText>(painter_path, "addText").create();
   // void addText(qreal, qreal, const QFont &, const QString &);
-  binder.void_fun<qreal, qreal, const QFont &, const QString &, &QPainterPath::addText>("addText").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, const QFont &, const QString &, &QPainterPath::addText>(painter_path, "addText").create();
   // void addPath(const QPainterPath &);
-  binder.void_fun<const QPainterPath &, &QPainterPath::addPath>("addPath").create();
+  bind::void_member_function<QPainterPath, const QPainterPath &, &QPainterPath::addPath>(painter_path, "addPath").create();
   // void addRegion(const QRegion &);
-  binder.void_fun<const QRegion &, &QPainterPath::addRegion>("addRegion").create();
+  bind::void_member_function<QPainterPath, const QRegion &, &QPainterPath::addRegion>(painter_path, "addRegion").create();
   // void addRoundedRect(const QRectF &, qreal, qreal, Qt::SizeMode);
-  binder.void_fun<const QRectF &, qreal, qreal, Qt::SizeMode, &QPainterPath::addRoundedRect>("addRoundedRect")
-    .apply(binding::default_arguments(Qt::AbsoluteSize)).create();
+  bind::void_member_function<QPainterPath, const QRectF &, qreal, qreal, Qt::SizeMode, &QPainterPath::addRoundedRect>(painter_path, "addRoundedRect")
+    .apply(bind::default_arguments(Qt::AbsoluteSize)).create();
   // void addRoundRect(const QRectF &, int, int);
-  binder.void_fun<const QRectF &, int, int, &QPainterPath::addRoundRect>("addRoundRect").create();
+  bind::void_member_function<QPainterPath, const QRectF &, int, int, &QPainterPath::addRoundRect>(painter_path, "addRoundRect").create();
   // void addRoundRect(qreal, qreal, qreal, qreal, int, int);
-  binder.void_fun<qreal, qreal, qreal, qreal, int, int, &QPainterPath::addRoundRect>("addRoundRect").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, qreal, qreal, int, int, &QPainterPath::addRoundRect>(painter_path, "addRoundRect").create();
   // void addRoundRect(const QRectF &, int);
-  binder.void_fun<const QRectF &, int, &QPainterPath::addRoundRect>("addRoundRect").create();
+  bind::void_member_function<QPainterPath, const QRectF &, int, &QPainterPath::addRoundRect>(painter_path, "addRoundRect").create();
   // void addRoundRect(qreal, qreal, qreal, qreal, int);
-  binder.void_fun<qreal, qreal, qreal, qreal, int, &QPainterPath::addRoundRect>("addRoundRect").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, qreal, qreal, int, &QPainterPath::addRoundRect>(painter_path, "addRoundRect").create();
   // void connectPath(const QPainterPath &);
-  binder.void_fun<const QPainterPath &, &QPainterPath::connectPath>("connectPath").create();
+  bind::void_member_function<QPainterPath, const QPainterPath &, &QPainterPath::connectPath>(painter_path, "connectPath").create();
   // bool contains(const QPointF &) const;
-  binder.fun<bool, const QPointF &, &QPainterPath::contains>("contains").create();
+  bind::member_function<QPainterPath, bool, const QPointF &, &QPainterPath::contains>(painter_path, "contains").create();
   // bool contains(const QRectF &) const;
-  binder.fun<bool, const QRectF &, &QPainterPath::contains>("contains").create();
+  bind::member_function<QPainterPath, bool, const QRectF &, &QPainterPath::contains>(painter_path, "contains").create();
   // bool intersects(const QRectF &) const;
-  binder.fun<bool, const QRectF &, &QPainterPath::intersects>("intersects").create();
+  bind::member_function<QPainterPath, bool, const QRectF &, &QPainterPath::intersects>(painter_path, "intersects").create();
   // void translate(qreal, qreal);
-  binder.void_fun<qreal, qreal, &QPainterPath::translate>("translate").create();
+  bind::void_member_function<QPainterPath, qreal, qreal, &QPainterPath::translate>(painter_path, "translate").create();
   // void translate(const QPointF &);
-  binder.void_fun<const QPointF &, &QPainterPath::translate>("translate").create();
+  bind::void_member_function<QPainterPath, const QPointF &, &QPainterPath::translate>(painter_path, "translate").create();
   // QPainterPath translated(qreal, qreal) const;
-  binder.fun<QPainterPath, qreal, qreal, &QPainterPath::translated>("translated").create();
+  bind::member_function<QPainterPath, QPainterPath, qreal, qreal, &QPainterPath::translated>(painter_path, "translated").create();
   // QPainterPath translated(const QPointF &) const;
-  binder.fun<QPainterPath, const QPointF &, &QPainterPath::translated>("translated").create();
+  bind::member_function<QPainterPath, QPainterPath, const QPointF &, &QPainterPath::translated>(painter_path, "translated").create();
   // QRectF boundingRect() const;
-  binder.fun<QRectF, &QPainterPath::boundingRect>("boundingRect").create();
+  bind::member_function<QPainterPath, QRectF, &QPainterPath::boundingRect>(painter_path, "boundingRect").create();
   // QRectF controlPointRect() const;
-  binder.fun<QRectF, &QPainterPath::controlPointRect>("controlPointRect").create();
+  bind::member_function<QPainterPath, QRectF, &QPainterPath::controlPointRect>(painter_path, "controlPointRect").create();
   // Qt::FillRule fillRule() const;
-  binder.fun<Qt::FillRule, &QPainterPath::fillRule>("fillRule").create();
+  bind::member_function<QPainterPath, Qt::FillRule, &QPainterPath::fillRule>(painter_path, "fillRule").create();
   // void setFillRule(Qt::FillRule);
-  binder.void_fun<Qt::FillRule, &QPainterPath::setFillRule>("setFillRule").create();
+  bind::void_member_function<QPainterPath, Qt::FillRule, &QPainterPath::setFillRule>(painter_path, "setFillRule").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QPainterPath::isEmpty>("isEmpty").create();
+  bind::member_function<QPainterPath, bool, &QPainterPath::isEmpty>(painter_path, "isEmpty").create();
   // QPainterPath toReversed() const;
-  binder.fun<QPainterPath, &QPainterPath::toReversed>("toReversed").create();
+  bind::member_function<QPainterPath, QPainterPath, &QPainterPath::toReversed>(painter_path, "toReversed").create();
   // QList<QPolygonF> toSubpathPolygons(const QMatrix &) const;
   /// TODO: QList<QPolygonF> toSubpathPolygons(const QMatrix &) const;
   // QList<QPolygonF> toFillPolygons(const QMatrix &) const;
@@ -158,55 +157,55 @@ static void register_painter_path_class(script::Namespace ns)
   // QPolygonF toFillPolygon(const QTransform &) const;
   /// TODO: QPolygonF toFillPolygon(const QTransform &) const;
   // int elementCount() const;
-  binder.fun<int, &QPainterPath::elementCount>("elementCount").create();
+  bind::member_function<QPainterPath, int, &QPainterPath::elementCount>(painter_path, "elementCount").create();
   // QPainterPath::Element elementAt(int) const;
   /// TODO: QPainterPath::Element elementAt(int) const;
   // void setElementPositionAt(int, qreal, qreal);
-  binder.void_fun<int, qreal, qreal, &QPainterPath::setElementPositionAt>("setElementPositionAt").create();
+  bind::void_member_function<QPainterPath, int, qreal, qreal, &QPainterPath::setElementPositionAt>(painter_path, "setElementPositionAt").create();
   // qreal length() const;
-  binder.fun<qreal, &QPainterPath::length>("length").create();
+  bind::member_function<QPainterPath, qreal, &QPainterPath::length>(painter_path, "length").create();
   // qreal percentAtLength(qreal) const;
-  binder.fun<qreal, qreal, &QPainterPath::percentAtLength>("percentAtLength").create();
+  bind::member_function<QPainterPath, qreal, qreal, &QPainterPath::percentAtLength>(painter_path, "percentAtLength").create();
   // QPointF pointAtPercent(qreal) const;
-  binder.fun<QPointF, qreal, &QPainterPath::pointAtPercent>("pointAtPercent").create();
+  bind::member_function<QPainterPath, QPointF, qreal, &QPainterPath::pointAtPercent>(painter_path, "pointAtPercent").create();
   // qreal angleAtPercent(qreal) const;
-  binder.fun<qreal, qreal, &QPainterPath::angleAtPercent>("angleAtPercent").create();
+  bind::member_function<QPainterPath, qreal, qreal, &QPainterPath::angleAtPercent>(painter_path, "angleAtPercent").create();
   // qreal slopeAtPercent(qreal) const;
-  binder.fun<qreal, qreal, &QPainterPath::slopeAtPercent>("slopeAtPercent").create();
+  bind::member_function<QPainterPath, qreal, qreal, &QPainterPath::slopeAtPercent>(painter_path, "slopeAtPercent").create();
   // bool intersects(const QPainterPath &) const;
-  binder.fun<bool, const QPainterPath &, &QPainterPath::intersects>("intersects").create();
+  bind::member_function<QPainterPath, bool, const QPainterPath &, &QPainterPath::intersects>(painter_path, "intersects").create();
   // bool contains(const QPainterPath &) const;
-  binder.fun<bool, const QPainterPath &, &QPainterPath::contains>("contains").create();
+  bind::member_function<QPainterPath, bool, const QPainterPath &, &QPainterPath::contains>(painter_path, "contains").create();
   // QPainterPath united(const QPainterPath &) const;
-  binder.fun<QPainterPath, const QPainterPath &, &QPainterPath::united>("united").create();
+  bind::member_function<QPainterPath, QPainterPath, const QPainterPath &, &QPainterPath::united>(painter_path, "united").create();
   // QPainterPath intersected(const QPainterPath &) const;
-  binder.fun<QPainterPath, const QPainterPath &, &QPainterPath::intersected>("intersected").create();
+  bind::member_function<QPainterPath, QPainterPath, const QPainterPath &, &QPainterPath::intersected>(painter_path, "intersected").create();
   // QPainterPath subtracted(const QPainterPath &) const;
-  binder.fun<QPainterPath, const QPainterPath &, &QPainterPath::subtracted>("subtracted").create();
+  bind::member_function<QPainterPath, QPainterPath, const QPainterPath &, &QPainterPath::subtracted>(painter_path, "subtracted").create();
   // QPainterPath subtractedInverted(const QPainterPath &) const;
-  binder.fun<QPainterPath, const QPainterPath &, &QPainterPath::subtractedInverted>("subtractedInverted").create();
+  bind::member_function<QPainterPath, QPainterPath, const QPainterPath &, &QPainterPath::subtractedInverted>(painter_path, "subtractedInverted").create();
   // QPainterPath simplified() const;
-  binder.fun<QPainterPath, &QPainterPath::simplified>("simplified").create();
+  bind::member_function<QPainterPath, QPainterPath, &QPainterPath::simplified>(painter_path, "simplified").create();
   // bool operator==(const QPainterPath &) const;
-  binder.operators().eq<const QPainterPath &>();
+  bind::memop_eq<QPainterPath, const QPainterPath &>(painter_path);
   // bool operator!=(const QPainterPath &) const;
-  binder.operators().neq<const QPainterPath &>();
+  bind::memop_neq<QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath operator&(const QPainterPath &) const;
-  binder.operators().and<QPainterPath, const QPainterPath &>();
+  bind::memop_bitand<QPainterPath, QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath operator|(const QPainterPath &) const;
-  binder.operators().or<QPainterPath, const QPainterPath &>();
+  bind::memop_bitor<QPainterPath, QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath operator+(const QPainterPath &) const;
-  binder.operators().add<QPainterPath, const QPainterPath &>();
+  bind::memop_add<QPainterPath, QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath operator-(const QPainterPath &) const;
-  binder.operators().sub<QPainterPath, const QPainterPath &>();
+  bind::memop_sub<QPainterPath, QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath & operator&=(const QPainterPath &);
-  binder.operators().and_assign<const QPainterPath &>();
+  bind::memop_and_assign<QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath & operator|=(const QPainterPath &);
-  binder.operators().or_assign<const QPainterPath &>();
+  bind::memop_or_assign<QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath & operator+=(const QPainterPath &);
-  binder.operators().add_assign<const QPainterPath &>();
+  bind::memop_add_assign<QPainterPath, const QPainterPath &>(painter_path);
   // QPainterPath & operator-=(const QPainterPath &);
-  binder.operators().sub_assign<const QPainterPath &>();
+  bind::memop_sub_assign<QPainterPath, const QPainterPath &>(painter_path);
 }
 
 
@@ -216,46 +215,45 @@ static void register_painter_path_stroker_class(script::Namespace ns)
 
   Class painter_path_stroker = ns.newClass("PainterPathStroker").setId(script::Type::QPainterPathStroker).get();
 
-  binding::ClassBinder<QPainterPathStroker> binder{ painter_path_stroker };
 
   // QPainterPathStroker();
-  binder.default_ctor().create();
+  bind::default_constructor<QPainterPathStroker>(painter_path_stroker).create();
   // QPainterPathStroker(const QPen &);
-  binder.ctor<const QPen &>().create();
+  bind::constructor<QPainterPathStroker, const QPen &>(painter_path_stroker).create();
   // ~QPainterPathStroker();
-  binder.dtor().create();
+  bind::destructor<QPainterPathStroker>(painter_path_stroker).create();
   // void setWidth(qreal);
-  binder.void_fun<qreal, &QPainterPathStroker::setWidth>("setWidth").create();
+  bind::void_member_function<QPainterPathStroker, qreal, &QPainterPathStroker::setWidth>(painter_path_stroker, "setWidth").create();
   // qreal width() const;
-  binder.fun<qreal, &QPainterPathStroker::width>("width").create();
+  bind::member_function<QPainterPathStroker, qreal, &QPainterPathStroker::width>(painter_path_stroker, "width").create();
   // void setCapStyle(Qt::PenCapStyle);
-  binder.void_fun<Qt::PenCapStyle, &QPainterPathStroker::setCapStyle>("setCapStyle").create();
+  bind::void_member_function<QPainterPathStroker, Qt::PenCapStyle, &QPainterPathStroker::setCapStyle>(painter_path_stroker, "setCapStyle").create();
   // Qt::PenCapStyle capStyle() const;
-  binder.fun<Qt::PenCapStyle, &QPainterPathStroker::capStyle>("capStyle").create();
+  bind::member_function<QPainterPathStroker, Qt::PenCapStyle, &QPainterPathStroker::capStyle>(painter_path_stroker, "capStyle").create();
   // void setJoinStyle(Qt::PenJoinStyle);
-  binder.void_fun<Qt::PenJoinStyle, &QPainterPathStroker::setJoinStyle>("setJoinStyle").create();
+  bind::void_member_function<QPainterPathStroker, Qt::PenJoinStyle, &QPainterPathStroker::setJoinStyle>(painter_path_stroker, "setJoinStyle").create();
   // Qt::PenJoinStyle joinStyle() const;
-  binder.fun<Qt::PenJoinStyle, &QPainterPathStroker::joinStyle>("joinStyle").create();
+  bind::member_function<QPainterPathStroker, Qt::PenJoinStyle, &QPainterPathStroker::joinStyle>(painter_path_stroker, "joinStyle").create();
   // void setMiterLimit(qreal);
-  binder.void_fun<qreal, &QPainterPathStroker::setMiterLimit>("setMiterLimit").create();
+  bind::void_member_function<QPainterPathStroker, qreal, &QPainterPathStroker::setMiterLimit>(painter_path_stroker, "setMiterLimit").create();
   // qreal miterLimit() const;
-  binder.fun<qreal, &QPainterPathStroker::miterLimit>("miterLimit").create();
+  bind::member_function<QPainterPathStroker, qreal, &QPainterPathStroker::miterLimit>(painter_path_stroker, "miterLimit").create();
   // void setCurveThreshold(qreal);
-  binder.void_fun<qreal, &QPainterPathStroker::setCurveThreshold>("setCurveThreshold").create();
+  bind::void_member_function<QPainterPathStroker, qreal, &QPainterPathStroker::setCurveThreshold>(painter_path_stroker, "setCurveThreshold").create();
   // qreal curveThreshold() const;
-  binder.fun<qreal, &QPainterPathStroker::curveThreshold>("curveThreshold").create();
+  bind::member_function<QPainterPathStroker, qreal, &QPainterPathStroker::curveThreshold>(painter_path_stroker, "curveThreshold").create();
   // void setDashPattern(Qt::PenStyle);
-  binder.void_fun<Qt::PenStyle, &QPainterPathStroker::setDashPattern>("setDashPattern").create();
+  bind::void_member_function<QPainterPathStroker, Qt::PenStyle, &QPainterPathStroker::setDashPattern>(painter_path_stroker, "setDashPattern").create();
   // void setDashPattern(const QVector<qreal> &);
   /// TODO: void setDashPattern(const QVector<qreal> &);
   // QVector<qreal> dashPattern() const;
   /// TODO: QVector<qreal> dashPattern() const;
   // void setDashOffset(qreal);
-  binder.void_fun<qreal, &QPainterPathStroker::setDashOffset>("setDashOffset").create();
+  bind::void_member_function<QPainterPathStroker, qreal, &QPainterPathStroker::setDashOffset>(painter_path_stroker, "setDashOffset").create();
   // qreal dashOffset() const;
-  binder.fun<qreal, &QPainterPathStroker::dashOffset>("dashOffset").create();
+  bind::member_function<QPainterPathStroker, qreal, &QPainterPathStroker::dashOffset>(painter_path_stroker, "dashOffset").create();
   // QPainterPath createStroke(const QPainterPath &) const;
-  binder.fun<QPainterPath, const QPainterPath &, &QPainterPathStroker::createStroke>("createStroke").create();
+  bind::member_function<QPainterPathStroker, QPainterPath, const QPainterPath &, &QPainterPathStroker::createStroke>(painter_path_stroker, "createStroke").create();
 }
 
 
@@ -267,14 +265,13 @@ void register_painterpath_file(script::Namespace gui)
 
   register_painter_path_class(ns);
   register_painter_path_stroker_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QPainterPath &, QPainterPath &);
-  binder.void_fun<QPainterPath &, QPainterPath &, &swap>("swap").create();
+  bind::void_function<QPainterPath &, QPainterPath &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QPainterPath &);
-  binder.operators().put_to<QDataStream &, const QPainterPath &>();
+  bind::op_put_to<QDataStream &, const QPainterPath &>(ns);
   // QDataStream & operator>>(QDataStream &, QPainterPath &);
-  binder.operators().read_from<QDataStream &, QPainterPath &>();
+  bind::op_read_from<QDataStream &, QPainterPath &>(ns);
   // QDebug operator<<(QDebug, const QPainterPath &);
   /// TODO: QDebug operator<<(QDebug, const QPainterPath &);
 }

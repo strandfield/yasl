@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_VECTOR3D_H
 #define YASL_GUI_VECTOR3D_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QVector3D>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QVector3D> { inline static script::Type get() { return script::Type::QVector3D; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_VECTOR3D_H

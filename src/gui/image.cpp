@@ -4,10 +4,10 @@
 
 #include "yasl/gui/image.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
@@ -78,14 +78,13 @@ static void register_image_class(script::Namespace ns)
 
   register_image_invert_mode_enum(image);
   register_image_format_enum(image);
-  binding::ClassBinder<QImage> binder{ image };
 
   // QImage();
-  binder.default_ctor().create();
+  bind::default_constructor<QImage>(image).create();
   // QImage(const QSize &, QImage::Format);
-  binder.ctor<const QSize &, QImage::Format>().create();
+  bind::constructor<QImage, const QSize &, QImage::Format>(image).create();
   // QImage(int, int, QImage::Format);
-  binder.ctor<int, int, QImage::Format>().create();
+  bind::constructor<QImage, int, int, QImage::Format>(image).create();
   // QImage(uchar *, int, int, QImage::Format, QImageCleanupFunction, void *);
   /// TODO: QImage(uchar *, int, int, QImage::Format, QImageCleanupFunction, void *);
   // QImage(const uchar *, int, int, QImage::Format, QImageCleanupFunction, void *);
@@ -99,67 +98,67 @@ static void register_image_class(script::Namespace ns)
   // QImage(const QString &, const char *);
   /// TODO: QImage(const QString &, const char *);
   // QImage(const QImage &);
-  binder.ctor<const QImage &>().create();
+  bind::constructor<QImage, const QImage &>(image).create();
   // QImage(QImage &&);
-  binder.ctor<QImage &&>().create();
+  bind::constructor<QImage, QImage &&>(image).create();
   // ~QImage();
-  binder.dtor().create();
+  bind::destructor<QImage>(image).create();
   // QImage & operator=(const QImage &);
-  binder.operators().assign<const QImage &>();
+  bind::memop_assign<QImage, const QImage &>(image);
   // QImage & operator=(QImage &&);
-  binder.operators().assign<QImage &&>();
+  bind::memop_assign<QImage, QImage &&>(image);
   // void swap(QImage &);
-  binder.void_fun<QImage &, &QImage::swap>("swap").create();
+  bind::void_member_function<QImage, QImage &, &QImage::swap>(image, "swap").create();
   // bool isNull() const;
-  binder.fun<bool, &QImage::isNull>("isNull").create();
+  bind::member_function<QImage, bool, &QImage::isNull>(image, "isNull").create();
   // int devType() const;
-  binder.fun<int, &QImage::devType>("devType").create();
+  bind::member_function<QImage, int, &QImage::devType>(image, "devType").create();
   // bool operator==(const QImage &) const;
-  binder.operators().eq<const QImage &>();
+  bind::memop_eq<QImage, const QImage &>(image);
   // bool operator!=(const QImage &) const;
-  binder.operators().neq<const QImage &>();
+  bind::memop_neq<QImage, const QImage &>(image);
   // void detach();
-  binder.void_fun<&QImage::detach>("detach").create();
+  bind::void_member_function<QImage, &QImage::detach>(image, "detach").create();
   // bool isDetached() const;
-  binder.fun<bool, &QImage::isDetached>("isDetached").create();
+  bind::member_function<QImage, bool, &QImage::isDetached>(image, "isDetached").create();
   // QImage copy(const QRect &) const;
-  binder.fun<QImage, const QRect &, &QImage::copy>("copy")
-    .apply(binding::default_arguments(QRect())).create();
+  bind::member_function<QImage, QImage, const QRect &, &QImage::copy>(image, "copy")
+    .apply(bind::default_arguments(QRect())).create();
   // QImage copy(int, int, int, int) const;
-  binder.fun<QImage, int, int, int, int, &QImage::copy>("copy").create();
+  bind::member_function<QImage, QImage, int, int, int, int, &QImage::copy>(image, "copy").create();
   // QImage::Format format() const;
-  binder.fun<QImage::Format, &QImage::format>("format").create();
+  bind::member_function<QImage, QImage::Format, &QImage::format>(image, "format").create();
   // QImage img_convertToFormat(QImage::Format, Qt::ImageConversionFlags);
-  binder.fun<QImage, QImage::Format, Qt::ImageConversionFlags, &img_convertToFormat>("convertToFormat")
-    .apply(binding::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
+  bind::fn_as_memfn<QImage, QImage, QImage::Format, Qt::ImageConversionFlags, &img_convertToFormat>(image, "convertToFormat")
+    .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // QImage convertToFormat(QImage::Format, const QVector<QRgb> &, Qt::ImageConversionFlags) const;
   /// TODO: QImage convertToFormat(QImage::Format, const QVector<QRgb> &, Qt::ImageConversionFlags) const;
   // bool reinterpretAsFormat(QImage::Format);
-  binder.fun<bool, QImage::Format, &QImage::reinterpretAsFormat>("reinterpretAsFormat").create();
+  bind::member_function<QImage, bool, QImage::Format, &QImage::reinterpretAsFormat>(image, "reinterpretAsFormat").create();
   // int width() const;
-  binder.fun<int, &QImage::width>("width").create();
+  bind::member_function<QImage, int, &QImage::width>(image, "width").create();
   // int height() const;
-  binder.fun<int, &QImage::height>("height").create();
+  bind::member_function<QImage, int, &QImage::height>(image, "height").create();
   // QSize size() const;
-  binder.fun<QSize, &QImage::size>("size").create();
+  bind::member_function<QImage, QSize, &QImage::size>(image, "size").create();
   // QRect rect() const;
-  binder.fun<QRect, &QImage::rect>("rect").create();
+  bind::member_function<QImage, QRect, &QImage::rect>(image, "rect").create();
   // int depth() const;
-  binder.fun<int, &QImage::depth>("depth").create();
+  bind::member_function<QImage, int, &QImage::depth>(image, "depth").create();
   // int colorCount() const;
-  binder.fun<int, &QImage::colorCount>("colorCount").create();
+  bind::member_function<QImage, int, &QImage::colorCount>(image, "colorCount").create();
   // int bitPlaneCount() const;
-  binder.fun<int, &QImage::bitPlaneCount>("bitPlaneCount").create();
+  bind::member_function<QImage, int, &QImage::bitPlaneCount>(image, "bitPlaneCount").create();
   // QRgb color(int) const;
   /// TODO: QRgb color(int) const;
   // void setColor(int, QRgb);
   /// TODO: void setColor(int, QRgb);
   // void setColorCount(int);
-  binder.void_fun<int, &QImage::setColorCount>("setColorCount").create();
+  bind::void_member_function<QImage, int, &QImage::setColorCount>(image, "setColorCount").create();
   // bool allGray() const;
-  binder.fun<bool, &QImage::allGray>("allGray").create();
+  bind::member_function<QImage, bool, &QImage::allGray>(image, "allGray").create();
   // bool isGrayscale() const;
-  binder.fun<bool, &QImage::isGrayscale>("isGrayscale").create();
+  bind::member_function<QImage, bool, &QImage::isGrayscale>(image, "isGrayscale").create();
   // uchar * bits();
   /// TODO: uchar * bits();
   // const uchar * bits() const;
@@ -167,7 +166,7 @@ static void register_image_class(script::Namespace ns)
   // const uchar * constBits() const;
   /// TODO: const uchar * constBits() const;
   // int byteCount() const;
-  binder.fun<int, &QImage::byteCount>("byteCount").create();
+  bind::member_function<QImage, int, &QImage::byteCount>(image, "byteCount").create();
   // qsizetype sizeInBytes() const;
   /// TODO: qsizetype sizeInBytes() const;
   // uchar * scanLine(int);
@@ -177,88 +176,88 @@ static void register_image_class(script::Namespace ns)
   // const uchar * constScanLine(int) const;
   /// TODO: const uchar * constScanLine(int) const;
   // int bytesPerLine() const;
-  binder.fun<int, &QImage::bytesPerLine>("bytesPerLine").create();
+  bind::member_function<QImage, int, &QImage::bytesPerLine>(image, "bytesPerLine").create();
   // bool valid(int, int) const;
-  binder.fun<bool, int, int, &QImage::valid>("valid").create();
+  bind::member_function<QImage, bool, int, int, &QImage::valid>(image, "valid").create();
   // bool valid(const QPoint &) const;
-  binder.fun<bool, const QPoint &, &QImage::valid>("valid").create();
+  bind::member_function<QImage, bool, const QPoint &, &QImage::valid>(image, "valid").create();
   // int pixelIndex(int, int) const;
-  binder.fun<int, int, int, &QImage::pixelIndex>("pixelIndex").create();
+  bind::member_function<QImage, int, int, int, &QImage::pixelIndex>(image, "pixelIndex").create();
   // int pixelIndex(const QPoint &) const;
-  binder.fun<int, const QPoint &, &QImage::pixelIndex>("pixelIndex").create();
+  bind::member_function<QImage, int, const QPoint &, &QImage::pixelIndex>(image, "pixelIndex").create();
   // QRgb pixel(int, int) const;
   /// TODO: QRgb pixel(int, int) const;
   // QRgb pixel(const QPoint &) const;
   /// TODO: QRgb pixel(const QPoint &) const;
   // void setPixel(int, int, uint);
-  binder.void_fun<int, int, uint, &QImage::setPixel>("setPixel").create();
+  bind::void_member_function<QImage, int, int, uint, &QImage::setPixel>(image, "setPixel").create();
   // void setPixel(const QPoint &, uint);
-  binder.void_fun<const QPoint &, uint, &QImage::setPixel>("setPixel").create();
+  bind::void_member_function<QImage, const QPoint &, uint, &QImage::setPixel>(image, "setPixel").create();
   // QColor pixelColor(int, int) const;
-  binder.fun<QColor, int, int, &QImage::pixelColor>("pixelColor").create();
+  bind::member_function<QImage, QColor, int, int, &QImage::pixelColor>(image, "pixelColor").create();
   // QColor pixelColor(const QPoint &) const;
-  binder.fun<QColor, const QPoint &, &QImage::pixelColor>("pixelColor").create();
+  bind::member_function<QImage, QColor, const QPoint &, &QImage::pixelColor>(image, "pixelColor").create();
   // void setPixelColor(int, int, const QColor &);
-  binder.void_fun<int, int, const QColor &, &QImage::setPixelColor>("setPixelColor").create();
+  bind::void_member_function<QImage, int, int, const QColor &, &QImage::setPixelColor>(image, "setPixelColor").create();
   // void setPixelColor(const QPoint &, const QColor &);
-  binder.void_fun<const QPoint &, const QColor &, &QImage::setPixelColor>("setPixelColor").create();
+  bind::void_member_function<QImage, const QPoint &, const QColor &, &QImage::setPixelColor>(image, "setPixelColor").create();
   // QVector<QRgb> colorTable() const;
   /// TODO: QVector<QRgb> colorTable() const;
   // void setColorTable(const QVector<QRgb>);
   /// TODO: void setColorTable(const QVector<QRgb>);
   // qreal devicePixelRatio() const;
-  binder.fun<qreal, &QImage::devicePixelRatio>("devicePixelRatio").create();
+  bind::member_function<QImage, qreal, &QImage::devicePixelRatio>(image, "devicePixelRatio").create();
   // void setDevicePixelRatio(qreal);
-  binder.void_fun<qreal, &QImage::setDevicePixelRatio>("setDevicePixelRatio").create();
+  bind::void_member_function<QImage, qreal, &QImage::setDevicePixelRatio>(image, "setDevicePixelRatio").create();
   // void fill(uint);
-  binder.void_fun<uint, &QImage::fill>("fill").create();
+  bind::void_member_function<QImage, uint, &QImage::fill>(image, "fill").create();
   // void fill(const QColor &);
-  binder.void_fun<const QColor &, &QImage::fill>("fill").create();
+  bind::void_member_function<QImage, const QColor &, &QImage::fill>(image, "fill").create();
   // void fill(Qt::GlobalColor);
-  binder.void_fun<Qt::GlobalColor, &QImage::fill>("fill").create();
+  bind::void_member_function<QImage, Qt::GlobalColor, &QImage::fill>(image, "fill").create();
   // bool hasAlphaChannel() const;
-  binder.fun<bool, &QImage::hasAlphaChannel>("hasAlphaChannel").create();
+  bind::member_function<QImage, bool, &QImage::hasAlphaChannel>(image, "hasAlphaChannel").create();
   // void setAlphaChannel(const QImage &);
-  binder.void_fun<const QImage &, &QImage::setAlphaChannel>("setAlphaChannel").create();
+  bind::void_member_function<QImage, const QImage &, &QImage::setAlphaChannel>(image, "setAlphaChannel").create();
   // QImage alphaChannel() const;
-  binder.fun<QImage, &QImage::alphaChannel>("alphaChannel").create();
+  bind::member_function<QImage, QImage, &QImage::alphaChannel>(image, "alphaChannel").create();
   // QImage createAlphaMask(Qt::ImageConversionFlags) const;
-  binder.fun<QImage, Qt::ImageConversionFlags, &QImage::createAlphaMask>("createAlphaMask")
-    .apply(binding::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
+  bind::member_function<QImage, QImage, Qt::ImageConversionFlags, &QImage::createAlphaMask>(image, "createAlphaMask")
+    .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // QImage createHeuristicMask(bool) const;
-  binder.fun<QImage, bool, &QImage::createHeuristicMask>("createHeuristicMask")
-    .apply(binding::default_arguments(true)).create();
+  bind::member_function<QImage, QImage, bool, &QImage::createHeuristicMask>(image, "createHeuristicMask")
+    .apply(bind::default_arguments(true)).create();
   // QImage createMaskFromColor(QRgb, Qt::MaskMode) const;
   /// TODO: QImage createMaskFromColor(QRgb, Qt::MaskMode) const;
   // QImage scaled(int, int, Qt::AspectRatioMode, Qt::TransformationMode) const;
-  binder.fun<QImage, int, int, Qt::AspectRatioMode, Qt::TransformationMode, &QImage::scaled>("scaled")
-    .apply(binding::default_arguments(Qt::FastTransformation, Qt::IgnoreAspectRatio)).create();
+  bind::member_function<QImage, QImage, int, int, Qt::AspectRatioMode, Qt::TransformationMode, &QImage::scaled>(image, "scaled")
+    .apply(bind::default_arguments(Qt::FastTransformation, Qt::IgnoreAspectRatio)).create();
   // QImage scaled(const QSize &, Qt::AspectRatioMode, Qt::TransformationMode) const;
-  binder.fun<QImage, const QSize &, Qt::AspectRatioMode, Qt::TransformationMode, &QImage::scaled>("scaled")
-    .apply(binding::default_arguments(Qt::FastTransformation, Qt::IgnoreAspectRatio)).create();
+  bind::member_function<QImage, QImage, const QSize &, Qt::AspectRatioMode, Qt::TransformationMode, &QImage::scaled>(image, "scaled")
+    .apply(bind::default_arguments(Qt::FastTransformation, Qt::IgnoreAspectRatio)).create();
   // QImage scaledToWidth(int, Qt::TransformationMode) const;
-  binder.fun<QImage, int, Qt::TransformationMode, &QImage::scaledToWidth>("scaledToWidth")
-    .apply(binding::default_arguments(Qt::FastTransformation)).create();
+  bind::member_function<QImage, QImage, int, Qt::TransformationMode, &QImage::scaledToWidth>(image, "scaledToWidth")
+    .apply(bind::default_arguments(Qt::FastTransformation)).create();
   // QImage scaledToHeight(int, Qt::TransformationMode) const;
-  binder.fun<QImage, int, Qt::TransformationMode, &QImage::scaledToHeight>("scaledToHeight")
-    .apply(binding::default_arguments(Qt::FastTransformation)).create();
+  bind::member_function<QImage, QImage, int, Qt::TransformationMode, &QImage::scaledToHeight>(image, "scaledToHeight")
+    .apply(bind::default_arguments(Qt::FastTransformation)).create();
   // QImage transformed(const QMatrix &, Qt::TransformationMode) const;
   /// TODO: QImage transformed(const QMatrix &, Qt::TransformationMode) const;
   // static QMatrix trueMatrix(const QMatrix &, int, int);
   /// TODO: static QMatrix trueMatrix(const QMatrix &, int, int);
   // QImage transformed(const QTransform &, Qt::TransformationMode) const;
-  binder.fun<QImage, const QTransform &, Qt::TransformationMode, &QImage::transformed>("transformed")
-    .apply(binding::default_arguments(Qt::FastTransformation)).create();
+  bind::member_function<QImage, QImage, const QTransform &, Qt::TransformationMode, &QImage::transformed>(image, "transformed")
+    .apply(bind::default_arguments(Qt::FastTransformation)).create();
   // static QTransform trueMatrix(const QTransform &, int, int);
-  binder.static_fun<QTransform, const QTransform &, int, int, &QImage::trueMatrix>("trueMatrix").create();
+  bind::static_member_function<QImage, QTransform, const QTransform &, int, int, &QImage::trueMatrix>(image, "trueMatrix").create();
   // QImage img_mirrored(bool, bool);
-  binder.fun<QImage, bool, bool, &img_mirrored>("mirrored")
-    .apply(binding::default_arguments(true, false)).create();
+  bind::fn_as_memfn<QImage, QImage, bool, bool, &img_mirrored>(image, "mirrored")
+    .apply(bind::default_arguments(true, false)).create();
   // QImage img_rgbSwapped();
-  binder.fun<QImage, &img_rgbSwapped>("rgbSwapped").create();
+  bind::fn_as_memfn<QImage, QImage, &img_rgbSwapped>(image, "rgbSwapped").create();
   // void invertPixels(QImage::InvertMode);
-  binder.void_fun<QImage::InvertMode, &QImage::invertPixels>("invertPixels")
-    .apply(binding::default_arguments(QImage::InvertRgb)).create();
+  bind::void_member_function<QImage, QImage::InvertMode, &QImage::invertPixels>(image, "invertPixels")
+    .apply(bind::default_arguments(QImage::InvertRgb)).create();
   // bool load(QIODevice *, const char *);
   /// TODO: bool load(QIODevice *, const char *);
   // bool load(const QString &, const char *);
@@ -280,29 +279,29 @@ static void register_image_class(script::Namespace ns)
   // QPaintEngine * paintEngine() const;
   /// TODO: QPaintEngine * paintEngine() const;
   // int dotsPerMeterX() const;
-  binder.fun<int, &QImage::dotsPerMeterX>("dotsPerMeterX").create();
+  bind::member_function<QImage, int, &QImage::dotsPerMeterX>(image, "dotsPerMeterX").create();
   // int dotsPerMeterY() const;
-  binder.fun<int, &QImage::dotsPerMeterY>("dotsPerMeterY").create();
+  bind::member_function<QImage, int, &QImage::dotsPerMeterY>(image, "dotsPerMeterY").create();
   // void setDotsPerMeterX(int);
-  binder.void_fun<int, &QImage::setDotsPerMeterX>("setDotsPerMeterX").create();
+  bind::void_member_function<QImage, int, &QImage::setDotsPerMeterX>(image, "setDotsPerMeterX").create();
   // void setDotsPerMeterY(int);
-  binder.void_fun<int, &QImage::setDotsPerMeterY>("setDotsPerMeterY").create();
+  bind::void_member_function<QImage, int, &QImage::setDotsPerMeterY>(image, "setDotsPerMeterY").create();
   // QPoint offset() const;
-  binder.fun<QPoint, &QImage::offset>("offset").create();
+  bind::member_function<QImage, QPoint, &QImage::offset>(image, "offset").create();
   // void setOffset(const QPoint &);
-  binder.void_fun<const QPoint &, &QImage::setOffset>("setOffset").create();
+  bind::void_member_function<QImage, const QPoint &, &QImage::setOffset>(image, "setOffset").create();
   // QStringList textKeys() const;
   /// TODO: QStringList textKeys() const;
   // QString text(const QString &) const;
-  binder.fun<QString, const QString &, &QImage::text>("text").create();
+  bind::member_function<QImage, QString, const QString &, &QImage::text>(image, "text").create();
   // void setText(const QString &, const QString &);
-  binder.void_fun<const QString &, const QString &, &QImage::setText>("setText").create();
+  bind::void_member_function<QImage, const QString &, const QString &, &QImage::setText>(image, "setText").create();
   // QPixelFormat pixelFormat() const;
-  binder.fun<QPixelFormat, &QImage::pixelFormat>("pixelFormat").create();
+  bind::member_function<QImage, QPixelFormat, &QImage::pixelFormat>(image, "pixelFormat").create();
   // static QPixelFormat toPixelFormat(QImage::Format);
-  binder.static_fun<QPixelFormat, QImage::Format, &QImage::toPixelFormat>("toPixelFormat").create();
+  bind::static_member_function<QImage, QPixelFormat, QImage::Format, &QImage::toPixelFormat>(image, "toPixelFormat").create();
   // static QImage::Format toImageFormat(QPixelFormat);
-  binder.static_fun<QImage::Format, QPixelFormat, &QImage::toImageFormat>("toImageFormat").create();
+  bind::static_member_function<QImage, QImage::Format, QPixelFormat, &QImage::toImageFormat>(image, "toImageFormat").create();
   // QImage::DataPtr & data_ptr();
   /// TODO: QImage::DataPtr & data_ptr();
 }
@@ -315,14 +314,13 @@ void register_image_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_image_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QImage &, QImage &);
-  binder.void_fun<QImage &, QImage &, &swap>("swap").create();
+  bind::void_function<QImage &, QImage &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QImage &);
-  binder.operators().put_to<QDataStream &, const QImage &>();
+  bind::op_put_to<QDataStream &, const QImage &>(ns);
   // QDataStream & operator>>(QDataStream &, QImage &);
-  binder.operators().read_from<QDataStream &, QImage &>();
+  bind::op_read_from<QDataStream &, QImage &>(ns);
   // QDebug operator<<(QDebug, const QImage &);
   /// TODO: QDebug operator<<(QDebug, const QImage &);
 }

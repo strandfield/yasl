@@ -19,19 +19,35 @@ namespace bind
 {
 
 void register_signal(script::Class & cla, const QMetaObject *meta, const script::Function & f, const std::string & signature);
-script::Value signal_callback(script::FunctionCall *c);
 
-template<typename T, typename A1, typename A2, typename A3, typename A4>
+namespace callbacks {
+  script::Value signal_callback(script::FunctionCall *c);
+}
+
+template<typename T>
 script::Function signal(script::Class & cla, std::string &&name, const std::string & signature)
 {
-  script::Function ret = cla.newMethod(std::move(name), signal_callback)
-    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>())
+  script::Function ret = cla.newMethod(std::move(name), callbacks::signal_callback)
     .get();
 
   register_signal(cla, &T::staticMetaObject, ret, signature);
 
   return ret;
 }
+
+template<typename T, typename A, typename... Rest>
+script::Function signal(script::Class & cla, std::string &&name, const std::string & signature)
+{
+  script::Function ret = cla.newMethod(std::move(name), callbacks::signal_callback)
+    .params(make_type<A>(), make_type<Rest>()...)
+    .get();
+
+  register_signal(cla, &T::staticMetaObject, ret, signature);
+
+  return ret;
+}
+
+void register_signals_file(script::Namespace core);
 
 } // namespace bind
 

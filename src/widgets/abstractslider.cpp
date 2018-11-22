@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/abstractslider.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/widgets/abstractslider.h"
@@ -41,75 +41,74 @@ static void register_abstract_slider_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
   register_abstract_slider_slider_action_enum(abstract_slider);
-  binding::ClassBinder<QAbstractSlider> binder{ abstract_slider, &QAbstractSlider::staticMetaObject };
 
   // QAbstractSlider(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QAbstractSlider, QWidget *>(abstract_slider)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QAbstractSlider();
-  binder.dtor().create();
+  bind::destructor<QAbstractSlider>(abstract_slider).create();
   // Qt::Orientation orientation() const;
-  binder.fun<Qt::Orientation, &QAbstractSlider::orientation>("orientation").create();
+  bind::member_function<QAbstractSlider, Qt::Orientation, &QAbstractSlider::orientation>(abstract_slider, "orientation").create();
   // void setMinimum(int);
-  binder.void_fun<int, &QAbstractSlider::setMinimum>("setMinimum").create();
+  bind::void_member_function<QAbstractSlider, int, &QAbstractSlider::setMinimum>(abstract_slider, "setMinimum").create();
   // int minimum() const;
-  binder.fun<int, &QAbstractSlider::minimum>("minimum").create();
+  bind::member_function<QAbstractSlider, int, &QAbstractSlider::minimum>(abstract_slider, "minimum").create();
   // void setMaximum(int);
-  binder.void_fun<int, &QAbstractSlider::setMaximum>("setMaximum").create();
+  bind::void_member_function<QAbstractSlider, int, &QAbstractSlider::setMaximum>(abstract_slider, "setMaximum").create();
   // int maximum() const;
-  binder.fun<int, &QAbstractSlider::maximum>("maximum").create();
+  bind::member_function<QAbstractSlider, int, &QAbstractSlider::maximum>(abstract_slider, "maximum").create();
   // void setSingleStep(int);
-  binder.void_fun<int, &QAbstractSlider::setSingleStep>("setSingleStep").create();
+  bind::void_member_function<QAbstractSlider, int, &QAbstractSlider::setSingleStep>(abstract_slider, "setSingleStep").create();
   // int singleStep() const;
-  binder.fun<int, &QAbstractSlider::singleStep>("singleStep").create();
+  bind::member_function<QAbstractSlider, int, &QAbstractSlider::singleStep>(abstract_slider, "singleStep").create();
   // void setPageStep(int);
-  binder.void_fun<int, &QAbstractSlider::setPageStep>("setPageStep").create();
+  bind::void_member_function<QAbstractSlider, int, &QAbstractSlider::setPageStep>(abstract_slider, "setPageStep").create();
   // int pageStep() const;
-  binder.fun<int, &QAbstractSlider::pageStep>("pageStep").create();
+  bind::member_function<QAbstractSlider, int, &QAbstractSlider::pageStep>(abstract_slider, "pageStep").create();
   // void setTracking(bool);
-  binder.void_fun<bool, &QAbstractSlider::setTracking>("setTracking").create();
+  bind::void_member_function<QAbstractSlider, bool, &QAbstractSlider::setTracking>(abstract_slider, "setTracking").create();
   // bool hasTracking() const;
-  binder.fun<bool, &QAbstractSlider::hasTracking>("hasTracking").create();
+  bind::member_function<QAbstractSlider, bool, &QAbstractSlider::hasTracking>(abstract_slider, "hasTracking").create();
   // void setSliderDown(bool);
-  binder.void_fun<bool, &QAbstractSlider::setSliderDown>("setSliderDown").create();
+  bind::void_member_function<QAbstractSlider, bool, &QAbstractSlider::setSliderDown>(abstract_slider, "setSliderDown").create();
   // bool isSliderDown() const;
-  binder.fun<bool, &QAbstractSlider::isSliderDown>("isSliderDown").create();
+  bind::member_function<QAbstractSlider, bool, &QAbstractSlider::isSliderDown>(abstract_slider, "isSliderDown").create();
   // void setSliderPosition(int);
-  binder.void_fun<int, &QAbstractSlider::setSliderPosition>("setSliderPosition").create();
+  bind::void_member_function<QAbstractSlider, int, &QAbstractSlider::setSliderPosition>(abstract_slider, "setSliderPosition").create();
   // int sliderPosition() const;
-  binder.fun<int, &QAbstractSlider::sliderPosition>("sliderPosition").create();
+  bind::member_function<QAbstractSlider, int, &QAbstractSlider::sliderPosition>(abstract_slider, "sliderPosition").create();
   // void setInvertedAppearance(bool);
-  binder.void_fun<bool, &QAbstractSlider::setInvertedAppearance>("setInvertedAppearance").create();
+  bind::void_member_function<QAbstractSlider, bool, &QAbstractSlider::setInvertedAppearance>(abstract_slider, "setInvertedAppearance").create();
   // bool invertedAppearance() const;
-  binder.fun<bool, &QAbstractSlider::invertedAppearance>("invertedAppearance").create();
+  bind::member_function<QAbstractSlider, bool, &QAbstractSlider::invertedAppearance>(abstract_slider, "invertedAppearance").create();
   // void setInvertedControls(bool);
-  binder.void_fun<bool, &QAbstractSlider::setInvertedControls>("setInvertedControls").create();
+  bind::void_member_function<QAbstractSlider, bool, &QAbstractSlider::setInvertedControls>(abstract_slider, "setInvertedControls").create();
   // bool invertedControls() const;
-  binder.fun<bool, &QAbstractSlider::invertedControls>("invertedControls").create();
+  bind::member_function<QAbstractSlider, bool, &QAbstractSlider::invertedControls>(abstract_slider, "invertedControls").create();
   // int value() const;
-  binder.fun<int, &QAbstractSlider::value>("value").create();
+  bind::member_function<QAbstractSlider, int, &QAbstractSlider::value>(abstract_slider, "value").create();
   // void triggerAction(QAbstractSlider::SliderAction);
-  binder.void_fun<QAbstractSlider::SliderAction, &QAbstractSlider::triggerAction>("triggerAction").create();
+  bind::void_member_function<QAbstractSlider, QAbstractSlider::SliderAction, &QAbstractSlider::triggerAction>(abstract_slider, "triggerAction").create();
   // void setValue(int);
-  binder.void_fun<int, &QAbstractSlider::setValue>("setValue").create();
+  bind::void_member_function<QAbstractSlider, int, &QAbstractSlider::setValue>(abstract_slider, "setValue").create();
   // void setOrientation(Qt::Orientation);
-  binder.void_fun<Qt::Orientation, &QAbstractSlider::setOrientation>("setOrientation").create();
+  bind::void_member_function<QAbstractSlider, Qt::Orientation, &QAbstractSlider::setOrientation>(abstract_slider, "setOrientation").create();
   // void setRange(int, int);
-  binder.void_fun<int, int, &QAbstractSlider::setRange>("setRange").create();
+  bind::void_member_function<QAbstractSlider, int, int, &QAbstractSlider::setRange>(abstract_slider, "setRange").create();
   // void valueChanged(int);
-  binder.sigs().add<int>("valueChanged", "valueChanged(int)");
+  bind::signal<QAbstractSlider, int>(abstract_slider, "valueChanged", "valueChanged(int)");
   // void sliderPressed();
-  binder.sigs().add("sliderPressed", "sliderPressed()");
+  bind::signal<QAbstractSlider>(abstract_slider, "sliderPressed", "sliderPressed()");
   // void sliderMoved(int);
-  binder.sigs().add<int>("sliderMoved", "sliderMoved(int)");
+  bind::signal<QAbstractSlider, int>(abstract_slider, "sliderMoved", "sliderMoved(int)");
   // void sliderReleased();
-  binder.sigs().add("sliderReleased", "sliderReleased()");
+  bind::signal<QAbstractSlider>(abstract_slider, "sliderReleased", "sliderReleased()");
   // void rangeChanged(int, int);
-  binder.sigs().add<int, int>("rangeChanged", "rangeChanged(int,int)");
+  bind::signal<QAbstractSlider, int, int>(abstract_slider, "rangeChanged", "rangeChanged(int,int)");
   // void actionTriggered(int);
-  binder.sigs().add<int>("actionTriggered", "actionTriggered(int)");
+  bind::signal<QAbstractSlider, int>(abstract_slider, "actionTriggered", "actionTriggered(int)");
 
-  abstract_slider.engine()->registerQtType(&QAbstractSlider::staticMetaObject, abstract_slider.id());
+  bind::link(abstract_slider, &QAbstractSlider::staticMetaObject);
 }
 
 
@@ -120,7 +119,6 @@ void register_abstractslider_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_abstract_slider_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

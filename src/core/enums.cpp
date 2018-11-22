@@ -4,8 +4,8 @@
 
 #include "yasl/core/enums.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/enums.h"
@@ -2121,7 +2121,6 @@ static void register_qt_namespace(script::Namespace ns)
   register_qt_mouse_event_source_enum(qt);
   register_qt_mouse_event_flag_enum(qt);
   register_qt_checksum_type_enum(qt);
-  binding::Namespace binder{ qt };
 
   // const QMetaObject * qt_getEnumMetaObject(Qt::ScrollBarPolicy);
   /// TODO: const QMetaObject * qt_getEnumMetaObject(Qt::ScrollBarPolicy);
@@ -2460,7 +2459,6 @@ void register_enums_file(script::Namespace core)
   Namespace ns = core;
 
   register_qt_namespace(ns);
-  binding::Namespace binder{ ns };
 
   // const QMetaObject * qt_getQtMetaObject();
   /// TODO: const QMetaObject * qt_getQtMetaObject();

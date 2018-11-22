@@ -10,6 +10,7 @@
 #include "yasl/binding2/operator_wrapper.h"
 
 #include <script/namespace.h>
+#include <script/operator.h>
 #include <script/operatorbuilder.h>
 
 namespace script
@@ -213,6 +214,71 @@ script::Function memop_assign(script::Class & cla)
 }
 
 template<typename T, typename R, typename RHS>
+script::Function memop_subscript(script::Class & cla)
+{
+  return cla.newOperator(script::SubscriptOperator, subscript_wrapper<R, T&, RHS>)
+    .returns(make_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_const_subscript(script::Class & cla)
+{
+  return cla.newOperator(script::SubscriptOperator, subscript_wrapper<R, const T&, RHS>)
+    .setConst()
+    .returns(make_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_add_assign(script::Class & cla)
+{
+  return cla.newOperator(script::AdditionAssignmentOperator, add_assign_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_sub_assign(script::Class & cla)
+{
+  return cla.newOperator(script::AdditionAssignmentOperator, sub_assign_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_mul_assign(script::Class & cla)
+{
+  return cla.newOperator(script::MultiplicationAssignmentOperator, mul_assign_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+
+template<typename T, typename RHS>
+script::Function memop_div_assign(script::Class & cla)
+{
+  return cla.newOperator(script::DivisionAssignmentOperator, div_assign_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename RHS>
+script::Function memop_xor_assign(script::Class & cla)
+{
+  return cla.newOperator(script::BitwiseXorAssignmentOperator, xor_assign_wrapper<T&, RHS>)
+    .returns(make_type<T&>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
 script::Function memop_add(script::Class & cla)
 {
   return cla.newOperator(script::AdditionOperator, add_wrapper<const T &, RHS>)
@@ -364,6 +430,16 @@ template<typename T, typename R, typename RHS>
 script::Function memop_bitand(script::Class & cla)
 {
   return cla.newOperator(script::BitwiseAndOperator, and_wrapper<const T&, RHS>)
+    .setConst()
+    .returns(make_return_type<R>())
+    .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename RHS>
+script::Function memop_bitxor(script::Class & cla)
+{
+  return cla.newOperator(script::BitwiseXorOperator, xor_wrapper<const T&, RHS>)
     .setConst()
     .returns(make_return_type<R>())
     .params(make_type<RHS>())

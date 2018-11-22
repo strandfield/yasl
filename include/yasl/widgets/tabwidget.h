@@ -5,16 +5,16 @@
 #ifndef YASL_WIDGETS_TABWIDGET_H
 #define YASL_WIDGETS_TABWIDGET_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QTabWidget>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QTabWidget> { inline static script::Type get() { return script::Type::QTabWidget; } };
 template<> struct tag_resolver<QTabWidget> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QTabWidget::TabPosition> { inline static script::Type get() { return script::Type::QTabWidgetTabPosition; } };
 template<> struct make_type_t<QTabWidget::TabShape> { inline static script::Type get() { return script::Type::QTabWidgetTabShape; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_WIDGETS_TABWIDGET_H

@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/toolbutton.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -40,47 +40,46 @@ static void register_tool_button_class(script::Namespace ns)
     .setBase(script::Type::QAbstractButton).get();
 
   register_tool_button_tool_button_popup_mode_enum(tool_button);
-  binding::ClassBinder<QToolButton> binder{ tool_button, &QToolButton::staticMetaObject };
 
   // QToolButton(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QToolButton, QWidget *>(tool_button)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QToolButton();
-  binder.dtor().create();
+  bind::destructor<QToolButton>(tool_button).create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QToolButton::sizeHint>("sizeHint").create();
+  bind::member_function<QToolButton, QSize, &QToolButton::sizeHint>(tool_button, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QToolButton::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QToolButton, QSize, &QToolButton::minimumSizeHint>(tool_button, "minimumSizeHint").create();
   // Qt::ToolButtonStyle toolButtonStyle() const;
-  binder.fun<Qt::ToolButtonStyle, &QToolButton::toolButtonStyle>("toolButtonStyle").create();
+  bind::member_function<QToolButton, Qt::ToolButtonStyle, &QToolButton::toolButtonStyle>(tool_button, "toolButtonStyle").create();
   // Qt::ArrowType arrowType() const;
-  binder.fun<Qt::ArrowType, &QToolButton::arrowType>("arrowType").create();
+  bind::member_function<QToolButton, Qt::ArrowType, &QToolButton::arrowType>(tool_button, "arrowType").create();
   // void setArrowType(Qt::ArrowType);
-  binder.void_fun<Qt::ArrowType, &QToolButton::setArrowType>("setArrowType").create();
+  bind::void_member_function<QToolButton, Qt::ArrowType, &QToolButton::setArrowType>(tool_button, "setArrowType").create();
   // void setMenu(QMenu *);
-  binder.void_fun<QMenu *, &QToolButton::setMenu>("setMenu").create();
+  bind::void_member_function<QToolButton, QMenu *, &QToolButton::setMenu>(tool_button, "setMenu").create();
   // QMenu * menu() const;
-  binder.fun<QMenu *, &QToolButton::menu>("menu").create();
+  bind::member_function<QToolButton, QMenu *, &QToolButton::menu>(tool_button, "menu").create();
   // void setPopupMode(QToolButton::ToolButtonPopupMode);
-  binder.void_fun<QToolButton::ToolButtonPopupMode, &QToolButton::setPopupMode>("setPopupMode").create();
+  bind::void_member_function<QToolButton, QToolButton::ToolButtonPopupMode, &QToolButton::setPopupMode>(tool_button, "setPopupMode").create();
   // QToolButton::ToolButtonPopupMode popupMode() const;
-  binder.fun<QToolButton::ToolButtonPopupMode, &QToolButton::popupMode>("popupMode").create();
+  bind::member_function<QToolButton, QToolButton::ToolButtonPopupMode, &QToolButton::popupMode>(tool_button, "popupMode").create();
   // QAction * defaultAction() const;
-  binder.fun<QAction *, &QToolButton::defaultAction>("defaultAction").create();
+  bind::member_function<QToolButton, QAction *, &QToolButton::defaultAction>(tool_button, "defaultAction").create();
   // void setAutoRaise(bool);
-  binder.void_fun<bool, &QToolButton::setAutoRaise>("setAutoRaise").create();
+  bind::void_member_function<QToolButton, bool, &QToolButton::setAutoRaise>(tool_button, "setAutoRaise").create();
   // bool autoRaise() const;
-  binder.fun<bool, &QToolButton::autoRaise>("autoRaise").create();
+  bind::member_function<QToolButton, bool, &QToolButton::autoRaise>(tool_button, "autoRaise").create();
   // void showMenu();
-  binder.void_fun<&QToolButton::showMenu>("showMenu").create();
+  bind::void_member_function<QToolButton, &QToolButton::showMenu>(tool_button, "showMenu").create();
   // void setToolButtonStyle(Qt::ToolButtonStyle);
-  binder.void_fun<Qt::ToolButtonStyle, &QToolButton::setToolButtonStyle>("setToolButtonStyle").create();
+  bind::void_member_function<QToolButton, Qt::ToolButtonStyle, &QToolButton::setToolButtonStyle>(tool_button, "setToolButtonStyle").create();
   // void setDefaultAction(QAction *);
-  binder.void_fun<QAction *, &QToolButton::setDefaultAction>("setDefaultAction").create();
+  bind::void_member_function<QToolButton, QAction *, &QToolButton::setDefaultAction>(tool_button, "setDefaultAction").create();
   // void triggered(QAction *);
-  binder.sigs().add<QAction *>("triggered", "triggered(QAction *)");
+  bind::signal<QToolButton, QAction *>(tool_button, "triggered", "triggered(QAction *)");
 
-  tool_button.engine()->registerQtType(&QToolButton::staticMetaObject, tool_button.id());
+  bind::link(tool_button, &QToolButton::staticMetaObject);
 }
 
 
@@ -91,9 +90,8 @@ void register_toolbutton_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_tool_button_class(ns);
-  binding::Namespace binder{ ns };
 
   // QToolButton& newToolButton(QWidget*);
-  NewFunction(binder).add<QToolButton, QWidget*>("newToolButton");
+  bind::new_function<QToolButton, QWidget*>(ns, "newToolButton");
 }
 

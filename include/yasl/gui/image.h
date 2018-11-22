@@ -5,14 +5,14 @@
 #ifndef YASL_GUI_IMAGE_H
 #define YASL_GUI_IMAGE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QImage>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QImage> { inline static script::Type get() { return script::Type::QImage; } };
 template<> struct make_type_t<QImage::Format> { inline static script::Type get() { return script::Type::QImageFormat; } };
 template<> struct make_type_t<QImage::InvertMode> { inline static script::Type get() { return script::Type::QImageInvertMode; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_IMAGE_H

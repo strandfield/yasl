@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/errormessage.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/widgets/widget.h"
 
@@ -19,19 +19,18 @@ static void register_error_message_class(script::Namespace ns)
   Class error_message = ns.newClass("ErrorMessage").setId(script::Type::QErrorMessage)
     .setBase(script::Type::QDialog).get();
 
-  binding::ClassBinder<QErrorMessage> binder{ error_message, &QErrorMessage::staticMetaObject };
 
   // QErrorMessage(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QErrorMessage, QWidget *>(error_message)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QErrorMessage();
-  binder.dtor().create();
+  bind::destructor<QErrorMessage>(error_message).create();
   // void showMessage(const QString &);
-  binder.void_fun<const QString &, &QErrorMessage::showMessage>("showMessage").create();
+  bind::void_member_function<QErrorMessage, const QString &, &QErrorMessage::showMessage>(error_message, "showMessage").create();
   // void showMessage(const QString &, const QString &);
-  binder.void_fun<const QString &, const QString &, &QErrorMessage::showMessage>("showMessage").create();
+  bind::void_member_function<QErrorMessage, const QString &, const QString &, &QErrorMessage::showMessage>(error_message, "showMessage").create();
 
-  error_message.engine()->registerQtType(&QErrorMessage::staticMetaObject, error_message.id());
+  bind::link(error_message, &QErrorMessage::staticMetaObject);
 }
 
 
@@ -42,7 +41,6 @@ void register_errormessage_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_error_message_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

@@ -5,14 +5,14 @@
 #ifndef YASL_WIDGETS_GRIDLAYOUT_H
 #define YASL_WIDGETS_GRIDLAYOUT_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QGridLayout>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QGridLayout> { inline static script::Type get() { return script::Type::QGridLayout; } };
 template<> struct tag_resolver<QGridLayout> { typedef qobject_tag tag_type; };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_WIDGETS_GRIDLAYOUT_H

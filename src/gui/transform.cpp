@@ -4,10 +4,10 @@
 
 #include "yasl/gui/transform.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -43,82 +43,81 @@ static void register_transform_class(script::Namespace ns)
   Class transform = ns.newClass("Transform").setId(script::Type::QTransform).get();
 
   register_transform_transformation_type_enum(transform);
-  binding::ClassBinder<QTransform> binder{ transform };
 
   // QTransform(Qt::Initialization);
-  binder.ctor<Qt::Initialization>().create();
+  bind::constructor<QTransform, Qt::Initialization>(transform).create();
   // QTransform();
-  binder.default_ctor().create();
+  bind::default_constructor<QTransform>(transform).create();
   // QTransform(qreal, qreal, qreal, qreal, qreal, qreal);
-  binder.ctor<qreal, qreal, qreal, qreal, qreal, qreal>().create();
+  bind::constructor<QTransform, qreal, qreal, qreal, qreal, qreal, qreal>(transform).create();
   // QTransform(const QMatrix &);
   /// TODO: QTransform(const QMatrix &);
   // QTransform & operator=(QTransform &&);
-  binder.operators().assign<QTransform &&>();
+  bind::memop_assign<QTransform, QTransform &&>(transform);
   // QTransform & operator=(const QTransform &);
-  binder.operators().assign<const QTransform &>();
+  bind::memop_assign<QTransform, const QTransform &>(transform);
   // QTransform(QTransform &&);
-  binder.ctor<QTransform &&>().create();
+  bind::constructor<QTransform, QTransform &&>(transform).create();
   // QTransform(const QTransform &);
-  binder.ctor<const QTransform &>().create();
+  bind::constructor<QTransform, const QTransform &>(transform).create();
   // bool isAffine() const;
-  binder.fun<bool, &QTransform::isAffine>("isAffine").create();
+  bind::member_function<QTransform, bool, &QTransform::isAffine>(transform, "isAffine").create();
   // bool isIdentity() const;
-  binder.fun<bool, &QTransform::isIdentity>("isIdentity").create();
+  bind::member_function<QTransform, bool, &QTransform::isIdentity>(transform, "isIdentity").create();
   // bool isInvertible() const;
-  binder.fun<bool, &QTransform::isInvertible>("isInvertible").create();
+  bind::member_function<QTransform, bool, &QTransform::isInvertible>(transform, "isInvertible").create();
   // bool isScaling() const;
-  binder.fun<bool, &QTransform::isScaling>("isScaling").create();
+  bind::member_function<QTransform, bool, &QTransform::isScaling>(transform, "isScaling").create();
   // bool isRotating() const;
-  binder.fun<bool, &QTransform::isRotating>("isRotating").create();
+  bind::member_function<QTransform, bool, &QTransform::isRotating>(transform, "isRotating").create();
   // bool isTranslating() const;
-  binder.fun<bool, &QTransform::isTranslating>("isTranslating").create();
+  bind::member_function<QTransform, bool, &QTransform::isTranslating>(transform, "isTranslating").create();
   // QTransform::TransformationType type() const;
-  binder.fun<QTransform::TransformationType, &QTransform::type>("type").create();
+  bind::member_function<QTransform, QTransform::TransformationType, &QTransform::type>(transform, "type").create();
   // qreal determinant() const;
-  binder.fun<qreal, &QTransform::determinant>("determinant").create();
+  bind::member_function<QTransform, qreal, &QTransform::determinant>(transform, "determinant").create();
   // qreal det() const;
-  binder.fun<qreal, &QTransform::det>("det").create();
+  bind::member_function<QTransform, qreal, &QTransform::det>(transform, "det").create();
   // qreal m11() const;
-  binder.fun<qreal, &QTransform::m11>("m11").create();
+  bind::member_function<QTransform, qreal, &QTransform::m11>(transform, "m11").create();
   // qreal m12() const;
-  binder.fun<qreal, &QTransform::m12>("m12").create();
+  bind::member_function<QTransform, qreal, &QTransform::m12>(transform, "m12").create();
   // qreal m13() const;
-  binder.fun<qreal, &QTransform::m13>("m13").create();
+  bind::member_function<QTransform, qreal, &QTransform::m13>(transform, "m13").create();
   // qreal m21() const;
-  binder.fun<qreal, &QTransform::m21>("m21").create();
+  bind::member_function<QTransform, qreal, &QTransform::m21>(transform, "m21").create();
   // qreal m22() const;
-  binder.fun<qreal, &QTransform::m22>("m22").create();
+  bind::member_function<QTransform, qreal, &QTransform::m22>(transform, "m22").create();
   // qreal m23() const;
-  binder.fun<qreal, &QTransform::m23>("m23").create();
+  bind::member_function<QTransform, qreal, &QTransform::m23>(transform, "m23").create();
   // qreal m31() const;
-  binder.fun<qreal, &QTransform::m31>("m31").create();
+  bind::member_function<QTransform, qreal, &QTransform::m31>(transform, "m31").create();
   // qreal m32() const;
-  binder.fun<qreal, &QTransform::m32>("m32").create();
+  bind::member_function<QTransform, qreal, &QTransform::m32>(transform, "m32").create();
   // qreal m33() const;
-  binder.fun<qreal, &QTransform::m33>("m33").create();
+  bind::member_function<QTransform, qreal, &QTransform::m33>(transform, "m33").create();
   // qreal dx() const;
-  binder.fun<qreal, &QTransform::dx>("dx").create();
+  bind::member_function<QTransform, qreal, &QTransform::dx>(transform, "dx").create();
   // qreal dy() const;
-  binder.fun<qreal, &QTransform::dy>("dy").create();
+  bind::member_function<QTransform, qreal, &QTransform::dy>(transform, "dy").create();
   // QTransform inverted(bool *) const;
   /// TODO: QTransform inverted(bool *) const;
   // QTransform adjoint() const;
-  binder.fun<QTransform, &QTransform::adjoint>("adjoint").create();
+  bind::member_function<QTransform, QTransform, &QTransform::adjoint>(transform, "adjoint").create();
   // QTransform transposed() const;
-  binder.fun<QTransform, &QTransform::transposed>("transposed").create();
+  bind::member_function<QTransform, QTransform, &QTransform::transposed>(transform, "transposed").create();
   // QTransform & translate(qreal, qreal);
-  binder.chainable<qreal, qreal, &QTransform::translate>("translate").create();
+  bind::chainable_memfn<QTransform, qreal, qreal, &QTransform::translate>(transform, "translate").create();
   // QTransform & scale(qreal, qreal);
-  binder.chainable<qreal, qreal, &QTransform::scale>("scale").create();
+  bind::chainable_memfn<QTransform, qreal, qreal, &QTransform::scale>(transform, "scale").create();
   // QTransform & shear(qreal, qreal);
-  binder.chainable<qreal, qreal, &QTransform::shear>("shear").create();
+  bind::chainable_memfn<QTransform, qreal, qreal, &QTransform::shear>(transform, "shear").create();
   // QTransform & rotate(qreal, Qt::Axis);
-  binder.chainable<qreal, Qt::Axis, &QTransform::rotate>("rotate")
-    .apply(binding::default_arguments(Qt::ZAxis)).create();
+  bind::chainable_memfn<QTransform, qreal, Qt::Axis, &QTransform::rotate>(transform, "rotate")
+    .apply(bind::default_arguments(Qt::ZAxis)).create();
   // QTransform & rotateRadians(qreal, Qt::Axis);
-  binder.chainable<qreal, Qt::Axis, &QTransform::rotateRadians>("rotateRadians")
-    .apply(binding::default_arguments(Qt::ZAxis)).create();
+  bind::chainable_memfn<QTransform, qreal, Qt::Axis, &QTransform::rotateRadians>(transform, "rotateRadians")
+    .apply(bind::default_arguments(Qt::ZAxis)).create();
   // static bool squareToQuad(const QPolygonF &, QTransform &);
   /// TODO: static bool squareToQuad(const QPolygonF &, QTransform &);
   // static bool quadToSquare(const QPolygonF &, QTransform &);
@@ -126,37 +125,37 @@ static void register_transform_class(script::Namespace ns)
   // static bool quadToQuad(const QPolygonF &, const QPolygonF &, QTransform &);
   /// TODO: static bool quadToQuad(const QPolygonF &, const QPolygonF &, QTransform &);
   // bool operator==(const QTransform &) const;
-  binder.operators().eq<const QTransform &>();
+  bind::memop_eq<QTransform, const QTransform &>(transform);
   // bool operator!=(const QTransform &) const;
-  binder.operators().neq<const QTransform &>();
+  bind::memop_neq<QTransform, const QTransform &>(transform);
   // QTransform & operator*=(const QTransform &);
-  binder.operators().mul_assign<const QTransform &>();
+  bind::memop_mul_assign<QTransform, const QTransform &>(transform);
   // QTransform operator*(const QTransform &) const;
-  binder.operators().mul<QTransform, const QTransform &>();
+  bind::memop_mul<QTransform, QTransform, const QTransform &>(transform);
   // void reset();
-  binder.void_fun<&QTransform::reset>("reset").create();
+  bind::void_member_function<QTransform, &QTransform::reset>(transform, "reset").create();
   // QPoint map(const QPoint &) const;
-  binder.fun<QPoint, const QPoint &, &QTransform::map>("map").create();
+  bind::member_function<QTransform, QPoint, const QPoint &, &QTransform::map>(transform, "map").create();
   // QPointF map(const QPointF &) const;
-  binder.fun<QPointF, const QPointF &, &QTransform::map>("map").create();
+  bind::member_function<QTransform, QPointF, const QPointF &, &QTransform::map>(transform, "map").create();
   // QLine map(const QLine &) const;
-  binder.fun<QLine, const QLine &, &QTransform::map>("map").create();
+  bind::member_function<QTransform, QLine, const QLine &, &QTransform::map>(transform, "map").create();
   // QLineF map(const QLineF &) const;
-  binder.fun<QLineF, const QLineF &, &QTransform::map>("map").create();
+  bind::member_function<QTransform, QLineF, const QLineF &, &QTransform::map>(transform, "map").create();
   // QPolygonF map(const QPolygonF &) const;
   /// TODO: QPolygonF map(const QPolygonF &) const;
   // QPolygon map(const QPolygon &) const;
   /// TODO: QPolygon map(const QPolygon &) const;
   // QRegion map(const QRegion &) const;
-  binder.fun<QRegion, const QRegion &, &QTransform::map>("map").create();
+  bind::member_function<QTransform, QRegion, const QRegion &, &QTransform::map>(transform, "map").create();
   // QPainterPath map(const QPainterPath &) const;
-  binder.fun<QPainterPath, const QPainterPath &, &QTransform::map>("map").create();
+  bind::member_function<QTransform, QPainterPath, const QPainterPath &, &QTransform::map>(transform, "map").create();
   // QPolygon mapToPolygon(const QRect &) const;
   /// TODO: QPolygon mapToPolygon(const QRect &) const;
   // QRect mapRect(const QRect &) const;
-  binder.fun<QRect, const QRect &, &QTransform::mapRect>("mapRect").create();
+  bind::member_function<QTransform, QRect, const QRect &, &QTransform::mapRect>(transform, "mapRect").create();
   // QRectF mapRect(const QRectF &) const;
-  binder.fun<QRectF, const QRectF &, &QTransform::mapRect>("mapRect").create();
+  bind::member_function<QTransform, QRectF, const QRectF &, &QTransform::mapRect>(transform, "mapRect").create();
   // void map(int, int, int *, int *) const;
   /// TODO: void map(int, int, int *, int *) const;
   // void map(qreal, qreal, qreal *, qreal *) const;
@@ -164,17 +163,17 @@ static void register_transform_class(script::Namespace ns)
   // const QMatrix & toAffine() const;
   /// TODO: const QMatrix & toAffine() const;
   // QTransform & operator*=(qreal);
-  binder.operators().mul_assign<qreal>();
+  bind::memop_mul_assign<QTransform, qreal>(transform);
   // QTransform & operator/=(qreal);
-  binder.operators().div_assign<qreal>();
+  bind::memop_div_assign<QTransform, qreal>(transform);
   // QTransform & operator+=(qreal);
-  binder.operators().add_assign<qreal>();
+  bind::memop_add_assign<QTransform, qreal>(transform);
   // QTransform & operator-=(qreal);
-  binder.operators().sub_assign<qreal>();
+  bind::memop_sub_assign<QTransform, qreal>(transform);
   // static QTransform fromTranslate(qreal, qreal);
-  binder.static_fun<QTransform, qreal, qreal, &QTransform::fromTranslate>("fromTranslate").create();
+  bind::static_member_function<QTransform, QTransform, qreal, qreal, &QTransform::fromTranslate>(transform, "fromTranslate").create();
   // static QTransform fromScale(qreal, qreal);
-  binder.static_fun<QTransform, qreal, qreal, &QTransform::fromScale>("fromScale").create();
+  bind::static_member_function<QTransform, QTransform, qreal, qreal, &QTransform::fromScale>(transform, "fromScale").create();
 }
 
 
@@ -185,41 +184,40 @@ void register_transform_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_transform_class(ns);
-  binding::Namespace binder{ ns };
 
   // uint qHash(const QTransform &, uint);
-  binder.fun<uint, const QTransform &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QTransform &, uint, &qHash>(ns, "qHash").create();
   // bool qFuzzyCompare(const QTransform &, const QTransform &);
-  binder.fun<bool, const QTransform &, const QTransform &, &qFuzzyCompare>("qFuzzyCompare").create();
+  bind::function<bool, const QTransform &, const QTransform &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
   // QDataStream & operator<<(QDataStream &, const QTransform &);
-  binder.operators().put_to<QDataStream &, const QTransform &>();
+  bind::op_put_to<QDataStream &, const QTransform &>(ns);
   // QDataStream & operator>>(QDataStream &, QTransform &);
-  binder.operators().read_from<QDataStream &, QTransform &>();
+  bind::op_read_from<QDataStream &, QTransform &>(ns);
   // QDebug operator<<(QDebug, const QTransform &);
   /// TODO: QDebug operator<<(QDebug, const QTransform &);
   // QPoint operator*(const QPoint &, const QTransform &);
-  binder.operators().mul<QPoint, const QPoint &, const QTransform &>();
+  bind::op_mul<QPoint, const QPoint &, const QTransform &>(ns);
   // QPointF operator*(const QPointF &, const QTransform &);
-  binder.operators().mul<QPointF, const QPointF &, const QTransform &>();
+  bind::op_mul<QPointF, const QPointF &, const QTransform &>(ns);
   // QLineF operator*(const QLineF &, const QTransform &);
-  binder.operators().mul<QLineF, const QLineF &, const QTransform &>();
+  bind::op_mul<QLineF, const QLineF &, const QTransform &>(ns);
   // QLine operator*(const QLine &, const QTransform &);
-  binder.operators().mul<QLine, const QLine &, const QTransform &>();
+  bind::op_mul<QLine, const QLine &, const QTransform &>(ns);
   // QPolygon operator*(const QPolygon &, const QTransform &);
   /// TODO: QPolygon operator*(const QPolygon &, const QTransform &);
   // QPolygonF operator*(const QPolygonF &, const QTransform &);
   /// TODO: QPolygonF operator*(const QPolygonF &, const QTransform &);
   // QRegion operator*(const QRegion &, const QTransform &);
-  binder.operators().mul<QRegion, const QRegion &, const QTransform &>();
+  bind::op_mul<QRegion, const QRegion &, const QTransform &>(ns);
   // QPainterPath operator*(const QPainterPath &, const QTransform &);
-  binder.operators().mul<QPainterPath, const QPainterPath &, const QTransform &>();
+  bind::op_mul<QPainterPath, const QPainterPath &, const QTransform &>(ns);
   // QTransform operator*(const QTransform &, qreal);
-  binder.operators().mul<QTransform, const QTransform &, qreal>();
+  bind::op_mul<QTransform, const QTransform &, qreal>(ns);
   // QTransform operator/(const QTransform &, qreal);
-  binder.operators().div<QTransform, const QTransform &, qreal>();
+  bind::op_div<QTransform, const QTransform &, qreal>(ns);
   // QTransform operator+(const QTransform &, qreal);
-  binder.operators().add<QTransform, const QTransform &, qreal>();
+  bind::op_add<QTransform, const QTransform &, qreal>(ns);
   // QTransform operator-(const QTransform &, qreal);
-  binder.operators().sub<QTransform, const QTransform &, qreal>();
+  bind::op_sub<QTransform, const QTransform &, qreal>(ns);
 }
 

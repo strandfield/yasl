@@ -4,9 +4,9 @@
 
 #include "yasl/core/timer.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/object.h"
@@ -20,43 +20,42 @@ static void register_timer_class(script::Namespace ns)
   Class timer = ns.newClass("Timer").setId(script::Type::QTimer)
     .setBase(script::Type::QObject).get();
 
-  binding::ClassBinder<QTimer> binder{ timer, &QTimer::staticMetaObject };
 
   // QTimer(QObject *);
-  binder.ctor<QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QTimer, QObject *>(timer)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QTimer();
-  binder.dtor().create();
+  bind::destructor<QTimer>(timer).create();
   // bool isActive() const;
-  binder.fun<bool, &QTimer::isActive>("isActive").create();
+  bind::member_function<QTimer, bool, &QTimer::isActive>(timer, "isActive").create();
   // int timerId() const;
-  binder.fun<int, &QTimer::timerId>("timerId").create();
+  bind::member_function<QTimer, int, &QTimer::timerId>(timer, "timerId").create();
   // void setInterval(int);
-  binder.void_fun<int, &QTimer::setInterval>("setInterval").create();
+  bind::void_member_function<QTimer, int, &QTimer::setInterval>(timer, "setInterval").create();
   // int interval() const;
-  binder.fun<int, &QTimer::interval>("interval").create();
+  bind::member_function<QTimer, int, &QTimer::interval>(timer, "interval").create();
   // int remainingTime() const;
-  binder.fun<int, &QTimer::remainingTime>("remainingTime").create();
+  bind::member_function<QTimer, int, &QTimer::remainingTime>(timer, "remainingTime").create();
   // void setTimerType(Qt::TimerType);
-  binder.void_fun<Qt::TimerType, &QTimer::setTimerType>("setTimerType").create();
+  bind::void_member_function<QTimer, Qt::TimerType, &QTimer::setTimerType>(timer, "setTimerType").create();
   // Qt::TimerType timerType() const;
-  binder.fun<Qt::TimerType, &QTimer::timerType>("timerType").create();
+  bind::member_function<QTimer, Qt::TimerType, &QTimer::timerType>(timer, "timerType").create();
   // void setSingleShot(bool);
-  binder.void_fun<bool, &QTimer::setSingleShot>("setSingleShot").create();
+  bind::void_member_function<QTimer, bool, &QTimer::setSingleShot>(timer, "setSingleShot").create();
   // bool isSingleShot() const;
-  binder.fun<bool, &QTimer::isSingleShot>("isSingleShot").create();
+  bind::member_function<QTimer, bool, &QTimer::isSingleShot>(timer, "isSingleShot").create();
   // static void singleShot(int, const QObject *, const char *);
   /// TODO: static void singleShot(int, const QObject *, const char *);
   // static void singleShot(int, Qt::TimerType, const QObject *, const char *);
   /// TODO: static void singleShot(int, Qt::TimerType, const QObject *, const char *);
   // void start(int);
-  binder.void_fun<int, &QTimer::start>("start").create();
+  bind::void_member_function<QTimer, int, &QTimer::start>(timer, "start").create();
   // void start();
-  binder.void_fun<&QTimer::start>("start").create();
+  bind::void_member_function<QTimer, &QTimer::start>(timer, "start").create();
   // void stop();
-  binder.void_fun<&QTimer::stop>("stop").create();
+  bind::void_member_function<QTimer, &QTimer::stop>(timer, "stop").create();
   // void timeout();
-  binder.sigs().add("timeout", "timeout()");
+  bind::signal<QTimer>(timer, "timeout", "timeout()");
   // void setInterval(std::chrono::milliseconds);
   /// TODO: void setInterval(std::chrono::milliseconds);
   // std::chrono::milliseconds intervalAsDuration() const;
@@ -70,7 +69,7 @@ static void register_timer_class(script::Namespace ns)
   // void start(std::chrono::milliseconds);
   /// TODO: void start(std::chrono::milliseconds);
 
-  timer.engine()->registerQtType(&QTimer::staticMetaObject, timer.id());
+  bind::link(timer, &QTimer::staticMetaObject);
 }
 
 
@@ -81,7 +80,6 @@ void register_timer_file(script::Namespace core)
   Namespace ns = core;
 
   register_timer_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

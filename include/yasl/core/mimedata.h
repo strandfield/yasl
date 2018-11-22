@@ -5,16 +5,20 @@
 #ifndef YASL_CORE_MIMEDATA_H
 #define YASL_CORE_MIMEDATA_H
 
-#include "yasl/binding/values.h"
+#include "yasl/binding2/values.h"
 
 #include <QMimeData>
 
-namespace binding
+namespace script
+{
+
+namespace bind
 {
 template<> inline script::Value make_value(const QMimeData *obj, script::Engine *e)
 {
   throw std::runtime_error{ "Not implemented" };
 }
-} // namespace binding
+} // namespace bind
+} // namespace script
 
 #endif // YASL_CORE_MIMEDATA_H

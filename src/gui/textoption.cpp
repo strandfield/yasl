@@ -4,9 +4,9 @@
 
 #include "yasl/gui/textoption.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/enums.h"
@@ -67,42 +67,41 @@ static void register_text_option_class(script::Namespace ns)
   register_text_option_tab_type_enum(text_option);
   register_text_option_wrap_mode_enum(text_option);
   register_text_option_flag_enum(text_option);
-  binding::ClassBinder<QTextOption> binder{ text_option };
 
   // QTextOption();
-  binder.default_ctor().create();
+  bind::default_constructor<QTextOption>(text_option).create();
   // QTextOption(Qt::Alignment);
-  binder.ctor<Qt::Alignment>().create();
+  bind::constructor<QTextOption, Qt::Alignment>(text_option).create();
   // ~QTextOption();
-  binder.dtor().create();
+  bind::destructor<QTextOption>(text_option).create();
   // QTextOption(const QTextOption &);
-  binder.ctor<const QTextOption &>().create();
+  bind::constructor<QTextOption, const QTextOption &>(text_option).create();
   // QTextOption & operator=(const QTextOption &);
-  binder.operators().assign<const QTextOption &>();
+  bind::memop_assign<QTextOption, const QTextOption &>(text_option);
   // void setAlignment(Qt::Alignment);
-  binder.void_fun<Qt::Alignment, &QTextOption::setAlignment>("setAlignment").create();
+  bind::void_member_function<QTextOption, Qt::Alignment, &QTextOption::setAlignment>(text_option, "setAlignment").create();
   // Qt::Alignment alignment() const;
-  binder.fun<Qt::Alignment, &QTextOption::alignment>("alignment").create();
+  bind::member_function<QTextOption, Qt::Alignment, &QTextOption::alignment>(text_option, "alignment").create();
   // void setTextDirection(Qt::LayoutDirection);
-  binder.void_fun<Qt::LayoutDirection, &QTextOption::setTextDirection>("setTextDirection").create();
+  bind::void_member_function<QTextOption, Qt::LayoutDirection, &QTextOption::setTextDirection>(text_option, "setTextDirection").create();
   // Qt::LayoutDirection textDirection() const;
-  binder.fun<Qt::LayoutDirection, &QTextOption::textDirection>("textDirection").create();
+  bind::member_function<QTextOption, Qt::LayoutDirection, &QTextOption::textDirection>(text_option, "textDirection").create();
   // void setWrapMode(QTextOption::WrapMode);
-  binder.void_fun<QTextOption::WrapMode, &QTextOption::setWrapMode>("setWrapMode").create();
+  bind::void_member_function<QTextOption, QTextOption::WrapMode, &QTextOption::setWrapMode>(text_option, "setWrapMode").create();
   // QTextOption::WrapMode wrapMode() const;
-  binder.fun<QTextOption::WrapMode, &QTextOption::wrapMode>("wrapMode").create();
+  bind::member_function<QTextOption, QTextOption::WrapMode, &QTextOption::wrapMode>(text_option, "wrapMode").create();
   // void setFlags(QTextOption::Flags);
-  binder.void_fun<QTextOption::Flags, &QTextOption::setFlags>("setFlags").create();
+  bind::void_member_function<QTextOption, QTextOption::Flags, &QTextOption::setFlags>(text_option, "setFlags").create();
   // QTextOption::Flags flags() const;
-  binder.fun<QTextOption::Flags, &QTextOption::flags>("flags").create();
+  bind::member_function<QTextOption, QTextOption::Flags, &QTextOption::flags>(text_option, "flags").create();
   // void setTabStop(qreal);
-  binder.void_fun<qreal, &QTextOption::setTabStop>("setTabStop").create();
+  bind::void_member_function<QTextOption, qreal, &QTextOption::setTabStop>(text_option, "setTabStop").create();
   // qreal tabStop() const;
-  binder.fun<qreal, &QTextOption::tabStop>("tabStop").create();
+  bind::member_function<QTextOption, qreal, &QTextOption::tabStop>(text_option, "tabStop").create();
   // void setTabStopDistance(qreal);
-  binder.void_fun<qreal, &QTextOption::setTabStopDistance>("setTabStopDistance").create();
+  bind::void_member_function<QTextOption, qreal, &QTextOption::setTabStopDistance>(text_option, "setTabStopDistance").create();
   // qreal tabStopDistance() const;
-  binder.fun<qreal, &QTextOption::tabStopDistance>("tabStopDistance").create();
+  bind::member_function<QTextOption, qreal, &QTextOption::tabStopDistance>(text_option, "tabStopDistance").create();
   // void setTabArray(const QList<qreal> &);
   /// TODO: void setTabArray(const QList<qreal> &);
   // QList<qreal> tabArray() const;
@@ -112,9 +111,9 @@ static void register_text_option_class(script::Namespace ns)
   // QList<QTextOption::Tab> tabs() const;
   /// TODO: QList<QTextOption::Tab> tabs() const;
   // void setUseDesignMetrics(bool);
-  binder.void_fun<bool, &QTextOption::setUseDesignMetrics>("setUseDesignMetrics").create();
+  bind::void_member_function<QTextOption, bool, &QTextOption::setUseDesignMetrics>(text_option, "setUseDesignMetrics").create();
   // bool useDesignMetrics() const;
-  binder.fun<bool, &QTextOption::useDesignMetrics>("useDesignMetrics").create();
+  bind::member_function<QTextOption, bool, &QTextOption::useDesignMetrics>(text_option, "useDesignMetrics").create();
 }
 
 
@@ -125,7 +124,6 @@ void register_textoption_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_text_option_class(ns);
-  binding::Namespace binder{ ns };
 
   // QFlags<QTextOption::Flags::enum_type> operator|(QTextOption::Flags::enum_type, QTextOption::Flags::enum_type);
   /// TODO: QFlags<QTextOption::Flags::enum_type> operator|(QTextOption::Flags::enum_type, QTextOption::Flags::enum_type);

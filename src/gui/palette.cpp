@@ -4,9 +4,9 @@
 
 #include "yasl/gui/palette.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -73,108 +73,107 @@ static void register_palette_class(script::Namespace ns)
 
   register_palette_color_group_enum(palette);
   register_palette_color_role_enum(palette);
-  binding::ClassBinder<QPalette> binder{ palette };
 
   // QPalette();
-  binder.default_ctor().create();
+  bind::default_constructor<QPalette>(palette).create();
   // QPalette(const QColor &);
-  binder.ctor<const QColor &>().create();
+  bind::constructor<QPalette, const QColor &>(palette).create();
   // QPalette(Qt::GlobalColor);
-  binder.ctor<Qt::GlobalColor>().create();
+  bind::constructor<QPalette, Qt::GlobalColor>(palette).create();
   // QPalette(const QColor &, const QColor &);
-  binder.ctor<const QColor &, const QColor &>().create();
+  bind::constructor<QPalette, const QColor &, const QColor &>(palette).create();
   // QPalette(const QPalette &);
-  binder.ctor<const QPalette &>().create();
+  bind::constructor<QPalette, const QPalette &>(palette).create();
   // ~QPalette();
-  binder.dtor().create();
+  bind::destructor<QPalette>(palette).create();
   // QPalette & operator=(const QPalette &);
-  binder.operators().assign<const QPalette &>();
+  bind::memop_assign<QPalette, const QPalette &>(palette);
   // QPalette(QPalette &&);
-  binder.ctor<QPalette &&>().create();
+  bind::constructor<QPalette, QPalette &&>(palette).create();
   // QPalette & operator=(QPalette &&);
-  binder.operators().assign<QPalette &&>();
+  bind::memop_assign<QPalette, QPalette &&>(palette);
   // void swap(QPalette &);
-  binder.void_fun<QPalette &, &QPalette::swap>("swap").create();
+  bind::void_member_function<QPalette, QPalette &, &QPalette::swap>(palette, "swap").create();
   // QPalette::ColorGroup currentColorGroup() const;
-  binder.fun<QPalette::ColorGroup, &QPalette::currentColorGroup>("currentColorGroup").create();
+  bind::member_function<QPalette, QPalette::ColorGroup, &QPalette::currentColorGroup>(palette, "currentColorGroup").create();
   // void setCurrentColorGroup(QPalette::ColorGroup);
-  binder.void_fun<QPalette::ColorGroup, &QPalette::setCurrentColorGroup>("setCurrentColorGroup").create();
+  bind::void_member_function<QPalette, QPalette::ColorGroup, &QPalette::setCurrentColorGroup>(palette, "setCurrentColorGroup").create();
   // const QColor & color(QPalette::ColorGroup, QPalette::ColorRole) const;
-  binder.fun<const QColor &, QPalette::ColorGroup, QPalette::ColorRole, &QPalette::color>("color").create();
+  bind::member_function<QPalette, const QColor &, QPalette::ColorGroup, QPalette::ColorRole, &QPalette::color>(palette, "color").create();
   // const QBrush & brush(QPalette::ColorGroup, QPalette::ColorRole) const;
-  binder.fun<const QBrush &, QPalette::ColorGroup, QPalette::ColorRole, &QPalette::brush>("brush").create();
+  bind::member_function<QPalette, const QBrush &, QPalette::ColorGroup, QPalette::ColorRole, &QPalette::brush>(palette, "brush").create();
   // void setColor(QPalette::ColorGroup, QPalette::ColorRole, const QColor &);
-  binder.void_fun<QPalette::ColorGroup, QPalette::ColorRole, const QColor &, &QPalette::setColor>("setColor").create();
+  bind::void_member_function<QPalette, QPalette::ColorGroup, QPalette::ColorRole, const QColor &, &QPalette::setColor>(palette, "setColor").create();
   // void setColor(QPalette::ColorRole, const QColor &);
-  binder.void_fun<QPalette::ColorRole, const QColor &, &QPalette::setColor>("setColor").create();
+  bind::void_member_function<QPalette, QPalette::ColorRole, const QColor &, &QPalette::setColor>(palette, "setColor").create();
   // void setBrush(QPalette::ColorRole, const QBrush &);
-  binder.void_fun<QPalette::ColorRole, const QBrush &, &QPalette::setBrush>("setBrush").create();
+  bind::void_member_function<QPalette, QPalette::ColorRole, const QBrush &, &QPalette::setBrush>(palette, "setBrush").create();
   // bool isBrushSet(QPalette::ColorGroup, QPalette::ColorRole) const;
-  binder.fun<bool, QPalette::ColorGroup, QPalette::ColorRole, &QPalette::isBrushSet>("isBrushSet").create();
+  bind::member_function<QPalette, bool, QPalette::ColorGroup, QPalette::ColorRole, &QPalette::isBrushSet>(palette, "isBrushSet").create();
   // void setBrush(QPalette::ColorGroup, QPalette::ColorRole, const QBrush &);
-  binder.void_fun<QPalette::ColorGroup, QPalette::ColorRole, const QBrush &, &QPalette::setBrush>("setBrush").create();
+  bind::void_member_function<QPalette, QPalette::ColorGroup, QPalette::ColorRole, const QBrush &, &QPalette::setBrush>(palette, "setBrush").create();
   // bool isEqual(QPalette::ColorGroup, QPalette::ColorGroup) const;
-  binder.fun<bool, QPalette::ColorGroup, QPalette::ColorGroup, &QPalette::isEqual>("isEqual").create();
+  bind::member_function<QPalette, bool, QPalette::ColorGroup, QPalette::ColorGroup, &QPalette::isEqual>(palette, "isEqual").create();
   // const QColor & color(QPalette::ColorRole) const;
-  binder.fun<const QColor &, QPalette::ColorRole, &QPalette::color>("color").create();
+  bind::member_function<QPalette, const QColor &, QPalette::ColorRole, &QPalette::color>(palette, "color").create();
   // const QBrush & brush(QPalette::ColorRole) const;
-  binder.fun<const QBrush &, QPalette::ColorRole, &QPalette::brush>("brush").create();
+  bind::member_function<QPalette, const QBrush &, QPalette::ColorRole, &QPalette::brush>(palette, "brush").create();
   // const QBrush & foreground() const;
-  binder.fun<const QBrush &, &QPalette::foreground>("foreground").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::foreground>(palette, "foreground").create();
   // const QBrush & windowText() const;
-  binder.fun<const QBrush &, &QPalette::windowText>("windowText").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::windowText>(palette, "windowText").create();
   // const QBrush & button() const;
-  binder.fun<const QBrush &, &QPalette::button>("button").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::button>(palette, "button").create();
   // const QBrush & light() const;
-  binder.fun<const QBrush &, &QPalette::light>("light").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::light>(palette, "light").create();
   // const QBrush & dark() const;
-  binder.fun<const QBrush &, &QPalette::dark>("dark").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::dark>(palette, "dark").create();
   // const QBrush & mid() const;
-  binder.fun<const QBrush &, &QPalette::mid>("mid").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::mid>(palette, "mid").create();
   // const QBrush & text() const;
-  binder.fun<const QBrush &, &QPalette::text>("text").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::text>(palette, "text").create();
   // const QBrush & base() const;
-  binder.fun<const QBrush &, &QPalette::base>("base").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::base>(palette, "base").create();
   // const QBrush & alternateBase() const;
-  binder.fun<const QBrush &, &QPalette::alternateBase>("alternateBase").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::alternateBase>(palette, "alternateBase").create();
   // const QBrush & toolTipBase() const;
-  binder.fun<const QBrush &, &QPalette::toolTipBase>("toolTipBase").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::toolTipBase>(palette, "toolTipBase").create();
   // const QBrush & toolTipText() const;
-  binder.fun<const QBrush &, &QPalette::toolTipText>("toolTipText").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::toolTipText>(palette, "toolTipText").create();
   // const QBrush & background() const;
-  binder.fun<const QBrush &, &QPalette::background>("background").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::background>(palette, "background").create();
   // const QBrush & window() const;
-  binder.fun<const QBrush &, &QPalette::window>("window").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::window>(palette, "window").create();
   // const QBrush & midlight() const;
-  binder.fun<const QBrush &, &QPalette::midlight>("midlight").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::midlight>(palette, "midlight").create();
   // const QBrush & brightText() const;
-  binder.fun<const QBrush &, &QPalette::brightText>("brightText").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::brightText>(palette, "brightText").create();
   // const QBrush & buttonText() const;
-  binder.fun<const QBrush &, &QPalette::buttonText>("buttonText").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::buttonText>(palette, "buttonText").create();
   // const QBrush & shadow() const;
-  binder.fun<const QBrush &, &QPalette::shadow>("shadow").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::shadow>(palette, "shadow").create();
   // const QBrush & highlight() const;
-  binder.fun<const QBrush &, &QPalette::highlight>("highlight").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::highlight>(palette, "highlight").create();
   // const QBrush & highlightedText() const;
-  binder.fun<const QBrush &, &QPalette::highlightedText>("highlightedText").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::highlightedText>(palette, "highlightedText").create();
   // const QBrush & link() const;
-  binder.fun<const QBrush &, &QPalette::link>("link").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::link>(palette, "link").create();
   // const QBrush & linkVisited() const;
-  binder.fun<const QBrush &, &QPalette::linkVisited>("linkVisited").create();
+  bind::member_function<QPalette, const QBrush &, &QPalette::linkVisited>(palette, "linkVisited").create();
   // bool operator==(const QPalette &) const;
-  binder.operators().eq<const QPalette &>();
+  bind::memop_eq<QPalette, const QPalette &>(palette);
   // bool operator!=(const QPalette &) const;
-  binder.operators().neq<const QPalette &>();
+  bind::memop_neq<QPalette, const QPalette &>(palette);
   // bool isCopyOf(const QPalette &) const;
-  binder.fun<bool, const QPalette &, &QPalette::isCopyOf>("isCopyOf").create();
+  bind::member_function<QPalette, bool, const QPalette &, &QPalette::isCopyOf>(palette, "isCopyOf").create();
   // qint64 cacheKey() const;
   /// TODO: qint64 cacheKey() const;
   // QPalette resolve(const QPalette &) const;
-  binder.fun<QPalette, const QPalette &, &QPalette::resolve>("resolve").create();
+  bind::member_function<QPalette, QPalette, const QPalette &, &QPalette::resolve>(palette, "resolve").create();
   // uint resolve() const;
-  binder.fun<uint, &QPalette::resolve>("resolve").create();
+  bind::member_function<QPalette, uint, &QPalette::resolve>(palette, "resolve").create();
   // void resolve(uint);
-  binder.void_fun<uint, &QPalette::resolve>("resolve").create();
+  bind::void_member_function<QPalette, uint, &QPalette::resolve>(palette, "resolve").create();
 }
 
 
@@ -185,14 +184,13 @@ void register_palette_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_palette_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QPalette &, QPalette &);
-  binder.void_fun<QPalette &, QPalette &, &swap>("swap").create();
+  bind::void_function<QPalette &, QPalette &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QPalette &);
-  binder.operators().put_to<QDataStream &, const QPalette &>();
+  bind::op_put_to<QDataStream &, const QPalette &>(ns);
   // QDataStream & operator>>(QDataStream &, QPalette &);
-  binder.operators().read_from<QDataStream &, QPalette &>();
+  bind::op_read_from<QDataStream &, QPalette &>(ns);
   // QDebug operator<<(QDebug, const QPalette &);
   /// TODO: QDebug operator<<(QDebug, const QPalette &);
 }

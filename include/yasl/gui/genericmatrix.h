@@ -5,12 +5,10 @@
 #ifndef YASL_GUI_GENERIC_MATRIX_H
 #define YASL_GUI_GENERIC_MATRIX_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QGenericMatrix>
 #include <QMatrix4x4>
 
-namespace binding {
-} // namespace binding
 
 #endif // YASL_GUI_GENERIC_MATRIX_H

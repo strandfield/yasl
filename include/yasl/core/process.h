@@ -5,12 +5,12 @@
 #ifndef YASL_CORE_PROCESS_H
 #define YASL_CORE_PROCESS_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QProcess>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QProcess> { inline static script::Type get() { return script::Type::QProcess; } };
 template<> struct tag_resolver<QProcess> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QProcess::ExitStatus> { inline static script::Type get() { return script::Type::QProcessExitStatus; } };
@@ -20,6 +20,6 @@ template<> struct make_type_t<QProcess::ProcessChannelMode> { inline static scri
 template<> struct make_type_t<QProcess::ProcessError> { inline static script::Type get() { return script::Type::QProcessProcessError; } };
 template<> struct make_type_t<QProcess::ProcessState> { inline static script::Type get() { return script::Type::QProcessProcessState; } };
 template<> struct make_type_t<QProcessEnvironment> { inline static script::Type get() { return script::Type::QProcessEnvironment; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_PROCESS_H

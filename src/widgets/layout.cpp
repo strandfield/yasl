@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/layout.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
-#include "yasl/utils/ref.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
+#include "yasl/binding2/ref.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/margins.h"
@@ -41,100 +41,99 @@ static void register_layout_class(script::Namespace ns)
   Class layout = ns.newClass("Layout").setId(script::Type::QLayout)
     .setBase(script::Type::QObject).get();
 
-  register_ref_specialization(layout.engine(), script::Type::QLayout, script::Type::QLayoutStar);
+  bind::register_ref_specialization(layout.engine(), script::Type::QLayout, script::Type::QLayoutStar);
   register_layout_size_constraint_enum(layout);
-  binding::ClassBinder<QLayout> binder{ layout, &QLayout::staticMetaObject };
 
   // ~QLayout();
-  binder.dtor().create();
+  bind::destructor<QLayout>(layout).create();
   // int margin() const;
-  binder.fun<int, &QLayout::margin>("margin").create();
+  bind::member_function<QLayout, int, &QLayout::margin>(layout, "margin").create();
   // int spacing() const;
-  binder.fun<int, &QLayout::spacing>("spacing").create();
+  bind::member_function<QLayout, int, &QLayout::spacing>(layout, "spacing").create();
   // void setMargin(int);
-  binder.void_fun<int, &QLayout::setMargin>("setMargin").create();
+  bind::void_member_function<QLayout, int, &QLayout::setMargin>(layout, "setMargin").create();
   // void setSpacing(int);
-  binder.void_fun<int, &QLayout::setSpacing>("setSpacing").create();
+  bind::void_member_function<QLayout, int, &QLayout::setSpacing>(layout, "setSpacing").create();
   // void setContentsMargins(int, int, int, int);
-  binder.void_fun<int, int, int, int, &QLayout::setContentsMargins>("setContentsMargins").create();
+  bind::void_member_function<QLayout, int, int, int, int, &QLayout::setContentsMargins>(layout, "setContentsMargins").create();
   // void setContentsMargins(const QMargins &);
-  binder.void_fun<const QMargins &, &QLayout::setContentsMargins>("setContentsMargins").create();
+  bind::void_member_function<QLayout, const QMargins &, &QLayout::setContentsMargins>(layout, "setContentsMargins").create();
   // void getContentsMargins(int *, int *, int *, int *) const;
   /// TODO: void getContentsMargins(int *, int *, int *, int *) const;
   // QMargins contentsMargins() const;
-  binder.fun<QMargins, &QLayout::contentsMargins>("contentsMargins").create();
+  bind::member_function<QLayout, QMargins, &QLayout::contentsMargins>(layout, "contentsMargins").create();
   // QRect contentsRect() const;
-  binder.fun<QRect, &QLayout::contentsRect>("contentsRect").create();
+  bind::member_function<QLayout, QRect, &QLayout::contentsRect>(layout, "contentsRect").create();
   // bool setAlignment(QWidget *, Qt::Alignment);
-  binder.fun<bool, QWidget *, Qt::Alignment, &QLayout::setAlignment>("setAlignment").create();
+  bind::member_function<QLayout, bool, QWidget *, Qt::Alignment, &QLayout::setAlignment>(layout, "setAlignment").create();
   // bool setAlignment(QLayout *, Qt::Alignment);
-  binder.fun<bool, QLayout *, Qt::Alignment, &QLayout::setAlignment>("setAlignment").create();
+  bind::member_function<QLayout, bool, QLayout *, Qt::Alignment, &QLayout::setAlignment>(layout, "setAlignment").create();
   // void setSizeConstraint(QLayout::SizeConstraint);
-  binder.void_fun<QLayout::SizeConstraint, &QLayout::setSizeConstraint>("setSizeConstraint").create();
+  bind::void_member_function<QLayout, QLayout::SizeConstraint, &QLayout::setSizeConstraint>(layout, "setSizeConstraint").create();
   // QLayout::SizeConstraint sizeConstraint() const;
-  binder.fun<QLayout::SizeConstraint, &QLayout::sizeConstraint>("sizeConstraint").create();
+  bind::member_function<QLayout, QLayout::SizeConstraint, &QLayout::sizeConstraint>(layout, "sizeConstraint").create();
   // void setMenuBar(QWidget *);
-  binder.void_fun<QWidget *, &QLayout::setMenuBar>("setMenuBar").create();
+  bind::void_member_function<QLayout, QWidget *, &QLayout::setMenuBar>(layout, "setMenuBar").create();
   // QWidget * menuBar() const;
-  binder.fun<QWidget *, &QLayout::menuBar>("menuBar").create();
+  bind::member_function<QLayout, QWidget *, &QLayout::menuBar>(layout, "menuBar").create();
   // QWidget * parentWidget() const;
-  binder.fun<QWidget *, &QLayout::parentWidget>("parentWidget").create();
+  bind::member_function<QLayout, QWidget *, &QLayout::parentWidget>(layout, "parentWidget").create();
   // void invalidate();
-  binder.void_fun<&QLayout::invalidate>("invalidate").create();
+  bind::void_member_function<QLayout, &QLayout::invalidate>(layout, "invalidate").create();
   // QRect geometry() const;
-  binder.fun<QRect, &QLayout::geometry>("geometry").create();
+  bind::member_function<QLayout, QRect, &QLayout::geometry>(layout, "geometry").create();
   // bool activate();
-  binder.fun<bool, &QLayout::activate>("activate").create();
+  bind::member_function<QLayout, bool, &QLayout::activate>(layout, "activate").create();
   // void update();
-  binder.void_fun<&QLayout::update>("update").create();
+  bind::void_member_function<QLayout, &QLayout::update>(layout, "update").create();
   // void addWidget(QWidget *);
-  binder.void_fun<QWidget *, &QLayout::addWidget>("addWidget").create();
+  bind::void_member_function<QLayout, QWidget *, &QLayout::addWidget>(layout, "addWidget").create();
   // void addItem(QLayoutItem *);
   /// TODO: void addItem(QLayoutItem *);
   // void removeWidget(QWidget *);
-  binder.void_fun<QWidget *, &QLayout::removeWidget>("removeWidget").create();
+  bind::void_member_function<QLayout, QWidget *, &QLayout::removeWidget>(layout, "removeWidget").create();
   // void removeItem(QLayoutItem *);
   /// TODO: void removeItem(QLayoutItem *);
   // Qt::Orientations expandingDirections() const;
   /// TODO: Qt::Orientations expandingDirections() const;
   // QSize minimumSize() const;
-  binder.fun<QSize, &QLayout::minimumSize>("minimumSize").create();
+  bind::member_function<QLayout, QSize, &QLayout::minimumSize>(layout, "minimumSize").create();
   // QSize maximumSize() const;
-  binder.fun<QSize, &QLayout::maximumSize>("maximumSize").create();
+  bind::member_function<QLayout, QSize, &QLayout::maximumSize>(layout, "maximumSize").create();
   // void setGeometry(const QRect &);
-  binder.void_fun<const QRect &, &QLayout::setGeometry>("setGeometry").create();
+  bind::void_member_function<QLayout, const QRect &, &QLayout::setGeometry>(layout, "setGeometry").create();
   // QLayoutItem * itemAt(int) const;
   /// TODO: QLayoutItem * itemAt(int) const;
   // QLayoutItem * takeAt(int);
   /// TODO: QLayoutItem * takeAt(int);
   // int indexOf(QWidget *) const;
-  binder.fun<int, QWidget *, &QLayout::indexOf>("indexOf").create();
+  bind::member_function<QLayout, int, QWidget *, &QLayout::indexOf>(layout, "indexOf").create();
   // int count() const;
-  binder.fun<int, &QLayout::count>("count").create();
+  bind::member_function<QLayout, int, &QLayout::count>(layout, "count").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QLayout::isEmpty>("isEmpty").create();
+  bind::member_function<QLayout, bool, &QLayout::isEmpty>(layout, "isEmpty").create();
   // QSizePolicy::ControlTypes controlTypes() const;
   /// TODO: QSizePolicy::ControlTypes controlTypes() const;
   // QLayoutItem * replaceWidget(QWidget *, QWidget *, Qt::FindChildOptions);
   /// TODO: QLayoutItem * replaceWidget(QWidget *, QWidget *, Qt::FindChildOptions);
   // int totalHeightForWidth(int) const;
-  binder.fun<int, int, &QLayout::totalHeightForWidth>("totalHeightForWidth").create();
+  bind::member_function<QLayout, int, int, &QLayout::totalHeightForWidth>(layout, "totalHeightForWidth").create();
   // QSize totalMinimumSize() const;
-  binder.fun<QSize, &QLayout::totalMinimumSize>("totalMinimumSize").create();
+  bind::member_function<QLayout, QSize, &QLayout::totalMinimumSize>(layout, "totalMinimumSize").create();
   // QSize totalMaximumSize() const;
-  binder.fun<QSize, &QLayout::totalMaximumSize>("totalMaximumSize").create();
+  bind::member_function<QLayout, QSize, &QLayout::totalMaximumSize>(layout, "totalMaximumSize").create();
   // QSize totalSizeHint() const;
-  binder.fun<QSize, &QLayout::totalSizeHint>("totalSizeHint").create();
+  bind::member_function<QLayout, QSize, &QLayout::totalSizeHint>(layout, "totalSizeHint").create();
   // QLayout * layout();
-  binder.fun<QLayout *, &QLayout::layout>("layout").create();
+  bind::member_function<QLayout, QLayout *, &QLayout::layout>(layout, "layout").create();
   // void setEnabled(bool);
-  binder.void_fun<bool, &QLayout::setEnabled>("setEnabled").create();
+  bind::void_member_function<QLayout, bool, &QLayout::setEnabled>(layout, "setEnabled").create();
   // bool isEnabled() const;
-  binder.fun<bool, &QLayout::isEnabled>("isEnabled").create();
+  bind::member_function<QLayout, bool, &QLayout::isEnabled>(layout, "isEnabled").create();
   // static QSize closestAcceptableSize(const QWidget *, const QSize &);
-  binder.static_fun<QSize, const QWidget *, const QSize &, &QLayout::closestAcceptableSize>("closestAcceptableSize").create();
+  bind::static_member_function<QLayout, QSize, const QWidget *, const QSize &, &QLayout::closestAcceptableSize>(layout, "closestAcceptableSize").create();
 
-  layout.engine()->registerQtType(&QLayout::staticMetaObject, layout.id());
+  bind::link(layout, &QLayout::staticMetaObject);
 }
 
 
@@ -145,7 +144,6 @@ void register_layout_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_layout_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

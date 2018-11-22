@@ -4,12 +4,12 @@
 
 #include "yasl/core/object.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
+#include "yasl/binding2/ref.h"
 #include "yasl/core/listspecializations.h"
-#include "yasl/utils/ref.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/enums.h"
@@ -23,10 +23,9 @@ static void register_object_class(script::Namespace ns)
 
   Class object = ns.newClass("Object").setId(script::Type::QObject).get();
 
-  register_ref_specialization(object.engine(), script::Type::QObject, script::Type::QObjectStar);
-  register_proxy_specialization<QObject*>(object.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQObject);
+  bind::register_ref_specialization(object.engine(), script::Type::QObject, script::Type::QObjectStar);
+  bind::register_proxy_specialization<QObject*>(object.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQObject);
   register_list_specialization<QObject*>(object.engine(), script::Type::QListQObject);
-  binding::ClassBinder<QObject> binder{ object, &QObject::staticMetaObject };
 
   // const QMetaObject * metaObject() const;
   /// TODO: const QMetaObject * metaObject() const;
@@ -35,45 +34,45 @@ static void register_object_class(script::Namespace ns)
   // static QString trUtf8(const char *, const char *, int);
   /// TODO: static QString trUtf8(const char *, const char *, int);
   // QObject(QObject *);
-  binder.ctor<QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QObject, QObject *>(object)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QObject();
-  binder.dtor().create();
+  bind::destructor<QObject>(object).create();
   // bool event(QEvent *);
   /// TODO: bool event(QEvent *);
   // bool eventFilter(QObject *, QEvent *);
   /// TODO: bool eventFilter(QObject *, QEvent *);
   // QString objectName() const;
-  binder.fun<QString, &QObject::objectName>("objectName").create();
+  bind::member_function<QObject, QString, &QObject::objectName>(object, "objectName").create();
   // void setObjectName(const QString &);
-  binder.void_fun<const QString &, &QObject::setObjectName>("setObjectName").create();
+  bind::void_member_function<QObject, const QString &, &QObject::setObjectName>(object, "setObjectName").create();
   // bool isWidgetType() const;
-  binder.fun<bool, &QObject::isWidgetType>("isWidgetType").create();
+  bind::member_function<QObject, bool, &QObject::isWidgetType>(object, "isWidgetType").create();
   // bool isWindowType() const;
-  binder.fun<bool, &QObject::isWindowType>("isWindowType").create();
+  bind::member_function<QObject, bool, &QObject::isWindowType>(object, "isWindowType").create();
   // bool signalsBlocked() const;
-  binder.fun<bool, &QObject::signalsBlocked>("signalsBlocked").create();
+  bind::member_function<QObject, bool, &QObject::signalsBlocked>(object, "signalsBlocked").create();
   // bool blockSignals(bool);
-  binder.fun<bool, bool, &QObject::blockSignals>("blockSignals").create();
+  bind::member_function<QObject, bool, bool, &QObject::blockSignals>(object, "blockSignals").create();
   // QThread * thread() const;
   /// TODO: QThread * thread() const;
   // void moveToThread(QThread *);
   /// TODO: void moveToThread(QThread *);
   // int startTimer(int, Qt::TimerType);
-  binder.fun<int, int, Qt::TimerType, &QObject::startTimer>("startTimer")
-    .apply(binding::default_arguments(Qt::CoarseTimer)).create();
+  bind::member_function<QObject, int, int, Qt::TimerType, &QObject::startTimer>(object, "startTimer")
+    .apply(bind::default_arguments(Qt::CoarseTimer)).create();
   // int startTimer(std::chrono::milliseconds, Qt::TimerType);
   /// TODO: int startTimer(std::chrono::milliseconds, Qt::TimerType);
   // void killTimer(int);
-  binder.void_fun<int, &QObject::killTimer>("killTimer").create();
+  bind::void_member_function<QObject, int, &QObject::killTimer>(object, "killTimer").create();
   // const QObjectList & children() const;
-  binder.fun<const QObjectList &, &QObject::children>("children").create();
+  bind::member_function<QObject, const QObjectList &, &QObject::children>(object, "children").create();
   // void setParent(QObject *);
-  binder.void_fun<QObject *, &QObject::setParent>("setParent").create();
+  bind::void_member_function<QObject, QObject *, &QObject::setParent>(object, "setParent").create();
   // void installEventFilter(QObject *);
-  binder.void_fun<QObject *, &QObject::installEventFilter>("installEventFilter").create();
+  bind::void_member_function<QObject, QObject *, &QObject::installEventFilter>(object, "installEventFilter").create();
   // void removeEventFilter(QObject *);
-  binder.void_fun<QObject *, &QObject::removeEventFilter>("removeEventFilter").create();
+  bind::void_member_function<QObject, QObject *, &QObject::removeEventFilter>(object, "removeEventFilter").create();
   // static QMetaObject::Connection connect(const QObject *, const char *, const QObject *, const char *, Qt::ConnectionType);
   /// TODO: static QMetaObject::Connection connect(const QObject *, const char *, const QObject *, const char *, Qt::ConnectionType);
   // static QMetaObject::Connection connect(const QObject *, const QMetaMethod &, const QObject *, const QMetaMethod &, Qt::ConnectionType);
@@ -91,25 +90,25 @@ static void register_object_class(script::Namespace ns)
   // static bool disconnect(const QMetaObject::Connection &);
   /// TODO: static bool disconnect(const QMetaObject::Connection &);
   // void dumpObjectTree() const;
-  binder.const_void_fun<&QObject::dumpObjectTree>("dumpObjectTree").create();
+  bind::const_void_member_function<QObject, &QObject::dumpObjectTree>(object, "dumpObjectTree").create();
   // void dumpObjectInfo() const;
-  binder.const_void_fun<&QObject::dumpObjectInfo>("dumpObjectInfo").create();
+  bind::const_void_member_function<QObject, &QObject::dumpObjectInfo>(object, "dumpObjectInfo").create();
   // bool setProperty(const char *, const QVariant &);
   /// TODO: bool setProperty(const char *, const QVariant &);
   // QVariant property(const char *) const;
   /// TODO: QVariant property(const char *) const;
   // QList<QByteArray> dynamicPropertyNames() const;
-  binder.fun<QList<QByteArray>, &QObject::dynamicPropertyNames>("dynamicPropertyNames").create();
+  bind::member_function<QObject, QList<QByteArray>, &QObject::dynamicPropertyNames>(object, "dynamicPropertyNames").create();
   // void destroyed(QObject *);
-  binder.sigs().add<QObject *>("destroyed", "destroyed(QObject *)");
+  bind::signal<QObject, QObject *>(object, "destroyed", "destroyed(QObject *)");
   // QObject * parent() const;
-  binder.fun<QObject *, &QObject::parent>("parent").create();
+  bind::member_function<QObject, QObject *, &QObject::parent>(object, "parent").create();
   // bool inherits(const char *) const;
   /// TODO: bool inherits(const char *) const;
   // void deleteLater();
-  binder.void_fun<&QObject::deleteLater>("deleteLater").create();
+  bind::void_member_function<QObject, &QObject::deleteLater>(object, "deleteLater").create();
 
-  object.engine()->registerQtType(&QObject::staticMetaObject, object.id());
+  bind::link(object, &QObject::staticMetaObject);
 }
 
 
@@ -119,22 +118,21 @@ static void register_signal_blocker_class(script::Namespace ns)
 
   Class signal_blocker = ns.newClass("SignalBlocker").setId(script::Type::QSignalBlocker).get();
 
-  binding::ClassBinder<QSignalBlocker> binder{ signal_blocker };
 
   // QSignalBlocker(QObject *);
-  binder.ctor<QObject *>().create();
+  bind::constructor<QSignalBlocker, QObject *>(signal_blocker).create();
   // QSignalBlocker(QObject &);
-  binder.ctor<QObject &>().create();
+  bind::constructor<QSignalBlocker, QObject &>(signal_blocker).create();
   // ~QSignalBlocker();
-  binder.dtor().create();
+  bind::destructor<QSignalBlocker>(signal_blocker).create();
   // QSignalBlocker(QSignalBlocker &&);
-  binder.ctor<QSignalBlocker &&>().create();
+  bind::constructor<QSignalBlocker, QSignalBlocker &&>(signal_blocker).create();
   // QSignalBlocker & operator=(QSignalBlocker &&);
-  binder.operators().assign<QSignalBlocker &&>();
+  bind::memop_assign<QSignalBlocker, QSignalBlocker &&>(signal_blocker);
   // void reblock();
-  binder.void_fun<&QSignalBlocker::reblock>("reblock").create();
+  bind::void_member_function<QSignalBlocker, &QSignalBlocker::reblock>(signal_blocker, "reblock").create();
   // void unblock();
-  binder.void_fun<&QSignalBlocker::unblock>("unblock").create();
+  bind::void_member_function<QSignalBlocker, &QSignalBlocker::unblock>(signal_blocker, "unblock").create();
 }
 
 
@@ -146,7 +144,6 @@ void register_object_file(script::Namespace core)
 
   register_object_class(ns);
   register_signal_blocker_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDebug operator<<(QDebug, const QObject *);
   /// TODO: QDebug operator<<(QDebug, const QObject *);

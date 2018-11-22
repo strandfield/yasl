@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/label.h"
 
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -23,16 +23,15 @@ static void register_label_class(script::Namespace ns)
   Class label = ns.newClass("Label").setId(script::Type::QLabel)
     .setBase(script::Type::QFrame).get();
 
-  binding::ClassBinder<QLabel> binder{ label, &QLabel::staticMetaObject };
 
   // QLabel(QWidget *, Qt::WindowFlags);
   /// TODO: QLabel(QWidget *, Qt::WindowFlags);
   // QLabel(const QString &, QWidget *, Qt::WindowFlags);
   /// TODO: QLabel(const QString &, QWidget *, Qt::WindowFlags);
   // ~QLabel();
-  binder.dtor().create();
+  bind::destructor<QLabel>(label).create();
   // QString text() const;
-  binder.fun<QString, &QLabel::text>("text").create();
+  bind::member_function<QLabel, QString, &QLabel::text>(label, "text").create();
   // const QPixmap * pixmap() const;
   /// TODO: const QPixmap * pixmap() const;
   // const QPicture * picture() const;
@@ -40,75 +39,75 @@ static void register_label_class(script::Namespace ns)
   // QMovie * movie() const;
   /// TODO: QMovie * movie() const;
   // Qt::TextFormat textFormat() const;
-  binder.fun<Qt::TextFormat, &QLabel::textFormat>("textFormat").create();
+  bind::member_function<QLabel, Qt::TextFormat, &QLabel::textFormat>(label, "textFormat").create();
   // void setTextFormat(Qt::TextFormat);
-  binder.void_fun<Qt::TextFormat, &QLabel::setTextFormat>("setTextFormat").create();
+  bind::void_member_function<QLabel, Qt::TextFormat, &QLabel::setTextFormat>(label, "setTextFormat").create();
   // Qt::Alignment alignment() const;
-  binder.fun<Qt::Alignment, &QLabel::alignment>("alignment").create();
+  bind::member_function<QLabel, Qt::Alignment, &QLabel::alignment>(label, "alignment").create();
   // void setAlignment(Qt::Alignment);
-  binder.void_fun<Qt::Alignment, &QLabel::setAlignment>("setAlignment").create();
+  bind::void_member_function<QLabel, Qt::Alignment, &QLabel::setAlignment>(label, "setAlignment").create();
   // void setWordWrap(bool);
-  binder.void_fun<bool, &QLabel::setWordWrap>("setWordWrap").create();
+  bind::void_member_function<QLabel, bool, &QLabel::setWordWrap>(label, "setWordWrap").create();
   // bool wordWrap() const;
-  binder.fun<bool, &QLabel::wordWrap>("wordWrap").create();
+  bind::member_function<QLabel, bool, &QLabel::wordWrap>(label, "wordWrap").create();
   // int indent() const;
-  binder.fun<int, &QLabel::indent>("indent").create();
+  bind::member_function<QLabel, int, &QLabel::indent>(label, "indent").create();
   // void setIndent(int);
-  binder.void_fun<int, &QLabel::setIndent>("setIndent").create();
+  bind::void_member_function<QLabel, int, &QLabel::setIndent>(label, "setIndent").create();
   // int margin() const;
-  binder.fun<int, &QLabel::margin>("margin").create();
+  bind::member_function<QLabel, int, &QLabel::margin>(label, "margin").create();
   // void setMargin(int);
-  binder.void_fun<int, &QLabel::setMargin>("setMargin").create();
+  bind::void_member_function<QLabel, int, &QLabel::setMargin>(label, "setMargin").create();
   // bool hasScaledContents() const;
-  binder.fun<bool, &QLabel::hasScaledContents>("hasScaledContents").create();
+  bind::member_function<QLabel, bool, &QLabel::hasScaledContents>(label, "hasScaledContents").create();
   // void setScaledContents(bool);
-  binder.void_fun<bool, &QLabel::setScaledContents>("setScaledContents").create();
+  bind::void_member_function<QLabel, bool, &QLabel::setScaledContents>(label, "setScaledContents").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QLabel::sizeHint>("sizeHint").create();
+  bind::member_function<QLabel, QSize, &QLabel::sizeHint>(label, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QLabel::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QLabel, QSize, &QLabel::minimumSizeHint>(label, "minimumSizeHint").create();
   // void setBuddy(QWidget *);
-  binder.void_fun<QWidget *, &QLabel::setBuddy>("setBuddy").create();
+  bind::void_member_function<QLabel, QWidget *, &QLabel::setBuddy>(label, "setBuddy").create();
   // QWidget * buddy() const;
-  binder.fun<QWidget *, &QLabel::buddy>("buddy").create();
+  bind::member_function<QLabel, QWidget *, &QLabel::buddy>(label, "buddy").create();
   // int heightForWidth(int) const;
-  binder.fun<int, int, &QLabel::heightForWidth>("heightForWidth").create();
+  bind::member_function<QLabel, int, int, &QLabel::heightForWidth>(label, "heightForWidth").create();
   // bool openExternalLinks() const;
-  binder.fun<bool, &QLabel::openExternalLinks>("openExternalLinks").create();
+  bind::member_function<QLabel, bool, &QLabel::openExternalLinks>(label, "openExternalLinks").create();
   // void setOpenExternalLinks(bool);
-  binder.void_fun<bool, &QLabel::setOpenExternalLinks>("setOpenExternalLinks").create();
+  bind::void_member_function<QLabel, bool, &QLabel::setOpenExternalLinks>(label, "setOpenExternalLinks").create();
   // void setTextInteractionFlags(Qt::TextInteractionFlags);
   /// TODO: void setTextInteractionFlags(Qt::TextInteractionFlags);
   // Qt::TextInteractionFlags textInteractionFlags() const;
   /// TODO: Qt::TextInteractionFlags textInteractionFlags() const;
   // void setSelection(int, int);
-  binder.void_fun<int, int, &QLabel::setSelection>("setSelection").create();
+  bind::void_member_function<QLabel, int, int, &QLabel::setSelection>(label, "setSelection").create();
   // bool hasSelectedText() const;
-  binder.fun<bool, &QLabel::hasSelectedText>("hasSelectedText").create();
+  bind::member_function<QLabel, bool, &QLabel::hasSelectedText>(label, "hasSelectedText").create();
   // QString selectedText() const;
-  binder.fun<QString, &QLabel::selectedText>("selectedText").create();
+  bind::member_function<QLabel, QString, &QLabel::selectedText>(label, "selectedText").create();
   // int selectionStart() const;
-  binder.fun<int, &QLabel::selectionStart>("selectionStart").create();
+  bind::member_function<QLabel, int, &QLabel::selectionStart>(label, "selectionStart").create();
   // void setText(const QString &);
-  binder.void_fun<const QString &, &QLabel::setText>("setText").create();
+  bind::void_member_function<QLabel, const QString &, &QLabel::setText>(label, "setText").create();
   // void setPixmap(const QPixmap &);
-  binder.void_fun<const QPixmap &, &QLabel::setPixmap>("setPixmap").create();
+  bind::void_member_function<QLabel, const QPixmap &, &QLabel::setPixmap>(label, "setPixmap").create();
   // void setPicture(const QPicture &);
-  binder.void_fun<const QPicture &, &QLabel::setPicture>("setPicture").create();
+  bind::void_member_function<QLabel, const QPicture &, &QLabel::setPicture>(label, "setPicture").create();
   // void setMovie(QMovie *);
   /// TODO: void setMovie(QMovie *);
   // void setNum(int);
-  binder.void_fun<int, &QLabel::setNum>("setNum").create();
+  bind::void_member_function<QLabel, int, &QLabel::setNum>(label, "setNum").create();
   // void setNum(double);
-  binder.void_fun<double, &QLabel::setNum>("setNum").create();
+  bind::void_member_function<QLabel, double, &QLabel::setNum>(label, "setNum").create();
   // void clear();
-  binder.void_fun<&QLabel::clear>("clear").create();
+  bind::void_member_function<QLabel, &QLabel::clear>(label, "clear").create();
   // void linkActivated(const QString &);
-  binder.void_fun<const QString &, &QLabel::linkActivated>("linkActivated").create();
+  bind::void_member_function<QLabel, const QString &, &QLabel::linkActivated>(label, "linkActivated").create();
   // void linkHovered(const QString &);
-  binder.void_fun<const QString &, &QLabel::linkHovered>("linkHovered").create();
+  bind::void_member_function<QLabel, const QString &, &QLabel::linkHovered>(label, "linkHovered").create();
 
-  label.engine()->registerQtType(&QLabel::staticMetaObject, label.id());
+  bind::link(label, &QLabel::staticMetaObject);
 }
 
 
@@ -119,11 +118,10 @@ void register_label_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_label_class(ns);
-  binding::Namespace binder{ ns };
 
   // QLabel& newLabel(QWidget*);
-  NewFunction(binder).add<QLabel, QWidget*>("newLabel");
+  bind::new_function<QLabel, QWidget*>(ns, "newLabel");
   // QLabel& newLabel(const QString&, QWidget*);
-  NewFunction(binder).add<QLabel, const QString&, QWidget*>("newLabel");
+  bind::new_function<QLabel, const QString&, QWidget*>(ns, "newLabel");
 }
 

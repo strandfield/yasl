@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/dial.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/widgets/widget.h"
 
@@ -20,29 +20,28 @@ static void register_dial_class(script::Namespace ns)
   Class dial = ns.newClass("Dial").setId(script::Type::QDial)
     .setBase(script::Type::QAbstractSlider).get();
 
-  binding::ClassBinder<QDial> binder{ dial, &QDial::staticMetaObject };
 
   // QDial(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QDial, QWidget *>(dial)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QDial();
-  binder.dtor().create();
+  bind::destructor<QDial>(dial).create();
   // bool wrapping() const;
-  binder.fun<bool, &QDial::wrapping>("wrapping").create();
+  bind::member_function<QDial, bool, &QDial::wrapping>(dial, "wrapping").create();
   // int notchSize() const;
-  binder.fun<int, &QDial::notchSize>("notchSize").create();
+  bind::member_function<QDial, int, &QDial::notchSize>(dial, "notchSize").create();
   // void setNotchTarget(double);
-  binder.void_fun<double, &QDial::setNotchTarget>("setNotchTarget").create();
+  bind::void_member_function<QDial, double, &QDial::setNotchTarget>(dial, "setNotchTarget").create();
   // qreal notchTarget() const;
-  binder.fun<qreal, &QDial::notchTarget>("notchTarget").create();
+  bind::member_function<QDial, qreal, &QDial::notchTarget>(dial, "notchTarget").create();
   // bool notchesVisible() const;
-  binder.fun<bool, &QDial::notchesVisible>("notchesVisible").create();
+  bind::member_function<QDial, bool, &QDial::notchesVisible>(dial, "notchesVisible").create();
   // void setNotchesVisible(bool);
-  binder.void_fun<bool, &QDial::setNotchesVisible>("setNotchesVisible").create();
+  bind::void_member_function<QDial, bool, &QDial::setNotchesVisible>(dial, "setNotchesVisible").create();
   // void setWrapping(bool);
-  binder.void_fun<bool, &QDial::setWrapping>("setWrapping").create();
+  bind::void_member_function<QDial, bool, &QDial::setWrapping>(dial, "setWrapping").create();
 
-  dial.engine()->registerQtType(&QDial::staticMetaObject, dial.id());
+  bind::link(dial, &QDial::staticMetaObject);
 }
 
 
@@ -53,9 +52,8 @@ void register_dial_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_dial_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDial& newDial(QWidget*);
-  NewFunction(binder).add<QDial, QWidget*>("newDial");
+  bind::new_function<QDial, QWidget*>(ns, "newDial");
 }
 

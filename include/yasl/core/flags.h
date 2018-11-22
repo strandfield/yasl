@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_FLAGS_H
 #define YASL_CORE_FLAGS_H
 
-#include "yasl/binding/class.h"
+#include "yasl/binding2/class.h"
 
 #include <script/classbuilder.h>
 #include <script/namespace.h>
@@ -17,40 +17,40 @@ script::Class register_qflags_type_impl(script::Class flags)
 {
   using namespace script;
 
-  binding::ClassBinder<QFlags<T>> f{ flags };
+  using FlagType = QFlags<T>;
 
   // QFlags(const QFlags<T> & other);
-  f.ctor<const QFlags<T> &>().create();
+  bind::copy_constructor<FlagType>(flags).create();
   // QFlags(T flags);
-  f.ctor<T>().create();
+  bind::constructor<FlagType, T>(flags).create();
   // QFlag(Flag flag); // almost equivalent to QFlag(int);
-  f.ctor<int>().create();
+  bind::constructor<FlagType, int>(flags).create();
   // QFlags(std::initializer_list<T> flags)
   /// TODO !!
   // ~QFlags();
-  f.dtor().create();
+  bind::destructor<FlagType>(flags).create();
 
   // QFlags<T> & setFlag(T flag, bool on = true);
-  f.chainable<T, bool, &QFlags<T>::setFlag>("setFlag").create();
+  bind::chainable_memfn<FlagType, T, bool, &FlagType::setFlag>(flags, "setFlag").create();
   // bool testFlag(T flag) const;
-  f.fun<bool, T, &QFlags<T>::testFlag>("testFlag").create();
+  bind::member_function<FlagType, bool, T, &FlagType::testFlag>(flags, "testFlag").create();
 
   // operator QFlags::Int() const
   /// TODO !!
   // bool operator!() const;
   /// TODO !!
   // QFlags<T> operator&(int mask) const
-  f.operators().and<QFlags<T>, int>();
+  bind::memop_bitand<FlagType, FlagType, int>(flags);
   // QFlags<T> operator&(uint mask) const
   // QFlags<T> operator&(Enum other) const
-  f.operators().and<QFlags<T>, T>();
+  bind::memop_bitand<FlagType, FlagType, T>(flags);
   // QFlags<T> & operator&=(int mask)
-  f.operators().and_assign<int>();
+  bind::memop_and_assign<FlagType, int>(flags);
   // QFlags<T> & operator&=(uint mask)
   // QFlags<T> & operator&=(Enum mask)
-  f.operators().and_assign<T>();
+  bind::memop_and_assign<FlagType, T>(flags);
   // QFlags<T> & operator=(const QFlags<T> &other)
-  f.operators().assign<const QFlags<T> &>();
+  bind::memop_assign<FlagType, const FlagType&>(flags);
   // QFlags<T> operator^(QFlags<T> other) const
   /// TODO !!
   // QFlags<T> operator^(Enum other) const
@@ -60,13 +60,13 @@ script::Class register_qflags_type_impl(script::Class flags)
   // QFlags<T> & operator^=(Enum other)
   /// TODO !!
   // QFlags<T> operator|(QFlags<T> other) const
-  f.operators().or<QFlags<T>, QFlags<T>>();
+  bind::memop_bitor<FlagType, FlagType, const FlagType &>(flags);
   // QFlags<T> operator|(Enum other) const
-  f.operators().or<QFlags<T>, T>();
+  bind::memop_bitor<FlagType, FlagType, T>(flags);
   // QFlags<T> & operator|=(QFlags<T> other)
-  f.operators().or_assign<QFlags<T>>();
+  bind::memop_or_assign<FlagType, const FlagType &>(flags);
   // QFlags<T> & operator|=(Enum other)
-  f.operators().or_assign<T>();
+  bind::memop_or_assign<FlagType, T>(flags);
   // QFlags<T> operator~() const
   /// TODO !!
 

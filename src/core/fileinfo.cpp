@@ -4,8 +4,8 @@
 
 #include "yasl/core/fileinfo.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datetime.h"
 #include "yasl/core/dir.h"
@@ -20,110 +20,109 @@ static void register_file_info_class(script::Namespace ns)
 
   Class file_info = ns.newClass("FileInfo").setId(script::Type::QFileInfo).get();
 
-  binding::ClassBinder<QFileInfo> binder{ file_info };
 
   // QFileInfo(QFileInfoPrivate *);
   /// TODO: QFileInfo(QFileInfoPrivate *);
   // QFileInfo();
-  binder.default_ctor().create();
+  bind::default_constructor<QFileInfo>(file_info).create();
   // QFileInfo(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QFileInfo, const QString &>(file_info).create();
   // QFileInfo(const QFile &);
-  binder.ctor<const QFile &>().create();
+  bind::constructor<QFileInfo, const QFile &>(file_info).create();
   // QFileInfo(const QDir &, const QString &);
-  binder.ctor<const QDir &, const QString &>().create();
+  bind::constructor<QFileInfo, const QDir &, const QString &>(file_info).create();
   // QFileInfo(const QFileInfo &);
-  binder.ctor<const QFileInfo &>().create();
+  bind::constructor<QFileInfo, const QFileInfo &>(file_info).create();
   // ~QFileInfo();
-  binder.dtor().create();
+  bind::destructor<QFileInfo>(file_info).create();
   // QFileInfo & operator=(const QFileInfo &);
-  binder.operators().assign<const QFileInfo &>();
+  bind::memop_assign<QFileInfo, const QFileInfo &>(file_info);
   // QFileInfo & operator=(QFileInfo &&);
-  binder.operators().assign<QFileInfo &&>();
+  bind::memop_assign<QFileInfo, QFileInfo &&>(file_info);
   // void swap(QFileInfo &);
-  binder.void_fun<QFileInfo &, &QFileInfo::swap>("swap").create();
+  bind::void_member_function<QFileInfo, QFileInfo &, &QFileInfo::swap>(file_info, "swap").create();
   // bool operator==(const QFileInfo &) const;
-  binder.operators().eq<const QFileInfo &>();
+  bind::memop_eq<QFileInfo, const QFileInfo &>(file_info);
   // bool operator!=(const QFileInfo &) const;
-  binder.operators().neq<const QFileInfo &>();
+  bind::memop_neq<QFileInfo, const QFileInfo &>(file_info);
   // void setFile(const QString &);
-  binder.void_fun<const QString &, &QFileInfo::setFile>("setFile").create();
+  bind::void_member_function<QFileInfo, const QString &, &QFileInfo::setFile>(file_info, "setFile").create();
   // void setFile(const QFile &);
-  binder.void_fun<const QFile &, &QFileInfo::setFile>("setFile").create();
+  bind::void_member_function<QFileInfo, const QFile &, &QFileInfo::setFile>(file_info, "setFile").create();
   // void setFile(const QDir &, const QString &);
-  binder.void_fun<const QDir &, const QString &, &QFileInfo::setFile>("setFile").create();
+  bind::void_member_function<QFileInfo, const QDir &, const QString &, &QFileInfo::setFile>(file_info, "setFile").create();
   // bool exists() const;
-  binder.fun<bool, &QFileInfo::exists>("exists").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::exists>(file_info, "exists").create();
   // static bool exists(const QString &);
-  binder.static_fun<bool, const QString &, &QFileInfo::exists>("exists").create();
+  bind::static_member_function<QFileInfo, bool, const QString &, &QFileInfo::exists>(file_info, "exists").create();
   // void refresh();
-  binder.void_fun<&QFileInfo::refresh>("refresh").create();
+  bind::void_member_function<QFileInfo, &QFileInfo::refresh>(file_info, "refresh").create();
   // QString filePath() const;
-  binder.fun<QString, &QFileInfo::filePath>("filePath").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::filePath>(file_info, "filePath").create();
   // QString absoluteFilePath() const;
-  binder.fun<QString, &QFileInfo::absoluteFilePath>("absoluteFilePath").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::absoluteFilePath>(file_info, "absoluteFilePath").create();
   // QString canonicalFilePath() const;
-  binder.fun<QString, &QFileInfo::canonicalFilePath>("canonicalFilePath").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::canonicalFilePath>(file_info, "canonicalFilePath").create();
   // QString fileName() const;
-  binder.fun<QString, &QFileInfo::fileName>("fileName").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::fileName>(file_info, "fileName").create();
   // QString baseName() const;
-  binder.fun<QString, &QFileInfo::baseName>("baseName").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::baseName>(file_info, "baseName").create();
   // QString completeBaseName() const;
-  binder.fun<QString, &QFileInfo::completeBaseName>("completeBaseName").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::completeBaseName>(file_info, "completeBaseName").create();
   // QString suffix() const;
-  binder.fun<QString, &QFileInfo::suffix>("suffix").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::suffix>(file_info, "suffix").create();
   // QString bundleName() const;
-  binder.fun<QString, &QFileInfo::bundleName>("bundleName").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::bundleName>(file_info, "bundleName").create();
   // QString completeSuffix() const;
-  binder.fun<QString, &QFileInfo::completeSuffix>("completeSuffix").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::completeSuffix>(file_info, "completeSuffix").create();
   // QString path() const;
-  binder.fun<QString, &QFileInfo::path>("path").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::path>(file_info, "path").create();
   // QString absolutePath() const;
-  binder.fun<QString, &QFileInfo::absolutePath>("absolutePath").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::absolutePath>(file_info, "absolutePath").create();
   // QString canonicalPath() const;
-  binder.fun<QString, &QFileInfo::canonicalPath>("canonicalPath").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::canonicalPath>(file_info, "canonicalPath").create();
   // QDir dir() const;
-  binder.fun<QDir, &QFileInfo::dir>("dir").create();
+  bind::member_function<QFileInfo, QDir, &QFileInfo::dir>(file_info, "dir").create();
   // QDir absoluteDir() const;
-  binder.fun<QDir, &QFileInfo::absoluteDir>("absoluteDir").create();
+  bind::member_function<QFileInfo, QDir, &QFileInfo::absoluteDir>(file_info, "absoluteDir").create();
   // bool isReadable() const;
-  binder.fun<bool, &QFileInfo::isReadable>("isReadable").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isReadable>(file_info, "isReadable").create();
   // bool isWritable() const;
-  binder.fun<bool, &QFileInfo::isWritable>("isWritable").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isWritable>(file_info, "isWritable").create();
   // bool isExecutable() const;
-  binder.fun<bool, &QFileInfo::isExecutable>("isExecutable").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isExecutable>(file_info, "isExecutable").create();
   // bool isHidden() const;
-  binder.fun<bool, &QFileInfo::isHidden>("isHidden").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isHidden>(file_info, "isHidden").create();
   // bool isNativePath() const;
-  binder.fun<bool, &QFileInfo::isNativePath>("isNativePath").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isNativePath>(file_info, "isNativePath").create();
   // bool isRelative() const;
-  binder.fun<bool, &QFileInfo::isRelative>("isRelative").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isRelative>(file_info, "isRelative").create();
   // bool isAbsolute() const;
-  binder.fun<bool, &QFileInfo::isAbsolute>("isAbsolute").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isAbsolute>(file_info, "isAbsolute").create();
   // bool makeAbsolute();
-  binder.fun<bool, &QFileInfo::makeAbsolute>("makeAbsolute").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::makeAbsolute>(file_info, "makeAbsolute").create();
   // bool isFile() const;
-  binder.fun<bool, &QFileInfo::isFile>("isFile").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isFile>(file_info, "isFile").create();
   // bool isDir() const;
-  binder.fun<bool, &QFileInfo::isDir>("isDir").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isDir>(file_info, "isDir").create();
   // bool isSymLink() const;
-  binder.fun<bool, &QFileInfo::isSymLink>("isSymLink").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isSymLink>(file_info, "isSymLink").create();
   // bool isRoot() const;
-  binder.fun<bool, &QFileInfo::isRoot>("isRoot").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isRoot>(file_info, "isRoot").create();
   // bool isBundle() const;
-  binder.fun<bool, &QFileInfo::isBundle>("isBundle").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::isBundle>(file_info, "isBundle").create();
   // QString readLink() const;
-  binder.fun<QString, &QFileInfo::readLink>("readLink").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::readLink>(file_info, "readLink").create();
   // QString symLinkTarget() const;
-  binder.fun<QString, &QFileInfo::symLinkTarget>("symLinkTarget").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::symLinkTarget>(file_info, "symLinkTarget").create();
   // QString owner() const;
-  binder.fun<QString, &QFileInfo::owner>("owner").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::owner>(file_info, "owner").create();
   // uint ownerId() const;
-  binder.fun<uint, &QFileInfo::ownerId>("ownerId").create();
+  bind::member_function<QFileInfo, uint, &QFileInfo::ownerId>(file_info, "ownerId").create();
   // QString group() const;
-  binder.fun<QString, &QFileInfo::group>("group").create();
+  bind::member_function<QFileInfo, QString, &QFileInfo::group>(file_info, "group").create();
   // uint groupId() const;
-  binder.fun<uint, &QFileInfo::groupId>("groupId").create();
+  bind::member_function<QFileInfo, uint, &QFileInfo::groupId>(file_info, "groupId").create();
   // bool permission(QFile::Permissions) const;
   /// TODO: bool permission(QFile::Permissions) const;
   // QFile::Permissions permissions() const;
@@ -131,21 +130,21 @@ static void register_file_info_class(script::Namespace ns)
   // qint64 size() const;
   /// TODO: qint64 size() const;
   // QDateTime created() const;
-  binder.fun<QDateTime, &QFileInfo::created>("created").create();
+  bind::member_function<QFileInfo, QDateTime, &QFileInfo::created>(file_info, "created").create();
   // QDateTime birthTime() const;
-  binder.fun<QDateTime, &QFileInfo::birthTime>("birthTime").create();
+  bind::member_function<QFileInfo, QDateTime, &QFileInfo::birthTime>(file_info, "birthTime").create();
   // QDateTime metadataChangeTime() const;
-  binder.fun<QDateTime, &QFileInfo::metadataChangeTime>("metadataChangeTime").create();
+  bind::member_function<QFileInfo, QDateTime, &QFileInfo::metadataChangeTime>(file_info, "metadataChangeTime").create();
   // QDateTime lastModified() const;
-  binder.fun<QDateTime, &QFileInfo::lastModified>("lastModified").create();
+  bind::member_function<QFileInfo, QDateTime, &QFileInfo::lastModified>(file_info, "lastModified").create();
   // QDateTime lastRead() const;
-  binder.fun<QDateTime, &QFileInfo::lastRead>("lastRead").create();
+  bind::member_function<QFileInfo, QDateTime, &QFileInfo::lastRead>(file_info, "lastRead").create();
   // QDateTime fileTime(QFile::FileTime) const;
   /// TODO: QDateTime fileTime(QFile::FileTime) const;
   // bool caching() const;
-  binder.fun<bool, &QFileInfo::caching>("caching").create();
+  bind::member_function<QFileInfo, bool, &QFileInfo::caching>(file_info, "caching").create();
   // void setCaching(bool);
-  binder.void_fun<bool, &QFileInfo::setCaching>("setCaching").create();
+  bind::void_member_function<QFileInfo, bool, &QFileInfo::setCaching>(file_info, "setCaching").create();
 }
 
 
@@ -156,10 +155,9 @@ void register_fileinfo_file(script::Namespace core)
   Namespace ns = core;
 
   register_file_info_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QFileInfo &, QFileInfo &);
-  binder.void_fun<QFileInfo &, QFileInfo &, &swap>("swap").create();
+  bind::void_function<QFileInfo &, QFileInfo &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QFileInfo &);
   /// TODO: QDebug operator<<(QDebug, const QFileInfo &);
 }

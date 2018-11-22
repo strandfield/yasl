@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/wizard.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/enums.h"
@@ -108,58 +108,57 @@ static void register_wizard_class(script::Namespace ns)
   register_wizard_wizard_pixmap_enum(wizard);
   register_wizard_wizard_style_enum(wizard);
   register_wizard_wizard_option_enum(wizard);
-  binding::ClassBinder<QWizard> binder{ wizard, &QWizard::staticMetaObject };
 
   // QWizard(QWidget *, Qt::WindowFlags);
   /// TODO: QWizard(QWidget *, Qt::WindowFlags);
   // ~QWizard();
-  binder.dtor().create();
+  bind::destructor<QWizard>(wizard).create();
   // int addPage(QWizardPage *);
   /// TODO: int addPage(QWizardPage *);
   // void setPage(int, QWizardPage *);
   /// TODO: void setPage(int, QWizardPage *);
   // void removePage(int);
-  binder.void_fun<int, &QWizard::removePage>("removePage").create();
+  bind::void_member_function<QWizard, int, &QWizard::removePage>(wizard, "removePage").create();
   // QWizardPage * page(int) const;
   /// TODO: QWizardPage * page(int) const;
   // bool hasVisitedPage(int) const;
-  binder.fun<bool, int, &QWizard::hasVisitedPage>("hasVisitedPage").create();
+  bind::member_function<QWizard, bool, int, &QWizard::hasVisitedPage>(wizard, "hasVisitedPage").create();
   // QList<int> visitedPages() const;
   /// TODO: QList<int> visitedPages() const;
   // QList<int> pageIds() const;
   /// TODO: QList<int> pageIds() const;
   // void setStartId(int);
-  binder.void_fun<int, &QWizard::setStartId>("setStartId").create();
+  bind::void_member_function<QWizard, int, &QWizard::setStartId>(wizard, "setStartId").create();
   // int startId() const;
-  binder.fun<int, &QWizard::startId>("startId").create();
+  bind::member_function<QWizard, int, &QWizard::startId>(wizard, "startId").create();
   // QWizardPage * currentPage() const;
   /// TODO: QWizardPage * currentPage() const;
   // int currentId() const;
-  binder.fun<int, &QWizard::currentId>("currentId").create();
+  bind::member_function<QWizard, int, &QWizard::currentId>(wizard, "currentId").create();
   // bool validateCurrentPage();
-  binder.fun<bool, &QWizard::validateCurrentPage>("validateCurrentPage").create();
+  bind::member_function<QWizard, bool, &QWizard::validateCurrentPage>(wizard, "validateCurrentPage").create();
   // int nextId() const;
-  binder.fun<int, &QWizard::nextId>("nextId").create();
+  bind::member_function<QWizard, int, &QWizard::nextId>(wizard, "nextId").create();
   // void setField(const QString &, const QVariant &);
-  binder.void_fun<const QString &, const QVariant &, &QWizard::setField>("setField").create();
+  bind::void_member_function<QWizard, const QString &, const QVariant &, &QWizard::setField>(wizard, "setField").create();
   // QVariant field(const QString &) const;
-  binder.fun<QVariant, const QString &, &QWizard::field>("field").create();
+  bind::member_function<QWizard, QVariant, const QString &, &QWizard::field>(wizard, "field").create();
   // void setWizardStyle(QWizard::WizardStyle);
-  binder.void_fun<QWizard::WizardStyle, &QWizard::setWizardStyle>("setWizardStyle").create();
+  bind::void_member_function<QWizard, QWizard::WizardStyle, &QWizard::setWizardStyle>(wizard, "setWizardStyle").create();
   // QWizard::WizardStyle wizardStyle() const;
-  binder.fun<QWizard::WizardStyle, &QWizard::wizardStyle>("wizardStyle").create();
+  bind::member_function<QWizard, QWizard::WizardStyle, &QWizard::wizardStyle>(wizard, "wizardStyle").create();
   // void setOption(QWizard::WizardOption, bool);
-  binder.void_fun<QWizard::WizardOption, bool, &QWizard::setOption>("setOption").create();
+  bind::void_member_function<QWizard, QWizard::WizardOption, bool, &QWizard::setOption>(wizard, "setOption").create();
   // bool testOption(QWizard::WizardOption) const;
-  binder.fun<bool, QWizard::WizardOption, &QWizard::testOption>("testOption").create();
+  bind::member_function<QWizard, bool, QWizard::WizardOption, &QWizard::testOption>(wizard, "testOption").create();
   // void setOptions(QWizard::WizardOptions);
-  binder.void_fun<QWizard::WizardOptions, &QWizard::setOptions>("setOptions").create();
+  bind::void_member_function<QWizard, QWizard::WizardOptions, &QWizard::setOptions>(wizard, "setOptions").create();
   // QWizard::WizardOptions options() const;
-  binder.fun<QWizard::WizardOptions, &QWizard::options>("options").create();
+  bind::member_function<QWizard, QWizard::WizardOptions, &QWizard::options>(wizard, "options").create();
   // void setButtonText(QWizard::WizardButton, const QString &);
-  binder.void_fun<QWizard::WizardButton, const QString &, &QWizard::setButtonText>("setButtonText").create();
+  bind::void_member_function<QWizard, QWizard::WizardButton, const QString &, &QWizard::setButtonText>(wizard, "setButtonText").create();
   // QString buttonText(QWizard::WizardButton) const;
-  binder.fun<QString, QWizard::WizardButton, &QWizard::buttonText>("buttonText").create();
+  bind::member_function<QWizard, QString, QWizard::WizardButton, &QWizard::buttonText>(wizard, "buttonText").create();
   // void setButtonLayout(const QList<QWizard::WizardButton> &);
   /// TODO: void setButtonLayout(const QList<QWizard::WizardButton> &);
   // void setButton(QWizard::WizardButton, QAbstractButton *);
@@ -167,45 +166,45 @@ static void register_wizard_class(script::Namespace ns)
   // QAbstractButton * button(QWizard::WizardButton) const;
   /// TODO: QAbstractButton * button(QWizard::WizardButton) const;
   // void setTitleFormat(Qt::TextFormat);
-  binder.void_fun<Qt::TextFormat, &QWizard::setTitleFormat>("setTitleFormat").create();
+  bind::void_member_function<QWizard, Qt::TextFormat, &QWizard::setTitleFormat>(wizard, "setTitleFormat").create();
   // Qt::TextFormat titleFormat() const;
-  binder.fun<Qt::TextFormat, &QWizard::titleFormat>("titleFormat").create();
+  bind::member_function<QWizard, Qt::TextFormat, &QWizard::titleFormat>(wizard, "titleFormat").create();
   // void setSubTitleFormat(Qt::TextFormat);
-  binder.void_fun<Qt::TextFormat, &QWizard::setSubTitleFormat>("setSubTitleFormat").create();
+  bind::void_member_function<QWizard, Qt::TextFormat, &QWizard::setSubTitleFormat>(wizard, "setSubTitleFormat").create();
   // Qt::TextFormat subTitleFormat() const;
-  binder.fun<Qt::TextFormat, &QWizard::subTitleFormat>("subTitleFormat").create();
+  bind::member_function<QWizard, Qt::TextFormat, &QWizard::subTitleFormat>(wizard, "subTitleFormat").create();
   // void setPixmap(QWizard::WizardPixmap, const QPixmap &);
-  binder.void_fun<QWizard::WizardPixmap, const QPixmap &, &QWizard::setPixmap>("setPixmap").create();
+  bind::void_member_function<QWizard, QWizard::WizardPixmap, const QPixmap &, &QWizard::setPixmap>(wizard, "setPixmap").create();
   // QPixmap pixmap(QWizard::WizardPixmap) const;
-  binder.fun<QPixmap, QWizard::WizardPixmap, &QWizard::pixmap>("pixmap").create();
+  bind::member_function<QWizard, QPixmap, QWizard::WizardPixmap, &QWizard::pixmap>(wizard, "pixmap").create();
   // void setSideWidget(QWidget *);
-  binder.void_fun<QWidget *, &QWizard::setSideWidget>("setSideWidget").create();
+  bind::void_member_function<QWizard, QWidget *, &QWizard::setSideWidget>(wizard, "setSideWidget").create();
   // QWidget * sideWidget() const;
-  binder.fun<QWidget *, &QWizard::sideWidget>("sideWidget").create();
+  bind::member_function<QWizard, QWidget *, &QWizard::sideWidget>(wizard, "sideWidget").create();
   // void setDefaultProperty(const char *, const char *, const char *);
   /// TODO: void setDefaultProperty(const char *, const char *, const char *);
   // void setVisible(bool);
-  binder.void_fun<bool, &QWizard::setVisible>("setVisible").create();
+  bind::void_member_function<QWizard, bool, &QWizard::setVisible>(wizard, "setVisible").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QWizard::sizeHint>("sizeHint").create();
+  bind::member_function<QWizard, QSize, &QWizard::sizeHint>(wizard, "sizeHint").create();
   // void currentIdChanged(int);
-  binder.sigs().add<int>("currentIdChanged", "currentIdChanged(int)");
+  bind::signal<QWizard, int>(wizard, "currentIdChanged", "currentIdChanged(int)");
   // void helpRequested();
-  binder.sigs().add("helpRequested", "helpRequested()");
+  bind::signal<QWizard>(wizard, "helpRequested", "helpRequested()");
   // void customButtonClicked(int);
-  binder.sigs().add<int>("customButtonClicked", "customButtonClicked(int)");
+  bind::signal<QWizard, int>(wizard, "customButtonClicked", "customButtonClicked(int)");
   // void pageAdded(int);
-  binder.sigs().add<int>("pageAdded", "pageAdded(int)");
+  bind::signal<QWizard, int>(wizard, "pageAdded", "pageAdded(int)");
   // void pageRemoved(int);
-  binder.sigs().add<int>("pageRemoved", "pageRemoved(int)");
+  bind::signal<QWizard, int>(wizard, "pageRemoved", "pageRemoved(int)");
   // void back();
-  binder.void_fun<&QWizard::back>("back").create();
+  bind::void_member_function<QWizard, &QWizard::back>(wizard, "back").create();
   // void next();
-  binder.void_fun<&QWizard::next>("next").create();
+  bind::void_member_function<QWizard, &QWizard::next>(wizard, "next").create();
   // void restart();
-  binder.void_fun<&QWizard::restart>("restart").create();
+  bind::void_member_function<QWizard, &QWizard::restart>(wizard, "restart").create();
 
-  wizard.engine()->registerQtType(&QWizard::staticMetaObject, wizard.id());
+  bind::link(wizard, &QWizard::staticMetaObject);
 }
 
 
@@ -216,51 +215,50 @@ static void register_wizard_page_class(script::Namespace ns)
   Class wizard_page = ns.newClass("WizardPage").setId(script::Type::QWizardPage)
     .setBase(script::Type::QWidget).get();
 
-  binding::ClassBinder<QWizardPage> binder{ wizard_page, &QWizardPage::staticMetaObject };
 
   // QWizardPage(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QWizardPage, QWidget *>(wizard_page)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QWizardPage();
-  binder.dtor().create();
+  bind::destructor<QWizardPage>(wizard_page).create();
   // void setTitle(const QString &);
-  binder.void_fun<const QString &, &QWizardPage::setTitle>("setTitle").create();
+  bind::void_member_function<QWizardPage, const QString &, &QWizardPage::setTitle>(wizard_page, "setTitle").create();
   // QString title() const;
-  binder.fun<QString, &QWizardPage::title>("title").create();
+  bind::member_function<QWizardPage, QString, &QWizardPage::title>(wizard_page, "title").create();
   // void setSubTitle(const QString &);
-  binder.void_fun<const QString &, &QWizardPage::setSubTitle>("setSubTitle").create();
+  bind::void_member_function<QWizardPage, const QString &, &QWizardPage::setSubTitle>(wizard_page, "setSubTitle").create();
   // QString subTitle() const;
-  binder.fun<QString, &QWizardPage::subTitle>("subTitle").create();
+  bind::member_function<QWizardPage, QString, &QWizardPage::subTitle>(wizard_page, "subTitle").create();
   // void setPixmap(QWizard::WizardPixmap, const QPixmap &);
-  binder.void_fun<QWizard::WizardPixmap, const QPixmap &, &QWizardPage::setPixmap>("setPixmap").create();
+  bind::void_member_function<QWizardPage, QWizard::WizardPixmap, const QPixmap &, &QWizardPage::setPixmap>(wizard_page, "setPixmap").create();
   // QPixmap pixmap(QWizard::WizardPixmap) const;
-  binder.fun<QPixmap, QWizard::WizardPixmap, &QWizardPage::pixmap>("pixmap").create();
+  bind::member_function<QWizardPage, QPixmap, QWizard::WizardPixmap, &QWizardPage::pixmap>(wizard_page, "pixmap").create();
   // void setFinalPage(bool);
-  binder.void_fun<bool, &QWizardPage::setFinalPage>("setFinalPage").create();
+  bind::void_member_function<QWizardPage, bool, &QWizardPage::setFinalPage>(wizard_page, "setFinalPage").create();
   // bool isFinalPage() const;
-  binder.fun<bool, &QWizardPage::isFinalPage>("isFinalPage").create();
+  bind::member_function<QWizardPage, bool, &QWizardPage::isFinalPage>(wizard_page, "isFinalPage").create();
   // void setCommitPage(bool);
-  binder.void_fun<bool, &QWizardPage::setCommitPage>("setCommitPage").create();
+  bind::void_member_function<QWizardPage, bool, &QWizardPage::setCommitPage>(wizard_page, "setCommitPage").create();
   // bool isCommitPage() const;
-  binder.fun<bool, &QWizardPage::isCommitPage>("isCommitPage").create();
+  bind::member_function<QWizardPage, bool, &QWizardPage::isCommitPage>(wizard_page, "isCommitPage").create();
   // void setButtonText(QWizard::WizardButton, const QString &);
-  binder.void_fun<QWizard::WizardButton, const QString &, &QWizardPage::setButtonText>("setButtonText").create();
+  bind::void_member_function<QWizardPage, QWizard::WizardButton, const QString &, &QWizardPage::setButtonText>(wizard_page, "setButtonText").create();
   // QString buttonText(QWizard::WizardButton) const;
-  binder.fun<QString, QWizard::WizardButton, &QWizardPage::buttonText>("buttonText").create();
+  bind::member_function<QWizardPage, QString, QWizard::WizardButton, &QWizardPage::buttonText>(wizard_page, "buttonText").create();
   // void initializePage();
-  binder.void_fun<&QWizardPage::initializePage>("initializePage").create();
+  bind::void_member_function<QWizardPage, &QWizardPage::initializePage>(wizard_page, "initializePage").create();
   // void cleanupPage();
-  binder.void_fun<&QWizardPage::cleanupPage>("cleanupPage").create();
+  bind::void_member_function<QWizardPage, &QWizardPage::cleanupPage>(wizard_page, "cleanupPage").create();
   // bool validatePage();
-  binder.fun<bool, &QWizardPage::validatePage>("validatePage").create();
+  bind::member_function<QWizardPage, bool, &QWizardPage::validatePage>(wizard_page, "validatePage").create();
   // bool isComplete() const;
-  binder.fun<bool, &QWizardPage::isComplete>("isComplete").create();
+  bind::member_function<QWizardPage, bool, &QWizardPage::isComplete>(wizard_page, "isComplete").create();
   // int nextId() const;
-  binder.fun<int, &QWizardPage::nextId>("nextId").create();
+  bind::member_function<QWizardPage, int, &QWizardPage::nextId>(wizard_page, "nextId").create();
   // void completeChanged();
-  binder.sigs().add("completeChanged", "completeChanged()");
+  bind::signal<QWizardPage>(wizard_page, "completeChanged", "completeChanged()");
 
-  wizard_page.engine()->registerQtType(&QWizardPage::staticMetaObject, wizard_page.id());
+  bind::link(wizard_page, &QWizardPage::staticMetaObject);
 }
 
 
@@ -272,12 +270,11 @@ void register_wizard_file(script::Namespace widgets)
 
   register_wizard_class(ns);
   register_wizard_page_class(ns);
-  binding::Namespace binder{ ns };
 
   // QWizard::WizardOptions operator|(QWizard::WizardOption, QWizard::WizardOption);
-  binder.operators().or<QWizard::WizardOptions, QWizard::WizardOption, QWizard::WizardOption>();
+  bind::op_bitor<QWizard::WizardOptions, QWizard::WizardOption, QWizard::WizardOption>(ns);
   // QWizard::WizardOptions operator|(QWizard::WizardOption, QWizard::WizardOptions);
-  binder.operators().or<QWizard::WizardOptions, QWizard::WizardOption, QWizard::WizardOptions>();
+  bind::op_bitor<QWizard::WizardOptions, QWizard::WizardOption, QWizard::WizardOptions>(ns);
   // QIncompatibleFlag operator|(QWizard::WizardOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QWizard::WizardOptions::enum_type, int);
 }

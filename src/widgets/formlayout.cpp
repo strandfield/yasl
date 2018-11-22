@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/formlayout.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/widgets/formlayout.h"
@@ -63,70 +63,69 @@ static void register_form_layout_class(script::Namespace ns)
   register_form_layout_field_growth_policy_enum(form_layout);
   register_form_layout_row_wrap_policy_enum(form_layout);
   register_form_layout_item_role_enum(form_layout);
-  binding::ClassBinder<QFormLayout> binder{ form_layout, &QFormLayout::staticMetaObject };
 
   // QFormLayout(QWidget *);
-  binder.ctor<QWidget *>().create();
+  bind::constructor<QFormLayout, QWidget *>(form_layout).create();
   // ~QFormLayout();
-  binder.dtor().create();
+  bind::destructor<QFormLayout>(form_layout).create();
   // void setFieldGrowthPolicy(QFormLayout::FieldGrowthPolicy);
-  binder.void_fun<QFormLayout::FieldGrowthPolicy, &QFormLayout::setFieldGrowthPolicy>("setFieldGrowthPolicy").create();
+  bind::void_member_function<QFormLayout, QFormLayout::FieldGrowthPolicy, &QFormLayout::setFieldGrowthPolicy>(form_layout, "setFieldGrowthPolicy").create();
   // QFormLayout::FieldGrowthPolicy fieldGrowthPolicy() const;
-  binder.fun<QFormLayout::FieldGrowthPolicy, &QFormLayout::fieldGrowthPolicy>("fieldGrowthPolicy").create();
+  bind::member_function<QFormLayout, QFormLayout::FieldGrowthPolicy, &QFormLayout::fieldGrowthPolicy>(form_layout, "fieldGrowthPolicy").create();
   // void setRowWrapPolicy(QFormLayout::RowWrapPolicy);
-  binder.void_fun<QFormLayout::RowWrapPolicy, &QFormLayout::setRowWrapPolicy>("setRowWrapPolicy").create();
+  bind::void_member_function<QFormLayout, QFormLayout::RowWrapPolicy, &QFormLayout::setRowWrapPolicy>(form_layout, "setRowWrapPolicy").create();
   // QFormLayout::RowWrapPolicy rowWrapPolicy() const;
-  binder.fun<QFormLayout::RowWrapPolicy, &QFormLayout::rowWrapPolicy>("rowWrapPolicy").create();
+  bind::member_function<QFormLayout, QFormLayout::RowWrapPolicy, &QFormLayout::rowWrapPolicy>(form_layout, "rowWrapPolicy").create();
   // void setLabelAlignment(Qt::Alignment);
-  binder.void_fun<Qt::Alignment, &QFormLayout::setLabelAlignment>("setLabelAlignment").create();
+  bind::void_member_function<QFormLayout, Qt::Alignment, &QFormLayout::setLabelAlignment>(form_layout, "setLabelAlignment").create();
   // Qt::Alignment labelAlignment() const;
-  binder.fun<Qt::Alignment, &QFormLayout::labelAlignment>("labelAlignment").create();
+  bind::member_function<QFormLayout, Qt::Alignment, &QFormLayout::labelAlignment>(form_layout, "labelAlignment").create();
   // void setFormAlignment(Qt::Alignment);
-  binder.void_fun<Qt::Alignment, &QFormLayout::setFormAlignment>("setFormAlignment").create();
+  bind::void_member_function<QFormLayout, Qt::Alignment, &QFormLayout::setFormAlignment>(form_layout, "setFormAlignment").create();
   // Qt::Alignment formAlignment() const;
-  binder.fun<Qt::Alignment, &QFormLayout::formAlignment>("formAlignment").create();
+  bind::member_function<QFormLayout, Qt::Alignment, &QFormLayout::formAlignment>(form_layout, "formAlignment").create();
   // void setHorizontalSpacing(int);
-  binder.void_fun<int, &QFormLayout::setHorizontalSpacing>("setHorizontalSpacing").create();
+  bind::void_member_function<QFormLayout, int, &QFormLayout::setHorizontalSpacing>(form_layout, "setHorizontalSpacing").create();
   // int horizontalSpacing() const;
-  binder.fun<int, &QFormLayout::horizontalSpacing>("horizontalSpacing").create();
+  bind::member_function<QFormLayout, int, &QFormLayout::horizontalSpacing>(form_layout, "horizontalSpacing").create();
   // void setVerticalSpacing(int);
-  binder.void_fun<int, &QFormLayout::setVerticalSpacing>("setVerticalSpacing").create();
+  bind::void_member_function<QFormLayout, int, &QFormLayout::setVerticalSpacing>(form_layout, "setVerticalSpacing").create();
   // int verticalSpacing() const;
-  binder.fun<int, &QFormLayout::verticalSpacing>("verticalSpacing").create();
+  bind::member_function<QFormLayout, int, &QFormLayout::verticalSpacing>(form_layout, "verticalSpacing").create();
   // int spacing() const;
-  binder.fun<int, &QFormLayout::spacing>("spacing").create();
+  bind::member_function<QFormLayout, int, &QFormLayout::spacing>(form_layout, "spacing").create();
   // void setSpacing(int);
-  binder.void_fun<int, &QFormLayout::setSpacing>("setSpacing").create();
+  bind::void_member_function<QFormLayout, int, &QFormLayout::setSpacing>(form_layout, "setSpacing").create();
   // void addRow(QWidget *, QWidget *);
-  binder.void_fun<QWidget *, QWidget *, &QFormLayout::addRow>("addRow").create();
+  bind::void_member_function<QFormLayout, QWidget *, QWidget *, &QFormLayout::addRow>(form_layout, "addRow").create();
   // void addRow(QWidget *, QLayout *);
-  binder.void_fun<QWidget *, QLayout *, &QFormLayout::addRow>("addRow").create();
+  bind::void_member_function<QFormLayout, QWidget *, QLayout *, &QFormLayout::addRow>(form_layout, "addRow").create();
   // void addRow(const QString &, QWidget *);
-  binder.void_fun<const QString &, QWidget *, &QFormLayout::addRow>("addRow").create();
+  bind::void_member_function<QFormLayout, const QString &, QWidget *, &QFormLayout::addRow>(form_layout, "addRow").create();
   // void addRow(const QString &, QLayout *);
-  binder.void_fun<const QString &, QLayout *, &QFormLayout::addRow>("addRow").create();
+  bind::void_member_function<QFormLayout, const QString &, QLayout *, &QFormLayout::addRow>(form_layout, "addRow").create();
   // void addRow(QWidget *);
-  binder.void_fun<QWidget *, &QFormLayout::addRow>("addRow").create();
+  bind::void_member_function<QFormLayout, QWidget *, &QFormLayout::addRow>(form_layout, "addRow").create();
   // void addRow(QLayout *);
-  binder.void_fun<QLayout *, &QFormLayout::addRow>("addRow").create();
+  bind::void_member_function<QFormLayout, QLayout *, &QFormLayout::addRow>(form_layout, "addRow").create();
   // void insertRow(int, QWidget *, QWidget *);
-  binder.void_fun<int, QWidget *, QWidget *, &QFormLayout::insertRow>("insertRow").create();
+  bind::void_member_function<QFormLayout, int, QWidget *, QWidget *, &QFormLayout::insertRow>(form_layout, "insertRow").create();
   // void insertRow(int, QWidget *, QLayout *);
-  binder.void_fun<int, QWidget *, QLayout *, &QFormLayout::insertRow>("insertRow").create();
+  bind::void_member_function<QFormLayout, int, QWidget *, QLayout *, &QFormLayout::insertRow>(form_layout, "insertRow").create();
   // void insertRow(int, const QString &, QWidget *);
-  binder.void_fun<int, const QString &, QWidget *, &QFormLayout::insertRow>("insertRow").create();
+  bind::void_member_function<QFormLayout, int, const QString &, QWidget *, &QFormLayout::insertRow>(form_layout, "insertRow").create();
   // void insertRow(int, const QString &, QLayout *);
-  binder.void_fun<int, const QString &, QLayout *, &QFormLayout::insertRow>("insertRow").create();
+  bind::void_member_function<QFormLayout, int, const QString &, QLayout *, &QFormLayout::insertRow>(form_layout, "insertRow").create();
   // void insertRow(int, QWidget *);
-  binder.void_fun<int, QWidget *, &QFormLayout::insertRow>("insertRow").create();
+  bind::void_member_function<QFormLayout, int, QWidget *, &QFormLayout::insertRow>(form_layout, "insertRow").create();
   // void insertRow(int, QLayout *);
-  binder.void_fun<int, QLayout *, &QFormLayout::insertRow>("insertRow").create();
+  bind::void_member_function<QFormLayout, int, QLayout *, &QFormLayout::insertRow>(form_layout, "insertRow").create();
   // void removeRow(int);
-  binder.void_fun<int, &QFormLayout::removeRow>("removeRow").create();
+  bind::void_member_function<QFormLayout, int, &QFormLayout::removeRow>(form_layout, "removeRow").create();
   // void removeRow(QWidget *);
-  binder.void_fun<QWidget *, &QFormLayout::removeRow>("removeRow").create();
+  bind::void_member_function<QFormLayout, QWidget *, &QFormLayout::removeRow>(form_layout, "removeRow").create();
   // void removeRow(QLayout *);
-  binder.void_fun<QLayout *, &QFormLayout::removeRow>("removeRow").create();
+  bind::void_member_function<QFormLayout, QLayout *, &QFormLayout::removeRow>(form_layout, "removeRow").create();
   // QFormLayout::TakeRowResult takeRow(int);
   /// TODO: QFormLayout::TakeRowResult takeRow(int);
   // QFormLayout::TakeRowResult takeRow(QWidget *);
@@ -136,9 +135,9 @@ static void register_form_layout_class(script::Namespace ns)
   // void setItem(int, QFormLayout::ItemRole, QLayoutItem *);
   /// TODO: void setItem(int, QFormLayout::ItemRole, QLayoutItem *);
   // void setWidget(int, QFormLayout::ItemRole, QWidget *);
-  binder.void_fun<int, QFormLayout::ItemRole, QWidget *, &QFormLayout::setWidget>("setWidget").create();
+  bind::void_member_function<QFormLayout, int, QFormLayout::ItemRole, QWidget *, &QFormLayout::setWidget>(form_layout, "setWidget").create();
   // void setLayout(int, QFormLayout::ItemRole, QLayout *);
-  binder.void_fun<int, QFormLayout::ItemRole, QLayout *, &QFormLayout::setLayout>("setLayout").create();
+  bind::void_member_function<QFormLayout, int, QFormLayout::ItemRole, QLayout *, &QFormLayout::setLayout>(form_layout, "setLayout").create();
   // QLayoutItem * itemAt(int, QFormLayout::ItemRole) const;
   /// TODO: QLayoutItem * itemAt(int, QFormLayout::ItemRole) const;
   // void getItemPosition(int, int *, QFormLayout::ItemRole *) const;
@@ -148,17 +147,17 @@ static void register_form_layout_class(script::Namespace ns)
   // void getLayoutPosition(QLayout *, int *, QFormLayout::ItemRole *) const;
   /// TODO: void getLayoutPosition(QLayout *, int *, QFormLayout::ItemRole *) const;
   // QWidget * labelForField(QWidget *) const;
-  binder.fun<QWidget *, QWidget *, &QFormLayout::labelForField>("labelForField").create();
+  bind::member_function<QFormLayout, QWidget *, QWidget *, &QFormLayout::labelForField>(form_layout, "labelForField").create();
   // QWidget * labelForField(QLayout *) const;
-  binder.fun<QWidget *, QLayout *, &QFormLayout::labelForField>("labelForField").create();
+  bind::member_function<QFormLayout, QWidget *, QLayout *, &QFormLayout::labelForField>(form_layout, "labelForField").create();
   // void addItem(QLayoutItem *);
   /// TODO: void addItem(QLayoutItem *);
   // QLayoutItem * itemAt(int) const;
   /// TODO: QLayoutItem * itemAt(int) const;
   // int rowCount() const;
-  binder.fun<int, &QFormLayout::rowCount>("rowCount").create();
+  bind::member_function<QFormLayout, int, &QFormLayout::rowCount>(form_layout, "rowCount").create();
 
-  form_layout.engine()->registerQtType(&QFormLayout::staticMetaObject, form_layout.id());
+  bind::link(form_layout, &QFormLayout::staticMetaObject);
 }
 
 
@@ -169,9 +168,8 @@ void register_formlayout_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_form_layout_class(ns);
-  binding::Namespace binder{ ns };
 
   // QFormLayout& newFormLayout(QWidget*);
-  NewFunction(binder).add<QFormLayout, QWidget*>("newFormLayout");
+  bind::new_function<QFormLayout, QWidget*>(ns, "newFormLayout");
 }
 

@@ -17,11 +17,11 @@
 #include <QDebug>
 
 const QString Generator::endl = "\n";
-const QString Generator::ClassBinderInclude = "yasl/binding/class.h";
-const QString Generator::QClassBinderInclude = "yasl/binding/qclass.h";
+const QString Generator::ClassBinderInclude = "yasl/binding2/class.h";
+const QString Generator::QClassBinderInclude = "yasl/binding2/qclass.h";
 const QString Generator::QEventBinderInclude = "yasl/core/qevent-binder.h";
-const QString Generator::EnumBinderInclude = "yasl/binding/enum.h";;
-const QString Generator::NamespaceBinderInclude = "yasl/binding/namespace.h";;
+const QString Generator::EnumBinderInclude = "yasl/binding2/enum.h";;
+const QString Generator::NamespaceBinderInclude = "yasl/binding2/namespace.h";;
 const QString Generator::ClassBuilderInclude = "<script/classbuilder.h>";;
 const QString Generator::EnumBuilderInclude = "<script/enumbuilder.h>";;
 
@@ -201,8 +201,8 @@ static const OperatorInfo static_operator_infos[]{
   { "sub_assign", false, 2 },
   { "mul_assign", false, 2 },
   { "div_assign", false, 2 },
-  { "and", true, 2 },
-  { "or", true, 2 },
+  { "bitand", true, 2 },
+  { "bitor", true, 2 },
   { "and_assign", false, 2 },
   { "or_assign", false, 2 },
   { "subscript", true, 2 },
@@ -217,7 +217,7 @@ static const OperatorInfo static_operator_infos[]{
   { "right_shift", true, 2 },
   { "left_shift_assign", false, 2 },
   { "right_shift_assign", false, 2 },
-  { "xor", true, 2 },
+  { "bitxor", true, 2 },
   { "xor_assign", false, 2 },
   { "bitwise_not", true, 1 },
 };
@@ -291,7 +291,7 @@ void Generator::generate(ModuleRef mod)
   register_func += "}" + endl;
   source.functions.append(register_func);
 
-  source.write();
+  //source.write();
 }
 
 void Generator::generate(FileRef file)
@@ -329,11 +329,11 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 {
   if (bm == Function::ConstructorBinding && fun->parameters.isEmpty())
   {
-    return "  binder.default_ctor().create();";
+    return QString("  bind::default_constructor<%1>(%2).create();").arg(enclosingName(), enclosing_snake_name());
   }
   else if (bm == Function::DestructorBinding)
   {
-    return "  binder.dtor().create();";
+    return QString("  bind::destructor<%1>(%2).create();").arg(enclosingName(), enclosing_snake_name());
   }
   else if (bm == Function::OperatorBinding)
   {
@@ -355,35 +355,41 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 
   QString ret = [&]() -> QString {
     if (bm == Function::ConstructorBinding)
-      return "  binder.ctor<" + fparams(fun->parameters) + ">()";
+      return QString("  bind::constructor<%1%2>(%3)").arg(enclosingName(), ", " + fparams(fun->parameters), enclosing_snake_name());
     else if (bm == Function::StaticVoidBinding)
-      return QString("  binder.static_void_fun<%1%2>(\"%3\")").arg(params, funaddr, funname);
-    else if (bm == Function::ConstVoidBinding)
-      return QString("  binder.const_void_fun<%2%3>(\"%4\")").arg(params, funaddr, funname);
-    else if (bm == Function::VoidBinding)
-      return QString("  binder.void_fun<%2%3>(\"%4\")").arg(params, funaddr, funname);
+      return QString("  bind::static_void_member_function<%1, %2%3>(%4, \"%5\")").arg(enclosingName(), params, funaddr, enclosing_snake_name(), funname);
+    else if (bm == Function::ConstVoidBinding && enclosingEntity() == "Namespace")
+      return QString("  bind::void_function<%2%3>(%4, \"%5\")").arg(params, funaddr, enclosing_snake_name(), funname);
+    else if (bm == Function::ConstVoidBinding && enclosingEntity() == "Class")
+      return QString("  bind::const_void_member_function<%1, %2%3>(%4, \"%5\")").arg(enclosingName(), params, funaddr, enclosing_snake_name(), funname);
+    else if (bm == Function::VoidBinding && enclosingEntity() == "Namespace")
+      return QString("  bind::void_function<%2%3>(%4, \"%5\")").arg(params, funaddr, enclosing_snake_name(), funname);
+    else if (bm == Function::VoidBinding && enclosingEntity() == "Class")
+      return QString("  bind::void_member_function<%1, %2%3>(%4, \"%5\")").arg(enclosingName(), params, funaddr, enclosing_snake_name(), funname);
     else if (bm == Function::ChainableBinding)
-      return QString("  binder.chainable<%2%3>(\"%4\")").arg(params, funaddr, funname);
+      return QString("  bind::chainable_memfn<%1, %2%3>(%4, \"%5\")").arg(enclosingName(), params, funaddr, enclosing_snake_name(), funname);
     else if (bm == Function::StaticBinding)
-      return QString("  binder.static_fun<%1, %2%3>(\"%4\")").arg(fret, params, funaddr, funname);
-    else if (bm == Function::SimpleBinding)
-      return QString("  binder.fun<%1, %2%3>(\"%4\")").arg(fret, params, funaddr, funname);
+      return QString("  bind::static_member_function<%1, %2, %3%4>(%5, \"%6\")").arg(enclosingName(), fret, params, funaddr, enclosing_snake_name(), funname);
+    else if (bm == Function::SimpleBinding && enclosingEntity() == "Namespace")
+      return QString("  bind::function<%1, %2%3>(%4, \"%5\")").arg(fret, params, funaddr, enclosing_snake_name(), funname);
+    else if (bm == Function::SimpleBinding && enclosingEntity() == "Class")
+      return QString("  bind::member_function<%1, %2, %3%4>(%5, \"%6\")").arg(enclosingName(), fret, params, funaddr, enclosing_snake_name(), funname);
     else if (bm == Function::ReferenceBinding)
-      return QString("  binder.ref_mem_getter<%1, %2%3>(\"%4\")").arg(fret, params, funaddr, funname);
+      return QString("  bind::non_const_getter<%1, %2, %3%4>(%5, \"%6\")").arg(enclosingName(), fret, params, funaddr, enclosing_snake_name(), funname);
     else if (bm == Function::FreeFunctionBinding)
-      return QString("  binder.fun<%1, %2%3>(\"%4\")").arg(fret, params, "&" + fun->name, funname);
+      return QString("  bind::fn_as_memfn<%1, %2, %3%4>(%5, \"%6\")").arg(enclosingName(), fret, params, "&" + fun->name, enclosing_snake_name(), funname);
     else if (bm == Function::FreeFunctionAsStaticBinding)
-      return QString("  binder.static_fun<%1, %2%3>(\"%4\")").arg(fret, params, "&" + fun->name, funname);
+      return QString("  bind::static_member_function<%1, %2, %3%4>(%5, \"%6\")").arg(enclosingName(), fret, params, "&" + fun->name, enclosing_snake_name(), funname);
 
     throw std::runtime_error{ "Unsupported bind method !" };
   }();
 
   if (!fun->defaultArguments.isEmpty())
   {
-    currentSource().bindingIncludes.insert("yasl/binding/default_arguments.h");
+    currentSource().bindingIncludes.insert("yasl/binding2/default_arguments.h");
 
     ret += endl;
-    ret += QString("    .apply(binding::default_arguments(") + fun->defaultArguments.join(", ") + "))";
+    ret += QString("    .apply(bind::default_arguments(") + fun->defaultArguments.join(", ") + "))";
   }
 
   ret.append(".create();");
@@ -397,20 +403,21 @@ QString Generator::generateSignal(FunctionRef fun)
 
   if (fun->parameters.size() == 0)
   {
-    QString format = "  binder.sigs().add(\"%1\", \"%2\");";
-    return format.arg(funname, signature);
+    QString format = "  bind::signal<%1>(%2, \"%3\", \"%4\");";
+    return format.arg(enclosingName(), enclosing_snake_name(), funname, signature);
   }
   else
   {
-    QString format = "  binder.sigs().add<%1>(\"%2\", \"%3\");";
-    const QString params = fun->parameters.join(", ");
-    return format.arg(params, funname, signature);
+    QString format = "  bind::signal<%1%5>(%2, \"%3\", \"%4\");";
+    const QString params = fparams(fun->parameters, ", ");
+    return format.arg(enclosingName(), enclosing_snake_name(), funname, signature, params);
   }
 }
 
 QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
 {
-  QString out = "  binder.operators().";
+  QString out = enclosingEntity() == "Class" ? "  bind::mem"  : "  bind::";
+  out += "op_";
 
   const int implicit_param_count = isMember() ? 1 : 0;
 
@@ -439,9 +446,9 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
   {
     // operator[] cannot be non-member
     if (fun->isConst)
-      return QString("  binder.operators().const_subscript<%1, %2>();").arg(fparam(fun->returnType), fparam(fun, 0));
+      return QString("  bind::memop_const_subscript<%1, %2, %3>(%4);").arg(enclosingName(), fparam(fun->returnType), fparam(fun, 0), enclosing_snake_name());
     else
-      return QString("  binder.operators().subscript<%1, %2>();").arg(fparam(fun->returnType), fparam(fun, 0));
+      return QString("  bind::memop_subscript<%1, %2, %3>(%4);").arg(enclosingName(), fparam(fun->returnType), fparam(fun, 0), enclosing_snake_name());
   }
   else
   {
@@ -455,7 +462,7 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
           QStringList targs;
           targs << fparam(fun->parameters.first()) << fparam(fun->parameters.at(1));
           out += targs.join(", ");
-          out += ">();";
+          out += QString(">(%1);").arg(enclosing_snake_name());
           return out;
         }
       }
@@ -464,14 +471,17 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
         if (fun->returnType == enclosingName() + " &")
         {
           out += (op == LeftShift ? "put_to" : "read_from") + QString("<");
+          out += enclosingName() + ", ";
           out += fparam(fun->parameters.first());
-          out += ">();";
+          out += QString(">(%1);").arg(enclosing_snake_name());
           return out;
         }
       }
     }
 
     out += static_operator_infos[op].short_name + QString("<");
+    if (enclosingEntity() == "Class")
+      out += enclosingName() + ", ";
     QStringList targs;
     if (static_operator_infos[op].print_return_type)
       targs << fparam(fun->returnType);
@@ -480,14 +490,14 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
     else if (static_operator_infos[op].nargs - implicit_param_count == 2)
       targs << fparam(fun->parameters.first()) << fparam(fun->parameters.at(1));
     out += targs.join(", ");
-    out += ">();";
+    out += QString(">(%1);").arg(enclosing_snake_name());
     return out;
   }
 }
 
 QString Generator::generateNewFunction(FunctionRef fn)
 {
-  currentSource().bindingIncludes.insert("yasl/binding/newfunction.h");
+  currentSource().bindingIncludes.insert("yasl/binding2/newfunction.h");
 
   QString rettype = fn->returnType;
   if (rettype.endsWith(" &"))
@@ -499,7 +509,7 @@ QString Generator::generateNewFunction(FunctionRef fn)
   targs.append(checkParams(fn->parameters));
 
   QString ret = "  ";
-  ret += "NewFunction(binder).add<" + targs.join(", ") + ">(\"" + fn->name + "\");";
+  ret += QString("bind::new_function<%2>(%3, \"%4\");").arg(targs.join(", "), enclosing_snake_name(), fn->name);
   return ret;
 }
 
@@ -548,12 +558,12 @@ QString Generator::fparam(const QString & p)
   return p;
 }
 
-QString Generator::fparams(const QStringList & params)
+QString Generator::fparams(const QStringList & params, const QString & prefix)
 {
   QStringList ret;
   for (const auto & p : params)
     ret << fparam(p);
-  return ret.join(", ");
+  return prefix + ret.join(", ");
 }
 
 QString Generator::fparams(const FunctionRef fun)
@@ -693,16 +703,16 @@ void Generator::generate(ClassRef cla)
     if (l.first == "ref")
     {
       Type ref_info = typeinfo(l.second);
-      currentSource().bindingIncludes.insert("yasl/utils/ref.h");
-      const QString format = "  register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
+      currentSource().bindingIncludes.insert("yasl/binding2/ref.h");
+      const QString format = "  bind::register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
       out += format.arg(snake, class_info.id, ref_info.id);
       recordGeneratedClass(ref_info.name);
     }
     else if (l.first == "proxy")
     {
       Type proxy_info = typeinfo(l.second);
-      currentHeader().bindingIncludes.insert("yasl/utils/proxy.h");
-      const QString format = "  register_proxy_specialization<%1>(%2.engine()->getTemplate(Engine::ProxyTemplate), script::Type::%3);" + endl;
+      currentHeader().bindingIncludes.insert("yasl/binding2/proxy.h");
+      const QString format = "  bind::register_proxy_specialization<%1>(%2.engine()->getTemplate(Engine::ProxyTemplate), script::Type::%3);" + endl;
       QString proxyelem = proxy_info.name;
       proxyelem.chop(QString(">").length());
       proxyelem.remove(0, proxyelem.indexOf('<') + 1);
@@ -737,17 +747,14 @@ void Generator::generate(ClassRef cla)
   if (is_qclass)
   {
     currentSource().bindingIncludes.insert(QClassBinderInclude);
-    out += "  binding::ClassBinder<" + cla->name + "> binder{ " + snake + ", &" + cla->name + "::staticMetaObject };" + endl;
   }
   else if (class_info.tag == "qevent_tag")
   {
     currentSource().bindingIncludes.insert(QEventBinderInclude);
-    out += "  binding::ClassBinder<" + cla->name + "> binder{ " + snake + " };" + endl;
   }
   else
   {
     currentSource().bindingIncludes.insert(ClassBinderInclude);
-    out += "  binding::ClassBinder<" + cla->name + "> binder{ " + snake + " };" + endl;
   }
 
   out += endl;
@@ -773,7 +780,8 @@ void Generator::generate(ClassRef cla)
   if (is_qclass)
   {
     out += endl;
-    out += "  " + snake + ".engine()->registerQtType(&" + cla->name + "::staticMetaObject, " + snake + ".id());" + endl;
+    //out += "  " + snake + ".engine()->registerQtType(&" + cla->name + "::staticMetaObject, " + snake + ".id());" + endl;
+    out += QString("  bind::link(%1, &%2::staticMetaObject);").arg(enclosing_snake_name(), enclosingName()) + endl;
   }
 
   out += "}" + endl;
@@ -901,7 +909,6 @@ void Generator::generate(NamespaceRef ns)
       out += "  register_" + prefix() + to_snake_case(n->name) + "_namespace(" + snake + ");" + endl;
   }
 
-  out += "  binding::Namespace binder{ " + snake + " };" + endl;
   out += endl;
 
   for (const auto n : ns->elements)

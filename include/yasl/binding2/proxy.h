@@ -10,6 +10,8 @@
 namespace script
 {
 
+class Namespace;
+
 namespace bind
 {
 
@@ -32,6 +34,8 @@ template<> struct make_type_t<Proxy<char>> { inline static script::Type get() { 
 template<> struct make_type_t<Proxy<int>> { inline static script::Type get() { return script::Type::Proxyint; } };
 template<> struct make_type_t<Proxy<float>> { inline static script::Type get() { return script::Type::Proxyfloat; } };
 template<> struct make_type_t<Proxy<double>> { inline static script::Type get() { return script::Type::Proxydouble; } };
+
+void register_proxy_template(script::Namespace ns);
 
 } // namespace bind
 

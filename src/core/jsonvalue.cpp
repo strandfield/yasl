@@ -4,10 +4,10 @@
 
 #include "yasl/core/jsonvalue.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/jsonarray.h"
 #include "yasl/core/jsonobject.h"
@@ -40,94 +40,93 @@ static void register_json_value_class(script::Namespace ns)
   Class json_value = ns.newClass("JsonValue").setId(script::Type::QJsonValue).get();
 
   register_json_value_type_enum(json_value);
-  binding::ClassBinder<QJsonValue> binder{ json_value };
 
   // QJsonValue(QJsonValue::Type);
-  binder.ctor<QJsonValue::Type>()
-    .apply(binding::default_arguments(QJsonValue::Null)).create();
+  bind::constructor<QJsonValue, QJsonValue::Type>(json_value)
+    .apply(bind::default_arguments(QJsonValue::Null)).create();
   // QJsonValue(bool);
-  binder.ctor<bool>().create();
+  bind::constructor<QJsonValue, bool>(json_value).create();
   // QJsonValue(double);
-  binder.ctor<double>().create();
+  bind::constructor<QJsonValue, double>(json_value).create();
   // QJsonValue(int);
-  binder.ctor<int>().create();
+  bind::constructor<QJsonValue, int>(json_value).create();
   // QJsonValue(qint64);
   /// TODO: QJsonValue(qint64);
   // QJsonValue(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QJsonValue, const QString &>(json_value).create();
   // QJsonValue(QLatin1String);
   /// TODO: QJsonValue(QLatin1String);
   // QJsonValue(const char *);
   /// TODO: QJsonValue(const char *);
   // QJsonValue(const QJsonArray &);
-  binder.ctor<const QJsonArray &>().create();
+  bind::constructor<QJsonValue, const QJsonArray &>(json_value).create();
   // QJsonValue(const QJsonObject &);
-  binder.ctor<const QJsonObject &>().create();
+  bind::constructor<QJsonValue, const QJsonObject &>(json_value).create();
   // ~QJsonValue();
-  binder.dtor().create();
+  bind::destructor<QJsonValue>(json_value).create();
   // QJsonValue(const QJsonValue &);
-  binder.ctor<const QJsonValue &>().create();
+  bind::constructor<QJsonValue, const QJsonValue &>(json_value).create();
   // QJsonValue & operator=(const QJsonValue &);
-  binder.operators().assign<const QJsonValue &>();
+  bind::memop_assign<QJsonValue, const QJsonValue &>(json_value);
   // QJsonValue(QJsonValue &&);
-  binder.ctor<QJsonValue &&>().create();
+  bind::constructor<QJsonValue, QJsonValue &&>(json_value).create();
   // QJsonValue & operator=(QJsonValue &&);
-  binder.operators().assign<QJsonValue &&>();
+  bind::memop_assign<QJsonValue, QJsonValue &&>(json_value);
   // void swap(QJsonValue &);
-  binder.void_fun<QJsonValue &, &QJsonValue::swap>("swap").create();
+  bind::void_member_function<QJsonValue, QJsonValue &, &QJsonValue::swap>(json_value, "swap").create();
   // static QJsonValue fromVariant(const QVariant &);
-  binder.static_fun<QJsonValue, const QVariant &, &QJsonValue::fromVariant>("fromVariant").create();
+  bind::static_member_function<QJsonValue, QJsonValue, const QVariant &, &QJsonValue::fromVariant>(json_value, "fromVariant").create();
   // QVariant toVariant() const;
-  binder.fun<QVariant, &QJsonValue::toVariant>("toVariant").create();
+  bind::member_function<QJsonValue, QVariant, &QJsonValue::toVariant>(json_value, "toVariant").create();
   // QJsonValue::Type type() const;
-  binder.fun<QJsonValue::Type, &QJsonValue::type>("type").create();
+  bind::member_function<QJsonValue, QJsonValue::Type, &QJsonValue::type>(json_value, "type").create();
   // bool isNull() const;
-  binder.fun<bool, &QJsonValue::isNull>("isNull").create();
+  bind::member_function<QJsonValue, bool, &QJsonValue::isNull>(json_value, "isNull").create();
   // bool isBool() const;
-  binder.fun<bool, &QJsonValue::isBool>("isBool").create();
+  bind::member_function<QJsonValue, bool, &QJsonValue::isBool>(json_value, "isBool").create();
   // bool isDouble() const;
-  binder.fun<bool, &QJsonValue::isDouble>("isDouble").create();
+  bind::member_function<QJsonValue, bool, &QJsonValue::isDouble>(json_value, "isDouble").create();
   // bool isString() const;
-  binder.fun<bool, &QJsonValue::isString>("isString").create();
+  bind::member_function<QJsonValue, bool, &QJsonValue::isString>(json_value, "isString").create();
   // bool isArray() const;
-  binder.fun<bool, &QJsonValue::isArray>("isArray").create();
+  bind::member_function<QJsonValue, bool, &QJsonValue::isArray>(json_value, "isArray").create();
   // bool isObject() const;
-  binder.fun<bool, &QJsonValue::isObject>("isObject").create();
+  bind::member_function<QJsonValue, bool, &QJsonValue::isObject>(json_value, "isObject").create();
   // bool isUndefined() const;
-  binder.fun<bool, &QJsonValue::isUndefined>("isUndefined").create();
+  bind::member_function<QJsonValue, bool, &QJsonValue::isUndefined>(json_value, "isUndefined").create();
   // bool toBool(bool) const;
-  binder.fun<bool, bool, &QJsonValue::toBool>("toBool")
-    .apply(binding::default_arguments(false)).create();
+  bind::member_function<QJsonValue, bool, bool, &QJsonValue::toBool>(json_value, "toBool")
+    .apply(bind::default_arguments(false)).create();
   // int toInt(int) const;
-  binder.fun<int, int, &QJsonValue::toInt>("toInt")
-    .apply(binding::default_arguments(0)).create();
+  bind::member_function<QJsonValue, int, int, &QJsonValue::toInt>(json_value, "toInt")
+    .apply(bind::default_arguments(0)).create();
   // double toDouble(double) const;
-  binder.fun<double, double, &QJsonValue::toDouble>("toDouble")
-    .apply(binding::default_arguments(double(0))).create();
+  bind::member_function<QJsonValue, double, double, &QJsonValue::toDouble>(json_value, "toDouble")
+    .apply(bind::default_arguments(double(0))).create();
   // QString toString() const;
-  binder.fun<QString, &QJsonValue::toString>("toString").create();
+  bind::member_function<QJsonValue, QString, &QJsonValue::toString>(json_value, "toString").create();
   // QString toString(const QString &) const;
-  binder.fun<QString, const QString &, &QJsonValue::toString>("toString")
-    .apply(binding::default_arguments(QString())).create();
+  bind::member_function<QJsonValue, QString, const QString &, &QJsonValue::toString>(json_value, "toString")
+    .apply(bind::default_arguments(QString())).create();
   // QJsonArray toArray() const;
-  binder.fun<QJsonArray, &QJsonValue::toArray>("toArray").create();
+  bind::member_function<QJsonValue, QJsonArray, &QJsonValue::toArray>(json_value, "toArray").create();
   // QJsonArray toArray(const QJsonArray &) const;
-  binder.fun<QJsonArray, const QJsonArray &, &QJsonValue::toArray>("toArray")
-    .apply(binding::default_arguments(QJsonArray())).create();
+  bind::member_function<QJsonValue, QJsonArray, const QJsonArray &, &QJsonValue::toArray>(json_value, "toArray")
+    .apply(bind::default_arguments(QJsonArray())).create();
   // QJsonObject toObject() const;
-  binder.fun<QJsonObject, &QJsonValue::toObject>("toObject").create();
+  bind::member_function<QJsonValue, QJsonObject, &QJsonValue::toObject>(json_value, "toObject").create();
   // QJsonObject toObject(const QJsonObject &) const;
-  binder.fun<QJsonObject, const QJsonObject &, &QJsonValue::toObject>("toObject").create();
+  bind::member_function<QJsonValue, QJsonObject, const QJsonObject &, &QJsonValue::toObject>(json_value, "toObject").create();
   // const QJsonValue operator[](const QString &) const;
-  binder.operators().const_subscript<const QJsonValue, const QString &>();
+  bind::memop_const_subscript<QJsonValue, const QJsonValue, const QString &>(json_value);
   // const QJsonValue operator[](QLatin1String) const;
   /// TODO: const QJsonValue operator[](QLatin1String) const;
   // const QJsonValue operator[](int) const;
-  binder.operators().const_subscript<const QJsonValue, int>();
+  bind::memop_const_subscript<QJsonValue, const QJsonValue, int>(json_value);
   // bool operator==(const QJsonValue &) const;
-  binder.operators().eq<const QJsonValue &>();
+  bind::memop_eq<QJsonValue, const QJsonValue &>(json_value);
   // bool operator!=(const QJsonValue &) const;
-  binder.operators().neq<const QJsonValue &>();
+  bind::memop_neq<QJsonValue, const QJsonValue &>(json_value);
 }
 
 
@@ -137,58 +136,57 @@ static void register_json_value_ref_class(script::Namespace ns)
 
   Class json_value_ref = ns.newClass("JsonValueRef").setId(script::Type::QJsonValueRef).get();
 
-  binding::ClassBinder<QJsonValueRef> binder{ json_value_ref };
 
   // QJsonValueRef(QJsonArray *, int);
   /// TODO: QJsonValueRef(QJsonArray *, int);
   // QJsonValueRef(QJsonObject *, int);
   /// TODO: QJsonValueRef(QJsonObject *, int);
   // QJsonValueRef & operator=(const QJsonValue &);
-  binder.operators().assign<const QJsonValue &>();
+  bind::memop_assign<QJsonValueRef, const QJsonValue &>(json_value_ref);
   // QJsonValueRef & operator=(const QJsonValueRef &);
-  binder.operators().assign<const QJsonValueRef &>();
+  bind::memop_assign<QJsonValueRef, const QJsonValueRef &>(json_value_ref);
   // QVariant toVariant() const;
-  binder.fun<QVariant, &QJsonValueRef::toVariant>("toVariant").create();
+  bind::member_function<QJsonValueRef, QVariant, &QJsonValueRef::toVariant>(json_value_ref, "toVariant").create();
   // QJsonValue::Type type() const;
-  binder.fun<QJsonValue::Type, &QJsonValueRef::type>("type").create();
+  bind::member_function<QJsonValueRef, QJsonValue::Type, &QJsonValueRef::type>(json_value_ref, "type").create();
   // bool isNull() const;
-  binder.fun<bool, &QJsonValueRef::isNull>("isNull").create();
+  bind::member_function<QJsonValueRef, bool, &QJsonValueRef::isNull>(json_value_ref, "isNull").create();
   // bool isBool() const;
-  binder.fun<bool, &QJsonValueRef::isBool>("isBool").create();
+  bind::member_function<QJsonValueRef, bool, &QJsonValueRef::isBool>(json_value_ref, "isBool").create();
   // bool isDouble() const;
-  binder.fun<bool, &QJsonValueRef::isDouble>("isDouble").create();
+  bind::member_function<QJsonValueRef, bool, &QJsonValueRef::isDouble>(json_value_ref, "isDouble").create();
   // bool isString() const;
-  binder.fun<bool, &QJsonValueRef::isString>("isString").create();
+  bind::member_function<QJsonValueRef, bool, &QJsonValueRef::isString>(json_value_ref, "isString").create();
   // bool isArray() const;
-  binder.fun<bool, &QJsonValueRef::isArray>("isArray").create();
+  bind::member_function<QJsonValueRef, bool, &QJsonValueRef::isArray>(json_value_ref, "isArray").create();
   // bool isObject() const;
-  binder.fun<bool, &QJsonValueRef::isObject>("isObject").create();
+  bind::member_function<QJsonValueRef, bool, &QJsonValueRef::isObject>(json_value_ref, "isObject").create();
   // bool isUndefined() const;
-  binder.fun<bool, &QJsonValueRef::isUndefined>("isUndefined").create();
+  bind::member_function<QJsonValueRef, bool, &QJsonValueRef::isUndefined>(json_value_ref, "isUndefined").create();
   // bool toBool() const;
-  binder.fun<bool, &QJsonValueRef::toBool>("toBool").create();
+  bind::member_function<QJsonValueRef, bool, &QJsonValueRef::toBool>(json_value_ref, "toBool").create();
   // int toInt() const;
-  binder.fun<int, &QJsonValueRef::toInt>("toInt").create();
+  bind::member_function<QJsonValueRef, int, &QJsonValueRef::toInt>(json_value_ref, "toInt").create();
   // double toDouble() const;
-  binder.fun<double, &QJsonValueRef::toDouble>("toDouble").create();
+  bind::member_function<QJsonValueRef, double, &QJsonValueRef::toDouble>(json_value_ref, "toDouble").create();
   // QString toString() const;
-  binder.fun<QString, &QJsonValueRef::toString>("toString").create();
+  bind::member_function<QJsonValueRef, QString, &QJsonValueRef::toString>(json_value_ref, "toString").create();
   // QJsonArray toArray() const;
-  binder.fun<QJsonArray, &QJsonValueRef::toArray>("toArray").create();
+  bind::member_function<QJsonValueRef, QJsonArray, &QJsonValueRef::toArray>(json_value_ref, "toArray").create();
   // QJsonObject toObject() const;
-  binder.fun<QJsonObject, &QJsonValueRef::toObject>("toObject").create();
+  bind::member_function<QJsonValueRef, QJsonObject, &QJsonValueRef::toObject>(json_value_ref, "toObject").create();
   // bool toBool(bool) const;
-  binder.fun<bool, bool, &QJsonValueRef::toBool>("toBool").create();
+  bind::member_function<QJsonValueRef, bool, bool, &QJsonValueRef::toBool>(json_value_ref, "toBool").create();
   // int toInt(int) const;
-  binder.fun<int, int, &QJsonValueRef::toInt>("toInt").create();
+  bind::member_function<QJsonValueRef, int, int, &QJsonValueRef::toInt>(json_value_ref, "toInt").create();
   // double toDouble(double) const;
-  binder.fun<double, double, &QJsonValueRef::toDouble>("toDouble").create();
+  bind::member_function<QJsonValueRef, double, double, &QJsonValueRef::toDouble>(json_value_ref, "toDouble").create();
   // QString toString(const QString &) const;
-  binder.fun<QString, const QString &, &QJsonValueRef::toString>("toString").create();
+  bind::member_function<QJsonValueRef, QString, const QString &, &QJsonValueRef::toString>(json_value_ref, "toString").create();
   // bool operator==(const QJsonValue &) const;
-  binder.operators().eq<const QJsonValue &>();
+  bind::memop_eq<QJsonValueRef, const QJsonValue &>(json_value_ref);
   // bool operator!=(const QJsonValue &) const;
-  binder.operators().neq<const QJsonValue &>();
+  bind::memop_neq<QJsonValueRef, const QJsonValue &>(json_value_ref);
 }
 
 
@@ -200,10 +198,9 @@ void register_jsonvalue_file(script::Namespace core)
 
   register_json_value_class(ns);
   register_json_value_ref_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QJsonValue &, QJsonValue &);
-  binder.void_fun<QJsonValue &, QJsonValue &, &swap>("swap").create();
+  bind::void_function<QJsonValue &, QJsonValue &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QJsonValue &);
   /// TODO: QDebug operator<<(QDebug, const QJsonValue &);
 }

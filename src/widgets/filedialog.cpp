@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/filedialog.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/bytearray.h"
@@ -99,94 +99,93 @@ static void register_file_dialog_class(script::Namespace ns)
   register_file_dialog_accept_mode_enum(file_dialog);
   register_file_dialog_dialog_label_enum(file_dialog);
   register_file_dialog_option_enum(file_dialog);
-  binding::ClassBinder<QFileDialog> binder{ file_dialog, &QFileDialog::staticMetaObject };
 
   // QFileDialog(QWidget *, Qt::WindowFlags);
   /// TODO: QFileDialog(QWidget *, Qt::WindowFlags);
   // QFileDialog(QWidget *, const QString &, const QString &, const QString &);
-  binder.ctor<QWidget *, const QString &, const QString &, const QString &>().create();
+  bind::constructor<QFileDialog, QWidget *, const QString &, const QString &, const QString &>(file_dialog).create();
   // ~QFileDialog();
-  binder.dtor().create();
+  bind::destructor<QFileDialog>(file_dialog).create();
   // void setDirectory(const QString &);
-  binder.void_fun<const QString &, &QFileDialog::setDirectory>("setDirectory").create();
+  bind::void_member_function<QFileDialog, const QString &, &QFileDialog::setDirectory>(file_dialog, "setDirectory").create();
   // void setDirectory(const QDir &);
-  binder.void_fun<const QDir &, &QFileDialog::setDirectory>("setDirectory").create();
+  bind::void_member_function<QFileDialog, const QDir &, &QFileDialog::setDirectory>(file_dialog, "setDirectory").create();
   // QDir directory() const;
-  binder.fun<QDir, &QFileDialog::directory>("directory").create();
+  bind::member_function<QFileDialog, QDir, &QFileDialog::directory>(file_dialog, "directory").create();
   // void setDirectoryUrl(const QUrl &);
-  binder.void_fun<const QUrl &, &QFileDialog::setDirectoryUrl>("setDirectoryUrl").create();
+  bind::void_member_function<QFileDialog, const QUrl &, &QFileDialog::setDirectoryUrl>(file_dialog, "setDirectoryUrl").create();
   // QUrl directoryUrl() const;
-  binder.fun<QUrl, &QFileDialog::directoryUrl>("directoryUrl").create();
+  bind::member_function<QFileDialog, QUrl, &QFileDialog::directoryUrl>(file_dialog, "directoryUrl").create();
   // void selectFile(const QString &);
-  binder.void_fun<const QString &, &QFileDialog::selectFile>("selectFile").create();
+  bind::void_member_function<QFileDialog, const QString &, &QFileDialog::selectFile>(file_dialog, "selectFile").create();
   // QStringList selectedFiles() const;
   /// TODO: QStringList selectedFiles() const;
   // void selectUrl(const QUrl &);
-  binder.void_fun<const QUrl &, &QFileDialog::selectUrl>("selectUrl").create();
+  bind::void_member_function<QFileDialog, const QUrl &, &QFileDialog::selectUrl>(file_dialog, "selectUrl").create();
   // QList<QUrl> selectedUrls() const;
   /// TODO: QList<QUrl> selectedUrls() const;
   // void setNameFilterDetailsVisible(bool);
-  binder.void_fun<bool, &QFileDialog::setNameFilterDetailsVisible>("setNameFilterDetailsVisible").create();
+  bind::void_member_function<QFileDialog, bool, &QFileDialog::setNameFilterDetailsVisible>(file_dialog, "setNameFilterDetailsVisible").create();
   // bool isNameFilterDetailsVisible() const;
-  binder.fun<bool, &QFileDialog::isNameFilterDetailsVisible>("isNameFilterDetailsVisible").create();
+  bind::member_function<QFileDialog, bool, &QFileDialog::isNameFilterDetailsVisible>(file_dialog, "isNameFilterDetailsVisible").create();
   // void setNameFilter(const QString &);
-  binder.void_fun<const QString &, &QFileDialog::setNameFilter>("setNameFilter").create();
+  bind::void_member_function<QFileDialog, const QString &, &QFileDialog::setNameFilter>(file_dialog, "setNameFilter").create();
   // void setNameFilters(const QStringList &);
   /// TODO: void setNameFilters(const QStringList &);
   // QStringList nameFilters() const;
   /// TODO: QStringList nameFilters() const;
   // void selectNameFilter(const QString &);
-  binder.void_fun<const QString &, &QFileDialog::selectNameFilter>("selectNameFilter").create();
+  bind::void_member_function<QFileDialog, const QString &, &QFileDialog::selectNameFilter>(file_dialog, "selectNameFilter").create();
   // QString selectedMimeTypeFilter() const;
-  binder.fun<QString, &QFileDialog::selectedMimeTypeFilter>("selectedMimeTypeFilter").create();
+  bind::member_function<QFileDialog, QString, &QFileDialog::selectedMimeTypeFilter>(file_dialog, "selectedMimeTypeFilter").create();
   // QString selectedNameFilter() const;
-  binder.fun<QString, &QFileDialog::selectedNameFilter>("selectedNameFilter").create();
+  bind::member_function<QFileDialog, QString, &QFileDialog::selectedNameFilter>(file_dialog, "selectedNameFilter").create();
   // void setMimeTypeFilters(const QStringList &);
   /// TODO: void setMimeTypeFilters(const QStringList &);
   // QStringList mimeTypeFilters() const;
   /// TODO: QStringList mimeTypeFilters() const;
   // void selectMimeTypeFilter(const QString &);
-  binder.void_fun<const QString &, &QFileDialog::selectMimeTypeFilter>("selectMimeTypeFilter").create();
+  bind::void_member_function<QFileDialog, const QString &, &QFileDialog::selectMimeTypeFilter>(file_dialog, "selectMimeTypeFilter").create();
   // QDir::Filters filter() const;
-  binder.fun<QDir::Filters, &QFileDialog::filter>("filter").create();
+  bind::member_function<QFileDialog, QDir::Filters, &QFileDialog::filter>(file_dialog, "filter").create();
   // void setFilter(QDir::Filters);
-  binder.void_fun<QDir::Filters, &QFileDialog::setFilter>("setFilter").create();
+  bind::void_member_function<QFileDialog, QDir::Filters, &QFileDialog::setFilter>(file_dialog, "setFilter").create();
   // void setViewMode(QFileDialog::ViewMode);
-  binder.void_fun<QFileDialog::ViewMode, &QFileDialog::setViewMode>("setViewMode").create();
+  bind::void_member_function<QFileDialog, QFileDialog::ViewMode, &QFileDialog::setViewMode>(file_dialog, "setViewMode").create();
   // QFileDialog::ViewMode viewMode() const;
-  binder.fun<QFileDialog::ViewMode, &QFileDialog::viewMode>("viewMode").create();
+  bind::member_function<QFileDialog, QFileDialog::ViewMode, &QFileDialog::viewMode>(file_dialog, "viewMode").create();
   // void setFileMode(QFileDialog::FileMode);
-  binder.void_fun<QFileDialog::FileMode, &QFileDialog::setFileMode>("setFileMode").create();
+  bind::void_member_function<QFileDialog, QFileDialog::FileMode, &QFileDialog::setFileMode>(file_dialog, "setFileMode").create();
   // QFileDialog::FileMode fileMode() const;
-  binder.fun<QFileDialog::FileMode, &QFileDialog::fileMode>("fileMode").create();
+  bind::member_function<QFileDialog, QFileDialog::FileMode, &QFileDialog::fileMode>(file_dialog, "fileMode").create();
   // void setAcceptMode(QFileDialog::AcceptMode);
-  binder.void_fun<QFileDialog::AcceptMode, &QFileDialog::setAcceptMode>("setAcceptMode").create();
+  bind::void_member_function<QFileDialog, QFileDialog::AcceptMode, &QFileDialog::setAcceptMode>(file_dialog, "setAcceptMode").create();
   // QFileDialog::AcceptMode acceptMode() const;
-  binder.fun<QFileDialog::AcceptMode, &QFileDialog::acceptMode>("acceptMode").create();
+  bind::member_function<QFileDialog, QFileDialog::AcceptMode, &QFileDialog::acceptMode>(file_dialog, "acceptMode").create();
   // void setReadOnly(bool);
-  binder.void_fun<bool, &QFileDialog::setReadOnly>("setReadOnly").create();
+  bind::void_member_function<QFileDialog, bool, &QFileDialog::setReadOnly>(file_dialog, "setReadOnly").create();
   // bool isReadOnly() const;
-  binder.fun<bool, &QFileDialog::isReadOnly>("isReadOnly").create();
+  bind::member_function<QFileDialog, bool, &QFileDialog::isReadOnly>(file_dialog, "isReadOnly").create();
   // void setResolveSymlinks(bool);
-  binder.void_fun<bool, &QFileDialog::setResolveSymlinks>("setResolveSymlinks").create();
+  bind::void_member_function<QFileDialog, bool, &QFileDialog::setResolveSymlinks>(file_dialog, "setResolveSymlinks").create();
   // bool resolveSymlinks() const;
-  binder.fun<bool, &QFileDialog::resolveSymlinks>("resolveSymlinks").create();
+  bind::member_function<QFileDialog, bool, &QFileDialog::resolveSymlinks>(file_dialog, "resolveSymlinks").create();
   // void setSidebarUrls(const QList<QUrl> &);
   /// TODO: void setSidebarUrls(const QList<QUrl> &);
   // QList<QUrl> sidebarUrls() const;
   /// TODO: QList<QUrl> sidebarUrls() const;
   // QByteArray saveState() const;
-  binder.fun<QByteArray, &QFileDialog::saveState>("saveState").create();
+  bind::member_function<QFileDialog, QByteArray, &QFileDialog::saveState>(file_dialog, "saveState").create();
   // bool restoreState(const QByteArray &);
-  binder.fun<bool, const QByteArray &, &QFileDialog::restoreState>("restoreState").create();
+  bind::member_function<QFileDialog, bool, const QByteArray &, &QFileDialog::restoreState>(file_dialog, "restoreState").create();
   // void setConfirmOverwrite(bool);
-  binder.void_fun<bool, &QFileDialog::setConfirmOverwrite>("setConfirmOverwrite").create();
+  bind::void_member_function<QFileDialog, bool, &QFileDialog::setConfirmOverwrite>(file_dialog, "setConfirmOverwrite").create();
   // bool confirmOverwrite() const;
-  binder.fun<bool, &QFileDialog::confirmOverwrite>("confirmOverwrite").create();
+  bind::member_function<QFileDialog, bool, &QFileDialog::confirmOverwrite>(file_dialog, "confirmOverwrite").create();
   // void setDefaultSuffix(const QString &);
-  binder.void_fun<const QString &, &QFileDialog::setDefaultSuffix>("setDefaultSuffix").create();
+  bind::void_member_function<QFileDialog, const QString &, &QFileDialog::setDefaultSuffix>(file_dialog, "setDefaultSuffix").create();
   // QString defaultSuffix() const;
-  binder.fun<QString, &QFileDialog::defaultSuffix>("defaultSuffix").create();
+  bind::member_function<QFileDialog, QString, &QFileDialog::defaultSuffix>(file_dialog, "defaultSuffix").create();
   // void setHistory(const QStringList &);
   /// TODO: void setHistory(const QStringList &);
   // QStringList history() const;
@@ -200,9 +199,9 @@ static void register_file_dialog_class(script::Namespace ns)
   // QFileIconProvider * iconProvider() const;
   /// TODO: QFileIconProvider * iconProvider() const;
   // void setLabelText(QFileDialog::DialogLabel, const QString &);
-  binder.void_fun<QFileDialog::DialogLabel, const QString &, &QFileDialog::setLabelText>("setLabelText").create();
+  bind::void_member_function<QFileDialog, QFileDialog::DialogLabel, const QString &, &QFileDialog::setLabelText>(file_dialog, "setLabelText").create();
   // QString labelText(QFileDialog::DialogLabel) const;
-  binder.fun<QString, QFileDialog::DialogLabel, &QFileDialog::labelText>("labelText").create();
+  bind::member_function<QFileDialog, QString, QFileDialog::DialogLabel, &QFileDialog::labelText>(file_dialog, "labelText").create();
   // void setSupportedSchemes(const QStringList &);
   /// TODO: void setSupportedSchemes(const QStringList &);
   // QStringList supportedSchemes() const;
@@ -212,25 +211,25 @@ static void register_file_dialog_class(script::Namespace ns)
   // QAbstractProxyModel * proxyModel() const;
   /// TODO: QAbstractProxyModel * proxyModel() const;
   // void setOption(QFileDialog::Option, bool);
-  binder.void_fun<QFileDialog::Option, bool, &QFileDialog::setOption>("setOption").create();
+  bind::void_member_function<QFileDialog, QFileDialog::Option, bool, &QFileDialog::setOption>(file_dialog, "setOption").create();
   // bool testOption(QFileDialog::Option) const;
-  binder.fun<bool, QFileDialog::Option, &QFileDialog::testOption>("testOption").create();
+  bind::member_function<QFileDialog, bool, QFileDialog::Option, &QFileDialog::testOption>(file_dialog, "testOption").create();
   // void setOptions(QFileDialog::Options);
-  binder.void_fun<QFileDialog::Options, &QFileDialog::setOptions>("setOptions").create();
+  bind::void_member_function<QFileDialog, QFileDialog::Options, &QFileDialog::setOptions>(file_dialog, "setOptions").create();
   // QFileDialog::Options options() const;
-  binder.fun<QFileDialog::Options, &QFileDialog::options>("options").create();
+  bind::member_function<QFileDialog, QFileDialog::Options, &QFileDialog::options>(file_dialog, "options").create();
   // void open(QObject *, const char *);
   /// TODO: void open(QObject *, const char *);
   // void setVisible(bool);
-  binder.void_fun<bool, &QFileDialog::setVisible>("setVisible").create();
+  bind::void_member_function<QFileDialog, bool, &QFileDialog::setVisible>(file_dialog, "setVisible").create();
   // void fileSelected(const QString &);
-  binder.sigs().add<const QString &>("fileSelected", "fileSelected(const QString &)");
+  bind::signal<QFileDialog, const QString &>(file_dialog, "fileSelected", "fileSelected(const QString &)");
   // void currentChanged(const QString &);
-  binder.sigs().add<const QString &>("currentChanged", "currentChanged(const QString &)");
+  bind::signal<QFileDialog, const QString &>(file_dialog, "currentChanged", "currentChanged(const QString &)");
   // void directoryEntered(const QString &);
-  binder.sigs().add<const QString &>("directoryEntered", "directoryEntered(const QString &)");
+  bind::signal<QFileDialog, const QString &>(file_dialog, "directoryEntered", "directoryEntered(const QString &)");
   // void filterSelected(const QString &);
-  binder.sigs().add<const QString &>("filterSelected", "filterSelected(const QString &)");
+  bind::signal<QFileDialog, const QString &>(file_dialog, "filterSelected", "filterSelected(const QString &)");
   // static QString getOpenFileName(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
   /// TODO: static QString getOpenFileName(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
   // static QUrl getOpenFileUrl(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
@@ -240,7 +239,7 @@ static void register_file_dialog_class(script::Namespace ns)
   // static QUrl getSaveFileUrl(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
   /// TODO: static QUrl getSaveFileUrl(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
   // static QString getExistingDirectory(QWidget *, const QString &, const QString &, QFileDialog::Options);
-  binder.static_fun<QString, QWidget *, const QString &, const QString &, QFileDialog::Options, &QFileDialog::getExistingDirectory>("getExistingDirectory").create();
+  bind::static_member_function<QFileDialog, QString, QWidget *, const QString &, const QString &, QFileDialog::Options, &QFileDialog::getExistingDirectory>(file_dialog, "getExistingDirectory").create();
   // static QUrl getExistingDirectoryUrl(QWidget *, const QString &, const QUrl &, QFileDialog::Options, const QStringList &);
   /// TODO: static QUrl getExistingDirectoryUrl(QWidget *, const QString &, const QUrl &, QFileDialog::Options, const QStringList &);
   // static QStringList getOpenFileNames(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
@@ -248,7 +247,7 @@ static void register_file_dialog_class(script::Namespace ns)
   // static QList<QUrl> getOpenFileUrls(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
   /// TODO: static QList<QUrl> getOpenFileUrls(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
 
-  file_dialog.engine()->registerQtType(&QFileDialog::staticMetaObject, file_dialog.id());
+  bind::link(file_dialog, &QFileDialog::staticMetaObject);
 }
 
 
@@ -259,7 +258,6 @@ void register_filedialog_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_file_dialog_class(ns);
-  binding::Namespace binder{ ns };
 
   // QFlags<QFileDialog::Options::enum_type> operator|(QFileDialog::Options::enum_type, QFileDialog::Options::enum_type);
   /// TODO: QFlags<QFileDialog::Options::enum_type> operator|(QFileDialog::Options::enum_type, QFileDialog::Options::enum_type);

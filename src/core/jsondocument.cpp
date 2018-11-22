@@ -4,10 +4,10 @@
 
 #include "yasl/core/jsondocument.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/jsonarray.h"
@@ -49,71 +49,70 @@ static void register_json_document_class(script::Namespace ns)
 
   register_json_document_data_validation_enum(json_document);
   register_json_document_json_format_enum(json_document);
-  binding::ClassBinder<QJsonDocument> binder{ json_document };
 
   // QJsonDocument();
-  binder.default_ctor().create();
+  bind::default_constructor<QJsonDocument>(json_document).create();
   // QJsonDocument(const QJsonObject &);
-  binder.ctor<const QJsonObject &>().create();
+  bind::constructor<QJsonDocument, const QJsonObject &>(json_document).create();
   // QJsonDocument(const QJsonArray &);
-  binder.ctor<const QJsonArray &>().create();
+  bind::constructor<QJsonDocument, const QJsonArray &>(json_document).create();
   // ~QJsonDocument();
-  binder.dtor().create();
+  bind::destructor<QJsonDocument>(json_document).create();
   // QJsonDocument(const QJsonDocument &);
-  binder.ctor<const QJsonDocument &>().create();
+  bind::constructor<QJsonDocument, const QJsonDocument &>(json_document).create();
   // QJsonDocument & operator=(const QJsonDocument &);
-  binder.operators().assign<const QJsonDocument &>();
+  bind::memop_assign<QJsonDocument, const QJsonDocument &>(json_document);
   // QJsonDocument(QJsonDocument &&);
-  binder.ctor<QJsonDocument &&>().create();
+  bind::constructor<QJsonDocument, QJsonDocument &&>(json_document).create();
   // QJsonDocument & operator=(QJsonDocument &&);
-  binder.operators().assign<QJsonDocument &&>();
+  bind::memop_assign<QJsonDocument, QJsonDocument &&>(json_document);
   // void swap(QJsonDocument &);
-  binder.void_fun<QJsonDocument &, &QJsonDocument::swap>("swap").create();
+  bind::void_member_function<QJsonDocument, QJsonDocument &, &QJsonDocument::swap>(json_document, "swap").create();
   // static QJsonDocument fromRawData(const char *, int, QJsonDocument::DataValidation);
   /// TODO: static QJsonDocument fromRawData(const char *, int, QJsonDocument::DataValidation);
   // const char * rawData(int *) const;
   /// TODO: const char * rawData(int *) const;
   // static QJsonDocument fromBinaryData(const QByteArray &, QJsonDocument::DataValidation);
-  binder.static_fun<QJsonDocument, const QByteArray &, QJsonDocument::DataValidation, &QJsonDocument::fromBinaryData>("fromBinaryData")
-    .apply(binding::default_arguments(QJsonDocument::Validate)).create();
+  bind::static_member_function<QJsonDocument, QJsonDocument, const QByteArray &, QJsonDocument::DataValidation, &QJsonDocument::fromBinaryData>(json_document, "fromBinaryData")
+    .apply(bind::default_arguments(QJsonDocument::Validate)).create();
   // QByteArray toBinaryData() const;
-  binder.fun<QByteArray, &QJsonDocument::toBinaryData>("toBinaryData").create();
+  bind::member_function<QJsonDocument, QByteArray, &QJsonDocument::toBinaryData>(json_document, "toBinaryData").create();
   // static QJsonDocument fromVariant(const QVariant &);
-  binder.static_fun<QJsonDocument, const QVariant &, &QJsonDocument::fromVariant>("fromVariant").create();
+  bind::static_member_function<QJsonDocument, QJsonDocument, const QVariant &, &QJsonDocument::fromVariant>(json_document, "fromVariant").create();
   // QVariant toVariant() const;
-  binder.fun<QVariant, &QJsonDocument::toVariant>("toVariant").create();
+  bind::member_function<QJsonDocument, QVariant, &QJsonDocument::toVariant>(json_document, "toVariant").create();
   // static QJsonDocument fromJson(const QByteArray &, QJsonParseError *);
   /// TODO: static QJsonDocument fromJson(const QByteArray &, QJsonParseError *);
   // QByteArray toJson() const;
-  binder.fun<QByteArray, &QJsonDocument::toJson>("toJson").create();
+  bind::member_function<QJsonDocument, QByteArray, &QJsonDocument::toJson>(json_document, "toJson").create();
   // QByteArray toJson(QJsonDocument::JsonFormat) const;
-  binder.fun<QByteArray, QJsonDocument::JsonFormat, &QJsonDocument::toJson>("toJson").create();
+  bind::member_function<QJsonDocument, QByteArray, QJsonDocument::JsonFormat, &QJsonDocument::toJson>(json_document, "toJson").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QJsonDocument::isEmpty>("isEmpty").create();
+  bind::member_function<QJsonDocument, bool, &QJsonDocument::isEmpty>(json_document, "isEmpty").create();
   // bool isArray() const;
-  binder.fun<bool, &QJsonDocument::isArray>("isArray").create();
+  bind::member_function<QJsonDocument, bool, &QJsonDocument::isArray>(json_document, "isArray").create();
   // bool isObject() const;
-  binder.fun<bool, &QJsonDocument::isObject>("isObject").create();
+  bind::member_function<QJsonDocument, bool, &QJsonDocument::isObject>(json_document, "isObject").create();
   // QJsonObject object() const;
-  binder.fun<QJsonObject, &QJsonDocument::object>("object").create();
+  bind::member_function<QJsonDocument, QJsonObject, &QJsonDocument::object>(json_document, "object").create();
   // QJsonArray array() const;
-  binder.fun<QJsonArray, &QJsonDocument::array>("array").create();
+  bind::member_function<QJsonDocument, QJsonArray, &QJsonDocument::array>(json_document, "array").create();
   // void setObject(const QJsonObject &);
-  binder.void_fun<const QJsonObject &, &QJsonDocument::setObject>("setObject").create();
+  bind::void_member_function<QJsonDocument, const QJsonObject &, &QJsonDocument::setObject>(json_document, "setObject").create();
   // void setArray(const QJsonArray &);
-  binder.void_fun<const QJsonArray &, &QJsonDocument::setArray>("setArray").create();
+  bind::void_member_function<QJsonDocument, const QJsonArray &, &QJsonDocument::setArray>(json_document, "setArray").create();
   // const QJsonValue operator[](const QString &) const;
-  binder.operators().const_subscript<const QJsonValue, const QString &>();
+  bind::memop_const_subscript<QJsonDocument, const QJsonValue, const QString &>(json_document);
   // const QJsonValue operator[](QLatin1String) const;
   /// TODO: const QJsonValue operator[](QLatin1String) const;
   // const QJsonValue operator[](int) const;
-  binder.operators().const_subscript<const QJsonValue, int>();
+  bind::memop_const_subscript<QJsonDocument, const QJsonValue, int>(json_document);
   // bool operator==(const QJsonDocument &) const;
-  binder.operators().eq<const QJsonDocument &>();
+  bind::memop_eq<QJsonDocument, const QJsonDocument &>(json_document);
   // bool operator!=(const QJsonDocument &) const;
-  binder.operators().neq<const QJsonDocument &>();
+  bind::memop_neq<QJsonDocument, const QJsonDocument &>(json_document);
   // bool isNull() const;
-  binder.fun<bool, &QJsonDocument::isNull>("isNull").create();
+  bind::member_function<QJsonDocument, bool, &QJsonDocument::isNull>(json_document, "isNull").create();
 }
 
 
@@ -124,10 +123,9 @@ void register_jsondocument_file(script::Namespace core)
   Namespace ns = core;
 
   register_json_document_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QJsonDocument &, QJsonDocument &);
-  binder.void_fun<QJsonDocument &, QJsonDocument &, &swap>("swap").create();
+  bind::void_function<QJsonDocument &, QJsonDocument &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QJsonDocument &);
   /// TODO: QDebug operator<<(QDebug, const QJsonDocument &);
 }

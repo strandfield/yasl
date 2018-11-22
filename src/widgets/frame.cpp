@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/frame.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"
@@ -65,42 +65,41 @@ static void register_frame_class(script::Namespace ns)
   register_frame_shape_enum(frame);
   register_frame_shadow_enum(frame);
   register_frame_style_mask_enum(frame);
-  binding::ClassBinder<QFrame> binder{ frame, &QFrame::staticMetaObject };
 
   // QFrame(QWidget *, Qt::WindowFlags);
   /// TODO: QFrame(QWidget *, Qt::WindowFlags);
   // ~QFrame();
-  binder.dtor().create();
+  bind::destructor<QFrame>(frame).create();
   // int frameStyle() const;
-  binder.fun<int, &QFrame::frameStyle>("frameStyle").create();
+  bind::member_function<QFrame, int, &QFrame::frameStyle>(frame, "frameStyle").create();
   // void setFrameStyle(int);
-  binder.void_fun<int, &QFrame::setFrameStyle>("setFrameStyle").create();
+  bind::void_member_function<QFrame, int, &QFrame::setFrameStyle>(frame, "setFrameStyle").create();
   // int frameWidth() const;
-  binder.fun<int, &QFrame::frameWidth>("frameWidth").create();
+  bind::member_function<QFrame, int, &QFrame::frameWidth>(frame, "frameWidth").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QFrame::sizeHint>("sizeHint").create();
+  bind::member_function<QFrame, QSize, &QFrame::sizeHint>(frame, "sizeHint").create();
   // QFrame::Shape frameShape() const;
-  binder.fun<QFrame::Shape, &QFrame::frameShape>("frameShape").create();
+  bind::member_function<QFrame, QFrame::Shape, &QFrame::frameShape>(frame, "frameShape").create();
   // void setFrameShape(QFrame::Shape);
-  binder.void_fun<QFrame::Shape, &QFrame::setFrameShape>("setFrameShape").create();
+  bind::void_member_function<QFrame, QFrame::Shape, &QFrame::setFrameShape>(frame, "setFrameShape").create();
   // QFrame::Shadow frameShadow() const;
-  binder.fun<QFrame::Shadow, &QFrame::frameShadow>("frameShadow").create();
+  bind::member_function<QFrame, QFrame::Shadow, &QFrame::frameShadow>(frame, "frameShadow").create();
   // void setFrameShadow(QFrame::Shadow);
-  binder.void_fun<QFrame::Shadow, &QFrame::setFrameShadow>("setFrameShadow").create();
+  bind::void_member_function<QFrame, QFrame::Shadow, &QFrame::setFrameShadow>(frame, "setFrameShadow").create();
   // int lineWidth() const;
-  binder.fun<int, &QFrame::lineWidth>("lineWidth").create();
+  bind::member_function<QFrame, int, &QFrame::lineWidth>(frame, "lineWidth").create();
   // void setLineWidth(int);
-  binder.void_fun<int, &QFrame::setLineWidth>("setLineWidth").create();
+  bind::void_member_function<QFrame, int, &QFrame::setLineWidth>(frame, "setLineWidth").create();
   // int midLineWidth() const;
-  binder.fun<int, &QFrame::midLineWidth>("midLineWidth").create();
+  bind::member_function<QFrame, int, &QFrame::midLineWidth>(frame, "midLineWidth").create();
   // void setMidLineWidth(int);
-  binder.void_fun<int, &QFrame::setMidLineWidth>("setMidLineWidth").create();
+  bind::void_member_function<QFrame, int, &QFrame::setMidLineWidth>(frame, "setMidLineWidth").create();
   // QRect frameRect() const;
-  binder.fun<QRect, &QFrame::frameRect>("frameRect").create();
+  bind::member_function<QFrame, QRect, &QFrame::frameRect>(frame, "frameRect").create();
   // void setFrameRect(const QRect &);
-  binder.void_fun<const QRect &, &QFrame::setFrameRect>("setFrameRect").create();
+  bind::void_member_function<QFrame, const QRect &, &QFrame::setFrameRect>(frame, "setFrameRect").create();
 
-  frame.engine()->registerQtType(&QFrame::staticMetaObject, frame.id());
+  bind::link(frame, &QFrame::staticMetaObject);
 }
 
 
@@ -111,7 +110,6 @@ void register_frame_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_frame_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

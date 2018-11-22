@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/boxlayout.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "boxlayout.inc"
 #include "yasl/core/enums.h"
@@ -42,61 +42,60 @@ static void register_box_layout_class(script::Namespace ns)
     .setBase(script::Type::QLayout).get();
 
   register_box_layout_direction_enum(box_layout);
-  binding::ClassBinder<QBoxLayout> binder{ box_layout, &QBoxLayout::staticMetaObject };
 
   // QBoxLayout(QBoxLayout::Direction, QWidget *);
-  binder.ctor<QBoxLayout::Direction, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QBoxLayout, QBoxLayout::Direction, QWidget *>(box_layout)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QBoxLayout();
-  binder.dtor().create();
+  bind::destructor<QBoxLayout>(box_layout).create();
   // QBoxLayout::Direction direction() const;
-  binder.fun<QBoxLayout::Direction, &QBoxLayout::direction>("direction").create();
+  bind::member_function<QBoxLayout, QBoxLayout::Direction, &QBoxLayout::direction>(box_layout, "direction").create();
   // void setDirection(QBoxLayout::Direction);
-  binder.void_fun<QBoxLayout::Direction, &QBoxLayout::setDirection>("setDirection").create();
+  bind::void_member_function<QBoxLayout, QBoxLayout::Direction, &QBoxLayout::setDirection>(box_layout, "setDirection").create();
   // void addSpacing(int);
-  binder.void_fun<int, &QBoxLayout::addSpacing>("addSpacing").create();
+  bind::void_member_function<QBoxLayout, int, &QBoxLayout::addSpacing>(box_layout, "addSpacing").create();
   // void addStretch(int);
-  binder.void_fun<int, &QBoxLayout::addStretch>("addStretch")
-    .apply(binding::default_arguments(0)).create();
+  bind::void_member_function<QBoxLayout, int, &QBoxLayout::addStretch>(box_layout, "addStretch")
+    .apply(bind::default_arguments(0)).create();
   // void addSpacerItem(QSpacerItem *);
   /// TODO: void addSpacerItem(QSpacerItem *);
   // void addWidget(QWidget *, int, Qt::Alignment);
-  binder.void_fun<QWidget *, int, Qt::Alignment, &QBoxLayout::addWidget>("addWidget")
-    .apply(binding::default_arguments(Qt::Alignment(), 0)).create();
+  bind::void_member_function<QBoxLayout, QWidget *, int, Qt::Alignment, &QBoxLayout::addWidget>(box_layout, "addWidget")
+    .apply(bind::default_arguments(Qt::Alignment(), 0)).create();
   // void addLayout(QLayout *, int);
-  binder.void_fun<QLayout *, int, &QBoxLayout::addLayout>("addLayout")
-    .apply(binding::default_arguments(0)).create();
+  bind::void_member_function<QBoxLayout, QLayout *, int, &QBoxLayout::addLayout>(box_layout, "addLayout")
+    .apply(bind::default_arguments(0)).create();
   // void addStrut(int);
-  binder.void_fun<int, &QBoxLayout::addStrut>("addStrut").create();
+  bind::void_member_function<QBoxLayout, int, &QBoxLayout::addStrut>(box_layout, "addStrut").create();
   // void insertSpacing(int, int);
-  binder.void_fun<int, int, &QBoxLayout::insertSpacing>("insertSpacing").create();
+  bind::void_member_function<QBoxLayout, int, int, &QBoxLayout::insertSpacing>(box_layout, "insertSpacing").create();
   // void insertStretch(int, int);
-  binder.void_fun<int, int, &QBoxLayout::insertStretch>("insertStretch")
-    .apply(binding::default_arguments(0)).create();
+  bind::void_member_function<QBoxLayout, int, int, &QBoxLayout::insertStretch>(box_layout, "insertStretch")
+    .apply(bind::default_arguments(0)).create();
   // void insertSpacerItem(int, QSpacerItem *);
   /// TODO: void insertSpacerItem(int, QSpacerItem *);
   // void insertWidget(int, QWidget *, int, Qt::Alignment);
-  binder.void_fun<int, QWidget *, int, Qt::Alignment, &QBoxLayout::insertWidget>("insertWidget")
-    .apply(binding::default_arguments(Qt::Alignment(), 0)).create();
+  bind::void_member_function<QBoxLayout, int, QWidget *, int, Qt::Alignment, &QBoxLayout::insertWidget>(box_layout, "insertWidget")
+    .apply(bind::default_arguments(Qt::Alignment(), 0)).create();
   // void insertLayout(int, QLayout *, int);
-  binder.void_fun<int, QLayout *, int, &QBoxLayout::insertLayout>("insertLayout")
-    .apply(binding::default_arguments(0)).create();
+  bind::void_member_function<QBoxLayout, int, QLayout *, int, &QBoxLayout::insertLayout>(box_layout, "insertLayout")
+    .apply(bind::default_arguments(0)).create();
   // void insertItem(int, QLayoutItem *);
   /// TODO: void insertItem(int, QLayoutItem *);
   // int spacing() const;
-  binder.fun<int, &QBoxLayout::spacing>("spacing").create();
+  bind::member_function<QBoxLayout, int, &QBoxLayout::spacing>(box_layout, "spacing").create();
   // void setSpacing(int);
-  binder.void_fun<int, &QBoxLayout::setSpacing>("setSpacing").create();
+  bind::void_member_function<QBoxLayout, int, &QBoxLayout::setSpacing>(box_layout, "setSpacing").create();
   // bool setStretchFactor(QWidget *, int);
-  binder.fun<bool, QWidget *, int, &QBoxLayout::setStretchFactor>("setStretchFactor").create();
+  bind::member_function<QBoxLayout, bool, QWidget *, int, &QBoxLayout::setStretchFactor>(box_layout, "setStretchFactor").create();
   // bool setStretchFactor(QLayout *, int);
-  binder.fun<bool, QLayout *, int, &QBoxLayout::setStretchFactor>("setStretchFactor").create();
+  bind::member_function<QBoxLayout, bool, QLayout *, int, &QBoxLayout::setStretchFactor>(box_layout, "setStretchFactor").create();
   // void setStretch(int, int);
-  binder.void_fun<int, int, &QBoxLayout::setStretch>("setStretch").create();
+  bind::void_member_function<QBoxLayout, int, int, &QBoxLayout::setStretch>(box_layout, "setStretch").create();
   // int stretch(int) const;
-  binder.fun<int, int, &QBoxLayout::stretch>("stretch").create();
+  bind::member_function<QBoxLayout, int, int, &QBoxLayout::stretch>(box_layout, "stretch").create();
 
-  box_layout.engine()->registerQtType(&QBoxLayout::staticMetaObject, box_layout.id());
+  bind::link(box_layout, &QBoxLayout::staticMetaObject);
 }
 
 
@@ -107,16 +106,15 @@ static void register_h_box_layout_class(script::Namespace ns)
   Class h_box_layout = ns.newClass("QHBoxLayout").setId(script::Type::QHBoxLayout)
     .setBase(script::Type::QBoxLayout).get();
 
-  binding::ClassBinder<QHBoxLayout> binder{ h_box_layout, &QHBoxLayout::staticMetaObject };
 
   // QHBoxLayout();
-  binder.default_ctor().create();
+  bind::default_constructor<QHBoxLayout>(h_box_layout).create();
   // QHBoxLayout(QWidget *);
-  binder.ctor<QWidget *>().create();
+  bind::constructor<QHBoxLayout, QWidget *>(h_box_layout).create();
   // ~QHBoxLayout();
-  binder.dtor().create();
+  bind::destructor<QHBoxLayout>(h_box_layout).create();
 
-  h_box_layout.engine()->registerQtType(&QHBoxLayout::staticMetaObject, h_box_layout.id());
+  bind::link(h_box_layout, &QHBoxLayout::staticMetaObject);
 }
 
 
@@ -127,16 +125,15 @@ static void register_v_box_layout_class(script::Namespace ns)
   Class v_box_layout = ns.newClass("QVBoxLayout").setId(script::Type::QVBoxLayout)
     .setBase(script::Type::QBoxLayout).get();
 
-  binding::ClassBinder<QVBoxLayout> binder{ v_box_layout, &QVBoxLayout::staticMetaObject };
 
   // QVBoxLayout();
-  binder.default_ctor().create();
+  bind::default_constructor<QVBoxLayout>(v_box_layout).create();
   // QVBoxLayout(QWidget *);
-  binder.ctor<QWidget *>().create();
+  bind::constructor<QVBoxLayout, QWidget *>(v_box_layout).create();
   // ~QVBoxLayout();
-  binder.dtor().create();
+  bind::destructor<QVBoxLayout>(v_box_layout).create();
 
-  v_box_layout.engine()->registerQtType(&QVBoxLayout::staticMetaObject, v_box_layout.id());
+  bind::link(v_box_layout, &QVBoxLayout::staticMetaObject);
 }
 
 
@@ -149,16 +146,15 @@ void register_boxlayout_file(script::Namespace widgets)
   register_box_layout_class(ns);
   register_h_box_layout_class(ns);
   register_v_box_layout_class(ns);
-  binding::Namespace binder{ ns };
 
   register_newlayout_functions(widgets);
   // QHBoxLayout& newHBoxLayout();
-  NewFunction(binder).add<QHBoxLayout>("newHBoxLayout");
+  bind::new_function<QHBoxLayout>(ns, "newHBoxLayout");
   // QHBoxLayout& newHBoxLayout(QWidget*);
-  NewFunction(binder).add<QHBoxLayout, QWidget*>("newHBoxLayout");
+  bind::new_function<QHBoxLayout, QWidget*>(ns, "newHBoxLayout");
   // QVBoxLayout& newVBoxLayout();
-  NewFunction(binder).add<QVBoxLayout>("newVBoxLayout");
+  bind::new_function<QVBoxLayout>(ns, "newVBoxLayout");
   // QVBoxLayout& newVBoxLayout(QWidget*);
-  NewFunction(binder).add<QVBoxLayout, QWidget*>("newVBoxLayout");
+  bind::new_function<QVBoxLayout, QWidget*>(ns, "newVBoxLayout");
 }
 

@@ -4,8 +4,8 @@
 
 #include "yasl/core/file.h"
 
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/filedevice.h"
@@ -21,62 +21,61 @@ static void register_file_class(script::Namespace ns)
   Class file = ns.newClass("File").setId(script::Type::QFile)
     .setBase(script::Type::QFileDevice).get();
 
-  binding::ClassBinder<QFile> binder{ file, &QFile::staticMetaObject };
 
   // QFile();
-  binder.default_ctor().create();
+  bind::default_constructor<QFile>(file).create();
   // QFile(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QFile, const QString &>(file).create();
   // QFile(QObject *);
-  binder.ctor<QObject *>().create();
+  bind::constructor<QFile, QObject *>(file).create();
   // QFile(const QString &, QObject *);
-  binder.ctor<const QString &, QObject *>().create();
+  bind::constructor<QFile, const QString &, QObject *>(file).create();
   // ~QFile();
-  binder.dtor().create();
+  bind::destructor<QFile>(file).create();
   // QString fileName() const;
-  binder.fun<QString, &QFile::fileName>("fileName").create();
+  bind::member_function<QFile, QString, &QFile::fileName>(file, "fileName").create();
   // void setFileName(const QString &);
-  binder.void_fun<const QString &, &QFile::setFileName>("setFileName").create();
+  bind::void_member_function<QFile, const QString &, &QFile::setFileName>(file, "setFileName").create();
   // static QByteArray encodeName(const QString &);
-  binder.static_fun<QByteArray, const QString &, &QFile::encodeName>("encodeName").create();
+  bind::static_member_function<QFile, QByteArray, const QString &, &QFile::encodeName>(file, "encodeName").create();
   // static QString decodeName(const QByteArray &);
-  binder.static_fun<QString, const QByteArray &, &QFile::decodeName>("decodeName").create();
+  bind::static_member_function<QFile, QString, const QByteArray &, &QFile::decodeName>(file, "decodeName").create();
   // static QString decodeName(const char *);
   /// TODO: static QString decodeName(const char *);
   // bool exists() const;
-  binder.fun<bool, &QFile::exists>("exists").create();
+  bind::member_function<QFile, bool, &QFile::exists>(file, "exists").create();
   // static bool exists(const QString &);
-  binder.static_fun<bool, const QString &, &QFile::exists>("exists").create();
+  bind::static_member_function<QFile, bool, const QString &, &QFile::exists>(file, "exists").create();
   // QString readLink() const;
-  binder.fun<QString, &QFile::readLink>("readLink").create();
+  bind::member_function<QFile, QString, &QFile::readLink>(file, "readLink").create();
   // static QString readLink(const QString &);
-  binder.static_fun<QString, const QString &, &QFile::readLink>("readLink").create();
+  bind::static_member_function<QFile, QString, const QString &, &QFile::readLink>(file, "readLink").create();
   // QString symLinkTarget() const;
-  binder.fun<QString, &QFile::symLinkTarget>("symLinkTarget").create();
+  bind::member_function<QFile, QString, &QFile::symLinkTarget>(file, "symLinkTarget").create();
   // static QString symLinkTarget(const QString &);
-  binder.static_fun<QString, const QString &, &QFile::symLinkTarget>("symLinkTarget").create();
+  bind::static_member_function<QFile, QString, const QString &, &QFile::symLinkTarget>(file, "symLinkTarget").create();
   // bool remove();
-  binder.fun<bool, &QFile::remove>("remove").create();
+  bind::member_function<QFile, bool, &QFile::remove>(file, "remove").create();
   // static bool remove(const QString &);
-  binder.static_fun<bool, const QString &, &QFile::remove>("remove").create();
+  bind::static_member_function<QFile, bool, const QString &, &QFile::remove>(file, "remove").create();
   // bool rename(const QString &);
-  binder.fun<bool, const QString &, &QFile::rename>("rename").create();
+  bind::member_function<QFile, bool, const QString &, &QFile::rename>(file, "rename").create();
   // static bool rename(const QString &, const QString &);
-  binder.static_fun<bool, const QString &, const QString &, &QFile::rename>("rename").create();
+  bind::static_member_function<QFile, bool, const QString &, const QString &, &QFile::rename>(file, "rename").create();
   // bool link(const QString &);
-  binder.fun<bool, const QString &, &QFile::link>("link").create();
+  bind::member_function<QFile, bool, const QString &, &QFile::link>(file, "link").create();
   // static bool link(const QString &, const QString &);
-  binder.static_fun<bool, const QString &, const QString &, &QFile::link>("link").create();
+  bind::static_member_function<QFile, bool, const QString &, const QString &, &QFile::link>(file, "link").create();
   // bool copy(const QString &);
-  binder.fun<bool, const QString &, &QFile::copy>("copy").create();
+  bind::member_function<QFile, bool, const QString &, &QFile::copy>(file, "copy").create();
   // static bool copy(const QString &, const QString &);
-  binder.static_fun<bool, const QString &, const QString &, &QFile::copy>("copy").create();
+  bind::static_member_function<QFile, bool, const QString &, const QString &, &QFile::copy>(file, "copy").create();
   // bool open(QIODevice::OpenMode);
-  binder.fun<bool, QIODevice::OpenMode, &QFile::open>("open").create();
+  bind::member_function<QFile, bool, QIODevice::OpenMode, &QFile::open>(file, "open").create();
   // bool open(FILE *, QIODevice::OpenMode, QFileDevice::FileHandleFlags);
   /// TODO: bool open(FILE *, QIODevice::OpenMode, QFileDevice::FileHandleFlags);
   // bool open(int, QIODevice::OpenMode, QFileDevice::FileHandleFlags);
-  binder.fun<bool, int, QIODevice::OpenMode, QFileDevice::FileHandleFlags, &QFile::open>("open").create();
+  bind::member_function<QFile, bool, int, QIODevice::OpenMode, QFileDevice::FileHandleFlags, &QFile::open>(file, "open").create();
   // qint64 size() const;
   /// TODO: qint64 size() const;
   // bool resize(qint64);
@@ -84,15 +83,15 @@ static void register_file_class(script::Namespace ns)
   // static bool resize(const QString &, qint64);
   /// TODO: static bool resize(const QString &, qint64);
   // QFileDevice::Permissions permissions() const;
-  binder.fun<QFileDevice::Permissions, &QFile::permissions>("permissions").create();
+  bind::member_function<QFile, QFileDevice::Permissions, &QFile::permissions>(file, "permissions").create();
   // static QFileDevice::Permissions permissions(const QString &);
-  binder.static_fun<QFileDevice::Permissions, const QString &, &QFile::permissions>("permissions").create();
+  bind::static_member_function<QFile, QFileDevice::Permissions, const QString &, &QFile::permissions>(file, "permissions").create();
   // bool setPermissions(QFileDevice::Permissions);
-  binder.fun<bool, QFileDevice::Permissions, &QFile::setPermissions>("setPermissions").create();
+  bind::member_function<QFile, bool, QFileDevice::Permissions, &QFile::setPermissions>(file, "setPermissions").create();
   // static bool setPermissions(const QString &, QFileDevice::Permissions);
-  binder.static_fun<bool, const QString &, QFileDevice::Permissions, &QFile::setPermissions>("setPermissions").create();
+  bind::static_member_function<QFile, bool, const QString &, QFileDevice::Permissions, &QFile::setPermissions>(file, "setPermissions").create();
 
-  file.engine()->registerQtType(&QFile::staticMetaObject, file.id());
+  bind::link(file, &QFile::staticMetaObject);
 }
 
 
@@ -103,7 +102,6 @@ void register_file_file(script::Namespace core)
   Namespace ns = core;
 
   register_file_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

@@ -4,8 +4,8 @@
 
 #include "yasl/core/margins.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/margins.h"
@@ -18,50 +18,49 @@ static void register_margins_class(script::Namespace ns)
 
   Class margins = ns.newClass("Margins").setId(script::Type::QMargins).get();
 
-  binding::ClassBinder<QMargins> binder{ margins };
 
   // QMargins();
-  binder.default_ctor().create();
+  bind::default_constructor<QMargins>(margins).create();
   // QMargins(const QMargins &);
-  binder.ctor<const QMargins &>().create();
+  bind::constructor<QMargins, const QMargins &>(margins).create();
   // ~QMargins();
-  binder.dtor().create();
+  bind::destructor<QMargins>(margins).create();
   // QMargins(int, int, int, int);
-  binder.ctor<int, int, int, int>().create();
+  bind::constructor<QMargins, int, int, int, int>(margins).create();
   // bool isNull() const;
-  binder.fun<bool, &QMargins::isNull>("isNull").create();
+  bind::member_function<QMargins, bool, &QMargins::isNull>(margins, "isNull").create();
   // int left() const;
-  binder.fun<int, &QMargins::left>("left").create();
+  bind::member_function<QMargins, int, &QMargins::left>(margins, "left").create();
   // int top() const;
-  binder.fun<int, &QMargins::top>("top").create();
+  bind::member_function<QMargins, int, &QMargins::top>(margins, "top").create();
   // int right() const;
-  binder.fun<int, &QMargins::right>("right").create();
+  bind::member_function<QMargins, int, &QMargins::right>(margins, "right").create();
   // int bottom() const;
-  binder.fun<int, &QMargins::bottom>("bottom").create();
+  bind::member_function<QMargins, int, &QMargins::bottom>(margins, "bottom").create();
   // void setLeft(int);
-  binder.void_fun<int, &QMargins::setLeft>("setLeft").create();
+  bind::void_member_function<QMargins, int, &QMargins::setLeft>(margins, "setLeft").create();
   // void setTop(int);
-  binder.void_fun<int, &QMargins::setTop>("setTop").create();
+  bind::void_member_function<QMargins, int, &QMargins::setTop>(margins, "setTop").create();
   // void setRight(int);
-  binder.void_fun<int, &QMargins::setRight>("setRight").create();
+  bind::void_member_function<QMargins, int, &QMargins::setRight>(margins, "setRight").create();
   // void setBottom(int);
-  binder.void_fun<int, &QMargins::setBottom>("setBottom").create();
+  bind::void_member_function<QMargins, int, &QMargins::setBottom>(margins, "setBottom").create();
   // QMargins & operator+=(const QMargins &);
-  binder.operators().add_assign<const QMargins &>();
+  bind::memop_add_assign<QMargins, const QMargins &>(margins);
   // QMargins & operator-=(const QMargins &);
-  binder.operators().sub_assign<const QMargins &>();
+  bind::memop_sub_assign<QMargins, const QMargins &>(margins);
   // QMargins & operator+=(int);
-  binder.operators().add_assign<int>();
+  bind::memop_add_assign<QMargins, int>(margins);
   // QMargins & operator-=(int);
-  binder.operators().sub_assign<int>();
+  bind::memop_sub_assign<QMargins, int>(margins);
   // QMargins & operator*=(int);
-  binder.operators().mul_assign<int>();
+  bind::memop_mul_assign<QMargins, int>(margins);
   // QMargins & operator/=(int);
-  binder.operators().div_assign<int>();
+  bind::memop_div_assign<QMargins, int>(margins);
   // QMargins & operator*=(qreal);
-  binder.operators().mul_assign<qreal>();
+  bind::memop_mul_assign<QMargins, qreal>(margins);
   // QMargins & operator/=(qreal);
-  binder.operators().div_assign<qreal>();
+  bind::memop_div_assign<QMargins, qreal>(margins);
 }
 
 
@@ -71,50 +70,49 @@ static void register_margins_f_class(script::Namespace ns)
 
   Class margins_f = ns.newClass("MarginsF").setId(script::Type::QMarginsF).get();
 
-  binding::ClassBinder<QMarginsF> binder{ margins_f };
 
   // QMarginsF();
-  binder.default_ctor().create();
+  bind::default_constructor<QMarginsF>(margins_f).create();
   // QMargins(const QMargins &);
-  binder.ctor<const QMargins &>().create();
+  bind::constructor<QMarginsF, const QMargins &>(margins_f).create();
   // ~QMarginsF();
-  binder.dtor().create();
+  bind::destructor<QMarginsF>(margins_f).create();
   // QMarginsF(qreal, qreal, qreal, qreal);
-  binder.ctor<qreal, qreal, qreal, qreal>().create();
+  bind::constructor<QMarginsF, qreal, qreal, qreal, qreal>(margins_f).create();
   // QMarginsF(const QMargins &);
-  binder.ctor<const QMargins &>().create();
+  bind::constructor<QMarginsF, const QMargins &>(margins_f).create();
   // bool isNull() const;
-  binder.fun<bool, &QMarginsF::isNull>("isNull").create();
+  bind::member_function<QMarginsF, bool, &QMarginsF::isNull>(margins_f, "isNull").create();
   // qreal left() const;
-  binder.fun<qreal, &QMarginsF::left>("left").create();
+  bind::member_function<QMarginsF, qreal, &QMarginsF::left>(margins_f, "left").create();
   // qreal top() const;
-  binder.fun<qreal, &QMarginsF::top>("top").create();
+  bind::member_function<QMarginsF, qreal, &QMarginsF::top>(margins_f, "top").create();
   // qreal right() const;
-  binder.fun<qreal, &QMarginsF::right>("right").create();
+  bind::member_function<QMarginsF, qreal, &QMarginsF::right>(margins_f, "right").create();
   // qreal bottom() const;
-  binder.fun<qreal, &QMarginsF::bottom>("bottom").create();
+  bind::member_function<QMarginsF, qreal, &QMarginsF::bottom>(margins_f, "bottom").create();
   // void setLeft(qreal);
-  binder.void_fun<qreal, &QMarginsF::setLeft>("setLeft").create();
+  bind::void_member_function<QMarginsF, qreal, &QMarginsF::setLeft>(margins_f, "setLeft").create();
   // void setTop(qreal);
-  binder.void_fun<qreal, &QMarginsF::setTop>("setTop").create();
+  bind::void_member_function<QMarginsF, qreal, &QMarginsF::setTop>(margins_f, "setTop").create();
   // void setRight(qreal);
-  binder.void_fun<qreal, &QMarginsF::setRight>("setRight").create();
+  bind::void_member_function<QMarginsF, qreal, &QMarginsF::setRight>(margins_f, "setRight").create();
   // void setBottom(qreal);
-  binder.void_fun<qreal, &QMarginsF::setBottom>("setBottom").create();
+  bind::void_member_function<QMarginsF, qreal, &QMarginsF::setBottom>(margins_f, "setBottom").create();
   // QMarginsF & operator+=(const QMarginsF &);
-  binder.operators().add_assign<const QMarginsF &>();
+  bind::memop_add_assign<QMarginsF, const QMarginsF &>(margins_f);
   // QMarginsF & operator-=(const QMarginsF &);
-  binder.operators().sub_assign<const QMarginsF &>();
+  bind::memop_sub_assign<QMarginsF, const QMarginsF &>(margins_f);
   // QMarginsF & operator+=(qreal);
-  binder.operators().add_assign<qreal>();
+  bind::memop_add_assign<QMarginsF, qreal>(margins_f);
   // QMarginsF & operator-=(qreal);
-  binder.operators().sub_assign<qreal>();
+  bind::memop_sub_assign<QMarginsF, qreal>(margins_f);
   // QMarginsF & operator*=(qreal);
-  binder.operators().mul_assign<qreal>();
+  bind::memop_mul_assign<QMarginsF, qreal>(margins_f);
   // QMarginsF & operator/=(qreal);
-  binder.operators().div_assign<qreal>();
+  bind::memop_div_assign<QMarginsF, qreal>(margins_f);
   // QMargins toMargins() const;
-  binder.fun<QMargins, &QMarginsF::toMargins>("toMargins").create();
+  bind::member_function<QMarginsF, QMargins, &QMarginsF::toMargins>(margins_f, "toMargins").create();
 }
 
 
@@ -126,72 +124,71 @@ void register_margins_file(script::Namespace core)
 
   register_margins_class(ns);
   register_margins_f_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QMargins &);
-  binder.operators().put_to<QDataStream &, const QMargins &>();
+  bind::op_put_to<QDataStream &, const QMargins &>(ns);
   // QDataStream & operator>>(QDataStream &, QMargins &);
-  binder.operators().read_from<QDataStream &, QMargins &>();
+  bind::op_read_from<QDataStream &, QMargins &>(ns);
   // bool operator==(const QMargins &, const QMargins &);
-  binder.operators().eq<const QMargins &, const QMargins &>();
+  bind::op_eq<const QMargins &, const QMargins &>(ns);
   // bool operator!=(const QMargins &, const QMargins &);
-  binder.operators().neq<const QMargins &, const QMargins &>();
+  bind::op_neq<const QMargins &, const QMargins &>(ns);
   // QMargins operator+(const QMargins &, const QMargins &);
-  binder.operators().add<QMargins, const QMargins &, const QMargins &>();
+  bind::op_add<QMargins, const QMargins &, const QMargins &>(ns);
   // QMargins operator-(const QMargins &, const QMargins &);
-  binder.operators().sub<QMargins, const QMargins &, const QMargins &>();
+  bind::op_sub<QMargins, const QMargins &, const QMargins &>(ns);
   // QMargins operator+(const QMargins &, int);
-  binder.operators().add<QMargins, const QMargins &, int>();
+  bind::op_add<QMargins, const QMargins &, int>(ns);
   // QMargins operator+(int, const QMargins &);
-  binder.operators().add<QMargins, int, const QMargins &>();
+  bind::op_add<QMargins, int, const QMargins &>(ns);
   // QMargins operator-(const QMargins &, int);
-  binder.operators().sub<QMargins, const QMargins &, int>();
+  bind::op_sub<QMargins, const QMargins &, int>(ns);
   // QMargins operator*(const QMargins &, int);
-  binder.operators().mul<QMargins, const QMargins &, int>();
+  bind::op_mul<QMargins, const QMargins &, int>(ns);
   // QMargins operator*(int, const QMargins &);
-  binder.operators().mul<QMargins, int, const QMargins &>();
+  bind::op_mul<QMargins, int, const QMargins &>(ns);
   // QMargins operator*(const QMargins &, qreal);
-  binder.operators().mul<QMargins, const QMargins &, qreal>();
+  bind::op_mul<QMargins, const QMargins &, qreal>(ns);
   // QMargins operator*(qreal, const QMargins &);
-  binder.operators().mul<QMargins, qreal, const QMargins &>();
+  bind::op_mul<QMargins, qreal, const QMargins &>(ns);
   // QMargins operator/(const QMargins &, int);
-  binder.operators().div<QMargins, const QMargins &, int>();
+  bind::op_div<QMargins, const QMargins &, int>(ns);
   // QMargins operator/(const QMargins &, qreal);
-  binder.operators().div<QMargins, const QMargins &, qreal>();
+  bind::op_div<QMargins, const QMargins &, qreal>(ns);
   // QMargins operator+(const QMargins &);
-  binder.operators().unary_plus<QMargins, const QMargins &>();
+  bind::op_unary_plus<QMargins, const QMargins &>(ns);
   // QMargins operator-(const QMargins &);
-  binder.operators().unary_minus<QMargins, const QMargins &>();
+  bind::op_unary_minus<QMargins, const QMargins &>(ns);
   // QDebug operator<<(QDebug, const QMargins &);
   /// TODO: QDebug operator<<(QDebug, const QMargins &);
   // QDataStream & operator<<(QDataStream &, const QMarginsF &);
-  binder.operators().put_to<QDataStream &, const QMarginsF &>();
+  bind::op_put_to<QDataStream &, const QMarginsF &>(ns);
   // QDataStream & operator>>(QDataStream &, QMarginsF &);
-  binder.operators().read_from<QDataStream &, QMarginsF &>();
+  bind::op_read_from<QDataStream &, QMarginsF &>(ns);
   // bool operator==(const QMarginsF &, const QMarginsF &);
-  binder.operators().eq<const QMarginsF &, const QMarginsF &>();
+  bind::op_eq<const QMarginsF &, const QMarginsF &>(ns);
   // bool operator!=(const QMarginsF &, const QMarginsF &);
-  binder.operators().neq<const QMarginsF &, const QMarginsF &>();
+  bind::op_neq<const QMarginsF &, const QMarginsF &>(ns);
   // QMarginsF operator+(const QMarginsF &, const QMarginsF &);
-  binder.operators().add<QMarginsF, const QMarginsF &, const QMarginsF &>();
+  bind::op_add<QMarginsF, const QMarginsF &, const QMarginsF &>(ns);
   // QMarginsF operator-(const QMarginsF &, const QMarginsF &);
-  binder.operators().sub<QMarginsF, const QMarginsF &, const QMarginsF &>();
+  bind::op_sub<QMarginsF, const QMarginsF &, const QMarginsF &>(ns);
   // QMarginsF operator+(const QMarginsF &, qreal);
-  binder.operators().add<QMarginsF, const QMarginsF &, qreal>();
+  bind::op_add<QMarginsF, const QMarginsF &, qreal>(ns);
   // QMarginsF operator+(qreal, const QMarginsF &);
-  binder.operators().add<QMarginsF, qreal, const QMarginsF &>();
+  bind::op_add<QMarginsF, qreal, const QMarginsF &>(ns);
   // QMarginsF operator-(const QMarginsF &, qreal);
-  binder.operators().sub<QMarginsF, const QMarginsF &, qreal>();
+  bind::op_sub<QMarginsF, const QMarginsF &, qreal>(ns);
   // QMarginsF operator*(const QMarginsF &, qreal);
-  binder.operators().mul<QMarginsF, const QMarginsF &, qreal>();
+  bind::op_mul<QMarginsF, const QMarginsF &, qreal>(ns);
   // QMarginsF operator*(qreal, const QMarginsF &);
-  binder.operators().mul<QMarginsF, qreal, const QMarginsF &>();
+  bind::op_mul<QMarginsF, qreal, const QMarginsF &>(ns);
   // QMarginsF operator/(const QMarginsF &, qreal);
-  binder.operators().div<QMarginsF, const QMarginsF &, qreal>();
+  bind::op_div<QMarginsF, const QMarginsF &, qreal>(ns);
   // QMarginsF operator+(const QMarginsF &);
-  binder.operators().unary_plus<QMarginsF, const QMarginsF &>();
+  bind::op_unary_plus<QMarginsF, const QMarginsF &>(ns);
   // QMarginsF operator-(const QMarginsF &);
-  binder.operators().unary_minus<QMarginsF, const QMarginsF &>();
+  bind::op_unary_minus<QMarginsF, const QMarginsF &>(ns);
   // QDebug operator<<(QDebug, const QMarginsF &);
   /// TODO: QDebug operator<<(QDebug, const QMarginsF &);
 }

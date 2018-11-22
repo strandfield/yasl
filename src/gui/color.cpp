@@ -4,10 +4,10 @@
 
 #include "yasl/gui/color.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -49,23 +49,22 @@ static void register_color_class(script::Namespace ns)
 
   register_color_spec_enum(color);
   register_color_name_format_enum(color);
-  binding::ClassBinder<QColor> binder{ color };
 
   // QColor();
-  binder.default_ctor().create();
+  bind::default_constructor<QColor>(color).create();
   // ~QColor();
-  binder.dtor().create();
+  bind::destructor<QColor>(color).create();
   // QColor(Qt::GlobalColor);
-  binder.ctor<Qt::GlobalColor>().create();
+  bind::constructor<QColor, Qt::GlobalColor>(color).create();
   // QColor(int, int, int, int);
-  binder.ctor<int, int, int, int>()
-    .apply(binding::default_arguments(255)).create();
+  bind::constructor<QColor, int, int, int, int>(color)
+    .apply(bind::default_arguments(255)).create();
   // QColor(QRgb);
   /// TODO: QColor(QRgb);
   // QColor(QRgba64);
   /// TODO: QColor(QRgba64);
   // QColor(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QColor, const QString &>(color).create();
   // QColor(QStringView);
   /// TODO: QColor(QStringView);
   // QColor(const char *);
@@ -73,25 +72,25 @@ static void register_color_class(script::Namespace ns)
   // QColor(QLatin1String);
   /// TODO: QColor(QLatin1String);
   // QColor(QColor::Spec);
-  binder.ctor<QColor::Spec>().create();
+  bind::constructor<QColor, QColor::Spec>(color).create();
   // QColor(const QColor &);
-  binder.ctor<const QColor &>().create();
+  bind::constructor<QColor, const QColor &>(color).create();
   // QColor(QColor &&);
-  binder.ctor<QColor &&>().create();
+  bind::constructor<QColor, QColor &&>(color).create();
   // QColor & operator=(QColor &&);
-  binder.operators().assign<QColor &&>();
+  bind::memop_assign<QColor, QColor &&>(color);
   // QColor & operator=(const QColor &);
-  binder.operators().assign<const QColor &>();
+  bind::memop_assign<QColor, const QColor &>(color);
   // QColor & operator=(Qt::GlobalColor);
-  binder.operators().assign<Qt::GlobalColor>();
+  bind::memop_assign<QColor, Qt::GlobalColor>(color);
   // bool isValid() const;
-  binder.fun<bool, &QColor::isValid>("isValid").create();
+  bind::member_function<QColor, bool, &QColor::isValid>(color, "isValid").create();
   // QString name() const;
-  binder.fun<QString, &QColor::name>("name").create();
+  bind::member_function<QColor, QString, &QColor::name>(color, "name").create();
   // QString name(QColor::NameFormat) const;
-  binder.fun<QString, QColor::NameFormat, &QColor::name>("name").create();
+  bind::member_function<QColor, QString, QColor::NameFormat, &QColor::name>(color, "name").create();
   // void setNamedColor(const QString &);
-  binder.void_fun<const QString &, &QColor::setNamedColor>("setNamedColor").create();
+  bind::void_member_function<QColor, const QString &, &QColor::setNamedColor>(color, "setNamedColor").create();
   // void setNamedColor(QStringView);
   /// TODO: void setNamedColor(QStringView);
   // void setNamedColor(QLatin1String);
@@ -99,49 +98,49 @@ static void register_color_class(script::Namespace ns)
   // static QStringList colorNames();
   /// TODO: static QStringList colorNames();
   // QColor::Spec spec() const;
-  binder.fun<QColor::Spec, &QColor::spec>("spec").create();
+  bind::member_function<QColor, QColor::Spec, &QColor::spec>(color, "spec").create();
   // int alpha() const;
-  binder.fun<int, &QColor::alpha>("alpha").create();
+  bind::member_function<QColor, int, &QColor::alpha>(color, "alpha").create();
   // void setAlpha(int);
-  binder.void_fun<int, &QColor::setAlpha>("setAlpha").create();
+  bind::void_member_function<QColor, int, &QColor::setAlpha>(color, "setAlpha").create();
   // qreal alphaF() const;
-  binder.fun<qreal, &QColor::alphaF>("alphaF").create();
+  bind::member_function<QColor, qreal, &QColor::alphaF>(color, "alphaF").create();
   // void setAlphaF(qreal);
-  binder.void_fun<qreal, &QColor::setAlphaF>("setAlphaF").create();
+  bind::void_member_function<QColor, qreal, &QColor::setAlphaF>(color, "setAlphaF").create();
   // int red() const;
-  binder.fun<int, &QColor::red>("red").create();
+  bind::member_function<QColor, int, &QColor::red>(color, "red").create();
   // int green() const;
-  binder.fun<int, &QColor::green>("green").create();
+  bind::member_function<QColor, int, &QColor::green>(color, "green").create();
   // int blue() const;
-  binder.fun<int, &QColor::blue>("blue").create();
+  bind::member_function<QColor, int, &QColor::blue>(color, "blue").create();
   // void setRed(int);
-  binder.void_fun<int, &QColor::setRed>("setRed").create();
+  bind::void_member_function<QColor, int, &QColor::setRed>(color, "setRed").create();
   // void setGreen(int);
-  binder.void_fun<int, &QColor::setGreen>("setGreen").create();
+  bind::void_member_function<QColor, int, &QColor::setGreen>(color, "setGreen").create();
   // void setBlue(int);
-  binder.void_fun<int, &QColor::setBlue>("setBlue").create();
+  bind::void_member_function<QColor, int, &QColor::setBlue>(color, "setBlue").create();
   // qreal redF() const;
-  binder.fun<qreal, &QColor::redF>("redF").create();
+  bind::member_function<QColor, qreal, &QColor::redF>(color, "redF").create();
   // qreal greenF() const;
-  binder.fun<qreal, &QColor::greenF>("greenF").create();
+  bind::member_function<QColor, qreal, &QColor::greenF>(color, "greenF").create();
   // qreal blueF() const;
-  binder.fun<qreal, &QColor::blueF>("blueF").create();
+  bind::member_function<QColor, qreal, &QColor::blueF>(color, "blueF").create();
   // void setRedF(qreal);
-  binder.void_fun<qreal, &QColor::setRedF>("setRedF").create();
+  bind::void_member_function<QColor, qreal, &QColor::setRedF>(color, "setRedF").create();
   // void setGreenF(qreal);
-  binder.void_fun<qreal, &QColor::setGreenF>("setGreenF").create();
+  bind::void_member_function<QColor, qreal, &QColor::setGreenF>(color, "setGreenF").create();
   // void setBlueF(qreal);
-  binder.void_fun<qreal, &QColor::setBlueF>("setBlueF").create();
+  bind::void_member_function<QColor, qreal, &QColor::setBlueF>(color, "setBlueF").create();
   // void getRgb(int *, int *, int *, int *) const;
   /// TODO: void getRgb(int *, int *, int *, int *) const;
   // void setRgb(int, int, int, int);
-  binder.void_fun<int, int, int, int, &QColor::setRgb>("setRgb")
-    .apply(binding::default_arguments(255)).create();
+  bind::void_member_function<QColor, int, int, int, int, &QColor::setRgb>(color, "setRgb")
+    .apply(bind::default_arguments(255)).create();
   // void getRgbF(qreal *, qreal *, qreal *, qreal *) const;
   /// TODO: void getRgbF(qreal *, qreal *, qreal *, qreal *) const;
   // void setRgbF(qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, &QColor::setRgbF>("setRgbF")
-    .apply(binding::default_arguments(qreal(1.0))).create();
+  bind::void_member_function<QColor, qreal, qreal, qreal, qreal, &QColor::setRgbF>(color, "setRgbF")
+    .apply(bind::default_arguments(qreal(1.0))).create();
   // QRgba64 rgba64() const;
   /// TODO: QRgba64 rgba64() const;
   // void setRgba64(QRgba64);
@@ -155,140 +154,140 @@ static void register_color_class(script::Namespace ns)
   // void setRgb(QRgb);
   /// TODO: void setRgb(QRgb);
   // int hue() const;
-  binder.fun<int, &QColor::hue>("hue").create();
+  bind::member_function<QColor, int, &QColor::hue>(color, "hue").create();
   // int saturation() const;
-  binder.fun<int, &QColor::saturation>("saturation").create();
+  bind::member_function<QColor, int, &QColor::saturation>(color, "saturation").create();
   // int hsvHue() const;
-  binder.fun<int, &QColor::hsvHue>("hsvHue").create();
+  bind::member_function<QColor, int, &QColor::hsvHue>(color, "hsvHue").create();
   // int hsvSaturation() const;
-  binder.fun<int, &QColor::hsvSaturation>("hsvSaturation").create();
+  bind::member_function<QColor, int, &QColor::hsvSaturation>(color, "hsvSaturation").create();
   // int value() const;
-  binder.fun<int, &QColor::value>("value").create();
+  bind::member_function<QColor, int, &QColor::value>(color, "value").create();
   // qreal hueF() const;
-  binder.fun<qreal, &QColor::hueF>("hueF").create();
+  bind::member_function<QColor, qreal, &QColor::hueF>(color, "hueF").create();
   // qreal saturationF() const;
-  binder.fun<qreal, &QColor::saturationF>("saturationF").create();
+  bind::member_function<QColor, qreal, &QColor::saturationF>(color, "saturationF").create();
   // qreal hsvHueF() const;
-  binder.fun<qreal, &QColor::hsvHueF>("hsvHueF").create();
+  bind::member_function<QColor, qreal, &QColor::hsvHueF>(color, "hsvHueF").create();
   // qreal hsvSaturationF() const;
-  binder.fun<qreal, &QColor::hsvSaturationF>("hsvSaturationF").create();
+  bind::member_function<QColor, qreal, &QColor::hsvSaturationF>(color, "hsvSaturationF").create();
   // qreal valueF() const;
-  binder.fun<qreal, &QColor::valueF>("valueF").create();
+  bind::member_function<QColor, qreal, &QColor::valueF>(color, "valueF").create();
   // void getHsv(int *, int *, int *, int *) const;
   /// TODO: void getHsv(int *, int *, int *, int *) const;
   // void setHsv(int, int, int, int);
-  binder.void_fun<int, int, int, int, &QColor::setHsv>("setHsv")
-    .apply(binding::default_arguments(255)).create();
+  bind::void_member_function<QColor, int, int, int, int, &QColor::setHsv>(color, "setHsv")
+    .apply(bind::default_arguments(255)).create();
   // void getHsvF(qreal *, qreal *, qreal *, qreal *) const;
   /// TODO: void getHsvF(qreal *, qreal *, qreal *, qreal *) const;
   // void setHsvF(qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, &QColor::setHsvF>("setHsvF")
-    .apply(binding::default_arguments(qreal(1.0))).create();
+  bind::void_member_function<QColor, qreal, qreal, qreal, qreal, &QColor::setHsvF>(color, "setHsvF")
+    .apply(bind::default_arguments(qreal(1.0))).create();
   // int cyan() const;
-  binder.fun<int, &QColor::cyan>("cyan").create();
+  bind::member_function<QColor, int, &QColor::cyan>(color, "cyan").create();
   // int magenta() const;
-  binder.fun<int, &QColor::magenta>("magenta").create();
+  bind::member_function<QColor, int, &QColor::magenta>(color, "magenta").create();
   // int yellow() const;
-  binder.fun<int, &QColor::yellow>("yellow").create();
+  bind::member_function<QColor, int, &QColor::yellow>(color, "yellow").create();
   // int black() const;
-  binder.fun<int, &QColor::black>("black").create();
+  bind::member_function<QColor, int, &QColor::black>(color, "black").create();
   // qreal cyanF() const;
-  binder.fun<qreal, &QColor::cyanF>("cyanF").create();
+  bind::member_function<QColor, qreal, &QColor::cyanF>(color, "cyanF").create();
   // qreal magentaF() const;
-  binder.fun<qreal, &QColor::magentaF>("magentaF").create();
+  bind::member_function<QColor, qreal, &QColor::magentaF>(color, "magentaF").create();
   // qreal yellowF() const;
-  binder.fun<qreal, &QColor::yellowF>("yellowF").create();
+  bind::member_function<QColor, qreal, &QColor::yellowF>(color, "yellowF").create();
   // qreal blackF() const;
-  binder.fun<qreal, &QColor::blackF>("blackF").create();
+  bind::member_function<QColor, qreal, &QColor::blackF>(color, "blackF").create();
   // void getCmyk(int *, int *, int *, int *, int *);
   /// TODO: void getCmyk(int *, int *, int *, int *, int *);
   // void setCmyk(int, int, int, int, int);
-  binder.void_fun<int, int, int, int, int, &QColor::setCmyk>("setCmyk")
-    .apply(binding::default_arguments(255)).create();
+  bind::void_member_function<QColor, int, int, int, int, int, &QColor::setCmyk>(color, "setCmyk")
+    .apply(bind::default_arguments(255)).create();
   // void getCmykF(qreal *, qreal *, qreal *, qreal *, qreal *);
   /// TODO: void getCmykF(qreal *, qreal *, qreal *, qreal *, qreal *);
   // void setCmykF(qreal, qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, qreal, &QColor::setCmykF>("setCmykF")
-    .apply(binding::default_arguments(qreal(1.0))).create();
+  bind::void_member_function<QColor, qreal, qreal, qreal, qreal, qreal, &QColor::setCmykF>(color, "setCmykF")
+    .apply(bind::default_arguments(qreal(1.0))).create();
   // int hslHue() const;
-  binder.fun<int, &QColor::hslHue>("hslHue").create();
+  bind::member_function<QColor, int, &QColor::hslHue>(color, "hslHue").create();
   // int hslSaturation() const;
-  binder.fun<int, &QColor::hslSaturation>("hslSaturation").create();
+  bind::member_function<QColor, int, &QColor::hslSaturation>(color, "hslSaturation").create();
   // int lightness() const;
-  binder.fun<int, &QColor::lightness>("lightness").create();
+  bind::member_function<QColor, int, &QColor::lightness>(color, "lightness").create();
   // qreal hslHueF() const;
-  binder.fun<qreal, &QColor::hslHueF>("hslHueF").create();
+  bind::member_function<QColor, qreal, &QColor::hslHueF>(color, "hslHueF").create();
   // qreal hslSaturationF() const;
-  binder.fun<qreal, &QColor::hslSaturationF>("hslSaturationF").create();
+  bind::member_function<QColor, qreal, &QColor::hslSaturationF>(color, "hslSaturationF").create();
   // qreal lightnessF() const;
-  binder.fun<qreal, &QColor::lightnessF>("lightnessF").create();
+  bind::member_function<QColor, qreal, &QColor::lightnessF>(color, "lightnessF").create();
   // void getHsl(int *, int *, int *, int *) const;
   /// TODO: void getHsl(int *, int *, int *, int *) const;
   // void setHsl(int, int, int, int);
-  binder.void_fun<int, int, int, int, &QColor::setHsl>("setHsl")
-    .apply(binding::default_arguments(255)).create();
+  bind::void_member_function<QColor, int, int, int, int, &QColor::setHsl>(color, "setHsl")
+    .apply(bind::default_arguments(255)).create();
   // void getHslF(qreal *, qreal *, qreal *, qreal *) const;
   /// TODO: void getHslF(qreal *, qreal *, qreal *, qreal *) const;
   // void setHslF(qreal, qreal, qreal, qreal);
-  binder.void_fun<qreal, qreal, qreal, qreal, &QColor::setHslF>("setHslF")
-    .apply(binding::default_arguments(qreal(1.0))).create();
+  bind::void_member_function<QColor, qreal, qreal, qreal, qreal, &QColor::setHslF>(color, "setHslF")
+    .apply(bind::default_arguments(qreal(1.0))).create();
   // QColor toRgb() const;
-  binder.fun<QColor, &QColor::toRgb>("toRgb").create();
+  bind::member_function<QColor, QColor, &QColor::toRgb>(color, "toRgb").create();
   // QColor toHsv() const;
-  binder.fun<QColor, &QColor::toHsv>("toHsv").create();
+  bind::member_function<QColor, QColor, &QColor::toHsv>(color, "toHsv").create();
   // QColor toCmyk() const;
-  binder.fun<QColor, &QColor::toCmyk>("toCmyk").create();
+  bind::member_function<QColor, QColor, &QColor::toCmyk>(color, "toCmyk").create();
   // QColor toHsl() const;
-  binder.fun<QColor, &QColor::toHsl>("toHsl").create();
+  bind::member_function<QColor, QColor, &QColor::toHsl>(color, "toHsl").create();
   // QColor convertTo(QColor::Spec) const;
-  binder.fun<QColor, QColor::Spec, &QColor::convertTo>("convertTo").create();
+  bind::member_function<QColor, QColor, QColor::Spec, &QColor::convertTo>(color, "convertTo").create();
   // static QColor fromRgb(QRgb);
   /// TODO: static QColor fromRgb(QRgb);
   // static QColor fromRgba(QRgb);
   /// TODO: static QColor fromRgba(QRgb);
   // static QColor fromRgb(int, int, int, int);
-  binder.static_fun<QColor, int, int, int, int, &QColor::fromRgb>("fromRgb")
-    .apply(binding::default_arguments(255)).create();
+  bind::static_member_function<QColor, QColor, int, int, int, int, &QColor::fromRgb>(color, "fromRgb")
+    .apply(bind::default_arguments(255)).create();
   // static QColor fromRgbF(qreal, qreal, qreal, qreal);
-  binder.static_fun<QColor, qreal, qreal, qreal, qreal, &QColor::fromRgbF>("fromRgbF")
-    .apply(binding::default_arguments(qreal(1.0))).create();
+  bind::static_member_function<QColor, QColor, qreal, qreal, qreal, qreal, &QColor::fromRgbF>(color, "fromRgbF")
+    .apply(bind::default_arguments(qreal(1.0))).create();
   // static QColor fromRgba64(ushort, ushort, ushort, ushort);
   /// TODO: static QColor fromRgba64(ushort, ushort, ushort, ushort);
   // static QColor fromRgba64(QRgba64);
   /// TODO: static QColor fromRgba64(QRgba64);
   // static QColor fromHsv(int, int, int, int);
-  binder.static_fun<QColor, int, int, int, int, &QColor::fromHsv>("fromHsv")
-    .apply(binding::default_arguments(255)).create();
+  bind::static_member_function<QColor, QColor, int, int, int, int, &QColor::fromHsv>(color, "fromHsv")
+    .apply(bind::default_arguments(255)).create();
   // static QColor fromHsvF(qreal, qreal, qreal, qreal);
-  binder.static_fun<QColor, qreal, qreal, qreal, qreal, &QColor::fromHsvF>("fromHsvF")
-    .apply(binding::default_arguments(qreal(1.0))).create();
+  bind::static_member_function<QColor, QColor, qreal, qreal, qreal, qreal, &QColor::fromHsvF>(color, "fromHsvF")
+    .apply(bind::default_arguments(qreal(1.0))).create();
   // static QColor fromCmyk(int, int, int, int, int);
-  binder.static_fun<QColor, int, int, int, int, int, &QColor::fromCmyk>("fromCmyk")
-    .apply(binding::default_arguments(255)).create();
+  bind::static_member_function<QColor, QColor, int, int, int, int, int, &QColor::fromCmyk>(color, "fromCmyk")
+    .apply(bind::default_arguments(255)).create();
   // static QColor fromCmykF(qreal, qreal, qreal, qreal, qreal);
-  binder.static_fun<QColor, qreal, qreal, qreal, qreal, qreal, &QColor::fromCmykF>("fromCmykF")
-    .apply(binding::default_arguments(qreal(1.0))).create();
+  bind::static_member_function<QColor, QColor, qreal, qreal, qreal, qreal, qreal, &QColor::fromCmykF>(color, "fromCmykF")
+    .apply(bind::default_arguments(qreal(1.0))).create();
   // static QColor fromHsl(int, int, int, int);
-  binder.static_fun<QColor, int, int, int, int, &QColor::fromHsl>("fromHsl")
-    .apply(binding::default_arguments(255)).create();
+  bind::static_member_function<QColor, QColor, int, int, int, int, &QColor::fromHsl>(color, "fromHsl")
+    .apply(bind::default_arguments(255)).create();
   // static QColor fromHslF(qreal, qreal, qreal, qreal);
-  binder.static_fun<QColor, qreal, qreal, qreal, qreal, &QColor::fromHslF>("fromHslF")
-    .apply(binding::default_arguments(qreal(1.0))).create();
+  bind::static_member_function<QColor, QColor, qreal, qreal, qreal, qreal, &QColor::fromHslF>(color, "fromHslF")
+    .apply(bind::default_arguments(qreal(1.0))).create();
   // QColor light(int) const;
-  binder.fun<QColor, int, &QColor::light>("light").create();
+  bind::member_function<QColor, QColor, int, &QColor::light>(color, "light").create();
   // QColor lighter(int) const;
-  binder.fun<QColor, int, &QColor::lighter>("lighter")
-    .apply(binding::default_arguments(150)).create();
+  bind::member_function<QColor, QColor, int, &QColor::lighter>(color, "lighter")
+    .apply(bind::default_arguments(150)).create();
   // QColor dark(int) const;
-  binder.fun<QColor, int, &QColor::dark>("dark").create();
+  bind::member_function<QColor, QColor, int, &QColor::dark>(color, "dark").create();
   // QColor darker(int) const;
-  binder.fun<QColor, int, &QColor::darker>("darker").create();
+  bind::member_function<QColor, QColor, int, &QColor::darker>(color, "darker").create();
   // bool operator==(const QColor &) const;
-  binder.operators().eq<const QColor &>();
+  bind::memop_eq<QColor, const QColor &>(color);
   // bool operator!=(const QColor &) const;
-  binder.operators().neq<const QColor &>();
+  bind::memop_neq<QColor, const QColor &>(color);
   // static bool isValidColor(const QString &);
-  binder.static_fun<bool, const QString &, &QColor::isValidColor>("isValidColor").create();
+  bind::static_member_function<QColor, bool, const QString &, &QColor::isValidColor>(color, "isValidColor").create();
   // static bool isValidColor(QStringView);
   /// TODO: static bool isValidColor(QStringView);
   // static bool isValidColor(QLatin1String);
@@ -303,13 +302,12 @@ void register_color_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_color_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDebug operator<<(QDebug, const QColor &);
   /// TODO: QDebug operator<<(QDebug, const QColor &);
   // QDataStream & operator<<(QDataStream &, const QColor &);
-  binder.operators().put_to<QDataStream &, const QColor &>();
+  bind::op_put_to<QDataStream &, const QColor &>(ns);
   // QDataStream & operator>>(QDataStream &, QColor &);
-  binder.operators().read_from<QDataStream &, QColor &>();
+  bind::op_read_from<QDataStream &, QColor &>(ns);
 }
 

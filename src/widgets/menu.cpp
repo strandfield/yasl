@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/menu.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
-#include "yasl/utils/ref.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
+#include "yasl/binding2/ref.h"
 
 #include "yasl/core/object.h"
 #include "yasl/core/point.h"
@@ -28,119 +28,118 @@ static void register_menu_class(script::Namespace ns)
   Class menu = ns.newClass("Menu").setId(script::Type::QMenu)
     .setBase(script::Type::QWidget).get();
 
-  register_ref_specialization(menu.engine(), script::Type::QMenu, script::Type::QMenuStar);
-  binding::ClassBinder<QMenu> binder{ menu, &QMenu::staticMetaObject };
+  bind::register_ref_specialization(menu.engine(), script::Type::QMenu, script::Type::QMenuStar);
 
   // QMenu(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QMenu, QWidget *>(menu)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QMenu(const QString &, QWidget *);
-  binder.ctor<const QString &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QMenu, const QString &, QWidget *>(menu)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QMenu();
-  binder.dtor().create();
+  bind::destructor<QMenu>(menu).create();
   // QAction * addAction(const QString &);
-  binder.fun<QAction *, const QString &, &QMenu::addAction>("addAction").create();
+  bind::member_function<QMenu, QAction *, const QString &, &QMenu::addAction>(menu, "addAction").create();
   // QAction * addAction(const QIcon &, const QString &);
-  binder.fun<QAction *, const QIcon &, const QString &, &QMenu::addAction>("addAction").create();
+  bind::member_function<QMenu, QAction *, const QIcon &, const QString &, &QMenu::addAction>(menu, "addAction").create();
   // QAction * addAction(const QString &, const QObject *, const char *, const QKeySequence &);
   /// TODO: QAction * addAction(const QString &, const QObject *, const char *, const QKeySequence &);
   // QAction * addAction(const QIcon &, const QString &, const QObject *, const char *, const QKeySequence &);
   /// TODO: QAction * addAction(const QIcon &, const QString &, const QObject *, const char *, const QKeySequence &);
   // QAction * addMenu(QMenu *);
-  binder.fun<QAction *, QMenu *, &QMenu::addMenu>("addMenu").create();
+  bind::member_function<QMenu, QAction *, QMenu *, &QMenu::addMenu>(menu, "addMenu").create();
   // QMenu * addMenu(const QString &);
-  binder.fun<QMenu *, const QString &, &QMenu::addMenu>("addMenu").create();
+  bind::member_function<QMenu, QMenu *, const QString &, &QMenu::addMenu>(menu, "addMenu").create();
   // QMenu * addMenu(const QIcon &, const QString &);
-  binder.fun<QMenu *, const QIcon &, const QString &, &QMenu::addMenu>("addMenu").create();
+  bind::member_function<QMenu, QMenu *, const QIcon &, const QString &, &QMenu::addMenu>(menu, "addMenu").create();
   // QAction * addSeparator();
-  binder.fun<QAction *, &QMenu::addSeparator>("addSeparator").create();
+  bind::member_function<QMenu, QAction *, &QMenu::addSeparator>(menu, "addSeparator").create();
   // QAction * addSection(const QString &);
-  binder.fun<QAction *, const QString &, &QMenu::addSection>("addSection").create();
+  bind::member_function<QMenu, QAction *, const QString &, &QMenu::addSection>(menu, "addSection").create();
   // QAction * addSection(const QIcon &, const QString &);
-  binder.fun<QAction *, const QIcon &, const QString &, &QMenu::addSection>("addSection").create();
+  bind::member_function<QMenu, QAction *, const QIcon &, const QString &, &QMenu::addSection>(menu, "addSection").create();
   // QAction * insertMenu(QAction *, QMenu *);
-  binder.fun<QAction *, QAction *, QMenu *, &QMenu::insertMenu>("insertMenu").create();
+  bind::member_function<QMenu, QAction *, QAction *, QMenu *, &QMenu::insertMenu>(menu, "insertMenu").create();
   // QAction * insertSeparator(QAction *);
-  binder.fun<QAction *, QAction *, &QMenu::insertSeparator>("insertSeparator").create();
+  bind::member_function<QMenu, QAction *, QAction *, &QMenu::insertSeparator>(menu, "insertSeparator").create();
   // QAction * insertSection(QAction *, const QString &);
-  binder.fun<QAction *, QAction *, const QString &, &QMenu::insertSection>("insertSection").create();
+  bind::member_function<QMenu, QAction *, QAction *, const QString &, &QMenu::insertSection>(menu, "insertSection").create();
   // QAction * insertSection(QAction *, const QIcon &, const QString &);
-  binder.fun<QAction *, QAction *, const QIcon &, const QString &, &QMenu::insertSection>("insertSection").create();
+  bind::member_function<QMenu, QAction *, QAction *, const QIcon &, const QString &, &QMenu::insertSection>(menu, "insertSection").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QMenu::isEmpty>("isEmpty").create();
+  bind::member_function<QMenu, bool, &QMenu::isEmpty>(menu, "isEmpty").create();
   // void clear();
-  binder.void_fun<&QMenu::clear>("clear").create();
+  bind::void_member_function<QMenu, &QMenu::clear>(menu, "clear").create();
   // void setTearOffEnabled(bool);
-  binder.void_fun<bool, &QMenu::setTearOffEnabled>("setTearOffEnabled").create();
+  bind::void_member_function<QMenu, bool, &QMenu::setTearOffEnabled>(menu, "setTearOffEnabled").create();
   // bool isTearOffEnabled() const;
-  binder.fun<bool, &QMenu::isTearOffEnabled>("isTearOffEnabled").create();
+  bind::member_function<QMenu, bool, &QMenu::isTearOffEnabled>(menu, "isTearOffEnabled").create();
   // bool isTearOffMenuVisible() const;
-  binder.fun<bool, &QMenu::isTearOffMenuVisible>("isTearOffMenuVisible").create();
+  bind::member_function<QMenu, bool, &QMenu::isTearOffMenuVisible>(menu, "isTearOffMenuVisible").create();
   // void showTearOffMenu();
-  binder.void_fun<&QMenu::showTearOffMenu>("showTearOffMenu").create();
+  bind::void_member_function<QMenu, &QMenu::showTearOffMenu>(menu, "showTearOffMenu").create();
   // void showTearOffMenu(const QPoint &);
-  binder.void_fun<const QPoint &, &QMenu::showTearOffMenu>("showTearOffMenu").create();
+  bind::void_member_function<QMenu, const QPoint &, &QMenu::showTearOffMenu>(menu, "showTearOffMenu").create();
   // void hideTearOffMenu();
-  binder.void_fun<&QMenu::hideTearOffMenu>("hideTearOffMenu").create();
+  bind::void_member_function<QMenu, &QMenu::hideTearOffMenu>(menu, "hideTearOffMenu").create();
   // void setDefaultAction(QAction *);
-  binder.void_fun<QAction *, &QMenu::setDefaultAction>("setDefaultAction").create();
+  bind::void_member_function<QMenu, QAction *, &QMenu::setDefaultAction>(menu, "setDefaultAction").create();
   // QAction * defaultAction() const;
-  binder.fun<QAction *, &QMenu::defaultAction>("defaultAction").create();
+  bind::member_function<QMenu, QAction *, &QMenu::defaultAction>(menu, "defaultAction").create();
   // void setActiveAction(QAction *);
-  binder.void_fun<QAction *, &QMenu::setActiveAction>("setActiveAction").create();
+  bind::void_member_function<QMenu, QAction *, &QMenu::setActiveAction>(menu, "setActiveAction").create();
   // QAction * activeAction() const;
-  binder.fun<QAction *, &QMenu::activeAction>("activeAction").create();
+  bind::member_function<QMenu, QAction *, &QMenu::activeAction>(menu, "activeAction").create();
   // void popup(const QPoint &, QAction *);
-  binder.void_fun<const QPoint &, QAction *, &QMenu::popup>("popup")
-    .apply(binding::default_arguments((QAction*)nullptr)).create();
+  bind::void_member_function<QMenu, const QPoint &, QAction *, &QMenu::popup>(menu, "popup")
+    .apply(bind::default_arguments((QAction*)nullptr)).create();
   // QAction * exec();
-  binder.fun<QAction *, &QMenu::exec>("exec").create();
+  bind::member_function<QMenu, QAction *, &QMenu::exec>(menu, "exec").create();
   // QAction * exec(const QPoint &, QAction *);
-  binder.fun<QAction *, const QPoint &, QAction *, &QMenu::exec>("exec")
-    .apply(binding::default_arguments((QAction*)nullptr)).create();
+  bind::member_function<QMenu, QAction *, const QPoint &, QAction *, &QMenu::exec>(menu, "exec")
+    .apply(bind::default_arguments((QAction*)nullptr)).create();
   // static QAction * exec(QList<QAction *>, const QPoint &, QAction *, QWidget *);
   /// TODO: static QAction * exec(QList<QAction *>, const QPoint &, QAction *, QWidget *);
   // QSize sizeHint() const;
-  binder.fun<QSize, &QMenu::sizeHint>("sizeHint").create();
+  bind::member_function<QMenu, QSize, &QMenu::sizeHint>(menu, "sizeHint").create();
   // QRect actionGeometry(QAction *) const;
-  binder.fun<QRect, QAction *, &QMenu::actionGeometry>("actionGeometry").create();
+  bind::member_function<QMenu, QRect, QAction *, &QMenu::actionGeometry>(menu, "actionGeometry").create();
   // QAction * actionAt(const QPoint &) const;
-  binder.fun<QAction *, const QPoint &, &QMenu::actionAt>("actionAt").create();
+  bind::member_function<QMenu, QAction *, const QPoint &, &QMenu::actionAt>(menu, "actionAt").create();
   // QAction * menuAction() const;
-  binder.fun<QAction *, &QMenu::menuAction>("menuAction").create();
+  bind::member_function<QMenu, QAction *, &QMenu::menuAction>(menu, "menuAction").create();
   // QString title() const;
-  binder.fun<QString, &QMenu::title>("title").create();
+  bind::member_function<QMenu, QString, &QMenu::title>(menu, "title").create();
   // void setTitle(const QString &);
-  binder.void_fun<const QString &, &QMenu::setTitle>("setTitle").create();
+  bind::void_member_function<QMenu, const QString &, &QMenu::setTitle>(menu, "setTitle").create();
   // QIcon icon() const;
-  binder.fun<QIcon, &QMenu::icon>("icon").create();
+  bind::member_function<QMenu, QIcon, &QMenu::icon>(menu, "icon").create();
   // void setIcon(const QIcon &);
-  binder.void_fun<const QIcon &, &QMenu::setIcon>("setIcon").create();
+  bind::void_member_function<QMenu, const QIcon &, &QMenu::setIcon>(menu, "setIcon").create();
   // void setNoReplayFor(QWidget *);
-  binder.void_fun<QWidget *, &QMenu::setNoReplayFor>("setNoReplayFor").create();
+  bind::void_member_function<QMenu, QWidget *, &QMenu::setNoReplayFor>(menu, "setNoReplayFor").create();
   // QPlatformMenu * platformMenu();
   /// TODO: QPlatformMenu * platformMenu();
   // void setPlatformMenu(QPlatformMenu *);
   /// TODO: void setPlatformMenu(QPlatformMenu *);
   // bool separatorsCollapsible() const;
-  binder.fun<bool, &QMenu::separatorsCollapsible>("separatorsCollapsible").create();
+  bind::member_function<QMenu, bool, &QMenu::separatorsCollapsible>(menu, "separatorsCollapsible").create();
   // void setSeparatorsCollapsible(bool);
-  binder.void_fun<bool, &QMenu::setSeparatorsCollapsible>("setSeparatorsCollapsible").create();
+  bind::void_member_function<QMenu, bool, &QMenu::setSeparatorsCollapsible>(menu, "setSeparatorsCollapsible").create();
   // bool toolTipsVisible() const;
-  binder.fun<bool, &QMenu::toolTipsVisible>("toolTipsVisible").create();
+  bind::member_function<QMenu, bool, &QMenu::toolTipsVisible>(menu, "toolTipsVisible").create();
   // void setToolTipsVisible(bool);
-  binder.void_fun<bool, &QMenu::setToolTipsVisible>("setToolTipsVisible").create();
+  bind::void_member_function<QMenu, bool, &QMenu::setToolTipsVisible>(menu, "setToolTipsVisible").create();
   // void aboutToShow();
-  binder.sigs().add("aboutToShow", "aboutToShow()");
+  bind::signal<QMenu>(menu, "aboutToShow", "aboutToShow()");
   // void aboutToHide();
-  binder.sigs().add("aboutToHide", "aboutToHide()");
+  bind::signal<QMenu>(menu, "aboutToHide", "aboutToHide()");
   // void triggered(QAction *);
-  binder.sigs().add<QAction *>("triggered", "triggered(QAction *)");
+  bind::signal<QMenu, QAction *>(menu, "triggered", "triggered(QAction *)");
   // void hovered(QAction *);
-  binder.sigs().add<QAction *>("hovered", "hovered(QAction *)");
+  bind::signal<QMenu, QAction *>(menu, "hovered", "hovered(QAction *)");
 
-  menu.engine()->registerQtType(&QMenu::staticMetaObject, menu.id());
+  bind::link(menu, &QMenu::staticMetaObject);
 }
 
 
@@ -151,11 +150,10 @@ void register_menu_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_menu_class(ns);
-  binding::Namespace binder{ ns };
 
   // QMenu& newMenu(QWidget*);
-  NewFunction(binder).add<QMenu, QWidget*>("newMenu");
+  bind::new_function<QMenu, QWidget*>(ns, "newMenu");
   // QMenu& newMenu(const QString&, QWidget*);
-  NewFunction(binder).add<QMenu, const QString&, QWidget*>("newMenu");
+  bind::new_function<QMenu, const QString&, QWidget*>(ns, "newMenu");
 }
 

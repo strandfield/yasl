@@ -5,17 +5,20 @@
 #ifndef YASL_CORE_LIST_H
 #define YASL_CORE_LIST_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QList>
 
-namespace binding
+namespace script
+{
+namespace bind
 {
 
 template<> struct make_type_t<QList<int>> { inline static script::Type get() { return script::Type::QListint; } };
 template<> struct make_type_t<QList<float>> { inline static script::Type get() { return script::Type::QListfloat; } };
 template<> struct make_type_t<QList<double>> { inline static script::Type get() { return script::Type::QListdouble; } };
 
-} // namespace binding
+} // namespace bind
+}
 
 #endif // YASL_CORE_LIST_H

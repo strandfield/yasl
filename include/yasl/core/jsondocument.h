@@ -5,14 +5,14 @@
 #ifndef YASL_CORE_JSONDOCUMENT_H
 #define YASL_CORE_JSONDOCUMENT_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QJsonDocument>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QJsonDocument> { inline static script::Type get() { return script::Type::QJsonDocument; } };
 template<> struct make_type_t<QJsonDocument::DataValidation> { inline static script::Type get() { return script::Type::QJsonDocumentDataValidation; } };
 template<> struct make_type_t<QJsonDocument::JsonFormat> { inline static script::Type get() { return script::Type::QJsonDocumentJsonFormat; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_JSONDOCUMENT_H

@@ -4,10 +4,10 @@
 
 #include "yasl/gui/keysequence.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/gui/keysequence.h"
@@ -127,64 +127,63 @@ static void register_key_sequence_class(script::Namespace ns)
   register_key_sequence_standard_key_enum(key_sequence);
   register_key_sequence_sequence_format_enum(key_sequence);
   register_key_sequence_sequence_match_enum(key_sequence);
-  binding::ClassBinder<QKeySequence> binder{ key_sequence };
 
   // QKeySequence();
-  binder.default_ctor().create();
+  bind::default_constructor<QKeySequence>(key_sequence).create();
   // QKeySequence(const QString &, QKeySequence::SequenceFormat);
-  binder.ctor<const QString &, QKeySequence::SequenceFormat>()
-    .apply(binding::default_arguments(QKeySequence::NativeText)).create();
+  bind::constructor<QKeySequence, const QString &, QKeySequence::SequenceFormat>(key_sequence)
+    .apply(bind::default_arguments(QKeySequence::NativeText)).create();
   // QKeySequence(int, int, int, int);
-  binder.ctor<int, int, int, int>()
-    .apply(binding::default_arguments(0, 0, 0)).create();
+  bind::constructor<QKeySequence, int, int, int, int>(key_sequence)
+    .apply(bind::default_arguments(0, 0, 0)).create();
   // QKeySequence(const QKeySequence &);
-  binder.ctor<const QKeySequence &>().create();
+  bind::constructor<QKeySequence, const QKeySequence &>(key_sequence).create();
   // QKeySequence(QKeySequence::StandardKey);
-  binder.ctor<QKeySequence::StandardKey>().create();
+  bind::constructor<QKeySequence, QKeySequence::StandardKey>(key_sequence).create();
   // ~QKeySequence();
-  binder.dtor().create();
+  bind::destructor<QKeySequence>(key_sequence).create();
   // int count() const;
-  binder.fun<int, &QKeySequence::count>("count").create();
+  bind::member_function<QKeySequence, int, &QKeySequence::count>(key_sequence, "count").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QKeySequence::isEmpty>("isEmpty").create();
+  bind::member_function<QKeySequence, bool, &QKeySequence::isEmpty>(key_sequence, "isEmpty").create();
   // QString toString(QKeySequence::SequenceFormat) const;
-  binder.fun<QString, QKeySequence::SequenceFormat, &QKeySequence::toString>("toString")
-    .apply(binding::default_arguments(QKeySequence::PortableText)).create();
+  bind::member_function<QKeySequence, QString, QKeySequence::SequenceFormat, &QKeySequence::toString>(key_sequence, "toString")
+    .apply(bind::default_arguments(QKeySequence::PortableText)).create();
   // static QKeySequence fromString(const QString &, QKeySequence::SequenceFormat);
-  binder.static_fun<QKeySequence, const QString &, QKeySequence::SequenceFormat, &QKeySequence::fromString>("fromString")
-    .apply(binding::default_arguments(QKeySequence::PortableText)).create();
+  bind::static_member_function<QKeySequence, QKeySequence, const QString &, QKeySequence::SequenceFormat, &QKeySequence::fromString>(key_sequence, "fromString")
+    .apply(bind::default_arguments(QKeySequence::PortableText)).create();
   // static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat);
   /// TODO: static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat);
   // static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat);
   /// TODO: static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat);
   // QKeySequence::SequenceMatch matches(const QKeySequence &) const;
-  binder.fun<QKeySequence::SequenceMatch, const QKeySequence &, &QKeySequence::matches>("matches").create();
+  bind::member_function<QKeySequence, QKeySequence::SequenceMatch, const QKeySequence &, &QKeySequence::matches>(key_sequence, "matches").create();
   // static QKeySequence mnemonic(const QString &);
-  binder.static_fun<QKeySequence, const QString &, &QKeySequence::mnemonic>("mnemonic").create();
+  bind::static_member_function<QKeySequence, QKeySequence, const QString &, &QKeySequence::mnemonic>(key_sequence, "mnemonic").create();
   // static QList<QKeySequence> keyBindings(QKeySequence::StandardKey);
   /// TODO: static QList<QKeySequence> keyBindings(QKeySequence::StandardKey);
   // int operator[](uint) const;
-  binder.operators().const_subscript<int, uint>();
+  bind::memop_const_subscript<QKeySequence, int, uint>(key_sequence);
   // QKeySequence & operator=(const QKeySequence &);
-  binder.operators().assign<const QKeySequence &>();
+  bind::memop_assign<QKeySequence, const QKeySequence &>(key_sequence);
   // QKeySequence & operator=(QKeySequence &&);
-  binder.operators().assign<QKeySequence &&>();
+  bind::memop_assign<QKeySequence, QKeySequence &&>(key_sequence);
   // void swap(QKeySequence &);
-  binder.void_fun<QKeySequence &, &QKeySequence::swap>("swap").create();
+  bind::void_member_function<QKeySequence, QKeySequence &, &QKeySequence::swap>(key_sequence, "swap").create();
   // bool operator==(const QKeySequence &) const;
-  binder.operators().eq<const QKeySequence &>();
+  bind::memop_eq<QKeySequence, const QKeySequence &>(key_sequence);
   // bool operator!=(const QKeySequence &) const;
-  binder.operators().neq<const QKeySequence &>();
+  bind::memop_neq<QKeySequence, const QKeySequence &>(key_sequence);
   // bool operator<(const QKeySequence &) const;
-  binder.operators().less<const QKeySequence &>();
+  bind::memop_less<QKeySequence, const QKeySequence &>(key_sequence);
   // bool operator>(const QKeySequence &) const;
-  binder.operators().greater<const QKeySequence &>();
+  bind::memop_greater<QKeySequence, const QKeySequence &>(key_sequence);
   // bool operator<=(const QKeySequence &) const;
-  binder.operators().leq<const QKeySequence &>();
+  bind::memop_leq<QKeySequence, const QKeySequence &>(key_sequence);
   // bool operator>=(const QKeySequence &) const;
-  binder.operators().geq<const QKeySequence &>();
+  bind::memop_geq<QKeySequence, const QKeySequence &>(key_sequence);
   // bool isDetached() const;
-  binder.fun<bool, &QKeySequence::isDetached>("isDetached").create();
+  bind::member_function<QKeySequence, bool, &QKeySequence::isDetached>(key_sequence, "isDetached").create();
   // QKeySequence::DataPtr & data_ptr();
   /// TODO: QKeySequence::DataPtr & data_ptr();
 }
@@ -197,16 +196,15 @@ void register_keysequence_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_key_sequence_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QKeySequence &);
-  binder.operators().put_to<QDataStream &, const QKeySequence &>();
+  bind::op_put_to<QDataStream &, const QKeySequence &>(ns);
   // QDataStream & operator>>(QDataStream &, QKeySequence &);
-  binder.operators().read_from<QDataStream &, QKeySequence &>();
+  bind::op_read_from<QDataStream &, QKeySequence &>(ns);
   // uint qHash(const QKeySequence &, uint);
-  binder.fun<uint, const QKeySequence &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QKeySequence &, uint, &qHash>(ns, "qHash").create();
   // void swap(QKeySequence &, QKeySequence &);
-  binder.void_fun<QKeySequence &, QKeySequence &, &swap>("swap").create();
+  bind::void_function<QKeySequence &, QKeySequence &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QKeySequence &);
   /// TODO: QDebug operator<<(QDebug, const QKeySequence &);
 }

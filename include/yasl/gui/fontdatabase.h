@@ -5,14 +5,14 @@
 #ifndef YASL_GUI_FONTDATABASE_H
 #define YASL_GUI_FONTDATABASE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QFontDatabase>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QFontDatabase> { inline static script::Type get() { return script::Type::QFontDatabase; } };
 template<> struct make_type_t<QFontDatabase::SystemFont> { inline static script::Type get() { return script::Type::QFontDatabaseSystemFont; } };
 template<> struct make_type_t<QFontDatabase::WritingSystem> { inline static script::Type get() { return script::Type::QFontDatabaseWritingSystem; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_FONTDATABASE_H

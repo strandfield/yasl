@@ -4,8 +4,8 @@
 
 #include "yasl/gui/screen.h"
 
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/rect.h"
@@ -21,100 +21,99 @@ static void register_screen_class(script::Namespace ns)
   Class screen = ns.newClass("Screen").setId(script::Type::QScreen)
     .setBase(script::Type::QObject).get();
 
-  binding::ClassBinder<QScreen> binder{ screen, &QScreen::staticMetaObject };
 
   // ~QScreen();
-  binder.dtor().create();
+  bind::destructor<QScreen>(screen).create();
   // QPlatformScreen * handle() const;
   /// TODO: QPlatformScreen * handle() const;
   // QString name() const;
-  binder.fun<QString, &QScreen::name>("name").create();
+  bind::member_function<QScreen, QString, &QScreen::name>(screen, "name").create();
   // QString manufacturer() const;
-  binder.fun<QString, &QScreen::manufacturer>("manufacturer").create();
+  bind::member_function<QScreen, QString, &QScreen::manufacturer>(screen, "manufacturer").create();
   // QString model() const;
-  binder.fun<QString, &QScreen::model>("model").create();
+  bind::member_function<QScreen, QString, &QScreen::model>(screen, "model").create();
   // QString serialNumber() const;
-  binder.fun<QString, &QScreen::serialNumber>("serialNumber").create();
+  bind::member_function<QScreen, QString, &QScreen::serialNumber>(screen, "serialNumber").create();
   // int depth() const;
-  binder.fun<int, &QScreen::depth>("depth").create();
+  bind::member_function<QScreen, int, &QScreen::depth>(screen, "depth").create();
   // QSize size() const;
-  binder.fun<QSize, &QScreen::size>("size").create();
+  bind::member_function<QScreen, QSize, &QScreen::size>(screen, "size").create();
   // QRect geometry() const;
-  binder.fun<QRect, &QScreen::geometry>("geometry").create();
+  bind::member_function<QScreen, QRect, &QScreen::geometry>(screen, "geometry").create();
   // QSizeF physicalSize() const;
-  binder.fun<QSizeF, &QScreen::physicalSize>("physicalSize").create();
+  bind::member_function<QScreen, QSizeF, &QScreen::physicalSize>(screen, "physicalSize").create();
   // qreal physicalDotsPerInchX() const;
-  binder.fun<qreal, &QScreen::physicalDotsPerInchX>("physicalDotsPerInchX").create();
+  bind::member_function<QScreen, qreal, &QScreen::physicalDotsPerInchX>(screen, "physicalDotsPerInchX").create();
   // qreal physicalDotsPerInchY() const;
-  binder.fun<qreal, &QScreen::physicalDotsPerInchY>("physicalDotsPerInchY").create();
+  bind::member_function<QScreen, qreal, &QScreen::physicalDotsPerInchY>(screen, "physicalDotsPerInchY").create();
   // qreal physicalDotsPerInch() const;
-  binder.fun<qreal, &QScreen::physicalDotsPerInch>("physicalDotsPerInch").create();
+  bind::member_function<QScreen, qreal, &QScreen::physicalDotsPerInch>(screen, "physicalDotsPerInch").create();
   // qreal logicalDotsPerInchX() const;
-  binder.fun<qreal, &QScreen::logicalDotsPerInchX>("logicalDotsPerInchX").create();
+  bind::member_function<QScreen, qreal, &QScreen::logicalDotsPerInchX>(screen, "logicalDotsPerInchX").create();
   // qreal logicalDotsPerInchY() const;
-  binder.fun<qreal, &QScreen::logicalDotsPerInchY>("logicalDotsPerInchY").create();
+  bind::member_function<QScreen, qreal, &QScreen::logicalDotsPerInchY>(screen, "logicalDotsPerInchY").create();
   // qreal logicalDotsPerInch() const;
-  binder.fun<qreal, &QScreen::logicalDotsPerInch>("logicalDotsPerInch").create();
+  bind::member_function<QScreen, qreal, &QScreen::logicalDotsPerInch>(screen, "logicalDotsPerInch").create();
   // qreal devicePixelRatio() const;
-  binder.fun<qreal, &QScreen::devicePixelRatio>("devicePixelRatio").create();
+  bind::member_function<QScreen, qreal, &QScreen::devicePixelRatio>(screen, "devicePixelRatio").create();
   // QSize availableSize() const;
-  binder.fun<QSize, &QScreen::availableSize>("availableSize").create();
+  bind::member_function<QScreen, QSize, &QScreen::availableSize>(screen, "availableSize").create();
   // QRect availableGeometry() const;
-  binder.fun<QRect, &QScreen::availableGeometry>("availableGeometry").create();
+  bind::member_function<QScreen, QRect, &QScreen::availableGeometry>(screen, "availableGeometry").create();
   // QList<QScreen *> virtualSiblings() const;
   /// TODO: QList<QScreen *> virtualSiblings() const;
   // QSize virtualSize() const;
-  binder.fun<QSize, &QScreen::virtualSize>("virtualSize").create();
+  bind::member_function<QScreen, QSize, &QScreen::virtualSize>(screen, "virtualSize").create();
   // QRect virtualGeometry() const;
-  binder.fun<QRect, &QScreen::virtualGeometry>("virtualGeometry").create();
+  bind::member_function<QScreen, QRect, &QScreen::virtualGeometry>(screen, "virtualGeometry").create();
   // QSize availableVirtualSize() const;
-  binder.fun<QSize, &QScreen::availableVirtualSize>("availableVirtualSize").create();
+  bind::member_function<QScreen, QSize, &QScreen::availableVirtualSize>(screen, "availableVirtualSize").create();
   // QRect availableVirtualGeometry() const;
-  binder.fun<QRect, &QScreen::availableVirtualGeometry>("availableVirtualGeometry").create();
+  bind::member_function<QScreen, QRect, &QScreen::availableVirtualGeometry>(screen, "availableVirtualGeometry").create();
   // Qt::ScreenOrientation primaryOrientation() const;
-  binder.fun<Qt::ScreenOrientation, &QScreen::primaryOrientation>("primaryOrientation").create();
+  bind::member_function<QScreen, Qt::ScreenOrientation, &QScreen::primaryOrientation>(screen, "primaryOrientation").create();
   // Qt::ScreenOrientation orientation() const;
-  binder.fun<Qt::ScreenOrientation, &QScreen::orientation>("orientation").create();
+  bind::member_function<QScreen, Qt::ScreenOrientation, &QScreen::orientation>(screen, "orientation").create();
   // Qt::ScreenOrientation nativeOrientation() const;
-  binder.fun<Qt::ScreenOrientation, &QScreen::nativeOrientation>("nativeOrientation").create();
+  bind::member_function<QScreen, Qt::ScreenOrientation, &QScreen::nativeOrientation>(screen, "nativeOrientation").create();
   // Qt::ScreenOrientations orientationUpdateMask() const;
   /// TODO: Qt::ScreenOrientations orientationUpdateMask() const;
   // void setOrientationUpdateMask(Qt::ScreenOrientations);
   /// TODO: void setOrientationUpdateMask(Qt::ScreenOrientations);
   // int angleBetween(Qt::ScreenOrientation, Qt::ScreenOrientation) const;
-  binder.fun<int, Qt::ScreenOrientation, Qt::ScreenOrientation, &QScreen::angleBetween>("angleBetween").create();
+  bind::member_function<QScreen, int, Qt::ScreenOrientation, Qt::ScreenOrientation, &QScreen::angleBetween>(screen, "angleBetween").create();
   // QTransform transformBetween(Qt::ScreenOrientation, Qt::ScreenOrientation, const QRect &) const;
-  binder.fun<QTransform, Qt::ScreenOrientation, Qt::ScreenOrientation, const QRect &, &QScreen::transformBetween>("transformBetween").create();
+  bind::member_function<QScreen, QTransform, Qt::ScreenOrientation, Qt::ScreenOrientation, const QRect &, &QScreen::transformBetween>(screen, "transformBetween").create();
   // QRect mapBetween(Qt::ScreenOrientation, Qt::ScreenOrientation, const QRect &) const;
-  binder.fun<QRect, Qt::ScreenOrientation, Qt::ScreenOrientation, const QRect &, &QScreen::mapBetween>("mapBetween").create();
+  bind::member_function<QScreen, QRect, Qt::ScreenOrientation, Qt::ScreenOrientation, const QRect &, &QScreen::mapBetween>(screen, "mapBetween").create();
   // bool isPortrait(Qt::ScreenOrientation) const;
-  binder.fun<bool, Qt::ScreenOrientation, &QScreen::isPortrait>("isPortrait").create();
+  bind::member_function<QScreen, bool, Qt::ScreenOrientation, &QScreen::isPortrait>(screen, "isPortrait").create();
   // bool isLandscape(Qt::ScreenOrientation) const;
-  binder.fun<bool, Qt::ScreenOrientation, &QScreen::isLandscape>("isLandscape").create();
+  bind::member_function<QScreen, bool, Qt::ScreenOrientation, &QScreen::isLandscape>(screen, "isLandscape").create();
   // QPixmap grabWindow(WId, int, int, int, int);
   /// TODO: QPixmap grabWindow(WId, int, int, int, int);
   // qreal refreshRate() const;
-  binder.fun<qreal, &QScreen::refreshRate>("refreshRate").create();
+  bind::member_function<QScreen, qreal, &QScreen::refreshRate>(screen, "refreshRate").create();
   // void geometryChanged(const QRect &);
-  binder.void_fun<const QRect &, &QScreen::geometryChanged>("geometryChanged").create();
+  bind::void_member_function<QScreen, const QRect &, &QScreen::geometryChanged>(screen, "geometryChanged").create();
   // void availableGeometryChanged(const QRect &);
-  binder.void_fun<const QRect &, &QScreen::availableGeometryChanged>("availableGeometryChanged").create();
+  bind::void_member_function<QScreen, const QRect &, &QScreen::availableGeometryChanged>(screen, "availableGeometryChanged").create();
   // void physicalSizeChanged(const QSizeF &);
-  binder.void_fun<const QSizeF &, &QScreen::physicalSizeChanged>("physicalSizeChanged").create();
+  bind::void_member_function<QScreen, const QSizeF &, &QScreen::physicalSizeChanged>(screen, "physicalSizeChanged").create();
   // void physicalDotsPerInchChanged(qreal);
-  binder.void_fun<qreal, &QScreen::physicalDotsPerInchChanged>("physicalDotsPerInchChanged").create();
+  bind::void_member_function<QScreen, qreal, &QScreen::physicalDotsPerInchChanged>(screen, "physicalDotsPerInchChanged").create();
   // void logicalDotsPerInchChanged(qreal);
-  binder.void_fun<qreal, &QScreen::logicalDotsPerInchChanged>("logicalDotsPerInchChanged").create();
+  bind::void_member_function<QScreen, qreal, &QScreen::logicalDotsPerInchChanged>(screen, "logicalDotsPerInchChanged").create();
   // void virtualGeometryChanged(const QRect &);
-  binder.void_fun<const QRect &, &QScreen::virtualGeometryChanged>("virtualGeometryChanged").create();
+  bind::void_member_function<QScreen, const QRect &, &QScreen::virtualGeometryChanged>(screen, "virtualGeometryChanged").create();
   // void primaryOrientationChanged(Qt::ScreenOrientation);
-  binder.void_fun<Qt::ScreenOrientation, &QScreen::primaryOrientationChanged>("primaryOrientationChanged").create();
+  bind::void_member_function<QScreen, Qt::ScreenOrientation, &QScreen::primaryOrientationChanged>(screen, "primaryOrientationChanged").create();
   // void orientationChanged(Qt::ScreenOrientation);
-  binder.void_fun<Qt::ScreenOrientation, &QScreen::orientationChanged>("orientationChanged").create();
+  bind::void_member_function<QScreen, Qt::ScreenOrientation, &QScreen::orientationChanged>(screen, "orientationChanged").create();
   // void refreshRateChanged(qreal);
-  binder.void_fun<qreal, &QScreen::refreshRateChanged>("refreshRateChanged").create();
+  bind::void_member_function<QScreen, qreal, &QScreen::refreshRateChanged>(screen, "refreshRateChanged").create();
 
-  screen.engine()->registerQtType(&QScreen::staticMetaObject, screen.id());
+  bind::link(screen, &QScreen::staticMetaObject);
 }
 
 
@@ -125,7 +124,6 @@ void register_screen_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_screen_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDebug operator<<(QDebug, const QScreen *);
   /// TODO: QDebug operator<<(QDebug, const QScreen *);

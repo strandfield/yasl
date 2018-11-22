@@ -4,13 +4,13 @@
 
 #include "yasl/widgets/action.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
+#include "yasl/binding2/ref.h"
 #include "yasl/core/listspecializations.h"
-#include "yasl/utils/ref.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/object.h"
@@ -71,148 +71,147 @@ static void register_action_class(script::Namespace ns)
   Class action = ns.newClass("Action").setId(script::Type::QAction)
     .setBase(script::Type::QObject).get();
 
-  register_ref_specialization(action.engine(), script::Type::QAction, script::Type::QActionStar);
-  register_proxy_specialization<QAction*>(action.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQAction);
+  bind::register_ref_specialization(action.engine(), script::Type::QAction, script::Type::QActionStar);
+  bind::register_proxy_specialization<QAction*>(action.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQAction);
   register_list_specialization<QAction*>(action.engine(), script::Type::QListQAction);
   register_action_menu_role_enum(action);
   register_action_priority_enum(action);
   register_action_action_event_enum(action);
-  binding::ClassBinder<QAction> binder{ action, &QAction::staticMetaObject };
 
   // QAction(QObject *);
-  binder.ctor<QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QAction, QObject *>(action)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // QAction(const QString &, QObject *);
-  binder.ctor<const QString &, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QAction, const QString &, QObject *>(action)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // QAction(const QIcon &, const QString &, QObject *);
-  binder.ctor<const QIcon &, const QString &, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QAction, const QIcon &, const QString &, QObject *>(action)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QAction();
-  binder.dtor().create();
+  bind::destructor<QAction>(action).create();
   // void setActionGroup(QActionGroup *);
   /// TODO: void setActionGroup(QActionGroup *);
   // QActionGroup * actionGroup() const;
   /// TODO: QActionGroup * actionGroup() const;
   // void setIcon(const QIcon &);
-  binder.void_fun<const QIcon &, &QAction::setIcon>("setIcon").create();
+  bind::void_member_function<QAction, const QIcon &, &QAction::setIcon>(action, "setIcon").create();
   // QIcon icon() const;
-  binder.fun<QIcon, &QAction::icon>("icon").create();
+  bind::member_function<QAction, QIcon, &QAction::icon>(action, "icon").create();
   // void setText(const QString &);
-  binder.void_fun<const QString &, &QAction::setText>("setText").create();
+  bind::void_member_function<QAction, const QString &, &QAction::setText>(action, "setText").create();
   // QString text() const;
-  binder.fun<QString, &QAction::text>("text").create();
+  bind::member_function<QAction, QString, &QAction::text>(action, "text").create();
   // void setIconText(const QString &);
-  binder.void_fun<const QString &, &QAction::setIconText>("setIconText").create();
+  bind::void_member_function<QAction, const QString &, &QAction::setIconText>(action, "setIconText").create();
   // QString iconText() const;
-  binder.fun<QString, &QAction::iconText>("iconText").create();
+  bind::member_function<QAction, QString, &QAction::iconText>(action, "iconText").create();
   // void setToolTip(const QString &);
-  binder.void_fun<const QString &, &QAction::setToolTip>("setToolTip").create();
+  bind::void_member_function<QAction, const QString &, &QAction::setToolTip>(action, "setToolTip").create();
   // QString toolTip() const;
-  binder.fun<QString, &QAction::toolTip>("toolTip").create();
+  bind::member_function<QAction, QString, &QAction::toolTip>(action, "toolTip").create();
   // void setStatusTip(const QString &);
-  binder.void_fun<const QString &, &QAction::setStatusTip>("setStatusTip").create();
+  bind::void_member_function<QAction, const QString &, &QAction::setStatusTip>(action, "setStatusTip").create();
   // QString statusTip() const;
-  binder.fun<QString, &QAction::statusTip>("statusTip").create();
+  bind::member_function<QAction, QString, &QAction::statusTip>(action, "statusTip").create();
   // void setWhatsThis(const QString &);
-  binder.void_fun<const QString &, &QAction::setWhatsThis>("setWhatsThis").create();
+  bind::void_member_function<QAction, const QString &, &QAction::setWhatsThis>(action, "setWhatsThis").create();
   // QString whatsThis() const;
-  binder.fun<QString, &QAction::whatsThis>("whatsThis").create();
+  bind::member_function<QAction, QString, &QAction::whatsThis>(action, "whatsThis").create();
   // void setPriority(QAction::Priority);
-  binder.void_fun<QAction::Priority, &QAction::setPriority>("setPriority").create();
+  bind::void_member_function<QAction, QAction::Priority, &QAction::setPriority>(action, "setPriority").create();
   // QAction::Priority priority() const;
-  binder.fun<QAction::Priority, &QAction::priority>("priority").create();
+  bind::member_function<QAction, QAction::Priority, &QAction::priority>(action, "priority").create();
   // QMenu * menu() const;
-  binder.fun<QMenu *, &QAction::menu>("menu").create();
+  bind::member_function<QAction, QMenu *, &QAction::menu>(action, "menu").create();
   // void setMenu(QMenu *);
-  binder.void_fun<QMenu *, &QAction::setMenu>("setMenu").create();
+  bind::void_member_function<QAction, QMenu *, &QAction::setMenu>(action, "setMenu").create();
   // void setSeparator(bool);
-  binder.void_fun<bool, &QAction::setSeparator>("setSeparator").create();
+  bind::void_member_function<QAction, bool, &QAction::setSeparator>(action, "setSeparator").create();
   // bool isSeparator() const;
-  binder.fun<bool, &QAction::isSeparator>("isSeparator").create();
+  bind::member_function<QAction, bool, &QAction::isSeparator>(action, "isSeparator").create();
   // void setShortcut(const QKeySequence &);
-  binder.void_fun<const QKeySequence &, &QAction::setShortcut>("setShortcut").create();
+  bind::void_member_function<QAction, const QKeySequence &, &QAction::setShortcut>(action, "setShortcut").create();
   // QKeySequence shortcut() const;
-  binder.fun<QKeySequence, &QAction::shortcut>("shortcut").create();
+  bind::member_function<QAction, QKeySequence, &QAction::shortcut>(action, "shortcut").create();
   // void setShortcuts(const QList<QKeySequence> &);
   /// TODO: void setShortcuts(const QList<QKeySequence> &);
   // void setShortcuts(QKeySequence::StandardKey);
-  binder.void_fun<QKeySequence::StandardKey, &QAction::setShortcuts>("setShortcuts").create();
+  bind::void_member_function<QAction, QKeySequence::StandardKey, &QAction::setShortcuts>(action, "setShortcuts").create();
   // QList<QKeySequence> shortcuts() const;
   /// TODO: QList<QKeySequence> shortcuts() const;
   // void setShortcutContext(Qt::ShortcutContext);
-  binder.void_fun<Qt::ShortcutContext, &QAction::setShortcutContext>("setShortcutContext").create();
+  bind::void_member_function<QAction, Qt::ShortcutContext, &QAction::setShortcutContext>(action, "setShortcutContext").create();
   // Qt::ShortcutContext shortcutContext() const;
-  binder.fun<Qt::ShortcutContext, &QAction::shortcutContext>("shortcutContext").create();
+  bind::member_function<QAction, Qt::ShortcutContext, &QAction::shortcutContext>(action, "shortcutContext").create();
   // void setAutoRepeat(bool);
-  binder.void_fun<bool, &QAction::setAutoRepeat>("setAutoRepeat").create();
+  bind::void_member_function<QAction, bool, &QAction::setAutoRepeat>(action, "setAutoRepeat").create();
   // bool autoRepeat() const;
-  binder.fun<bool, &QAction::autoRepeat>("autoRepeat").create();
+  bind::member_function<QAction, bool, &QAction::autoRepeat>(action, "autoRepeat").create();
   // void setFont(const QFont &);
-  binder.void_fun<const QFont &, &QAction::setFont>("setFont").create();
+  bind::void_member_function<QAction, const QFont &, &QAction::setFont>(action, "setFont").create();
   // QFont font() const;
-  binder.fun<QFont, &QAction::font>("font").create();
+  bind::member_function<QAction, QFont, &QAction::font>(action, "font").create();
   // void setCheckable(bool);
-  binder.void_fun<bool, &QAction::setCheckable>("setCheckable").create();
+  bind::void_member_function<QAction, bool, &QAction::setCheckable>(action, "setCheckable").create();
   // bool isCheckable() const;
-  binder.fun<bool, &QAction::isCheckable>("isCheckable").create();
+  bind::member_function<QAction, bool, &QAction::isCheckable>(action, "isCheckable").create();
   // QVariant data() const;
-  binder.fun<QVariant, &QAction::data>("data").create();
+  bind::member_function<QAction, QVariant, &QAction::data>(action, "data").create();
   // void setData(const QVariant &);
-  binder.void_fun<const QVariant &, &QAction::setData>("setData").create();
+  bind::void_member_function<QAction, const QVariant &, &QAction::setData>(action, "setData").create();
   // bool isChecked() const;
-  binder.fun<bool, &QAction::isChecked>("isChecked").create();
+  bind::member_function<QAction, bool, &QAction::isChecked>(action, "isChecked").create();
   // bool isEnabled() const;
-  binder.fun<bool, &QAction::isEnabled>("isEnabled").create();
+  bind::member_function<QAction, bool, &QAction::isEnabled>(action, "isEnabled").create();
   // bool isVisible() const;
-  binder.fun<bool, &QAction::isVisible>("isVisible").create();
+  bind::member_function<QAction, bool, &QAction::isVisible>(action, "isVisible").create();
   // void activate(QAction::ActionEvent);
-  binder.void_fun<QAction::ActionEvent, &QAction::activate>("activate").create();
+  bind::void_member_function<QAction, QAction::ActionEvent, &QAction::activate>(action, "activate").create();
   // bool showStatusText(QWidget *);
-  binder.fun<bool, QWidget *, &QAction::showStatusText>("showStatusText")
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::member_function<QAction, bool, QWidget *, &QAction::showStatusText>(action, "showStatusText")
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // void setMenuRole(QAction::MenuRole);
-  binder.void_fun<QAction::MenuRole, &QAction::setMenuRole>("setMenuRole").create();
+  bind::void_member_function<QAction, QAction::MenuRole, &QAction::setMenuRole>(action, "setMenuRole").create();
   // QAction::MenuRole menuRole() const;
-  binder.fun<QAction::MenuRole, &QAction::menuRole>("menuRole").create();
+  bind::member_function<QAction, QAction::MenuRole, &QAction::menuRole>(action, "menuRole").create();
   // void setIconVisibleInMenu(bool);
-  binder.void_fun<bool, &QAction::setIconVisibleInMenu>("setIconVisibleInMenu").create();
+  bind::void_member_function<QAction, bool, &QAction::setIconVisibleInMenu>(action, "setIconVisibleInMenu").create();
   // bool isIconVisibleInMenu() const;
-  binder.fun<bool, &QAction::isIconVisibleInMenu>("isIconVisibleInMenu").create();
+  bind::member_function<QAction, bool, &QAction::isIconVisibleInMenu>(action, "isIconVisibleInMenu").create();
   // void setShortcutVisibleInContextMenu(bool);
-  binder.void_fun<bool, &QAction::setShortcutVisibleInContextMenu>("setShortcutVisibleInContextMenu").create();
+  bind::void_member_function<QAction, bool, &QAction::setShortcutVisibleInContextMenu>(action, "setShortcutVisibleInContextMenu").create();
   // bool isShortcutVisibleInContextMenu() const;
-  binder.fun<bool, &QAction::isShortcutVisibleInContextMenu>("isShortcutVisibleInContextMenu").create();
+  bind::member_function<QAction, bool, &QAction::isShortcutVisibleInContextMenu>(action, "isShortcutVisibleInContextMenu").create();
   // QWidget * parentWidget() const;
-  binder.fun<QWidget *, &QAction::parentWidget>("parentWidget").create();
+  bind::member_function<QAction, QWidget *, &QAction::parentWidget>(action, "parentWidget").create();
   // QList<QWidget *> associatedWidgets() const;
   /// TODO: QList<QWidget *> associatedWidgets() const;
   // QList<QGraphicsWidget *> associatedGraphicsWidgets() const;
   /// TODO: QList<QGraphicsWidget *> associatedGraphicsWidgets() const;
   // void trigger();
-  binder.void_fun<&QAction::trigger>("trigger").create();
+  bind::void_member_function<QAction, &QAction::trigger>(action, "trigger").create();
   // void hover();
-  binder.void_fun<&QAction::hover>("hover").create();
+  bind::void_member_function<QAction, &QAction::hover>(action, "hover").create();
   // void setChecked(bool);
-  binder.void_fun<bool, &QAction::setChecked>("setChecked").create();
+  bind::void_member_function<QAction, bool, &QAction::setChecked>(action, "setChecked").create();
   // void toggle();
-  binder.void_fun<&QAction::toggle>("toggle").create();
+  bind::void_member_function<QAction, &QAction::toggle>(action, "toggle").create();
   // void setEnabled(bool);
-  binder.void_fun<bool, &QAction::setEnabled>("setEnabled").create();
+  bind::void_member_function<QAction, bool, &QAction::setEnabled>(action, "setEnabled").create();
   // void setDisabled(bool);
-  binder.void_fun<bool, &QAction::setDisabled>("setDisabled").create();
+  bind::void_member_function<QAction, bool, &QAction::setDisabled>(action, "setDisabled").create();
   // void setVisible(bool);
-  binder.void_fun<bool, &QAction::setVisible>("setVisible").create();
+  bind::void_member_function<QAction, bool, &QAction::setVisible>(action, "setVisible").create();
   // void changed();
-  binder.sigs().add("changed", "changed()");
+  bind::signal<QAction>(action, "changed", "changed()");
   // void triggered(bool);
-  binder.sigs().add<bool>("triggered", "triggered(bool)");
+  bind::signal<QAction, bool>(action, "triggered", "triggered(bool)");
   // void hovered();
-  binder.sigs().add("hovered", "hovered()");
+  bind::signal<QAction>(action, "hovered", "hovered()");
   // void toggled(bool);
-  binder.sigs().add<bool>("toggled", "toggled(bool)");
+  bind::signal<QAction, bool>(action, "toggled", "toggled(bool)");
 
-  action.engine()->registerQtType(&QAction::staticMetaObject, action.id());
+  bind::link(action, &QAction::staticMetaObject);
 }
 
 
@@ -223,15 +222,14 @@ void register_action_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_action_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDebug operator<<(QDebug, const QAction *);
   /// TODO: QDebug operator<<(QDebug, const QAction *);
   // QAction& newAction(QObject*);
-  NewFunction(binder).add<QAction, QObject*>("newAction");
+  bind::new_function<QAction, QObject*>(ns, "newAction");
   // QAction& newAction(const QString&, QObject*);
-  NewFunction(binder).add<QAction, const QString&, QObject*>("newAction");
+  bind::new_function<QAction, const QString&, QObject*>(ns, "newAction");
   // QAction& newAction(const QIcon&, const QString&, QObject*);
-  NewFunction(binder).add<QAction, const QIcon&, const QString&, QObject*>("newAction");
+  bind::new_function<QAction, const QIcon&, const QString&, QObject*>(ns, "newAction");
 }
 

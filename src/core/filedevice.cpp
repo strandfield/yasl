@@ -4,9 +4,9 @@
 
 #include "yasl/core/filedevice.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/datetime.h"
@@ -109,44 +109,43 @@ static void register_file_device_class(script::Namespace ns)
   register_file_device_permission_enum(file_device);
   register_file_device_file_handle_flag_enum(file_device);
   register_file_device_memory_map_flags_enum(file_device);
-  binding::ClassBinder<QFileDevice> binder{ file_device, &QFileDevice::staticMetaObject };
 
   // ~QFileDevice();
-  binder.dtor().create();
+  bind::destructor<QFileDevice>(file_device).create();
   // QFileDevice::FileError error() const;
-  binder.fun<QFileDevice::FileError, &QFileDevice::error>("error").create();
+  bind::member_function<QFileDevice, QFileDevice::FileError, &QFileDevice::error>(file_device, "error").create();
   // void unsetError();
-  binder.void_fun<&QFileDevice::unsetError>("unsetError").create();
+  bind::void_member_function<QFileDevice, &QFileDevice::unsetError>(file_device, "unsetError").create();
   // void close();
-  binder.void_fun<&QFileDevice::close>("close").create();
+  bind::void_member_function<QFileDevice, &QFileDevice::close>(file_device, "close").create();
   // bool isSequential() const;
-  binder.fun<bool, &QFileDevice::isSequential>("isSequential").create();
+  bind::member_function<QFileDevice, bool, &QFileDevice::isSequential>(file_device, "isSequential").create();
   // int handle() const;
-  binder.fun<int, &QFileDevice::handle>("handle").create();
+  bind::member_function<QFileDevice, int, &QFileDevice::handle>(file_device, "handle").create();
   // QString fileName() const;
-  binder.fun<QString, &QFileDevice::fileName>("fileName").create();
+  bind::member_function<QFileDevice, QString, &QFileDevice::fileName>(file_device, "fileName").create();
   // qint64 pos() const;
   /// TODO: qint64 pos() const;
   // bool seek(qint64);
   /// TODO: bool seek(qint64);
   // bool atEnd() const;
-  binder.fun<bool, &QFileDevice::atEnd>("atEnd").create();
+  bind::member_function<QFileDevice, bool, &QFileDevice::atEnd>(file_device, "atEnd").create();
   // bool flush();
-  binder.fun<bool, &QFileDevice::flush>("flush").create();
+  bind::member_function<QFileDevice, bool, &QFileDevice::flush>(file_device, "flush").create();
   // qint64 size() const;
   /// TODO: qint64 size() const;
   // bool resize(qint64);
   /// TODO: bool resize(qint64);
   // QFileDevice::Permissions permissions() const;
-  binder.fun<QFileDevice::Permissions, &QFileDevice::permissions>("permissions").create();
+  bind::member_function<QFileDevice, QFileDevice::Permissions, &QFileDevice::permissions>(file_device, "permissions").create();
   // bool setPermissions(QFileDevice::Permissions);
-  binder.fun<bool, QFileDevice::Permissions, &QFileDevice::setPermissions>("setPermissions").create();
+  bind::member_function<QFileDevice, bool, QFileDevice::Permissions, &QFileDevice::setPermissions>(file_device, "setPermissions").create();
   // QDateTime fileTime(QFileDevice::FileTime) const;
-  binder.fun<QDateTime, QFileDevice::FileTime, &QFileDevice::fileTime>("fileTime").create();
+  bind::member_function<QFileDevice, QDateTime, QFileDevice::FileTime, &QFileDevice::fileTime>(file_device, "fileTime").create();
   // bool setFileTime(const QDateTime &, QFileDevice::FileTime);
-  binder.fun<bool, const QDateTime &, QFileDevice::FileTime, &QFileDevice::setFileTime>("setFileTime").create();
+  bind::member_function<QFileDevice, bool, const QDateTime &, QFileDevice::FileTime, &QFileDevice::setFileTime>(file_device, "setFileTime").create();
 
-  file_device.engine()->registerQtType(&QFileDevice::staticMetaObject, file_device.id());
+  bind::link(file_device, &QFileDevice::staticMetaObject);
 }
 
 
@@ -157,12 +156,11 @@ void register_filedevice_file(script::Namespace core)
   Namespace ns = core;
 
   register_file_device_class(ns);
-  binding::Namespace binder{ ns };
 
   // QFileDevice::Permissions operator|(QFileDevice::Permission, QFileDevice::Permission);
-  binder.operators().or<QFileDevice::Permissions, QFileDevice::Permission, QFileDevice::Permission>();
+  bind::op_bitor<QFileDevice::Permissions, QFileDevice::Permission, QFileDevice::Permission>(ns);
   // QFileDevice::Permissions operator|(QFileDevice::Permission, QFileDevice::Permissions);
-  binder.operators().or<QFileDevice::Permissions, QFileDevice::Permission, QFileDevice::Permissions>();
+  bind::op_bitor<QFileDevice::Permissions, QFileDevice::Permission, QFileDevice::Permissions>(ns);
   // QIncompatibleFlag operator|(QFileDevice::Permissions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QFileDevice::Permissions::enum_type, int);
 }

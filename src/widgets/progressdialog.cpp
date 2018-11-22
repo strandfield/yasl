@@ -4,8 +4,8 @@
 
 #include "yasl/widgets/progressdialog.h"
 
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/object.h"
 #include "yasl/core/size.h"
@@ -20,14 +20,13 @@ static void register_progress_dialog_class(script::Namespace ns)
   Class progress_dialog = ns.newClass("ProgressDialog").setId(script::Type::QProgressDialog)
     .setBase(script::Type::QDialog).get();
 
-  binding::ClassBinder<QProgressDialog> binder{ progress_dialog, &QProgressDialog::staticMetaObject };
 
   // QProgressDialog(QWidget *, Qt::WindowFlags);
   /// TODO: QProgressDialog(QWidget *, Qt::WindowFlags);
   // QProgressDialog(const QString &, const QString &, int, int, QWidget *, Qt::WindowFlags);
   /// TODO: QProgressDialog(const QString &, const QString &, int, int, QWidget *, Qt::WindowFlags);
   // ~QProgressDialog();
-  binder.dtor().create();
+  bind::destructor<QProgressDialog>(progress_dialog).create();
   // void setLabel(QLabel *);
   /// TODO: void setLabel(QLabel *);
   // void setCancelButton(QPushButton *);
@@ -35,51 +34,51 @@ static void register_progress_dialog_class(script::Namespace ns)
   // void setBar(QProgressBar *);
   /// TODO: void setBar(QProgressBar *);
   // bool wasCanceled() const;
-  binder.fun<bool, &QProgressDialog::wasCanceled>("wasCanceled").create();
+  bind::member_function<QProgressDialog, bool, &QProgressDialog::wasCanceled>(progress_dialog, "wasCanceled").create();
   // int minimum() const;
-  binder.fun<int, &QProgressDialog::minimum>("minimum").create();
+  bind::member_function<QProgressDialog, int, &QProgressDialog::minimum>(progress_dialog, "minimum").create();
   // int maximum() const;
-  binder.fun<int, &QProgressDialog::maximum>("maximum").create();
+  bind::member_function<QProgressDialog, int, &QProgressDialog::maximum>(progress_dialog, "maximum").create();
   // int value() const;
-  binder.fun<int, &QProgressDialog::value>("value").create();
+  bind::member_function<QProgressDialog, int, &QProgressDialog::value>(progress_dialog, "value").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QProgressDialog::sizeHint>("sizeHint").create();
+  bind::member_function<QProgressDialog, QSize, &QProgressDialog::sizeHint>(progress_dialog, "sizeHint").create();
   // QString labelText() const;
-  binder.fun<QString, &QProgressDialog::labelText>("labelText").create();
+  bind::member_function<QProgressDialog, QString, &QProgressDialog::labelText>(progress_dialog, "labelText").create();
   // int minimumDuration() const;
-  binder.fun<int, &QProgressDialog::minimumDuration>("minimumDuration").create();
+  bind::member_function<QProgressDialog, int, &QProgressDialog::minimumDuration>(progress_dialog, "minimumDuration").create();
   // void setAutoReset(bool);
-  binder.void_fun<bool, &QProgressDialog::setAutoReset>("setAutoReset").create();
+  bind::void_member_function<QProgressDialog, bool, &QProgressDialog::setAutoReset>(progress_dialog, "setAutoReset").create();
   // bool autoReset() const;
-  binder.fun<bool, &QProgressDialog::autoReset>("autoReset").create();
+  bind::member_function<QProgressDialog, bool, &QProgressDialog::autoReset>(progress_dialog, "autoReset").create();
   // void setAutoClose(bool);
-  binder.void_fun<bool, &QProgressDialog::setAutoClose>("setAutoClose").create();
+  bind::void_member_function<QProgressDialog, bool, &QProgressDialog::setAutoClose>(progress_dialog, "setAutoClose").create();
   // bool autoClose() const;
-  binder.fun<bool, &QProgressDialog::autoClose>("autoClose").create();
+  bind::member_function<QProgressDialog, bool, &QProgressDialog::autoClose>(progress_dialog, "autoClose").create();
   // void open(QObject *, const char *);
   /// TODO: void open(QObject *, const char *);
   // void cancel();
-  binder.void_fun<&QProgressDialog::cancel>("cancel").create();
+  bind::void_member_function<QProgressDialog, &QProgressDialog::cancel>(progress_dialog, "cancel").create();
   // void reset();
-  binder.void_fun<&QProgressDialog::reset>("reset").create();
+  bind::void_member_function<QProgressDialog, &QProgressDialog::reset>(progress_dialog, "reset").create();
   // void setMaximum(int);
-  binder.void_fun<int, &QProgressDialog::setMaximum>("setMaximum").create();
+  bind::void_member_function<QProgressDialog, int, &QProgressDialog::setMaximum>(progress_dialog, "setMaximum").create();
   // void setMinimum(int);
-  binder.void_fun<int, &QProgressDialog::setMinimum>("setMinimum").create();
+  bind::void_member_function<QProgressDialog, int, &QProgressDialog::setMinimum>(progress_dialog, "setMinimum").create();
   // void setRange(int, int);
-  binder.void_fun<int, int, &QProgressDialog::setRange>("setRange").create();
+  bind::void_member_function<QProgressDialog, int, int, &QProgressDialog::setRange>(progress_dialog, "setRange").create();
   // void setValue(int);
-  binder.void_fun<int, &QProgressDialog::setValue>("setValue").create();
+  bind::void_member_function<QProgressDialog, int, &QProgressDialog::setValue>(progress_dialog, "setValue").create();
   // void setLabelText(const QString &);
-  binder.void_fun<const QString &, &QProgressDialog::setLabelText>("setLabelText").create();
+  bind::void_member_function<QProgressDialog, const QString &, &QProgressDialog::setLabelText>(progress_dialog, "setLabelText").create();
   // void setCancelButtonText(const QString &);
-  binder.void_fun<const QString &, &QProgressDialog::setCancelButtonText>("setCancelButtonText").create();
+  bind::void_member_function<QProgressDialog, const QString &, &QProgressDialog::setCancelButtonText>(progress_dialog, "setCancelButtonText").create();
   // void setMinimumDuration(int);
-  binder.void_fun<int, &QProgressDialog::setMinimumDuration>("setMinimumDuration").create();
+  bind::void_member_function<QProgressDialog, int, &QProgressDialog::setMinimumDuration>(progress_dialog, "setMinimumDuration").create();
   // void canceled();
-  binder.sigs().add("canceled", "canceled()");
+  bind::signal<QProgressDialog>(progress_dialog, "canceled", "canceled()");
 
-  progress_dialog.engine()->registerQtType(&QProgressDialog::staticMetaObject, progress_dialog.id());
+  bind::link(progress_dialog, &QProgressDialog::staticMetaObject);
 }
 
 
@@ -90,7 +89,6 @@ void register_progressdialog_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_progress_dialog_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

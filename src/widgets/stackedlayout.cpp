@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/stackedlayout.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"
@@ -37,58 +37,57 @@ static void register_stacked_layout_class(script::Namespace ns)
     .setBase(script::Type::QLayout).get();
 
   register_stacked_layout_stacking_mode_enum(stacked_layout);
-  binding::ClassBinder<QStackedLayout> binder{ stacked_layout, &QStackedLayout::staticMetaObject };
 
   // QStackedLayout();
-  binder.default_ctor().create();
+  bind::default_constructor<QStackedLayout>(stacked_layout).create();
   // QStackedLayout(QWidget *);
-  binder.ctor<QWidget *>().create();
+  bind::constructor<QStackedLayout, QWidget *>(stacked_layout).create();
   // QStackedLayout(QLayout *);
-  binder.ctor<QLayout *>().create();
+  bind::constructor<QStackedLayout, QLayout *>(stacked_layout).create();
   // ~QStackedLayout();
-  binder.dtor().create();
+  bind::destructor<QStackedLayout>(stacked_layout).create();
   // int addWidget(QWidget *);
-  binder.fun<int, QWidget *, &QStackedLayout::addWidget>("addWidget").create();
+  bind::member_function<QStackedLayout, int, QWidget *, &QStackedLayout::addWidget>(stacked_layout, "addWidget").create();
   // int insertWidget(int, QWidget *);
-  binder.fun<int, int, QWidget *, &QStackedLayout::insertWidget>("insertWidget").create();
+  bind::member_function<QStackedLayout, int, int, QWidget *, &QStackedLayout::insertWidget>(stacked_layout, "insertWidget").create();
   // QWidget * currentWidget() const;
-  binder.fun<QWidget *, &QStackedLayout::currentWidget>("currentWidget").create();
+  bind::member_function<QStackedLayout, QWidget *, &QStackedLayout::currentWidget>(stacked_layout, "currentWidget").create();
   // int currentIndex() const;
-  binder.fun<int, &QStackedLayout::currentIndex>("currentIndex").create();
+  bind::member_function<QStackedLayout, int, &QStackedLayout::currentIndex>(stacked_layout, "currentIndex").create();
   // QWidget * widget(int) const;
-  binder.fun<QWidget *, int, &QStackedLayout::widget>("widget").create();
+  bind::member_function<QStackedLayout, QWidget *, int, &QStackedLayout::widget>(stacked_layout, "widget").create();
   // int count() const;
-  binder.fun<int, &QStackedLayout::count>("count").create();
+  bind::member_function<QStackedLayout, int, &QStackedLayout::count>(stacked_layout, "count").create();
   // QStackedLayout::StackingMode stackingMode() const;
-  binder.fun<QStackedLayout::StackingMode, &QStackedLayout::stackingMode>("stackingMode").create();
+  bind::member_function<QStackedLayout, QStackedLayout::StackingMode, &QStackedLayout::stackingMode>(stacked_layout, "stackingMode").create();
   // void setStackingMode(QStackedLayout::StackingMode);
-  binder.void_fun<QStackedLayout::StackingMode, &QStackedLayout::setStackingMode>("setStackingMode").create();
+  bind::void_member_function<QStackedLayout, QStackedLayout::StackingMode, &QStackedLayout::setStackingMode>(stacked_layout, "setStackingMode").create();
   // void addItem(QLayoutItem *);
   /// TODO: void addItem(QLayoutItem *);
   // QSize sizeHint() const;
-  binder.fun<QSize, &QStackedLayout::sizeHint>("sizeHint").create();
+  bind::member_function<QStackedLayout, QSize, &QStackedLayout::sizeHint>(stacked_layout, "sizeHint").create();
   // QSize minimumSize() const;
-  binder.fun<QSize, &QStackedLayout::minimumSize>("minimumSize").create();
+  bind::member_function<QStackedLayout, QSize, &QStackedLayout::minimumSize>(stacked_layout, "minimumSize").create();
   // QLayoutItem * itemAt(int) const;
   /// TODO: QLayoutItem * itemAt(int) const;
   // QLayoutItem * takeAt(int);
   /// TODO: QLayoutItem * takeAt(int);
   // void setGeometry(const QRect &);
-  binder.void_fun<const QRect &, &QStackedLayout::setGeometry>("setGeometry").create();
+  bind::void_member_function<QStackedLayout, const QRect &, &QStackedLayout::setGeometry>(stacked_layout, "setGeometry").create();
   // bool hasHeightForWidth() const;
-  binder.fun<bool, &QStackedLayout::hasHeightForWidth>("hasHeightForWidth").create();
+  bind::member_function<QStackedLayout, bool, &QStackedLayout::hasHeightForWidth>(stacked_layout, "hasHeightForWidth").create();
   // int heightForWidth(int) const;
-  binder.fun<int, int, &QStackedLayout::heightForWidth>("heightForWidth").create();
+  bind::member_function<QStackedLayout, int, int, &QStackedLayout::heightForWidth>(stacked_layout, "heightForWidth").create();
   // void widgetRemoved(int);
-  binder.void_fun<int, &QStackedLayout::widgetRemoved>("widgetRemoved").create();
+  bind::void_member_function<QStackedLayout, int, &QStackedLayout::widgetRemoved>(stacked_layout, "widgetRemoved").create();
   // void currentChanged(int);
-  binder.void_fun<int, &QStackedLayout::currentChanged>("currentChanged").create();
+  bind::void_member_function<QStackedLayout, int, &QStackedLayout::currentChanged>(stacked_layout, "currentChanged").create();
   // void setCurrentIndex(int);
-  binder.void_fun<int, &QStackedLayout::setCurrentIndex>("setCurrentIndex").create();
+  bind::void_member_function<QStackedLayout, int, &QStackedLayout::setCurrentIndex>(stacked_layout, "setCurrentIndex").create();
   // void setCurrentWidget(QWidget *);
-  binder.void_fun<QWidget *, &QStackedLayout::setCurrentWidget>("setCurrentWidget").create();
+  bind::void_member_function<QStackedLayout, QWidget *, &QStackedLayout::setCurrentWidget>(stacked_layout, "setCurrentWidget").create();
 
-  stacked_layout.engine()->registerQtType(&QStackedLayout::staticMetaObject, stacked_layout.id());
+  bind::link(stacked_layout, &QStackedLayout::staticMetaObject);
 }
 
 
@@ -99,13 +98,12 @@ void register_stackedlayout_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_stacked_layout_class(ns);
-  binding::Namespace binder{ ns };
 
   // QStackedLayout& newStackedLayout();
-  NewFunction(binder).add<QStackedLayout>("newStackedLayout");
+  bind::new_function<QStackedLayout>(ns, "newStackedLayout");
   // QStackedLayout& newStackedLayout(QWidget*);
-  NewFunction(binder).add<QStackedLayout, QWidget*>("newStackedLayout");
+  bind::new_function<QStackedLayout, QWidget*>(ns, "newStackedLayout");
   // QStackedLayout& newStackedLayout(QLayout*);
-  NewFunction(binder).add<QStackedLayout, QLayout*>("newStackedLayout");
+  bind::new_function<QStackedLayout, QLayout*>(ns, "newStackedLayout");
 }
 

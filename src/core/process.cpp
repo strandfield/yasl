@@ -4,11 +4,11 @@
 
 #include "yasl/core/process.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/iodevice.h"
@@ -24,44 +24,43 @@ static void register_process_environment_class(script::Namespace ns)
 
   Class process_environment = ns.newClass("ProcessEnvironment").setId(script::Type::QProcessEnvironment).get();
 
-  binding::ClassBinder<QProcessEnvironment> binder{ process_environment };
 
   // QProcessEnvironment();
-  binder.default_ctor().create();
+  bind::default_constructor<QProcessEnvironment>(process_environment).create();
   // QProcessEnvironment(const QProcessEnvironment &);
-  binder.ctor<const QProcessEnvironment &>().create();
+  bind::constructor<QProcessEnvironment, const QProcessEnvironment &>(process_environment).create();
   // ~QProcessEnvironment();
-  binder.dtor().create();
+  bind::destructor<QProcessEnvironment>(process_environment).create();
   // QProcessEnvironment & operator=(QProcessEnvironment &&);
-  binder.operators().assign<QProcessEnvironment &&>();
+  bind::memop_assign<QProcessEnvironment, QProcessEnvironment &&>(process_environment);
   // QProcessEnvironment & operator=(const QProcessEnvironment &);
-  binder.operators().assign<const QProcessEnvironment &>();
+  bind::memop_assign<QProcessEnvironment, const QProcessEnvironment &>(process_environment);
   // void swap(QProcessEnvironment &);
-  binder.void_fun<QProcessEnvironment &, &QProcessEnvironment::swap>("swap").create();
+  bind::void_member_function<QProcessEnvironment, QProcessEnvironment &, &QProcessEnvironment::swap>(process_environment, "swap").create();
   // bool operator==(const QProcessEnvironment &) const;
-  binder.operators().eq<const QProcessEnvironment &>();
+  bind::memop_eq<QProcessEnvironment, const QProcessEnvironment &>(process_environment);
   // bool operator!=(const QProcessEnvironment &) const;
-  binder.operators().neq<const QProcessEnvironment &>();
+  bind::memop_neq<QProcessEnvironment, const QProcessEnvironment &>(process_environment);
   // bool isEmpty() const;
-  binder.fun<bool, &QProcessEnvironment::isEmpty>("isEmpty").create();
+  bind::member_function<QProcessEnvironment, bool, &QProcessEnvironment::isEmpty>(process_environment, "isEmpty").create();
   // void clear();
-  binder.void_fun<&QProcessEnvironment::clear>("clear").create();
+  bind::void_member_function<QProcessEnvironment, &QProcessEnvironment::clear>(process_environment, "clear").create();
   // bool contains(const QString &) const;
-  binder.fun<bool, const QString &, &QProcessEnvironment::contains>("contains").create();
+  bind::member_function<QProcessEnvironment, bool, const QString &, &QProcessEnvironment::contains>(process_environment, "contains").create();
   // void insert(const QString &, const QString &);
-  binder.void_fun<const QString &, const QString &, &QProcessEnvironment::insert>("insert").create();
+  bind::void_member_function<QProcessEnvironment, const QString &, const QString &, &QProcessEnvironment::insert>(process_environment, "insert").create();
   // void remove(const QString &);
-  binder.void_fun<const QString &, &QProcessEnvironment::remove>("remove").create();
+  bind::void_member_function<QProcessEnvironment, const QString &, &QProcessEnvironment::remove>(process_environment, "remove").create();
   // QString value(const QString &, const QString &) const;
-  binder.fun<QString, const QString &, const QString &, &QProcessEnvironment::value>("value").create();
+  bind::member_function<QProcessEnvironment, QString, const QString &, const QString &, &QProcessEnvironment::value>(process_environment, "value").create();
   // QStringList toStringList() const;
   /// TODO: QStringList toStringList() const;
   // QStringList keys() const;
   /// TODO: QStringList keys() const;
   // void insert(const QProcessEnvironment &);
-  binder.void_fun<const QProcessEnvironment &, &QProcessEnvironment::insert>("insert").create();
+  bind::void_member_function<QProcessEnvironment, const QProcessEnvironment &, &QProcessEnvironment::insert>(process_environment, "insert").create();
   // static QProcessEnvironment systemEnvironment();
-  binder.static_fun<QProcessEnvironment, &QProcessEnvironment::systemEnvironment>("systemEnvironment").create();
+  bind::static_member_function<QProcessEnvironment, QProcessEnvironment, &QProcessEnvironment::systemEnvironment>(process_environment, "systemEnvironment").create();
 }
 
 
@@ -152,159 +151,158 @@ static void register_process_class(script::Namespace ns)
   register_process_process_channel_mode_enum(process);
   register_process_input_channel_mode_enum(process);
   register_process_exit_status_enum(process);
-  binding::ClassBinder<QProcess> binder{ process, &QProcess::staticMetaObject };
 
   // QProcess(QObject *);
-  binder.ctor<QObject *>()
-    .apply(binding::default_arguments((QObject*) nullptr)).create();
+  bind::constructor<QProcess, QObject *>(process)
+    .apply(bind::default_arguments((QObject*) nullptr)).create();
   // ~QProcess();
-  binder.dtor().create();
+  bind::destructor<QProcess>(process).create();
   // void start(const QString &, const QStringList &, QIODevice::OpenMode);
   /// TODO: void start(const QString &, const QStringList &, QIODevice::OpenMode);
   // void start(const QString &, QIODevice::OpenMode);
-  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::start>("start")
-    .apply(binding::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
+  bind::void_member_function<QProcess, const QString &, QIODevice::OpenMode, &QProcess::start>(process, "start")
+    .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // void start(QIODevice::OpenMode);
-  binder.void_fun<QIODevice::OpenMode, &QProcess::start>("start").create();
+  bind::void_member_function<QProcess, QIODevice::OpenMode, &QProcess::start>(process, "start").create();
   // bool startDetached(qint64 *);
   /// TODO: bool startDetached(qint64 *);
   // bool open(QIODevice::OpenMode);
-  binder.fun<bool, QIODevice::OpenMode, &QProcess::open>("open")
-    .apply(binding::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
+  bind::member_function<QProcess, bool, QIODevice::OpenMode, &QProcess::open>(process, "open")
+    .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // QString program() const;
-  binder.fun<QString, &QProcess::program>("program").create();
+  bind::member_function<QProcess, QString, &QProcess::program>(process, "program").create();
   // void setProgram(const QString &);
-  binder.void_fun<const QString &, &QProcess::setProgram>("setProgram").create();
+  bind::void_member_function<QProcess, const QString &, &QProcess::setProgram>(process, "setProgram").create();
   // QStringList arguments() const;
   /// TODO: QStringList arguments() const;
   // void setArguments(const QStringList &);
   /// TODO: void setArguments(const QStringList &);
   // QProcess::ProcessChannelMode readChannelMode() const;
-  binder.fun<QProcess::ProcessChannelMode, &QProcess::readChannelMode>("readChannelMode").create();
+  bind::member_function<QProcess, QProcess::ProcessChannelMode, &QProcess::readChannelMode>(process, "readChannelMode").create();
   // void setReadChannelMode(QProcess::ProcessChannelMode);
-  binder.void_fun<QProcess::ProcessChannelMode, &QProcess::setReadChannelMode>("setReadChannelMode").create();
+  bind::void_member_function<QProcess, QProcess::ProcessChannelMode, &QProcess::setReadChannelMode>(process, "setReadChannelMode").create();
   // QProcess::ProcessChannelMode processChannelMode() const;
-  binder.fun<QProcess::ProcessChannelMode, &QProcess::processChannelMode>("processChannelMode").create();
+  bind::member_function<QProcess, QProcess::ProcessChannelMode, &QProcess::processChannelMode>(process, "processChannelMode").create();
   // void setProcessChannelMode(QProcess::ProcessChannelMode);
-  binder.void_fun<QProcess::ProcessChannelMode, &QProcess::setProcessChannelMode>("setProcessChannelMode").create();
+  bind::void_member_function<QProcess, QProcess::ProcessChannelMode, &QProcess::setProcessChannelMode>(process, "setProcessChannelMode").create();
   // QProcess::InputChannelMode inputChannelMode() const;
-  binder.fun<QProcess::InputChannelMode, &QProcess::inputChannelMode>("inputChannelMode").create();
+  bind::member_function<QProcess, QProcess::InputChannelMode, &QProcess::inputChannelMode>(process, "inputChannelMode").create();
   // void setInputChannelMode(QProcess::InputChannelMode);
-  binder.void_fun<QProcess::InputChannelMode, &QProcess::setInputChannelMode>("setInputChannelMode").create();
+  bind::void_member_function<QProcess, QProcess::InputChannelMode, &QProcess::setInputChannelMode>(process, "setInputChannelMode").create();
   // QProcess::ProcessChannel readChannel() const;
-  binder.fun<QProcess::ProcessChannel, &QProcess::readChannel>("readChannel").create();
+  bind::member_function<QProcess, QProcess::ProcessChannel, &QProcess::readChannel>(process, "readChannel").create();
   // void setReadChannel(QProcess::ProcessChannel);
-  binder.void_fun<QProcess::ProcessChannel, &QProcess::setReadChannel>("setReadChannel").create();
+  bind::void_member_function<QProcess, QProcess::ProcessChannel, &QProcess::setReadChannel>(process, "setReadChannel").create();
   // void closeReadChannel(QProcess::ProcessChannel);
-  binder.void_fun<QProcess::ProcessChannel, &QProcess::closeReadChannel>("closeReadChannel").create();
+  bind::void_member_function<QProcess, QProcess::ProcessChannel, &QProcess::closeReadChannel>(process, "closeReadChannel").create();
   // void closeWriteChannel();
-  binder.void_fun<&QProcess::closeWriteChannel>("closeWriteChannel").create();
+  bind::void_member_function<QProcess, &QProcess::closeWriteChannel>(process, "closeWriteChannel").create();
   // void setStandardInputFile(const QString &);
-  binder.void_fun<const QString &, &QProcess::setStandardInputFile>("setStandardInputFile").create();
+  bind::void_member_function<QProcess, const QString &, &QProcess::setStandardInputFile>(process, "setStandardInputFile").create();
   // void setStandardOutputFile(const QString &, QIODevice::OpenMode);
-  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::setStandardOutputFile>("setStandardOutputFile")
-    .apply(binding::default_arguments(QIODevice::OpenMode(QIODevice::Truncate))).create();
+  bind::void_member_function<QProcess, const QString &, QIODevice::OpenMode, &QProcess::setStandardOutputFile>(process, "setStandardOutputFile")
+    .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::Truncate))).create();
   // void setStandardErrorFile(const QString &, QIODevice::OpenMode);
-  binder.void_fun<const QString &, QIODevice::OpenMode, &QProcess::setStandardErrorFile>("setStandardErrorFile")
-    .apply(binding::default_arguments(QIODevice::OpenMode(QIODevice::Truncate))).create();
+  bind::void_member_function<QProcess, const QString &, QIODevice::OpenMode, &QProcess::setStandardErrorFile>(process, "setStandardErrorFile")
+    .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::Truncate))).create();
   // void setStandardOutputProcess(QProcess *);
   /// TODO: void setStandardOutputProcess(QProcess *);
   // QString nativeArguments() const;
-  binder.fun<QString, &QProcess::nativeArguments>("nativeArguments").create();
+  bind::member_function<QProcess, QString, &QProcess::nativeArguments>(process, "nativeArguments").create();
   // void setNativeArguments(const QString &);
-  binder.void_fun<const QString &, &QProcess::setNativeArguments>("setNativeArguments").create();
+  bind::void_member_function<QProcess, const QString &, &QProcess::setNativeArguments>(process, "setNativeArguments").create();
   // QProcess::CreateProcessArgumentModifier createProcessArgumentsModifier() const;
   /// TODO: QProcess::CreateProcessArgumentModifier createProcessArgumentsModifier() const;
   // void setCreateProcessArgumentsModifier(QProcess::CreateProcessArgumentModifier);
   /// TODO: void setCreateProcessArgumentsModifier(QProcess::CreateProcessArgumentModifier);
   // QString workingDirectory() const;
-  binder.fun<QString, &QProcess::workingDirectory>("workingDirectory").create();
+  bind::member_function<QProcess, QString, &QProcess::workingDirectory>(process, "workingDirectory").create();
   // void setWorkingDirectory(const QString &);
-  binder.void_fun<const QString &, &QProcess::setWorkingDirectory>("setWorkingDirectory").create();
+  bind::void_member_function<QProcess, const QString &, &QProcess::setWorkingDirectory>(process, "setWorkingDirectory").create();
   // void setEnvironment(const QStringList &);
   /// TODO: void setEnvironment(const QStringList &);
   // QStringList environment() const;
   /// TODO: QStringList environment() const;
   // void setProcessEnvironment(const QProcessEnvironment &);
-  binder.void_fun<const QProcessEnvironment &, &QProcess::setProcessEnvironment>("setProcessEnvironment").create();
+  bind::void_member_function<QProcess, const QProcessEnvironment &, &QProcess::setProcessEnvironment>(process, "setProcessEnvironment").create();
   // QProcessEnvironment processEnvironment() const;
-  binder.fun<QProcessEnvironment, &QProcess::processEnvironment>("processEnvironment").create();
+  bind::member_function<QProcess, QProcessEnvironment, &QProcess::processEnvironment>(process, "processEnvironment").create();
   // QProcess::ProcessError error() const;
-  binder.fun<QProcess::ProcessError, &QProcess::error>("error").create();
+  bind::member_function<QProcess, QProcess::ProcessError, &QProcess::error>(process, "error").create();
   // QProcess::ProcessState state() const;
-  binder.fun<QProcess::ProcessState, &QProcess::state>("state").create();
+  bind::member_function<QProcess, QProcess::ProcessState, &QProcess::state>(process, "state").create();
   // Q_PID pid() const;
   /// TODO: Q_PID pid() const;
   // qint64 processId() const;
   /// TODO: qint64 processId() const;
   // bool waitForStarted(int);
-  binder.fun<bool, int, &QProcess::waitForStarted>("waitForStarted")
-    .apply(binding::default_arguments(30000)).create();
+  bind::member_function<QProcess, bool, int, &QProcess::waitForStarted>(process, "waitForStarted")
+    .apply(bind::default_arguments(30000)).create();
   // bool waitForReadyRead(int);
-  binder.fun<bool, int, &QProcess::waitForReadyRead>("waitForReadyRead")
-    .apply(binding::default_arguments(30000)).create();
+  bind::member_function<QProcess, bool, int, &QProcess::waitForReadyRead>(process, "waitForReadyRead")
+    .apply(bind::default_arguments(30000)).create();
   // bool waitForBytesWritten(int);
-  binder.fun<bool, int, &QProcess::waitForBytesWritten>("waitForBytesWritten")
-    .apply(binding::default_arguments(30000)).create();
+  bind::member_function<QProcess, bool, int, &QProcess::waitForBytesWritten>(process, "waitForBytesWritten")
+    .apply(bind::default_arguments(30000)).create();
   // bool waitForFinished(int);
-  binder.fun<bool, int, &QProcess::waitForFinished>("waitForFinished")
-    .apply(binding::default_arguments(30000)).create();
+  bind::member_function<QProcess, bool, int, &QProcess::waitForFinished>(process, "waitForFinished")
+    .apply(bind::default_arguments(30000)).create();
   // QByteArray readAllStandardOutput();
-  binder.fun<QByteArray, &QProcess::readAllStandardOutput>("readAllStandardOutput").create();
+  bind::member_function<QProcess, QByteArray, &QProcess::readAllStandardOutput>(process, "readAllStandardOutput").create();
   // QByteArray readAllStandardError();
-  binder.fun<QByteArray, &QProcess::readAllStandardError>("readAllStandardError").create();
+  bind::member_function<QProcess, QByteArray, &QProcess::readAllStandardError>(process, "readAllStandardError").create();
   // int exitCode() const;
-  binder.fun<int, &QProcess::exitCode>("exitCode").create();
+  bind::member_function<QProcess, int, &QProcess::exitCode>(process, "exitCode").create();
   // QProcess::ExitStatus exitStatus() const;
-  binder.fun<QProcess::ExitStatus, &QProcess::exitStatus>("exitStatus").create();
+  bind::member_function<QProcess, QProcess::ExitStatus, &QProcess::exitStatus>(process, "exitStatus").create();
   // qint64 bytesAvailable() const;
   /// TODO: qint64 bytesAvailable() const;
   // qint64 bytesToWrite() const;
   /// TODO: qint64 bytesToWrite() const;
   // bool isSequential() const;
-  binder.fun<bool, &QProcess::isSequential>("isSequential").create();
+  bind::member_function<QProcess, bool, &QProcess::isSequential>(process, "isSequential").create();
   // bool canReadLine() const;
-  binder.fun<bool, &QProcess::canReadLine>("canReadLine").create();
+  bind::member_function<QProcess, bool, &QProcess::canReadLine>(process, "canReadLine").create();
   // void close();
-  binder.void_fun<&QProcess::close>("close").create();
+  bind::void_member_function<QProcess, &QProcess::close>(process, "close").create();
   // bool atEnd() const;
-  binder.fun<bool, &QProcess::atEnd>("atEnd").create();
+  bind::member_function<QProcess, bool, &QProcess::atEnd>(process, "atEnd").create();
   // static int execute(const QString &, const QStringList &);
   /// TODO: static int execute(const QString &, const QStringList &);
   // static int execute(const QString &);
-  binder.static_fun<int, const QString &, &QProcess::execute>("execute").create();
+  bind::static_member_function<QProcess, int, const QString &, &QProcess::execute>(process, "execute").create();
   // static bool startDetached(const QString &, const QStringList &, const QString &, qint64 *);
   /// TODO: static bool startDetached(const QString &, const QStringList &, const QString &, qint64 *);
   // static bool startDetached(const QString &, const QStringList &);
   /// TODO: static bool startDetached(const QString &, const QStringList &);
   // static bool startDetached(const QString &);
-  binder.static_fun<bool, const QString &, &QProcess::startDetached>("startDetached").create();
+  bind::static_member_function<QProcess, bool, const QString &, &QProcess::startDetached>(process, "startDetached").create();
   // static QStringList systemEnvironment();
   /// TODO: static QStringList systemEnvironment();
   // static QString nullDevice();
-  binder.static_fun<QString, &QProcess::nullDevice>("nullDevice").create();
+  bind::static_member_function<QProcess, QString, &QProcess::nullDevice>(process, "nullDevice").create();
   // void terminate();
-  binder.void_fun<&QProcess::terminate>("terminate").create();
+  bind::void_member_function<QProcess, &QProcess::terminate>(process, "terminate").create();
   // void kill();
-  binder.void_fun<&QProcess::kill>("kill").create();
+  bind::void_member_function<QProcess, &QProcess::kill>(process, "kill").create();
   // void started(QProcess::QPrivateSignal);
   /// TODO: void started(QProcess::QPrivateSignal);
   // void finished(int);
-  binder.sigs().add<int>("finished", "finished(int)");
+  bind::signal<QProcess, int>(process, "finished", "finished(int)");
   // void finished(int, QProcess::ExitStatus);
-  binder.sigs().add<int, QProcess::ExitStatus>("finished", "finished(int,QProcess::ExitStatus)");
+  bind::signal<QProcess, int, QProcess::ExitStatus>(process, "finished", "finished(int,QProcess::ExitStatus)");
   // void error(QProcess::ProcessError);
-  binder.void_fun<QProcess::ProcessError, &QProcess::error>("error").create();
+  bind::void_member_function<QProcess, QProcess::ProcessError, &QProcess::error>(process, "error").create();
   // void errorOccurred(QProcess::ProcessError);
-  binder.sigs().add<QProcess::ProcessError>("errorOccurred", "errorOccurred(QProcess::ProcessError)");
+  bind::signal<QProcess, QProcess::ProcessError>(process, "errorOccurred", "errorOccurred(QProcess::ProcessError)");
   // void stateChanged(QProcess::ProcessState);
-  binder.sigs().add<QProcess::ProcessState>("stateChanged", "stateChanged(QProcess::ProcessState)");
+  bind::signal<QProcess, QProcess::ProcessState>(process, "stateChanged", "stateChanged(QProcess::ProcessState)");
   // void readyReadStandardOutput();
-  binder.sigs().add("readyReadStandardOutput", "readyReadStandardOutput()");
+  bind::signal<QProcess>(process, "readyReadStandardOutput", "readyReadStandardOutput()");
   // void readyReadStandardError();
-  binder.sigs().add("readyReadStandardError", "readyReadStandardError()");
+  bind::signal<QProcess>(process, "readyReadStandardError", "readyReadStandardError()");
 
-  process.engine()->registerQtType(&QProcess::staticMetaObject, process.id());
+  bind::link(process, &QProcess::staticMetaObject);
 }
 
 
@@ -316,9 +314,8 @@ void register_process_file(script::Namespace core)
 
   register_process_environment_class(ns);
   register_process_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QProcessEnvironment &, QProcessEnvironment &);
-  binder.void_fun<QProcessEnvironment &, QProcessEnvironment &, &swap>("swap").create();
+  bind::void_function<QProcessEnvironment &, QProcessEnvironment &, &swap>(ns, "swap").create();
 }
 

@@ -4,10 +4,10 @@
 
 #include "yasl/core/dir.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/char.h"
@@ -76,77 +76,76 @@ static void register_dir_class(script::Namespace ns)
 
   register_dir_filter_enum(dir);
   register_dir_sort_flag_enum(dir);
-  binding::ClassBinder<QDir> binder{ dir };
 
   // QDir(const QDir &);
-  binder.ctor<const QDir &>().create();
+  bind::constructor<QDir, const QDir &>(dir).create();
   // QDir(const QString &);
-  binder.ctor<const QString &>()
-    .apply(binding::default_arguments(QString())).create();
+  bind::constructor<QDir, const QString &>(dir)
+    .apply(bind::default_arguments(QString())).create();
   // QDir(const QString &, const QString &, QDir::SortFlags, QDir::Filters);
-  binder.ctor<const QString &, const QString &, QDir::SortFlags, QDir::Filters>()
-    .apply(binding::default_arguments(QDir::Filters(QDir::AllEntries), QDir::SortFlags(QDir::Name | QDir::IgnoreCase))).create();
+  bind::constructor<QDir, const QString &, const QString &, QDir::SortFlags, QDir::Filters>(dir)
+    .apply(bind::default_arguments(QDir::Filters(QDir::AllEntries), QDir::SortFlags(QDir::Name | QDir::IgnoreCase))).create();
   // ~QDir();
-  binder.dtor().create();
+  bind::destructor<QDir>(dir).create();
   // QDir & operator=(const QDir &);
-  binder.operators().assign<const QDir &>();
+  bind::memop_assign<QDir, const QDir &>(dir);
   // QDir & operator=(const QString &);
-  binder.operators().assign<const QString &>();
+  bind::memop_assign<QDir, const QString &>(dir);
   // QDir & operator=(QDir &&);
-  binder.operators().assign<QDir &&>();
+  bind::memop_assign<QDir, QDir &&>(dir);
   // void swap(QDir &);
-  binder.void_fun<QDir &, &QDir::swap>("swap").create();
+  bind::void_member_function<QDir, QDir &, &QDir::swap>(dir, "swap").create();
   // void setPath(const QString &);
-  binder.void_fun<const QString &, &QDir::setPath>("setPath").create();
+  bind::void_member_function<QDir, const QString &, &QDir::setPath>(dir, "setPath").create();
   // QString path() const;
-  binder.fun<QString, &QDir::path>("path").create();
+  bind::member_function<QDir, QString, &QDir::path>(dir, "path").create();
   // QString absolutePath() const;
-  binder.fun<QString, &QDir::absolutePath>("absolutePath").create();
+  bind::member_function<QDir, QString, &QDir::absolutePath>(dir, "absolutePath").create();
   // QString canonicalPath() const;
-  binder.fun<QString, &QDir::canonicalPath>("canonicalPath").create();
+  bind::member_function<QDir, QString, &QDir::canonicalPath>(dir, "canonicalPath").create();
   // static void addResourceSearchPath(const QString &);
-  binder.static_void_fun<const QString &, &QDir::addResourceSearchPath>("addResourceSearchPath").create();
+  bind::static_void_member_function<QDir, const QString &, &QDir::addResourceSearchPath>(dir, "addResourceSearchPath").create();
   // static void setSearchPaths(const QString &, const QStringList &);
   /// TODO: static void setSearchPaths(const QString &, const QStringList &);
   // static void addSearchPath(const QString &, const QString &);
-  binder.static_void_fun<const QString &, const QString &, &QDir::addSearchPath>("addSearchPath").create();
+  bind::static_void_member_function<QDir, const QString &, const QString &, &QDir::addSearchPath>(dir, "addSearchPath").create();
   // static QStringList searchPaths(const QString &);
   /// TODO: static QStringList searchPaths(const QString &);
   // QString dirName() const;
-  binder.fun<QString, &QDir::dirName>("dirName").create();
+  bind::member_function<QDir, QString, &QDir::dirName>(dir, "dirName").create();
   // QString filePath(const QString &) const;
-  binder.fun<QString, const QString &, &QDir::filePath>("filePath").create();
+  bind::member_function<QDir, QString, const QString &, &QDir::filePath>(dir, "filePath").create();
   // QString absoluteFilePath(const QString &) const;
-  binder.fun<QString, const QString &, &QDir::absoluteFilePath>("absoluteFilePath").create();
+  bind::member_function<QDir, QString, const QString &, &QDir::absoluteFilePath>(dir, "absoluteFilePath").create();
   // QString relativeFilePath(const QString &) const;
-  binder.fun<QString, const QString &, &QDir::relativeFilePath>("relativeFilePath").create();
+  bind::member_function<QDir, QString, const QString &, &QDir::relativeFilePath>(dir, "relativeFilePath").create();
   // static QString toNativeSeparators(const QString &);
-  binder.static_fun<QString, const QString &, &QDir::toNativeSeparators>("toNativeSeparators").create();
+  bind::static_member_function<QDir, QString, const QString &, &QDir::toNativeSeparators>(dir, "toNativeSeparators").create();
   // static QString fromNativeSeparators(const QString &);
-  binder.static_fun<QString, const QString &, &QDir::fromNativeSeparators>("fromNativeSeparators").create();
+  bind::static_member_function<QDir, QString, const QString &, &QDir::fromNativeSeparators>(dir, "fromNativeSeparators").create();
   // bool cd(const QString &);
-  binder.fun<bool, const QString &, &QDir::cd>("cd").create();
+  bind::member_function<QDir, bool, const QString &, &QDir::cd>(dir, "cd").create();
   // bool cdUp();
-  binder.fun<bool, &QDir::cdUp>("cdUp").create();
+  bind::member_function<QDir, bool, &QDir::cdUp>(dir, "cdUp").create();
   // QStringList nameFilters() const;
   /// TODO: QStringList nameFilters() const;
   // void setNameFilters(const QStringList &);
   /// TODO: void setNameFilters(const QStringList &);
   // QDir::Filters filter() const;
-  binder.fun<QDir::Filters, &QDir::filter>("filter").create();
+  bind::member_function<QDir, QDir::Filters, &QDir::filter>(dir, "filter").create();
   // void setFilter(QDir::Filters);
-  binder.void_fun<QDir::Filters, &QDir::setFilter>("setFilter").create();
+  bind::void_member_function<QDir, QDir::Filters, &QDir::setFilter>(dir, "setFilter").create();
   // QDir::SortFlags sorting() const;
-  binder.fun<QDir::SortFlags, &QDir::sorting>("sorting").create();
+  bind::member_function<QDir, QDir::SortFlags, &QDir::sorting>(dir, "sorting").create();
   // void setSorting(QDir::SortFlags);
-  binder.void_fun<QDir::SortFlags, &QDir::setSorting>("setSorting").create();
+  bind::void_member_function<QDir, QDir::SortFlags, &QDir::setSorting>(dir, "setSorting").create();
   // uint count() const;
-  binder.fun<uint, &QDir::count>("count").create();
+  bind::member_function<QDir, uint, &QDir::count>(dir, "count").create();
   // bool isEmpty(QDir::Filters) const;
-  binder.fun<bool, QDir::Filters, &QDir::isEmpty>("isEmpty")
-    .apply(binding::default_arguments(QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot))).create();
+  bind::member_function<QDir, bool, QDir::Filters, &QDir::isEmpty>(dir, "isEmpty")
+    .apply(bind::default_arguments(QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot))).create();
   // QString operator[](int) const;
-  binder.operators().const_subscript<QString, int>();
+  bind::memop_const_subscript<QDir, QString, int>(dir);
   // static QStringList nameFiltersFromString(const QString &);
   /// TODO: static QStringList nameFiltersFromString(const QString &);
   // QStringList entryList(QDir::Filters, QDir::SortFlags) const;
@@ -158,73 +157,73 @@ static void register_dir_class(script::Namespace ns)
   // QFileInfoList entryInfoList(const QStringList &, QDir::Filters, QDir::SortFlags) const;
   /// TODO: QFileInfoList entryInfoList(const QStringList &, QDir::Filters, QDir::SortFlags) const;
   // bool mkdir(const QString &) const;
-  binder.fun<bool, const QString &, &QDir::mkdir>("mkdir").create();
+  bind::member_function<QDir, bool, const QString &, &QDir::mkdir>(dir, "mkdir").create();
   // bool rmdir(const QString &) const;
-  binder.fun<bool, const QString &, &QDir::rmdir>("rmdir").create();
+  bind::member_function<QDir, bool, const QString &, &QDir::rmdir>(dir, "rmdir").create();
   // bool mkpath(const QString &) const;
-  binder.fun<bool, const QString &, &QDir::mkpath>("mkpath").create();
+  bind::member_function<QDir, bool, const QString &, &QDir::mkpath>(dir, "mkpath").create();
   // bool rmpath(const QString &) const;
-  binder.fun<bool, const QString &, &QDir::rmpath>("rmpath").create();
+  bind::member_function<QDir, bool, const QString &, &QDir::rmpath>(dir, "rmpath").create();
   // bool removeRecursively();
-  binder.fun<bool, &QDir::removeRecursively>("removeRecursively").create();
+  bind::member_function<QDir, bool, &QDir::removeRecursively>(dir, "removeRecursively").create();
   // bool isReadable() const;
-  binder.fun<bool, &QDir::isReadable>("isReadable").create();
+  bind::member_function<QDir, bool, &QDir::isReadable>(dir, "isReadable").create();
   // bool exists() const;
-  binder.fun<bool, &QDir::exists>("exists").create();
+  bind::member_function<QDir, bool, &QDir::exists>(dir, "exists").create();
   // bool isRoot() const;
-  binder.fun<bool, &QDir::isRoot>("isRoot").create();
+  bind::member_function<QDir, bool, &QDir::isRoot>(dir, "isRoot").create();
   // static bool isRelativePath(const QString &);
-  binder.static_fun<bool, const QString &, &QDir::isRelativePath>("isRelativePath").create();
+  bind::static_member_function<QDir, bool, const QString &, &QDir::isRelativePath>(dir, "isRelativePath").create();
   // static bool isAbsolutePath(const QString &);
-  binder.static_fun<bool, const QString &, &QDir::isAbsolutePath>("isAbsolutePath").create();
+  bind::static_member_function<QDir, bool, const QString &, &QDir::isAbsolutePath>(dir, "isAbsolutePath").create();
   // bool isRelative() const;
-  binder.fun<bool, &QDir::isRelative>("isRelative").create();
+  bind::member_function<QDir, bool, &QDir::isRelative>(dir, "isRelative").create();
   // bool isAbsolute() const;
-  binder.fun<bool, &QDir::isAbsolute>("isAbsolute").create();
+  bind::member_function<QDir, bool, &QDir::isAbsolute>(dir, "isAbsolute").create();
   // bool makeAbsolute();
-  binder.fun<bool, &QDir::makeAbsolute>("makeAbsolute").create();
+  bind::member_function<QDir, bool, &QDir::makeAbsolute>(dir, "makeAbsolute").create();
   // bool operator==(const QDir &) const;
-  binder.operators().eq<const QDir &>();
+  bind::memop_eq<QDir, const QDir &>(dir);
   // bool operator!=(const QDir &) const;
-  binder.operators().neq<const QDir &>();
+  bind::memop_neq<QDir, const QDir &>(dir);
   // bool remove(const QString &);
-  binder.fun<bool, const QString &, &QDir::remove>("remove").create();
+  bind::member_function<QDir, bool, const QString &, &QDir::remove>(dir, "remove").create();
   // bool rename(const QString &, const QString &);
-  binder.fun<bool, const QString &, const QString &, &QDir::rename>("rename").create();
+  bind::member_function<QDir, bool, const QString &, const QString &, &QDir::rename>(dir, "rename").create();
   // bool exists(const QString &) const;
-  binder.fun<bool, const QString &, &QDir::exists>("exists").create();
+  bind::member_function<QDir, bool, const QString &, &QDir::exists>(dir, "exists").create();
   // static QFileInfoList drives();
   /// TODO: static QFileInfoList drives();
   // static QChar listSeparator();
-  binder.static_fun<QChar, &QDir::listSeparator>("listSeparator").create();
+  bind::static_member_function<QDir, QChar, &QDir::listSeparator>(dir, "listSeparator").create();
   // static QChar separator();
-  binder.static_fun<QChar, &QDir::separator>("separator").create();
+  bind::static_member_function<QDir, QChar, &QDir::separator>(dir, "separator").create();
   // static bool setCurrent(const QString &);
-  binder.static_fun<bool, const QString &, &QDir::setCurrent>("setCurrent").create();
+  bind::static_member_function<QDir, bool, const QString &, &QDir::setCurrent>(dir, "setCurrent").create();
   // static QDir current();
-  binder.static_fun<QDir, &QDir::current>("current").create();
+  bind::static_member_function<QDir, QDir, &QDir::current>(dir, "current").create();
   // static QString currentPath();
-  binder.static_fun<QString, &QDir::currentPath>("currentPath").create();
+  bind::static_member_function<QDir, QString, &QDir::currentPath>(dir, "currentPath").create();
   // static QDir home();
-  binder.static_fun<QDir, &QDir::home>("home").create();
+  bind::static_member_function<QDir, QDir, &QDir::home>(dir, "home").create();
   // static QString homePath();
-  binder.static_fun<QString, &QDir::homePath>("homePath").create();
+  bind::static_member_function<QDir, QString, &QDir::homePath>(dir, "homePath").create();
   // static QDir root();
-  binder.static_fun<QDir, &QDir::root>("root").create();
+  bind::static_member_function<QDir, QDir, &QDir::root>(dir, "root").create();
   // static QString rootPath();
-  binder.static_fun<QString, &QDir::rootPath>("rootPath").create();
+  bind::static_member_function<QDir, QString, &QDir::rootPath>(dir, "rootPath").create();
   // static QDir temp();
-  binder.static_fun<QDir, &QDir::temp>("temp").create();
+  bind::static_member_function<QDir, QDir, &QDir::temp>(dir, "temp").create();
   // static QString tempPath();
-  binder.static_fun<QString, &QDir::tempPath>("tempPath").create();
+  bind::static_member_function<QDir, QString, &QDir::tempPath>(dir, "tempPath").create();
   // static bool match(const QStringList &, const QString &);
   /// TODO: static bool match(const QStringList &, const QString &);
   // static bool match(const QString &, const QString &);
-  binder.static_fun<bool, const QString &, const QString &, &QDir::match>("match").create();
+  bind::static_member_function<QDir, bool, const QString &, const QString &, &QDir::match>(dir, "match").create();
   // static QString cleanPath(const QString &);
-  binder.static_fun<QString, const QString &, &QDir::cleanPath>("cleanPath").create();
+  bind::static_member_function<QDir, QString, const QString &, &QDir::cleanPath>(dir, "cleanPath").create();
   // void refresh() const;
-  binder.const_void_fun<&QDir::refresh>("refresh").create();
+  bind::const_void_member_function<QDir, &QDir::refresh>(dir, "refresh").create();
 }
 
 
@@ -235,20 +234,19 @@ void register_dir_file(script::Namespace core)
   Namespace ns = core;
 
   register_dir_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QDir &, QDir &);
-  binder.void_fun<QDir &, QDir &, &swap>("swap").create();
+  bind::void_function<QDir &, QDir &, &swap>(ns, "swap").create();
   // QDir::Filters operator|(QDir::Filter, QDir::Filter);
-  binder.operators().or<QDir::Filters, QDir::Filter, QDir::Filter>();
+  bind::op_bitor<QDir::Filters, QDir::Filter, QDir::Filter>(ns);
   // QDir::Filters operator|(QDir::Filter, QDir::Filters);
-  binder.operators().or<QDir::Filters, QDir::Filter, QDir::Filters>();
+  bind::op_bitor<QDir::Filters, QDir::Filter, QDir::Filters>(ns);
   // QIncompatibleFlag operator|(QDir::Filters::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QDir::Filters::enum_type, int);
   // QDir::SortFlags operator|(QDir::SortFlag, QDir::SortFlag);
-  binder.operators().or<QDir::SortFlags, QDir::SortFlag, QDir::SortFlag>();
+  bind::op_bitor<QDir::SortFlags, QDir::SortFlag, QDir::SortFlag>(ns);
   // QDir::SortFlags operator|(QDir::SortFlag, QDir::SortFlags);
-  binder.operators().or<QDir::SortFlags, QDir::SortFlag, QDir::SortFlags>();
+  bind::op_bitor<QDir::SortFlags, QDir::SortFlag, QDir::SortFlags>(ns);
   // QIncompatibleFlag operator|(QDir::SortFlags::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QDir::SortFlags::enum_type, int);
   // QDebug operator<<(QDebug, QDir::Filters);

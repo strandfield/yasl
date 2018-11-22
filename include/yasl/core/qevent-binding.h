@@ -5,20 +5,23 @@
 #ifndef YASL_CORE_QEVENT_BINDING_H
 #define YASL_CORE_QEVENT_BINDING_H
 
-#include "yasl/binding/values.h"
+#include "yasl/binding2/values.h"
 #include "yasl/core/makeevent.h"
 
-#include <QObject>
+#include <QEvent>
 
-namespace binding
+namespace script
+{
+
+namespace bind
 {
 
 struct qevent_tag {};
 
-} // namespace binding
+} // namespace bind
 
 
-namespace binding
+namespace bind
 {
 
 template<typename T>
@@ -30,9 +33,9 @@ struct make_value_t<T, qevent_tag>
   }
 };
 
-} // namespace binding
+} // namespace bind
 
-namespace binding
+namespace bind
 {
 
 template<typename T>
@@ -47,6 +50,8 @@ struct get_helper<T, qevent_tag>
   }
 };
 
-} // namespace binding
+} // namespace bind
+
+} // namespace script
 
 #endif // YASL_CORE_QEVENT_BINDING_H

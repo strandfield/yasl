@@ -4,9 +4,9 @@
 
 #include "yasl/gui/cursor.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -23,52 +23,51 @@ static void register_cursor_class(script::Namespace ns)
 
   Class cursor = ns.newClass("Cursor").setId(script::Type::QCursor).get();
 
-  binding::ClassBinder<QCursor> binder{ cursor };
 
   // QCursor();
-  binder.default_ctor().create();
+  bind::default_constructor<QCursor>(cursor).create();
   // QCursor(Qt::CursorShape);
-  binder.ctor<Qt::CursorShape>().create();
+  bind::constructor<QCursor, Qt::CursorShape>(cursor).create();
   // QCursor(const QBitmap &, const QBitmap &, int, int);
-  binder.ctor<const QBitmap &, const QBitmap &, int, int>()
-    .apply(binding::default_arguments(-1, -1)).create();
+  bind::constructor<QCursor, const QBitmap &, const QBitmap &, int, int>(cursor)
+    .apply(bind::default_arguments(-1, -1)).create();
   // QCursor(const QPixmap &, int, int);
-  binder.ctor<const QPixmap &, int, int>()
-    .apply(binding::default_arguments(-1, -1)).create();
+  bind::constructor<QCursor, const QPixmap &, int, int>(cursor)
+    .apply(bind::default_arguments(-1, -1)).create();
   // QCursor(const QCursor &);
-  binder.ctor<const QCursor &>().create();
+  bind::constructor<QCursor, const QCursor &>(cursor).create();
   // ~QCursor();
-  binder.dtor().create();
+  bind::destructor<QCursor>(cursor).create();
   // QCursor & operator=(const QCursor &);
-  binder.operators().assign<const QCursor &>();
+  bind::memop_assign<QCursor, const QCursor &>(cursor);
   // QCursor(QCursor &&);
-  binder.ctor<QCursor &&>().create();
+  bind::constructor<QCursor, QCursor &&>(cursor).create();
   // QCursor & operator=(QCursor &&);
-  binder.operators().assign<QCursor &&>();
+  bind::memop_assign<QCursor, QCursor &&>(cursor);
   // void swap(QCursor &);
-  binder.void_fun<QCursor &, &QCursor::swap>("swap").create();
+  bind::void_member_function<QCursor, QCursor &, &QCursor::swap>(cursor, "swap").create();
   // Qt::CursorShape shape() const;
-  binder.fun<Qt::CursorShape, &QCursor::shape>("shape").create();
+  bind::member_function<QCursor, Qt::CursorShape, &QCursor::shape>(cursor, "shape").create();
   // void setShape(Qt::CursorShape);
-  binder.void_fun<Qt::CursorShape, &QCursor::setShape>("setShape").create();
+  bind::void_member_function<QCursor, Qt::CursorShape, &QCursor::setShape>(cursor, "setShape").create();
   // const QBitmap * bitmap() const;
   /// TODO: const QBitmap * bitmap() const;
   // const QBitmap * mask() const;
   /// TODO: const QBitmap * mask() const;
   // QPixmap pixmap() const;
-  binder.fun<QPixmap, &QCursor::pixmap>("pixmap").create();
+  bind::member_function<QCursor, QPixmap, &QCursor::pixmap>(cursor, "pixmap").create();
   // QPoint hotSpot() const;
-  binder.fun<QPoint, &QCursor::hotSpot>("hotSpot").create();
+  bind::member_function<QCursor, QPoint, &QCursor::hotSpot>(cursor, "hotSpot").create();
   // static QPoint pos();
-  binder.static_fun<QPoint, &QCursor::pos>("pos").create();
+  bind::static_member_function<QCursor, QPoint, &QCursor::pos>(cursor, "pos").create();
   // static QPoint pos(const QScreen *);
   /// TODO: static QPoint pos(const QScreen *);
   // static void setPos(int, int);
-  binder.static_void_fun<int, int, &QCursor::setPos>("setPos").create();
+  bind::static_void_member_function<QCursor, int, int, &QCursor::setPos>(cursor, "setPos").create();
   // static void setPos(QScreen *, int, int);
   /// TODO: static void setPos(QScreen *, int, int);
   // static void setPos(const QPoint &);
-  binder.static_void_fun<const QPoint &, &QCursor::setPos>("setPos").create();
+  bind::static_void_member_function<QCursor, const QPoint &, &QCursor::setPos>(cursor, "setPos").create();
   // static void setPos(QScreen *, const QPoint &);
   /// TODO: static void setPos(QScreen *, const QPoint &);
 }
@@ -81,18 +80,17 @@ void register_cursor_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_cursor_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QCursor &, QCursor &);
-  binder.void_fun<QCursor &, QCursor &, &swap>("swap").create();
+  bind::void_function<QCursor &, QCursor &, &swap>(ns, "swap").create();
   // bool operator==(const QCursor &, const QCursor &);
-  binder.operators().eq<const QCursor &, const QCursor &>();
+  bind::op_eq<const QCursor &, const QCursor &>(ns);
   // bool operator!=(const QCursor &, const QCursor &);
-  binder.operators().neq<const QCursor &, const QCursor &>();
+  bind::op_neq<const QCursor &, const QCursor &>(ns);
   // QDataStream & operator<<(QDataStream &, const QCursor &);
-  binder.operators().put_to<QDataStream &, const QCursor &>();
+  bind::op_put_to<QDataStream &, const QCursor &>(ns);
   // QDataStream & operator>>(QDataStream &, QCursor &);
-  binder.operators().read_from<QDataStream &, QCursor &>();
+  bind::op_read_from<QDataStream &, QCursor &>(ns);
   // QDebug operator<<(QDebug, const QCursor &);
   /// TODO: QDebug operator<<(QDebug, const QCursor &);
 }

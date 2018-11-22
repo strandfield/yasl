@@ -337,7 +337,7 @@ void connect_template_deduce(script::TemplateArgumentDeduction &deduc, const scr
   deduc.record_deduction(0, TemplateArgument{ signal_type.type() });
   deduc.record_deduction(1, TemplateArgument{ slot_type.type() });
 
-  for (size_t i(1); i < signal_type.prototype().count(); ++i)
+  for (int i(1); i < signal_type.prototype().count(); ++i)
   {
     if (signal_type.prototype().at(i) != slot_type.prototype().at(i))
       return deduc.fail();
@@ -415,7 +415,7 @@ void emit_template_substitute(script::FunctionBuilder & builder, script::Functio
 
   builder.returns(Type::Void);
   builder.addParam(signal_type.type());
-  for (size_t i(1); i < signal_type.prototype().count(); ++i)
+  for (int i(1); i < signal_type.prototype().count(); ++i)
   {
     builder.addParam(signal_type.prototype().at(i));
   }

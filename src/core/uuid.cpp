@@ -4,9 +4,9 @@
 
 #include "yasl/core/uuid.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
@@ -53,18 +53,17 @@ static void register_uuid_class(script::Namespace ns)
 
   register_uuid_variant_enum(uuid);
   register_uuid_version_enum(uuid);
-  binding::ClassBinder<QUuid> binder{ uuid };
 
   // QUuid();
-  binder.default_ctor().create();
+  bind::default_constructor<QUuid>(uuid).create();
   // QUuid(const QUuid &);
-  binder.ctor<const QUuid &>().create();
+  bind::constructor<QUuid, const QUuid &>(uuid).create();
   // ~QUuid();
-  binder.dtor().create();
+  bind::destructor<QUuid>(uuid).create();
   // QUuid(uint, ushort, ushort, uchar, uchar, uchar, uchar, uchar, uchar, uchar, uchar);
   /// TODO: QUuid(uint, ushort, ushort, uchar, uchar, uchar, uchar, uchar, uchar, uchar, uchar);
   // QUuid(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QUuid, const QString &>(uuid).create();
   // static QUuid fromString(QStringView);
   /// TODO: static QUuid fromString(QStringView);
   // static QUuid fromString(QLatin1String);
@@ -72,27 +71,27 @@ static void register_uuid_class(script::Namespace ns)
   // QUuid(const char *);
   /// TODO: QUuid(const char *);
   // QString toString() const;
-  binder.fun<QString, &QUuid::toString>("toString").create();
+  bind::member_function<QUuid, QString, &QUuid::toString>(uuid, "toString").create();
   // QUuid(const QByteArray &);
-  binder.ctor<const QByteArray &>().create();
+  bind::constructor<QUuid, const QByteArray &>(uuid).create();
   // QByteArray toByteArray() const;
-  binder.fun<QByteArray, &QUuid::toByteArray>("toByteArray").create();
+  bind::member_function<QUuid, QByteArray, &QUuid::toByteArray>(uuid, "toByteArray").create();
   // QByteArray toRfc4122() const;
-  binder.fun<QByteArray, &QUuid::toRfc4122>("toRfc4122").create();
+  bind::member_function<QUuid, QByteArray, &QUuid::toRfc4122>(uuid, "toRfc4122").create();
   // static QUuid fromRfc4122(const QByteArray &);
-  binder.static_fun<QUuid, const QByteArray &, &QUuid::fromRfc4122>("fromRfc4122").create();
+  bind::static_member_function<QUuid, QUuid, const QByteArray &, &QUuid::fromRfc4122>(uuid, "fromRfc4122").create();
   // bool isNull() const;
-  binder.fun<bool, &QUuid::isNull>("isNull").create();
+  bind::member_function<QUuid, bool, &QUuid::isNull>(uuid, "isNull").create();
   // QUuid & operator=(const QUuid &);
-  binder.operators().assign<const QUuid &>();
+  bind::memop_assign<QUuid, const QUuid &>(uuid);
   // bool operator==(const QUuid &) const;
-  binder.operators().eq<const QUuid &>();
+  bind::memop_eq<QUuid, const QUuid &>(uuid);
   // bool operator!=(const QUuid &) const;
-  binder.operators().neq<const QUuid &>();
+  bind::memop_neq<QUuid, const QUuid &>(uuid);
   // bool operator<(const QUuid &) const;
-  binder.operators().less<const QUuid &>();
+  bind::memop_less<QUuid, const QUuid &>(uuid);
   // bool operator>(const QUuid &) const;
-  binder.operators().greater<const QUuid &>();
+  bind::memop_greater<QUuid, const QUuid &>(uuid);
   // QUuid(const GUID &);
   /// TODO: QUuid(const GUID &);
   // QUuid & operator=(const GUID &);
@@ -102,19 +101,19 @@ static void register_uuid_class(script::Namespace ns)
   // bool operator!=(const GUID &) const;
   /// TODO: bool operator!=(const GUID &) const;
   // static QUuid createUuid();
-  binder.static_fun<QUuid, &QUuid::createUuid>("createUuid").create();
+  bind::static_member_function<QUuid, QUuid, &QUuid::createUuid>(uuid, "createUuid").create();
   // static QUuid createUuidV3(const QUuid &, const QByteArray &);
-  binder.static_fun<QUuid, const QUuid &, const QByteArray &, &QUuid::createUuidV3>("createUuidV3").create();
+  bind::static_member_function<QUuid, QUuid, const QUuid &, const QByteArray &, &QUuid::createUuidV3>(uuid, "createUuidV3").create();
   // static QUuid createUuidV5(const QUuid &, const QByteArray &);
-  binder.static_fun<QUuid, const QUuid &, const QByteArray &, &QUuid::createUuidV5>("createUuidV5").create();
+  bind::static_member_function<QUuid, QUuid, const QUuid &, const QByteArray &, &QUuid::createUuidV5>(uuid, "createUuidV5").create();
   // static QUuid createUuidV3(const QUuid &, const QString &);
-  binder.static_fun<QUuid, const QUuid &, const QString &, &QUuid::createUuidV3>("createUuidV3").create();
+  bind::static_member_function<QUuid, QUuid, const QUuid &, const QString &, &QUuid::createUuidV3>(uuid, "createUuidV3").create();
   // static QUuid createUuidV5(const QUuid &, const QString &);
-  binder.static_fun<QUuid, const QUuid &, const QString &, &QUuid::createUuidV5>("createUuidV5").create();
+  bind::static_member_function<QUuid, QUuid, const QUuid &, const QString &, &QUuid::createUuidV5>(uuid, "createUuidV5").create();
   // QUuid::Variant variant() const;
-  binder.fun<QUuid::Variant, &QUuid::variant>("variant").create();
+  bind::member_function<QUuid, QUuid::Variant, &QUuid::variant>(uuid, "variant").create();
   // QUuid::Version version() const;
-  binder.fun<QUuid::Version, &QUuid::version>("version").create();
+  bind::member_function<QUuid, QUuid::Version, &QUuid::version>(uuid, "version").create();
 }
 
 
@@ -125,19 +124,18 @@ void register_uuid_file(script::Namespace core)
   Namespace ns = core;
 
   register_uuid_class(ns);
-  binding::Namespace binder{ ns };
 
   // QDataStream & operator<<(QDataStream &, const QUuid &);
-  binder.operators().put_to<QDataStream &, const QUuid &>();
+  bind::op_put_to<QDataStream &, const QUuid &>(ns);
   // QDataStream & operator>>(QDataStream &, QUuid &);
-  binder.operators().read_from<QDataStream &, QUuid &>();
+  bind::op_read_from<QDataStream &, QUuid &>(ns);
   // QDebug operator<<(QDebug, const QUuid &);
   /// TODO: QDebug operator<<(QDebug, const QUuid &);
   // uint qHash(const QUuid &, uint);
-  binder.fun<uint, const QUuid &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QUuid &, uint, &qHash>(ns, "qHash").create();
   // bool operator<=(const QUuid &, const QUuid &);
-  binder.operators().leq<const QUuid &, const QUuid &>();
+  bind::op_leq<const QUuid &, const QUuid &>(ns);
   // bool operator>=(const QUuid &, const QUuid &);
-  binder.operators().geq<const QUuid &, const QUuid &>();
+  bind::op_geq<const QUuid &, const QUuid &>(ns);
 }
 

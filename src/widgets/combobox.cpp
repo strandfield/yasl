@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/combobox.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -58,63 +58,62 @@ static void register_combo_box_class(script::Namespace ns)
 
   register_combo_box_insert_policy_enum(combo_box);
   register_combo_box_size_adjust_policy_enum(combo_box);
-  binding::ClassBinder<QComboBox> binder{ combo_box, &QComboBox::staticMetaObject };
 
   // QComboBox(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QComboBox, QWidget *>(combo_box)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QComboBox();
-  binder.dtor().create();
+  bind::destructor<QComboBox>(combo_box).create();
   // int maxVisibleItems() const;
-  binder.fun<int, &QComboBox::maxVisibleItems>("maxVisibleItems").create();
+  bind::member_function<QComboBox, int, &QComboBox::maxVisibleItems>(combo_box, "maxVisibleItems").create();
   // void setMaxVisibleItems(int);
-  binder.void_fun<int, &QComboBox::setMaxVisibleItems>("setMaxVisibleItems").create();
+  bind::void_member_function<QComboBox, int, &QComboBox::setMaxVisibleItems>(combo_box, "setMaxVisibleItems").create();
   // int count() const;
-  binder.fun<int, &QComboBox::count>("count").create();
+  bind::member_function<QComboBox, int, &QComboBox::count>(combo_box, "count").create();
   // void setMaxCount(int);
-  binder.void_fun<int, &QComboBox::setMaxCount>("setMaxCount").create();
+  bind::void_member_function<QComboBox, int, &QComboBox::setMaxCount>(combo_box, "setMaxCount").create();
   // int maxCount() const;
-  binder.fun<int, &QComboBox::maxCount>("maxCount").create();
+  bind::member_function<QComboBox, int, &QComboBox::maxCount>(combo_box, "maxCount").create();
   // bool autoCompletion() const;
-  binder.fun<bool, &QComboBox::autoCompletion>("autoCompletion").create();
+  bind::member_function<QComboBox, bool, &QComboBox::autoCompletion>(combo_box, "autoCompletion").create();
   // void setAutoCompletion(bool);
-  binder.void_fun<bool, &QComboBox::setAutoCompletion>("setAutoCompletion").create();
+  bind::void_member_function<QComboBox, bool, &QComboBox::setAutoCompletion>(combo_box, "setAutoCompletion").create();
   // Qt::CaseSensitivity autoCompletionCaseSensitivity() const;
-  binder.fun<Qt::CaseSensitivity, &QComboBox::autoCompletionCaseSensitivity>("autoCompletionCaseSensitivity").create();
+  bind::member_function<QComboBox, Qt::CaseSensitivity, &QComboBox::autoCompletionCaseSensitivity>(combo_box, "autoCompletionCaseSensitivity").create();
   // void setAutoCompletionCaseSensitivity(Qt::CaseSensitivity);
-  binder.void_fun<Qt::CaseSensitivity, &QComboBox::setAutoCompletionCaseSensitivity>("setAutoCompletionCaseSensitivity").create();
+  bind::void_member_function<QComboBox, Qt::CaseSensitivity, &QComboBox::setAutoCompletionCaseSensitivity>(combo_box, "setAutoCompletionCaseSensitivity").create();
   // bool duplicatesEnabled() const;
-  binder.fun<bool, &QComboBox::duplicatesEnabled>("duplicatesEnabled").create();
+  bind::member_function<QComboBox, bool, &QComboBox::duplicatesEnabled>(combo_box, "duplicatesEnabled").create();
   // void setDuplicatesEnabled(bool);
-  binder.void_fun<bool, &QComboBox::setDuplicatesEnabled>("setDuplicatesEnabled").create();
+  bind::void_member_function<QComboBox, bool, &QComboBox::setDuplicatesEnabled>(combo_box, "setDuplicatesEnabled").create();
   // void setFrame(bool);
-  binder.void_fun<bool, &QComboBox::setFrame>("setFrame").create();
+  bind::void_member_function<QComboBox, bool, &QComboBox::setFrame>(combo_box, "setFrame").create();
   // bool hasFrame() const;
-  binder.fun<bool, &QComboBox::hasFrame>("hasFrame").create();
+  bind::member_function<QComboBox, bool, &QComboBox::hasFrame>(combo_box, "hasFrame").create();
   // int findText(const QString &, Qt::MatchFlags) const;
   /// TODO: int findText(const QString &, Qt::MatchFlags) const;
   // int findData(const QVariant &, int, Qt::MatchFlags) const;
   /// TODO: int findData(const QVariant &, int, Qt::MatchFlags) const;
   // QComboBox::InsertPolicy insertPolicy() const;
-  binder.fun<QComboBox::InsertPolicy, &QComboBox::insertPolicy>("insertPolicy").create();
+  bind::member_function<QComboBox, QComboBox::InsertPolicy, &QComboBox::insertPolicy>(combo_box, "insertPolicy").create();
   // void setInsertPolicy(QComboBox::InsertPolicy);
-  binder.void_fun<QComboBox::InsertPolicy, &QComboBox::setInsertPolicy>("setInsertPolicy").create();
+  bind::void_member_function<QComboBox, QComboBox::InsertPolicy, &QComboBox::setInsertPolicy>(combo_box, "setInsertPolicy").create();
   // QComboBox::SizeAdjustPolicy sizeAdjustPolicy() const;
-  binder.fun<QComboBox::SizeAdjustPolicy, &QComboBox::sizeAdjustPolicy>("sizeAdjustPolicy").create();
+  bind::member_function<QComboBox, QComboBox::SizeAdjustPolicy, &QComboBox::sizeAdjustPolicy>(combo_box, "sizeAdjustPolicy").create();
   // void setSizeAdjustPolicy(QComboBox::SizeAdjustPolicy);
-  binder.void_fun<QComboBox::SizeAdjustPolicy, &QComboBox::setSizeAdjustPolicy>("setSizeAdjustPolicy").create();
+  bind::void_member_function<QComboBox, QComboBox::SizeAdjustPolicy, &QComboBox::setSizeAdjustPolicy>(combo_box, "setSizeAdjustPolicy").create();
   // int minimumContentsLength() const;
-  binder.fun<int, &QComboBox::minimumContentsLength>("minimumContentsLength").create();
+  bind::member_function<QComboBox, int, &QComboBox::minimumContentsLength>(combo_box, "minimumContentsLength").create();
   // void setMinimumContentsLength(int);
-  binder.void_fun<int, &QComboBox::setMinimumContentsLength>("setMinimumContentsLength").create();
+  bind::void_member_function<QComboBox, int, &QComboBox::setMinimumContentsLength>(combo_box, "setMinimumContentsLength").create();
   // QSize iconSize() const;
-  binder.fun<QSize, &QComboBox::iconSize>("iconSize").create();
+  bind::member_function<QComboBox, QSize, &QComboBox::iconSize>(combo_box, "iconSize").create();
   // void setIconSize(const QSize &);
-  binder.void_fun<const QSize &, &QComboBox::setIconSize>("setIconSize").create();
+  bind::void_member_function<QComboBox, const QSize &, &QComboBox::setIconSize>(combo_box, "setIconSize").create();
   // bool isEditable() const;
-  binder.fun<bool, &QComboBox::isEditable>("isEditable").create();
+  bind::member_function<QComboBox, bool, &QComboBox::isEditable>(combo_box, "isEditable").create();
   // void setEditable(bool);
-  binder.void_fun<bool, &QComboBox::setEditable>("setEditable").create();
+  bind::void_member_function<QComboBox, bool, &QComboBox::setEditable>(combo_box, "setEditable").create();
   // void setLineEdit(QLineEdit *);
   /// TODO: void setLineEdit(QLineEdit *);
   // QLineEdit * lineEdit() const;
@@ -140,96 +139,96 @@ static void register_combo_box_class(script::Namespace ns)
   // void setRootModelIndex(const QModelIndex &);
   /// TODO: void setRootModelIndex(const QModelIndex &);
   // int modelColumn() const;
-  binder.fun<int, &QComboBox::modelColumn>("modelColumn").create();
+  bind::member_function<QComboBox, int, &QComboBox::modelColumn>(combo_box, "modelColumn").create();
   // void setModelColumn(int);
-  binder.void_fun<int, &QComboBox::setModelColumn>("setModelColumn").create();
+  bind::void_member_function<QComboBox, int, &QComboBox::setModelColumn>(combo_box, "setModelColumn").create();
   // int currentIndex() const;
-  binder.fun<int, &QComboBox::currentIndex>("currentIndex").create();
+  bind::member_function<QComboBox, int, &QComboBox::currentIndex>(combo_box, "currentIndex").create();
   // QString currentText() const;
-  binder.fun<QString, &QComboBox::currentText>("currentText").create();
+  bind::member_function<QComboBox, QString, &QComboBox::currentText>(combo_box, "currentText").create();
   // QVariant currentData(int) const;
-  binder.fun<QVariant, int, &QComboBox::currentData>("currentData")
-    .apply(binding::default_arguments(int(Qt::UserRole))).create();
+  bind::member_function<QComboBox, QVariant, int, &QComboBox::currentData>(combo_box, "currentData")
+    .apply(bind::default_arguments(int(Qt::UserRole))).create();
   // QString itemText(int) const;
-  binder.fun<QString, int, &QComboBox::itemText>("itemText").create();
+  bind::member_function<QComboBox, QString, int, &QComboBox::itemText>(combo_box, "itemText").create();
   // QIcon itemIcon(int) const;
-  binder.fun<QIcon, int, &QComboBox::itemIcon>("itemIcon").create();
+  bind::member_function<QComboBox, QIcon, int, &QComboBox::itemIcon>(combo_box, "itemIcon").create();
   // QVariant itemData(int, int) const;
-  binder.fun<QVariant, int, int, &QComboBox::itemData>("itemData")
-    .apply(binding::default_arguments(int(Qt::UserRole))).create();
+  bind::member_function<QComboBox, QVariant, int, int, &QComboBox::itemData>(combo_box, "itemData")
+    .apply(bind::default_arguments(int(Qt::UserRole))).create();
   // void addItem(const QString &, const QVariant &);
-  binder.void_fun<const QString &, const QVariant &, &QComboBox::addItem>("addItem")
-    .apply(binding::default_arguments(QVariant())).create();
+  bind::void_member_function<QComboBox, const QString &, const QVariant &, &QComboBox::addItem>(combo_box, "addItem")
+    .apply(bind::default_arguments(QVariant())).create();
   // void addItem(const QIcon &, const QString &, const QVariant &);
-  binder.void_fun<const QIcon &, const QString &, const QVariant &, &QComboBox::addItem>("addItem")
-    .apply(binding::default_arguments(QVariant())).create();
+  bind::void_member_function<QComboBox, const QIcon &, const QString &, const QVariant &, &QComboBox::addItem>(combo_box, "addItem")
+    .apply(bind::default_arguments(QVariant())).create();
   // void addItems(const QStringList &);
   /// TODO: void addItems(const QStringList &);
   // void insertItem(int, const QString &, const QVariant &);
-  binder.void_fun<int, const QString &, const QVariant &, &QComboBox::insertItem>("insertItem")
-    .apply(binding::default_arguments(QVariant())).create();
+  bind::void_member_function<QComboBox, int, const QString &, const QVariant &, &QComboBox::insertItem>(combo_box, "insertItem")
+    .apply(bind::default_arguments(QVariant())).create();
   // void insertItem(int, const QIcon &, const QString &, const QVariant &);
-  binder.void_fun<int, const QIcon &, const QString &, const QVariant &, &QComboBox::insertItem>("insertItem")
-    .apply(binding::default_arguments(QVariant())).create();
+  bind::void_member_function<QComboBox, int, const QIcon &, const QString &, const QVariant &, &QComboBox::insertItem>(combo_box, "insertItem")
+    .apply(bind::default_arguments(QVariant())).create();
   // void insertItems(int, const QStringList &);
   /// TODO: void insertItems(int, const QStringList &);
   // void insertSeparator(int);
-  binder.void_fun<int, &QComboBox::insertSeparator>("insertSeparator").create();
+  bind::void_member_function<QComboBox, int, &QComboBox::insertSeparator>(combo_box, "insertSeparator").create();
   // void removeItem(int);
-  binder.void_fun<int, &QComboBox::removeItem>("removeItem").create();
+  bind::void_member_function<QComboBox, int, &QComboBox::removeItem>(combo_box, "removeItem").create();
   // void setItemText(int, const QString &);
-  binder.void_fun<int, const QString &, &QComboBox::setItemText>("setItemText").create();
+  bind::void_member_function<QComboBox, int, const QString &, &QComboBox::setItemText>(combo_box, "setItemText").create();
   // void setItemIcon(int, const QIcon &);
-  binder.void_fun<int, const QIcon &, &QComboBox::setItemIcon>("setItemIcon").create();
+  bind::void_member_function<QComboBox, int, const QIcon &, &QComboBox::setItemIcon>(combo_box, "setItemIcon").create();
   // void setItemData(int, const QVariant &, int);
-  binder.void_fun<int, const QVariant &, int, &QComboBox::setItemData>("setItemData")
-    .apply(binding::default_arguments(int(Qt::UserRole))).create();
+  bind::void_member_function<QComboBox, int, const QVariant &, int, &QComboBox::setItemData>(combo_box, "setItemData")
+    .apply(bind::default_arguments(int(Qt::UserRole))).create();
   // QAbstractItemView * view() const;
   /// TODO: QAbstractItemView * view() const;
   // void setView(QAbstractItemView *);
   /// TODO: void setView(QAbstractItemView *);
   // QSize sizeHint() const;
-  binder.fun<QSize, &QComboBox::sizeHint>("sizeHint").create();
+  bind::member_function<QComboBox, QSize, &QComboBox::sizeHint>(combo_box, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QComboBox::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QComboBox, QSize, &QComboBox::minimumSizeHint>(combo_box, "minimumSizeHint").create();
   // void showPopup();
-  binder.void_fun<&QComboBox::showPopup>("showPopup").create();
+  bind::void_member_function<QComboBox, &QComboBox::showPopup>(combo_box, "showPopup").create();
   // void hidePopup();
-  binder.void_fun<&QComboBox::hidePopup>("hidePopup").create();
+  bind::void_member_function<QComboBox, &QComboBox::hidePopup>(combo_box, "hidePopup").create();
   // bool event(QEvent *);
   /// TODO: bool event(QEvent *);
   // QVariant inputMethodQuery(Qt::InputMethodQuery) const;
-  binder.fun<QVariant, Qt::InputMethodQuery, &QComboBox::inputMethodQuery>("inputMethodQuery").create();
+  bind::member_function<QComboBox, QVariant, Qt::InputMethodQuery, &QComboBox::inputMethodQuery>(combo_box, "inputMethodQuery").create();
   // QVariant inputMethodQuery(Qt::InputMethodQuery, const QVariant &) const;
-  binder.fun<QVariant, Qt::InputMethodQuery, const QVariant &, &QComboBox::inputMethodQuery>("inputMethodQuery").create();
+  bind::member_function<QComboBox, QVariant, Qt::InputMethodQuery, const QVariant &, &QComboBox::inputMethodQuery>(combo_box, "inputMethodQuery").create();
   // void clear();
-  binder.void_fun<&QComboBox::clear>("clear").create();
+  bind::void_member_function<QComboBox, &QComboBox::clear>(combo_box, "clear").create();
   // void clearEditText();
-  binder.void_fun<&QComboBox::clearEditText>("clearEditText").create();
+  bind::void_member_function<QComboBox, &QComboBox::clearEditText>(combo_box, "clearEditText").create();
   // void setEditText(const QString &);
-  binder.void_fun<const QString &, &QComboBox::setEditText>("setEditText").create();
+  bind::void_member_function<QComboBox, const QString &, &QComboBox::setEditText>(combo_box, "setEditText").create();
   // void setCurrentIndex(int);
-  binder.void_fun<int, &QComboBox::setCurrentIndex>("setCurrentIndex").create();
+  bind::void_member_function<QComboBox, int, &QComboBox::setCurrentIndex>(combo_box, "setCurrentIndex").create();
   // void setCurrentText(const QString &);
-  binder.void_fun<const QString &, &QComboBox::setCurrentText>("setCurrentText").create();
+  bind::void_member_function<QComboBox, const QString &, &QComboBox::setCurrentText>(combo_box, "setCurrentText").create();
   // void editTextChanged(const QString &);
-  binder.sigs().add<const QString &>("editTextChanged", "editTextChanged(const QString &)");
+  bind::signal<QComboBox, const QString &>(combo_box, "editTextChanged", "editTextChanged(const QString &)");
   // void activated(int);
-  binder.sigs().add<int>("activated", "activated(int)");
+  bind::signal<QComboBox, int>(combo_box, "activated", "activated(int)");
   // void activated(const QString &);
-  binder.sigs().add<const QString &>("activated", "activated(const QString &)");
+  bind::signal<QComboBox, const QString &>(combo_box, "activated", "activated(const QString &)");
   // void highlighted(int);
-  binder.sigs().add<int>("highlighted", "highlighted(int)");
+  bind::signal<QComboBox, int>(combo_box, "highlighted", "highlighted(int)");
   // void highlighted(const QString &);
-  binder.sigs().add<const QString &>("highlighted", "highlighted(const QString &)");
+  bind::signal<QComboBox, const QString &>(combo_box, "highlighted", "highlighted(const QString &)");
   // void currentIndexChanged(int);
-  binder.sigs().add<int>("currentIndexChanged", "currentIndexChanged(int)");
+  bind::signal<QComboBox, int>(combo_box, "currentIndexChanged", "currentIndexChanged(int)");
   // void currentIndexChanged(const QString &);
-  binder.sigs().add<const QString &>("currentIndexChanged", "currentIndexChanged(const QString &)");
+  bind::signal<QComboBox, const QString &>(combo_box, "currentIndexChanged", "currentIndexChanged(const QString &)");
   // void currentTextChanged(const QString &);
-  binder.sigs().add<const QString &>("currentTextChanged", "currentTextChanged(const QString &)");
+  bind::signal<QComboBox, const QString &>(combo_box, "currentTextChanged", "currentTextChanged(const QString &)");
 
-  combo_box.engine()->registerQtType(&QComboBox::staticMetaObject, combo_box.id());
+  bind::link(combo_box, &QComboBox::staticMetaObject);
 }
 
 
@@ -240,9 +239,8 @@ void register_combobox_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_combo_box_class(ns);
-  binding::Namespace binder{ ns };
 
   // QComboBox& newComboBox(QWidget*);
-  NewFunction(binder).add<QComboBox, QWidget*>("newComboBox");
+  bind::new_function<QComboBox, QWidget*>(ns, "newComboBox");
 }
 

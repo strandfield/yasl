@@ -5,14 +5,14 @@
 #ifndef YASL_WIDGETS_ERRORMESSAGE_H
 #define YASL_WIDGETS_ERRORMESSAGE_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QErrorMessage>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QErrorMessage> { inline static script::Type get() { return script::Type::QErrorMessage; } };
 template<> struct tag_resolver<QErrorMessage> { typedef qobject_tag tag_type; };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_WIDGETS_ERRORMESSAGE_H

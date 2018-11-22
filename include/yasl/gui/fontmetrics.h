@@ -5,13 +5,13 @@
 #ifndef YASL_GUI_FONTMETRICS_H
 #define YASL_GUI_FONTMETRICS_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QFontMetrics>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QFontMetrics> { inline static script::Type get() { return script::Type::QFontMetrics; } };
 template<> struct make_type_t<QFontMetricsF> { inline static script::Type get() { return script::Type::QFontMetricsF; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_FONTMETRICS_H

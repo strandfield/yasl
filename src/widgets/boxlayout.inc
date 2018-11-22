@@ -4,15 +4,13 @@ namespace callbacks
 
 static script::Value new_boxlayout(script::FunctionCall *c)
 {
-  using namespace binding;
-  QBoxLayout *blayout = new QBoxLayout(value_cast<QBoxLayout::Direction>(c->arg(0)));
+  QBoxLayout *blayout = new QBoxLayout(script::bind::value_cast<QBoxLayout::Direction>(c->arg(0)));
   return c->engine()->expose(blayout, script::Type::QBoxLayout);
 }
 
 static script::Value new_boxlayout_parent(script::FunctionCall *c)
 {
-  using namespace binding;
-  QBoxLayout *blayout = new QBoxLayout(value_cast<QBoxLayout::Direction>(c->arg(0)), value_cast<QWidget*>(c->arg(1)));
+  QBoxLayout *blayout = new QBoxLayout(script::bind::value_cast<QBoxLayout::Direction>(c->arg(0)), script::bind::value_cast<QWidget*>(c->arg(1)));
   return c->engine()->expose(blayout, script::Type::QBoxLayout);
 }
 

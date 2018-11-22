@@ -8,37 +8,6 @@
 struct QMetaObject;
 class QObject;
 
-namespace binding
-{
-
-struct LIBSCRIPT_API Connection
-{
-  script::Function signal;
-  QPointer<QObject> receiver;
-  script::Function slot;
-};
-
-struct LIBSCRIPT_API BindingData
-{
-  script::Value value;
-  QList<Connection> connections;
-
-  BindingData() = default;
-  BindingData(const BindingData &) = default;
-  ~BindingData() = default;
-
-  static BindingData get(QObject *obj);
-  static void set(QObject *obj, const BindingData & d);
-
-  BindingData & operator=(const BindingData &) = default;
-};
-
-} // namespace binding
-
-Q_DECLARE_METATYPE(binding::BindingData);
-
-
-
 namespace script
 {
 
@@ -70,3 +39,5 @@ struct LIBSCRIPT_API BindingData
 } // namespace bind
 
 } // namespace script
+
+Q_DECLARE_METATYPE(script::bind::BindingData);

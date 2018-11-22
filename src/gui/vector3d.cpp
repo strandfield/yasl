@@ -4,8 +4,8 @@
 
 #include "yasl/gui/vector3d.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -22,94 +22,93 @@ static void register_vector3_d_class(script::Namespace ns)
 
   Class vector3_d = ns.newClass("Vector3D").setId(script::Type::QVector3D).get();
 
-  binding::ClassBinder<QVector3D> binder{ vector3_d };
 
   // QVector3D();
-  binder.default_ctor().create();
+  bind::default_constructor<QVector3D>(vector3_d).create();
   // QVector3D(const QVector3D &);
-  binder.ctor<const QVector3D &>().create();
+  bind::constructor<QVector3D, const QVector3D &>(vector3_d).create();
   // ~QVector3D();
-  binder.dtor().create();
+  bind::destructor<QVector3D>(vector3_d).create();
   // QVector3D & operator=(const QVector3D &);
-  binder.operators().assign<const QVector3D &>();
+  bind::memop_assign<QVector3D, const QVector3D &>(vector3_d);
   // QVector3D(Qt::Initialization);
-  binder.ctor<Qt::Initialization>().create();
+  bind::constructor<QVector3D, Qt::Initialization>(vector3_d).create();
   // QVector3D(float, float, float);
-  binder.ctor<float, float, float>().create();
+  bind::constructor<QVector3D, float, float, float>(vector3_d).create();
   // QVector3D(const QPoint &);
-  binder.ctor<const QPoint &>().create();
+  bind::constructor<QVector3D, const QPoint &>(vector3_d).create();
   // QVector3D(const QPointF &);
-  binder.ctor<const QPointF &>().create();
+  bind::constructor<QVector3D, const QPointF &>(vector3_d).create();
   // QVector3D(const QVector2D &);
-  binder.ctor<const QVector2D &>().create();
+  bind::constructor<QVector3D, const QVector2D &>(vector3_d).create();
   // QVector3D(const QVector2D &, float);
-  binder.ctor<const QVector2D &, float>().create();
+  bind::constructor<QVector3D, const QVector2D &, float>(vector3_d).create();
   // QVector3D(const QVector4D &);
-  binder.ctor<const QVector4D &>().create();
+  bind::constructor<QVector3D, const QVector4D &>(vector3_d).create();
   // bool isNull() const;
-  binder.fun<bool, &QVector3D::isNull>("isNull").create();
+  bind::member_function<QVector3D, bool, &QVector3D::isNull>(vector3_d, "isNull").create();
   // float x() const;
-  binder.fun<float, &QVector3D::x>("x").create();
+  bind::member_function<QVector3D, float, &QVector3D::x>(vector3_d, "x").create();
   // float y() const;
-  binder.fun<float, &QVector3D::y>("y").create();
+  bind::member_function<QVector3D, float, &QVector3D::y>(vector3_d, "y").create();
   // float z() const;
-  binder.fun<float, &QVector3D::z>("z").create();
+  bind::member_function<QVector3D, float, &QVector3D::z>(vector3_d, "z").create();
   // void setX(float);
-  binder.void_fun<float, &QVector3D::setX>("setX").create();
+  bind::void_member_function<QVector3D, float, &QVector3D::setX>(vector3_d, "setX").create();
   // void setY(float);
-  binder.void_fun<float, &QVector3D::setY>("setY").create();
+  bind::void_member_function<QVector3D, float, &QVector3D::setY>(vector3_d, "setY").create();
   // void setZ(float);
-  binder.void_fun<float, &QVector3D::setZ>("setZ").create();
+  bind::void_member_function<QVector3D, float, &QVector3D::setZ>(vector3_d, "setZ").create();
   // float operator[](int) const;
-  binder.operators().const_subscript<float, int>();
+  bind::memop_const_subscript<QVector3D, float, int>(vector3_d);
   // float length() const;
-  binder.fun<float, &QVector3D::length>("length").create();
+  bind::member_function<QVector3D, float, &QVector3D::length>(vector3_d, "length").create();
   // float lengthSquared() const;
-  binder.fun<float, &QVector3D::lengthSquared>("lengthSquared").create();
+  bind::member_function<QVector3D, float, &QVector3D::lengthSquared>(vector3_d, "lengthSquared").create();
   // QVector3D normalized() const;
-  binder.fun<QVector3D, &QVector3D::normalized>("normalized").create();
+  bind::member_function<QVector3D, QVector3D, &QVector3D::normalized>(vector3_d, "normalized").create();
   // void normalize();
-  binder.void_fun<&QVector3D::normalize>("normalize").create();
+  bind::void_member_function<QVector3D, &QVector3D::normalize>(vector3_d, "normalize").create();
   // QVector3D & operator+=(const QVector3D &);
-  binder.operators().add_assign<const QVector3D &>();
+  bind::memop_add_assign<QVector3D, const QVector3D &>(vector3_d);
   // QVector3D & operator-=(const QVector3D &);
-  binder.operators().sub_assign<const QVector3D &>();
+  bind::memop_sub_assign<QVector3D, const QVector3D &>(vector3_d);
   // QVector3D & operator*=(float);
-  binder.operators().mul_assign<float>();
+  bind::memop_mul_assign<QVector3D, float>(vector3_d);
   // QVector3D & operator*=(const QVector3D &);
-  binder.operators().mul_assign<const QVector3D &>();
+  bind::memop_mul_assign<QVector3D, const QVector3D &>(vector3_d);
   // QVector3D & operator/=(float);
-  binder.operators().div_assign<float>();
+  bind::memop_div_assign<QVector3D, float>(vector3_d);
   // QVector3D & operator/=(const QVector3D &);
-  binder.operators().div_assign<const QVector3D &>();
+  bind::memop_div_assign<QVector3D, const QVector3D &>(vector3_d);
   // static float dotProduct(const QVector3D &, const QVector3D &);
-  binder.static_fun<float, const QVector3D &, const QVector3D &, &QVector3D::dotProduct>("dotProduct").create();
+  bind::static_member_function<QVector3D, float, const QVector3D &, const QVector3D &, &QVector3D::dotProduct>(vector3_d, "dotProduct").create();
   // static QVector3D crossProduct(const QVector3D &, const QVector3D &);
-  binder.static_fun<QVector3D, const QVector3D &, const QVector3D &, &QVector3D::crossProduct>("crossProduct").create();
+  bind::static_member_function<QVector3D, QVector3D, const QVector3D &, const QVector3D &, &QVector3D::crossProduct>(vector3_d, "crossProduct").create();
   // static QVector3D normal(const QVector3D &, const QVector3D &);
-  binder.static_fun<QVector3D, const QVector3D &, const QVector3D &, &QVector3D::normal>("normal").create();
+  bind::static_member_function<QVector3D, QVector3D, const QVector3D &, const QVector3D &, &QVector3D::normal>(vector3_d, "normal").create();
   // static QVector3D normal(const QVector3D &, const QVector3D &, const QVector3D &);
-  binder.static_fun<QVector3D, const QVector3D &, const QVector3D &, const QVector3D &, &QVector3D::normal>("normal").create();
+  bind::static_member_function<QVector3D, QVector3D, const QVector3D &, const QVector3D &, const QVector3D &, &QVector3D::normal>(vector3_d, "normal").create();
   // QVector3D project(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
   /// TODO: QVector3D project(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
   // QVector3D unproject(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
   /// TODO: QVector3D unproject(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
   // float distanceToPoint(const QVector3D &) const;
-  binder.fun<float, const QVector3D &, &QVector3D::distanceToPoint>("distanceToPoint").create();
+  bind::member_function<QVector3D, float, const QVector3D &, &QVector3D::distanceToPoint>(vector3_d, "distanceToPoint").create();
   // float distanceToPlane(const QVector3D &, const QVector3D &) const;
-  binder.fun<float, const QVector3D &, const QVector3D &, &QVector3D::distanceToPlane>("distanceToPlane").create();
+  bind::member_function<QVector3D, float, const QVector3D &, const QVector3D &, &QVector3D::distanceToPlane>(vector3_d, "distanceToPlane").create();
   // float distanceToPlane(const QVector3D &, const QVector3D &, const QVector3D &) const;
-  binder.fun<float, const QVector3D &, const QVector3D &, const QVector3D &, &QVector3D::distanceToPlane>("distanceToPlane").create();
+  bind::member_function<QVector3D, float, const QVector3D &, const QVector3D &, const QVector3D &, &QVector3D::distanceToPlane>(vector3_d, "distanceToPlane").create();
   // float distanceToLine(const QVector3D &, const QVector3D &) const;
-  binder.fun<float, const QVector3D &, const QVector3D &, &QVector3D::distanceToLine>("distanceToLine").create();
+  bind::member_function<QVector3D, float, const QVector3D &, const QVector3D &, &QVector3D::distanceToLine>(vector3_d, "distanceToLine").create();
   // QVector2D toVector2D() const;
-  binder.fun<QVector2D, &QVector3D::toVector2D>("toVector2D").create();
+  bind::member_function<QVector3D, QVector2D, &QVector3D::toVector2D>(vector3_d, "toVector2D").create();
   // QVector4D toVector4D() const;
-  binder.fun<QVector4D, &QVector3D::toVector4D>("toVector4D").create();
+  bind::member_function<QVector3D, QVector4D, &QVector3D::toVector4D>(vector3_d, "toVector4D").create();
   // QPoint toPoint() const;
-  binder.fun<QPoint, &QVector3D::toPoint>("toPoint").create();
+  bind::member_function<QVector3D, QPoint, &QVector3D::toPoint>(vector3_d, "toPoint").create();
   // QPointF toPointF() const;
-  binder.fun<QPointF, &QVector3D::toPointF>("toPointF").create();
+  bind::member_function<QVector3D, QPointF, &QVector3D::toPointF>(vector3_d, "toPointF").create();
 }
 
 
@@ -120,35 +119,34 @@ void register_vector3d_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_vector3_d_class(ns);
-  binding::Namespace binder{ ns };
 
   // bool operator==(const QVector3D &, const QVector3D &);
-  binder.operators().eq<const QVector3D &, const QVector3D &>();
+  bind::op_eq<const QVector3D &, const QVector3D &>(ns);
   // bool operator!=(const QVector3D &, const QVector3D &);
-  binder.operators().neq<const QVector3D &, const QVector3D &>();
+  bind::op_neq<const QVector3D &, const QVector3D &>(ns);
   // const QVector3D operator+(const QVector3D &, const QVector3D &);
-  binder.operators().add<const QVector3D, const QVector3D &, const QVector3D &>();
+  bind::op_add<const QVector3D, const QVector3D &, const QVector3D &>(ns);
   // const QVector3D operator-(const QVector3D &, const QVector3D &);
-  binder.operators().sub<const QVector3D, const QVector3D &, const QVector3D &>();
+  bind::op_sub<const QVector3D, const QVector3D &, const QVector3D &>(ns);
   // const QVector3D operator*(float, const QVector3D &);
-  binder.operators().mul<const QVector3D, float, const QVector3D &>();
+  bind::op_mul<const QVector3D, float, const QVector3D &>(ns);
   // const QVector3D operator*(const QVector3D &, float);
-  binder.operators().mul<const QVector3D, const QVector3D &, float>();
+  bind::op_mul<const QVector3D, const QVector3D &, float>(ns);
   // const QVector3D operator*(const QVector3D &, const QVector3D &);
-  binder.operators().mul<const QVector3D, const QVector3D &, const QVector3D &>();
+  bind::op_mul<const QVector3D, const QVector3D &, const QVector3D &>(ns);
   // const QVector3D operator-(const QVector3D &);
-  binder.operators().unary_minus<const QVector3D, const QVector3D &>();
+  bind::op_unary_minus<const QVector3D, const QVector3D &>(ns);
   // const QVector3D operator/(const QVector3D &, float);
-  binder.operators().div<const QVector3D, const QVector3D &, float>();
+  bind::op_div<const QVector3D, const QVector3D &, float>(ns);
   // const QVector3D operator/(const QVector3D &, const QVector3D &);
-  binder.operators().div<const QVector3D, const QVector3D &, const QVector3D &>();
+  bind::op_div<const QVector3D, const QVector3D &, const QVector3D &>(ns);
   // bool qFuzzyCompare(const QVector3D &, const QVector3D &);
-  binder.fun<bool, const QVector3D &, const QVector3D &, &qFuzzyCompare>("qFuzzyCompare").create();
+  bind::function<bool, const QVector3D &, const QVector3D &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
   // QDebug operator<<(QDebug, const QVector3D &);
   /// TODO: QDebug operator<<(QDebug, const QVector3D &);
   // QDataStream & operator<<(QDataStream &, const QVector3D &);
-  binder.operators().put_to<QDataStream &, const QVector3D &>();
+  bind::op_put_to<QDataStream &, const QVector3D &>(ns);
   // QDataStream & operator>>(QDataStream &, QVector3D &);
-  binder.operators().read_from<QDataStream &, QVector3D &>();
+  bind::op_read_from<QDataStream &, QVector3D &>(ns);
 }
 

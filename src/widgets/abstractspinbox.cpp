@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/abstractspinbox.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/enums.h"
@@ -66,85 +66,84 @@ static void register_abstract_spin_box_class(script::Namespace ns)
   register_abstract_spin_box_step_enabled_flag_enum(abstract_spin_box);
   register_abstract_spin_box_button_symbols_enum(abstract_spin_box);
   register_abstract_spin_box_correction_mode_enum(abstract_spin_box);
-  binding::ClassBinder<QAbstractSpinBox> binder{ abstract_spin_box, &QAbstractSpinBox::staticMetaObject };
 
   // QAbstractSpinBox(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QAbstractSpinBox, QWidget *>(abstract_spin_box)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QAbstractSpinBox();
-  binder.dtor().create();
+  bind::destructor<QAbstractSpinBox>(abstract_spin_box).create();
   // QAbstractSpinBox::ButtonSymbols buttonSymbols() const;
-  binder.fun<QAbstractSpinBox::ButtonSymbols, &QAbstractSpinBox::buttonSymbols>("buttonSymbols").create();
+  bind::member_function<QAbstractSpinBox, QAbstractSpinBox::ButtonSymbols, &QAbstractSpinBox::buttonSymbols>(abstract_spin_box, "buttonSymbols").create();
   // void setButtonSymbols(QAbstractSpinBox::ButtonSymbols);
-  binder.void_fun<QAbstractSpinBox::ButtonSymbols, &QAbstractSpinBox::setButtonSymbols>("setButtonSymbols").create();
+  bind::void_member_function<QAbstractSpinBox, QAbstractSpinBox::ButtonSymbols, &QAbstractSpinBox::setButtonSymbols>(abstract_spin_box, "setButtonSymbols").create();
   // void setCorrectionMode(QAbstractSpinBox::CorrectionMode);
-  binder.void_fun<QAbstractSpinBox::CorrectionMode, &QAbstractSpinBox::setCorrectionMode>("setCorrectionMode").create();
+  bind::void_member_function<QAbstractSpinBox, QAbstractSpinBox::CorrectionMode, &QAbstractSpinBox::setCorrectionMode>(abstract_spin_box, "setCorrectionMode").create();
   // QAbstractSpinBox::CorrectionMode correctionMode() const;
-  binder.fun<QAbstractSpinBox::CorrectionMode, &QAbstractSpinBox::correctionMode>("correctionMode").create();
+  bind::member_function<QAbstractSpinBox, QAbstractSpinBox::CorrectionMode, &QAbstractSpinBox::correctionMode>(abstract_spin_box, "correctionMode").create();
   // bool hasAcceptableInput() const;
-  binder.fun<bool, &QAbstractSpinBox::hasAcceptableInput>("hasAcceptableInput").create();
+  bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::hasAcceptableInput>(abstract_spin_box, "hasAcceptableInput").create();
   // QString text() const;
-  binder.fun<QString, &QAbstractSpinBox::text>("text").create();
+  bind::member_function<QAbstractSpinBox, QString, &QAbstractSpinBox::text>(abstract_spin_box, "text").create();
   // QString specialValueText() const;
-  binder.fun<QString, &QAbstractSpinBox::specialValueText>("specialValueText").create();
+  bind::member_function<QAbstractSpinBox, QString, &QAbstractSpinBox::specialValueText>(abstract_spin_box, "specialValueText").create();
   // void setSpecialValueText(const QString &);
-  binder.void_fun<const QString &, &QAbstractSpinBox::setSpecialValueText>("setSpecialValueText").create();
+  bind::void_member_function<QAbstractSpinBox, const QString &, &QAbstractSpinBox::setSpecialValueText>(abstract_spin_box, "setSpecialValueText").create();
   // bool wrapping() const;
-  binder.fun<bool, &QAbstractSpinBox::wrapping>("wrapping").create();
+  bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::wrapping>(abstract_spin_box, "wrapping").create();
   // void setWrapping(bool);
-  binder.void_fun<bool, &QAbstractSpinBox::setWrapping>("setWrapping").create();
+  bind::void_member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::setWrapping>(abstract_spin_box, "setWrapping").create();
   // void setReadOnly(bool);
-  binder.void_fun<bool, &QAbstractSpinBox::setReadOnly>("setReadOnly").create();
+  bind::void_member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::setReadOnly>(abstract_spin_box, "setReadOnly").create();
   // bool isReadOnly() const;
-  binder.fun<bool, &QAbstractSpinBox::isReadOnly>("isReadOnly").create();
+  bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::isReadOnly>(abstract_spin_box, "isReadOnly").create();
   // void setKeyboardTracking(bool);
-  binder.void_fun<bool, &QAbstractSpinBox::setKeyboardTracking>("setKeyboardTracking").create();
+  bind::void_member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::setKeyboardTracking>(abstract_spin_box, "setKeyboardTracking").create();
   // bool keyboardTracking() const;
-  binder.fun<bool, &QAbstractSpinBox::keyboardTracking>("keyboardTracking").create();
+  bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::keyboardTracking>(abstract_spin_box, "keyboardTracking").create();
   // void setAlignment(Qt::Alignment);
-  binder.void_fun<Qt::Alignment, &QAbstractSpinBox::setAlignment>("setAlignment").create();
+  bind::void_member_function<QAbstractSpinBox, Qt::Alignment, &QAbstractSpinBox::setAlignment>(abstract_spin_box, "setAlignment").create();
   // Qt::Alignment alignment() const;
-  binder.fun<Qt::Alignment, &QAbstractSpinBox::alignment>("alignment").create();
+  bind::member_function<QAbstractSpinBox, Qt::Alignment, &QAbstractSpinBox::alignment>(abstract_spin_box, "alignment").create();
   // void setFrame(bool);
-  binder.void_fun<bool, &QAbstractSpinBox::setFrame>("setFrame").create();
+  bind::void_member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::setFrame>(abstract_spin_box, "setFrame").create();
   // bool hasFrame() const;
-  binder.fun<bool, &QAbstractSpinBox::hasFrame>("hasFrame").create();
+  bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::hasFrame>(abstract_spin_box, "hasFrame").create();
   // void setAccelerated(bool);
-  binder.void_fun<bool, &QAbstractSpinBox::setAccelerated>("setAccelerated").create();
+  bind::void_member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::setAccelerated>(abstract_spin_box, "setAccelerated").create();
   // bool isAccelerated() const;
-  binder.fun<bool, &QAbstractSpinBox::isAccelerated>("isAccelerated").create();
+  bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::isAccelerated>(abstract_spin_box, "isAccelerated").create();
   // void setGroupSeparatorShown(bool);
-  binder.void_fun<bool, &QAbstractSpinBox::setGroupSeparatorShown>("setGroupSeparatorShown").create();
+  bind::void_member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::setGroupSeparatorShown>(abstract_spin_box, "setGroupSeparatorShown").create();
   // bool isGroupSeparatorShown() const;
-  binder.fun<bool, &QAbstractSpinBox::isGroupSeparatorShown>("isGroupSeparatorShown").create();
+  bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::isGroupSeparatorShown>(abstract_spin_box, "isGroupSeparatorShown").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QAbstractSpinBox::sizeHint>("sizeHint").create();
+  bind::member_function<QAbstractSpinBox, QSize, &QAbstractSpinBox::sizeHint>(abstract_spin_box, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QAbstractSpinBox::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QAbstractSpinBox, QSize, &QAbstractSpinBox::minimumSizeHint>(abstract_spin_box, "minimumSizeHint").create();
   // void interpretText();
-  binder.void_fun<&QAbstractSpinBox::interpretText>("interpretText").create();
+  bind::void_member_function<QAbstractSpinBox, &QAbstractSpinBox::interpretText>(abstract_spin_box, "interpretText").create();
   // bool event(QEvent *);
   /// TODO: bool event(QEvent *);
   // QVariant inputMethodQuery(Qt::InputMethodQuery) const;
-  binder.fun<QVariant, Qt::InputMethodQuery, &QAbstractSpinBox::inputMethodQuery>("inputMethodQuery").create();
+  bind::member_function<QAbstractSpinBox, QVariant, Qt::InputMethodQuery, &QAbstractSpinBox::inputMethodQuery>(abstract_spin_box, "inputMethodQuery").create();
   // QValidator::State validate(QString &, int &) const;
-  binder.fun<QValidator::State, QString &, int &, &QAbstractSpinBox::validate>("validate").create();
+  bind::member_function<QAbstractSpinBox, QValidator::State, QString &, int &, &QAbstractSpinBox::validate>(abstract_spin_box, "validate").create();
   // void fixup(QString &) const;
-  binder.const_void_fun<QString &, &QAbstractSpinBox::fixup>("fixup").create();
+  bind::const_void_member_function<QAbstractSpinBox, QString &, &QAbstractSpinBox::fixup>(abstract_spin_box, "fixup").create();
   // void stepBy(int);
-  binder.void_fun<int, &QAbstractSpinBox::stepBy>("stepBy").create();
+  bind::void_member_function<QAbstractSpinBox, int, &QAbstractSpinBox::stepBy>(abstract_spin_box, "stepBy").create();
   // void stepUp();
-  binder.void_fun<&QAbstractSpinBox::stepUp>("stepUp").create();
+  bind::void_member_function<QAbstractSpinBox, &QAbstractSpinBox::stepUp>(abstract_spin_box, "stepUp").create();
   // void stepDown();
-  binder.void_fun<&QAbstractSpinBox::stepDown>("stepDown").create();
+  bind::void_member_function<QAbstractSpinBox, &QAbstractSpinBox::stepDown>(abstract_spin_box, "stepDown").create();
   // void selectAll();
-  binder.void_fun<&QAbstractSpinBox::selectAll>("selectAll").create();
+  bind::void_member_function<QAbstractSpinBox, &QAbstractSpinBox::selectAll>(abstract_spin_box, "selectAll").create();
   // void clear();
-  binder.void_fun<&QAbstractSpinBox::clear>("clear").create();
+  bind::void_member_function<QAbstractSpinBox, &QAbstractSpinBox::clear>(abstract_spin_box, "clear").create();
   // void editingFinished();
-  binder.sigs().add("editingFinished", "editingFinished()");
+  bind::signal<QAbstractSpinBox>(abstract_spin_box, "editingFinished", "editingFinished()");
 
-  abstract_spin_box.engine()->registerQtType(&QAbstractSpinBox::staticMetaObject, abstract_spin_box.id());
+  bind::link(abstract_spin_box, &QAbstractSpinBox::staticMetaObject);
 }
 
 
@@ -155,7 +154,6 @@ void register_abstractspinbox_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_abstract_spin_box_class(ns);
-  binding::Namespace binder{ ns };
 
   // QFlags<QAbstractSpinBox::StepEnabled::enum_type> operator|(QAbstractSpinBox::StepEnabled::enum_type, QAbstractSpinBox::StepEnabled::enum_type);
   /// TODO: QFlags<QAbstractSpinBox::StepEnabled::enum_type> operator|(QAbstractSpinBox::StepEnabled::enum_type, QAbstractSpinBox::StepEnabled::enum_type);

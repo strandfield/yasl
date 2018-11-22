@@ -5,13 +5,13 @@
 #ifndef YASL_GUI_REGION_H
 #define YASL_GUI_REGION_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QRegion>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QRegion> { inline static script::Type get() { return script::Type::QRegion; } };
 template<> struct make_type_t<QRegion::RegionType> { inline static script::Type get() { return script::Type::QRegionRegionType; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_REGION_H

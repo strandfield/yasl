@@ -4,10 +4,10 @@
 
 #include "yasl/gui/statictext.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -37,51 +37,50 @@ static void register_static_text_class(script::Namespace ns)
   Class static_text = ns.newClass("StaticText").setId(script::Type::QStaticText).get();
 
   register_static_text_performance_hint_enum(static_text);
-  binding::ClassBinder<QStaticText> binder{ static_text };
 
   // QStaticText();
-  binder.default_ctor().create();
+  bind::default_constructor<QStaticText>(static_text).create();
   // QStaticText(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QStaticText, const QString &>(static_text).create();
   // QStaticText(const QStaticText &);
-  binder.ctor<const QStaticText &>().create();
+  bind::constructor<QStaticText, const QStaticText &>(static_text).create();
   // QStaticText & operator=(QStaticText &&);
-  binder.operators().assign<QStaticText &&>();
+  bind::memop_assign<QStaticText, QStaticText &&>(static_text);
   // QStaticText & operator=(const QStaticText &);
-  binder.operators().assign<const QStaticText &>();
+  bind::memop_assign<QStaticText, const QStaticText &>(static_text);
   // ~QStaticText();
-  binder.dtor().create();
+  bind::destructor<QStaticText>(static_text).create();
   // void swap(QStaticText &);
-  binder.void_fun<QStaticText &, &QStaticText::swap>("swap").create();
+  bind::void_member_function<QStaticText, QStaticText &, &QStaticText::swap>(static_text, "swap").create();
   // void setText(const QString &);
-  binder.void_fun<const QString &, &QStaticText::setText>("setText").create();
+  bind::void_member_function<QStaticText, const QString &, &QStaticText::setText>(static_text, "setText").create();
   // QString text() const;
-  binder.fun<QString, &QStaticText::text>("text").create();
+  bind::member_function<QStaticText, QString, &QStaticText::text>(static_text, "text").create();
   // void setTextFormat(Qt::TextFormat);
-  binder.void_fun<Qt::TextFormat, &QStaticText::setTextFormat>("setTextFormat").create();
+  bind::void_member_function<QStaticText, Qt::TextFormat, &QStaticText::setTextFormat>(static_text, "setTextFormat").create();
   // Qt::TextFormat textFormat() const;
-  binder.fun<Qt::TextFormat, &QStaticText::textFormat>("textFormat").create();
+  bind::member_function<QStaticText, Qt::TextFormat, &QStaticText::textFormat>(static_text, "textFormat").create();
   // void setTextWidth(qreal);
-  binder.void_fun<qreal, &QStaticText::setTextWidth>("setTextWidth").create();
+  bind::void_member_function<QStaticText, qreal, &QStaticText::setTextWidth>(static_text, "setTextWidth").create();
   // qreal textWidth() const;
-  binder.fun<qreal, &QStaticText::textWidth>("textWidth").create();
+  bind::member_function<QStaticText, qreal, &QStaticText::textWidth>(static_text, "textWidth").create();
   // void setTextOption(const QTextOption &);
-  binder.void_fun<const QTextOption &, &QStaticText::setTextOption>("setTextOption").create();
+  bind::void_member_function<QStaticText, const QTextOption &, &QStaticText::setTextOption>(static_text, "setTextOption").create();
   // QTextOption textOption() const;
-  binder.fun<QTextOption, &QStaticText::textOption>("textOption").create();
+  bind::member_function<QStaticText, QTextOption, &QStaticText::textOption>(static_text, "textOption").create();
   // QSizeF size() const;
-  binder.fun<QSizeF, &QStaticText::size>("size").create();
+  bind::member_function<QStaticText, QSizeF, &QStaticText::size>(static_text, "size").create();
   // void prepare(const QTransform &, const QFont &);
-  binder.void_fun<const QTransform &, const QFont &, &QStaticText::prepare>("prepare")
-    .apply(binding::default_arguments(QFont(), QTransform())).create();
+  bind::void_member_function<QStaticText, const QTransform &, const QFont &, &QStaticText::prepare>(static_text, "prepare")
+    .apply(bind::default_arguments(QFont(), QTransform())).create();
   // void setPerformanceHint(QStaticText::PerformanceHint);
-  binder.void_fun<QStaticText::PerformanceHint, &QStaticText::setPerformanceHint>("setPerformanceHint").create();
+  bind::void_member_function<QStaticText, QStaticText::PerformanceHint, &QStaticText::setPerformanceHint>(static_text, "setPerformanceHint").create();
   // QStaticText::PerformanceHint performanceHint() const;
-  binder.fun<QStaticText::PerformanceHint, &QStaticText::performanceHint>("performanceHint").create();
+  bind::member_function<QStaticText, QStaticText::PerformanceHint, &QStaticText::performanceHint>(static_text, "performanceHint").create();
   // bool operator==(const QStaticText &) const;
-  binder.operators().eq<const QStaticText &>();
+  bind::memop_eq<QStaticText, const QStaticText &>(static_text);
   // bool operator!=(const QStaticText &) const;
-  binder.operators().neq<const QStaticText &>();
+  bind::memop_neq<QStaticText, const QStaticText &>(static_text);
 }
 
 
@@ -92,9 +91,8 @@ void register_statictext_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_static_text_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QStaticText &, QStaticText &);
-  binder.void_fun<QStaticText &, QStaticText &, &swap>("swap").create();
+  bind::void_function<QStaticText &, QStaticText &, &swap>(ns, "swap").create();
 }
 

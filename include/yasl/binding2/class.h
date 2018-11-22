@@ -11,5 +11,7 @@
 #include "yasl/binding2/chainable-memfn.h"
 #include "yasl/binding2/staticmemberfunction.h"
 #include "yasl/binding2/operators.h"
+#include "yasl/binding2/fn-memfn.h"
+#include "yasl/binding2/getter.h"
 
 #endif // YASL_BINDING2_CLASS_H

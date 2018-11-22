@@ -5,11 +5,8 @@
 #ifndef YASL_GUI_IMAGEREADER_H
 #define YASL_GUI_IMAGEREADER_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QImageReader>
-
-namespace binding {
-} // namespace binding
 
 #endif // YASL_GUI_IMAGEREADER_H

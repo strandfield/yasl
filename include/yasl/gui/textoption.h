@@ -5,16 +5,16 @@
 #ifndef YASL_GUI_TEXTOPTION_H
 #define YASL_GUI_TEXTOPTION_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QTextOption>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QTextOption> { inline static script::Type get() { return script::Type::QTextOption; } };
 template<> struct make_type_t<QTextOption::Flag> { inline static script::Type get() { return script::Type::QTextOptionFlag; } };
 template<> struct make_type_t<QTextOption::Flags> { inline static script::Type get() { return script::Type::QTextOptionFlags; } };
 template<> struct make_type_t<QTextOption::TabType> { inline static script::Type get() { return script::Type::QTextOptionTabType; } };
 template<> struct make_type_t<QTextOption::WrapMode> { inline static script::Type get() { return script::Type::QTextOptionWrapMode; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_TEXTOPTION_H

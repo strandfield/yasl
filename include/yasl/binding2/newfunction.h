@@ -5,7 +5,7 @@
 #ifndef YASL_BINDING2_NEW_FUNCTION_H
 #define YASL_BINDING2_NEW_FUNCTION_H
 
-#include "yasl/binding/newfunction_wrapper.h"
+#include "yasl/binding2/newfunction_wrapper.h"
 
 #include <script/namespace.h>
 #include <script/function.h>
@@ -17,12 +17,21 @@ namespace script
 namespace bind
 {
 
-template<typename T, typename... Args>
+template<typename T>
 script::Function new_function(script::Namespace & ns, std::string && name)
 {
-  return ns.newFunction(std::move(name), qclass_newfunction_wrapper_t<T, Args...>::wrap)
+  return ns.newFunction(std::move(name), qclass_newfunction_wrapper_t<T>::wrap)
     .returns(make_type<T&>())
-    .params(make_type<Args>()...)
+    .get();
+}
+
+
+template<typename T, typename A1, typename... Rest>
+script::Function new_function(script::Namespace & ns, std::string && name)
+{
+  return ns.newFunction(std::move(name), qclass_newfunction_wrapper_t<T, A1, Rest...>::wrap)
+    .returns(make_type<T&>())
+    .params(make_type<A1>(), make_type<Rest>()...)
     .get();
 }
 

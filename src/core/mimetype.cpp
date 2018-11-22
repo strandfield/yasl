@@ -4,8 +4,8 @@
 
 #include "yasl/core/mimetype.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/mimetype.h"
 
@@ -17,38 +17,37 @@ static void register_mime_type_class(script::Namespace ns)
 
   Class mime_type = ns.newClass("MimeType").setId(script::Type::QMimeType).get();
 
-  binding::ClassBinder<QMimeType> binder{ mime_type };
 
   // QMimeType();
-  binder.default_ctor().create();
+  bind::default_constructor<QMimeType>(mime_type).create();
   // QMimeType(const QMimeType &);
-  binder.ctor<const QMimeType &>().create();
+  bind::constructor<QMimeType, const QMimeType &>(mime_type).create();
   // QMimeType & operator=(const QMimeType &);
-  binder.operators().assign<const QMimeType &>();
+  bind::memop_assign<QMimeType, const QMimeType &>(mime_type);
   // QMimeType & operator=(QMimeType &&);
-  binder.operators().assign<QMimeType &&>();
+  bind::memop_assign<QMimeType, QMimeType &&>(mime_type);
   // void swap(QMimeType &);
-  binder.void_fun<QMimeType &, &QMimeType::swap>("swap").create();
+  bind::void_member_function<QMimeType, QMimeType &, &QMimeType::swap>(mime_type, "swap").create();
   // QMimeType(const QMimeTypePrivate &);
   /// TODO: QMimeType(const QMimeTypePrivate &);
   // ~QMimeType();
-  binder.dtor().create();
+  bind::destructor<QMimeType>(mime_type).create();
   // bool operator==(const QMimeType &) const;
-  binder.operators().eq<const QMimeType &>();
+  bind::memop_eq<QMimeType, const QMimeType &>(mime_type);
   // bool operator!=(const QMimeType &) const;
-  binder.operators().neq<const QMimeType &>();
+  bind::memop_neq<QMimeType, const QMimeType &>(mime_type);
   // bool isValid() const;
-  binder.fun<bool, &QMimeType::isValid>("isValid").create();
+  bind::member_function<QMimeType, bool, &QMimeType::isValid>(mime_type, "isValid").create();
   // bool isDefault() const;
-  binder.fun<bool, &QMimeType::isDefault>("isDefault").create();
+  bind::member_function<QMimeType, bool, &QMimeType::isDefault>(mime_type, "isDefault").create();
   // QString name() const;
-  binder.fun<QString, &QMimeType::name>("name").create();
+  bind::member_function<QMimeType, QString, &QMimeType::name>(mime_type, "name").create();
   // QString comment() const;
-  binder.fun<QString, &QMimeType::comment>("comment").create();
+  bind::member_function<QMimeType, QString, &QMimeType::comment>(mime_type, "comment").create();
   // QString genericIconName() const;
-  binder.fun<QString, &QMimeType::genericIconName>("genericIconName").create();
+  bind::member_function<QMimeType, QString, &QMimeType::genericIconName>(mime_type, "genericIconName").create();
   // QString iconName() const;
-  binder.fun<QString, &QMimeType::iconName>("iconName").create();
+  bind::member_function<QMimeType, QString, &QMimeType::iconName>(mime_type, "iconName").create();
   // QStringList globPatterns() const;
   /// TODO: QStringList globPatterns() const;
   // QStringList parentMimeTypes() const;
@@ -60,11 +59,11 @@ static void register_mime_type_class(script::Namespace ns)
   // QStringList suffixes() const;
   /// TODO: QStringList suffixes() const;
   // QString preferredSuffix() const;
-  binder.fun<QString, &QMimeType::preferredSuffix>("preferredSuffix").create();
+  bind::member_function<QMimeType, QString, &QMimeType::preferredSuffix>(mime_type, "preferredSuffix").create();
   // bool inherits(const QString &) const;
-  binder.fun<bool, const QString &, &QMimeType::inherits>("inherits").create();
+  bind::member_function<QMimeType, bool, const QString &, &QMimeType::inherits>(mime_type, "inherits").create();
   // QString filterString() const;
-  binder.fun<QString, &QMimeType::filterString>("filterString").create();
+  bind::member_function<QMimeType, QString, &QMimeType::filterString>(mime_type, "filterString").create();
 }
 
 
@@ -75,12 +74,11 @@ void register_mimetype_file(script::Namespace core)
   Namespace ns = core;
 
   register_mime_type_class(ns);
-  binding::Namespace binder{ ns };
 
   // uint qHash(const QMimeType &, uint);
-  binder.fun<uint, const QMimeType &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QMimeType &, uint, &qHash>(ns, "qHash").create();
   // void swap(QMimeType &, QMimeType &);
-  binder.void_fun<QMimeType &, QMimeType &, &swap>("swap").create();
+  bind::void_function<QMimeType &, QMimeType &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QMimeType &);
   /// TODO: QDebug operator<<(QDebug, const QMimeType &);
 }

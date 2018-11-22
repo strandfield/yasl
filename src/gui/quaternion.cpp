@@ -4,8 +4,8 @@
 
 #include "yasl/gui/quaternion.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -21,96 +21,95 @@ static void register_quaternion_class(script::Namespace ns)
 
   Class quaternion = ns.newClass("Quaternion").setId(script::Type::QQuaternion).get();
 
-  binding::ClassBinder<QQuaternion> binder{ quaternion };
 
   // QQuaternion();
-  binder.default_ctor().create();
+  bind::default_constructor<QQuaternion>(quaternion).create();
   // QQuaternion(const QQuaternion &);
-  binder.ctor<const QQuaternion &>().create();
+  bind::constructor<QQuaternion, const QQuaternion &>(quaternion).create();
   // ~QQuaternion();
-  binder.dtor().create();
+  bind::destructor<QQuaternion>(quaternion).create();
   // QQuaternion & operator=(const QQuaternion &);
-  binder.operators().assign<const QQuaternion &>();
+  bind::memop_assign<QQuaternion, const QQuaternion &>(quaternion);
   // QQuaternion(Qt::Initialization);
-  binder.ctor<Qt::Initialization>().create();
+  bind::constructor<QQuaternion, Qt::Initialization>(quaternion).create();
   // QQuaternion(float, float, float, float);
-  binder.ctor<float, float, float, float>().create();
+  bind::constructor<QQuaternion, float, float, float, float>(quaternion).create();
   // QQuaternion(float, const QVector3D &);
-  binder.ctor<float, const QVector3D &>().create();
+  bind::constructor<QQuaternion, float, const QVector3D &>(quaternion).create();
   // QQuaternion(const QVector4D &);
-  binder.ctor<const QVector4D &>().create();
+  bind::constructor<QQuaternion, const QVector4D &>(quaternion).create();
   // bool isNull() const;
-  binder.fun<bool, &QQuaternion::isNull>("isNull").create();
+  bind::member_function<QQuaternion, bool, &QQuaternion::isNull>(quaternion, "isNull").create();
   // bool isIdentity() const;
-  binder.fun<bool, &QQuaternion::isIdentity>("isIdentity").create();
+  bind::member_function<QQuaternion, bool, &QQuaternion::isIdentity>(quaternion, "isIdentity").create();
   // QVector3D vector() const;
-  binder.fun<QVector3D, &QQuaternion::vector>("vector").create();
+  bind::member_function<QQuaternion, QVector3D, &QQuaternion::vector>(quaternion, "vector").create();
   // void setVector(const QVector3D &);
-  binder.void_fun<const QVector3D &, &QQuaternion::setVector>("setVector").create();
+  bind::void_member_function<QQuaternion, const QVector3D &, &QQuaternion::setVector>(quaternion, "setVector").create();
   // void setVector(float, float, float);
-  binder.void_fun<float, float, float, &QQuaternion::setVector>("setVector").create();
+  bind::void_member_function<QQuaternion, float, float, float, &QQuaternion::setVector>(quaternion, "setVector").create();
   // float x() const;
-  binder.fun<float, &QQuaternion::x>("x").create();
+  bind::member_function<QQuaternion, float, &QQuaternion::x>(quaternion, "x").create();
   // float y() const;
-  binder.fun<float, &QQuaternion::y>("y").create();
+  bind::member_function<QQuaternion, float, &QQuaternion::y>(quaternion, "y").create();
   // float z() const;
-  binder.fun<float, &QQuaternion::z>("z").create();
+  bind::member_function<QQuaternion, float, &QQuaternion::z>(quaternion, "z").create();
   // float scalar() const;
-  binder.fun<float, &QQuaternion::scalar>("scalar").create();
+  bind::member_function<QQuaternion, float, &QQuaternion::scalar>(quaternion, "scalar").create();
   // void setX(float);
-  binder.void_fun<float, &QQuaternion::setX>("setX").create();
+  bind::void_member_function<QQuaternion, float, &QQuaternion::setX>(quaternion, "setX").create();
   // void setY(float);
-  binder.void_fun<float, &QQuaternion::setY>("setY").create();
+  bind::void_member_function<QQuaternion, float, &QQuaternion::setY>(quaternion, "setY").create();
   // void setZ(float);
-  binder.void_fun<float, &QQuaternion::setZ>("setZ").create();
+  bind::void_member_function<QQuaternion, float, &QQuaternion::setZ>(quaternion, "setZ").create();
   // void setScalar(float);
-  binder.void_fun<float, &QQuaternion::setScalar>("setScalar").create();
+  bind::void_member_function<QQuaternion, float, &QQuaternion::setScalar>(quaternion, "setScalar").create();
   // static float dotProduct(const QQuaternion &, const QQuaternion &);
-  binder.static_fun<float, const QQuaternion &, const QQuaternion &, &QQuaternion::dotProduct>("dotProduct").create();
+  bind::static_member_function<QQuaternion, float, const QQuaternion &, const QQuaternion &, &QQuaternion::dotProduct>(quaternion, "dotProduct").create();
   // float length() const;
-  binder.fun<float, &QQuaternion::length>("length").create();
+  bind::member_function<QQuaternion, float, &QQuaternion::length>(quaternion, "length").create();
   // float lengthSquared() const;
-  binder.fun<float, &QQuaternion::lengthSquared>("lengthSquared").create();
+  bind::member_function<QQuaternion, float, &QQuaternion::lengthSquared>(quaternion, "lengthSquared").create();
   // QQuaternion normalized() const;
-  binder.fun<QQuaternion, &QQuaternion::normalized>("normalized").create();
+  bind::member_function<QQuaternion, QQuaternion, &QQuaternion::normalized>(quaternion, "normalized").create();
   // void normalize();
-  binder.void_fun<&QQuaternion::normalize>("normalize").create();
+  bind::void_member_function<QQuaternion, &QQuaternion::normalize>(quaternion, "normalize").create();
   // QQuaternion inverted() const;
-  binder.fun<QQuaternion, &QQuaternion::inverted>("inverted").create();
+  bind::member_function<QQuaternion, QQuaternion, &QQuaternion::inverted>(quaternion, "inverted").create();
   // QQuaternion conjugated() const;
-  binder.fun<QQuaternion, &QQuaternion::conjugated>("conjugated").create();
+  bind::member_function<QQuaternion, QQuaternion, &QQuaternion::conjugated>(quaternion, "conjugated").create();
   // QQuaternion conjugate() const;
-  binder.fun<QQuaternion, &QQuaternion::conjugate>("conjugate").create();
+  bind::member_function<QQuaternion, QQuaternion, &QQuaternion::conjugate>(quaternion, "conjugate").create();
   // QVector3D rotatedVector(const QVector3D &) const;
-  binder.fun<QVector3D, const QVector3D &, &QQuaternion::rotatedVector>("rotatedVector").create();
+  bind::member_function<QQuaternion, QVector3D, const QVector3D &, &QQuaternion::rotatedVector>(quaternion, "rotatedVector").create();
   // QQuaternion & operator+=(const QQuaternion &);
-  binder.operators().add_assign<const QQuaternion &>();
+  bind::memop_add_assign<QQuaternion, const QQuaternion &>(quaternion);
   // QQuaternion & operator-=(const QQuaternion &);
-  binder.operators().sub_assign<const QQuaternion &>();
+  bind::memop_sub_assign<QQuaternion, const QQuaternion &>(quaternion);
   // QQuaternion & operator*=(float);
-  binder.operators().mul_assign<float>();
+  bind::memop_mul_assign<QQuaternion, float>(quaternion);
   // QQuaternion & operator*=(const QQuaternion &);
-  binder.operators().mul_assign<const QQuaternion &>();
+  bind::memop_mul_assign<QQuaternion, const QQuaternion &>(quaternion);
   // QQuaternion & operator/=(float);
-  binder.operators().div_assign<float>();
+  bind::memop_div_assign<QQuaternion, float>(quaternion);
   // QVector4D toVector4D() const;
-  binder.fun<QVector4D, &QQuaternion::toVector4D>("toVector4D").create();
+  bind::member_function<QQuaternion, QVector4D, &QQuaternion::toVector4D>(quaternion, "toVector4D").create();
   // void getAxisAndAngle(QVector3D *, float *) const;
   /// TODO: void getAxisAndAngle(QVector3D *, float *) const;
   // static QQuaternion fromAxisAndAngle(const QVector3D &, float);
-  binder.static_fun<QQuaternion, const QVector3D &, float, &QQuaternion::fromAxisAndAngle>("fromAxisAndAngle").create();
+  bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, float, &QQuaternion::fromAxisAndAngle>(quaternion, "fromAxisAndAngle").create();
   // void getAxisAndAngle(float *, float *, float *, float *) const;
   /// TODO: void getAxisAndAngle(float *, float *, float *, float *) const;
   // static QQuaternion fromAxisAndAngle(float, float, float, float);
-  binder.static_fun<QQuaternion, float, float, float, float, &QQuaternion::fromAxisAndAngle>("fromAxisAndAngle").create();
+  bind::static_member_function<QQuaternion, QQuaternion, float, float, float, float, &QQuaternion::fromAxisAndAngle>(quaternion, "fromAxisAndAngle").create();
   // QVector3D toEulerAngles() const;
-  binder.fun<QVector3D, &QQuaternion::toEulerAngles>("toEulerAngles").create();
+  bind::member_function<QQuaternion, QVector3D, &QQuaternion::toEulerAngles>(quaternion, "toEulerAngles").create();
   // static QQuaternion fromEulerAngles(const QVector3D &);
-  binder.static_fun<QQuaternion, const QVector3D &, &QQuaternion::fromEulerAngles>("fromEulerAngles").create();
+  bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, &QQuaternion::fromEulerAngles>(quaternion, "fromEulerAngles").create();
   // void getEulerAngles(float *, float *, float *) const;
   /// TODO: void getEulerAngles(float *, float *, float *) const;
   // static QQuaternion fromEulerAngles(float, float, float);
-  binder.static_fun<QQuaternion, float, float, float, &QQuaternion::fromEulerAngles>("fromEulerAngles").create();
+  bind::static_member_function<QQuaternion, QQuaternion, float, float, float, &QQuaternion::fromEulerAngles>(quaternion, "fromEulerAngles").create();
   // QMatrix3x3 toRotationMatrix() const;
   /// TODO: QMatrix3x3 toRotationMatrix() const;
   // static QQuaternion fromRotationMatrix(const QMatrix3x3 &);
@@ -118,15 +117,15 @@ static void register_quaternion_class(script::Namespace ns)
   // void getAxes(QVector3D *, QVector3D *, QVector3D *) const;
   /// TODO: void getAxes(QVector3D *, QVector3D *, QVector3D *) const;
   // static QQuaternion fromAxes(const QVector3D &, const QVector3D &, const QVector3D &);
-  binder.static_fun<QQuaternion, const QVector3D &, const QVector3D &, const QVector3D &, &QQuaternion::fromAxes>("fromAxes").create();
+  bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, const QVector3D &, const QVector3D &, &QQuaternion::fromAxes>(quaternion, "fromAxes").create();
   // static QQuaternion fromDirection(const QVector3D &, const QVector3D &);
-  binder.static_fun<QQuaternion, const QVector3D &, const QVector3D &, &QQuaternion::fromDirection>("fromDirection").create();
+  bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, const QVector3D &, &QQuaternion::fromDirection>(quaternion, "fromDirection").create();
   // static QQuaternion rotationTo(const QVector3D &, const QVector3D &);
-  binder.static_fun<QQuaternion, const QVector3D &, const QVector3D &, &QQuaternion::rotationTo>("rotationTo").create();
+  bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, const QVector3D &, &QQuaternion::rotationTo>(quaternion, "rotationTo").create();
   // static QQuaternion slerp(const QQuaternion &, const QQuaternion &, float);
-  binder.static_fun<QQuaternion, const QQuaternion &, const QQuaternion &, float, &QQuaternion::slerp>("slerp").create();
+  bind::static_member_function<QQuaternion, QQuaternion, const QQuaternion &, const QQuaternion &, float, &QQuaternion::slerp>(quaternion, "slerp").create();
   // static QQuaternion nlerp(const QQuaternion &, const QQuaternion &, float);
-  binder.static_fun<QQuaternion, const QQuaternion &, const QQuaternion &, float, &QQuaternion::nlerp>("nlerp").create();
+  bind::static_member_function<QQuaternion, QQuaternion, const QQuaternion &, const QQuaternion &, float, &QQuaternion::nlerp>(quaternion, "nlerp").create();
 }
 
 
@@ -137,35 +136,34 @@ void register_quaternion_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_quaternion_class(ns);
-  binding::Namespace binder{ ns };
 
   // bool operator==(const QQuaternion &, const QQuaternion &);
-  binder.operators().eq<const QQuaternion &, const QQuaternion &>();
+  bind::op_eq<const QQuaternion &, const QQuaternion &>(ns);
   // const QQuaternion operator*(const QQuaternion &, const QQuaternion &);
-  binder.operators().mul<const QQuaternion, const QQuaternion &, const QQuaternion &>();
+  bind::op_mul<const QQuaternion, const QQuaternion &, const QQuaternion &>(ns);
   // bool operator!=(const QQuaternion &, const QQuaternion &);
-  binder.operators().neq<const QQuaternion &, const QQuaternion &>();
+  bind::op_neq<const QQuaternion &, const QQuaternion &>(ns);
   // const QQuaternion operator+(const QQuaternion &, const QQuaternion &);
-  binder.operators().add<const QQuaternion, const QQuaternion &, const QQuaternion &>();
+  bind::op_add<const QQuaternion, const QQuaternion &, const QQuaternion &>(ns);
   // const QQuaternion operator-(const QQuaternion &, const QQuaternion &);
-  binder.operators().sub<const QQuaternion, const QQuaternion &, const QQuaternion &>();
+  bind::op_sub<const QQuaternion, const QQuaternion &, const QQuaternion &>(ns);
   // const QQuaternion operator*(float, const QQuaternion &);
-  binder.operators().mul<const QQuaternion, float, const QQuaternion &>();
+  bind::op_mul<const QQuaternion, float, const QQuaternion &>(ns);
   // const QQuaternion operator*(const QQuaternion &, float);
-  binder.operators().mul<const QQuaternion, const QQuaternion &, float>();
+  bind::op_mul<const QQuaternion, const QQuaternion &, float>(ns);
   // const QQuaternion operator-(const QQuaternion &);
-  binder.operators().unary_minus<const QQuaternion, const QQuaternion &>();
+  bind::op_unary_minus<const QQuaternion, const QQuaternion &>(ns);
   // const QQuaternion operator/(const QQuaternion &, float);
-  binder.operators().div<const QQuaternion, const QQuaternion &, float>();
+  bind::op_div<const QQuaternion, const QQuaternion &, float>(ns);
   // bool qFuzzyCompare(const QQuaternion &, const QQuaternion &);
-  binder.fun<bool, const QQuaternion &, const QQuaternion &, &qFuzzyCompare>("qFuzzyCompare").create();
+  bind::function<bool, const QQuaternion &, const QQuaternion &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
   // QVector3D operator*(const QQuaternion &, const QVector3D &);
-  binder.operators().mul<QVector3D, const QQuaternion &, const QVector3D &>();
+  bind::op_mul<QVector3D, const QQuaternion &, const QVector3D &>(ns);
   // QDebug operator<<(QDebug, const QQuaternion &);
   /// TODO: QDebug operator<<(QDebug, const QQuaternion &);
   // QDataStream & operator<<(QDataStream &, const QQuaternion &);
-  binder.operators().put_to<QDataStream &, const QQuaternion &>();
+  bind::op_put_to<QDataStream &, const QQuaternion &>(ns);
   // QDataStream & operator>>(QDataStream &, QQuaternion &);
-  binder.operators().read_from<QDataStream &, QQuaternion &>();
+  bind::op_read_from<QDataStream &, QQuaternion &>(ns);
 }
 

@@ -4,10 +4,10 @@
 
 #include "yasl/core/settings.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/object.h"
 #include "yasl/core/settings.h"
@@ -79,50 +79,49 @@ static void register_settings_class(script::Namespace ns)
   register_settings_status_enum(settings);
   register_settings_format_enum(settings);
   register_settings_scope_enum(settings);
-  binding::ClassBinder<QSettings> binder{ settings, &QSettings::staticMetaObject };
 
   // QSettings(const QString &, const QString &, QObject *);
-  binder.ctor<const QString &, const QString &, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr, QString())).create();
+  bind::constructor<QSettings, const QString &, const QString &, QObject *>(settings)
+    .apply(bind::default_arguments((QObject*)nullptr, QString())).create();
   // QSettings(QSettings::Scope, const QString &, const QString &, QObject *);
-  binder.ctor<QSettings::Scope, const QString &, const QString &, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr, QString())).create();
+  bind::constructor<QSettings, QSettings::Scope, const QString &, const QString &, QObject *>(settings)
+    .apply(bind::default_arguments((QObject*)nullptr, QString())).create();
   // QSettings(QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *);
-  binder.ctor<QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr, QString())).create();
+  bind::constructor<QSettings, QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *>(settings)
+    .apply(bind::default_arguments((QObject*)nullptr, QString())).create();
   // QSettings(const QString &, QSettings::Format, QObject *);
-  binder.ctor<const QString &, QSettings::Format, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QSettings, const QString &, QSettings::Format, QObject *>(settings)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // QSettings(QObject *);
-  binder.ctor<QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QSettings, QObject *>(settings)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QSettings();
-  binder.dtor().create();
+  bind::destructor<QSettings>(settings).create();
   // void clear();
-  binder.void_fun<&QSettings::clear>("clear").create();
+  bind::void_member_function<QSettings, &QSettings::clear>(settings, "clear").create();
   // void sync();
-  binder.void_fun<&QSettings::sync>("sync").create();
+  bind::void_member_function<QSettings, &QSettings::sync>(settings, "sync").create();
   // QSettings::Status status() const;
-  binder.fun<QSettings::Status, &QSettings::status>("status").create();
+  bind::member_function<QSettings, QSettings::Status, &QSettings::status>(settings, "status").create();
   // bool isAtomicSyncRequired() const;
-  binder.fun<bool, &QSettings::isAtomicSyncRequired>("isAtomicSyncRequired").create();
+  bind::member_function<QSettings, bool, &QSettings::isAtomicSyncRequired>(settings, "isAtomicSyncRequired").create();
   // void setAtomicSyncRequired(bool);
-  binder.void_fun<bool, &QSettings::setAtomicSyncRequired>("setAtomicSyncRequired").create();
+  bind::void_member_function<QSettings, bool, &QSettings::setAtomicSyncRequired>(settings, "setAtomicSyncRequired").create();
   // void beginGroup(const QString &);
-  binder.void_fun<const QString &, &QSettings::beginGroup>("beginGroup").create();
+  bind::void_member_function<QSettings, const QString &, &QSettings::beginGroup>(settings, "beginGroup").create();
   // void endGroup();
-  binder.void_fun<&QSettings::endGroup>("endGroup").create();
+  bind::void_member_function<QSettings, &QSettings::endGroup>(settings, "endGroup").create();
   // QString group() const;
-  binder.fun<QString, &QSettings::group>("group").create();
+  bind::member_function<QSettings, QString, &QSettings::group>(settings, "group").create();
   // int beginReadArray(const QString &);
-  binder.fun<int, const QString &, &QSettings::beginReadArray>("beginReadArray").create();
+  bind::member_function<QSettings, int, const QString &, &QSettings::beginReadArray>(settings, "beginReadArray").create();
   // void beginWriteArray(const QString &, int);
-  binder.void_fun<const QString &, int, &QSettings::beginWriteArray>("beginWriteArray")
-    .apply(binding::default_arguments(-1)).create();
+  bind::void_member_function<QSettings, const QString &, int, &QSettings::beginWriteArray>(settings, "beginWriteArray")
+    .apply(bind::default_arguments(-1)).create();
   // void endArray();
-  binder.void_fun<&QSettings::endArray>("endArray").create();
+  bind::void_member_function<QSettings, &QSettings::endArray>(settings, "endArray").create();
   // void setArrayIndex(int);
-  binder.void_fun<int, &QSettings::setArrayIndex>("setArrayIndex").create();
+  bind::void_member_function<QSettings, int, &QSettings::setArrayIndex>(settings, "setArrayIndex").create();
   // QStringList allKeys() const;
   /// TODO: QStringList allKeys() const;
   // QStringList childKeys() const;
@@ -130,30 +129,30 @@ static void register_settings_class(script::Namespace ns)
   // QStringList childGroups() const;
   /// TODO: QStringList childGroups() const;
   // bool isWritable() const;
-  binder.fun<bool, &QSettings::isWritable>("isWritable").create();
+  bind::member_function<QSettings, bool, &QSettings::isWritable>(settings, "isWritable").create();
   // void setValue(const QString &, const QVariant &);
-  binder.void_fun<const QString &, const QVariant &, &QSettings::setValue>("setValue").create();
+  bind::void_member_function<QSettings, const QString &, const QVariant &, &QSettings::setValue>(settings, "setValue").create();
   // QVariant value(const QString &, const QVariant &) const;
-  binder.fun<QVariant, const QString &, const QVariant &, &QSettings::value>("value")
-    .apply(binding::default_arguments(QVariant())).create();
+  bind::member_function<QSettings, QVariant, const QString &, const QVariant &, &QSettings::value>(settings, "value")
+    .apply(bind::default_arguments(QVariant())).create();
   // void remove(const QString &);
-  binder.void_fun<const QString &, &QSettings::remove>("remove").create();
+  bind::void_member_function<QSettings, const QString &, &QSettings::remove>(settings, "remove").create();
   // bool contains(const QString &) const;
-  binder.fun<bool, const QString &, &QSettings::contains>("contains").create();
+  bind::member_function<QSettings, bool, const QString &, &QSettings::contains>(settings, "contains").create();
   // void setFallbacksEnabled(bool);
-  binder.void_fun<bool, &QSettings::setFallbacksEnabled>("setFallbacksEnabled").create();
+  bind::void_member_function<QSettings, bool, &QSettings::setFallbacksEnabled>(settings, "setFallbacksEnabled").create();
   // bool fallbacksEnabled() const;
-  binder.fun<bool, &QSettings::fallbacksEnabled>("fallbacksEnabled").create();
+  bind::member_function<QSettings, bool, &QSettings::fallbacksEnabled>(settings, "fallbacksEnabled").create();
   // QString fileName() const;
-  binder.fun<QString, &QSettings::fileName>("fileName").create();
+  bind::member_function<QSettings, QString, &QSettings::fileName>(settings, "fileName").create();
   // QSettings::Format format() const;
-  binder.fun<QSettings::Format, &QSettings::format>("format").create();
+  bind::member_function<QSettings, QSettings::Format, &QSettings::format>(settings, "format").create();
   // QSettings::Scope scope() const;
-  binder.fun<QSettings::Scope, &QSettings::scope>("scope").create();
+  bind::member_function<QSettings, QSettings::Scope, &QSettings::scope>(settings, "scope").create();
   // QString organizationName() const;
-  binder.fun<QString, &QSettings::organizationName>("organizationName").create();
+  bind::member_function<QSettings, QString, &QSettings::organizationName>(settings, "organizationName").create();
   // QString applicationName() const;
-  binder.fun<QString, &QSettings::applicationName>("applicationName").create();
+  bind::member_function<QSettings, QString, &QSettings::applicationName>(settings, "applicationName").create();
   // void setIniCodec(QTextCodec *);
   /// TODO: void setIniCodec(QTextCodec *);
   // void setIniCodec(const char *);
@@ -161,19 +160,19 @@ static void register_settings_class(script::Namespace ns)
   // QTextCodec * iniCodec() const;
   /// TODO: QTextCodec * iniCodec() const;
   // static void setDefaultFormat(QSettings::Format);
-  binder.static_void_fun<QSettings::Format, &QSettings::setDefaultFormat>("setDefaultFormat").create();
+  bind::static_void_member_function<QSettings, QSettings::Format, &QSettings::setDefaultFormat>(settings, "setDefaultFormat").create();
   // static QSettings::Format defaultFormat();
-  binder.static_fun<QSettings::Format, &QSettings::defaultFormat>("defaultFormat").create();
+  bind::static_member_function<QSettings, QSettings::Format, &QSettings::defaultFormat>(settings, "defaultFormat").create();
   // static void setSystemIniPath(const QString &);
-  binder.static_void_fun<const QString &, &QSettings::setSystemIniPath>("setSystemIniPath").create();
+  bind::static_void_member_function<QSettings, const QString &, &QSettings::setSystemIniPath>(settings, "setSystemIniPath").create();
   // static void setUserIniPath(const QString &);
-  binder.static_void_fun<const QString &, &QSettings::setUserIniPath>("setUserIniPath").create();
+  bind::static_void_member_function<QSettings, const QString &, &QSettings::setUserIniPath>(settings, "setUserIniPath").create();
   // static void setPath(QSettings::Format, QSettings::Scope, const QString &);
-  binder.static_void_fun<QSettings::Format, QSettings::Scope, const QString &, &QSettings::setPath>("setPath").create();
+  bind::static_void_member_function<QSettings, QSettings::Format, QSettings::Scope, const QString &, &QSettings::setPath>(settings, "setPath").create();
   // static QSettings::Format registerFormat(const QString &, QSettings::ReadFunc, QSettings::WriteFunc, Qt::CaseSensitivity);
   /// TODO: static QSettings::Format registerFormat(const QString &, QSettings::ReadFunc, QSettings::WriteFunc, Qt::CaseSensitivity);
 
-  settings.engine()->registerQtType(&QSettings::staticMetaObject, settings.id());
+  bind::link(settings, &QSettings::staticMetaObject);
 }
 
 
@@ -184,7 +183,6 @@ void register_settings_file(script::Namespace core)
   Namespace ns = core;
 
   register_settings_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/datetimeedit.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/datetime.h"
@@ -49,126 +49,125 @@ static void register_date_time_edit_class(script::Namespace ns)
     .setBase(script::Type::QAbstractSpinBox).get();
 
   register_date_time_edit_section_enum(date_time_edit);
-  binding::ClassBinder<QDateTimeEdit> binder{ date_time_edit, &QDateTimeEdit::staticMetaObject };
 
   // QDateTimeEdit(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QDateTimeEdit, QWidget *>(date_time_edit)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QDateTime &, QWidget *);
-  binder.ctor<const QDateTime &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QDateTimeEdit, const QDateTime &, QWidget *>(date_time_edit)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QDate &, QWidget *);
-  binder.ctor<const QDate &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QDateTimeEdit, const QDate &, QWidget *>(date_time_edit)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QDateTimeEdit(const QTime &, QWidget *);
-  binder.ctor<const QTime &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QDateTimeEdit, const QTime &, QWidget *>(date_time_edit)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QDateTimeEdit();
-  binder.dtor().create();
+  bind::destructor<QDateTimeEdit>(date_time_edit).create();
   // QDateTime dateTime() const;
-  binder.fun<QDateTime, &QDateTimeEdit::dateTime>("dateTime").create();
+  bind::member_function<QDateTimeEdit, QDateTime, &QDateTimeEdit::dateTime>(date_time_edit, "dateTime").create();
   // QDate date() const;
-  binder.fun<QDate, &QDateTimeEdit::date>("date").create();
+  bind::member_function<QDateTimeEdit, QDate, &QDateTimeEdit::date>(date_time_edit, "date").create();
   // QTime time() const;
-  binder.fun<QTime, &QDateTimeEdit::time>("time").create();
+  bind::member_function<QDateTimeEdit, QTime, &QDateTimeEdit::time>(date_time_edit, "time").create();
   // QDateTime minimumDateTime() const;
-  binder.fun<QDateTime, &QDateTimeEdit::minimumDateTime>("minimumDateTime").create();
+  bind::member_function<QDateTimeEdit, QDateTime, &QDateTimeEdit::minimumDateTime>(date_time_edit, "minimumDateTime").create();
   // void clearMinimumDateTime();
-  binder.void_fun<&QDateTimeEdit::clearMinimumDateTime>("clearMinimumDateTime").create();
+  bind::void_member_function<QDateTimeEdit, &QDateTimeEdit::clearMinimumDateTime>(date_time_edit, "clearMinimumDateTime").create();
   // void setMinimumDateTime(const QDateTime &);
-  binder.void_fun<const QDateTime &, &QDateTimeEdit::setMinimumDateTime>("setMinimumDateTime").create();
+  bind::void_member_function<QDateTimeEdit, const QDateTime &, &QDateTimeEdit::setMinimumDateTime>(date_time_edit, "setMinimumDateTime").create();
   // QDateTime maximumDateTime() const;
-  binder.fun<QDateTime, &QDateTimeEdit::maximumDateTime>("maximumDateTime").create();
+  bind::member_function<QDateTimeEdit, QDateTime, &QDateTimeEdit::maximumDateTime>(date_time_edit, "maximumDateTime").create();
   // void clearMaximumDateTime();
-  binder.void_fun<&QDateTimeEdit::clearMaximumDateTime>("clearMaximumDateTime").create();
+  bind::void_member_function<QDateTimeEdit, &QDateTimeEdit::clearMaximumDateTime>(date_time_edit, "clearMaximumDateTime").create();
   // void setMaximumDateTime(const QDateTime &);
-  binder.void_fun<const QDateTime &, &QDateTimeEdit::setMaximumDateTime>("setMaximumDateTime").create();
+  bind::void_member_function<QDateTimeEdit, const QDateTime &, &QDateTimeEdit::setMaximumDateTime>(date_time_edit, "setMaximumDateTime").create();
   // void setDateTimeRange(const QDateTime &, const QDateTime &);
-  binder.void_fun<const QDateTime &, const QDateTime &, &QDateTimeEdit::setDateTimeRange>("setDateTimeRange").create();
+  bind::void_member_function<QDateTimeEdit, const QDateTime &, const QDateTime &, &QDateTimeEdit::setDateTimeRange>(date_time_edit, "setDateTimeRange").create();
   // QDate minimumDate() const;
-  binder.fun<QDate, &QDateTimeEdit::minimumDate>("minimumDate").create();
+  bind::member_function<QDateTimeEdit, QDate, &QDateTimeEdit::minimumDate>(date_time_edit, "minimumDate").create();
   // void setMinimumDate(const QDate &);
-  binder.void_fun<const QDate &, &QDateTimeEdit::setMinimumDate>("setMinimumDate").create();
+  bind::void_member_function<QDateTimeEdit, const QDate &, &QDateTimeEdit::setMinimumDate>(date_time_edit, "setMinimumDate").create();
   // void clearMinimumDate();
-  binder.void_fun<&QDateTimeEdit::clearMinimumDate>("clearMinimumDate").create();
+  bind::void_member_function<QDateTimeEdit, &QDateTimeEdit::clearMinimumDate>(date_time_edit, "clearMinimumDate").create();
   // QDate maximumDate() const;
-  binder.fun<QDate, &QDateTimeEdit::maximumDate>("maximumDate").create();
+  bind::member_function<QDateTimeEdit, QDate, &QDateTimeEdit::maximumDate>(date_time_edit, "maximumDate").create();
   // void setMaximumDate(const QDate &);
-  binder.void_fun<const QDate &, &QDateTimeEdit::setMaximumDate>("setMaximumDate").create();
+  bind::void_member_function<QDateTimeEdit, const QDate &, &QDateTimeEdit::setMaximumDate>(date_time_edit, "setMaximumDate").create();
   // void clearMaximumDate();
-  binder.void_fun<&QDateTimeEdit::clearMaximumDate>("clearMaximumDate").create();
+  bind::void_member_function<QDateTimeEdit, &QDateTimeEdit::clearMaximumDate>(date_time_edit, "clearMaximumDate").create();
   // void setDateRange(const QDate &, const QDate &);
-  binder.void_fun<const QDate &, const QDate &, &QDateTimeEdit::setDateRange>("setDateRange").create();
+  bind::void_member_function<QDateTimeEdit, const QDate &, const QDate &, &QDateTimeEdit::setDateRange>(date_time_edit, "setDateRange").create();
   // QTime minimumTime() const;
-  binder.fun<QTime, &QDateTimeEdit::minimumTime>("minimumTime").create();
+  bind::member_function<QDateTimeEdit, QTime, &QDateTimeEdit::minimumTime>(date_time_edit, "minimumTime").create();
   // void setMinimumTime(const QTime &);
-  binder.void_fun<const QTime &, &QDateTimeEdit::setMinimumTime>("setMinimumTime").create();
+  bind::void_member_function<QDateTimeEdit, const QTime &, &QDateTimeEdit::setMinimumTime>(date_time_edit, "setMinimumTime").create();
   // void clearMinimumTime();
-  binder.void_fun<&QDateTimeEdit::clearMinimumTime>("clearMinimumTime").create();
+  bind::void_member_function<QDateTimeEdit, &QDateTimeEdit::clearMinimumTime>(date_time_edit, "clearMinimumTime").create();
   // QTime maximumTime() const;
-  binder.fun<QTime, &QDateTimeEdit::maximumTime>("maximumTime").create();
+  bind::member_function<QDateTimeEdit, QTime, &QDateTimeEdit::maximumTime>(date_time_edit, "maximumTime").create();
   // void setMaximumTime(const QTime &);
-  binder.void_fun<const QTime &, &QDateTimeEdit::setMaximumTime>("setMaximumTime").create();
+  bind::void_member_function<QDateTimeEdit, const QTime &, &QDateTimeEdit::setMaximumTime>(date_time_edit, "setMaximumTime").create();
   // void clearMaximumTime();
-  binder.void_fun<&QDateTimeEdit::clearMaximumTime>("clearMaximumTime").create();
+  bind::void_member_function<QDateTimeEdit, &QDateTimeEdit::clearMaximumTime>(date_time_edit, "clearMaximumTime").create();
   // void setTimeRange(const QTime &, const QTime &);
-  binder.void_fun<const QTime &, const QTime &, &QDateTimeEdit::setTimeRange>("setTimeRange").create();
+  bind::void_member_function<QDateTimeEdit, const QTime &, const QTime &, &QDateTimeEdit::setTimeRange>(date_time_edit, "setTimeRange").create();
   // QDateTimeEdit::Sections displayedSections() const;
-  binder.fun<QDateTimeEdit::Sections, &QDateTimeEdit::displayedSections>("displayedSections").create();
+  bind::member_function<QDateTimeEdit, QDateTimeEdit::Sections, &QDateTimeEdit::displayedSections>(date_time_edit, "displayedSections").create();
   // QDateTimeEdit::Section currentSection() const;
-  binder.fun<QDateTimeEdit::Section, &QDateTimeEdit::currentSection>("currentSection").create();
+  bind::member_function<QDateTimeEdit, QDateTimeEdit::Section, &QDateTimeEdit::currentSection>(date_time_edit, "currentSection").create();
   // QDateTimeEdit::Section sectionAt(int) const;
-  binder.fun<QDateTimeEdit::Section, int, &QDateTimeEdit::sectionAt>("sectionAt").create();
+  bind::member_function<QDateTimeEdit, QDateTimeEdit::Section, int, &QDateTimeEdit::sectionAt>(date_time_edit, "sectionAt").create();
   // void setCurrentSection(QDateTimeEdit::Section);
-  binder.void_fun<QDateTimeEdit::Section, &QDateTimeEdit::setCurrentSection>("setCurrentSection").create();
+  bind::void_member_function<QDateTimeEdit, QDateTimeEdit::Section, &QDateTimeEdit::setCurrentSection>(date_time_edit, "setCurrentSection").create();
   // int currentSectionIndex() const;
-  binder.fun<int, &QDateTimeEdit::currentSectionIndex>("currentSectionIndex").create();
+  bind::member_function<QDateTimeEdit, int, &QDateTimeEdit::currentSectionIndex>(date_time_edit, "currentSectionIndex").create();
   // void setCurrentSectionIndex(int);
-  binder.void_fun<int, &QDateTimeEdit::setCurrentSectionIndex>("setCurrentSectionIndex").create();
+  bind::void_member_function<QDateTimeEdit, int, &QDateTimeEdit::setCurrentSectionIndex>(date_time_edit, "setCurrentSectionIndex").create();
   // QCalendarWidget * calendarWidget() const;
   /// TODO: QCalendarWidget * calendarWidget() const;
   // void setCalendarWidget(QCalendarWidget *);
   /// TODO: void setCalendarWidget(QCalendarWidget *);
   // int sectionCount() const;
-  binder.fun<int, &QDateTimeEdit::sectionCount>("sectionCount").create();
+  bind::member_function<QDateTimeEdit, int, &QDateTimeEdit::sectionCount>(date_time_edit, "sectionCount").create();
   // void setSelectedSection(QDateTimeEdit::Section);
-  binder.void_fun<QDateTimeEdit::Section, &QDateTimeEdit::setSelectedSection>("setSelectedSection").create();
+  bind::void_member_function<QDateTimeEdit, QDateTimeEdit::Section, &QDateTimeEdit::setSelectedSection>(date_time_edit, "setSelectedSection").create();
   // QString sectionText(QDateTimeEdit::Section) const;
-  binder.fun<QString, QDateTimeEdit::Section, &QDateTimeEdit::sectionText>("sectionText").create();
+  bind::member_function<QDateTimeEdit, QString, QDateTimeEdit::Section, &QDateTimeEdit::sectionText>(date_time_edit, "sectionText").create();
   // QString displayFormat() const;
-  binder.fun<QString, &QDateTimeEdit::displayFormat>("displayFormat").create();
+  bind::member_function<QDateTimeEdit, QString, &QDateTimeEdit::displayFormat>(date_time_edit, "displayFormat").create();
   // void setDisplayFormat(const QString &);
-  binder.void_fun<const QString &, &QDateTimeEdit::setDisplayFormat>("setDisplayFormat").create();
+  bind::void_member_function<QDateTimeEdit, const QString &, &QDateTimeEdit::setDisplayFormat>(date_time_edit, "setDisplayFormat").create();
   // bool calendarPopup() const;
-  binder.fun<bool, &QDateTimeEdit::calendarPopup>("calendarPopup").create();
+  bind::member_function<QDateTimeEdit, bool, &QDateTimeEdit::calendarPopup>(date_time_edit, "calendarPopup").create();
   // void setCalendarPopup(bool);
-  binder.void_fun<bool, &QDateTimeEdit::setCalendarPopup>("setCalendarPopup").create();
+  bind::void_member_function<QDateTimeEdit, bool, &QDateTimeEdit::setCalendarPopup>(date_time_edit, "setCalendarPopup").create();
   // Qt::TimeSpec timeSpec() const;
-  binder.fun<Qt::TimeSpec, &QDateTimeEdit::timeSpec>("timeSpec").create();
+  bind::member_function<QDateTimeEdit, Qt::TimeSpec, &QDateTimeEdit::timeSpec>(date_time_edit, "timeSpec").create();
   // void setTimeSpec(Qt::TimeSpec);
-  binder.void_fun<Qt::TimeSpec, &QDateTimeEdit::setTimeSpec>("setTimeSpec").create();
+  bind::void_member_function<QDateTimeEdit, Qt::TimeSpec, &QDateTimeEdit::setTimeSpec>(date_time_edit, "setTimeSpec").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QDateTimeEdit::sizeHint>("sizeHint").create();
+  bind::member_function<QDateTimeEdit, QSize, &QDateTimeEdit::sizeHint>(date_time_edit, "sizeHint").create();
   // void clear();
-  binder.void_fun<&QDateTimeEdit::clear>("clear").create();
+  bind::void_member_function<QDateTimeEdit, &QDateTimeEdit::clear>(date_time_edit, "clear").create();
   // void stepBy(int);
-  binder.void_fun<int, &QDateTimeEdit::stepBy>("stepBy").create();
+  bind::void_member_function<QDateTimeEdit, int, &QDateTimeEdit::stepBy>(date_time_edit, "stepBy").create();
   // bool event(QEvent *);
   /// TODO: bool event(QEvent *);
   // void dateTimeChanged(const QDateTime &);
-  binder.sigs().add<const QDateTime &>("dateTimeChanged", "dateTimeChanged(const QDateTime &)");
+  bind::signal<QDateTimeEdit, const QDateTime &>(date_time_edit, "dateTimeChanged", "dateTimeChanged(const QDateTime &)");
   // void timeChanged(const QTime &);
-  binder.sigs().add<const QTime &>("timeChanged", "timeChanged(const QTime &)");
+  bind::signal<QDateTimeEdit, const QTime &>(date_time_edit, "timeChanged", "timeChanged(const QTime &)");
   // void dateChanged(const QDate &);
-  binder.sigs().add<const QDate &>("dateChanged", "dateChanged(const QDate &)");
+  bind::signal<QDateTimeEdit, const QDate &>(date_time_edit, "dateChanged", "dateChanged(const QDate &)");
   // void setDateTime(const QDateTime &);
-  binder.void_fun<const QDateTime &, &QDateTimeEdit::setDateTime>("setDateTime").create();
+  bind::void_member_function<QDateTimeEdit, const QDateTime &, &QDateTimeEdit::setDateTime>(date_time_edit, "setDateTime").create();
   // void setDate(const QDate &);
-  binder.void_fun<const QDate &, &QDateTimeEdit::setDate>("setDate").create();
+  bind::void_member_function<QDateTimeEdit, const QDate &, &QDateTimeEdit::setDate>(date_time_edit, "setDate").create();
   // void setTime(const QTime &);
-  binder.void_fun<const QTime &, &QDateTimeEdit::setTime>("setTime").create();
+  bind::void_member_function<QDateTimeEdit, const QTime &, &QDateTimeEdit::setTime>(date_time_edit, "setTime").create();
 
-  date_time_edit.engine()->registerQtType(&QDateTimeEdit::staticMetaObject, date_time_edit.id());
+  bind::link(date_time_edit, &QDateTimeEdit::staticMetaObject);
 }
 
 
@@ -179,18 +178,17 @@ static void register_time_edit_class(script::Namespace ns)
   Class time_edit = ns.newClass("TimeEdit").setId(script::Type::QTimeEdit)
     .setBase(script::Type::QDateTimeEdit).get();
 
-  binding::ClassBinder<QTimeEdit> binder{ time_edit, &QTimeEdit::staticMetaObject };
 
   // QTimeEdit(QWidget *);
-  binder.ctor<QWidget *>().create();
+  bind::constructor<QTimeEdit, QWidget *>(time_edit).create();
   // QTimeEdit(const QTime &, QWidget *);
-  binder.ctor<const QTime &, QWidget *>().create();
+  bind::constructor<QTimeEdit, const QTime &, QWidget *>(time_edit).create();
   // ~QTimeEdit();
-  binder.dtor().create();
+  bind::destructor<QTimeEdit>(time_edit).create();
   // void userTimeChanged(const QTime &);
-  binder.sigs().add<const QTime &>("userTimeChanged", "userTimeChanged(const QTime &)");
+  bind::signal<QTimeEdit, const QTime &>(time_edit, "userTimeChanged", "userTimeChanged(const QTime &)");
 
-  time_edit.engine()->registerQtType(&QTimeEdit::staticMetaObject, time_edit.id());
+  bind::link(time_edit, &QTimeEdit::staticMetaObject);
 }
 
 
@@ -201,18 +199,17 @@ static void register_date_edit_class(script::Namespace ns)
   Class date_edit = ns.newClass("DateEdit").setId(script::Type::QDateEdit)
     .setBase(script::Type::QDateTimeEdit).get();
 
-  binding::ClassBinder<QDateEdit> binder{ date_edit, &QDateEdit::staticMetaObject };
 
   // QDateEdit(QWidget *);
-  binder.ctor<QWidget *>().create();
+  bind::constructor<QDateEdit, QWidget *>(date_edit).create();
   // QDateEdit(const QDate &, QWidget *);
-  binder.ctor<const QDate &, QWidget *>().create();
+  bind::constructor<QDateEdit, const QDate &, QWidget *>(date_edit).create();
   // ~QDateEdit();
-  binder.dtor().create();
+  bind::destructor<QDateEdit>(date_edit).create();
   // void userDateChanged(const QDate &);
-  binder.sigs().add<const QDate &>("userDateChanged", "userDateChanged(const QDate &)");
+  bind::signal<QDateEdit, const QDate &>(date_edit, "userDateChanged", "userDateChanged(const QDate &)");
 
-  date_edit.engine()->registerQtType(&QDateEdit::staticMetaObject, date_edit.id());
+  bind::link(date_edit, &QDateEdit::staticMetaObject);
 }
 
 
@@ -225,7 +222,6 @@ void register_datetimeedit_file(script::Namespace widgets)
   register_date_time_edit_class(ns);
   register_time_edit_class(ns);
   register_date_edit_class(ns);
-  binding::Namespace binder{ ns };
 
   // QFlags<QDateTimeEdit::Sections::enum_type> operator|(QDateTimeEdit::Sections::enum_type, QDateTimeEdit::Sections::enum_type);
   /// TODO: QFlags<QDateTimeEdit::Sections::enum_type> operator|(QDateTimeEdit::Sections::enum_type, QDateTimeEdit::Sections::enum_type);
@@ -234,20 +230,20 @@ void register_datetimeedit_file(script::Namespace widgets)
   // QIncompatibleFlag operator|(QDateTimeEdit::Sections::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QDateTimeEdit::Sections::enum_type, int);
   // QDateTimeEdit& newDateTimeEdit(QWidget*);
-  NewFunction(binder).add<QDateTimeEdit, QWidget*>("newDateTimeEdit");
+  bind::new_function<QDateTimeEdit, QWidget*>(ns, "newDateTimeEdit");
   // QDateTimeEdit& newDateTimeEdit(const QDateTime&, QWidget*);
-  NewFunction(binder).add<QDateTimeEdit, const QDateTime&, QWidget*>("newDateTimeEdit");
+  bind::new_function<QDateTimeEdit, const QDateTime&, QWidget*>(ns, "newDateTimeEdit");
   // QDateTimeEdit& newDateTimeEdit(const QDate&, QWidget*);
-  NewFunction(binder).add<QDateTimeEdit, const QDate&, QWidget*>("newDateTimeEdit");
+  bind::new_function<QDateTimeEdit, const QDate&, QWidget*>(ns, "newDateTimeEdit");
   // QDateTimeEdit& newDateTimeEdit(const QTime&, QWidget*);
-  NewFunction(binder).add<QDateTimeEdit, const QTime&, QWidget*>("newDateTimeEdit");
+  bind::new_function<QDateTimeEdit, const QTime&, QWidget*>(ns, "newDateTimeEdit");
   // QDateEdit& newDateEdit(QWidget*);
-  NewFunction(binder).add<QDateEdit, QWidget*>("newDateEdit");
+  bind::new_function<QDateEdit, QWidget*>(ns, "newDateEdit");
   // QDateEdit& newDateEdit(const QDate&, QWidget*);
-  NewFunction(binder).add<QDateEdit, const QDate&, QWidget*>("newDateEdit");
+  bind::new_function<QDateEdit, const QDate&, QWidget*>(ns, "newDateEdit");
   // QTimeEdit& newTimeEdit(QWidget*);
-  NewFunction(binder).add<QTimeEdit, QWidget*>("newTimeEdit");
+  bind::new_function<QTimeEdit, QWidget*>(ns, "newTimeEdit");
   // QTimeEdit& newTimeEdit(const QTime&, QWidget*);
-  NewFunction(binder).add<QTimeEdit, const QTime&, QWidget*>("newTimeEdit");
+  bind::new_function<QTimeEdit, const QTime&, QWidget*>(ns, "newTimeEdit");
 }
 

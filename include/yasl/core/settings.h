@@ -5,17 +5,17 @@
 #ifndef YASL_CORE_SETTINGS_H
 #define YASL_CORE_SETTINGS_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QSettings>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QSettings> { inline static script::Type get() { return script::Type::QSettings; } };
 template<> struct tag_resolver<QSettings> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QSettings::Format> { inline static script::Type get() { return script::Type::QSettingsFormat; } };
 template<> struct make_type_t<QSettings::Scope> { inline static script::Type get() { return script::Type::QSettingsScope; } };
 template<> struct make_type_t<QSettings::Status> { inline static script::Type get() { return script::Type::QSettingsStatus; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_SETTINGS_H

@@ -4,10 +4,10 @@
 
 #include "yasl/gui/brush.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -27,74 +27,73 @@ static void register_brush_class(script::Namespace ns)
 
   Class brush = ns.newClass("Brush").setId(script::Type::QBrush).get();
 
-  binding::ClassBinder<QBrush> binder{ brush };
 
   // QBrush();
-  binder.default_ctor().create();
+  bind::default_constructor<QBrush>(brush).create();
   // QBrush(Qt::BrushStyle);
-  binder.ctor<Qt::BrushStyle>().create();
+  bind::constructor<QBrush, Qt::BrushStyle>(brush).create();
   // QBrush(const QColor &, Qt::BrushStyle);
-  binder.ctor<const QColor &, Qt::BrushStyle>()
-    .apply(binding::default_arguments(Qt::SolidPattern)).create();
+  bind::constructor<QBrush, const QColor &, Qt::BrushStyle>(brush)
+    .apply(bind::default_arguments(Qt::SolidPattern)).create();
   // QBrush(Qt::GlobalColor, Qt::BrushStyle);
-  binder.ctor<Qt::GlobalColor, Qt::BrushStyle>()
-    .apply(binding::default_arguments(Qt::SolidPattern)).create();
+  bind::constructor<QBrush, Qt::GlobalColor, Qt::BrushStyle>(brush)
+    .apply(bind::default_arguments(Qt::SolidPattern)).create();
   // QBrush(const QColor &, const QPixmap &);
-  binder.ctor<const QColor &, const QPixmap &>().create();
+  bind::constructor<QBrush, const QColor &, const QPixmap &>(brush).create();
   // QBrush(Qt::GlobalColor, const QPixmap &);
-  binder.ctor<Qt::GlobalColor, const QPixmap &>().create();
+  bind::constructor<QBrush, Qt::GlobalColor, const QPixmap &>(brush).create();
   // QBrush(const QPixmap &);
-  binder.ctor<const QPixmap &>().create();
+  bind::constructor<QBrush, const QPixmap &>(brush).create();
   // QBrush(const QImage &);
-  binder.ctor<const QImage &>().create();
+  bind::constructor<QBrush, const QImage &>(brush).create();
   // QBrush(const QBrush &);
-  binder.ctor<const QBrush &>().create();
+  bind::constructor<QBrush, const QBrush &>(brush).create();
   // QBrush(const QGradient &);
-  binder.ctor<const QGradient &>().create();
+  bind::constructor<QBrush, const QGradient &>(brush).create();
   // ~QBrush();
-  binder.dtor().create();
+  bind::destructor<QBrush>(brush).create();
   // QBrush & operator=(const QBrush &);
-  binder.operators().assign<const QBrush &>();
+  bind::memop_assign<QBrush, const QBrush &>(brush);
   // QBrush & operator=(QBrush &&);
-  binder.operators().assign<QBrush &&>();
+  bind::memop_assign<QBrush, QBrush &&>(brush);
   // void swap(QBrush &);
-  binder.void_fun<QBrush &, &QBrush::swap>("swap").create();
+  bind::void_member_function<QBrush, QBrush &, &QBrush::swap>(brush, "swap").create();
   // Qt::BrushStyle style() const;
-  binder.fun<Qt::BrushStyle, &QBrush::style>("style").create();
+  bind::member_function<QBrush, Qt::BrushStyle, &QBrush::style>(brush, "style").create();
   // void setStyle(Qt::BrushStyle);
-  binder.void_fun<Qt::BrushStyle, &QBrush::setStyle>("setStyle").create();
+  bind::void_member_function<QBrush, Qt::BrushStyle, &QBrush::setStyle>(brush, "setStyle").create();
   // const QMatrix & matrix() const;
   /// TODO: const QMatrix & matrix() const;
   // void setMatrix(const QMatrix &);
   /// TODO: void setMatrix(const QMatrix &);
   // QTransform transform() const;
-  binder.fun<QTransform, &QBrush::transform>("transform").create();
+  bind::member_function<QBrush, QTransform, &QBrush::transform>(brush, "transform").create();
   // void setTransform(const QTransform &);
-  binder.void_fun<const QTransform &, &QBrush::setTransform>("setTransform").create();
+  bind::void_member_function<QBrush, const QTransform &, &QBrush::setTransform>(brush, "setTransform").create();
   // QPixmap texture() const;
-  binder.fun<QPixmap, &QBrush::texture>("texture").create();
+  bind::member_function<QBrush, QPixmap, &QBrush::texture>(brush, "texture").create();
   // void setTexture(const QPixmap &);
-  binder.void_fun<const QPixmap &, &QBrush::setTexture>("setTexture").create();
+  bind::void_member_function<QBrush, const QPixmap &, &QBrush::setTexture>(brush, "setTexture").create();
   // QImage textureImage() const;
-  binder.fun<QImage, &QBrush::textureImage>("textureImage").create();
+  bind::member_function<QBrush, QImage, &QBrush::textureImage>(brush, "textureImage").create();
   // void setTextureImage(const QImage &);
-  binder.void_fun<const QImage &, &QBrush::setTextureImage>("setTextureImage").create();
+  bind::void_member_function<QBrush, const QImage &, &QBrush::setTextureImage>(brush, "setTextureImage").create();
   // const QColor & color() const;
-  binder.fun<const QColor &, &QBrush::color>("color").create();
+  bind::member_function<QBrush, const QColor &, &QBrush::color>(brush, "color").create();
   // void setColor(const QColor &);
-  binder.void_fun<const QColor &, &QBrush::setColor>("setColor").create();
+  bind::void_member_function<QBrush, const QColor &, &QBrush::setColor>(brush, "setColor").create();
   // void setColor(Qt::GlobalColor);
-  binder.void_fun<Qt::GlobalColor, &QBrush::setColor>("setColor").create();
+  bind::void_member_function<QBrush, Qt::GlobalColor, &QBrush::setColor>(brush, "setColor").create();
   // const QGradient * gradient() const;
   /// TODO: const QGradient * gradient() const;
   // bool isOpaque() const;
-  binder.fun<bool, &QBrush::isOpaque>("isOpaque").create();
+  bind::member_function<QBrush, bool, &QBrush::isOpaque>(brush, "isOpaque").create();
   // bool operator==(const QBrush &) const;
-  binder.operators().eq<const QBrush &>();
+  bind::memop_eq<QBrush, const QBrush &>(brush);
   // bool operator!=(const QBrush &) const;
-  binder.operators().neq<const QBrush &>();
+  bind::memop_neq<QBrush, const QBrush &>(brush);
   // bool isDetached() const;
-  binder.fun<bool, &QBrush::isDetached>("isDetached").create();
+  bind::member_function<QBrush, bool, &QBrush::isDetached>(brush, "isDetached").create();
   // QBrush::DataPtr & data_ptr();
   /// TODO: QBrush::DataPtr & data_ptr();
 }
@@ -158,34 +157,33 @@ static void register_gradient_class(script::Namespace ns)
   register_gradient_spread_enum(gradient);
   register_gradient_coordinate_mode_enum(gradient);
   register_gradient_interpolation_mode_enum(gradient);
-  binding::ClassBinder<QGradient> binder{ gradient };
 
   // QGradient();
-  binder.default_ctor().create();
+  bind::default_constructor<QGradient>(gradient).create();
   // QGradient::Type type() const;
-  binder.fun<QGradient::Type, &QGradient::type>("type").create();
+  bind::member_function<QGradient, QGradient::Type, &QGradient::type>(gradient, "type").create();
   // void setSpread(QGradient::Spread);
-  binder.void_fun<QGradient::Spread, &QGradient::setSpread>("setSpread").create();
+  bind::void_member_function<QGradient, QGradient::Spread, &QGradient::setSpread>(gradient, "setSpread").create();
   // QGradient::Spread spread() const;
-  binder.fun<QGradient::Spread, &QGradient::spread>("spread").create();
+  bind::member_function<QGradient, QGradient::Spread, &QGradient::spread>(gradient, "spread").create();
   // void setColorAt(qreal, const QColor &);
-  binder.void_fun<qreal, const QColor &, &QGradient::setColorAt>("setColorAt").create();
+  bind::void_member_function<QGradient, qreal, const QColor &, &QGradient::setColorAt>(gradient, "setColorAt").create();
   // void setStops(const QGradientStops &);
   /// TODO: void setStops(const QGradientStops &);
   // QGradientStops stops() const;
   /// TODO: QGradientStops stops() const;
   // QGradient::CoordinateMode coordinateMode() const;
-  binder.fun<QGradient::CoordinateMode, &QGradient::coordinateMode>("coordinateMode").create();
+  bind::member_function<QGradient, QGradient::CoordinateMode, &QGradient::coordinateMode>(gradient, "coordinateMode").create();
   // void setCoordinateMode(QGradient::CoordinateMode);
-  binder.void_fun<QGradient::CoordinateMode, &QGradient::setCoordinateMode>("setCoordinateMode").create();
+  bind::void_member_function<QGradient, QGradient::CoordinateMode, &QGradient::setCoordinateMode>(gradient, "setCoordinateMode").create();
   // QGradient::InterpolationMode interpolationMode() const;
-  binder.fun<QGradient::InterpolationMode, &QGradient::interpolationMode>("interpolationMode").create();
+  bind::member_function<QGradient, QGradient::InterpolationMode, &QGradient::interpolationMode>(gradient, "interpolationMode").create();
   // void setInterpolationMode(QGradient::InterpolationMode);
-  binder.void_fun<QGradient::InterpolationMode, &QGradient::setInterpolationMode>("setInterpolationMode").create();
+  bind::void_member_function<QGradient, QGradient::InterpolationMode, &QGradient::setInterpolationMode>(gradient, "setInterpolationMode").create();
   // bool operator==(const QGradient &) const;
-  binder.operators().eq<const QGradient &>();
+  bind::memop_eq<QGradient, const QGradient &>(gradient);
   // bool operator!=(const QGradient &) const;
-  binder.operators().neq<const QGradient &>();
+  bind::memop_neq<QGradient, const QGradient &>(gradient);
 }
 
 
@@ -196,32 +194,31 @@ static void register_linear_gradient_class(script::Namespace ns)
   Class linear_gradient = ns.newClass("LinearGradient").setId(script::Type::QLinearGradient)
     .setBase(script::Type::QGradient).get();
 
-  binding::ClassBinder<QLinearGradient> binder{ linear_gradient };
 
   // QLinearGradient();
-  binder.default_ctor().create();
+  bind::default_constructor<QLinearGradient>(linear_gradient).create();
   // QLinearGradient(const QLinearGradient &);
-  binder.ctor<const QLinearGradient &>().create();
+  bind::constructor<QLinearGradient, const QLinearGradient &>(linear_gradient).create();
   // ~QLinearGradient();
-  binder.dtor().create();
+  bind::destructor<QLinearGradient>(linear_gradient).create();
   // QLinearGradient & operator=(const QLinearGradient &);
-  binder.operators().assign<const QLinearGradient &>();
+  bind::memop_assign<QLinearGradient, const QLinearGradient &>(linear_gradient);
   // QLinearGradient(const QPointF &, const QPointF &);
-  binder.ctor<const QPointF &, const QPointF &>().create();
+  bind::constructor<QLinearGradient, const QPointF &, const QPointF &>(linear_gradient).create();
   // QLinearGradient(qreal, qreal, qreal, qreal);
-  binder.ctor<qreal, qreal, qreal, qreal>().create();
+  bind::constructor<QLinearGradient, qreal, qreal, qreal, qreal>(linear_gradient).create();
   // QPointF start() const;
-  binder.fun<QPointF, &QLinearGradient::start>("start").create();
+  bind::member_function<QLinearGradient, QPointF, &QLinearGradient::start>(linear_gradient, "start").create();
   // void setStart(const QPointF &);
-  binder.void_fun<const QPointF &, &QLinearGradient::setStart>("setStart").create();
+  bind::void_member_function<QLinearGradient, const QPointF &, &QLinearGradient::setStart>(linear_gradient, "setStart").create();
   // void setStart(qreal, qreal);
-  binder.void_fun<qreal, qreal, &QLinearGradient::setStart>("setStart").create();
+  bind::void_member_function<QLinearGradient, qreal, qreal, &QLinearGradient::setStart>(linear_gradient, "setStart").create();
   // QPointF finalStop() const;
-  binder.fun<QPointF, &QLinearGradient::finalStop>("finalStop").create();
+  bind::member_function<QLinearGradient, QPointF, &QLinearGradient::finalStop>(linear_gradient, "finalStop").create();
   // void setFinalStop(const QPointF &);
-  binder.void_fun<const QPointF &, &QLinearGradient::setFinalStop>("setFinalStop").create();
+  bind::void_member_function<QLinearGradient, const QPointF &, &QLinearGradient::setFinalStop>(linear_gradient, "setFinalStop").create();
   // void setFinalStop(qreal, qreal);
-  binder.void_fun<qreal, qreal, &QLinearGradient::setFinalStop>("setFinalStop").create();
+  bind::void_member_function<QLinearGradient, qreal, qreal, &QLinearGradient::setFinalStop>(linear_gradient, "setFinalStop").create();
 }
 
 
@@ -232,52 +229,51 @@ static void register_radial_gradient_class(script::Namespace ns)
   Class radial_gradient = ns.newClass("RadialGradient").setId(script::Type::QRadialGradient)
     .setBase(script::Type::QGradient).get();
 
-  binding::ClassBinder<QRadialGradient> binder{ radial_gradient };
 
   // QRadialGradient();
-  binder.default_ctor().create();
+  bind::default_constructor<QRadialGradient>(radial_gradient).create();
   // QRadialGradient(const QRadialGradient &);
-  binder.ctor<const QRadialGradient &>().create();
+  bind::constructor<QRadialGradient, const QRadialGradient &>(radial_gradient).create();
   // QRadialGradient & operator=(const QRadialGradient &);
-  binder.operators().assign<const QRadialGradient &>();
+  bind::memop_assign<QRadialGradient, const QRadialGradient &>(radial_gradient);
   // ~QRadialGradient();
-  binder.dtor().create();
+  bind::destructor<QRadialGradient>(radial_gradient).create();
   // QRadialGradient(const QPointF &, qreal, const QPointF &);
-  binder.ctor<const QPointF &, qreal, const QPointF &>().create();
+  bind::constructor<QRadialGradient, const QPointF &, qreal, const QPointF &>(radial_gradient).create();
   // QRadialGradient(qreal, qreal, qreal, qreal, qreal);
-  binder.ctor<qreal, qreal, qreal, qreal, qreal>().create();
+  bind::constructor<QRadialGradient, qreal, qreal, qreal, qreal, qreal>(radial_gradient).create();
   // QRadialGradient(const QPointF &, qreal);
-  binder.ctor<const QPointF &, qreal>().create();
+  bind::constructor<QRadialGradient, const QPointF &, qreal>(radial_gradient).create();
   // QRadialGradient(qreal, qreal, qreal);
-  binder.ctor<qreal, qreal, qreal>().create();
+  bind::constructor<QRadialGradient, qreal, qreal, qreal>(radial_gradient).create();
   // QRadialGradient(const QPointF &, qreal, const QPointF &, qreal);
-  binder.ctor<const QPointF &, qreal, const QPointF &, qreal>().create();
+  bind::constructor<QRadialGradient, const QPointF &, qreal, const QPointF &, qreal>(radial_gradient).create();
   // QRadialGradient(qreal, qreal, qreal, qreal, qreal, qreal);
-  binder.ctor<qreal, qreal, qreal, qreal, qreal, qreal>().create();
+  bind::constructor<QRadialGradient, qreal, qreal, qreal, qreal, qreal, qreal>(radial_gradient).create();
   // QPointF center() const;
-  binder.fun<QPointF, &QRadialGradient::center>("center").create();
+  bind::member_function<QRadialGradient, QPointF, &QRadialGradient::center>(radial_gradient, "center").create();
   // void setCenter(const QPointF &);
-  binder.void_fun<const QPointF &, &QRadialGradient::setCenter>("setCenter").create();
+  bind::void_member_function<QRadialGradient, const QPointF &, &QRadialGradient::setCenter>(radial_gradient, "setCenter").create();
   // void setCenter(qreal, qreal);
-  binder.void_fun<qreal, qreal, &QRadialGradient::setCenter>("setCenter").create();
+  bind::void_member_function<QRadialGradient, qreal, qreal, &QRadialGradient::setCenter>(radial_gradient, "setCenter").create();
   // QPointF focalPoint() const;
-  binder.fun<QPointF, &QRadialGradient::focalPoint>("focalPoint").create();
+  bind::member_function<QRadialGradient, QPointF, &QRadialGradient::focalPoint>(radial_gradient, "focalPoint").create();
   // void setFocalPoint(const QPointF &);
-  binder.void_fun<const QPointF &, &QRadialGradient::setFocalPoint>("setFocalPoint").create();
+  bind::void_member_function<QRadialGradient, const QPointF &, &QRadialGradient::setFocalPoint>(radial_gradient, "setFocalPoint").create();
   // void setFocalPoint(qreal, qreal);
-  binder.void_fun<qreal, qreal, &QRadialGradient::setFocalPoint>("setFocalPoint").create();
+  bind::void_member_function<QRadialGradient, qreal, qreal, &QRadialGradient::setFocalPoint>(radial_gradient, "setFocalPoint").create();
   // qreal radius() const;
-  binder.fun<qreal, &QRadialGradient::radius>("radius").create();
+  bind::member_function<QRadialGradient, qreal, &QRadialGradient::radius>(radial_gradient, "radius").create();
   // void setRadius(qreal);
-  binder.void_fun<qreal, &QRadialGradient::setRadius>("setRadius").create();
+  bind::void_member_function<QRadialGradient, qreal, &QRadialGradient::setRadius>(radial_gradient, "setRadius").create();
   // qreal centerRadius() const;
-  binder.fun<qreal, &QRadialGradient::centerRadius>("centerRadius").create();
+  bind::member_function<QRadialGradient, qreal, &QRadialGradient::centerRadius>(radial_gradient, "centerRadius").create();
   // void setCenterRadius(qreal);
-  binder.void_fun<qreal, &QRadialGradient::setCenterRadius>("setCenterRadius").create();
+  bind::void_member_function<QRadialGradient, qreal, &QRadialGradient::setCenterRadius>(radial_gradient, "setCenterRadius").create();
   // qreal focalRadius() const;
-  binder.fun<qreal, &QRadialGradient::focalRadius>("focalRadius").create();
+  bind::member_function<QRadialGradient, qreal, &QRadialGradient::focalRadius>(radial_gradient, "focalRadius").create();
   // void setFocalRadius(qreal);
-  binder.void_fun<qreal, &QRadialGradient::setFocalRadius>("setFocalRadius").create();
+  bind::void_member_function<QRadialGradient, qreal, &QRadialGradient::setFocalRadius>(radial_gradient, "setFocalRadius").create();
 }
 
 
@@ -288,30 +284,29 @@ static void register_conical_gradient_class(script::Namespace ns)
   Class conical_gradient = ns.newClass("ConicalGradient").setId(script::Type::QConicalGradient)
     .setBase(script::Type::QGradient).get();
 
-  binding::ClassBinder<QConicalGradient> binder{ conical_gradient };
 
   // QConicalGradient();
-  binder.default_ctor().create();
+  bind::default_constructor<QConicalGradient>(conical_gradient).create();
   // QConicalGradient(const QConicalGradient &);
-  binder.ctor<const QConicalGradient &>().create();
+  bind::constructor<QConicalGradient, const QConicalGradient &>(conical_gradient).create();
   // QConicalGradient & operator=(const QConicalGradient &);
-  binder.operators().assign<const QConicalGradient &>();
+  bind::memop_assign<QConicalGradient, const QConicalGradient &>(conical_gradient);
   // ~QConicalGradient();
-  binder.dtor().create();
+  bind::destructor<QConicalGradient>(conical_gradient).create();
   // QConicalGradient(const QPointF &, qreal);
-  binder.ctor<const QPointF &, qreal>().create();
+  bind::constructor<QConicalGradient, const QPointF &, qreal>(conical_gradient).create();
   // QConicalGradient(qreal, qreal, qreal);
-  binder.ctor<qreal, qreal, qreal>().create();
+  bind::constructor<QConicalGradient, qreal, qreal, qreal>(conical_gradient).create();
   // QPointF center() const;
-  binder.fun<QPointF, &QConicalGradient::center>("center").create();
+  bind::member_function<QConicalGradient, QPointF, &QConicalGradient::center>(conical_gradient, "center").create();
   // void setCenter(const QPointF &);
-  binder.void_fun<const QPointF &, &QConicalGradient::setCenter>("setCenter").create();
+  bind::void_member_function<QConicalGradient, const QPointF &, &QConicalGradient::setCenter>(conical_gradient, "setCenter").create();
   // void setCenter(qreal, qreal);
-  binder.void_fun<qreal, qreal, &QConicalGradient::setCenter>("setCenter").create();
+  bind::void_member_function<QConicalGradient, qreal, qreal, &QConicalGradient::setCenter>(conical_gradient, "setCenter").create();
   // qreal angle() const;
-  binder.fun<qreal, &QConicalGradient::angle>("angle").create();
+  bind::member_function<QConicalGradient, qreal, &QConicalGradient::angle>(conical_gradient, "angle").create();
   // void setAngle(qreal);
-  binder.void_fun<qreal, &QConicalGradient::setAngle>("setAngle").create();
+  bind::void_member_function<QConicalGradient, qreal, &QConicalGradient::setAngle>(conical_gradient, "setAngle").create();
 }
 
 
@@ -326,14 +321,13 @@ void register_brush_file(script::Namespace gui)
   register_linear_gradient_class(ns);
   register_radial_gradient_class(ns);
   register_conical_gradient_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QBrush &, QBrush &);
-  binder.void_fun<QBrush &, QBrush &, &swap>("swap").create();
+  bind::void_function<QBrush &, QBrush &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QBrush &);
-  binder.operators().put_to<QDataStream &, const QBrush &>();
+  bind::op_put_to<QDataStream &, const QBrush &>(ns);
   // QDataStream & operator>>(QDataStream &, QBrush &);
-  binder.operators().read_from<QDataStream &, QBrush &>();
+  bind::op_read_from<QDataStream &, QBrush &>(ns);
   // QDebug operator<<(QDebug, const QBrush &);
   /// TODO: QDebug operator<<(QDebug, const QBrush &);
 }

@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_VALIDATOR_H
 #define YASL_GUI_VALIDATOR_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QValidator>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QDoubleValidator> { inline static script::Type get() { return script::Type::QDoubleValidator; } };
 template<> struct tag_resolver<QDoubleValidator> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QDoubleValidator::Notation> { inline static script::Type get() { return script::Type::QDoubleValidatorNotation; } };
@@ -21,6 +21,6 @@ template<> struct tag_resolver<QRegularExpressionValidator> { typedef qobject_ta
 template<> struct make_type_t<QValidator> { inline static script::Type get() { return script::Type::QValidator; } };
 template<> struct tag_resolver<QValidator> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QValidator::State> { inline static script::Type get() { return script::Type::QValidatorState; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_VALIDATOR_H

@@ -4,10 +4,10 @@
 
 #include "yasl/core/datetime.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/datetime.h"
@@ -35,53 +35,52 @@ static void register_date_class(script::Namespace ns)
   Class date = ns.newClass("Date").setId(script::Type::QDate).get();
 
   register_date_month_name_type_enum(date);
-  binding::ClassBinder<QDate> binder{ date };
 
   // QDate();
-  binder.default_ctor().create();
+  bind::default_constructor<QDate>(date).create();
   // QDate(const QDate &);
-  binder.ctor<const QDate &>().create();
+  bind::constructor<QDate, const QDate &>(date).create();
   // ~QDate();
-  binder.dtor().create();
+  bind::destructor<QDate>(date).create();
   // QDate(int, int, int);
-  binder.ctor<int, int, int>().create();
+  bind::constructor<QDate, int, int, int>(date).create();
   // bool isNull() const;
-  binder.fun<bool, &QDate::isNull>("isNull").create();
+  bind::member_function<QDate, bool, &QDate::isNull>(date, "isNull").create();
   // bool isValid() const;
-  binder.fun<bool, &QDate::isValid>("isValid").create();
+  bind::member_function<QDate, bool, &QDate::isValid>(date, "isValid").create();
   // int year() const;
-  binder.fun<int, &QDate::year>("year").create();
+  bind::member_function<QDate, int, &QDate::year>(date, "year").create();
   // int month() const;
-  binder.fun<int, &QDate::month>("month").create();
+  bind::member_function<QDate, int, &QDate::month>(date, "month").create();
   // int day() const;
-  binder.fun<int, &QDate::day>("day").create();
+  bind::member_function<QDate, int, &QDate::day>(date, "day").create();
   // int dayOfWeek() const;
-  binder.fun<int, &QDate::dayOfWeek>("dayOfWeek").create();
+  bind::member_function<QDate, int, &QDate::dayOfWeek>(date, "dayOfWeek").create();
   // int dayOfYear() const;
-  binder.fun<int, &QDate::dayOfYear>("dayOfYear").create();
+  bind::member_function<QDate, int, &QDate::dayOfYear>(date, "dayOfYear").create();
   // int daysInMonth() const;
-  binder.fun<int, &QDate::daysInMonth>("daysInMonth").create();
+  bind::member_function<QDate, int, &QDate::daysInMonth>(date, "daysInMonth").create();
   // int daysInYear() const;
-  binder.fun<int, &QDate::daysInYear>("daysInYear").create();
+  bind::member_function<QDate, int, &QDate::daysInYear>(date, "daysInYear").create();
   // int weekNumber(int *) const;
   /// TODO: int weekNumber(int *) const;
   // static QString shortMonthName(int, QDate::MonthNameType);
-  binder.static_fun<QString, int, QDate::MonthNameType, &QDate::shortMonthName>("shortMonthName").create();
+  bind::static_member_function<QDate, QString, int, QDate::MonthNameType, &QDate::shortMonthName>(date, "shortMonthName").create();
   // static QString shortDayName(int, QDate::MonthNameType);
-  binder.static_fun<QString, int, QDate::MonthNameType, &QDate::shortDayName>("shortDayName").create();
+  bind::static_member_function<QDate, QString, int, QDate::MonthNameType, &QDate::shortDayName>(date, "shortDayName").create();
   // static QString longMonthName(int, QDate::MonthNameType);
-  binder.static_fun<QString, int, QDate::MonthNameType, &QDate::longMonthName>("longMonthName").create();
+  bind::static_member_function<QDate, QString, int, QDate::MonthNameType, &QDate::longMonthName>(date, "longMonthName").create();
   // static QString longDayName(int, QDate::MonthNameType);
-  binder.static_fun<QString, int, QDate::MonthNameType, &QDate::longDayName>("longDayName").create();
+  bind::static_member_function<QDate, QString, int, QDate::MonthNameType, &QDate::longDayName>(date, "longDayName").create();
   // QString toString(Qt::DateFormat) const;
-  binder.fun<QString, Qt::DateFormat, &QDate::toString>("toString")
-    .apply(binding::default_arguments(Qt::TextDate)).create();
+  bind::member_function<QDate, QString, Qt::DateFormat, &QDate::toString>(date, "toString")
+    .apply(bind::default_arguments(Qt::TextDate)).create();
   // QString toString(const QString &) const;
-  binder.fun<QString, const QString &, &QDate::toString>("toString").create();
+  bind::member_function<QDate, QString, const QString &, &QDate::toString>(date, "toString").create();
   // QString toString(QStringView) const;
   /// TODO: QString toString(QStringView) const;
   // bool setDate(int, int, int);
-  binder.fun<bool, int, int, int, &QDate::setDate>("setDate").create();
+  bind::member_function<QDate, bool, int, int, int, &QDate::setDate>(date, "setDate").create();
   // void getDate(int *, int *, int *);
   /// TODO: void getDate(int *, int *, int *);
   // void getDate(int *, int *, int *) const;
@@ -89,36 +88,36 @@ static void register_date_class(script::Namespace ns)
   // QDate addDays(qint64) const;
   /// TODO: QDate addDays(qint64) const;
   // QDate addMonths(int) const;
-  binder.fun<QDate, int, &QDate::addMonths>("addMonths").create();
+  bind::member_function<QDate, QDate, int, &QDate::addMonths>(date, "addMonths").create();
   // QDate addYears(int) const;
-  binder.fun<QDate, int, &QDate::addYears>("addYears").create();
+  bind::member_function<QDate, QDate, int, &QDate::addYears>(date, "addYears").create();
   // qint64 daysTo(const QDate &) const;
   /// TODO: qint64 daysTo(const QDate &) const;
   // QDate & operator=(const QDate &);
-  binder.operators().assign<const QDate &>();
+  bind::memop_assign<QDate, const QDate &>(date);
   // bool operator==(const QDate &) const;
-  binder.operators().eq<const QDate &>();
+  bind::memop_eq<QDate, const QDate &>(date);
   // bool operator!=(const QDate &) const;
-  binder.operators().neq<const QDate &>();
+  bind::memop_neq<QDate, const QDate &>(date);
   // bool operator<(const QDate &) const;
-  binder.operators().less<const QDate &>();
+  bind::memop_less<QDate, const QDate &>(date);
   // bool operator<=(const QDate &) const;
-  binder.operators().leq<const QDate &>();
+  bind::memop_leq<QDate, const QDate &>(date);
   // bool operator>(const QDate &) const;
-  binder.operators().greater<const QDate &>();
+  bind::memop_greater<QDate, const QDate &>(date);
   // bool operator>=(const QDate &) const;
-  binder.operators().geq<const QDate &>();
+  bind::memop_geq<QDate, const QDate &>(date);
   // static QDate currentDate();
-  binder.static_fun<QDate, &QDate::currentDate>("currentDate").create();
+  bind::static_member_function<QDate, QDate, &QDate::currentDate>(date, "currentDate").create();
   // static QDate fromString(const QString &, Qt::DateFormat);
-  binder.static_fun<QDate, const QString &, Qt::DateFormat, &QDate::fromString>("fromString")
-    .apply(binding::default_arguments(Qt::TextDate)).create();
+  bind::static_member_function<QDate, QDate, const QString &, Qt::DateFormat, &QDate::fromString>(date, "fromString")
+    .apply(bind::default_arguments(Qt::TextDate)).create();
   // static QDate fromString(const QString &, const QString &);
-  binder.static_fun<QDate, const QString &, const QString &, &QDate::fromString>("fromString").create();
+  bind::static_member_function<QDate, QDate, const QString &, const QString &, &QDate::fromString>(date, "fromString").create();
   // static bool isValid(int, int, int);
-  binder.static_fun<bool, int, int, int, &QDate::isValid>("isValid").create();
+  bind::static_member_function<QDate, bool, int, int, int, &QDate::isValid>(date, "isValid").create();
   // static bool isLeapYear(int);
-  binder.static_fun<bool, int, &QDate::isLeapYear>("isLeapYear").create();
+  bind::static_member_function<QDate, bool, int, &QDate::isLeapYear>(date, "isLeapYear").create();
   // static QDate fromJulianDay(qint64);
   /// TODO: static QDate fromJulianDay(qint64);
   // qint64 toJulianDay() const;
@@ -132,81 +131,80 @@ static void register_time_class(script::Namespace ns)
 
   Class time = ns.newClass("Time").setId(script::Type::QTime).get();
 
-  binding::ClassBinder<QTime> binder{ time };
 
   // QTime();
-  binder.default_ctor().create();
+  bind::default_constructor<QTime>(time).create();
   // QTime(const QTime &);
-  binder.ctor<const QTime &>().create();
+  bind::constructor<QTime, const QTime &>(time).create();
   // ~QTime();
-  binder.dtor().create();
+  bind::destructor<QTime>(time).create();
   // QTime(int, int, int, int);
-  binder.ctor<int, int, int, int>()
-    .apply(binding::default_arguments(0, 0)).create();
+  bind::constructor<QTime, int, int, int, int>(time)
+    .apply(bind::default_arguments(0, 0)).create();
   // bool isNull() const;
-  binder.fun<bool, &QTime::isNull>("isNull").create();
+  bind::member_function<QTime, bool, &QTime::isNull>(time, "isNull").create();
   // bool isValid() const;
-  binder.fun<bool, &QTime::isValid>("isValid").create();
+  bind::member_function<QTime, bool, &QTime::isValid>(time, "isValid").create();
   // int hour() const;
-  binder.fun<int, &QTime::hour>("hour").create();
+  bind::member_function<QTime, int, &QTime::hour>(time, "hour").create();
   // int minute() const;
-  binder.fun<int, &QTime::minute>("minute").create();
+  bind::member_function<QTime, int, &QTime::minute>(time, "minute").create();
   // int second() const;
-  binder.fun<int, &QTime::second>("second").create();
+  bind::member_function<QTime, int, &QTime::second>(time, "second").create();
   // int msec() const;
-  binder.fun<int, &QTime::msec>("msec").create();
+  bind::member_function<QTime, int, &QTime::msec>(time, "msec").create();
   // QString toString(Qt::DateFormat) const;
-  binder.fun<QString, Qt::DateFormat, &QTime::toString>("toString")
-    .apply(binding::default_arguments(Qt::TextDate)).create();
+  bind::member_function<QTime, QString, Qt::DateFormat, &QTime::toString>(time, "toString")
+    .apply(bind::default_arguments(Qt::TextDate)).create();
   // QString toString(const QString &) const;
-  binder.fun<QString, const QString &, &QTime::toString>("toString").create();
+  bind::member_function<QTime, QString, const QString &, &QTime::toString>(time, "toString").create();
   // QString toString(QStringView) const;
   /// TODO: QString toString(QStringView) const;
   // bool setHMS(int, int, int, int);
-  binder.fun<bool, int, int, int, int, &QTime::setHMS>("setHMS")
-    .apply(binding::default_arguments(0)).create();
+  bind::member_function<QTime, bool, int, int, int, int, &QTime::setHMS>(time, "setHMS")
+    .apply(bind::default_arguments(0)).create();
   // QTime addSecs(int) const;
-  binder.fun<QTime, int, &QTime::addSecs>("addSecs").create();
+  bind::member_function<QTime, QTime, int, &QTime::addSecs>(time, "addSecs").create();
   // int secsTo(const QTime &) const;
-  binder.fun<int, const QTime &, &QTime::secsTo>("secsTo").create();
+  bind::member_function<QTime, int, const QTime &, &QTime::secsTo>(time, "secsTo").create();
   // QTime addMSecs(int) const;
-  binder.fun<QTime, int, &QTime::addMSecs>("addMSecs").create();
+  bind::member_function<QTime, QTime, int, &QTime::addMSecs>(time, "addMSecs").create();
   // int msecsTo(const QTime &) const;
-  binder.fun<int, const QTime &, &QTime::msecsTo>("msecsTo").create();
+  bind::member_function<QTime, int, const QTime &, &QTime::msecsTo>(time, "msecsTo").create();
   // QTime & operator=(const QTime &);
-  binder.operators().assign<const QTime &>();
+  bind::memop_assign<QTime, const QTime &>(time);
   // bool operator==(const QTime &) const;
-  binder.operators().eq<const QTime &>();
+  bind::memop_eq<QTime, const QTime &>(time);
   // bool operator!=(const QTime &) const;
-  binder.operators().neq<const QTime &>();
+  bind::memop_neq<QTime, const QTime &>(time);
   // bool operator<(const QTime &) const;
-  binder.operators().less<const QTime &>();
+  bind::memop_less<QTime, const QTime &>(time);
   // bool operator<=(const QTime &) const;
-  binder.operators().leq<const QTime &>();
+  bind::memop_leq<QTime, const QTime &>(time);
   // bool operator>(const QTime &) const;
-  binder.operators().greater<const QTime &>();
+  bind::memop_greater<QTime, const QTime &>(time);
   // bool operator>=(const QTime &) const;
-  binder.operators().geq<const QTime &>();
+  bind::memop_geq<QTime, const QTime &>(time);
   // static QTime fromMSecsSinceStartOfDay(int);
-  binder.static_fun<QTime, int, &QTime::fromMSecsSinceStartOfDay>("fromMSecsSinceStartOfDay").create();
+  bind::static_member_function<QTime, QTime, int, &QTime::fromMSecsSinceStartOfDay>(time, "fromMSecsSinceStartOfDay").create();
   // int msecsSinceStartOfDay() const;
-  binder.fun<int, &QTime::msecsSinceStartOfDay>("msecsSinceStartOfDay").create();
+  bind::member_function<QTime, int, &QTime::msecsSinceStartOfDay>(time, "msecsSinceStartOfDay").create();
   // static QTime currentTime();
-  binder.static_fun<QTime, &QTime::currentTime>("currentTime").create();
+  bind::static_member_function<QTime, QTime, &QTime::currentTime>(time, "currentTime").create();
   // static QTime fromString(const QString &, Qt::DateFormat);
-  binder.static_fun<QTime, const QString &, Qt::DateFormat, &QTime::fromString>("fromString")
-    .apply(binding::default_arguments(Qt::TextDate)).create();
+  bind::static_member_function<QTime, QTime, const QString &, Qt::DateFormat, &QTime::fromString>(time, "fromString")
+    .apply(bind::default_arguments(Qt::TextDate)).create();
   // static QTime fromString(const QString &, const QString &);
-  binder.static_fun<QTime, const QString &, const QString &, &QTime::fromString>("fromString").create();
+  bind::static_member_function<QTime, QTime, const QString &, const QString &, &QTime::fromString>(time, "fromString").create();
   // static bool isValid(int, int, int, int);
-  binder.static_fun<bool, int, int, int, int, &QTime::isValid>("isValid")
-    .apply(binding::default_arguments(0)).create();
+  bind::static_member_function<QTime, bool, int, int, int, int, &QTime::isValid>(time, "isValid")
+    .apply(bind::default_arguments(0)).create();
   // void start();
-  binder.void_fun<&QTime::start>("start").create();
+  bind::void_member_function<QTime, &QTime::start>(time, "start").create();
   // int restart();
-  binder.fun<int, &QTime::restart>("restart").create();
+  bind::member_function<QTime, int, &QTime::restart>(time, "restart").create();
   // int elapsed() const;
-  binder.fun<int, &QTime::elapsed>("elapsed").create();
+  bind::member_function<QTime, int, &QTime::elapsed>(time, "elapsed").create();
 }
 
 
@@ -216,94 +214,93 @@ static void register_date_time_class(script::Namespace ns)
 
   Class date_time = ns.newClass("DateTime").setId(script::Type::QDateTime).get();
 
-  binding::ClassBinder<QDateTime> binder{ date_time };
 
   // QDateTime();
-  binder.default_ctor().create();
+  bind::default_constructor<QDateTime>(date_time).create();
   // QDateTime(const QDate &);
-  binder.ctor<const QDate &>().create();
+  bind::constructor<QDateTime, const QDate &>(date_time).create();
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec);
-  binder.ctor<const QDate &, const QTime &, Qt::TimeSpec>()
-    .apply(binding::default_arguments(Qt::LocalTime)).create();
+  bind::constructor<QDateTime, const QDate &, const QTime &, Qt::TimeSpec>(date_time)
+    .apply(bind::default_arguments(Qt::LocalTime)).create();
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec, int);
-  binder.ctor<const QDate &, const QTime &, Qt::TimeSpec, int>().create();
+  bind::constructor<QDateTime, const QDate &, const QTime &, Qt::TimeSpec, int>(date_time).create();
   // QDateTime(const QDate &, const QTime &, const QTimeZone &);
-  binder.ctor<const QDate &, const QTime &, const QTimeZone &>().create();
+  bind::constructor<QDateTime, const QDate &, const QTime &, const QTimeZone &>(date_time).create();
   // QDateTime(const QDateTime &);
-  binder.ctor<const QDateTime &>().create();
+  bind::constructor<QDateTime, const QDateTime &>(date_time).create();
   // QDateTime(QDateTime &&);
-  binder.ctor<QDateTime &&>().create();
+  bind::constructor<QDateTime, QDateTime &&>(date_time).create();
   // ~QDateTime();
-  binder.dtor().create();
+  bind::destructor<QDateTime>(date_time).create();
   // QDateTime & operator=(QDateTime &&);
-  binder.operators().assign<QDateTime &&>();
+  bind::memop_assign<QDateTime, QDateTime &&>(date_time);
   // QDateTime & operator=(const QDateTime &);
-  binder.operators().assign<const QDateTime &>();
+  bind::memop_assign<QDateTime, const QDateTime &>(date_time);
   // void swap(QDateTime &);
-  binder.void_fun<QDateTime &, &QDateTime::swap>("swap").create();
+  bind::void_member_function<QDateTime, QDateTime &, &QDateTime::swap>(date_time, "swap").create();
   // bool isNull() const;
-  binder.fun<bool, &QDateTime::isNull>("isNull").create();
+  bind::member_function<QDateTime, bool, &QDateTime::isNull>(date_time, "isNull").create();
   // bool isValid() const;
-  binder.fun<bool, &QDateTime::isValid>("isValid").create();
+  bind::member_function<QDateTime, bool, &QDateTime::isValid>(date_time, "isValid").create();
   // QDate date() const;
-  binder.fun<QDate, &QDateTime::date>("date").create();
+  bind::member_function<QDateTime, QDate, &QDateTime::date>(date_time, "date").create();
   // QTime time() const;
-  binder.fun<QTime, &QDateTime::time>("time").create();
+  bind::member_function<QDateTime, QTime, &QDateTime::time>(date_time, "time").create();
   // Qt::TimeSpec timeSpec() const;
-  binder.fun<Qt::TimeSpec, &QDateTime::timeSpec>("timeSpec").create();
+  bind::member_function<QDateTime, Qt::TimeSpec, &QDateTime::timeSpec>(date_time, "timeSpec").create();
   // int offsetFromUtc() const;
-  binder.fun<int, &QDateTime::offsetFromUtc>("offsetFromUtc").create();
+  bind::member_function<QDateTime, int, &QDateTime::offsetFromUtc>(date_time, "offsetFromUtc").create();
   // QTimeZone timeZone() const;
-  binder.fun<QTimeZone, &QDateTime::timeZone>("timeZone").create();
+  bind::member_function<QDateTime, QTimeZone, &QDateTime::timeZone>(date_time, "timeZone").create();
   // QString timeZoneAbbreviation() const;
-  binder.fun<QString, &QDateTime::timeZoneAbbreviation>("timeZoneAbbreviation").create();
+  bind::member_function<QDateTime, QString, &QDateTime::timeZoneAbbreviation>(date_time, "timeZoneAbbreviation").create();
   // bool isDaylightTime() const;
-  binder.fun<bool, &QDateTime::isDaylightTime>("isDaylightTime").create();
+  bind::member_function<QDateTime, bool, &QDateTime::isDaylightTime>(date_time, "isDaylightTime").create();
   // qint64 toMSecsSinceEpoch() const;
   /// TODO: qint64 toMSecsSinceEpoch() const;
   // qint64 toSecsSinceEpoch() const;
   /// TODO: qint64 toSecsSinceEpoch() const;
   // void setDate(const QDate &);
-  binder.void_fun<const QDate &, &QDateTime::setDate>("setDate").create();
+  bind::void_member_function<QDateTime, const QDate &, &QDateTime::setDate>(date_time, "setDate").create();
   // void setTime(const QTime &);
-  binder.void_fun<const QTime &, &QDateTime::setTime>("setTime").create();
+  bind::void_member_function<QDateTime, const QTime &, &QDateTime::setTime>(date_time, "setTime").create();
   // void setTimeSpec(Qt::TimeSpec);
-  binder.void_fun<Qt::TimeSpec, &QDateTime::setTimeSpec>("setTimeSpec").create();
+  bind::void_member_function<QDateTime, Qt::TimeSpec, &QDateTime::setTimeSpec>(date_time, "setTimeSpec").create();
   // void setOffsetFromUtc(int);
-  binder.void_fun<int, &QDateTime::setOffsetFromUtc>("setOffsetFromUtc").create();
+  bind::void_member_function<QDateTime, int, &QDateTime::setOffsetFromUtc>(date_time, "setOffsetFromUtc").create();
   // void setTimeZone(const QTimeZone &);
-  binder.void_fun<const QTimeZone &, &QDateTime::setTimeZone>("setTimeZone").create();
+  bind::void_member_function<QDateTime, const QTimeZone &, &QDateTime::setTimeZone>(date_time, "setTimeZone").create();
   // void setMSecsSinceEpoch(qint64);
   /// TODO: void setMSecsSinceEpoch(qint64);
   // void setSecsSinceEpoch(qint64);
   /// TODO: void setSecsSinceEpoch(qint64);
   // QString toString(Qt::DateFormat) const;
-  binder.fun<QString, Qt::DateFormat, &QDateTime::toString>("toString")
-    .apply(binding::default_arguments(Qt::TextDate)).create();
+  bind::member_function<QDateTime, QString, Qt::DateFormat, &QDateTime::toString>(date_time, "toString")
+    .apply(bind::default_arguments(Qt::TextDate)).create();
   // QString toString(const QString &) const;
-  binder.fun<QString, const QString &, &QDateTime::toString>("toString").create();
+  bind::member_function<QDateTime, QString, const QString &, &QDateTime::toString>(date_time, "toString").create();
   // QString toString(QStringView) const;
   /// TODO: QString toString(QStringView) const;
   // QDateTime addDays(qint64) const;
   /// TODO: QDateTime addDays(qint64) const;
   // QDateTime addMonths(int) const;
-  binder.fun<QDateTime, int, &QDateTime::addMonths>("addMonths").create();
+  bind::member_function<QDateTime, QDateTime, int, &QDateTime::addMonths>(date_time, "addMonths").create();
   // QDateTime addYears(int) const;
-  binder.fun<QDateTime, int, &QDateTime::addYears>("addYears").create();
+  bind::member_function<QDateTime, QDateTime, int, &QDateTime::addYears>(date_time, "addYears").create();
   // QDateTime addSecs(qint64) const;
   /// TODO: QDateTime addSecs(qint64) const;
   // QDateTime addMSecs(qint64) const;
   /// TODO: QDateTime addMSecs(qint64) const;
   // QDateTime toTimeSpec(Qt::TimeSpec) const;
-  binder.fun<QDateTime, Qt::TimeSpec, &QDateTime::toTimeSpec>("toTimeSpec").create();
+  bind::member_function<QDateTime, QDateTime, Qt::TimeSpec, &QDateTime::toTimeSpec>(date_time, "toTimeSpec").create();
   // QDateTime toLocalTime() const;
-  binder.fun<QDateTime, &QDateTime::toLocalTime>("toLocalTime").create();
+  bind::member_function<QDateTime, QDateTime, &QDateTime::toLocalTime>(date_time, "toLocalTime").create();
   // QDateTime toUTC() const;
-  binder.fun<QDateTime, &QDateTime::toUTC>("toUTC").create();
+  bind::member_function<QDateTime, QDateTime, &QDateTime::toUTC>(date_time, "toUTC").create();
   // QDateTime toOffsetFromUtc(int) const;
-  binder.fun<QDateTime, int, &QDateTime::toOffsetFromUtc>("toOffsetFromUtc").create();
+  bind::member_function<QDateTime, QDateTime, int, &QDateTime::toOffsetFromUtc>(date_time, "toOffsetFromUtc").create();
   // QDateTime toTimeZone(const QTimeZone &) const;
-  binder.fun<QDateTime, const QTimeZone &, &QDateTime::toTimeZone>("toTimeZone").create();
+  bind::member_function<QDateTime, QDateTime, const QTimeZone &, &QDateTime::toTimeZone>(date_time, "toTimeZone").create();
   // qint64 daysTo(const QDateTime &) const;
   /// TODO: qint64 daysTo(const QDateTime &) const;
   // qint64 secsTo(const QDateTime &) const;
@@ -311,40 +308,40 @@ static void register_date_time_class(script::Namespace ns)
   // qint64 msecsTo(const QDateTime &) const;
   /// TODO: qint64 msecsTo(const QDateTime &) const;
   // bool operator==(const QDateTime &) const;
-  binder.operators().eq<const QDateTime &>();
+  bind::memop_eq<QDateTime, const QDateTime &>(date_time);
   // bool operator!=(const QDateTime &) const;
-  binder.operators().neq<const QDateTime &>();
+  bind::memop_neq<QDateTime, const QDateTime &>(date_time);
   // bool operator<(const QDateTime &) const;
-  binder.operators().less<const QDateTime &>();
+  bind::memop_less<QDateTime, const QDateTime &>(date_time);
   // bool operator<=(const QDateTime &) const;
-  binder.operators().leq<const QDateTime &>();
+  bind::memop_leq<QDateTime, const QDateTime &>(date_time);
   // bool operator>(const QDateTime &) const;
-  binder.operators().greater<const QDateTime &>();
+  bind::memop_greater<QDateTime, const QDateTime &>(date_time);
   // bool operator>=(const QDateTime &) const;
-  binder.operators().geq<const QDateTime &>();
+  bind::memop_geq<QDateTime, const QDateTime &>(date_time);
   // void setUtcOffset(int);
-  binder.void_fun<int, &QDateTime::setUtcOffset>("setUtcOffset").create();
+  bind::void_member_function<QDateTime, int, &QDateTime::setUtcOffset>(date_time, "setUtcOffset").create();
   // int utcOffset() const;
-  binder.fun<int, &QDateTime::utcOffset>("utcOffset").create();
+  bind::member_function<QDateTime, int, &QDateTime::utcOffset>(date_time, "utcOffset").create();
   // static QDateTime currentDateTime();
-  binder.static_fun<QDateTime, &QDateTime::currentDateTime>("currentDateTime").create();
+  bind::static_member_function<QDateTime, QDateTime, &QDateTime::currentDateTime>(date_time, "currentDateTime").create();
   // static QDateTime currentDateTimeUtc();
-  binder.static_fun<QDateTime, &QDateTime::currentDateTimeUtc>("currentDateTimeUtc").create();
+  bind::static_member_function<QDateTime, QDateTime, &QDateTime::currentDateTimeUtc>(date_time, "currentDateTimeUtc").create();
   // static QDateTime fromString(const QString &, Qt::DateFormat);
-  binder.static_fun<QDateTime, const QString &, Qt::DateFormat, &QDateTime::fromString>("fromString")
-    .apply(binding::default_arguments(Qt::TextDate)).create();
+  bind::static_member_function<QDateTime, QDateTime, const QString &, Qt::DateFormat, &QDateTime::fromString>(date_time, "fromString")
+    .apply(bind::default_arguments(Qt::TextDate)).create();
   // static QDateTime fromString(const QString &, const QString &);
-  binder.static_fun<QDateTime, const QString &, const QString &, &QDateTime::fromString>("fromString").create();
+  bind::static_member_function<QDateTime, QDateTime, const QString &, const QString &, &QDateTime::fromString>(date_time, "fromString").create();
   // uint toTime_t() const;
-  binder.fun<uint, &QDateTime::toTime_t>("toTime_t").create();
+  bind::member_function<QDateTime, uint, &QDateTime::toTime_t>(date_time, "toTime_t").create();
   // void setTime_t(uint);
-  binder.void_fun<uint, &QDateTime::setTime_t>("setTime_t").create();
+  bind::void_member_function<QDateTime, uint, &QDateTime::setTime_t>(date_time, "setTime_t").create();
   // static QDateTime fromTime_t(uint);
-  binder.static_fun<QDateTime, uint, &QDateTime::fromTime_t>("fromTime_t").create();
+  bind::static_member_function<QDateTime, QDateTime, uint, &QDateTime::fromTime_t>(date_time, "fromTime_t").create();
   // static QDateTime fromTime_t(uint, Qt::TimeSpec, int);
-  binder.static_fun<QDateTime, uint, Qt::TimeSpec, int, &QDateTime::fromTime_t>("fromTime_t").create();
+  bind::static_member_function<QDateTime, QDateTime, uint, Qt::TimeSpec, int, &QDateTime::fromTime_t>(date_time, "fromTime_t").create();
   // static QDateTime fromTime_t(uint, const QTimeZone &);
-  binder.static_fun<QDateTime, uint, const QTimeZone &, &QDateTime::fromTime_t>("fromTime_t").create();
+  bind::static_member_function<QDateTime, QDateTime, uint, const QTimeZone &, &QDateTime::fromTime_t>(date_time, "fromTime_t").create();
   // static QDateTime fromMSecsSinceEpoch(qint64);
   /// TODO: static QDateTime fromMSecsSinceEpoch(qint64);
   // static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec, int);
@@ -371,22 +368,21 @@ void register_datetime_file(script::Namespace core)
   register_date_class(ns);
   register_time_class(ns);
   register_date_time_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QDateTime &, QDateTime &);
-  binder.void_fun<QDateTime &, QDateTime &, &swap>("swap").create();
+  bind::void_function<QDateTime &, QDateTime &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QDate &);
-  binder.operators().put_to<QDataStream &, const QDate &>();
+  bind::op_put_to<QDataStream &, const QDate &>(ns);
   // QDataStream & operator>>(QDataStream &, QDate &);
-  binder.operators().read_from<QDataStream &, QDate &>();
+  bind::op_read_from<QDataStream &, QDate &>(ns);
   // QDataStream & operator<<(QDataStream &, const QTime &);
-  binder.operators().put_to<QDataStream &, const QTime &>();
+  bind::op_put_to<QDataStream &, const QTime &>(ns);
   // QDataStream & operator>>(QDataStream &, QTime &);
-  binder.operators().read_from<QDataStream &, QTime &>();
+  bind::op_read_from<QDataStream &, QTime &>(ns);
   // QDataStream & operator<<(QDataStream &, const QDateTime &);
-  binder.operators().put_to<QDataStream &, const QDateTime &>();
+  bind::op_put_to<QDataStream &, const QDateTime &>(ns);
   // QDataStream & operator>>(QDataStream &, QDateTime &);
-  binder.operators().read_from<QDataStream &, QDateTime &>();
+  bind::op_read_from<QDataStream &, QDateTime &>(ns);
   // QDebug operator<<(QDebug, const QDate &);
   /// TODO: QDebug operator<<(QDebug, const QDate &);
   // QDebug operator<<(QDebug, const QTime &);
@@ -394,10 +390,10 @@ void register_datetime_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QDateTime &);
   /// TODO: QDebug operator<<(QDebug, const QDateTime &);
   // uint qHash(const QDateTime &, uint);
-  binder.fun<uint, const QDateTime &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QDateTime &, uint, &qHash>(ns, "qHash").create();
   // uint qHash(const QDate &, uint);
-  binder.fun<uint, const QDate &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QDate &, uint, &qHash>(ns, "qHash").create();
   // uint qHash(const QTime &, uint);
-  binder.fun<uint, const QTime &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QTime &, uint, &qHash>(ns, "qHash").create();
 }
 

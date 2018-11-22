@@ -5,165 +5,99 @@
 #ifndef YASL_CORE_QEVENT_BINDER_H
 #define YASL_CORE_QEVENT_BINDER_H
 
-#include "yasl/binding/class.h"
+#include "yasl/binding2/class.h"
 #include "yasl/core/qevent-binding.h"
 
-
-namespace callbacks
-{
-script::Value qevent_dtor(script::FunctionCall *c);
-} // namespace callbacks
-
-
-namespace binding
+namespace script
 {
 
-template<typename T, typename...Args>
-struct constructor_wrapper_event_t;
+namespace bind
+{
 
 template<typename T>
-struct constructor_wrapper_event_t<T> {
-  static script::Value wrap(script::FunctionCall *c) {
+struct constructor_binder<T, qevent_tag>
+{
+  static script::Value default_ctor(script::FunctionCall *c)
+  {
     script::Value self = c->thisObject();
     self.impl()->data.ptr = new T();
     return self;
   }
-};
 
-template<typename T, typename A1>
-struct constructor_wrapper_event_t<T, A1> {
-  static script::Value wrap(script::FunctionCall *c) {
+  static script::Value copy_ctor(script::FunctionCall *c)
+  {
+    script::Value self = c->thisObject();
+    self.impl()->data.ptr = new T(value_cast<const T &>(c->arg(1)));
+    return self;
+  }
+
+  template<typename A1>
+  static script::Value generic_ctor(script::FunctionCall *c)
+  {
     script::Value self = c->thisObject();
     self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)));
     return self;
   }
-};
 
-template<typename T, typename A1, typename A2>
-struct constructor_wrapper_event_t<T, A1, A2> {
-  static script::Value wrap(script::FunctionCall *c) {
+  template<typename A1, typename A2>
+  static script::Value generic_ctor(script::FunctionCall *c)
+  {
     script::Value self = c->thisObject();
     self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)));
     return self;
   }
-};
 
-template<typename T, typename A1, typename A2, typename A3>
-struct constructor_wrapper_event_t<T, A1, A2, A3> {
-  static script::Value wrap(script::FunctionCall *c) {
+  template<typename A1, typename A2, typename A3>
+  static script::Value generic_ctor(script::FunctionCall *c)
+  {
     script::Value self = c->thisObject();
     self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)));
     return self;
   }
-};
 
-template<typename T, typename A1, typename A2, typename A3, typename A4>
-struct constructor_wrapper_event_t<T, A1, A2, A3, A4> {
-  static script::Value wrap(script::FunctionCall *c) {
+  template<typename A1, typename A2, typename A3, typename A4>
+  static script::Value generic_ctor(script::FunctionCall *c)
+  {
     script::Value self = c->thisObject();
     self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)));
     return self;
   }
-};
 
-template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5>
-struct constructor_wrapper_event_t<T, A1, A2, A3, A4, A5> {
-  static script::Value wrap(script::FunctionCall *c) {
+  template<typename A1, typename A2, typename A3, typename A4, typename A5>
+  static script::Value generic_ctor(script::FunctionCall *c)
+  {
     script::Value self = c->thisObject();
     self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)));
     return self;
   }
-};
 
-template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
-struct constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6> {
-  static script::Value wrap(script::FunctionCall *c) {
+  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
+  static script::Value generic_ctor(script::FunctionCall *c)
+  {
     script::Value self = c->thisObject();
     self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6)));
     return self;
   }
 };
 
-
 template<typename T>
-class ClassBinder<T, qevent_tag> : public GenericClassBinder<T>
+struct destructor_binder<T, qevent_tag>
 {
-public:
-
-  ClassBinder(const script::Class c)
-    : GenericClassBinder<T>(c)
-  { }
-
-public:
-
-  /****************************************************************
-  Constructors
-  ****************************************************************/
-
-  script::ConstructorBuilder default_ctor()
+  static script::Value destructor(script::FunctionCall *c)
   {
-    return class_.newConstructor(constructor_wrapper_small_object_t<T>::wrap);
+    auto self = c->thisObject();
+    if (self.impl()->data.ptr != nullptr)
+    {
+      delete static_cast<QEvent*>(self.impl()->data.ptr);
+      self.impl()->data.ptr = nullptr;
+    }
+
+    return script::Value::Void;
   }
-
-  script::ConstructorBuilder copy_ctor()
-  {
-    return class_.newConstructor(constructor_wrapper_small_object_t<T, const T&>::wrap)
-      .params(script::Type::cref(make_type<T>()));
-  }
-
-  template<typename A1>
-  script::ConstructorBuilder ctor()
-  {
-    return class_.newConstructor(constructor_wrapper_event_t<T, A1>::wrap)
-      .params(make_type<A1>());
-  }
-
-  template<typename A1, typename A2>
-  script::ConstructorBuilder ctor()
-  {
-    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2>::wrap)
-      .params(make_type<A1>(), make_type<A2>());
-  }
-
-  template<typename A1, typename A2, typename A3>
-  script::ConstructorBuilder ctor()
-  {
-    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2, A3>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
-  }
-
-  template<typename A1, typename A2, typename A3, typename A4>
-  script::ConstructorBuilder ctor()
-  {
-    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2, A3, A4>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
-  }
-
-  template<typename A1, typename A2, typename A3, typename A4, typename A5>
-  script::ConstructorBuilder ctor()
-  {
-    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
-  }
-
-  template<typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
-  script::ConstructorBuilder ctor()
-  {
-    return class_.newConstructor(constructor_wrapper_event_t<T, A1, A2, A3, A4, A5, A6>::wrap)
-      .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
-  }
-
-  /****************************************************************
-  Destructor
-  ****************************************************************/
-
-  script::DestructorBuilder dtor()
-  {
-    return class_.newDestructor(callbacks::qevent_dtor);
-  }
-
 };
 
-} // namespace binding
+} // namespace bind
+
+} // namespace script
 
 #endif // YASL_CORE_QEVENT_BINDER_H

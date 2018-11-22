@@ -5,12 +5,12 @@
 #ifndef YASL_WIDGETS_FILEDIALOG_H
 #define YASL_WIDGETS_FILEDIALOG_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QFileDialog>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QFileDialog> { inline static script::Type get() { return script::Type::QFileDialog; } };
 template<> struct tag_resolver<QFileDialog> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QFileDialog::AcceptMode> { inline static script::Type get() { return script::Type::QFileDialogAcceptMode; } };
@@ -19,6 +19,6 @@ template<> struct make_type_t<QFileDialog::FileMode> { inline static script::Typ
 template<> struct make_type_t<QFileDialog::Option> { inline static script::Type get() { return script::Type::QFileDialogOption; } };
 template<> struct make_type_t<QFileDialog::Options> { inline static script::Type get() { return script::Type::QFileDialogOptions; } };
 template<> struct make_type_t<QFileDialog::ViewMode> { inline static script::Type get() { return script::Type::QFileDialogViewMode; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_WIDGETS_FILEDIALOG_H

@@ -5,12 +5,12 @@
 #ifndef YASL_CORE_EVENT_H
 #define YASL_CORE_EVENT_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 #include "yasl/core/qevent-binding.h"
 
 #include <QEvent>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QChildEvent> { inline static script::Type get() { return script::Type::QChildEvent; } };
 template<> struct tag_resolver<QChildEvent> { typedef qevent_tag tag_type; };
 template<> struct make_type_t<QDeferredDeleteEvent> { inline static script::Type get() { return script::Type::QDeferredDeleteEvent; } };
@@ -22,6 +22,6 @@ template<> struct tag_resolver<QEvent> { typedef qevent_tag tag_type; };
 template<> struct make_type_t<QEvent::Type> { inline static script::Type get() { return script::Type::QEventType; } };
 template<> struct make_type_t<QTimerEvent> { inline static script::Type get() { return script::Type::QTimerEvent; } };
 template<> struct tag_resolver<QTimerEvent> { typedef qevent_tag tag_type; };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_EVENT_H

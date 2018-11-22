@@ -5,11 +5,8 @@
 #ifndef YASL_GUI_POLYGON_H
 #define YASL_GUI_POLYGON_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QPolygon>
-
-namespace binding {
-} // namespace binding
 
 #endif // YASL_GUI_POLYGON_H

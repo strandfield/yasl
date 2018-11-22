@@ -7,18 +7,20 @@
 
 #include "yasl/core/list.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/utils/proxy.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/proxyspecialization.h"
 
 template<typename T>
 void register_list_specialization(script::Engine *e, script::Type::BuiltInType type_id)
 {
   using namespace script;
 
+  using List = QList<T>;
+
   script::ClassTemplate list_template = e->getTemplate(Engine::ListTemplate);
 
   std::vector<TemplateArgument> targs{
-    TemplateArgument{ binding::make_type<T>() }
+    TemplateArgument{ bind::make_type<T>() }
   };
 
   Class list = list_template.Specialization(std::move(targs))
@@ -26,174 +28,171 @@ void register_list_specialization(script::Engine *e, script::Type::BuiltInType t
     .setFinal()
     .get();
 
-  binding::ClassBinder<QList<T>> l{ list };
-
   // QList<T>();
-  l.default_ctor().create();
+  bind::default_constructor<List>(list).create();
   // QList<T>(const QList<T> &);
-  l.ctor<const QList<T> &>().create();
+  bind::copy_constructor<List>(list).create();
   // ~QList<T>();
-  l.dtor().create();
+  bind::destructor<List>(list).create();
 
   // void append(const T &value)
-  l.void_fun<const T &, &QList<T>::append>("append").create();
+  bind::void_member_function<List, const T &, &QList<T>::append>(list, "append").create();
   // void append(const QList<T> &value)
-  l.void_fun<const QList<T> &, &QList<T>::append>("append").create();
+  bind::void_member_function<List, const QList<T> &, &QList<T>::append>(list, "append").create();
   // const T & at(int i) const
-  l.fun<const T &, int, &QList<T>::at>("at").create();
+  bind::member_function<List, const T &, int, &QList<T>::at>(list, "at").create();
   // T & back()
-  l.ref_mem_getter<T&, &QList<T>::back>("back").create();
+  bind::non_const_getter<List, T&, &QList<T>::back>(list, "back").create();
   // const T & back() const
-  l.fun<const T &, &QList<T>::back>("back").create();
+  bind::member_function<List, const T &, &QList<T>::back>(list, "back").create();
   // iterator begin()
-  /// l.fun<QList<T>::iterator, &QList<T>::begin>("begin").create();
+  /// bind::member_function<List, QList<T>::iterator, &QList<T>::begin>(list, "begin").create();
   // const_iterator begin() const
-  /// l.fun<QList<T>::const_iterator, &QList<T>::begin>("begin").create();
+  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::begin>(list, "begin").create();
   // const_iterator cbegin() const
-  /// l.fun<QList<T>::const_iterator, &QList<T>::cbegin>("cbegin").create();
+  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::cbegin>(list, "cbegin").create();
   // const_iterator cend() const
-  /// l.fun<QList<T>::const_iterator, &QList<T>::cend>("cend").create();
+  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::cend>(list, "cend").create();
   // void clear()
-  l.void_fun<&QList<T>::clear>("clear").create();
+  bind::void_member_function<List, &QList<T>::clear>(list, "clear").create();
   // const_iterator constBegin() const
-  /// l.fun<QList<T>::const_iterator, &QList<T>::constBegin>("constBegin").create();
+  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::constBegin>(list, "constBegin").create();
   // const_iterator constEnd() const
-  /// l.fun<QList<T>::const_iterator, &QList<T>::constEnd>("constEnd").create();
+  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::constEnd>(list, "constEnd").create();
   // const T & constFirst() const
-  l.fun<const T &, &QList<T>::constFirst>("constFirst").create();
+  bind::member_function<List, const T &, &QList<T>::constFirst>(list, "constFirst").create();
   // const T & constLast() const
-  l.fun<const T &, &QList<T>::constLast>("constLast").create();
+  bind::member_function<List, const T &, &QList<T>::constLast>(list, "constLast").create();
   // bool contains(const T &value) const
-  l.fun<bool, const T &, &QList<T>::contains>("contains").create();
+  bind::member_function<List, bool, const T &, &QList<T>::contains>(list, "contains").create();
   // int count(const T &value) const
-  l.fun<int, const T &, &QList<T>::count>("count").create();
+  bind::member_function<List, int, const T &, &QList<T>::count>(list, "count").create();
   // int count() const
-  l.fun<int, &QList<T>::count>("count").create();
+  bind::member_function<List, int, &QList<T>::count>(list, "count").create();
   // const_reverse_iterator crbegin() const
-  /// l.fun<QList<T>::const_reverse_iterator, &QList<T>::crbegin>("crbegin").create();
+  /// bind::member_function<List, QList<T>::const_reverse_iterator, &QList<T>::crbegin>(list, "crbegin").create();
   // const_reverse_iterator crend() const
-  /// l.fun<QList<T>::const_reverse_iterator, &QList<T>::crend>("crend").create();
+  /// bind::member_function<List, QList<T>::const_reverse_iterator, &QList<T>::crend>(list, "crend").create();
   // bool empty() const
-  l.fun<bool, &QList<T>::empty>("empty").create();
+  bind::member_function<List, bool, &QList<T>::empty>(list, "empty").create();
   // iterator end()
-  /// l.fun<QList<T>::iterator, &QList<T>::end>("end").create();
+  /// bind::member_function<List, QList<T>::iterator, &QList<T>::end>(list, "end").create();
   // const_iterator end() const
-  /// l.fun<QList<T>::const_iterator, &QList<T>::end>("end").create();
+  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::end>(list, "end").create();
   // bool endsWith(const T &value) const
-  l.fun<bool, const T &, &QList<T>::endsWith>("endsWith").create();
+  bind::member_function<List, bool, const T &, &QList<T>::endsWith>(list, "endsWith").create();
   // iterator erase(iterator pos)
-  /// l.fun<QList<T>::iterator, QList<T>::iterator, &QList<T>::erase>("erase").create();
+  /// bind::member_function<List, QList<T>::iterator, QList<T>::iterator, &QList<T>::erase>(list, "erase").create();
   // iterator erase(iterator begin, iterator end)
-  /// l.fun<QList<T>::iterator, QList<T>::iterator, QList<T>::iterator, &QList<T>::erase>("erase").create();
+  /// bind::member_function<List, QList<T>::iterator, QList<T>::iterator, QList<T>::iterator, &QList<T>::erase>(list, "erase").create();
   // T & first()
   /// TODO !!!
   // const T & first() const
-  l.fun<const T &, &QList<T>::first>("first").create();
+  bind::member_function<List, const T &, &QList<T>::first>(list, "first").create();
   // T & front()
-  l.ref_mem_getter<T&, &QList<T>::front>("front").create();
+  bind::non_const_getter<List, T&, &QList<T>::front>(list, "front").create();
   // const T & front() const
-  l.fun<const T &, &QList<T>::front>("front").create();
+  bind::member_function<List, const T &, &QList<T>::front>(list, "front").create();
   // int indexOf(const T &value, int from = 0) const
-  l.fun<int, const T &, int, &QList<T>::indexOf>("indexOf").create();
+  bind::member_function<List, int, const T &, int, &QList<T>::indexOf>(list, "indexOf").create();
   // void insert(int i, const T &value)
-  l.void_fun<int, const T &, &QList<T>::insert>("insert").create();
+  bind::void_member_function<List, int, const T &, &QList<T>::insert>(list, "insert").create();
   // iterator insert(iterator before, const T &value)
-  /// l.fun<QList<T>::iterator, QList<T>::iterator, const T &, &QList<T>::insert>("insert").create();
+  /// bind::member_function<List, QList<T>::iterator, QList<T>::iterator, const T &, &QList<T>::insert>(list, "insert").create();
   // bool isEmpty() const
-  l.fun<bool, &QList<T>::isEmpty>("isEmpty").create();
+  bind::member_function<List, bool, &QList<T>::isEmpty>(list, "isEmpty").create();
   // T & last()
   /// TODO !!!
   // const T & last() const
-  l.fun<const T &, &QList<T>::last>("last").create();
+  bind::member_function<List, const T &, &QList<T>::last>(list, "last").create();
   // int lastIndexOf(const T &value, int from = -1) const
-  l.fun<int, const T &, int, &QList<T>::lastIndexOf>("lastIndexOf").create();
+  bind::member_function<List, int, const T &, int, &QList<T>::lastIndexOf>(list, "lastIndexOf").create();
   // int length() const
-  l.fun<int, &QList<T>::length>("length").create();
+  bind::member_function<List, int, &QList<T>::length>(list, "length").create();
   // QList<T> mid(int pos, int length = -1) const
-  l.fun<QList<T>, int, int, &QList<T>::mid>("mid").create();
+  bind::member_function<List, QList<T>, int, int, &QList<T>::mid>(list, "mid").create();
   // void move(int from, int to)
-  l.void_fun<int, int, &QList<T>::move>("move").create();
+  bind::void_member_function<List, int, int, &QList<T>::move>(list, "move").create();
   // void pop_back()
-  l.void_fun<&QList<T>::pop_back>("pop_back").create();
+  bind::void_member_function<List, &QList<T>::pop_back>(list, "pop_back").create();
   // void pop_front()
-  l.void_fun<&QList<T>::pop_front>("pop_front").create();
+  bind::void_member_function<List, &QList<T>::pop_front>(list, "pop_front").create();
   // void prepend(const T &value)
-  l.void_fun<const T &, &QList<T>::prepend>("prepend").create();
+  bind::void_member_function<List, const T &, &QList<T>::prepend>(list, "prepend").create();
   // void push_back(const T &value)
-  l.void_fun<const T &, &QList<T>::push_back>("push_back").create();
+  bind::void_member_function<List, const T &, &QList<T>::push_back>(list, "push_back").create();
   // void push_front(const T &value)
-  l.void_fun<const T &, &QList<T>::push_front>("push_front").create();
+  bind::void_member_function<List, const T &, &QList<T>::push_front>(list, "push_front").create();
   // reverse_iterator rbegin()
-  /// l.fun<QList<T>::reverse_iterator, &QList<T>::rbegin>("rbegin").create();
+  /// bind::member_function<List, QList<T>::reverse_iterator, &QList<T>::rbegin>(list, "rbegin").create();
   // const_reverse_iterator rbegin() const
-  /// l.fun<QList<T>::const_reverse_iterator, &QList<T>::rbegin>("rbegin").create();
+  /// bind::member_function<List, QList<T>::const_reverse_iterator, &QList<T>::rbegin>(list, "rbegin").create();
   // int removeAll(const T &value)
-  l.fun<int, const T &, &QList<T>::removeAll>("removeAll").create();
+  bind::member_function<List, int, const T &, &QList<T>::removeAll>(list, "removeAll").create();
   // void removeAt(int i)
-  l.void_fun<int, &QList<T>::removeAt>("removeAt").create();
+  bind::void_member_function<List, int, &QList<T>::removeAt>(list, "removeAt").create();
   // void removeFirst()
-  l.void_fun<&QList<T>::removeFirst>("removeFirst").create();
+  bind::void_member_function<List, &QList<T>::removeFirst>(list, "removeFirst").create();
   // void removeLast()
-  l.void_fun<&QList<T>::removeLast>("removeLast").create();
+  bind::void_member_function<List, &QList<T>::removeLast>(list, "removeLast").create();
   // bool removeOne(const T &value)
-  l.fun<bool, const T &, &QList<T>::removeOne>("removeOne").create();
+  bind::member_function<List, bool, const T &, &QList<T>::removeOne>(list, "removeOne").create();
   // reverse_iterator rend()
-  /// l.fun<QList<T>::reverse_iterator, &QList<T>::rend>("rend").create();
+  /// bind::member_function<List, QList<T>::reverse_iterator, &QList<T>::rend>(list, "rend").create();
   // const_reverse_iterator rend() const
-  /// l.fun<QList<T>::const_reverse_iterator, &QList<T>::rend>("rend").create();
+  /// bind::member_function<List, QList<T>::const_reverse_iterator, &QList<T>::rend>(list, "rend").create();
   // void replace(int i, const T &value)
-  l.void_fun<int, const T &, &QList<T>::replace>("replace").create();
+  bind::void_member_function<List, int, const T &, &QList<T>::replace>(list, "replace").create();
   // void reserve(int alloc)
-  l.void_fun<int, &QList<T>::reserve>("reserve").create();
+  bind::void_member_function<List, int, &QList<T>::reserve>(list, "reserve").create();
   // int size() const
-  l.fun<int, &QList<T>::size>("size").create();
+  bind::member_function<List, int, &QList<T>::size>(list, "size").create();
   // bool startsWith(const T &value) const
-  l.fun<bool, const T &, &QList<T>::startsWith>("startsWith").create();
+  bind::member_function<List, bool, const T &, &QList<T>::startsWith>(list, "startsWith").create();
   // void swap(QList<T> &other)
-  l.void_fun<QList<T> &, &QList<T>::swap>("swap").create();
+  bind::void_member_function<List, QList<T> &, &QList<T>::swap>(list, "swap").create();
   // void swap(int i, int j)
-  l.void_fun<int, int, &QList<T>::swap>("swap").create();
+  bind::void_member_function<List, int, int, &QList<T>::swap>(list, "swap").create();
   // T takeAt(int i)
-  l.fun<T, int, &QList<T>::takeAt>("takeAt").create();
+  bind::member_function<List, T, int, &QList<T>::takeAt>(list, "takeAt").create();
   // T takeFirst()
-  l.fun<T, &QList<T>::takeFirst>("takeFirst").create();
+  bind::member_function<List, T, &QList<T>::takeFirst>(list, "takeFirst").create();
   // T takeLast()
-  l.fun<T, &QList<T>::takeLast>("takeLast").create();
+  bind::member_function<List, T, &QList<T>::takeLast>(list, "takeLast").create();
   // QSet<T> toSet() const
-  /// l.fun<QSet<T>, &QList<T>::toSet>("toSet").create();
+  /// bind::member_function<List, QSet<T>, &QList<T>::toSet>(list, "toSet").create();
   // std::list<T> toStdList() const
-  /// l.fun<std::list<T>, &QList<T>::toStdList>("toStdList").create();
+  /// bind::member_function<List, std::list<T>, &QList<T>::toStdList>(list, "toStdList").create();
   // QVector<T> toVector() const
-  /// l.fun<QVector<T>, &QList<T>::toVector>("toVector").create();
+  /// bind::member_function<List, QVector<T>, &QList<T>::toVector>(list, "toVector").create();
   // T value(int i) const
-  l.fun<T, int, &QList<T>::value>("value").create();
+  bind::member_function<List, T, int, &QList<T>::value>(list, "value").create();
   // T value(int i, const T &defaultValue) const
-  l.fun<T, int, const T &, &QList<T>::value>("value").create();
+  bind::member_function<List, T, int, const T &, &QList<T>::value>(list, "value").create();
 
 
   // bool operator!=(const QList<T> &other) const
-  l.operators().neq<const QList<T> &>();
+  bind::memop_neq<List, const QList<T> &>(list);
   // QList<T> operator+(const QList<T> &other) const
-  l.operators().add<QList<T>, const QList<T> &>();
+  bind::memop_add<List, QList<T>, const QList<T> &>(list);
   // QList<T> & operator+=(const QList<T> &other)
-  l.operators().add_assign<const QList<T> &>();
+  bind::memop_add_assign<List, const QList<T> &>(list);
   // QList<T> & operator+=(const T &value)
-  l.operators().add_assign<const T &>();
+  bind::memop_add_assign<List, const T &>(list);
   // QList<T> & operator<<(const QList<T> &other)
   /// TODO !!!
   // QList<T> & operator<<(const T &value)
   /// TODO !!!
   // QList<T> & operator=(const QList<T> &other)
-  l.operators().assign<const QList<T> &>();
+  bind::memop_assign<List, const QList<T> &>(list);
   // QList & operator=(QList<T> &&other)
   /// TODO !!!
   // bool operator==(const QList<T> &other) const
-  l.operators().eq<const QList<T> &>();
+  bind::memop_eq<List, const QList<T> &>(list);
   // T & operator[](int i)
   /// TODO !!!
   // const T & operator[](int i) const
   /// TODO !!!
-
 }
 
 #endif // YASL_CORE_LIST_SPECIALIZATIONS_H

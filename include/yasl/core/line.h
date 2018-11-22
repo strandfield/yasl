@@ -5,14 +5,14 @@
 #ifndef YASL_CORE_LINE_H
 #define YASL_CORE_LINE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QLine>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QLine> { inline static script::Type get() { return script::Type::QLine; } };
 template<> struct make_type_t<QLineF> { inline static script::Type get() { return script::Type::QLineF; } };
 template<> struct make_type_t<QLineF::IntersectType> { inline static script::Type get() { return script::Type::QLineFIntersectType; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_LINE_H

@@ -24,22 +24,19 @@ static script::Value new_pushbutton(script::FunctionCall *c)
 
 static script::Value new_pushbutton_parent(script::FunctionCall *c)
 {
-  using namespace binding;
-  QPushButton *object = new QPushButton(value_cast<QWidget*>(c->arg(0)));
+  QPushButton *object = new QPushButton(script::bind::value_cast<QWidget*>(c->arg(0)));
   return c->engine()->expose(object, script::Type::QPushButton);
 }
 
 static script::Value new_pushbutton_text(script::FunctionCall *c)
 {
-  using namespace binding;
-  QPushButton *object = new QPushButton(value_cast<const QString &>(c->arg(0)));
+  QPushButton *object = new QPushButton(script::bind::value_cast<const QString &>(c->arg(0)));
   return c->engine()->expose(object, script::Type::QPushButton);
 }
 
 static script::Value new_pushbutton_text_parent(script::FunctionCall *c)
 {
-  using namespace binding;
-  QPushButton *object = new QPushButton(value_cast<const QString &>(c->arg(0)), value_cast<QWidget*>(c->arg(1)));
+  QPushButton *object = new QPushButton(script::bind::value_cast<const QString &>(c->arg(0)), script::bind::value_cast<QWidget*>(c->arg(1)));
   return c->engine()->expose(object, script::Type::QPushButton);
 }
 
@@ -56,16 +53,16 @@ void register_newpushbutton_file(script::Namespace gui)
 
   gui.newFunction("newPushButton", callbacks::new_pushbutton_parent)
     .returns(Type::ref(script::Type::QPushButton))
-    .params(binding::make_type<QWidget*>())
+    .params(script::bind::make_type<QWidget*>())
     .create();
 
   gui.newFunction("newPushButton", callbacks::new_pushbutton_text)
     .returns(Type::ref(script::Type::QPushButton))
-    .params(binding::make_type<const QString &>())
+    .params(script::bind::make_type<const QString &>())
     .create();
 
   gui.newFunction("newPushButton", callbacks::new_pushbutton_text_parent)
     .returns(Type::ref(script::Type::QPushButton))
-    .params(binding::make_type<const QString &>(), binding::make_type<QWidget*>())
+    .params(script::bind::make_type<const QString &>(), script::bind::make_type<QWidget*>())
     .create();
 }

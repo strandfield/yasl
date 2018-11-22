@@ -4,9 +4,9 @@
 
 #include "yasl/core/urlquery.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/char.h"
 #include "yasl/core/url.h"
@@ -20,69 +20,68 @@ static void register_url_query_class(script::Namespace ns)
 
   Class url_query = ns.newClass("UrlQuery").setId(script::Type::QUrlQuery).get();
 
-  binding::ClassBinder<QUrlQuery> binder{ url_query };
 
   // QUrlQuery();
-  binder.default_ctor().create();
+  bind::default_constructor<QUrlQuery>(url_query).create();
   // QUrlQuery(const QUrl &);
-  binder.ctor<const QUrl &>().create();
+  bind::constructor<QUrlQuery, const QUrl &>(url_query).create();
   // QUrlQuery(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QUrlQuery, const QString &>(url_query).create();
   // QUrlQuery(const QUrlQuery &);
-  binder.ctor<const QUrlQuery &>().create();
+  bind::constructor<QUrlQuery, const QUrlQuery &>(url_query).create();
   // QUrlQuery & operator=(const QUrlQuery &);
-  binder.operators().assign<const QUrlQuery &>();
+  bind::memop_assign<QUrlQuery, const QUrlQuery &>(url_query);
   // QUrlQuery & operator=(QUrlQuery &&);
-  binder.operators().assign<QUrlQuery &&>();
+  bind::memop_assign<QUrlQuery, QUrlQuery &&>(url_query);
   // ~QUrlQuery();
-  binder.dtor().create();
+  bind::destructor<QUrlQuery>(url_query).create();
   // bool operator==(const QUrlQuery &) const;
-  binder.operators().eq<const QUrlQuery &>();
+  bind::memop_eq<QUrlQuery, const QUrlQuery &>(url_query);
   // bool operator!=(const QUrlQuery &) const;
-  binder.operators().neq<const QUrlQuery &>();
+  bind::memop_neq<QUrlQuery, const QUrlQuery &>(url_query);
   // void swap(QUrlQuery &);
-  binder.void_fun<QUrlQuery &, &QUrlQuery::swap>("swap").create();
+  bind::void_member_function<QUrlQuery, QUrlQuery &, &QUrlQuery::swap>(url_query, "swap").create();
   // bool isEmpty() const;
-  binder.fun<bool, &QUrlQuery::isEmpty>("isEmpty").create();
+  bind::member_function<QUrlQuery, bool, &QUrlQuery::isEmpty>(url_query, "isEmpty").create();
   // bool isDetached() const;
-  binder.fun<bool, &QUrlQuery::isDetached>("isDetached").create();
+  bind::member_function<QUrlQuery, bool, &QUrlQuery::isDetached>(url_query, "isDetached").create();
   // void clear();
-  binder.void_fun<&QUrlQuery::clear>("clear").create();
+  bind::void_member_function<QUrlQuery, &QUrlQuery::clear>(url_query, "clear").create();
   // QString query(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrlQuery::query>("query")
-    .apply(binding::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
+  bind::member_function<QUrlQuery, QString, QUrl::ComponentFormattingOptions, &QUrlQuery::query>(url_query, "query")
+    .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void setQuery(const QString &);
-  binder.void_fun<const QString &, &QUrlQuery::setQuery>("setQuery").create();
+  bind::void_member_function<QUrlQuery, const QString &, &QUrlQuery::setQuery>(url_query, "setQuery").create();
   // QString toString(QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, QUrl::ComponentFormattingOptions, &QUrlQuery::toString>("toString")
-    .apply(binding::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
+  bind::member_function<QUrlQuery, QString, QUrl::ComponentFormattingOptions, &QUrlQuery::toString>(url_query, "toString")
+    .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void setQueryDelimiters(QChar, QChar);
-  binder.void_fun<QChar, QChar, &QUrlQuery::setQueryDelimiters>("setQueryDelimiters").create();
+  bind::void_member_function<QUrlQuery, QChar, QChar, &QUrlQuery::setQueryDelimiters>(url_query, "setQueryDelimiters").create();
   // QChar queryValueDelimiter() const;
-  binder.fun<QChar, &QUrlQuery::queryValueDelimiter>("queryValueDelimiter").create();
+  bind::member_function<QUrlQuery, QChar, &QUrlQuery::queryValueDelimiter>(url_query, "queryValueDelimiter").create();
   // QChar queryPairDelimiter() const;
-  binder.fun<QChar, &QUrlQuery::queryPairDelimiter>("queryPairDelimiter").create();
+  bind::member_function<QUrlQuery, QChar, &QUrlQuery::queryPairDelimiter>(url_query, "queryPairDelimiter").create();
   // void setQueryItems(const QList<QPair<QString, QString> > &);
   /// TODO: void setQueryItems(const QList<QPair<QString, QString> > &);
   // QList<QPair<QString, QString> > queryItems(QUrl::ComponentFormattingOptions) const;
   /// TODO: QList<QPair<QString, QString> > queryItems(QUrl::ComponentFormattingOptions) const;
   // bool hasQueryItem(const QString &) const;
-  binder.fun<bool, const QString &, &QUrlQuery::hasQueryItem>("hasQueryItem").create();
+  bind::member_function<QUrlQuery, bool, const QString &, &QUrlQuery::hasQueryItem>(url_query, "hasQueryItem").create();
   // void addQueryItem(const QString &, const QString &);
-  binder.void_fun<const QString &, const QString &, &QUrlQuery::addQueryItem>("addQueryItem").create();
+  bind::void_member_function<QUrlQuery, const QString &, const QString &, &QUrlQuery::addQueryItem>(url_query, "addQueryItem").create();
   // void removeQueryItem(const QString &);
-  binder.void_fun<const QString &, &QUrlQuery::removeQueryItem>("removeQueryItem").create();
+  bind::void_member_function<QUrlQuery, const QString &, &QUrlQuery::removeQueryItem>(url_query, "removeQueryItem").create();
   // QString queryItemValue(const QString &, QUrl::ComponentFormattingOptions) const;
-  binder.fun<QString, const QString &, QUrl::ComponentFormattingOptions, &QUrlQuery::queryItemValue>("queryItemValue")
-    .apply(binding::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
+  bind::member_function<QUrlQuery, QString, const QString &, QUrl::ComponentFormattingOptions, &QUrlQuery::queryItemValue>(url_query, "queryItemValue")
+    .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // QStringList allQueryItemValues(const QString &, QUrl::ComponentFormattingOptions) const;
   /// TODO: QStringList allQueryItemValues(const QString &, QUrl::ComponentFormattingOptions) const;
   // void removeAllQueryItems(const QString &);
-  binder.void_fun<const QString &, &QUrlQuery::removeAllQueryItems>("removeAllQueryItems").create();
+  bind::void_member_function<QUrlQuery, const QString &, &QUrlQuery::removeAllQueryItems>(url_query, "removeAllQueryItems").create();
   // static QChar defaultQueryValueDelimiter();
-  binder.static_fun<QChar, &QUrlQuery::defaultQueryValueDelimiter>("defaultQueryValueDelimiter").create();
+  bind::static_member_function<QUrlQuery, QChar, &QUrlQuery::defaultQueryValueDelimiter>(url_query, "defaultQueryValueDelimiter").create();
   // static QChar defaultQueryPairDelimiter();
-  binder.static_fun<QChar, &QUrlQuery::defaultQueryPairDelimiter>("defaultQueryPairDelimiter").create();
+  bind::static_member_function<QUrlQuery, QChar, &QUrlQuery::defaultQueryPairDelimiter>(url_query, "defaultQueryPairDelimiter").create();
   // QUrlQuery::DataPtr & data_ptr();
   /// TODO: QUrlQuery::DataPtr & data_ptr();
 }
@@ -95,11 +94,10 @@ void register_urlquery_file(script::Namespace core)
   Namespace ns = core;
 
   register_url_query_class(ns);
-  binding::Namespace binder{ ns };
 
   // uint qHash(const QUrlQuery &, uint);
-  binder.fun<uint, const QUrlQuery &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QUrlQuery &, uint, &qHash>(ns, "qHash").create();
   // void swap(QUrlQuery &, QUrlQuery &);
-  binder.void_fun<QUrlQuery &, QUrlQuery &, &swap>("swap").create();
+  bind::void_function<QUrlQuery &, QUrlQuery &, &swap>(ns, "swap").create();
 }
 

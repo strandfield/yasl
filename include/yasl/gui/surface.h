@@ -5,12 +5,9 @@
 #ifndef YASL_GUI_SURFACE_H
 #define YASL_GUI_SURFACE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QSurface>
 
-namespace binding {
-
-} // namespace binding
 
 #endif // YASL_GUI_SURFACE_H

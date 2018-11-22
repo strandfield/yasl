@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/messagebox.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/enums.h"
@@ -100,15 +100,14 @@ static void register_message_box_class(script::Namespace ns)
   register_message_box_icon_enum(message_box);
   register_message_box_button_role_enum(message_box);
   register_message_box_standard_button_enum(message_box);
-  binding::ClassBinder<QMessageBox> binder{ message_box, &QMessageBox::staticMetaObject };
 
   // QMessageBox(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QMessageBox, QWidget *>(message_box)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons, QWidget *, Qt::WindowFlags);
   /// TODO: QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons, QWidget *, Qt::WindowFlags);
   // ~QMessageBox();
-  binder.dtor().create();
+  bind::destructor<QMessageBox>(message_box).create();
   // void addButton(QAbstractButton *, QMessageBox::ButtonRole);
   /// TODO: void addButton(QAbstractButton *, QMessageBox::ButtonRole);
   // QPushButton * addButton(const QString &, QMessageBox::ButtonRole);
@@ -124,9 +123,9 @@ static void register_message_box_class(script::Namespace ns)
   // QMessageBox::ButtonRole buttonRole(QAbstractButton *) const;
   /// TODO: QMessageBox::ButtonRole buttonRole(QAbstractButton *) const;
   // void setStandardButtons(QMessageBox::StandardButtons);
-  binder.void_fun<QMessageBox::StandardButtons, &QMessageBox::setStandardButtons>("setStandardButtons").create();
+  bind::void_member_function<QMessageBox, QMessageBox::StandardButtons, &QMessageBox::setStandardButtons>(message_box, "setStandardButtons").create();
   // QMessageBox::StandardButtons standardButtons() const;
-  binder.fun<QMessageBox::StandardButtons, &QMessageBox::standardButtons>("standardButtons").create();
+  bind::member_function<QMessageBox, QMessageBox::StandardButtons, &QMessageBox::standardButtons>(message_box, "standardButtons").create();
   // QMessageBox::StandardButton standardButton(QAbstractButton *) const;
   /// TODO: QMessageBox::StandardButton standardButton(QAbstractButton *) const;
   // QAbstractButton * button(QMessageBox::StandardButton) const;
@@ -136,31 +135,31 @@ static void register_message_box_class(script::Namespace ns)
   // void setDefaultButton(QPushButton *);
   /// TODO: void setDefaultButton(QPushButton *);
   // void setDefaultButton(QMessageBox::StandardButton);
-  binder.void_fun<QMessageBox::StandardButton, &QMessageBox::setDefaultButton>("setDefaultButton").create();
+  bind::void_member_function<QMessageBox, QMessageBox::StandardButton, &QMessageBox::setDefaultButton>(message_box, "setDefaultButton").create();
   // QAbstractButton * escapeButton() const;
   /// TODO: QAbstractButton * escapeButton() const;
   // void setEscapeButton(QAbstractButton *);
   /// TODO: void setEscapeButton(QAbstractButton *);
   // void setEscapeButton(QMessageBox::StandardButton);
-  binder.void_fun<QMessageBox::StandardButton, &QMessageBox::setEscapeButton>("setEscapeButton").create();
+  bind::void_member_function<QMessageBox, QMessageBox::StandardButton, &QMessageBox::setEscapeButton>(message_box, "setEscapeButton").create();
   // QAbstractButton * clickedButton() const;
   /// TODO: QAbstractButton * clickedButton() const;
   // QString text() const;
-  binder.fun<QString, &QMessageBox::text>("text").create();
+  bind::member_function<QMessageBox, QString, &QMessageBox::text>(message_box, "text").create();
   // void setText(const QString &);
-  binder.void_fun<const QString &, &QMessageBox::setText>("setText").create();
+  bind::void_member_function<QMessageBox, const QString &, &QMessageBox::setText>(message_box, "setText").create();
   // QMessageBox::Icon icon() const;
-  binder.fun<QMessageBox::Icon, &QMessageBox::icon>("icon").create();
+  bind::member_function<QMessageBox, QMessageBox::Icon, &QMessageBox::icon>(message_box, "icon").create();
   // void setIcon(QMessageBox::Icon);
-  binder.void_fun<QMessageBox::Icon, &QMessageBox::setIcon>("setIcon").create();
+  bind::void_member_function<QMessageBox, QMessageBox::Icon, &QMessageBox::setIcon>(message_box, "setIcon").create();
   // QPixmap iconPixmap() const;
-  binder.fun<QPixmap, &QMessageBox::iconPixmap>("iconPixmap").create();
+  bind::member_function<QMessageBox, QPixmap, &QMessageBox::iconPixmap>(message_box, "iconPixmap").create();
   // void setIconPixmap(const QPixmap &);
-  binder.void_fun<const QPixmap &, &QMessageBox::setIconPixmap>("setIconPixmap").create();
+  bind::void_member_function<QMessageBox, const QPixmap &, &QMessageBox::setIconPixmap>(message_box, "setIconPixmap").create();
   // Qt::TextFormat textFormat() const;
-  binder.fun<Qt::TextFormat, &QMessageBox::textFormat>("textFormat").create();
+  bind::member_function<QMessageBox, Qt::TextFormat, &QMessageBox::textFormat>(message_box, "textFormat").create();
   // void setTextFormat(Qt::TextFormat);
-  binder.void_fun<Qt::TextFormat, &QMessageBox::setTextFormat>("setTextFormat").create();
+  bind::void_member_function<QMessageBox, Qt::TextFormat, &QMessageBox::setTextFormat>(message_box, "setTextFormat").create();
   // void setTextInteractionFlags(Qt::TextInteractionFlags);
   /// TODO: void setTextInteractionFlags(Qt::TextInteractionFlags);
   // Qt::TextInteractionFlags textInteractionFlags() const;
@@ -170,49 +169,49 @@ static void register_message_box_class(script::Namespace ns)
   // QCheckBox * checkBox() const;
   /// TODO: QCheckBox * checkBox() const;
   // static QMessageBox::StandardButton information(QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton);
-  binder.static_fun<QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::information>("information").create();
+  bind::static_member_function<QMessageBox, QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::information>(message_box, "information").create();
   // static QMessageBox::StandardButton question(QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton);
-  binder.static_fun<QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::question>("question").create();
+  bind::static_member_function<QMessageBox, QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::question>(message_box, "question").create();
   // static QMessageBox::StandardButton warning(QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton);
-  binder.static_fun<QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::warning>("warning").create();
+  bind::static_member_function<QMessageBox, QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::warning>(message_box, "warning").create();
   // static QMessageBox::StandardButton critical(QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton);
-  binder.static_fun<QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::critical>("critical").create();
+  bind::static_member_function<QMessageBox, QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::critical>(message_box, "critical").create();
   // static void about(QWidget *, const QString &, const QString &);
-  binder.static_void_fun<QWidget *, const QString &, const QString &, &QMessageBox::about>("about").create();
+  bind::static_void_member_function<QMessageBox, QWidget *, const QString &, const QString &, &QMessageBox::about>(message_box, "about").create();
   // static void aboutQt(QWidget *, const QString &);
-  binder.static_void_fun<QWidget *, const QString &, &QMessageBox::aboutQt>("aboutQt").create();
+  bind::static_void_member_function<QMessageBox, QWidget *, const QString &, &QMessageBox::aboutQt>(message_box, "aboutQt").create();
   // QMessageBox(const QString &, const QString &, QMessageBox::Icon, int, int, int, QWidget *, Qt::WindowFlags);
   /// TODO: QMessageBox(const QString &, const QString &, QMessageBox::Icon, int, int, int, QWidget *, Qt::WindowFlags);
   // static QMessageBox::StandardButton information(QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton);
-  binder.static_fun<QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton, &QMessageBox::information>("information").create();
+  bind::static_member_function<QMessageBox, QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton, &QMessageBox::information>(message_box, "information").create();
   // static int question(QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton);
-  binder.static_fun<int, QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton, &QMessageBox::question>("question").create();
+  bind::static_member_function<QMessageBox, int, QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton, &QMessageBox::question>(message_box, "question").create();
   // static int warning(QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton);
-  binder.static_fun<int, QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton, &QMessageBox::warning>("warning").create();
+  bind::static_member_function<QMessageBox, int, QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton, &QMessageBox::warning>(message_box, "warning").create();
   // static int critical(QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton);
-  binder.static_fun<int, QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton, &QMessageBox::critical>("critical").create();
+  bind::static_member_function<QMessageBox, int, QWidget *, const QString &, const QString &, QMessageBox::StandardButton, QMessageBox::StandardButton, &QMessageBox::critical>(message_box, "critical").create();
   // QString buttonText(int) const;
-  binder.fun<QString, int, &QMessageBox::buttonText>("buttonText").create();
+  bind::member_function<QMessageBox, QString, int, &QMessageBox::buttonText>(message_box, "buttonText").create();
   // void setButtonText(int, const QString &);
-  binder.void_fun<int, const QString &, &QMessageBox::setButtonText>("setButtonText").create();
+  bind::void_member_function<QMessageBox, int, const QString &, &QMessageBox::setButtonText>(message_box, "setButtonText").create();
   // QString informativeText() const;
-  binder.fun<QString, &QMessageBox::informativeText>("informativeText").create();
+  bind::member_function<QMessageBox, QString, &QMessageBox::informativeText>(message_box, "informativeText").create();
   // void setInformativeText(const QString &);
-  binder.void_fun<const QString &, &QMessageBox::setInformativeText>("setInformativeText").create();
+  bind::void_member_function<QMessageBox, const QString &, &QMessageBox::setInformativeText>(message_box, "setInformativeText").create();
   // QString detailedText() const;
-  binder.fun<QString, &QMessageBox::detailedText>("detailedText").create();
+  bind::member_function<QMessageBox, QString, &QMessageBox::detailedText>(message_box, "detailedText").create();
   // void setDetailedText(const QString &);
-  binder.void_fun<const QString &, &QMessageBox::setDetailedText>("setDetailedText").create();
+  bind::void_member_function<QMessageBox, const QString &, &QMessageBox::setDetailedText>(message_box, "setDetailedText").create();
   // void setWindowTitle(const QString &);
-  binder.void_fun<const QString &, &QMessageBox::setWindowTitle>("setWindowTitle").create();
+  bind::void_member_function<QMessageBox, const QString &, &QMessageBox::setWindowTitle>(message_box, "setWindowTitle").create();
   // void setWindowModality(Qt::WindowModality);
-  binder.void_fun<Qt::WindowModality, &QMessageBox::setWindowModality>("setWindowModality").create();
+  bind::void_member_function<QMessageBox, Qt::WindowModality, &QMessageBox::setWindowModality>(message_box, "setWindowModality").create();
   // static QPixmap standardIcon(QMessageBox::Icon);
-  binder.static_fun<QPixmap, QMessageBox::Icon, &QMessageBox::standardIcon>("standardIcon").create();
+  bind::static_member_function<QMessageBox, QPixmap, QMessageBox::Icon, &QMessageBox::standardIcon>(message_box, "standardIcon").create();
   // void buttonClicked(QAbstractButton *);
   /// TODO: void buttonClicked(QAbstractButton *);
 
-  message_box.engine()->registerQtType(&QMessageBox::staticMetaObject, message_box.id());
+  bind::link(message_box, &QMessageBox::staticMetaObject);
 }
 
 
@@ -223,7 +222,6 @@ void register_messagebox_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_message_box_class(ns);
-  binding::Namespace binder{ ns };
 
   // QFlags<QMessageBox::StandardButtons::enum_type> operator|(QMessageBox::StandardButtons::enum_type, QMessageBox::StandardButtons::enum_type);
   /// TODO: QFlags<QMessageBox::StandardButtons::enum_type> operator|(QMessageBox::StandardButtons::enum_type, QMessageBox::StandardButtons::enum_type);

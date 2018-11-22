@@ -5,11 +5,11 @@
 #ifndef YASL_GUI_PIXELFORMAT_H
 #define YASL_GUI_PIXELFORMAT_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QPixelFormat>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QPixelFormat> { inline static script::Type get() { return script::Type::QPixelFormat; } };
 template<> struct make_type_t<QPixelFormat::AlphaPosition> { inline static script::Type get() { return script::Type::QPixelFormatAlphaPosition; } };
 template<> struct make_type_t<QPixelFormat::AlphaPremultiplied> { inline static script::Type get() { return script::Type::QPixelFormatAlphaPremultiplied; } };
@@ -18,6 +18,6 @@ template<> struct make_type_t<QPixelFormat::ByteOrder> { inline static script::T
 template<> struct make_type_t<QPixelFormat::ColorModel> { inline static script::Type get() { return script::Type::QPixelFormatColorModel; } };
 template<> struct make_type_t<QPixelFormat::TypeInterpretation> { inline static script::Type get() { return script::Type::QPixelFormatTypeInterpretation; } };
 template<> struct make_type_t<QPixelFormat::YUVLayout> { inline static script::Type get() { return script::Type::QPixelFormatYUVLayout; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_PIXELFORMAT_H

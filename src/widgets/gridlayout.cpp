@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/gridlayout.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/rect.h"
@@ -23,72 +23,71 @@ static void register_grid_layout_class(script::Namespace ns)
   Class grid_layout = ns.newClass("GridLayout").setId(script::Type::QGridLayout)
     .setBase(script::Type::QLayout).get();
 
-  binding::ClassBinder<QGridLayout> binder{ grid_layout, &QGridLayout::staticMetaObject };
 
   // QGridLayout(QWidget *);
-  binder.ctor<QWidget *>().create();
+  bind::constructor<QGridLayout, QWidget *>(grid_layout).create();
   // QGridLayout();
-  binder.default_ctor().create();
+  bind::default_constructor<QGridLayout>(grid_layout).create();
   // ~QGridLayout();
-  binder.dtor().create();
+  bind::destructor<QGridLayout>(grid_layout).create();
   // void setHorizontalSpacing(int);
-  binder.void_fun<int, &QGridLayout::setHorizontalSpacing>("setHorizontalSpacing").create();
+  bind::void_member_function<QGridLayout, int, &QGridLayout::setHorizontalSpacing>(grid_layout, "setHorizontalSpacing").create();
   // int horizontalSpacing() const;
-  binder.fun<int, &QGridLayout::horizontalSpacing>("horizontalSpacing").create();
+  bind::member_function<QGridLayout, int, &QGridLayout::horizontalSpacing>(grid_layout, "horizontalSpacing").create();
   // void setVerticalSpacing(int);
-  binder.void_fun<int, &QGridLayout::setVerticalSpacing>("setVerticalSpacing").create();
+  bind::void_member_function<QGridLayout, int, &QGridLayout::setVerticalSpacing>(grid_layout, "setVerticalSpacing").create();
   // int verticalSpacing() const;
-  binder.fun<int, &QGridLayout::verticalSpacing>("verticalSpacing").create();
+  bind::member_function<QGridLayout, int, &QGridLayout::verticalSpacing>(grid_layout, "verticalSpacing").create();
   // void setSpacing(int);
-  binder.void_fun<int, &QGridLayout::setSpacing>("setSpacing").create();
+  bind::void_member_function<QGridLayout, int, &QGridLayout::setSpacing>(grid_layout, "setSpacing").create();
   // int spacing() const;
-  binder.fun<int, &QGridLayout::spacing>("spacing").create();
+  bind::member_function<QGridLayout, int, &QGridLayout::spacing>(grid_layout, "spacing").create();
   // void setRowStretch(int, int);
-  binder.void_fun<int, int, &QGridLayout::setRowStretch>("setRowStretch").create();
+  bind::void_member_function<QGridLayout, int, int, &QGridLayout::setRowStretch>(grid_layout, "setRowStretch").create();
   // void setColumnStretch(int, int);
-  binder.void_fun<int, int, &QGridLayout::setColumnStretch>("setColumnStretch").create();
+  bind::void_member_function<QGridLayout, int, int, &QGridLayout::setColumnStretch>(grid_layout, "setColumnStretch").create();
   // int rowStretch(int) const;
-  binder.fun<int, int, &QGridLayout::rowStretch>("rowStretch").create();
+  bind::member_function<QGridLayout, int, int, &QGridLayout::rowStretch>(grid_layout, "rowStretch").create();
   // int columnStretch(int) const;
-  binder.fun<int, int, &QGridLayout::columnStretch>("columnStretch").create();
+  bind::member_function<QGridLayout, int, int, &QGridLayout::columnStretch>(grid_layout, "columnStretch").create();
   // void setRowMinimumHeight(int, int);
-  binder.void_fun<int, int, &QGridLayout::setRowMinimumHeight>("setRowMinimumHeight").create();
+  bind::void_member_function<QGridLayout, int, int, &QGridLayout::setRowMinimumHeight>(grid_layout, "setRowMinimumHeight").create();
   // void setColumnMinimumWidth(int, int);
-  binder.void_fun<int, int, &QGridLayout::setColumnMinimumWidth>("setColumnMinimumWidth").create();
+  bind::void_member_function<QGridLayout, int, int, &QGridLayout::setColumnMinimumWidth>(grid_layout, "setColumnMinimumWidth").create();
   // int rowMinimumHeight(int) const;
-  binder.fun<int, int, &QGridLayout::rowMinimumHeight>("rowMinimumHeight").create();
+  bind::member_function<QGridLayout, int, int, &QGridLayout::rowMinimumHeight>(grid_layout, "rowMinimumHeight").create();
   // int columnMinimumWidth(int) const;
-  binder.fun<int, int, &QGridLayout::columnMinimumWidth>("columnMinimumWidth").create();
+  bind::member_function<QGridLayout, int, int, &QGridLayout::columnMinimumWidth>(grid_layout, "columnMinimumWidth").create();
   // int columnCount() const;
-  binder.fun<int, &QGridLayout::columnCount>("columnCount").create();
+  bind::member_function<QGridLayout, int, &QGridLayout::columnCount>(grid_layout, "columnCount").create();
   // int rowCount() const;
-  binder.fun<int, &QGridLayout::rowCount>("rowCount").create();
+  bind::member_function<QGridLayout, int, &QGridLayout::rowCount>(grid_layout, "rowCount").create();
   // QRect cellRect(int, int) const;
-  binder.fun<QRect, int, int, &QGridLayout::cellRect>("cellRect").create();
+  bind::member_function<QGridLayout, QRect, int, int, &QGridLayout::cellRect>(grid_layout, "cellRect").create();
   // void addWidget(QWidget *);
-  binder.void_fun<QWidget *, &QGridLayout::addWidget>("addWidget").create();
+  bind::void_member_function<QGridLayout, QWidget *, &QGridLayout::addWidget>(grid_layout, "addWidget").create();
   // void addWidget(QWidget *, int, int, Qt::Alignment);
-  binder.void_fun<QWidget *, int, int, Qt::Alignment, &QGridLayout::addWidget>("addWidget")
-    .apply(binding::default_arguments(Qt::Alignment())).create();
+  bind::void_member_function<QGridLayout, QWidget *, int, int, Qt::Alignment, &QGridLayout::addWidget>(grid_layout, "addWidget")
+    .apply(bind::default_arguments(Qt::Alignment())).create();
   // void addLayout(QLayout *, int, int, Qt::Alignment);
-  binder.void_fun<QLayout *, int, int, Qt::Alignment, &QGridLayout::addLayout>("addLayout")
-    .apply(binding::default_arguments(Qt::Alignment())).create();
+  bind::void_member_function<QGridLayout, QLayout *, int, int, Qt::Alignment, &QGridLayout::addLayout>(grid_layout, "addLayout")
+    .apply(bind::default_arguments(Qt::Alignment())).create();
   // void setOriginCorner(Qt::Corner);
-  binder.void_fun<Qt::Corner, &QGridLayout::setOriginCorner>("setOriginCorner").create();
+  bind::void_member_function<QGridLayout, Qt::Corner, &QGridLayout::setOriginCorner>(grid_layout, "setOriginCorner").create();
   // Qt::Corner originCorner() const;
-  binder.fun<Qt::Corner, &QGridLayout::originCorner>("originCorner").create();
+  bind::member_function<QGridLayout, Qt::Corner, &QGridLayout::originCorner>(grid_layout, "originCorner").create();
   // QLayoutItem * itemAtPosition(int, int) const;
   /// TODO: QLayoutItem * itemAtPosition(int, int) const;
   // void setGeometry(const QRect &);
-  binder.void_fun<const QRect &, &QGridLayout::setGeometry>("setGeometry").create();
+  bind::void_member_function<QGridLayout, const QRect &, &QGridLayout::setGeometry>(grid_layout, "setGeometry").create();
   // void addItem(QLayoutItem *, int, int, int, int, Qt::Alignment);
   /// TODO: void addItem(QLayoutItem *, int, int, int, int, Qt::Alignment);
   // void setDefaultPositioning(int, Qt::Orientation);
-  binder.void_fun<int, Qt::Orientation, &QGridLayout::setDefaultPositioning>("setDefaultPositioning").create();
+  bind::void_member_function<QGridLayout, int, Qt::Orientation, &QGridLayout::setDefaultPositioning>(grid_layout, "setDefaultPositioning").create();
   // void getItemPosition(int, int *, int *, int *, int *) const;
   /// TODO: void getItemPosition(int, int *, int *, int *, int *) const;
 
-  grid_layout.engine()->registerQtType(&QGridLayout::staticMetaObject, grid_layout.id());
+  bind::link(grid_layout, &QGridLayout::staticMetaObject);
 }
 
 
@@ -99,11 +98,10 @@ void register_gridlayout_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_grid_layout_class(ns);
-  binding::Namespace binder{ ns };
 
   // QGridLayout& newGridLayout(QWidget*);
-  NewFunction(binder).add<QGridLayout, QWidget*>("newGridLayout");
+  bind::new_function<QGridLayout, QWidget*>(ns, "newGridLayout");
   // QGridLayout& newGridLayout();
-  NewFunction(binder).add<QGridLayout>("newGridLayout");
+  bind::new_function<QGridLayout>(ns, "newGridLayout");
 }
 

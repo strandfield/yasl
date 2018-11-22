@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_QUATERNION_H
 #define YASL_GUI_QUATERNION_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QQuaternion>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QQuaternion> { inline static script::Type get() { return script::Type::QQuaternion; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_QUATERNION_H

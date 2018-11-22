@@ -4,9 +4,9 @@
 
 #include "yasl/gui/pixelformat.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/gui/pixelformat.h"
 
@@ -127,20 +127,19 @@ static void register_pixel_format_class(script::Namespace ns)
   register_pixel_format_type_interpretation_enum(pixel_format);
   register_pixel_format_y_u_v_layout_enum(pixel_format);
   register_pixel_format_byte_order_enum(pixel_format);
-  binding::ClassBinder<QPixelFormat> binder{ pixel_format };
 
   // QPixelFormat();
-  binder.default_ctor().create();
+  bind::default_constructor<QPixelFormat>(pixel_format).create();
   // QPixelFormat(const QPixelFormat &);
-  binder.ctor<const QPixelFormat &>().create();
+  bind::constructor<QPixelFormat, const QPixelFormat &>(pixel_format).create();
   // ~QPixelFormat();
-  binder.dtor().create();
+  bind::destructor<QPixelFormat>(pixel_format).create();
   // QPixelFormat & operator=(const QPixelFormat &);
-  binder.operators().assign<const QPixelFormat &>();
+  bind::memop_assign<QPixelFormat, const QPixelFormat &>(pixel_format);
   // QPixelFormat(QPixelFormat::ColorModel, uchar, uchar, uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation, QPixelFormat::ByteOrder, uchar);
   /// TODO: QPixelFormat(QPixelFormat::ColorModel, uchar, uchar, uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation, QPixelFormat::ByteOrder, uchar);
   // QPixelFormat::ColorModel colorModel() const;
-  binder.fun<QPixelFormat::ColorModel, &QPixelFormat::colorModel>("colorModel").create();
+  bind::member_function<QPixelFormat, QPixelFormat::ColorModel, &QPixelFormat::colorModel>(pixel_format, "colorModel").create();
   // uchar channelCount() const;
   /// TODO: uchar channelCount() const;
   // uchar redSize() const;
@@ -170,17 +169,17 @@ static void register_pixel_format_class(script::Namespace ns)
   // uchar bitsPerPixel() const;
   /// TODO: uchar bitsPerPixel() const;
   // QPixelFormat::AlphaUsage alphaUsage() const;
-  binder.fun<QPixelFormat::AlphaUsage, &QPixelFormat::alphaUsage>("alphaUsage").create();
+  bind::member_function<QPixelFormat, QPixelFormat::AlphaUsage, &QPixelFormat::alphaUsage>(pixel_format, "alphaUsage").create();
   // QPixelFormat::AlphaPosition alphaPosition() const;
-  binder.fun<QPixelFormat::AlphaPosition, &QPixelFormat::alphaPosition>("alphaPosition").create();
+  bind::member_function<QPixelFormat, QPixelFormat::AlphaPosition, &QPixelFormat::alphaPosition>(pixel_format, "alphaPosition").create();
   // QPixelFormat::AlphaPremultiplied premultiplied() const;
-  binder.fun<QPixelFormat::AlphaPremultiplied, &QPixelFormat::premultiplied>("premultiplied").create();
+  bind::member_function<QPixelFormat, QPixelFormat::AlphaPremultiplied, &QPixelFormat::premultiplied>(pixel_format, "premultiplied").create();
   // QPixelFormat::TypeInterpretation typeInterpretation() const;
-  binder.fun<QPixelFormat::TypeInterpretation, &QPixelFormat::typeInterpretation>("typeInterpretation").create();
+  bind::member_function<QPixelFormat, QPixelFormat::TypeInterpretation, &QPixelFormat::typeInterpretation>(pixel_format, "typeInterpretation").create();
   // QPixelFormat::ByteOrder byteOrder() const;
-  binder.fun<QPixelFormat::ByteOrder, &QPixelFormat::byteOrder>("byteOrder").create();
+  bind::member_function<QPixelFormat, QPixelFormat::ByteOrder, &QPixelFormat::byteOrder>(pixel_format, "byteOrder").create();
   // QPixelFormat::YUVLayout yuvLayout() const;
-  binder.fun<QPixelFormat::YUVLayout, &QPixelFormat::yuvLayout>("yuvLayout").create();
+  bind::member_function<QPixelFormat, QPixelFormat::YUVLayout, &QPixelFormat::yuvLayout>(pixel_format, "yuvLayout").create();
   // uchar subEnum() const;
   /// TODO: uchar subEnum() const;
 }
@@ -193,7 +192,6 @@ void register_pixelformat_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_pixel_format_class(ns);
-  binding::Namespace binder{ ns };
 
   // QPixelFormat qPixelFormatRgba(uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation);
   /// TODO: QPixelFormat qPixelFormatRgba(uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation);

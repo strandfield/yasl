@@ -4,10 +4,10 @@
 
 #include "yasl/gui/icon.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/size.h"
@@ -50,86 +50,85 @@ static void register_icon_class(script::Namespace ns)
 
   register_icon_mode_enum(icon);
   register_icon_state_enum(icon);
-  binding::ClassBinder<QIcon> binder{ icon };
 
   // QIcon();
-  binder.default_ctor().create();
+  bind::default_constructor<QIcon>(icon).create();
   // QIcon(const QPixmap &);
-  binder.ctor<const QPixmap &>().create();
+  bind::constructor<QIcon, const QPixmap &>(icon).create();
   // QIcon(const QIcon &);
-  binder.ctor<const QIcon &>().create();
+  bind::constructor<QIcon, const QIcon &>(icon).create();
   // QIcon(QIcon &&);
-  binder.ctor<QIcon &&>().create();
+  bind::constructor<QIcon, QIcon &&>(icon).create();
   // QIcon(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QIcon, const QString &>(icon).create();
   // QIcon(QIconEngine *);
   /// TODO: QIcon(QIconEngine *);
   // ~QIcon();
-  binder.dtor().create();
+  bind::destructor<QIcon>(icon).create();
   // QIcon & operator=(const QIcon &);
-  binder.operators().assign<const QIcon &>();
+  bind::memop_assign<QIcon, const QIcon &>(icon);
   // QIcon & operator=(QIcon &&);
-  binder.operators().assign<QIcon &&>();
+  bind::memop_assign<QIcon, QIcon &&>(icon);
   // void swap(QIcon &);
-  binder.void_fun<QIcon &, &QIcon::swap>("swap").create();
+  bind::void_member_function<QIcon, QIcon &, &QIcon::swap>(icon, "swap").create();
   // QPixmap pixmap(const QSize &, QIcon::Mode, QIcon::State) const;
-  binder.fun<QPixmap, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap")
-    .apply(binding::default_arguments(QIcon::Off, QIcon::Normal)).create();
+  bind::member_function<QIcon, QPixmap, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
+    .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
   // QPixmap pixmap(int, int, QIcon::Mode, QIcon::State) const;
-  binder.fun<QPixmap, int, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap")
-    .apply(binding::default_arguments(QIcon::Off, QIcon::Normal)).create();
+  bind::member_function<QIcon, QPixmap, int, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
+    .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
   // QPixmap pixmap(int, QIcon::Mode, QIcon::State) const;
-  binder.fun<QPixmap, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap")
-    .apply(binding::default_arguments(QIcon::Off, QIcon::Normal)).create();
+  bind::member_function<QIcon, QPixmap, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
+    .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
   // QPixmap pixmap(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
-  binder.fun<QPixmap, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>("pixmap")
-    .apply(binding::default_arguments(QIcon::Off, QIcon::Normal)).create();
+  bind::member_function<QIcon, QPixmap, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
+    .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
   // QSize actualSize(const QSize &, QIcon::Mode, QIcon::State) const;
-  binder.fun<QSize, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>("actualSize")
-    .apply(binding::default_arguments(QIcon::Off, QIcon::Normal)).create();
+  bind::member_function<QIcon, QSize, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>(icon, "actualSize")
+    .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
   // QSize actualSize(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
-  binder.fun<QSize, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>("actualSize")
-    .apply(binding::default_arguments(QIcon::Off, QIcon::Normal)).create();
+  bind::member_function<QIcon, QSize, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>(icon, "actualSize")
+    .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
   // QString name() const;
-  binder.fun<QString, &QIcon::name>("name").create();
+  bind::member_function<QIcon, QString, &QIcon::name>(icon, "name").create();
   // void paint(QPainter *, const QRect &, Qt::Alignment, QIcon::Mode, QIcon::State) const;
   /// TODO: void paint(QPainter *, const QRect &, Qt::Alignment, QIcon::Mode, QIcon::State) const;
   // void paint(QPainter *, int, int, int, int, Qt::Alignment, QIcon::Mode, QIcon::State) const;
   /// TODO: void paint(QPainter *, int, int, int, int, Qt::Alignment, QIcon::Mode, QIcon::State) const;
   // bool isNull() const;
-  binder.fun<bool, &QIcon::isNull>("isNull").create();
+  bind::member_function<QIcon, bool, &QIcon::isNull>(icon, "isNull").create();
   // bool isDetached() const;
-  binder.fun<bool, &QIcon::isDetached>("isDetached").create();
+  bind::member_function<QIcon, bool, &QIcon::isDetached>(icon, "isDetached").create();
   // void detach();
-  binder.void_fun<&QIcon::detach>("detach").create();
+  bind::void_member_function<QIcon, &QIcon::detach>(icon, "detach").create();
   // qint64 cacheKey() const;
   /// TODO: qint64 cacheKey() const;
   // void addPixmap(const QPixmap &, QIcon::Mode, QIcon::State);
-  binder.void_fun<const QPixmap &, QIcon::Mode, QIcon::State, &QIcon::addPixmap>("addPixmap")
-    .apply(binding::default_arguments(QIcon::Off, QIcon::Normal)).create();
+  bind::void_member_function<QIcon, const QPixmap &, QIcon::Mode, QIcon::State, &QIcon::addPixmap>(icon, "addPixmap")
+    .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
   // void addFile(const QString &, const QSize &, QIcon::Mode, QIcon::State);
-  binder.void_fun<const QString &, const QSize &, QIcon::Mode, QIcon::State, &QIcon::addFile>("addFile")
-    .apply(binding::default_arguments(QIcon::Off, QIcon::Normal, QSize())).create();
+  bind::void_member_function<QIcon, const QString &, const QSize &, QIcon::Mode, QIcon::State, &QIcon::addFile>(icon, "addFile")
+    .apply(bind::default_arguments(QIcon::Off, QIcon::Normal, QSize())).create();
   // QList<QSize> availableSizes(QIcon::Mode, QIcon::State) const;
   /// TODO: QList<QSize> availableSizes(QIcon::Mode, QIcon::State) const;
   // void setIsMask(bool);
-  binder.void_fun<bool, &QIcon::setIsMask>("setIsMask").create();
+  bind::void_member_function<QIcon, bool, &QIcon::setIsMask>(icon, "setIsMask").create();
   // bool isMask() const;
-  binder.fun<bool, &QIcon::isMask>("isMask").create();
+  bind::member_function<QIcon, bool, &QIcon::isMask>(icon, "isMask").create();
   // static QIcon fromTheme(const QString &);
-  binder.static_fun<QIcon, const QString &, &QIcon::fromTheme>("fromTheme").create();
+  bind::static_member_function<QIcon, QIcon, const QString &, &QIcon::fromTheme>(icon, "fromTheme").create();
   // static QIcon fromTheme(const QString &, const QIcon &);
-  binder.static_fun<QIcon, const QString &, const QIcon &, &QIcon::fromTheme>("fromTheme").create();
+  bind::static_member_function<QIcon, QIcon, const QString &, const QIcon &, &QIcon::fromTheme>(icon, "fromTheme").create();
   // static bool hasThemeIcon(const QString &);
-  binder.static_fun<bool, const QString &, &QIcon::hasThemeIcon>("hasThemeIcon").create();
+  bind::static_member_function<QIcon, bool, const QString &, &QIcon::hasThemeIcon>(icon, "hasThemeIcon").create();
   // static QStringList themeSearchPaths();
   /// TODO: static QStringList themeSearchPaths();
   // static void setThemeSearchPaths(const QStringList &);
   /// TODO: static void setThemeSearchPaths(const QStringList &);
   // static QString themeName();
-  binder.static_fun<QString, &QIcon::themeName>("themeName").create();
+  bind::static_member_function<QIcon, QString, &QIcon::themeName>(icon, "themeName").create();
   // static void setThemeName(const QString &);
-  binder.static_void_fun<const QString &, &QIcon::setThemeName>("setThemeName").create();
+  bind::static_void_member_function<QIcon, const QString &, &QIcon::setThemeName>(icon, "setThemeName").create();
   // QIcon::DataPtr & data_ptr();
   /// TODO: QIcon::DataPtr & data_ptr();
 }
@@ -142,14 +141,13 @@ void register_icon_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_icon_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QIcon &, QIcon &);
-  binder.void_fun<QIcon &, QIcon &, &swap>("swap").create();
+  bind::void_function<QIcon &, QIcon &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QIcon &);
-  binder.operators().put_to<QDataStream &, const QIcon &>();
+  bind::op_put_to<QDataStream &, const QIcon &>(ns);
   // QDataStream & operator>>(QDataStream &, QIcon &);
-  binder.operators().read_from<QDataStream &, QIcon &>();
+  bind::op_read_from<QDataStream &, QIcon &>(ns);
   // QDebug operator<<(QDebug, const QIcon &);
   /// TODO: QDebug operator<<(QDebug, const QIcon &);
   // QString qt_findAtNxFile(const QString &, qreal, qreal *);

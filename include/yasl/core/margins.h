@@ -5,13 +5,13 @@
 #ifndef YASL_CORE_MARGINS_H
 #define YASL_CORE_MARGINS_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QMargins>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QMargins> { inline static script::Type get() { return script::Type::QMargins; } };
 template<> struct make_type_t<QMarginsF> { inline static script::Type get() { return script::Type::QMarginsF; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_MARGINS_H

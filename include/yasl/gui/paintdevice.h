@@ -5,11 +5,9 @@
 #ifndef YASL_GUI_PAINTDEVICE_H
 #define YASL_GUI_PAINTDEVICE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QPaintDevice>
 
-namespace binding {
-} // namespace binding
 
 #endif // YASL_GUI_PAINTDEVICE_H

@@ -5,17 +5,21 @@
 #ifndef YASL_CORE_VECTOR_H
 #define YASL_CORE_VECTOR_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QVector>
 
-namespace binding
+namespace script
+{
+
+namespace bind
 {
 
 template<> struct make_type_t<QVector<int>> { inline static script::Type get() { return script::Type::QVectorInt; } };
 template<> struct make_type_t<QVector<float>> { inline static script::Type get() { return script::Type::QVectorFloat; } };
 template<> struct make_type_t<QVector<double>> { inline static script::Type get() { return script::Type::QVectorDouble; } };
 
-} // namespace binding
+} // namespace bind
+} // namespace script
 
 #endif // YASL_CORE_VECTOR_H

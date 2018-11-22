@@ -5,14 +5,14 @@
 #ifndef YASL_GUI_PAINTERPATH_H
 #define YASL_GUI_PAINTERPATH_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QPainterPath>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QPainterPath> { inline static script::Type get() { return script::Type::QPainterPath; } };
 template<> struct make_type_t<QPainterPath::ElementType> { inline static script::Type get() { return script::Type::QPainterPathElementType; } };
 template<> struct make_type_t<QPainterPathStroker> { inline static script::Type get() { return script::Type::QPainterPathStroker; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_PAINTERPATH_H

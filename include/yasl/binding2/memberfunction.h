@@ -67,6 +67,14 @@ script::FunctionBuilder member_function(Class & cla, std::string && name)
     .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
 }
 
+template<typename T, typename R, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, R(T::*F)(A1, A2, A3, A4, A5, A6)>
+script::FunctionBuilder member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), member_wrapper_t<decltype(F), F>::wrap)
+    .returns(make_return_type<R>())
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+}
+
 /* Non-void non-static const member functions */
 
 template<typename T, typename R, R(T::*F)()const>
@@ -166,6 +174,12 @@ script::FunctionBuilder void_member_function(Class & cla, std::string && name)
     .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
 }
 
+template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, void(T::*F)(A1, A2, A3, A4, A5, A6)>
+script::FunctionBuilder void_member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), void_member_wrapper_t<decltype(F), F>::wrap)
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+}
 
 /* void const functions */
 
@@ -210,6 +224,61 @@ script::FunctionBuilder void_member_function(Class & cla, std::string && name)
 
 template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5, void(T::*F)(A1, A2, A3, A4, A5)const>
 script::FunctionBuilder void_member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), const_void_member_wrapper_t<decltype(F), F>::wrap)
+    .setConst()
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+}
+
+template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, void(T::*F)(A1, A2, A3, A4, A5, A6)const>
+script::FunctionBuilder void_member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), const_void_member_wrapper_t<decltype(F), F>::wrap)
+    .setConst()
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+}
+
+template<typename T, void(T::*F)()const>
+script::FunctionBuilder const_void_member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), const_void_member_wrapper_t<decltype(F), F>::wrap)
+    .setConst();
+}
+
+template<typename T, typename A1, void(T::*F)(A1)const>
+script::FunctionBuilder const_void_member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), const_void_member_wrapper_t<decltype(F), F>::wrap)
+    .setConst()
+    .params(make_type<A1>());
+}
+
+template<typename T, typename A1, typename A2, void(T::*F)(A1, A2)const>
+script::FunctionBuilder const_void_member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), const_void_member_wrapper_t<decltype(F), F>::wrap)
+    .setConst()
+    .params(make_type<A1>(), make_type<A2>());
+}
+
+template<typename T, typename A1, typename A2, typename A3, void(T::*F)(A1, A2, A3)const>
+script::FunctionBuilder const_void_member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), const_void_member_wrapper_t<decltype(F), F>::wrap)
+    .setConst()
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+}
+
+template<typename T, typename A1, typename A2, typename A3, typename A4, void(T::*F)(A1, A2, A3, A4)const>
+script::FunctionBuilder const_void_member_function(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), const_void_member_wrapper_t<decltype(F), F>::wrap)
+    .setConst()
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+}
+
+template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5, void(T::*F)(A1, A2, A3, A4, A5)const>
+script::FunctionBuilder const_void_member_function(Class & cla, std::string && name)
 {
   return cla.newMethod(std::move(name), const_void_member_wrapper_t<decltype(F), F>::wrap)
     .setConst()

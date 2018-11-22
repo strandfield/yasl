@@ -5,12 +5,12 @@
 #ifndef YASL_CORE_JSONOBJECT_H
 #define YASL_CORE_JSONOBJECT_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QJsonObject>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QJsonObject> { inline static script::Type get() { return script::Type::QJsonObject; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_JSONOBJECT_H

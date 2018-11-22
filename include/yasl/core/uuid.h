@@ -5,14 +5,14 @@
 #ifndef YASL_CORE_UUID_H
 #define YASL_CORE_UUID_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QUuid>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QUuid> { inline static script::Type get() { return script::Type::QUuid; } };
 template<> struct make_type_t<QUuid::Variant> { inline static script::Type get() { return script::Type::QUuidVariant; } };
 template<> struct make_type_t<QUuid::Version> { inline static script::Type get() { return script::Type::QUuidVersion; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_UUID_H

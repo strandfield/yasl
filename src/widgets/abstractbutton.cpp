@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/abstractbutton.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/size.h"
 #include "yasl/gui/icon.h"
@@ -21,73 +21,72 @@ static void register_abstract_button_class(script::Namespace ns)
   Class abstract_button = ns.newClass("AbstractButton").setId(script::Type::QAbstractButton)
     .setBase(script::Type::QWidget).get();
 
-  binding::ClassBinder<QAbstractButton> binder{ abstract_button, &QAbstractButton::staticMetaObject };
 
   // ~QAbstractButton();
-  binder.dtor().create();
+  bind::destructor<QAbstractButton>(abstract_button).create();
   // void setText(const QString &);
-  binder.void_fun<const QString &, &QAbstractButton::setText>("setText").create();
+  bind::void_member_function<QAbstractButton, const QString &, &QAbstractButton::setText>(abstract_button, "setText").create();
   // QString text() const;
-  binder.fun<QString, &QAbstractButton::text>("text").create();
+  bind::member_function<QAbstractButton, QString, &QAbstractButton::text>(abstract_button, "text").create();
   // void setIcon(const QIcon &);
-  binder.void_fun<const QIcon &, &QAbstractButton::setIcon>("setIcon").create();
+  bind::void_member_function<QAbstractButton, const QIcon &, &QAbstractButton::setIcon>(abstract_button, "setIcon").create();
   // QIcon icon() const;
-  binder.fun<QIcon, &QAbstractButton::icon>("icon").create();
+  bind::member_function<QAbstractButton, QIcon, &QAbstractButton::icon>(abstract_button, "icon").create();
   // QSize iconSize() const;
-  binder.fun<QSize, &QAbstractButton::iconSize>("iconSize").create();
+  bind::member_function<QAbstractButton, QSize, &QAbstractButton::iconSize>(abstract_button, "iconSize").create();
   // void setShortcut(const QKeySequence &);
-  binder.void_fun<const QKeySequence &, &QAbstractButton::setShortcut>("setShortcut").create();
+  bind::void_member_function<QAbstractButton, const QKeySequence &, &QAbstractButton::setShortcut>(abstract_button, "setShortcut").create();
   // QKeySequence shortcut() const;
-  binder.fun<QKeySequence, &QAbstractButton::shortcut>("shortcut").create();
+  bind::member_function<QAbstractButton, QKeySequence, &QAbstractButton::shortcut>(abstract_button, "shortcut").create();
   // void setCheckable(bool);
-  binder.void_fun<bool, &QAbstractButton::setCheckable>("setCheckable").create();
+  bind::void_member_function<QAbstractButton, bool, &QAbstractButton::setCheckable>(abstract_button, "setCheckable").create();
   // bool isCheckable() const;
-  binder.fun<bool, &QAbstractButton::isCheckable>("isCheckable").create();
+  bind::member_function<QAbstractButton, bool, &QAbstractButton::isCheckable>(abstract_button, "isCheckable").create();
   // bool isChecked() const;
-  binder.fun<bool, &QAbstractButton::isChecked>("isChecked").create();
+  bind::member_function<QAbstractButton, bool, &QAbstractButton::isChecked>(abstract_button, "isChecked").create();
   // void setDown(bool);
-  binder.void_fun<bool, &QAbstractButton::setDown>("setDown").create();
+  bind::void_member_function<QAbstractButton, bool, &QAbstractButton::setDown>(abstract_button, "setDown").create();
   // bool isDown() const;
-  binder.fun<bool, &QAbstractButton::isDown>("isDown").create();
+  bind::member_function<QAbstractButton, bool, &QAbstractButton::isDown>(abstract_button, "isDown").create();
   // void setAutoRepeat(bool);
-  binder.void_fun<bool, &QAbstractButton::setAutoRepeat>("setAutoRepeat").create();
+  bind::void_member_function<QAbstractButton, bool, &QAbstractButton::setAutoRepeat>(abstract_button, "setAutoRepeat").create();
   // bool autoRepeat() const;
-  binder.fun<bool, &QAbstractButton::autoRepeat>("autoRepeat").create();
+  bind::member_function<QAbstractButton, bool, &QAbstractButton::autoRepeat>(abstract_button, "autoRepeat").create();
   // void setAutoRepeatDelay(int);
-  binder.void_fun<int, &QAbstractButton::setAutoRepeatDelay>("setAutoRepeatDelay").create();
+  bind::void_member_function<QAbstractButton, int, &QAbstractButton::setAutoRepeatDelay>(abstract_button, "setAutoRepeatDelay").create();
   // int autoRepeatDelay() const;
-  binder.fun<int, &QAbstractButton::autoRepeatDelay>("autoRepeatDelay").create();
+  bind::member_function<QAbstractButton, int, &QAbstractButton::autoRepeatDelay>(abstract_button, "autoRepeatDelay").create();
   // void setAutoRepeatInterval(int);
-  binder.void_fun<int, &QAbstractButton::setAutoRepeatInterval>("setAutoRepeatInterval").create();
+  bind::void_member_function<QAbstractButton, int, &QAbstractButton::setAutoRepeatInterval>(abstract_button, "setAutoRepeatInterval").create();
   // int autoRepeatInterval() const;
-  binder.fun<int, &QAbstractButton::autoRepeatInterval>("autoRepeatInterval").create();
+  bind::member_function<QAbstractButton, int, &QAbstractButton::autoRepeatInterval>(abstract_button, "autoRepeatInterval").create();
   // void setAutoExclusive(bool);
-  binder.void_fun<bool, &QAbstractButton::setAutoExclusive>("setAutoExclusive").create();
+  bind::void_member_function<QAbstractButton, bool, &QAbstractButton::setAutoExclusive>(abstract_button, "setAutoExclusive").create();
   // bool autoExclusive() const;
-  binder.fun<bool, &QAbstractButton::autoExclusive>("autoExclusive").create();
+  bind::member_function<QAbstractButton, bool, &QAbstractButton::autoExclusive>(abstract_button, "autoExclusive").create();
   // QButtonGroup * group() const;
   /// TODO: QButtonGroup * group() const;
   // void setIconSize(const QSize &);
-  binder.void_fun<const QSize &, &QAbstractButton::setIconSize>("setIconSize").create();
+  bind::void_member_function<QAbstractButton, const QSize &, &QAbstractButton::setIconSize>(abstract_button, "setIconSize").create();
   // void animateClick(int);
-  binder.void_fun<int, &QAbstractButton::animateClick>("animateClick")
-    .apply(binding::default_arguments(100)).create();
+  bind::void_member_function<QAbstractButton, int, &QAbstractButton::animateClick>(abstract_button, "animateClick")
+    .apply(bind::default_arguments(100)).create();
   // void click();
-  binder.void_fun<&QAbstractButton::click>("click").create();
+  bind::void_member_function<QAbstractButton, &QAbstractButton::click>(abstract_button, "click").create();
   // void toggle();
-  binder.void_fun<&QAbstractButton::toggle>("toggle").create();
+  bind::void_member_function<QAbstractButton, &QAbstractButton::toggle>(abstract_button, "toggle").create();
   // void setChecked(bool);
-  binder.void_fun<bool, &QAbstractButton::setChecked>("setChecked").create();
+  bind::void_member_function<QAbstractButton, bool, &QAbstractButton::setChecked>(abstract_button, "setChecked").create();
   // void pressed();
-  binder.sigs().add("pressed", "pressed()");
+  bind::signal<QAbstractButton>(abstract_button, "pressed", "pressed()");
   // void released();
-  binder.sigs().add("released", "released()");
+  bind::signal<QAbstractButton>(abstract_button, "released", "released()");
   // void clicked(bool);
-  binder.sigs().add<bool>("clicked", "clicked(bool)");
+  bind::signal<QAbstractButton, bool>(abstract_button, "clicked", "clicked(bool)");
   // void toggled(bool);
-  binder.sigs().add<bool>("toggled", "toggled(bool)");
+  bind::signal<QAbstractButton, bool>(abstract_button, "toggled", "toggled(bool)");
 
-  abstract_button.engine()->registerQtType(&QAbstractButton::staticMetaObject, abstract_button.id());
+  bind::link(abstract_button, &QAbstractButton::staticMetaObject);
 }
 
 
@@ -98,7 +97,6 @@ void register_abstractbutton_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_abstract_button_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

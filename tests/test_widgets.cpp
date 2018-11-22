@@ -63,7 +63,7 @@ TEST(Widgets, children) {
   ASSERT_EQ(s.globals().size(), 3);
 
   script::Value children_value = s.globals().back();
-  ASSERT_EQ(children_value.type(), binding::make_type<QList<QObject*>>());
+  ASSERT_EQ(children_value.type(), bind::make_type<QList<QObject*>>());
   const QObjectList & children = binding::value_cast<const QObjectList &>(children_value);
 
   ASSERT_EQ(children.size(), 1);

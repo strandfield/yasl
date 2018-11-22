@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/toolbar.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/object.h"
@@ -27,90 +27,89 @@ static void register_tool_bar_class(script::Namespace ns)
   Class tool_bar = ns.newClass("ToolBar").setId(script::Type::QToolBar)
     .setBase(script::Type::QWidget).get();
 
-  binding::ClassBinder<QToolBar> binder{ tool_bar, &QToolBar::staticMetaObject };
 
   // QToolBar(const QString &, QWidget *);
-  binder.ctor<const QString &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QToolBar, const QString &, QWidget *>(tool_bar)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QToolBar(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QToolBar, QWidget *>(tool_bar)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QToolBar();
-  binder.dtor().create();
+  bind::destructor<QToolBar>(tool_bar).create();
   // void setMovable(bool);
-  binder.void_fun<bool, &QToolBar::setMovable>("setMovable").create();
+  bind::void_member_function<QToolBar, bool, &QToolBar::setMovable>(tool_bar, "setMovable").create();
   // bool isMovable() const;
-  binder.fun<bool, &QToolBar::isMovable>("isMovable").create();
+  bind::member_function<QToolBar, bool, &QToolBar::isMovable>(tool_bar, "isMovable").create();
   // void setAllowedAreas(Qt::ToolBarAreas);
-  binder.void_fun<Qt::ToolBarAreas, &QToolBar::setAllowedAreas>("setAllowedAreas").create();
+  bind::void_member_function<QToolBar, Qt::ToolBarAreas, &QToolBar::setAllowedAreas>(tool_bar, "setAllowedAreas").create();
   // Qt::ToolBarAreas allowedAreas() const;
-  binder.fun<Qt::ToolBarAreas, &QToolBar::allowedAreas>("allowedAreas").create();
+  bind::member_function<QToolBar, Qt::ToolBarAreas, &QToolBar::allowedAreas>(tool_bar, "allowedAreas").create();
   // bool isAreaAllowed(Qt::ToolBarArea) const;
-  binder.fun<bool, Qt::ToolBarArea, &QToolBar::isAreaAllowed>("isAreaAllowed").create();
+  bind::member_function<QToolBar, bool, Qt::ToolBarArea, &QToolBar::isAreaAllowed>(tool_bar, "isAreaAllowed").create();
   // void setOrientation(Qt::Orientation);
-  binder.void_fun<Qt::Orientation, &QToolBar::setOrientation>("setOrientation").create();
+  bind::void_member_function<QToolBar, Qt::Orientation, &QToolBar::setOrientation>(tool_bar, "setOrientation").create();
   // Qt::Orientation orientation() const;
-  binder.fun<Qt::Orientation, &QToolBar::orientation>("orientation").create();
+  bind::member_function<QToolBar, Qt::Orientation, &QToolBar::orientation>(tool_bar, "orientation").create();
   // void clear();
-  binder.void_fun<&QToolBar::clear>("clear").create();
+  bind::void_member_function<QToolBar, &QToolBar::clear>(tool_bar, "clear").create();
   // QAction * addAction(const QString &);
-  binder.fun<QAction *, const QString &, &QToolBar::addAction>("addAction").create();
+  bind::member_function<QToolBar, QAction *, const QString &, &QToolBar::addAction>(tool_bar, "addAction").create();
   // QAction * addAction(const QIcon &, const QString &);
-  binder.fun<QAction *, const QIcon &, const QString &, &QToolBar::addAction>("addAction").create();
+  bind::member_function<QToolBar, QAction *, const QIcon &, const QString &, &QToolBar::addAction>(tool_bar, "addAction").create();
   // QAction * addAction(const QString &, const QObject *, const char *);
   /// TODO: QAction * addAction(const QString &, const QObject *, const char *);
   // QAction * addAction(const QIcon &, const QString &, const QObject *, const char *);
   /// TODO: QAction * addAction(const QIcon &, const QString &, const QObject *, const char *);
   // QAction * addSeparator();
-  binder.fun<QAction *, &QToolBar::addSeparator>("addSeparator").create();
+  bind::member_function<QToolBar, QAction *, &QToolBar::addSeparator>(tool_bar, "addSeparator").create();
   // QAction * insertSeparator(QAction *);
-  binder.fun<QAction *, QAction *, &QToolBar::insertSeparator>("insertSeparator").create();
+  bind::member_function<QToolBar, QAction *, QAction *, &QToolBar::insertSeparator>(tool_bar, "insertSeparator").create();
   // QAction * addWidget(QWidget *);
-  binder.fun<QAction *, QWidget *, &QToolBar::addWidget>("addWidget").create();
+  bind::member_function<QToolBar, QAction *, QWidget *, &QToolBar::addWidget>(tool_bar, "addWidget").create();
   // QAction * insertWidget(QAction *, QWidget *);
-  binder.fun<QAction *, QAction *, QWidget *, &QToolBar::insertWidget>("insertWidget").create();
+  bind::member_function<QToolBar, QAction *, QAction *, QWidget *, &QToolBar::insertWidget>(tool_bar, "insertWidget").create();
   // QRect actionGeometry(QAction *) const;
-  binder.fun<QRect, QAction *, &QToolBar::actionGeometry>("actionGeometry").create();
+  bind::member_function<QToolBar, QRect, QAction *, &QToolBar::actionGeometry>(tool_bar, "actionGeometry").create();
   // QAction * actionAt(const QPoint &) const;
-  binder.fun<QAction *, const QPoint &, &QToolBar::actionAt>("actionAt").create();
+  bind::member_function<QToolBar, QAction *, const QPoint &, &QToolBar::actionAt>(tool_bar, "actionAt").create();
   // QAction * actionAt(int, int) const;
-  binder.fun<QAction *, int, int, &QToolBar::actionAt>("actionAt").create();
+  bind::member_function<QToolBar, QAction *, int, int, &QToolBar::actionAt>(tool_bar, "actionAt").create();
   // QAction * toggleViewAction() const;
-  binder.fun<QAction *, &QToolBar::toggleViewAction>("toggleViewAction").create();
+  bind::member_function<QToolBar, QAction *, &QToolBar::toggleViewAction>(tool_bar, "toggleViewAction").create();
   // QSize iconSize() const;
-  binder.fun<QSize, &QToolBar::iconSize>("iconSize").create();
+  bind::member_function<QToolBar, QSize, &QToolBar::iconSize>(tool_bar, "iconSize").create();
   // Qt::ToolButtonStyle toolButtonStyle() const;
-  binder.fun<Qt::ToolButtonStyle, &QToolBar::toolButtonStyle>("toolButtonStyle").create();
+  bind::member_function<QToolBar, Qt::ToolButtonStyle, &QToolBar::toolButtonStyle>(tool_bar, "toolButtonStyle").create();
   // QWidget * widgetForAction(QAction *) const;
-  binder.fun<QWidget *, QAction *, &QToolBar::widgetForAction>("widgetForAction").create();
+  bind::member_function<QToolBar, QWidget *, QAction *, &QToolBar::widgetForAction>(tool_bar, "widgetForAction").create();
   // bool isFloatable() const;
-  binder.fun<bool, &QToolBar::isFloatable>("isFloatable").create();
+  bind::member_function<QToolBar, bool, &QToolBar::isFloatable>(tool_bar, "isFloatable").create();
   // void setFloatable(bool);
-  binder.void_fun<bool, &QToolBar::setFloatable>("setFloatable").create();
+  bind::void_member_function<QToolBar, bool, &QToolBar::setFloatable>(tool_bar, "setFloatable").create();
   // bool isFloating() const;
-  binder.fun<bool, &QToolBar::isFloating>("isFloating").create();
+  bind::member_function<QToolBar, bool, &QToolBar::isFloating>(tool_bar, "isFloating").create();
   // void setIconSize(const QSize &);
-  binder.void_fun<const QSize &, &QToolBar::setIconSize>("setIconSize").create();
+  bind::void_member_function<QToolBar, const QSize &, &QToolBar::setIconSize>(tool_bar, "setIconSize").create();
   // void setToolButtonStyle(Qt::ToolButtonStyle);
-  binder.void_fun<Qt::ToolButtonStyle, &QToolBar::setToolButtonStyle>("setToolButtonStyle").create();
+  bind::void_member_function<QToolBar, Qt::ToolButtonStyle, &QToolBar::setToolButtonStyle>(tool_bar, "setToolButtonStyle").create();
   // void actionTriggered(QAction *);
-  binder.sigs().add<QAction *>("actionTriggered", "actionTriggered(QAction *)");
+  bind::signal<QToolBar, QAction *>(tool_bar, "actionTriggered", "actionTriggered(QAction *)");
   // void movableChanged(bool);
-  binder.sigs().add<bool>("movableChanged", "movableChanged(bool)");
+  bind::signal<QToolBar, bool>(tool_bar, "movableChanged", "movableChanged(bool)");
   // void allowedAreasChanged(Qt::ToolBarAreas);
-  binder.sigs().add<Qt::ToolBarAreas>("allowedAreasChanged", "allowedAreasChanged(Qt::ToolBarAreas)");
+  bind::signal<QToolBar, Qt::ToolBarAreas>(tool_bar, "allowedAreasChanged", "allowedAreasChanged(Qt::ToolBarAreas)");
   // void orientationChanged(Qt::Orientation);
-  binder.sigs().add<Qt::Orientation>("orientationChanged", "orientationChanged(Qt::Orientation)");
+  bind::signal<QToolBar, Qt::Orientation>(tool_bar, "orientationChanged", "orientationChanged(Qt::Orientation)");
   // void iconSizeChanged(const QSize &);
-  binder.sigs().add<const QSize &>("iconSizeChanged", "iconSizeChanged(const QSize &)");
+  bind::signal<QToolBar, const QSize &>(tool_bar, "iconSizeChanged", "iconSizeChanged(const QSize &)");
   // void toolButtonStyleChanged(Qt::ToolButtonStyle);
-  binder.sigs().add<Qt::ToolButtonStyle>("toolButtonStyleChanged", "toolButtonStyleChanged(Qt::ToolButtonStyle)");
+  bind::signal<QToolBar, Qt::ToolButtonStyle>(tool_bar, "toolButtonStyleChanged", "toolButtonStyleChanged(Qt::ToolButtonStyle)");
   // void topLevelChanged(bool);
-  binder.sigs().add<bool>("topLevelChanged", "topLevelChanged(bool)");
+  bind::signal<QToolBar, bool>(tool_bar, "topLevelChanged", "topLevelChanged(bool)");
   // void visibilityChanged(bool);
-  binder.sigs().add<bool>("visibilityChanged", "visibilityChanged(bool)");
+  bind::signal<QToolBar, bool>(tool_bar, "visibilityChanged", "visibilityChanged(bool)");
 
-  tool_bar.engine()->registerQtType(&QToolBar::staticMetaObject, tool_bar.id());
+  bind::link(tool_bar, &QToolBar::staticMetaObject);
 }
 
 
@@ -121,11 +120,10 @@ void register_toolbar_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_tool_bar_class(ns);
-  binding::Namespace binder{ ns };
 
   // QToolBar& newToolBar(const QString&, QWidget*);
-  NewFunction(binder).add<QToolBar, const QString&, QWidget*>("newToolBar");
+  bind::new_function<QToolBar, const QString&, QWidget*>(ns, "newToolBar");
   // QToolBar& newToolBar(QWidget*);
-  NewFunction(binder).add<QToolBar, QWidget*>("newToolBar");
+  bind::new_function<QToolBar, QWidget*>(ns, "newToolBar");
 }
 

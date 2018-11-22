@@ -4,9 +4,9 @@
 
 #include "yasl/gui/fontmetrics.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/char.h"
 #include "yasl/core/enums.h"
@@ -22,65 +22,64 @@ static void register_font_metrics_class(script::Namespace ns)
 
   Class font_metrics = ns.newClass("FontMetrics").setId(script::Type::QFontMetrics).get();
 
-  binding::ClassBinder<QFontMetrics> binder{ font_metrics };
 
   // QFontMetrics(const QFont &);
-  binder.ctor<const QFont &>().create();
+  bind::constructor<QFontMetrics, const QFont &>(font_metrics).create();
   // QFontMetrics(const QFont &, QPaintDevice *);
   /// TODO: QFontMetrics(const QFont &, QPaintDevice *);
   // QFontMetrics(const QFontMetrics &);
-  binder.ctor<const QFontMetrics &>().create();
+  bind::constructor<QFontMetrics, const QFontMetrics &>(font_metrics).create();
   // ~QFontMetrics();
-  binder.dtor().create();
+  bind::destructor<QFontMetrics>(font_metrics).create();
   // QFontMetrics & operator=(const QFontMetrics &);
-  binder.operators().assign<const QFontMetrics &>();
+  bind::memop_assign<QFontMetrics, const QFontMetrics &>(font_metrics);
   // QFontMetrics & operator=(QFontMetrics &&);
-  binder.operators().assign<QFontMetrics &&>();
+  bind::memop_assign<QFontMetrics, QFontMetrics &&>(font_metrics);
   // void swap(QFontMetrics &);
-  binder.void_fun<QFontMetrics &, &QFontMetrics::swap>("swap").create();
+  bind::void_member_function<QFontMetrics, QFontMetrics &, &QFontMetrics::swap>(font_metrics, "swap").create();
   // int ascent() const;
-  binder.fun<int, &QFontMetrics::ascent>("ascent").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::ascent>(font_metrics, "ascent").create();
   // int capHeight() const;
-  binder.fun<int, &QFontMetrics::capHeight>("capHeight").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::capHeight>(font_metrics, "capHeight").create();
   // int descent() const;
-  binder.fun<int, &QFontMetrics::descent>("descent").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::descent>(font_metrics, "descent").create();
   // int height() const;
-  binder.fun<int, &QFontMetrics::height>("height").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::height>(font_metrics, "height").create();
   // int leading() const;
-  binder.fun<int, &QFontMetrics::leading>("leading").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::leading>(font_metrics, "leading").create();
   // int lineSpacing() const;
-  binder.fun<int, &QFontMetrics::lineSpacing>("lineSpacing").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::lineSpacing>(font_metrics, "lineSpacing").create();
   // int minLeftBearing() const;
-  binder.fun<int, &QFontMetrics::minLeftBearing>("minLeftBearing").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::minLeftBearing>(font_metrics, "minLeftBearing").create();
   // int minRightBearing() const;
-  binder.fun<int, &QFontMetrics::minRightBearing>("minRightBearing").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::minRightBearing>(font_metrics, "minRightBearing").create();
   // int maxWidth() const;
-  binder.fun<int, &QFontMetrics::maxWidth>("maxWidth").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::maxWidth>(font_metrics, "maxWidth").create();
   // int xHeight() const;
-  binder.fun<int, &QFontMetrics::xHeight>("xHeight").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::xHeight>(font_metrics, "xHeight").create();
   // int averageCharWidth() const;
-  binder.fun<int, &QFontMetrics::averageCharWidth>("averageCharWidth").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::averageCharWidth>(font_metrics, "averageCharWidth").create();
   // bool inFont(QChar) const;
-  binder.fun<bool, QChar, &QFontMetrics::inFont>("inFont").create();
+  bind::member_function<QFontMetrics, bool, QChar, &QFontMetrics::inFont>(font_metrics, "inFont").create();
   // bool inFontUcs4(uint) const;
-  binder.fun<bool, uint, &QFontMetrics::inFontUcs4>("inFontUcs4").create();
+  bind::member_function<QFontMetrics, bool, uint, &QFontMetrics::inFontUcs4>(font_metrics, "inFontUcs4").create();
   // int leftBearing(QChar) const;
-  binder.fun<int, QChar, &QFontMetrics::leftBearing>("leftBearing").create();
+  bind::member_function<QFontMetrics, int, QChar, &QFontMetrics::leftBearing>(font_metrics, "leftBearing").create();
   // int rightBearing(QChar) const;
-  binder.fun<int, QChar, &QFontMetrics::rightBearing>("rightBearing").create();
+  bind::member_function<QFontMetrics, int, QChar, &QFontMetrics::rightBearing>(font_metrics, "rightBearing").create();
   // int width(const QString &, int) const;
-  binder.fun<int, const QString &, int, &QFontMetrics::width>("width")
-    .apply(binding::default_arguments(-1)).create();
+  bind::member_function<QFontMetrics, int, const QString &, int, &QFontMetrics::width>(font_metrics, "width")
+    .apply(bind::default_arguments(-1)).create();
   // int width(const QString &, int, int) const;
-  binder.fun<int, const QString &, int, int, &QFontMetrics::width>("width").create();
+  bind::member_function<QFontMetrics, int, const QString &, int, int, &QFontMetrics::width>(font_metrics, "width").create();
   // int width(QChar) const;
-  binder.fun<int, QChar, &QFontMetrics::width>("width").create();
+  bind::member_function<QFontMetrics, int, QChar, &QFontMetrics::width>(font_metrics, "width").create();
   // int charWidth(const QString &, int) const;
-  binder.fun<int, const QString &, int, &QFontMetrics::charWidth>("charWidth").create();
+  bind::member_function<QFontMetrics, int, const QString &, int, &QFontMetrics::charWidth>(font_metrics, "charWidth").create();
   // QRect boundingRect(QChar) const;
-  binder.fun<QRect, QChar, &QFontMetrics::boundingRect>("boundingRect").create();
+  bind::member_function<QFontMetrics, QRect, QChar, &QFontMetrics::boundingRect>(font_metrics, "boundingRect").create();
   // QRect boundingRect(const QString &) const;
-  binder.fun<QRect, const QString &, &QFontMetrics::boundingRect>("boundingRect").create();
+  bind::member_function<QFontMetrics, QRect, const QString &, &QFontMetrics::boundingRect>(font_metrics, "boundingRect").create();
   // QRect boundingRect(const QRect &, int, const QString &, int, int *) const;
   /// TODO: QRect boundingRect(const QRect &, int, const QString &, int, int *) const;
   // QRect boundingRect(int, int, int, int, int, const QString &, int, int *) const;
@@ -88,22 +87,22 @@ static void register_font_metrics_class(script::Namespace ns)
   // QSize size(int, const QString &, int, int *) const;
   /// TODO: QSize size(int, const QString &, int, int *) const;
   // QRect tightBoundingRect(const QString &) const;
-  binder.fun<QRect, const QString &, &QFontMetrics::tightBoundingRect>("tightBoundingRect").create();
+  bind::member_function<QFontMetrics, QRect, const QString &, &QFontMetrics::tightBoundingRect>(font_metrics, "tightBoundingRect").create();
   // QString elidedText(const QString &, Qt::TextElideMode, int, int) const;
-  binder.fun<QString, const QString &, Qt::TextElideMode, int, int, &QFontMetrics::elidedText>("elidedText")
-    .apply(binding::default_arguments(0)).create();
+  bind::member_function<QFontMetrics, QString, const QString &, Qt::TextElideMode, int, int, &QFontMetrics::elidedText>(font_metrics, "elidedText")
+    .apply(bind::default_arguments(0)).create();
   // int underlinePos() const;
-  binder.fun<int, &QFontMetrics::underlinePos>("underlinePos").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::underlinePos>(font_metrics, "underlinePos").create();
   // int overlinePos() const;
-  binder.fun<int, &QFontMetrics::overlinePos>("overlinePos").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::overlinePos>(font_metrics, "overlinePos").create();
   // int strikeOutPos() const;
-  binder.fun<int, &QFontMetrics::strikeOutPos>("strikeOutPos").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::strikeOutPos>(font_metrics, "strikeOutPos").create();
   // int lineWidth() const;
-  binder.fun<int, &QFontMetrics::lineWidth>("lineWidth").create();
+  bind::member_function<QFontMetrics, int, &QFontMetrics::lineWidth>(font_metrics, "lineWidth").create();
   // bool operator==(const QFontMetrics &) const;
-  binder.operators().eq<const QFontMetrics &>();
+  bind::memop_eq<QFontMetrics, const QFontMetrics &>(font_metrics);
   // bool operator!=(const QFontMetrics &) const;
-  binder.operators().neq<const QFontMetrics &>();
+  bind::memop_neq<QFontMetrics, const QFontMetrics &>(font_metrics);
 }
 
 
@@ -113,85 +112,84 @@ static void register_font_metrics_f_class(script::Namespace ns)
 
   Class font_metrics_f = ns.newClass("FontMetricsF").setId(script::Type::QFontMetricsF).get();
 
-  binding::ClassBinder<QFontMetricsF> binder{ font_metrics_f };
 
   // QFontMetricsF(const QFont &);
-  binder.ctor<const QFont &>().create();
+  bind::constructor<QFontMetricsF, const QFont &>(font_metrics_f).create();
   // QFontMetricsF(const QFont &, QPaintDevice *);
   /// TODO: QFontMetricsF(const QFont &, QPaintDevice *);
   // QFontMetricsF(const QFontMetrics &);
-  binder.ctor<const QFontMetrics &>().create();
+  bind::constructor<QFontMetricsF, const QFontMetrics &>(font_metrics_f).create();
   // QFontMetricsF(const QFontMetricsF &);
-  binder.ctor<const QFontMetricsF &>().create();
+  bind::constructor<QFontMetricsF, const QFontMetricsF &>(font_metrics_f).create();
   // ~QFontMetricsF();
-  binder.dtor().create();
+  bind::destructor<QFontMetricsF>(font_metrics_f).create();
   // QFontMetricsF & operator=(const QFontMetricsF &);
-  binder.operators().assign<const QFontMetricsF &>();
+  bind::memop_assign<QFontMetricsF, const QFontMetricsF &>(font_metrics_f);
   // QFontMetricsF & operator=(const QFontMetrics &);
-  binder.operators().assign<const QFontMetrics &>();
+  bind::memop_assign<QFontMetricsF, const QFontMetrics &>(font_metrics_f);
   // QFontMetricsF & operator=(QFontMetricsF &&);
-  binder.operators().assign<QFontMetricsF &&>();
+  bind::memop_assign<QFontMetricsF, QFontMetricsF &&>(font_metrics_f);
   // void swap(QFontMetricsF &);
-  binder.void_fun<QFontMetricsF &, &QFontMetricsF::swap>("swap").create();
+  bind::void_member_function<QFontMetricsF, QFontMetricsF &, &QFontMetricsF::swap>(font_metrics_f, "swap").create();
   // qreal ascent() const;
-  binder.fun<qreal, &QFontMetricsF::ascent>("ascent").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::ascent>(font_metrics_f, "ascent").create();
   // qreal capHeight() const;
-  binder.fun<qreal, &QFontMetricsF::capHeight>("capHeight").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::capHeight>(font_metrics_f, "capHeight").create();
   // qreal descent() const;
-  binder.fun<qreal, &QFontMetricsF::descent>("descent").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::descent>(font_metrics_f, "descent").create();
   // qreal height() const;
-  binder.fun<qreal, &QFontMetricsF::height>("height").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::height>(font_metrics_f, "height").create();
   // qreal leading() const;
-  binder.fun<qreal, &QFontMetricsF::leading>("leading").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::leading>(font_metrics_f, "leading").create();
   // qreal lineSpacing() const;
-  binder.fun<qreal, &QFontMetricsF::lineSpacing>("lineSpacing").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::lineSpacing>(font_metrics_f, "lineSpacing").create();
   // qreal minLeftBearing() const;
-  binder.fun<qreal, &QFontMetricsF::minLeftBearing>("minLeftBearing").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::minLeftBearing>(font_metrics_f, "minLeftBearing").create();
   // qreal minRightBearing() const;
-  binder.fun<qreal, &QFontMetricsF::minRightBearing>("minRightBearing").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::minRightBearing>(font_metrics_f, "minRightBearing").create();
   // qreal maxWidth() const;
-  binder.fun<qreal, &QFontMetricsF::maxWidth>("maxWidth").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::maxWidth>(font_metrics_f, "maxWidth").create();
   // qreal xHeight() const;
-  binder.fun<qreal, &QFontMetricsF::xHeight>("xHeight").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::xHeight>(font_metrics_f, "xHeight").create();
   // qreal averageCharWidth() const;
-  binder.fun<qreal, &QFontMetricsF::averageCharWidth>("averageCharWidth").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::averageCharWidth>(font_metrics_f, "averageCharWidth").create();
   // bool inFont(QChar) const;
-  binder.fun<bool, QChar, &QFontMetricsF::inFont>("inFont").create();
+  bind::member_function<QFontMetricsF, bool, QChar, &QFontMetricsF::inFont>(font_metrics_f, "inFont").create();
   // bool inFontUcs4(uint) const;
-  binder.fun<bool, uint, &QFontMetricsF::inFontUcs4>("inFontUcs4").create();
+  bind::member_function<QFontMetricsF, bool, uint, &QFontMetricsF::inFontUcs4>(font_metrics_f, "inFontUcs4").create();
   // qreal leftBearing(QChar) const;
-  binder.fun<qreal, QChar, &QFontMetricsF::leftBearing>("leftBearing").create();
+  bind::member_function<QFontMetricsF, qreal, QChar, &QFontMetricsF::leftBearing>(font_metrics_f, "leftBearing").create();
   // qreal rightBearing(QChar) const;
-  binder.fun<qreal, QChar, &QFontMetricsF::rightBearing>("rightBearing").create();
+  bind::member_function<QFontMetricsF, qreal, QChar, &QFontMetricsF::rightBearing>(font_metrics_f, "rightBearing").create();
   // qreal width(const QString &) const;
-  binder.fun<qreal, const QString &, &QFontMetricsF::width>("width").create();
+  bind::member_function<QFontMetricsF, qreal, const QString &, &QFontMetricsF::width>(font_metrics_f, "width").create();
   // qreal width(QChar) const;
-  binder.fun<qreal, QChar, &QFontMetricsF::width>("width").create();
+  bind::member_function<QFontMetricsF, qreal, QChar, &QFontMetricsF::width>(font_metrics_f, "width").create();
   // QRectF boundingRect(const QString &) const;
-  binder.fun<QRectF, const QString &, &QFontMetricsF::boundingRect>("boundingRect").create();
+  bind::member_function<QFontMetricsF, QRectF, const QString &, &QFontMetricsF::boundingRect>(font_metrics_f, "boundingRect").create();
   // QRectF boundingRect(QChar) const;
-  binder.fun<QRectF, QChar, &QFontMetricsF::boundingRect>("boundingRect").create();
+  bind::member_function<QFontMetricsF, QRectF, QChar, &QFontMetricsF::boundingRect>(font_metrics_f, "boundingRect").create();
   // QRectF boundingRect(const QRectF &, int, const QString &, int, int *) const;
   /// TODO: QRectF boundingRect(const QRectF &, int, const QString &, int, int *) const;
   // QSizeF size(int, const QString &, int, int *) const;
   /// TODO: QSizeF size(int, const QString &, int, int *) const;
   // QRectF tightBoundingRect(const QString &) const;
-  binder.fun<QRectF, const QString &, &QFontMetricsF::tightBoundingRect>("tightBoundingRect").create();
+  bind::member_function<QFontMetricsF, QRectF, const QString &, &QFontMetricsF::tightBoundingRect>(font_metrics_f, "tightBoundingRect").create();
   // QString elidedText(const QString &, Qt::TextElideMode, qreal, int) const;
-  binder.fun<QString, const QString &, Qt::TextElideMode, qreal, int, &QFontMetricsF::elidedText>("elidedText")
-    .apply(binding::default_arguments(0)).create();
+  bind::member_function<QFontMetricsF, QString, const QString &, Qt::TextElideMode, qreal, int, &QFontMetricsF::elidedText>(font_metrics_f, "elidedText")
+    .apply(bind::default_arguments(0)).create();
   // qreal underlinePos() const;
-  binder.fun<qreal, &QFontMetricsF::underlinePos>("underlinePos").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::underlinePos>(font_metrics_f, "underlinePos").create();
   // qreal overlinePos() const;
-  binder.fun<qreal, &QFontMetricsF::overlinePos>("overlinePos").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::overlinePos>(font_metrics_f, "overlinePos").create();
   // qreal strikeOutPos() const;
-  binder.fun<qreal, &QFontMetricsF::strikeOutPos>("strikeOutPos").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::strikeOutPos>(font_metrics_f, "strikeOutPos").create();
   // qreal lineWidth() const;
-  binder.fun<qreal, &QFontMetricsF::lineWidth>("lineWidth").create();
+  bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::lineWidth>(font_metrics_f, "lineWidth").create();
   // bool operator==(const QFontMetricsF &) const;
-  binder.operators().eq<const QFontMetricsF &>();
+  bind::memop_eq<QFontMetricsF, const QFontMetricsF &>(font_metrics_f);
   // bool operator!=(const QFontMetricsF &) const;
-  binder.operators().neq<const QFontMetricsF &>();
+  bind::memop_neq<QFontMetricsF, const QFontMetricsF &>(font_metrics_f);
 }
 
 
@@ -203,11 +201,10 @@ void register_fontmetrics_file(script::Namespace gui)
 
   register_font_metrics_class(ns);
   register_font_metrics_f_class(ns);
-  binding::Namespace binder{ ns };
 
   // void swap(QFontMetrics &, QFontMetrics &);
-  binder.void_fun<QFontMetrics &, QFontMetrics &, &swap>("swap").create();
+  bind::void_function<QFontMetrics &, QFontMetrics &, &swap>(ns, "swap").create();
   // void swap(QFontMetricsF &, QFontMetricsF &);
-  binder.void_fun<QFontMetricsF &, QFontMetricsF &, &swap>("swap").create();
+  bind::void_function<QFontMetricsF &, QFontMetricsF &, &swap>(ns, "swap").create();
 }
 

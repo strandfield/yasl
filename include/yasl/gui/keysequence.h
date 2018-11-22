@@ -5,15 +5,15 @@
 #ifndef YASL_GUI_KEYSEQUENCE_H
 #define YASL_GUI_KEYSEQUENCE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QKeySequence>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QKeySequence> { inline static script::Type get() { return script::Type::QKeySequence; } };
 template<> struct make_type_t<QKeySequence::SequenceFormat> { inline static script::Type get() { return script::Type::QKeySequenceSequenceFormat; } };
 template<> struct make_type_t<QKeySequence::SequenceMatch> { inline static script::Type get() { return script::Type::QKeySequenceSequenceMatch; } };
 template<> struct make_type_t<QKeySequence::StandardKey> { inline static script::Type get() { return script::Type::QKeySequenceStandardKey; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_KEYSEQUENCE_H

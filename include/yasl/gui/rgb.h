@@ -5,12 +5,8 @@
 #ifndef YASL_GUI_RGB_H
 #define YASL_GUI_RGB_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QRgb>
-
-namespace binding {
-
-} // namespace binding
 
 #endif // YASL_GUI_RGB_H

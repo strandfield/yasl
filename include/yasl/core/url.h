@@ -5,11 +5,11 @@
 #ifndef YASL_CORE_URL_H
 #define YASL_CORE_URL_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QUrl>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QUrl> { inline static script::Type get() { return script::Type::QUrl; } };
 template<> struct make_type_t<QUrl::ComponentFormattingOption> { inline static script::Type get() { return script::Type::QUrlComponentFormattingOption; } };
 template<> struct make_type_t<QUrl::ComponentFormattingOptions> { inline static script::Type get() { return script::Type::QUrlComponentFormattingOptions; } };
@@ -17,6 +17,6 @@ template<> struct make_type_t<QUrl::ParsingMode> { inline static script::Type ge
 template<> struct make_type_t<QUrl::UrlFormattingOption> { inline static script::Type get() { return script::Type::QUrlUrlFormattingOption; } };
 template<> struct make_type_t<QUrl::UserInputResolutionOption> { inline static script::Type get() { return script::Type::QUrlUserInputResolutionOption; } };
 template<> struct make_type_t<QUrl::UserInputResolutionOptions> { inline static script::Type get() { return script::Type::QUrlUserInputResolutionOptions; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_CORE_URL_H

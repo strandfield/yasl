@@ -4,8 +4,8 @@
 
 #include "yasl/gui/vector4d.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -22,86 +22,85 @@ static void register_vector4_d_class(script::Namespace ns)
 
   Class vector4_d = ns.newClass("Vector4D").setId(script::Type::QVector4D).get();
 
-  binding::ClassBinder<QVector4D> binder{ vector4_d };
 
   // QVector4D();
-  binder.default_ctor().create();
+  bind::default_constructor<QVector4D>(vector4_d).create();
   // QVector4D(const QVector4D &);
-  binder.ctor<const QVector4D &>().create();
+  bind::constructor<QVector4D, const QVector4D &>(vector4_d).create();
   // ~QVector4D();
-  binder.dtor().create();
+  bind::destructor<QVector4D>(vector4_d).create();
   // QVector4D & operator=(const QVector4D &);
-  binder.operators().assign<const QVector4D &>();
+  bind::memop_assign<QVector4D, const QVector4D &>(vector4_d);
   // QVector4D(Qt::Initialization);
-  binder.ctor<Qt::Initialization>().create();
+  bind::constructor<QVector4D, Qt::Initialization>(vector4_d).create();
   // QVector4D(float, float, float, float);
-  binder.ctor<float, float, float, float>().create();
+  bind::constructor<QVector4D, float, float, float, float>(vector4_d).create();
   // QVector4D(const QPoint &);
-  binder.ctor<const QPoint &>().create();
+  bind::constructor<QVector4D, const QPoint &>(vector4_d).create();
   // QVector4D(const QPointF &);
-  binder.ctor<const QPointF &>().create();
+  bind::constructor<QVector4D, const QPointF &>(vector4_d).create();
   // QVector4D(const QVector2D &);
-  binder.ctor<const QVector2D &>().create();
+  bind::constructor<QVector4D, const QVector2D &>(vector4_d).create();
   // QVector4D(const QVector2D &, float, float);
-  binder.ctor<const QVector2D &, float, float>().create();
+  bind::constructor<QVector4D, const QVector2D &, float, float>(vector4_d).create();
   // QVector4D(const QVector3D &);
-  binder.ctor<const QVector3D &>().create();
+  bind::constructor<QVector4D, const QVector3D &>(vector4_d).create();
   // QVector4D(const QVector3D &, float);
-  binder.ctor<const QVector3D &, float>().create();
+  bind::constructor<QVector4D, const QVector3D &, float>(vector4_d).create();
   // bool isNull() const;
-  binder.fun<bool, &QVector4D::isNull>("isNull").create();
+  bind::member_function<QVector4D, bool, &QVector4D::isNull>(vector4_d, "isNull").create();
   // float x() const;
-  binder.fun<float, &QVector4D::x>("x").create();
+  bind::member_function<QVector4D, float, &QVector4D::x>(vector4_d, "x").create();
   // float y() const;
-  binder.fun<float, &QVector4D::y>("y").create();
+  bind::member_function<QVector4D, float, &QVector4D::y>(vector4_d, "y").create();
   // float z() const;
-  binder.fun<float, &QVector4D::z>("z").create();
+  bind::member_function<QVector4D, float, &QVector4D::z>(vector4_d, "z").create();
   // float w() const;
-  binder.fun<float, &QVector4D::w>("w").create();
+  bind::member_function<QVector4D, float, &QVector4D::w>(vector4_d, "w").create();
   // void setX(float);
-  binder.void_fun<float, &QVector4D::setX>("setX").create();
+  bind::void_member_function<QVector4D, float, &QVector4D::setX>(vector4_d, "setX").create();
   // void setY(float);
-  binder.void_fun<float, &QVector4D::setY>("setY").create();
+  bind::void_member_function<QVector4D, float, &QVector4D::setY>(vector4_d, "setY").create();
   // void setZ(float);
-  binder.void_fun<float, &QVector4D::setZ>("setZ").create();
+  bind::void_member_function<QVector4D, float, &QVector4D::setZ>(vector4_d, "setZ").create();
   // void setW(float);
-  binder.void_fun<float, &QVector4D::setW>("setW").create();
+  bind::void_member_function<QVector4D, float, &QVector4D::setW>(vector4_d, "setW").create();
   // float operator[](int) const;
-  binder.operators().const_subscript<float, int>();
+  bind::memop_const_subscript<QVector4D, float, int>(vector4_d);
   // float length() const;
-  binder.fun<float, &QVector4D::length>("length").create();
+  bind::member_function<QVector4D, float, &QVector4D::length>(vector4_d, "length").create();
   // float lengthSquared() const;
-  binder.fun<float, &QVector4D::lengthSquared>("lengthSquared").create();
+  bind::member_function<QVector4D, float, &QVector4D::lengthSquared>(vector4_d, "lengthSquared").create();
   // QVector4D normalized() const;
-  binder.fun<QVector4D, &QVector4D::normalized>("normalized").create();
+  bind::member_function<QVector4D, QVector4D, &QVector4D::normalized>(vector4_d, "normalized").create();
   // void normalize();
-  binder.void_fun<&QVector4D::normalize>("normalize").create();
+  bind::void_member_function<QVector4D, &QVector4D::normalize>(vector4_d, "normalize").create();
   // QVector4D & operator+=(const QVector4D &);
-  binder.operators().add_assign<const QVector4D &>();
+  bind::memop_add_assign<QVector4D, const QVector4D &>(vector4_d);
   // QVector4D & operator-=(const QVector4D &);
-  binder.operators().sub_assign<const QVector4D &>();
+  bind::memop_sub_assign<QVector4D, const QVector4D &>(vector4_d);
   // QVector4D & operator*=(float);
-  binder.operators().mul_assign<float>();
+  bind::memop_mul_assign<QVector4D, float>(vector4_d);
   // QVector4D & operator*=(const QVector4D &);
-  binder.operators().mul_assign<const QVector4D &>();
+  bind::memop_mul_assign<QVector4D, const QVector4D &>(vector4_d);
   // QVector4D & operator/=(float);
-  binder.operators().div_assign<float>();
+  bind::memop_div_assign<QVector4D, float>(vector4_d);
   // QVector4D & operator/=(const QVector4D &);
-  binder.operators().div_assign<const QVector4D &>();
+  bind::memop_div_assign<QVector4D, const QVector4D &>(vector4_d);
   // static float dotProduct(const QVector4D &, const QVector4D &);
-  binder.static_fun<float, const QVector4D &, const QVector4D &, &QVector4D::dotProduct>("dotProduct").create();
+  bind::static_member_function<QVector4D, float, const QVector4D &, const QVector4D &, &QVector4D::dotProduct>(vector4_d, "dotProduct").create();
   // QVector2D toVector2D() const;
-  binder.fun<QVector2D, &QVector4D::toVector2D>("toVector2D").create();
+  bind::member_function<QVector4D, QVector2D, &QVector4D::toVector2D>(vector4_d, "toVector2D").create();
   // QVector2D toVector2DAffine() const;
-  binder.fun<QVector2D, &QVector4D::toVector2DAffine>("toVector2DAffine").create();
+  bind::member_function<QVector4D, QVector2D, &QVector4D::toVector2DAffine>(vector4_d, "toVector2DAffine").create();
   // QVector3D toVector3D() const;
-  binder.fun<QVector3D, &QVector4D::toVector3D>("toVector3D").create();
+  bind::member_function<QVector4D, QVector3D, &QVector4D::toVector3D>(vector4_d, "toVector3D").create();
   // QVector3D toVector3DAffine() const;
-  binder.fun<QVector3D, &QVector4D::toVector3DAffine>("toVector3DAffine").create();
+  bind::member_function<QVector4D, QVector3D, &QVector4D::toVector3DAffine>(vector4_d, "toVector3DAffine").create();
   // QPoint toPoint() const;
-  binder.fun<QPoint, &QVector4D::toPoint>("toPoint").create();
+  bind::member_function<QVector4D, QPoint, &QVector4D::toPoint>(vector4_d, "toPoint").create();
   // QPointF toPointF() const;
-  binder.fun<QPointF, &QVector4D::toPointF>("toPointF").create();
+  bind::member_function<QVector4D, QPointF, &QVector4D::toPointF>(vector4_d, "toPointF").create();
 }
 
 
@@ -112,35 +111,34 @@ void register_vector4d_file(script::Namespace gui)
   Namespace ns = gui;
 
   register_vector4_d_class(ns);
-  binding::Namespace binder{ ns };
 
   // bool operator==(const QVector4D &, const QVector4D &);
-  binder.operators().eq<const QVector4D &, const QVector4D &>();
+  bind::op_eq<const QVector4D &, const QVector4D &>(ns);
   // bool operator!=(const QVector4D &, const QVector4D &);
-  binder.operators().neq<const QVector4D &, const QVector4D &>();
+  bind::op_neq<const QVector4D &, const QVector4D &>(ns);
   // const QVector4D operator+(const QVector4D &, const QVector4D &);
-  binder.operators().add<const QVector4D, const QVector4D &, const QVector4D &>();
+  bind::op_add<const QVector4D, const QVector4D &, const QVector4D &>(ns);
   // const QVector4D operator-(const QVector4D &, const QVector4D &);
-  binder.operators().sub<const QVector4D, const QVector4D &, const QVector4D &>();
+  bind::op_sub<const QVector4D, const QVector4D &, const QVector4D &>(ns);
   // const QVector4D operator*(float, const QVector4D &);
-  binder.operators().mul<const QVector4D, float, const QVector4D &>();
+  bind::op_mul<const QVector4D, float, const QVector4D &>(ns);
   // const QVector4D operator*(const QVector4D &, float);
-  binder.operators().mul<const QVector4D, const QVector4D &, float>();
+  bind::op_mul<const QVector4D, const QVector4D &, float>(ns);
   // const QVector4D operator*(const QVector4D &, const QVector4D &);
-  binder.operators().mul<const QVector4D, const QVector4D &, const QVector4D &>();
+  bind::op_mul<const QVector4D, const QVector4D &, const QVector4D &>(ns);
   // const QVector4D operator-(const QVector4D &);
-  binder.operators().unary_minus<const QVector4D, const QVector4D &>();
+  bind::op_unary_minus<const QVector4D, const QVector4D &>(ns);
   // const QVector4D operator/(const QVector4D &, float);
-  binder.operators().div<const QVector4D, const QVector4D &, float>();
+  bind::op_div<const QVector4D, const QVector4D &, float>(ns);
   // const QVector4D operator/(const QVector4D &, const QVector4D &);
-  binder.operators().div<const QVector4D, const QVector4D &, const QVector4D &>();
+  bind::op_div<const QVector4D, const QVector4D &, const QVector4D &>(ns);
   // bool qFuzzyCompare(const QVector4D &, const QVector4D &);
-  binder.fun<bool, const QVector4D &, const QVector4D &, &qFuzzyCompare>("qFuzzyCompare").create();
+  bind::function<bool, const QVector4D &, const QVector4D &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
   // QDebug operator<<(QDebug, const QVector4D &);
   /// TODO: QDebug operator<<(QDebug, const QVector4D &);
   // QDataStream & operator<<(QDataStream &, const QVector4D &);
-  binder.operators().put_to<QDataStream &, const QVector4D &>();
+  bind::op_put_to<QDataStream &, const QVector4D &>(ns);
   // QDataStream & operator>>(QDataStream &, QVector4D &);
-  binder.operators().read_from<QDataStream &, QVector4D &>();
+  bind::op_read_from<QDataStream &, QVector4D &>(ns);
 }
 

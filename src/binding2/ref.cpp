@@ -58,7 +58,7 @@ script::Value get(script::FunctionCall *c)
   /// TODO : throw on error ?
   auto self = c->thisObject();
   QObject *ptr = self.impl()->data.builtin.qobject;
-  return ptr->property("_yasl_data_").value<binding::BindingData>().value;
+  return ptr->property("_yasl_data_").value<bind::BindingData>().value;
 }
 
 script::Value is_null(script::FunctionCall *c)

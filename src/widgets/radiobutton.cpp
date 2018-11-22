@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/radiobutton.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/widgets/widget.h"
 
@@ -20,18 +20,17 @@ static void register_radio_button_class(script::Namespace ns)
   Class radio_button = ns.newClass("RadioButton").setId(script::Type::QRadioButton)
     .setBase(script::Type::QAbstractButton).get();
 
-  binding::ClassBinder<QRadioButton> binder{ radio_button, &QRadioButton::staticMetaObject };
 
   // QRadioButton(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QRadioButton, QWidget *>(radio_button)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QRadioButton(const QString &, QWidget *);
-  binder.ctor<const QString &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QRadioButton, const QString &, QWidget *>(radio_button)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QRadioButton();
-  binder.dtor().create();
+  bind::destructor<QRadioButton>(radio_button).create();
 
-  radio_button.engine()->registerQtType(&QRadioButton::staticMetaObject, radio_button.id());
+  bind::link(radio_button, &QRadioButton::staticMetaObject);
 }
 
 
@@ -42,11 +41,10 @@ void register_radiobutton_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_radio_button_class(ns);
-  binding::Namespace binder{ ns };
 
   // QRadioButton& newRadioButton(QWidget*);
-  NewFunction(binder).add<QRadioButton, QWidget*>("newRadioButton");
+  bind::new_function<QRadioButton, QWidget*>(ns, "newRadioButton");
   // QRadioButton& newRadioButton(const QString&, QWidget*);
-  NewFunction(binder).add<QRadioButton, const QString&, QWidget*>("newRadioButton");
+  bind::new_function<QRadioButton, const QString&, QWidget*>(ns, "newRadioButton");
 }
 

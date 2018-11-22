@@ -4,9 +4,9 @@
 
 #include "yasl/core/elapsedtimer.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 
 #include "yasl/core/elapsedtimer.h"
 
@@ -34,24 +34,23 @@ static void register_elapsed_timer_class(script::Namespace ns)
   Class elapsed_timer = ns.newClass("ElapsedTimer").setId(script::Type::QElapsedTimer).get();
 
   register_elapsed_timer_clock_type_enum(elapsed_timer);
-  binding::ClassBinder<QElapsedTimer> binder{ elapsed_timer };
 
   // QElapsedTimer();
-  binder.default_ctor().create();
+  bind::default_constructor<QElapsedTimer>(elapsed_timer).create();
   // ~QElapsedTimer();
-  binder.dtor().create();
+  bind::destructor<QElapsedTimer>(elapsed_timer).create();
   // static QElapsedTimer::ClockType clockType();
-  binder.static_fun<QElapsedTimer::ClockType, &QElapsedTimer::clockType>("clockType").create();
+  bind::static_member_function<QElapsedTimer, QElapsedTimer::ClockType, &QElapsedTimer::clockType>(elapsed_timer, "clockType").create();
   // static bool isMonotonic();
-  binder.static_fun<bool, &QElapsedTimer::isMonotonic>("isMonotonic").create();
+  bind::static_member_function<QElapsedTimer, bool, &QElapsedTimer::isMonotonic>(elapsed_timer, "isMonotonic").create();
   // void start();
-  binder.void_fun<&QElapsedTimer::start>("start").create();
+  bind::void_member_function<QElapsedTimer, &QElapsedTimer::start>(elapsed_timer, "start").create();
   // qint64 restart();
   /// TODO: qint64 restart();
   // void invalidate();
-  binder.void_fun<&QElapsedTimer::invalidate>("invalidate").create();
+  bind::void_member_function<QElapsedTimer, &QElapsedTimer::invalidate>(elapsed_timer, "invalidate").create();
   // bool isValid() const;
-  binder.fun<bool, &QElapsedTimer::isValid>("isValid").create();
+  bind::member_function<QElapsedTimer, bool, &QElapsedTimer::isValid>(elapsed_timer, "isValid").create();
   // qint64 nsecsElapsed() const;
   /// TODO: qint64 nsecsElapsed() const;
   // qint64 elapsed() const;
@@ -65,9 +64,9 @@ static void register_elapsed_timer_class(script::Namespace ns)
   // qint64 secsTo(const QElapsedTimer &) const;
   /// TODO: qint64 secsTo(const QElapsedTimer &) const;
   // bool operator==(const QElapsedTimer &) const;
-  binder.operators().eq<const QElapsedTimer &>();
+  bind::memop_eq<QElapsedTimer, const QElapsedTimer &>(elapsed_timer);
   // bool operator!=(const QElapsedTimer &) const;
-  binder.operators().neq<const QElapsedTimer &>();
+  bind::memop_neq<QElapsedTimer, const QElapsedTimer &>(elapsed_timer);
 }
 
 
@@ -78,7 +77,6 @@ void register_elapsedtimer_file(script::Namespace core)
   Namespace ns = core;
 
   register_elapsed_timer_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

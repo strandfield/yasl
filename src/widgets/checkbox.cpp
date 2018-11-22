@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/checkbox.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "checkbox.inc"
 #include "yasl/core/enums.h"
@@ -21,29 +21,28 @@ static void register_check_box_class(script::Namespace ns)
   Class check_box = ns.newClass("CheckBox").setId(script::Type::QCheckBox)
     .setBase(script::Type::QAbstractButton).get();
 
-  binding::ClassBinder<QCheckBox> binder{ check_box, &QCheckBox::staticMetaObject };
 
   // QCheckBox(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QCheckBox, QWidget *>(check_box)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QCheckBox(const QString &, QWidget *);
-  binder.ctor<const QString &, QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QCheckBox, const QString &, QWidget *>(check_box)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QCheckBox();
-  binder.dtor().create();
+  bind::destructor<QCheckBox>(check_box).create();
   // void setTristate(bool);
-  binder.void_fun<bool, &QCheckBox::setTristate>("setTristate")
-    .apply(binding::default_arguments(true)).create();
+  bind::void_member_function<QCheckBox, bool, &QCheckBox::setTristate>(check_box, "setTristate")
+    .apply(bind::default_arguments(true)).create();
   // bool isTristate() const;
-  binder.fun<bool, &QCheckBox::isTristate>("isTristate").create();
+  bind::member_function<QCheckBox, bool, &QCheckBox::isTristate>(check_box, "isTristate").create();
   // Qt::CheckState checkState() const;
-  binder.fun<Qt::CheckState, &QCheckBox::checkState>("checkState").create();
+  bind::member_function<QCheckBox, Qt::CheckState, &QCheckBox::checkState>(check_box, "checkState").create();
   // void setCheckState(Qt::CheckState);
-  binder.void_fun<Qt::CheckState, &QCheckBox::setCheckState>("setCheckState").create();
+  bind::void_member_function<QCheckBox, Qt::CheckState, &QCheckBox::setCheckState>(check_box, "setCheckState").create();
   // void stateChanged(int);
-  binder.sigs().add<int>("stateChanged", "stateChanged(int)");
+  bind::signal<QCheckBox, int>(check_box, "stateChanged", "stateChanged(int)");
 
-  check_box.engine()->registerQtType(&QCheckBox::staticMetaObject, check_box.id());
+  bind::link(check_box, &QCheckBox::staticMetaObject);
 }
 
 
@@ -54,7 +53,6 @@ void register_checkbox_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_check_box_class(ns);
-  binding::Namespace binder{ ns };
 
   register_newcheckbox_functions(widgets);
 }

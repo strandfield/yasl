@@ -4,10 +4,10 @@
 
 #include "yasl/gui/validator.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/locale.h"
 #include "yasl/core/object.h"
@@ -37,22 +37,21 @@ static void register_validator_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_validator_state_enum(validator);
-  binding::ClassBinder<QValidator> binder{ validator, &QValidator::staticMetaObject };
 
   // ~QValidator();
-  binder.dtor().create();
+  bind::destructor<QValidator>(validator).create();
   // void setLocale(const QLocale &);
-  binder.void_fun<const QLocale &, &QValidator::setLocale>("setLocale").create();
+  bind::void_member_function<QValidator, const QLocale &, &QValidator::setLocale>(validator, "setLocale").create();
   // QLocale locale() const;
-  binder.fun<QLocale, &QValidator::locale>("locale").create();
+  bind::member_function<QValidator, QLocale, &QValidator::locale>(validator, "locale").create();
   // QValidator::State validate(QString &, int &) const;
-  binder.fun<QValidator::State, QString &, int &, &QValidator::validate>("validate").create();
+  bind::member_function<QValidator, QValidator::State, QString &, int &, &QValidator::validate>(validator, "validate").create();
   // void fixup(QString &) const;
-  binder.const_void_fun<QString &, &QValidator::fixup>("fixup").create();
+  bind::const_void_member_function<QValidator, QString &, &QValidator::fixup>(validator, "fixup").create();
   // void changed();
-  binder.sigs().add("changed", "changed()");
+  bind::signal<QValidator>(validator, "changed", "changed()");
 
-  validator.engine()->registerQtType(&QValidator::staticMetaObject, validator.id());
+  bind::link(validator, &QValidator::staticMetaObject);
 }
 
 
@@ -63,36 +62,35 @@ static void register_int_validator_class(script::Namespace ns)
   Class int_validator = ns.newClass("IntValidator").setId(script::Type::QIntValidator)
     .setBase(script::Type::QValidator).get();
 
-  binding::ClassBinder<QIntValidator> binder{ int_validator, &QIntValidator::staticMetaObject };
 
   // QIntValidator(QObject *);
-  binder.ctor<QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QIntValidator, QObject *>(int_validator)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // QIntValidator(int, int, QObject *);
-  binder.ctor<int, int, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QIntValidator, int, int, QObject *>(int_validator)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QIntValidator();
-  binder.dtor().create();
+  bind::destructor<QIntValidator>(int_validator).create();
   // QValidator::State validate(QString &, int &) const;
-  binder.fun<QValidator::State, QString &, int &, &QIntValidator::validate>("validate").create();
+  bind::member_function<QIntValidator, QValidator::State, QString &, int &, &QIntValidator::validate>(int_validator, "validate").create();
   // void fixup(QString &) const;
-  binder.const_void_fun<QString &, &QIntValidator::fixup>("fixup").create();
+  bind::const_void_member_function<QIntValidator, QString &, &QIntValidator::fixup>(int_validator, "fixup").create();
   // void setBottom(int);
-  binder.void_fun<int, &QIntValidator::setBottom>("setBottom").create();
+  bind::void_member_function<QIntValidator, int, &QIntValidator::setBottom>(int_validator, "setBottom").create();
   // void setTop(int);
-  binder.void_fun<int, &QIntValidator::setTop>("setTop").create();
+  bind::void_member_function<QIntValidator, int, &QIntValidator::setTop>(int_validator, "setTop").create();
   // void setRange(int, int);
-  binder.void_fun<int, int, &QIntValidator::setRange>("setRange").create();
+  bind::void_member_function<QIntValidator, int, int, &QIntValidator::setRange>(int_validator, "setRange").create();
   // int bottom() const;
-  binder.fun<int, &QIntValidator::bottom>("bottom").create();
+  bind::member_function<QIntValidator, int, &QIntValidator::bottom>(int_validator, "bottom").create();
   // int top() const;
-  binder.fun<int, &QIntValidator::top>("top").create();
+  bind::member_function<QIntValidator, int, &QIntValidator::top>(int_validator, "top").create();
   // void bottomChanged(int);
-  binder.void_fun<int, &QIntValidator::bottomChanged>("bottomChanged").create();
+  bind::void_member_function<QIntValidator, int, &QIntValidator::bottomChanged>(int_validator, "bottomChanged").create();
   // void topChanged(int);
-  binder.void_fun<int, &QIntValidator::topChanged>("topChanged").create();
+  bind::void_member_function<QIntValidator, int, &QIntValidator::topChanged>(int_validator, "topChanged").create();
 
-  int_validator.engine()->registerQtType(&QIntValidator::staticMetaObject, int_validator.id());
+  bind::link(int_validator, &QIntValidator::staticMetaObject);
 }
 
 
@@ -115,47 +113,46 @@ static void register_double_validator_class(script::Namespace ns)
     .setBase(script::Type::QValidator).get();
 
   register_double_validator_notation_enum(double_validator);
-  binding::ClassBinder<QDoubleValidator> binder{ double_validator, &QDoubleValidator::staticMetaObject };
 
   // QDoubleValidator(QObject *);
-  binder.ctor<QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QDoubleValidator, QObject *>(double_validator)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // QDoubleValidator(double, double, int, QObject *);
-  binder.ctor<double, double, int, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QDoubleValidator, double, double, int, QObject *>(double_validator)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QDoubleValidator();
-  binder.dtor().create();
+  bind::destructor<QDoubleValidator>(double_validator).create();
   // QValidator::State validate(QString &, int &) const;
-  binder.fun<QValidator::State, QString &, int &, &QDoubleValidator::validate>("validate").create();
+  bind::member_function<QDoubleValidator, QValidator::State, QString &, int &, &QDoubleValidator::validate>(double_validator, "validate").create();
   // void setRange(double, double, int);
-  binder.void_fun<double, double, int, &QDoubleValidator::setRange>("setRange")
-    .apply(binding::default_arguments(0)).create();
+  bind::void_member_function<QDoubleValidator, double, double, int, &QDoubleValidator::setRange>(double_validator, "setRange")
+    .apply(bind::default_arguments(0)).create();
   // void setBottom(double);
-  binder.void_fun<double, &QDoubleValidator::setBottom>("setBottom").create();
+  bind::void_member_function<QDoubleValidator, double, &QDoubleValidator::setBottom>(double_validator, "setBottom").create();
   // void setTop(double);
-  binder.void_fun<double, &QDoubleValidator::setTop>("setTop").create();
+  bind::void_member_function<QDoubleValidator, double, &QDoubleValidator::setTop>(double_validator, "setTop").create();
   // void setDecimals(int);
-  binder.void_fun<int, &QDoubleValidator::setDecimals>("setDecimals").create();
+  bind::void_member_function<QDoubleValidator, int, &QDoubleValidator::setDecimals>(double_validator, "setDecimals").create();
   // void setNotation(QDoubleValidator::Notation);
-  binder.void_fun<QDoubleValidator::Notation, &QDoubleValidator::setNotation>("setNotation").create();
+  bind::void_member_function<QDoubleValidator, QDoubleValidator::Notation, &QDoubleValidator::setNotation>(double_validator, "setNotation").create();
   // double bottom() const;
-  binder.fun<double, &QDoubleValidator::bottom>("bottom").create();
+  bind::member_function<QDoubleValidator, double, &QDoubleValidator::bottom>(double_validator, "bottom").create();
   // double top() const;
-  binder.fun<double, &QDoubleValidator::top>("top").create();
+  bind::member_function<QDoubleValidator, double, &QDoubleValidator::top>(double_validator, "top").create();
   // int decimals() const;
-  binder.fun<int, &QDoubleValidator::decimals>("decimals").create();
+  bind::member_function<QDoubleValidator, int, &QDoubleValidator::decimals>(double_validator, "decimals").create();
   // QDoubleValidator::Notation notation() const;
-  binder.fun<QDoubleValidator::Notation, &QDoubleValidator::notation>("notation").create();
+  bind::member_function<QDoubleValidator, QDoubleValidator::Notation, &QDoubleValidator::notation>(double_validator, "notation").create();
   // void bottomChanged(double);
-  binder.void_fun<double, &QDoubleValidator::bottomChanged>("bottomChanged").create();
+  bind::void_member_function<QDoubleValidator, double, &QDoubleValidator::bottomChanged>(double_validator, "bottomChanged").create();
   // void topChanged(double);
-  binder.void_fun<double, &QDoubleValidator::topChanged>("topChanged").create();
+  bind::void_member_function<QDoubleValidator, double, &QDoubleValidator::topChanged>(double_validator, "topChanged").create();
   // void decimalsChanged(int);
-  binder.void_fun<int, &QDoubleValidator::decimalsChanged>("decimalsChanged").create();
+  bind::void_member_function<QDoubleValidator, int, &QDoubleValidator::decimalsChanged>(double_validator, "decimalsChanged").create();
   // void notationChanged(QDoubleValidator::Notation);
-  binder.void_fun<QDoubleValidator::Notation, &QDoubleValidator::notationChanged>("notationChanged").create();
+  bind::void_member_function<QDoubleValidator, QDoubleValidator::Notation, &QDoubleValidator::notationChanged>(double_validator, "notationChanged").create();
 
-  double_validator.engine()->registerQtType(&QDoubleValidator::staticMetaObject, double_validator.id());
+  bind::link(double_validator, &QDoubleValidator::staticMetaObject);
 }
 
 
@@ -166,26 +163,25 @@ static void register_regular_expression_validator_class(script::Namespace ns)
   Class regular_expression_validator = ns.newClass("RegularExpressionValidator").setId(script::Type::QRegularExpressionValidator)
     .setBase(script::Type::QValidator).get();
 
-  binding::ClassBinder<QRegularExpressionValidator> binder{ regular_expression_validator, &QRegularExpressionValidator::staticMetaObject };
 
   // QRegularExpressionValidator(QObject *);
-  binder.ctor<QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QRegularExpressionValidator, QObject *>(regular_expression_validator)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // QRegularExpressionValidator(const QRegularExpression &, QObject *);
-  binder.ctor<const QRegularExpression &, QObject *>()
-    .apply(binding::default_arguments((QObject*)nullptr)).create();
+  bind::constructor<QRegularExpressionValidator, const QRegularExpression &, QObject *>(regular_expression_validator)
+    .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QRegularExpressionValidator();
-  binder.dtor().create();
+  bind::destructor<QRegularExpressionValidator>(regular_expression_validator).create();
   // QValidator::State validate(QString &, int &) const;
-  binder.fun<QValidator::State, QString &, int &, &QRegularExpressionValidator::validate>("validate").create();
+  bind::member_function<QRegularExpressionValidator, QValidator::State, QString &, int &, &QRegularExpressionValidator::validate>(regular_expression_validator, "validate").create();
   // QRegularExpression regularExpression() const;
-  binder.fun<QRegularExpression, &QRegularExpressionValidator::regularExpression>("regularExpression").create();
+  bind::member_function<QRegularExpressionValidator, QRegularExpression, &QRegularExpressionValidator::regularExpression>(regular_expression_validator, "regularExpression").create();
   // void setRegularExpression(const QRegularExpression &);
-  binder.void_fun<const QRegularExpression &, &QRegularExpressionValidator::setRegularExpression>("setRegularExpression").create();
+  bind::void_member_function<QRegularExpressionValidator, const QRegularExpression &, &QRegularExpressionValidator::setRegularExpression>(regular_expression_validator, "setRegularExpression").create();
   // void regularExpressionChanged(const QRegularExpression &);
-  binder.void_fun<const QRegularExpression &, &QRegularExpressionValidator::regularExpressionChanged>("regularExpressionChanged").create();
+  bind::void_member_function<QRegularExpressionValidator, const QRegularExpression &, &QRegularExpressionValidator::regularExpressionChanged>(regular_expression_validator, "regularExpressionChanged").create();
 
-  regular_expression_validator.engine()->registerQtType(&QRegularExpressionValidator::staticMetaObject, regular_expression_validator.id());
+  bind::link(regular_expression_validator, &QRegularExpressionValidator::staticMetaObject);
 }
 
 
@@ -199,7 +195,6 @@ void register_validator_file(script::Namespace gui)
   register_int_validator_class(ns);
   register_double_validator_class(ns);
   register_regular_expression_validator_class(ns);
-  binding::Namespace binder{ ns };
 
 }
 

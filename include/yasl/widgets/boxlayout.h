@@ -5,12 +5,12 @@
 #ifndef YASL_WIDGETS_BOXLAYOUT_H
 #define YASL_WIDGETS_BOXLAYOUT_H
 
-#include "yasl/binding/types.h"
-#include "yasl/core/qobject-binding.h"
+#include "yasl/binding2/qobject-binding.h"
+#include "yasl/binding2/types.h"
 
 #include <QBoxLayout>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QBoxLayout> { inline static script::Type get() { return script::Type::QBoxLayout; } };
 template<> struct tag_resolver<QBoxLayout> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QBoxLayout::Direction> { inline static script::Type get() { return script::Type::QBoxLayoutDirection; } };
@@ -18,6 +18,6 @@ template<> struct make_type_t<QHBoxLayout> { inline static script::Type get() { 
 template<> struct tag_resolver<QHBoxLayout> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QVBoxLayout> { inline static script::Type get() { return script::Type::QVBoxLayout; } };
 template<> struct tag_resolver<QVBoxLayout> { typedef qobject_tag tag_type; };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_WIDGETS_BOXLAYOUT_H

@@ -5,13 +5,13 @@
 #ifndef YASL_GUI_PICTURE_H
 #define YASL_GUI_PICTURE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/binding2/types.h"
 
 #include <QPicture>
 
-namespace binding {
+namespace script { namespace bind {
 template<> struct make_type_t<QPicture> { inline static script::Type get() { return script::Type::QPicture; } };
 template<> struct make_type_t<QPictureIO> { inline static script::Type get() { return script::Type::QPictureIO; } };
-} // namespace binding
+} /* namespace bind */ } /* namespace script */
 
 #endif // YASL_GUI_PICTURE_H

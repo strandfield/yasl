@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/progressbar.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -37,65 +37,64 @@ static void register_progress_bar_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
   register_progress_bar_direction_enum(progress_bar);
-  binding::ClassBinder<QProgressBar> binder{ progress_bar, &QProgressBar::staticMetaObject };
 
   // QProgressBar(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QProgressBar, QWidget *>(progress_bar)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QProgressBar();
-  binder.dtor().create();
+  bind::destructor<QProgressBar>(progress_bar).create();
   // int minimum() const;
-  binder.fun<int, &QProgressBar::minimum>("minimum").create();
+  bind::member_function<QProgressBar, int, &QProgressBar::minimum>(progress_bar, "minimum").create();
   // int maximum() const;
-  binder.fun<int, &QProgressBar::maximum>("maximum").create();
+  bind::member_function<QProgressBar, int, &QProgressBar::maximum>(progress_bar, "maximum").create();
   // int value() const;
-  binder.fun<int, &QProgressBar::value>("value").create();
+  bind::member_function<QProgressBar, int, &QProgressBar::value>(progress_bar, "value").create();
   // QString text() const;
-  binder.fun<QString, &QProgressBar::text>("text").create();
+  bind::member_function<QProgressBar, QString, &QProgressBar::text>(progress_bar, "text").create();
   // void setTextVisible(bool);
-  binder.void_fun<bool, &QProgressBar::setTextVisible>("setTextVisible").create();
+  bind::void_member_function<QProgressBar, bool, &QProgressBar::setTextVisible>(progress_bar, "setTextVisible").create();
   // bool isTextVisible() const;
-  binder.fun<bool, &QProgressBar::isTextVisible>("isTextVisible").create();
+  bind::member_function<QProgressBar, bool, &QProgressBar::isTextVisible>(progress_bar, "isTextVisible").create();
   // Qt::Alignment alignment() const;
-  binder.fun<Qt::Alignment, &QProgressBar::alignment>("alignment").create();
+  bind::member_function<QProgressBar, Qt::Alignment, &QProgressBar::alignment>(progress_bar, "alignment").create();
   // void setAlignment(Qt::Alignment);
-  binder.void_fun<Qt::Alignment, &QProgressBar::setAlignment>("setAlignment").create();
+  bind::void_member_function<QProgressBar, Qt::Alignment, &QProgressBar::setAlignment>(progress_bar, "setAlignment").create();
   // QSize sizeHint() const;
-  binder.fun<QSize, &QProgressBar::sizeHint>("sizeHint").create();
+  bind::member_function<QProgressBar, QSize, &QProgressBar::sizeHint>(progress_bar, "sizeHint").create();
   // QSize minimumSizeHint() const;
-  binder.fun<QSize, &QProgressBar::minimumSizeHint>("minimumSizeHint").create();
+  bind::member_function<QProgressBar, QSize, &QProgressBar::minimumSizeHint>(progress_bar, "minimumSizeHint").create();
   // Qt::Orientation orientation() const;
-  binder.fun<Qt::Orientation, &QProgressBar::orientation>("orientation").create();
+  bind::member_function<QProgressBar, Qt::Orientation, &QProgressBar::orientation>(progress_bar, "orientation").create();
   // void setInvertedAppearance(bool);
-  binder.void_fun<bool, &QProgressBar::setInvertedAppearance>("setInvertedAppearance").create();
+  bind::void_member_function<QProgressBar, bool, &QProgressBar::setInvertedAppearance>(progress_bar, "setInvertedAppearance").create();
   // bool invertedAppearance() const;
-  binder.fun<bool, &QProgressBar::invertedAppearance>("invertedAppearance").create();
+  bind::member_function<QProgressBar, bool, &QProgressBar::invertedAppearance>(progress_bar, "invertedAppearance").create();
   // void setTextDirection(QProgressBar::Direction);
-  binder.void_fun<QProgressBar::Direction, &QProgressBar::setTextDirection>("setTextDirection").create();
+  bind::void_member_function<QProgressBar, QProgressBar::Direction, &QProgressBar::setTextDirection>(progress_bar, "setTextDirection").create();
   // QProgressBar::Direction textDirection() const;
-  binder.fun<QProgressBar::Direction, &QProgressBar::textDirection>("textDirection").create();
+  bind::member_function<QProgressBar, QProgressBar::Direction, &QProgressBar::textDirection>(progress_bar, "textDirection").create();
   // void setFormat(const QString &);
-  binder.void_fun<const QString &, &QProgressBar::setFormat>("setFormat").create();
+  bind::void_member_function<QProgressBar, const QString &, &QProgressBar::setFormat>(progress_bar, "setFormat").create();
   // void resetFormat();
-  binder.void_fun<&QProgressBar::resetFormat>("resetFormat").create();
+  bind::void_member_function<QProgressBar, &QProgressBar::resetFormat>(progress_bar, "resetFormat").create();
   // QString format() const;
-  binder.fun<QString, &QProgressBar::format>("format").create();
+  bind::member_function<QProgressBar, QString, &QProgressBar::format>(progress_bar, "format").create();
   // void reset();
-  binder.void_fun<&QProgressBar::reset>("reset").create();
+  bind::void_member_function<QProgressBar, &QProgressBar::reset>(progress_bar, "reset").create();
   // void setRange(int, int);
-  binder.void_fun<int, int, &QProgressBar::setRange>("setRange").create();
+  bind::void_member_function<QProgressBar, int, int, &QProgressBar::setRange>(progress_bar, "setRange").create();
   // void setMinimum(int);
-  binder.void_fun<int, &QProgressBar::setMinimum>("setMinimum").create();
+  bind::void_member_function<QProgressBar, int, &QProgressBar::setMinimum>(progress_bar, "setMinimum").create();
   // void setMaximum(int);
-  binder.void_fun<int, &QProgressBar::setMaximum>("setMaximum").create();
+  bind::void_member_function<QProgressBar, int, &QProgressBar::setMaximum>(progress_bar, "setMaximum").create();
   // void setValue(int);
-  binder.void_fun<int, &QProgressBar::setValue>("setValue").create();
+  bind::void_member_function<QProgressBar, int, &QProgressBar::setValue>(progress_bar, "setValue").create();
   // void setOrientation(Qt::Orientation);
-  binder.void_fun<Qt::Orientation, &QProgressBar::setOrientation>("setOrientation").create();
+  bind::void_member_function<QProgressBar, Qt::Orientation, &QProgressBar::setOrientation>(progress_bar, "setOrientation").create();
   // void valueChanged(int);
-  binder.sigs().add<int>("valueChanged", "valueChanged(int)");
+  bind::signal<QProgressBar, int>(progress_bar, "valueChanged", "valueChanged(int)");
 
-  progress_bar.engine()->registerQtType(&QProgressBar::staticMetaObject, progress_bar.id());
+  bind::link(progress_bar, &QProgressBar::staticMetaObject);
 }
 
 
@@ -106,9 +105,8 @@ void register_progressbar_file(script::Namespace widgets)
   Namespace ns = widgets;
 
   register_progress_bar_class(ns);
-  binding::Namespace binder{ ns };
 
   // QProgressBar& newProgressBar(QWidget*);
-  NewFunction(binder).add<QProgressBar, QWidget*>("newProgressBar");
+  bind::new_function<QProgressBar, QWidget*>(ns, "newProgressBar");
 }
 

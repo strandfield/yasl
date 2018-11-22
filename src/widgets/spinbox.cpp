@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/spinbox.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/namespace.h"
+#include "yasl/binding2/newfunction.h"
+#include "yasl/binding2/qclass.h"
 
 #include "yasl/gui/validator.h"
 #include "yasl/widgets/widget.h"
@@ -21,51 +21,50 @@ static void register_spin_box_class(script::Namespace ns)
   Class spin_box = ns.newClass("SpinBox").setId(script::Type::QSpinBox)
     .setBase(script::Type::QAbstractSpinBox).get();
 
-  binding::ClassBinder<QSpinBox> binder{ spin_box, &QSpinBox::staticMetaObject };
 
   // QSpinBox(QWidget *);
-  binder.ctor<QWidget *>()
-    .apply(binding::default_arguments((QWidget*)nullptr)).create();
+  bind::constructor<QSpinBox, QWidget *>(spin_box)
+    .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QSpinBox();
-  binder.dtor().create();
+  bind::destructor<QSpinBox>(spin_box).create();
   // int value() const;
-  binder.fun<int, &QSpinBox::value>("value").create();
+  bind::member_function<QSpinBox, int, &QSpinBox::value>(spin_box, "value").create();
   // QString prefix() const;
-  binder.fun<QString, &QSpinBox::prefix>("prefix").create();
+  bind::member_function<QSpinBox, QString, &QSpinBox::prefix>(spin_box, "prefix").create();
   // void setPrefix(const QString &);
-  binder.void_fun<const QString &, &QSpinBox::setPrefix>("setPrefix").create();
+  bind::void_member_function<QSpinBox, const QString &, &QSpinBox::setPrefix>(spin_box, "setPrefix").create();
   // QString suffix() const;
-  binder.fun<QString, &QSpinBox::suffix>("suffix").create();
+  bind::member_function<QSpinBox, QString, &QSpinBox::suffix>(spin_box, "suffix").create();
   // void setSuffix(const QString &);
-  binder.void_fun<const QString &, &QSpinBox::setSuffix>("setSuffix").create();
+  bind::void_member_function<QSpinBox, const QString &, &QSpinBox::setSuffix>(spin_box, "setSuffix").create();
   // QString cleanText() const;
-  binder.fun<QString, &QSpinBox::cleanText>("cleanText").create();
+  bind::member_function<QSpinBox, QString, &QSpinBox::cleanText>(spin_box, "cleanText").create();
   // int singleStep() const;
-  binder.fun<int, &QSpinBox::singleStep>("singleStep").create();
+  bind::member_function<QSpinBox, int, &QSpinBox::singleStep>(spin_box, "singleStep").create();
   // void setSingleStep(int);
-  binder.void_fun<int, &QSpinBox::setSingleStep>("setSingleStep").create();
+  bind::void_member_function<QSpinBox, int, &QSpinBox::setSingleStep>(spin_box, "setSingleStep").create();
   // int minimum() const;
-  binder.fun<int, &QSpinBox::minimum>("minimum").create();
+  bind::member_function<QSpinBox, int, &QSpinBox::minimum>(spin_box, "minimum").create();
   // void setMinimum(int);
-  binder.void_fun<int, &QSpinBox::setMinimum>("setMinimum").create();
+  bind::void_member_function<QSpinBox, int, &QSpinBox::setMinimum>(spin_box, "setMinimum").create();
   // int maximum() const;
-  binder.fun<int, &QSpinBox::maximum>("maximum").create();
+  bind::member_function<QSpinBox, int, &QSpinBox::maximum>(spin_box, "maximum").create();
   // void setMaximum(int);
-  binder.void_fun<int, &QSpinBox::setMaximum>("setMaximum").create();
+  bind::void_member_function<QSpinBox, int, &QSpinBox::setMaximum>(spin_box, "setMaximum").create();
   // void setRange(int, int);
-  binder.void_fun<int, int, &QSpinBox::setRange>("setRange").create();
+  bind::void_member_function<QSpinBox, int, int, &QSpinBox::setRange>(spin_box, "setRange").create();
   // int displayIntegerBase() const;
-  binder.fun<int, &QSpinBox::displayIntegerBase>("displayIntegerBase").create();
+  bind::member_function<QSpinBox, int, &QSpinBox::displayIntegerBase>(spin_box, "displayIntegerBase").create();
   // void setDisplayIntegerBase(int);
-  binder.void_fun<int, &QSpinBox::setDisplayIntegerBase>("setDisplayIntegerBase").create();
+  bind::void_member_function<QSpinBox, int, &QSpinBox::setDisplayIntegerBase>(spin_box, "setDisplayIntegerBase").create();
   // void setValue(int);
-  binder.void_fun<int, &QSpinBox::setValue>("setValue").create();
+  bind::void_member_function<QSpinBox, int, &QSpinBox::setValue>(spin_box, "setValue").create();
   // void valueChanged(int);
-  binder.sigs().add<int>("valueChanged", "valueChanged(int)");
+  bind::signal<QSpinBox, int>(spin_box, "valueChanged", "valueChanged(int)");
   // void valueChanged(const QString &);
-  binder.sigs().add<const QString &>("valueChanged", "valueChanged(const QString &)");
+  bind::signal<QSpinBox, const QString &>(spin_box, "valueChanged", "valueChanged(const QString &)");
 
-  spin_box.engine()->registerQtType(&QSpinBox::staticMetaObject, spin_box.id());
+  bind::link(spin_box, &QSpinBox::staticMetaObject);
 }
 
 
@@ -76,58 +75,57 @@ static void register_double_spin_box_class(script::Namespace ns)
   Class double_spin_box = ns.newClass("DoubleSpinBox").setId(script::Type::QDoubleSpinBox)
     .setBase(script::Type::QAbstractSpinBox).get();
 
-  binding::ClassBinder<QDoubleSpinBox> binder{ double_spin_box, &QDoubleSpinBox::staticMetaObject };
 
   // QDoubleSpinBox(QWidget *);
-  binder.ctor<QWidget *>().create();
+  bind::constructor<QDoubleSpinBox, QWidget *>(double_spin_box).create();
   // ~QDoubleSpinBox();
-  binder.dtor().create();
+  bind::destructor<QDoubleSpinBox>(double_spin_box).create();
   // double value() const;
-  binder.fun<double, &QDoubleSpinBox::value>("value").create();
+  bind::member_function<QDoubleSpinBox, double, &QDoubleSpinBox::value>(double_spin_box, "value").create();
   // QString prefix() const;
-  binder.fun<QString, &QDoubleSpinBox::prefix>("prefix").create();
+  bind::member_function<QDoubleSpinBox, QString, &QDoubleSpinBox::prefix>(double_spin_box, "prefix").create();
   // void setPrefix(const QString &);
-  binder.void_fun<const QString &, &QDoubleSpinBox::setPrefix>("setPrefix").create();
+  bind::void_member_function<QDoubleSpinBox, const QString &, &QDoubleSpinBox::setPrefix>(double_spin_box, "setPrefix").create();
   // QString suffix() const;
-  binder.fun<QString, &QDoubleSpinBox::suffix>("suffix").create();
+  bind::member_function<QDoubleSpinBox, QString, &QDoubleSpinBox::suffix>(double_spin_box, "suffix").create();
   // void setSuffix(const QString &);
-  binder.void_fun<const QString &, &QDoubleSpinBox::setSuffix>("setSuffix").create();
+  bind::void_member_function<QDoubleSpinBox, const QString &, &QDoubleSpinBox::setSuffix>(double_spin_box, "setSuffix").create();
   // QString cleanText() const;
-  binder.fun<QString, &QDoubleSpinBox::cleanText>("cleanText").create();
+  bind::member_function<QDoubleSpinBox, QString, &QDoubleSpinBox::cleanText>(double_spin_box, "cleanText").create();
   // double singleStep() const;
-  binder.fun<double, &QDoubleSpinBox::singleStep>("singleStep").create();
+  bind::member_function<QDoubleSpinBox, double, &QDoubleSpinBox::singleStep>(double_spin_box, "singleStep").create();
   // void setSingleStep(double);
-  binder.void_fun<double, &QDoubleSpinBox::setSingleStep>("setSingleStep").create();
+  bind::void_member_function<QDoubleSpinBox, double, &QDoubleSpinBox::setSingleStep>(double_spin_box, "setSingleStep").create();
   // double minimum() const;
-  binder.fun<double, &QDoubleSpinBox::minimum>("minimum").create();
+  bind::member_function<QDoubleSpinBox, double, &QDoubleSpinBox::minimum>(double_spin_box, "minimum").create();
   // void setMinimum(double);
-  binder.void_fun<double, &QDoubleSpinBox::setMinimum>("setMinimum").create();
+  bind::void_member_function<QDoubleSpinBox, double, &QDoubleSpinBox::setMinimum>(double_spin_box, "setMinimum").create();
   // double maximum() const;
-  binder.fun<double, &QDoubleSpinBox::maximum>("maximum").create();
+  bind::member_function<QDoubleSpinBox, double, &QDoubleSpinBox::maximum>(double_spin_box, "maximum").create();
   // void setMaximum(double);
-  binder.void_fun<double, &QDoubleSpinBox::setMaximum>("setMaximum").create();
+  bind::void_member_function<QDoubleSpinBox, double, &QDoubleSpinBox::setMaximum>(double_spin_box, "setMaximum").create();
   // void setRange(double, double);
-  binder.void_fun<double, double, &QDoubleSpinBox::setRange>("setRange").create();
+  bind::void_member_function<QDoubleSpinBox, double, double, &QDoubleSpinBox::setRange>(double_spin_box, "setRange").create();
   // int decimals() const;
-  binder.fun<int, &QDoubleSpinBox::decimals>("decimals").create();
+  bind::member_function<QDoubleSpinBox, int, &QDoubleSpinBox::decimals>(double_spin_box, "decimals").create();
   // void setDecimals(int);
-  binder.void_fun<int, &QDoubleSpinBox::setDecimals>("setDecimals").create();
+  bind::void_member_function<QDoubleSpinBox, int, &QDoubleSpinBox::setDecimals>(double_spin_box, "setDecimals").create();
   // QValidator::State validate(QString &, int &) const;
-  binder.fun<QValidator::State, QString &, int &, &QDoubleSpinBox::validate>("validate").create();
+  bind::member_function<QDoubleSpinBox, QValidator::State, QString &, int &, &QDoubleSpinBox::validate>(double_spin_box, "validate").create();
   // double valueFromText(const QString &) const;
-  binder.fun<double, const QString &, &QDoubleSpinBox::valueFromText>("valueFromText").create();
+  bind::member_function<QDoubleSpinBox, double, const QString &, &QDoubleSpinBox::valueFromText>(double_spin_box, "valueFromText").create();
   // QString textFromValue(double) const;
-  binder.fun<QString, double, &QDoubleSpinBox::textFromValue>("textFromValue").create();
+  bind::member_function<QDoubleSpinBox, QString, double, &QDoubleSpinBox::textFromValue>(double_spin_box, "textFromValue").create();
   // void fixup(QString &) const;
-  binder.const_void_fun<QString &, &QDoubleSpinBox::fixup>("fixup").create();
+  bind::const_void_member_function<QDoubleSpinBox, QString &, &QDoubleSpinBox::fixup>(double_spin_box, "fixup").create();
   // void setValue(double);
-  binder.void_fun<double, &QDoubleSpinBox::setValue>("setValue").create();
+  bind::void_member_function<QDoubleSpinBox, double, &QDoubleSpinBox::setValue>(double_spin_box, "setValue").create();
   // void valueChanged(double);
-  binder.sigs().add<double>("valueChanged", "valueChanged(double)");
+  bind::signal<QDoubleSpinBox, double>(double_spin_box, "valueChanged", "valueChanged(double)");
   // void valueChanged(const QString &);
-  binder.sigs().add<const QString &>("valueChanged", "valueChanged(const QString &)");
+  bind::signal<QDoubleSpinBox, const QString &>(double_spin_box, "valueChanged", "valueChanged(const QString &)");
 
-  double_spin_box.engine()->registerQtType(&QDoubleSpinBox::staticMetaObject, double_spin_box.id());
+  bind::link(double_spin_box, &QDoubleSpinBox::staticMetaObject);
 }
 
 
@@ -139,11 +137,10 @@ void register_spinbox_file(script::Namespace widgets)
 
   register_spin_box_class(ns);
   register_double_spin_box_class(ns);
-  binding::Namespace binder{ ns };
 
   // QSpinBox& newSpinBox(QWidget*);
-  NewFunction(binder).add<QSpinBox, QWidget*>("newSpinBox");
+  bind::new_function<QSpinBox, QWidget*>(ns, "newSpinBox");
   // QDoubleSpinBox& newDoubleSpinBox(QWidget*);
-  NewFunction(binder).add<QDoubleSpinBox, QWidget*>("newDoubleSpinBox");
+  bind::new_function<QDoubleSpinBox, QWidget*>(ns, "newDoubleSpinBox");
 }
 

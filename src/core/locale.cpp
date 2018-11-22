@@ -4,10 +4,10 @@
 
 #include "yasl/core/locale.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/binding2/class.h"
+#include "yasl/binding2/default_arguments.h"
+#include "yasl/binding2/enum.h"
+#include "yasl/binding2/namespace.h"
 #include "yasl/core/flags.h"
 #include "yasl/core/listspecializations.h"
 
@@ -932,7 +932,7 @@ static void register_locale_class(script::Namespace ns)
 
   Class locale = ns.newClass("Locale").setId(script::Type::QLocale).get();
 
-  register_proxy_specialization<QLocale>(locale.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQLocale);
+  bind::register_proxy_specialization<QLocale>(locale.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQLocale);
   register_list_specialization<QLocale>(locale.engine(), script::Type::QListQLocale);
   register_locale_language_enum(locale);
   register_locale_script_enum(locale);
@@ -944,41 +944,40 @@ static void register_locale_class(script::Namespace ns)
   register_locale_currency_symbol_format_enum(locale);
   register_locale_data_size_format_enum(locale);
   register_locale_quotation_style_enum(locale);
-  binding::ClassBinder<QLocale> binder{ locale };
 
   // QLocale();
-  binder.default_ctor().create();
+  bind::default_constructor<QLocale>(locale).create();
   // QLocale(const QString &);
-  binder.ctor<const QString &>().create();
+  bind::constructor<QLocale, const QString &>(locale).create();
   // QLocale(QLocale::Language, QLocale::Country);
-  binder.ctor<QLocale::Language, QLocale::Country>()
-    .apply(binding::default_arguments(QLocale::AnyCountry)).create();
+  bind::constructor<QLocale, QLocale::Language, QLocale::Country>(locale)
+    .apply(bind::default_arguments(QLocale::AnyCountry)).create();
   // QLocale(QLocale::Language, QLocale::Script, QLocale::Country);
-  binder.ctor<QLocale::Language, QLocale::Script, QLocale::Country>().create();
+  bind::constructor<QLocale, QLocale::Language, QLocale::Script, QLocale::Country>(locale).create();
   // QLocale(const QLocale &);
-  binder.ctor<const QLocale &>().create();
+  bind::constructor<QLocale, const QLocale &>(locale).create();
   // QLocale & operator=(QLocale &&);
-  binder.operators().assign<QLocale &&>();
+  bind::memop_assign<QLocale, QLocale &&>(locale);
   // QLocale & operator=(const QLocale &);
-  binder.operators().assign<const QLocale &>();
+  bind::memop_assign<QLocale, const QLocale &>(locale);
   // ~QLocale();
-  binder.dtor().create();
+  bind::destructor<QLocale>(locale).create();
   // void swap(QLocale &);
-  binder.void_fun<QLocale &, &QLocale::swap>("swap").create();
+  bind::void_member_function<QLocale, QLocale &, &QLocale::swap>(locale, "swap").create();
   // QLocale::Language language() const;
-  binder.fun<QLocale::Language, &QLocale::language>("language").create();
+  bind::member_function<QLocale, QLocale::Language, &QLocale::language>(locale, "language").create();
   // QLocale::Script script() const;
-  binder.fun<QLocale::Script, &QLocale::script>("script").create();
+  bind::member_function<QLocale, QLocale::Script, &QLocale::script>(locale, "script").create();
   // QLocale::Country country() const;
-  binder.fun<QLocale::Country, &QLocale::country>("country").create();
+  bind::member_function<QLocale, QLocale::Country, &QLocale::country>(locale, "country").create();
   // QString name() const;
-  binder.fun<QString, &QLocale::name>("name").create();
+  bind::member_function<QLocale, QString, &QLocale::name>(locale, "name").create();
   // QString bcp47Name() const;
-  binder.fun<QString, &QLocale::bcp47Name>("bcp47Name").create();
+  bind::member_function<QLocale, QString, &QLocale::bcp47Name>(locale, "bcp47Name").create();
   // QString nativeLanguageName() const;
-  binder.fun<QString, &QLocale::nativeLanguageName>("nativeLanguageName").create();
+  bind::member_function<QLocale, QString, &QLocale::nativeLanguageName>(locale, "nativeLanguageName").create();
   // QString nativeCountryName() const;
-  binder.fun<QString, &QLocale::nativeCountryName>("nativeCountryName").create();
+  bind::member_function<QLocale, QString, &QLocale::nativeCountryName>(locale, "nativeCountryName").create();
   // short toShort(const QString &, bool *) const;
   /// TODO: short toShort(const QString &, bool *) const;
   // ushort toUShort(const QString &, bool *) const;
@@ -1036,21 +1035,21 @@ static void register_locale_class(script::Namespace ns)
   // QString toString(ushort) const;
   /// TODO: QString toString(ushort) const;
   // QString toString(int) const;
-  binder.fun<QString, int, &QLocale::toString>("toString").create();
+  bind::member_function<QLocale, QString, int, &QLocale::toString>(locale, "toString").create();
   // QString toString(uint) const;
-  binder.fun<QString, uint, &QLocale::toString>("toString").create();
+  bind::member_function<QLocale, QString, uint, &QLocale::toString>(locale, "toString").create();
   // QString toString(double, char, int) const;
-  binder.fun<QString, double, char, int, &QLocale::toString>("toString")
-    .apply(binding::default_arguments(6, 'g')).create();
+  bind::member_function<QLocale, QString, double, char, int, &QLocale::toString>(locale, "toString")
+    .apply(bind::default_arguments(6, 'g')).create();
   // QString toString(float, char, int) const;
-  binder.fun<QString, float, char, int, &QLocale::toString>("toString")
-    .apply(binding::default_arguments(6, 'g')).create();
+  bind::member_function<QLocale, QString, float, char, int, &QLocale::toString>(locale, "toString")
+    .apply(bind::default_arguments(6, 'g')).create();
   // QString toString(const QDate &, const QString &) const;
-  binder.fun<QString, const QDate &, const QString &, &QLocale::toString>("toString").create();
+  bind::member_function<QLocale, QString, const QDate &, const QString &, &QLocale::toString>(locale, "toString").create();
   // QString toString(const QTime &, const QString &) const;
-  binder.fun<QString, const QTime &, const QString &, &QLocale::toString>("toString").create();
+  bind::member_function<QLocale, QString, const QTime &, const QString &, &QLocale::toString>(locale, "toString").create();
   // QString toString(const QDateTime &, const QString &) const;
-  binder.fun<QString, const QDateTime &, const QString &, &QLocale::toString>("toString").create();
+  bind::member_function<QLocale, QString, const QDateTime &, const QString &, &QLocale::toString>(locale, "toString").create();
   // QString toString(const QDate &, QStringView) const;
   /// TODO: QString toString(const QDate &, QStringView) const;
   // QString toString(const QTime &, QStringView) const;
@@ -1058,79 +1057,79 @@ static void register_locale_class(script::Namespace ns)
   // QString toString(const QDateTime &, QStringView) const;
   /// TODO: QString toString(const QDateTime &, QStringView) const;
   // QString toString(const QDate &, QLocale::FormatType) const;
-  binder.fun<QString, const QDate &, QLocale::FormatType, &QLocale::toString>("toString").create();
+  bind::member_function<QLocale, QString, const QDate &, QLocale::FormatType, &QLocale::toString>(locale, "toString").create();
   // QString toString(const QTime &, QLocale::FormatType) const;
-  binder.fun<QString, const QTime &, QLocale::FormatType, &QLocale::toString>("toString").create();
+  bind::member_function<QLocale, QString, const QTime &, QLocale::FormatType, &QLocale::toString>(locale, "toString").create();
   // QString toString(const QDateTime &, QLocale::FormatType) const;
-  binder.fun<QString, const QDateTime &, QLocale::FormatType, &QLocale::toString>("toString").create();
+  bind::member_function<QLocale, QString, const QDateTime &, QLocale::FormatType, &QLocale::toString>(locale, "toString").create();
   // QString dateFormat(QLocale::FormatType) const;
-  binder.fun<QString, QLocale::FormatType, &QLocale::dateFormat>("dateFormat")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QString, QLocale::FormatType, &QLocale::dateFormat>(locale, "dateFormat")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QString timeFormat(QLocale::FormatType) const;
-  binder.fun<QString, QLocale::FormatType, &QLocale::timeFormat>("timeFormat")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QString, QLocale::FormatType, &QLocale::timeFormat>(locale, "timeFormat")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QString dateTimeFormat(QLocale::FormatType) const;
-  binder.fun<QString, QLocale::FormatType, &QLocale::dateTimeFormat>("dateTimeFormat")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QString, QLocale::FormatType, &QLocale::dateTimeFormat>(locale, "dateTimeFormat")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QDate toDate(const QString &, QLocale::FormatType) const;
-  binder.fun<QDate, const QString &, QLocale::FormatType, &QLocale::toDate>("toDate")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QDate, const QString &, QLocale::FormatType, &QLocale::toDate>(locale, "toDate")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QTime toTime(const QString &, QLocale::FormatType) const;
-  binder.fun<QTime, const QString &, QLocale::FormatType, &QLocale::toTime>("toTime")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QTime, const QString &, QLocale::FormatType, &QLocale::toTime>(locale, "toTime")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QDateTime toDateTime(const QString &, QLocale::FormatType) const;
-  binder.fun<QDateTime, const QString &, QLocale::FormatType, &QLocale::toDateTime>("toDateTime")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QDateTime, const QString &, QLocale::FormatType, &QLocale::toDateTime>(locale, "toDateTime")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QDate toDate(const QString &, const QString &) const;
-  binder.fun<QDate, const QString &, const QString &, &QLocale::toDate>("toDate").create();
+  bind::member_function<QLocale, QDate, const QString &, const QString &, &QLocale::toDate>(locale, "toDate").create();
   // QTime toTime(const QString &, const QString &) const;
-  binder.fun<QTime, const QString &, const QString &, &QLocale::toTime>("toTime").create();
+  bind::member_function<QLocale, QTime, const QString &, const QString &, &QLocale::toTime>(locale, "toTime").create();
   // QDateTime toDateTime(const QString &, const QString &) const;
-  binder.fun<QDateTime, const QString &, const QString &, &QLocale::toDateTime>("toDateTime").create();
+  bind::member_function<QLocale, QDateTime, const QString &, const QString &, &QLocale::toDateTime>(locale, "toDateTime").create();
   // QChar decimalPoint() const;
-  binder.fun<QChar, &QLocale::decimalPoint>("decimalPoint").create();
+  bind::member_function<QLocale, QChar, &QLocale::decimalPoint>(locale, "decimalPoint").create();
   // QChar groupSeparator() const;
-  binder.fun<QChar, &QLocale::groupSeparator>("groupSeparator").create();
+  bind::member_function<QLocale, QChar, &QLocale::groupSeparator>(locale, "groupSeparator").create();
   // QChar percent() const;
-  binder.fun<QChar, &QLocale::percent>("percent").create();
+  bind::member_function<QLocale, QChar, &QLocale::percent>(locale, "percent").create();
   // QChar zeroDigit() const;
-  binder.fun<QChar, &QLocale::zeroDigit>("zeroDigit").create();
+  bind::member_function<QLocale, QChar, &QLocale::zeroDigit>(locale, "zeroDigit").create();
   // QChar negativeSign() const;
-  binder.fun<QChar, &QLocale::negativeSign>("negativeSign").create();
+  bind::member_function<QLocale, QChar, &QLocale::negativeSign>(locale, "negativeSign").create();
   // QChar positiveSign() const;
-  binder.fun<QChar, &QLocale::positiveSign>("positiveSign").create();
+  bind::member_function<QLocale, QChar, &QLocale::positiveSign>(locale, "positiveSign").create();
   // QChar exponential() const;
-  binder.fun<QChar, &QLocale::exponential>("exponential").create();
+  bind::member_function<QLocale, QChar, &QLocale::exponential>(locale, "exponential").create();
   // QString monthName(int, QLocale::FormatType) const;
-  binder.fun<QString, int, QLocale::FormatType, &QLocale::monthName>("monthName")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QString, int, QLocale::FormatType, &QLocale::monthName>(locale, "monthName")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QString standaloneMonthName(int, QLocale::FormatType) const;
-  binder.fun<QString, int, QLocale::FormatType, &QLocale::standaloneMonthName>("standaloneMonthName")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QString, int, QLocale::FormatType, &QLocale::standaloneMonthName>(locale, "standaloneMonthName")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QString dayName(int, QLocale::FormatType) const;
-  binder.fun<QString, int, QLocale::FormatType, &QLocale::dayName>("dayName")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QString, int, QLocale::FormatType, &QLocale::dayName>(locale, "dayName")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QString standaloneDayName(int, QLocale::FormatType) const;
-  binder.fun<QString, int, QLocale::FormatType, &QLocale::standaloneDayName>("standaloneDayName")
-    .apply(binding::default_arguments(QLocale::LongFormat)).create();
+  bind::member_function<QLocale, QString, int, QLocale::FormatType, &QLocale::standaloneDayName>(locale, "standaloneDayName")
+    .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // Qt::DayOfWeek firstDayOfWeek() const;
-  binder.fun<Qt::DayOfWeek, &QLocale::firstDayOfWeek>("firstDayOfWeek").create();
+  bind::member_function<QLocale, Qt::DayOfWeek, &QLocale::firstDayOfWeek>(locale, "firstDayOfWeek").create();
   // QList<Qt::DayOfWeek> weekdays() const;
   /// TODO: QList<Qt::DayOfWeek> weekdays() const;
   // QString amText() const;
-  binder.fun<QString, &QLocale::amText>("amText").create();
+  bind::member_function<QLocale, QString, &QLocale::amText>(locale, "amText").create();
   // QString pmText() const;
-  binder.fun<QString, &QLocale::pmText>("pmText").create();
+  bind::member_function<QLocale, QString, &QLocale::pmText>(locale, "pmText").create();
   // QLocale::MeasurementSystem measurementSystem() const;
-  binder.fun<QLocale::MeasurementSystem, &QLocale::measurementSystem>("measurementSystem").create();
+  bind::member_function<QLocale, QLocale::MeasurementSystem, &QLocale::measurementSystem>(locale, "measurementSystem").create();
   // Qt::LayoutDirection textDirection() const;
-  binder.fun<Qt::LayoutDirection, &QLocale::textDirection>("textDirection").create();
+  bind::member_function<QLocale, Qt::LayoutDirection, &QLocale::textDirection>(locale, "textDirection").create();
   // QString toUpper(const QString &) const;
-  binder.fun<QString, const QString &, &QLocale::toUpper>("toUpper").create();
+  bind::member_function<QLocale, QString, const QString &, &QLocale::toUpper>(locale, "toUpper").create();
   // QString toLower(const QString &) const;
-  binder.fun<QString, const QString &, &QLocale::toLower>("toLower").create();
+  bind::member_function<QLocale, QString, const QString &, &QLocale::toLower>(locale, "toLower").create();
   // QString currencySymbol(QLocale::CurrencySymbolFormat) const;
-  binder.fun<QString, QLocale::CurrencySymbolFormat, &QLocale::currencySymbol>("currencySymbol").create();
+  bind::member_function<QLocale, QString, QLocale::CurrencySymbolFormat, &QLocale::currencySymbol>(locale, "currencySymbol").create();
   // QString toCurrencyString(qlonglong, const QString &) const;
   /// TODO: QString toCurrencyString(qlonglong, const QString &) const;
   // QString toCurrencyString(qulonglong, const QString &) const;
@@ -1140,51 +1139,51 @@ static void register_locale_class(script::Namespace ns)
   // QString toCurrencyString(ushort, const QString &) const;
   /// TODO: QString toCurrencyString(ushort, const QString &) const;
   // QString toCurrencyString(int, const QString &) const;
-  binder.fun<QString, int, const QString &, &QLocale::toCurrencyString>("toCurrencyString")
-    .apply(binding::default_arguments(QString())).create();
+  bind::member_function<QLocale, QString, int, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString")
+    .apply(bind::default_arguments(QString())).create();
   // QString toCurrencyString(uint, const QString &) const;
-  binder.fun<QString, uint, const QString &, &QLocale::toCurrencyString>("toCurrencyString").create();
+  bind::member_function<QLocale, QString, uint, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString").create();
   // QString toCurrencyString(double, const QString &) const;
-  binder.fun<QString, double, const QString &, &QLocale::toCurrencyString>("toCurrencyString")
-    .apply(binding::default_arguments(QString())).create();
+  bind::member_function<QLocale, QString, double, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString")
+    .apply(bind::default_arguments(QString())).create();
   // QString toCurrencyString(double, const QString &, int) const;
-  binder.fun<QString, double, const QString &, int, &QLocale::toCurrencyString>("toCurrencyString").create();
+  bind::member_function<QLocale, QString, double, const QString &, int, &QLocale::toCurrencyString>(locale, "toCurrencyString").create();
   // QString toCurrencyString(float, const QString &) const;
-  binder.fun<QString, float, const QString &, &QLocale::toCurrencyString>("toCurrencyString")
-    .apply(binding::default_arguments(QString())).create();
+  bind::member_function<QLocale, QString, float, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString")
+    .apply(bind::default_arguments(QString())).create();
   // QString toCurrencyString(float, const QString &, int) const;
-  binder.fun<QString, float, const QString &, int, &QLocale::toCurrencyString>("toCurrencyString").create();
+  bind::member_function<QLocale, QString, float, const QString &, int, &QLocale::toCurrencyString>(locale, "toCurrencyString").create();
   // QString formattedDataSize(qint64, int, QLocale::DataSizeFormats);
   /// TODO: QString formattedDataSize(qint64, int, QLocale::DataSizeFormats);
   // QStringList uiLanguages() const;
   /// TODO: QStringList uiLanguages() const;
   // bool operator==(const QLocale &) const;
-  binder.operators().eq<const QLocale &>();
+  bind::memop_eq<QLocale, const QLocale &>(locale);
   // bool operator!=(const QLocale &) const;
-  binder.operators().neq<const QLocale &>();
+  bind::memop_neq<QLocale, const QLocale &>(locale);
   // static QString languageToString(QLocale::Language);
-  binder.static_fun<QString, QLocale::Language, &QLocale::languageToString>("languageToString").create();
+  bind::static_member_function<QLocale, QString, QLocale::Language, &QLocale::languageToString>(locale, "languageToString").create();
   // static QString countryToString(QLocale::Country);
-  binder.static_fun<QString, QLocale::Country, &QLocale::countryToString>("countryToString").create();
+  bind::static_member_function<QLocale, QString, QLocale::Country, &QLocale::countryToString>(locale, "countryToString").create();
   // static QString scriptToString(QLocale::Script);
-  binder.static_fun<QString, QLocale::Script, &QLocale::scriptToString>("scriptToString").create();
+  bind::static_member_function<QLocale, QString, QLocale::Script, &QLocale::scriptToString>(locale, "scriptToString").create();
   // static void setDefault(const QLocale &);
-  binder.static_void_fun<const QLocale &, &QLocale::setDefault>("setDefault").create();
+  bind::static_void_member_function<QLocale, const QLocale &, &QLocale::setDefault>(locale, "setDefault").create();
   // static QLocale c();
-  binder.static_fun<QLocale, &QLocale::c>("c").create();
+  bind::static_member_function<QLocale, QLocale, &QLocale::c>(locale, "c").create();
   // static QLocale system();
-  binder.static_fun<QLocale, &QLocale::system>("system").create();
+  bind::static_member_function<QLocale, QLocale, &QLocale::system>(locale, "system").create();
   // static QList<QLocale> matchingLocales(QLocale::Language, QLocale::Script, QLocale::Country);
-  binder.static_fun<QList<QLocale>, QLocale::Language, QLocale::Script, QLocale::Country, &QLocale::matchingLocales>("matchingLocales").create();
+  bind::static_member_function<QLocale, QList<QLocale>, QLocale::Language, QLocale::Script, QLocale::Country, &QLocale::matchingLocales>(locale, "matchingLocales").create();
   // static QList<QLocale::Country> countriesForLanguage(QLocale::Language);
   /// TODO: static QList<QLocale::Country> countriesForLanguage(QLocale::Language);
   // void setNumberOptions(QLocale::NumberOptions);
-  binder.void_fun<QLocale::NumberOptions, &QLocale::setNumberOptions>("setNumberOptions").create();
+  bind::void_member_function<QLocale, QLocale::NumberOptions, &QLocale::setNumberOptions>(locale, "setNumberOptions").create();
   // QLocale::NumberOptions numberOptions() const;
-  binder.fun<QLocale::NumberOptions, &QLocale::numberOptions>("numberOptions").create();
+  bind::member_function<QLocale, QLocale::NumberOptions, &QLocale::numberOptions>(locale, "numberOptions").create();
   // QString quoteString(const QString &, QLocale::QuotationStyle) const;
-  binder.fun<QString, const QString &, QLocale::QuotationStyle, &QLocale::quoteString>("quoteString")
-    .apply(binding::default_arguments(QLocale::StandardQuotation)).create();
+  bind::member_function<QLocale, QString, const QString &, QLocale::QuotationStyle, &QLocale::quoteString>(locale, "quoteString")
+    .apply(bind::default_arguments(QLocale::StandardQuotation)).create();
   // QString quoteString(const QStringRef &, QLocale::QuotationStyle) const;
   /// TODO: QString quoteString(const QStringRef &, QLocale::QuotationStyle) const;
   // QString createSeparatedList(const QStringList &) const;
@@ -1199,22 +1198,21 @@ void register_locale_file(script::Namespace core)
   Namespace ns = core;
 
   register_locale_class(ns);
-  binding::Namespace binder{ ns };
 
   // uint qHash(const QLocale &, uint);
-  binder.fun<uint, const QLocale &, uint, &qHash>("qHash").create();
+  bind::function<uint, const QLocale &, uint, &qHash>(ns, "qHash").create();
   // void swap(QLocale &, QLocale &);
-  binder.void_fun<QLocale &, QLocale &, &swap>("swap").create();
+  bind::void_function<QLocale &, QLocale &, &swap>(ns, "swap").create();
   // QLocale::NumberOptions operator|(QLocale::NumberOption, QLocale::NumberOption);
-  binder.operators().or<QLocale::NumberOptions, QLocale::NumberOption, QLocale::NumberOption>();
+  bind::op_bitor<QLocale::NumberOptions, QLocale::NumberOption, QLocale::NumberOption>(ns);
   // QLocale::NumberOptions operator|(QLocale::NumberOption, QLocale::NumberOptions);
-  binder.operators().or<QLocale::NumberOptions, QLocale::NumberOption, QLocale::NumberOptions>();
+  bind::op_bitor<QLocale::NumberOptions, QLocale::NumberOption, QLocale::NumberOptions>(ns);
   // QIncompatibleFlag operator|(QLocale::NumberOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QLocale::NumberOptions::enum_type, int);
   // QDataStream & operator<<(QDataStream &, const QLocale &);
-  binder.operators().put_to<QDataStream &, const QLocale &>();
+  bind::op_put_to<QDataStream &, const QLocale &>(ns);
   // QDataStream & operator>>(QDataStream &, QLocale &);
-  binder.operators().read_from<QDataStream &, QLocale &>();
+  bind::op_read_from<QDataStream &, QLocale &>(ns);
   // QDebug operator<<(QDebug, const QLocale &);
   /// TODO: QDebug operator<<(QDebug, const QLocale &);
 }
