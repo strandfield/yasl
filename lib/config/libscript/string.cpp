@@ -335,7 +335,7 @@ Value assign(FunctionCall *c)
   Value that = c->thisObject();
   String & self = *(that.impl()->data.builtin.charref.string);
   char character = c->arg(1).toChar();
-  self[that.impl()->data.builtin.charref.pos] = character;
+  self[uint(that.impl()->data.builtin.charref.pos)] = character;
 
   return that;
 }

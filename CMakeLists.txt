@@ -26,6 +26,21 @@ find_package(Qt5Widgets)
 add_subdirectory(lib)
 
 ##################################################################
+###### bindinglib
+##################################################################
+
+file(GLOB_RECURSE SRC_BINDINGLIB_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/binding2/*.cpp)
+file(GLOB_RECURSE HDR_BINDINGLIB_FILES 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/yasl/binding2/*.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/binding2/*.h
+)
+
+add_library(bindinglib STATIC ${HDR_BINDINGLIB_FILES} ${SRC_BINDINGLIB_FILES})
+target_include_directories(bindinglib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+add_dependencies(bindinglib libscript)
+target_link_libraries(bindinglib libscript)
+
+##################################################################
 ###### Yasl
 ##################################################################
 
@@ -35,10 +50,11 @@ file(GLOB_RECURSE HDR_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
 )
 list(REMOVE_ITEM SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
+#list(REMOVE_ITEM SRC_FILES ${SRC_BINDINGLIB_FILES})
+list(REMOVE_ITEM HDR_FILES ${HDR_BINDINGLIB_FILES})
 add_library(libyasl ${HDR_FILES} ${SRC_FILES})
-add_dependencies(libyasl libscript)
-target_include_directories(libyasl PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(libyasl libscript)
+add_dependencies(libyasl bindinglib)
+target_link_libraries(libyasl bindinglib)
 
 add_executable(yasl "src/main.cpp")
 add_dependencies(yasl libyasl)

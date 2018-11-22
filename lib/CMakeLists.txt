@@ -5,11 +5,14 @@ file(GLOB_RECURSE LIBSCRIPT_HDR_FILES
   ${LIBSCRIPT_PROJECT_DIR}/src/*.h
 )
 
-add_library(libscript SHARED ${LIBSCRIPT_HDR_FILES} ${LIBSCRIPT_SRC_FILES})
+add_definitions(-DLIBSCRIPT_USE_FILESYSTEM_SUPPORT_LIB)
+
+add_library(libscript STATIC ${LIBSCRIPT_HDR_FILES} ${LIBSCRIPT_SRC_FILES})
 target_include_directories(libscript PUBLIC "${LIBSCRIPT_PROJECT_DIR}/include")
 target_compile_definitions(libscript PUBLIC -DLIBSCRIPT_HAS_CONFIG)
 target_include_directories(libscript PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
-target_compile_definitions(libscript PRIVATE -DLIBSCRIPT_COMPILE_LIBRARY)
+#target_compile_definitions(libscript PRIVATE -DLIBSCRIPT_COMPILE_LIBRARY)
+target_compile_definitions(libscript PUBLIC -DLIBSCRIPT_STATIC_LINKING)
 target_link_libraries(libscript Qt5::Core)
 target_link_libraries(libscript Qt5::Widgets)
 

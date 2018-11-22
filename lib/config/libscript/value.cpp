@@ -1,4 +1,5 @@
 
+#include <cstring>
 
 namespace script
 {
