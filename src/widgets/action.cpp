@@ -178,10 +178,6 @@ static void register_action_class(script::Namespace ns)
   bind::void_member_function<QAction, bool, &QAction::setIconVisibleInMenu>(action, "setIconVisibleInMenu").create();
   // bool isIconVisibleInMenu() const;
   bind::member_function<QAction, bool, &QAction::isIconVisibleInMenu>(action, "isIconVisibleInMenu").create();
-  // void setShortcutVisibleInContextMenu(bool);
-  bind::void_member_function<QAction, bool, &QAction::setShortcutVisibleInContextMenu>(action, "setShortcutVisibleInContextMenu").create();
-  // bool isShortcutVisibleInContextMenu() const;
-  bind::member_function<QAction, bool, &QAction::isShortcutVisibleInContextMenu>(action, "isShortcutVisibleInContextMenu").create();
   // QWidget * parentWidget() const;
   bind::member_function<QAction, QWidget *, &QAction::parentWidget>(action, "parentWidget").create();
   // QList<QWidget *> associatedWidgets() const;

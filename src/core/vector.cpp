@@ -10,12 +10,13 @@
 #include "yasl/core/enums.h"
 #include "yasl/utils/containervalue.h"
 
-
 #include <script/classtemplate.h>
 #include <script/classtemplateinstancebuilder.h>
 #include <script/constructorbuilder.h>
 #include <script/private/engine_p.h>
 #include <script/templatebuilder.h>
+
+#include <cstring>
 
 static script::Value make_vector(const QVector<ContainerValue> & val, const script::Type & vector_type, script::Engine *e)
 {
@@ -394,7 +395,7 @@ static script::Value resize(script::FunctionCall *c)
 static script::Value shrink_to_fit(script::FunctionCall *c)
 {
   QVector<ContainerValue> & self = script::bind::value_cast<QVector<ContainerValue> &>(c->thisObject());
-  self.shrink_to_fit();
+  self.squeeze();
   return script::Value::Void;
 }
 

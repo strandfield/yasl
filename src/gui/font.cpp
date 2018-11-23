@@ -55,7 +55,6 @@ static void register_font_style_strategy_enum(script::Class font)
   style_strategy.addValue("OpenGLCompatible", QFont::OpenGLCompatible);
   style_strategy.addValue("ForceIntegerMetrics", QFont::ForceIntegerMetrics);
   style_strategy.addValue("NoSubpixelAntialias", QFont::NoSubpixelAntialias);
-  style_strategy.addValue("PreferNoShaping", QFont::PreferNoShaping);
   style_strategy.addValue("NoFontMerging", QFont::NoFontMerging);
 }
 

@@ -900,21 +900,6 @@ static void register_locale_currency_symbol_format_enum(script::Class locale)
 }
 
 
-static void register_locale_data_size_format_enum(script::Class locale)
-{
-  using namespace script;
-
-  Enum data_size_format = locale.newEnum("DataSizeFormat").setId(script::Type::QLocaleDataSizeFormat).get();
-
-  register_qflags_type<QLocale::DataSizeFormat>(locale, "DataSizeFormats", script::Type::QLocaleDataSizeFormats);
-  data_size_format.addValue("DataSizeBase1000", QLocale::DataSizeBase1000);
-  data_size_format.addValue("DataSizeSIQuantifiers", QLocale::DataSizeSIQuantifiers);
-  data_size_format.addValue("DataSizeIecFormat", QLocale::DataSizeIecFormat);
-  data_size_format.addValue("DataSizeTraditionalFormat", QLocale::DataSizeTraditionalFormat);
-  data_size_format.addValue("DataSizeSIFormat", QLocale::DataSizeSIFormat);
-}
-
-
 static void register_locale_quotation_style_enum(script::Class locale)
 {
   using namespace script;
@@ -942,7 +927,6 @@ static void register_locale_class(script::Namespace ns)
   register_locale_number_option_enum(locale);
   register_locale_floating_point_precision_option_enum(locale);
   register_locale_currency_symbol_format_enum(locale);
-  register_locale_data_size_format_enum(locale);
   register_locale_quotation_style_enum(locale);
 
   // QLocale();

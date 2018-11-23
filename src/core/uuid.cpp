@@ -64,10 +64,6 @@ static void register_uuid_class(script::Namespace ns)
   /// TODO: QUuid(uint, ushort, ushort, uchar, uchar, uchar, uchar, uchar, uchar, uchar, uchar);
   // QUuid(const QString &);
   bind::constructor<QUuid, const QString &>(uuid).create();
-  // static QUuid fromString(QStringView);
-  /// TODO: static QUuid fromString(QStringView);
-  // static QUuid fromString(QLatin1String);
-  /// TODO: static QUuid fromString(QLatin1String);
   // QUuid(const char *);
   /// TODO: QUuid(const char *);
   // QString toString() const;

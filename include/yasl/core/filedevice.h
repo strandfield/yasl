@@ -17,7 +17,6 @@ template<> struct tag_resolver<QFileDevice> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QFileDevice::FileError> { inline static script::Type get() { return script::Type::QFileDeviceFileError; } };
 template<> struct make_type_t<QFileDevice::FileHandleFlag> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlag; } };
 template<> struct make_type_t<QFileDevice::FileHandleFlags> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlags; } };
-template<> struct make_type_t<QFileDevice::FileTime> { inline static script::Type get() { return script::Type::QFileDeviceFileTime; } };
 template<> struct make_type_t<QFileDevice::MemoryMapFlags> { inline static script::Type get() { return script::Type::QFileDeviceMemoryMapFlags; } };
 template<> struct make_type_t<QFileDevice::Permission> { inline static script::Type get() { return script::Type::QFileDevicePermission; } };
 template<> struct make_type_t<QFileDevice::Permissions> { inline static script::Type get() { return script::Type::QFileDevicePermissions; } };

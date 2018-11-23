@@ -329,10 +329,6 @@ static void register_variant_class(script::Namespace ns)
   bind::memop_geq<QVariant, const QVariant &>(variant);
   // void create(int, const void *);
   /// TODO: void create(int, const void *);
-  // bool cmp(const QVariant &) const;
-  bind::member_function<QVariant, bool, const QVariant &, &QVariant::cmp>(variant, "cmp").create();
-  // int compare(const QVariant &) const;
-  bind::member_function<QVariant, int, const QVariant &, &QVariant::compare>(variant, "compare").create();
   // bool convert(const int, void *) const;
   /// TODO: bool convert(const int, void *) const;
   // QVariant::DataPtr & data_ptr();

@@ -90,14 +90,6 @@ static void register_byte_array_class(script::Namespace ns)
   bind::memop_const_subscript<QByteArray, char, int>(byte_array);
   // QByteRef operator[](int);
   bind::memop_subscript<QByteArray, QByteRef, int>(byte_array);
-  // char front() const;
-  bind::member_function<QByteArray, char, &QByteArray::front>(byte_array, "front").create();
-  // QByteRef front();
-  bind::member_function<QByteArray, QByteRef, &QByteArray::front>(byte_array, "front").create();
-  // char back() const;
-  bind::member_function<QByteArray, char, &QByteArray::back>(byte_array, "back").create();
-  // QByteRef back();
-  bind::member_function<QByteArray, QByteRef, &QByteArray::back>(byte_array, "back").create();
   // int indexOf(char, int) const;
   bind::member_function<QByteArray, int, char, int, &QByteArray::indexOf>(byte_array, "indexOf")
     .apply(bind::default_arguments(0)).create();
@@ -125,8 +117,6 @@ static void register_byte_array_class(script::Namespace ns)
   // QByteArray mid(int, int) const;
   bind::member_function<QByteArray, QByteArray, int, int, &QByteArray::mid>(byte_array, "mid")
     .apply(bind::default_arguments(-1)).create();
-  // QByteArray chopped(int) const;
-  bind::member_function<QByteArray, QByteArray, int, &QByteArray::chopped>(byte_array, "chopped").create();
   // bool startsWith(const QByteArray &) const;
   bind::member_function<QByteArray, bool, const QByteArray &, &QByteArray::startsWith>(byte_array, "startsWith").create();
   // bool startsWith(char) const;
@@ -314,8 +304,6 @@ static void register_byte_array_class(script::Namespace ns)
   bind::void_member_function<QByteArray, char, &QByteArray::push_front>(byte_array, "push_front").create();
   // void push_front(const QByteArray &);
   bind::void_member_function<QByteArray, const QByteArray &, &QByteArray::push_front>(byte_array, "push_front").create();
-  // void shrink_to_fit();
-  bind::void_member_function<QByteArray, &QByteArray::shrink_to_fit>(byte_array, "shrink_to_fit").create();
   // int count() const;
   bind::member_function<QByteArray, int, &QByteArray::count>(byte_array, "count").create();
   // int length() const;

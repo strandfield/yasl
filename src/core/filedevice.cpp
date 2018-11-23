@@ -39,19 +39,6 @@ static void register_file_device_file_error_enum(script::Class file_device)
 }
 
 
-static void register_file_device_file_time_enum(script::Class file_device)
-{
-  using namespace script;
-
-  Enum file_time = file_device.newEnum("FileTime").setId(script::Type::QFileDeviceFileTime).get();
-
-  file_time.addValue("FileAccessTime", QFileDevice::FileAccessTime);
-  file_time.addValue("FileBirthTime", QFileDevice::FileBirthTime);
-  file_time.addValue("FileMetadataChangeTime", QFileDevice::FileMetadataChangeTime);
-  file_time.addValue("FileModificationTime", QFileDevice::FileModificationTime);
-}
-
-
 static void register_file_device_permission_enum(script::Class file_device)
 {
   using namespace script;
@@ -105,7 +92,6 @@ static void register_file_device_class(script::Namespace ns)
     .setBase(script::Type::QIODevice).get();
 
   register_file_device_file_error_enum(file_device);
-  register_file_device_file_time_enum(file_device);
   register_file_device_permission_enum(file_device);
   register_file_device_file_handle_flag_enum(file_device);
   register_file_device_memory_map_flags_enum(file_device);
@@ -141,9 +127,9 @@ static void register_file_device_class(script::Namespace ns)
   // bool setPermissions(QFileDevice::Permissions);
   bind::member_function<QFileDevice, bool, QFileDevice::Permissions, &QFileDevice::setPermissions>(file_device, "setPermissions").create();
   // QDateTime fileTime(QFileDevice::FileTime) const;
-  bind::member_function<QFileDevice, QDateTime, QFileDevice::FileTime, &QFileDevice::fileTime>(file_device, "fileTime").create();
+  /// TODO: QDateTime fileTime(QFileDevice::FileTime) const;
   // bool setFileTime(const QDateTime &, QFileDevice::FileTime);
-  bind::member_function<QFileDevice, bool, const QDateTime &, QFileDevice::FileTime, &QFileDevice::setFileTime>(file_device, "setFileTime").create();
+  /// TODO: bool setFileTime(const QDateTime &, QFileDevice::FileTime);
 
   bind::link(file_device, &QFileDevice::staticMetaObject);
 }

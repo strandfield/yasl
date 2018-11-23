@@ -52,6 +52,8 @@ void Enum::fillJson(QJsonObject & obj) const
     QString entry = e->name + "@" + e->rename;
     if (entry.endsWith('@'))
       entry.chop(1);
+    if (e->checkState == Qt::Unchecked)
+      entry.append('-');
     enms.append(entry);
   }
   obj["enumerators"] = enms;
@@ -70,6 +72,10 @@ QSharedPointer<Node> Enum::fromJson(const QJsonObject & obj)
   QJsonArray enumerators = obj.value("enumerators").toArray();
   for (const auto & item : enumerators)
   {
+    QString str = item.toString();
+    Qt::CheckState check = Qt::Checked;
+    if (str.endsWith('-'))
+      str.chop(1), check = Qt::Unchecked;
     QStringList fields = item.toString().split('@', QString::SkipEmptyParts);
     auto enumerator = QSharedPointer<Enumerator>::create(fields.front());
     if (fields.size() == 2)

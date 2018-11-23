@@ -529,9 +529,6 @@ static void register_qt_application_attribute_enum(script::Namespace qt)
   application_attribute.addValue("AA_CompressHighFrequencyEvents", Qt::AA_CompressHighFrequencyEvents);
   application_attribute.addValue("AA_DontCheckOpenGLContextThreadAffinity", Qt::AA_DontCheckOpenGLContextThreadAffinity);
   application_attribute.addValue("AA_DisableShaderDiskCache", Qt::AA_DisableShaderDiskCache);
-  application_attribute.addValue("AA_DontShowShortcutsInContextMenus", Qt::AA_DontShowShortcutsInContextMenus);
-  application_attribute.addValue("AA_CompressTabletEvents", Qt::AA_CompressTabletEvents);
-  application_attribute.addValue("AA_DisableWindowContextHelpButton", Qt::AA_DisableWindowContextHelpButton);
   application_attribute.addValue("AA_AttributeCount", Qt::AA_AttributeCount);
 }
 

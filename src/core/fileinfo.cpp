@@ -131,16 +131,10 @@ static void register_file_info_class(script::Namespace ns)
   /// TODO: qint64 size() const;
   // QDateTime created() const;
   bind::member_function<QFileInfo, QDateTime, &QFileInfo::created>(file_info, "created").create();
-  // QDateTime birthTime() const;
-  bind::member_function<QFileInfo, QDateTime, &QFileInfo::birthTime>(file_info, "birthTime").create();
-  // QDateTime metadataChangeTime() const;
-  bind::member_function<QFileInfo, QDateTime, &QFileInfo::metadataChangeTime>(file_info, "metadataChangeTime").create();
   // QDateTime lastModified() const;
   bind::member_function<QFileInfo, QDateTime, &QFileInfo::lastModified>(file_info, "lastModified").create();
   // QDateTime lastRead() const;
   bind::member_function<QFileInfo, QDateTime, &QFileInfo::lastRead>(file_info, "lastRead").create();
-  // QDateTime fileTime(QFile::FileTime) const;
-  /// TODO: QDateTime fileTime(QFile::FileTime) const;
   // bool caching() const;
   bind::member_function<QFileInfo, bool, &QFileInfo::caching>(file_info, "caching").create();
   // void setCaching(bool);

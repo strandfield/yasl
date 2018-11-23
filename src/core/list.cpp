@@ -14,6 +14,8 @@
 #include <script/private/engine_p.h>
 #include <script/templatebuilder.h>
 
+#include <cstring>
+
 static script::Value make_list(const QList<ContainerValue> & val, const script::Type & list_type, script::Engine *e)
 {
   return e->construct(list_type, [&val](script::Value & ret) {

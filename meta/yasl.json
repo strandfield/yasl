@@ -162,23 +162,27 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
                                     "name": "front",
                                     "signature": "->char",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "front",
                                     "signature": "->QByteRef",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
                                     "name": "back",
                                     "signature": "->char",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "back",
                                     "signature": "->QByteRef",
                                     "type": "function"
@@ -255,6 +259,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
                                     "name": "chopped",
                                     "signature": "int->QByteArray",
@@ -843,6 +848,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "shrink_to_fit",
                                     "signature": "->void",
                                     "type": "function"
@@ -2002,6 +2008,7 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
                             "name": "qt_getQtMetaObject",
@@ -2009,6 +2016,7 @@
                             "type": "function"
                         },
                         {
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumclass": true,
@@ -2434,6 +2442,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "checked": 1,
                                     "enumclass": true,
                                     "enumerators": [
                                         "AA_ImmediateWidgetCreation",
@@ -2464,9 +2473,9 @@
                                         "AA_CompressHighFrequencyEvents",
                                         "AA_DontCheckOpenGLContextThreadAffinity",
                                         "AA_DisableShaderDiskCache",
-                                        "AA_DontShowShortcutsInContextMenus",
-                                        "AA_CompressTabletEvents",
-                                        "AA_DisableWindowContextHelpButton",
+                                        "AA_DontShowShortcutsInContextMenus-",
+                                        "AA_CompressTabletEvents-",
+                                        "AA_DisableWindowContextHelpButton-",
                                         "AA_AttributeCount"
                                     ],
                                     "name": "ApplicationAttribute",
@@ -8459,6 +8468,7 @@
                     "checked": 1,
                     "elements": [
                         {
+                            "checked": 1,
                             "elements": [
                                 {
                                     "name": "QFileInfo",
@@ -8775,13 +8785,17 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "birthTime",
                                     "signature": "->QDateTime",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "metadataChangeTime",
                                     "signature": "->QDateTime",
                                     "type": "function"
@@ -8799,7 +8813,9 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "fileTime",
                                     "signature": "QFile::FileTime->QDateTime",
                                     "type": "function"
@@ -10889,12 +10905,13 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "checked": 0,
                                     "enumerators": [
-                                        "DataSizeBase1000",
-                                        "DataSizeSIQuantifiers",
-                                        "DataSizeIecFormat",
-                                        "DataSizeTraditionalFormat",
-                                        "DataSizeSIFormat"
+                                        "DataSizeBase1000-",
+                                        "DataSizeSIQuantifiers-",
+                                        "DataSizeIecFormat-",
+                                        "DataSizeTraditionalFormat-",
+                                        "DataSizeSIFormat-"
                                     ],
                                     "name": "DataSizeFormat",
                                     "type": "enum"
@@ -12242,6 +12259,7 @@
                     "checked": 1,
                     "elements": [
                         {
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -12292,12 +12310,16 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "fromString",
                                     "signature": "QStringView->QUuid",
                                     "static": true,
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "fromString",
                                     "signature": "QLatin1String->QUuid",
                                     "static": true,
@@ -13205,13 +13227,9 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
-                                    "name": "cmp",
-                                    "signature": "const QVariant &->bool",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
+                                    "defaults": "",
                                     "name": "compare",
                                     "signature": "const QVariant &->int",
                                     "type": "function"
@@ -13812,9 +13830,11 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
                             "base": "QObject",
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -13829,8 +13849,6 @@
                                     "enumerators": [
                                         "NativeFormat",
                                         "IniFormat",
-                                        "Registry32Format",
-                                        "Registry64Format",
                                         "InvalidFormat",
                                         "CustomFormat1",
                                         "CustomFormat2",
@@ -13911,12 +13929,16 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "isAtomicSyncRequired",
                                     "signature": "->bool",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "setAtomicSyncRequired",
                                     "signature": "bool->void",
                                     "type": "function"
@@ -14618,11 +14640,12 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "checked": 0,
                                     "enumerators": [
-                                        "FileAccessTime",
-                                        "FileBirthTime",
-                                        "FileMetadataChangeTime",
-                                        "FileModificationTime"
+                                        "FileAccessTime-",
+                                        "FileBirthTime-",
+                                        "FileMetadataChangeTime-",
+                                        "FileModificationTime-"
                                     ],
                                     "name": "FileTime",
                                     "type": "enum"
@@ -15344,8 +15367,10 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -15426,16 +15451,22 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "QJsonValue",
                                     "signature": "QJsonValue &&",
                                     "type": "constructor"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "operator=",
                                     "signature": "QJsonValue &&->QJsonValue &",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "swap",
                                     "signature": "QJsonValue &->void",
                                     "type": "function"
@@ -15560,19 +15591,25 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "operator[]",
                                     "signature": "const QString &->const QJsonValue",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "operator[]",
                                     "signature": "QLatin1String->const QJsonValue",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "operator[]",
                                     "signature": "int->const QJsonValue",
                                     "type": "function"
@@ -15746,6 +15783,8 @@
                             "type": "class"
                         },
                         {
+                            "checked": 0,
+                            "defaults": "",
                             "name": "swap",
                             "signature": "QJsonValue &;QJsonValue &->void",
                             "type": "function"
@@ -15791,11 +15830,15 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "QJsonArray",
                                     "signature": "QJsonArray &&",
                                     "type": "constructor"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "operator=",
                                     "signature": "QJsonArray &&->QJsonArray &",
                                     "type": "function"
@@ -15924,6 +15967,8 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "swap",
                                     "signature": "QJsonArray &->void",
                                     "type": "function"
@@ -16020,6 +16065,8 @@
                             "type": "class"
                         },
                         {
+                            "checked": 0,
+                            "defaults": "",
                             "name": "swap",
                             "signature": "QJsonArray &;QJsonArray &->void",
                             "type": "function"
@@ -16038,6 +16085,7 @@
                     "checked": 1,
                     "elements": [
                         {
+                            "checked": 1,
                             "elements": [
                                 {
                                     "name": "QJsonObject",
@@ -16064,16 +16112,22 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "QJsonObject",
                                     "signature": "QJsonObject &&",
                                     "type": "constructor"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "operator=",
                                     "signature": "QJsonObject &&->QJsonObject &",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "swap",
                                     "signature": "QJsonObject &->void",
                                     "type": "function"
@@ -16289,6 +16343,8 @@
                             "type": "class"
                         },
                         {
+                            "checked": 0,
+                            "defaults": "",
                             "name": "swap",
                             "signature": "QJsonObject &;QJsonObject &->void",
                             "type": "function"
@@ -16304,8 +16360,10 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
+                            "checked": 1,
                             "elements": [
                                 {
                                     "name": "QJsonDocument",
@@ -16337,16 +16395,22 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "QJsonDocument",
                                     "signature": "QJsonDocument &&",
                                     "type": "constructor"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "operator=",
                                     "signature": "QJsonDocument &&->QJsonDocument &",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "swap",
                                     "signature": "QJsonDocument &->void",
                                     "type": "function"
@@ -16463,19 +16527,25 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "operator[]",
                                     "signature": "const QString &->const QJsonValue",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "operator[]",
                                     "signature": "QLatin1String->const QJsonValue",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "operator[]",
                                     "signature": "int->const QJsonValue",
                                     "type": "function"
@@ -16503,6 +16573,8 @@
                             "type": "class"
                         },
                         {
+                            "checked": 0,
+                            "defaults": "",
                             "name": "swap",
                             "signature": "QJsonDocument &;QJsonDocument &->void",
                             "type": "function"
@@ -16632,6 +16704,7 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
                             "elements": [
@@ -16743,6 +16816,7 @@
                         },
                         {
                             "base": "QIODevice",
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -16827,6 +16901,8 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "startDetached",
                                     "signature": "qint64 *->bool",
                                     "type": "function"
@@ -16933,17 +17009,6 @@
                                 {
                                     "name": "setStandardOutputProcess",
                                     "signature": "QProcess *->void",
-                                    "type": "function"
-                                },
-                                {
-                                    "const": true,
-                                    "name": "nativeArguments",
-                                    "signature": "->QString",
-                                    "type": "function"
-                                },
-                                {
-                                    "name": "setNativeArguments",
-                                    "signature": "const QString &->void",
                                     "type": "function"
                                 },
                                 {
@@ -17365,8 +17430,10 @@
                     "checked": 1,
                     "elements": [
                         {
+                            "checked": 1,
                             "elements": [
                                 {
+                                    "checked": 1,
                                     "enumerators": [
                                         "Qt_1_0",
                                         "Qt_2_0",
@@ -17394,7 +17461,7 @@
                                         "Qt_5_7",
                                         "Qt_5_8",
                                         "Qt_5_9",
-                                        "Qt_5_10",
+                                        "Qt_5_10-",
                                         "Qt_DefaultCompiledVersion"
                                     ],
                                     "name": "Version",
@@ -18423,6 +18490,7 @@
                     "checked": 1,
                     "elements": [
                         {
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -18444,6 +18512,7 @@
                                     "type": "enum"
                                 },
                                 {
+                                    "checked": 1,
                                     "enumerators": [
                                         "PreferDefault",
                                         "PreferBitmap",
@@ -18457,7 +18526,7 @@
                                         "OpenGLCompatible",
                                         "ForceIntegerMetrics",
                                         "NoSubpixelAntialias",
-                                        "PreferNoShaping",
+                                        "PreferNoShaping-",
                                         "NoFontMerging"
                                     ],
                                     "name": "StyleStrategy",
@@ -20018,11 +20087,15 @@
                             "type": "function"
                         },
                         {
+                            "checked": 0,
+                            "defaults": "",
                             "name": "operator==",
                             "signature": "const QCursor &;const QCursor &->bool",
                             "type": "function"
                         },
                         {
+                            "checked": 0,
+                            "defaults": "",
                             "name": "operator!=",
                             "signature": "const QCursor &;const QCursor &->bool",
                             "type": "function"
@@ -28309,8 +28382,10 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -28425,12 +28500,16 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "setTabStopDistance",
                                     "signature": "qreal->void",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "tabStopDistance",
                                     "signature": "->qreal",
                                     "type": "function"
@@ -32506,9 +32585,11 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
                             "base": "QWidget",
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -32760,13 +32841,17 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "selectionEnd",
                                     "signature": "->int",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "selectionLength",
                                     "signature": "->int",
                                     "type": "function"
@@ -35312,9 +35397,11 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
                             "base": "QObject",
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -35612,12 +35699,16 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "setShortcutVisibleInContextMenu",
                                     "signature": "bool->void",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "isShortcutVisibleInContextMenu",
                                     "signature": "->bool",
                                     "type": "function"
@@ -38640,9 +38731,11 @@
                     "type": "file"
                 },
                 {
+                    "checked": 1,
                     "elements": [
                         {
                             "base": "QDialog",
+                            "checked": 1,
                             "elements": [
                                 {
                                     "enumerators": [
@@ -38940,12 +39033,16 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
+                                    "defaults": "",
                                     "name": "setDoubleStep",
                                     "signature": "double->void",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
+                                    "defaults": "",
                                     "name": "doubleStep",
                                     "signature": "->double",
                                     "type": "function"
@@ -40271,12 +40368,6 @@
                 "header": "yasl/core/locale.h",
                 "id": "QListQLocale",
                 "name": "QList<QLocale>"
-            },
-            {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleDataSizeFormats",
-                "name": "QLocale::DataSizeFormats",
-                "rename": "DataSizeFormats"
             },
             {
                 "header": "yasl/core/locale.h",
@@ -41807,11 +41898,6 @@
             },
             {
                 "header": "yasl/core/filedevice.h",
-                "id": "QFileDeviceFileTime",
-                "name": "QFileDevice::FileTime"
-            },
-            {
-                "header": "yasl/core/filedevice.h",
                 "id": "QFileDevicePermission",
                 "links": "flags@QFileDevice::Permissions",
                 "name": "QFileDevice::Permission"
@@ -41878,12 +41964,6 @@
                 "header": "yasl/core/locale.h",
                 "id": "QLocaleCurrencySymbolFormat",
                 "name": "QLocale::CurrencySymbolFormat"
-            },
-            {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleDataSizeFormat",
-                "links": "flags@QLocale::DataSizeFormats",
-                "name": "QLocale::DataSizeFormat"
             },
             {
                 "header": "yasl/core/locale.h",

@@ -155,10 +155,6 @@ static void register_input_dialog_class(script::Namespace ns)
   /// TODO: static double getDouble(QWidget *, const QString &, const QString &, double, double, double, int, bool *, Qt::WindowFlags);
   // static double getDouble(QWidget *, const QString &, const QString &, double, double, double, int, bool *, Qt::WindowFlags, double);
   /// TODO: static double getDouble(QWidget *, const QString &, const QString &, double, double, double, int, bool *, Qt::WindowFlags, double);
-  // void setDoubleStep(double);
-  bind::void_member_function<QInputDialog, double, &QInputDialog::setDoubleStep>(input_dialog, "setDoubleStep").create();
-  // double doubleStep() const;
-  bind::member_function<QInputDialog, double, &QInputDialog::doubleStep>(input_dialog, "doubleStep").create();
   // void textValueChanged(const QString &);
   bind::signal<QInputDialog, const QString &>(input_dialog, "textValueChanged", "textValueChanged(const QString &)");
   // void textValueSelected(const QString &);

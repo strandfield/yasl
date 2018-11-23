@@ -36,8 +36,6 @@ static void register_settings_format_enum(script::Class settings)
 
   format.addValue("NativeFormat", QSettings::NativeFormat);
   format.addValue("IniFormat", QSettings::IniFormat);
-  format.addValue("Registry32Format", QSettings::Registry32Format);
-  format.addValue("Registry64Format", QSettings::Registry64Format);
   format.addValue("InvalidFormat", QSettings::InvalidFormat);
   format.addValue("CustomFormat1", QSettings::CustomFormat1);
   format.addValue("CustomFormat2", QSettings::CustomFormat2);
@@ -103,10 +101,6 @@ static void register_settings_class(script::Namespace ns)
   bind::void_member_function<QSettings, &QSettings::sync>(settings, "sync").create();
   // QSettings::Status status() const;
   bind::member_function<QSettings, QSettings::Status, &QSettings::status>(settings, "status").create();
-  // bool isAtomicSyncRequired() const;
-  bind::member_function<QSettings, bool, &QSettings::isAtomicSyncRequired>(settings, "isAtomicSyncRequired").create();
-  // void setAtomicSyncRequired(bool);
-  bind::void_member_function<QSettings, bool, &QSettings::setAtomicSyncRequired>(settings, "setAtomicSyncRequired").create();
   // void beginGroup(const QString &);
   bind::void_member_function<QSettings, const QString &, &QSettings::beginGroup>(settings, "beginGroup").create();
   // void endGroup();

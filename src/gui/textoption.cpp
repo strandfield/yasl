@@ -98,10 +98,6 @@ static void register_text_option_class(script::Namespace ns)
   bind::void_member_function<QTextOption, qreal, &QTextOption::setTabStop>(text_option, "setTabStop").create();
   // qreal tabStop() const;
   bind::member_function<QTextOption, qreal, &QTextOption::tabStop>(text_option, "tabStop").create();
-  // void setTabStopDistance(qreal);
-  bind::void_member_function<QTextOption, qreal, &QTextOption::setTabStopDistance>(text_option, "setTabStopDistance").create();
-  // qreal tabStopDistance() const;
-  bind::member_function<QTextOption, qreal, &QTextOption::tabStopDistance>(text_option, "tabStopDistance").create();
   // void setTabArray(const QList<qreal> &);
   /// TODO: void setTabArray(const QList<qreal> &);
   // QList<qreal> tabArray() const;

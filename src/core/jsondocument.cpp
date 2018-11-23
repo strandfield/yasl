@@ -13,7 +13,6 @@
 #include "yasl/core/jsonarray.h"
 #include "yasl/core/jsondocument.h"
 #include "yasl/core/jsonobject.h"
-#include "yasl/core/jsonvalue.h"
 #include "yasl/core/variant.h"
 
 #include <script/classbuilder.h>
@@ -62,12 +61,6 @@ static void register_json_document_class(script::Namespace ns)
   bind::constructor<QJsonDocument, const QJsonDocument &>(json_document).create();
   // QJsonDocument & operator=(const QJsonDocument &);
   bind::memop_assign<QJsonDocument, const QJsonDocument &>(json_document);
-  // QJsonDocument(QJsonDocument &&);
-  bind::constructor<QJsonDocument, QJsonDocument &&>(json_document).create();
-  // QJsonDocument & operator=(QJsonDocument &&);
-  bind::memop_assign<QJsonDocument, QJsonDocument &&>(json_document);
-  // void swap(QJsonDocument &);
-  bind::void_member_function<QJsonDocument, QJsonDocument &, &QJsonDocument::swap>(json_document, "swap").create();
   // static QJsonDocument fromRawData(const char *, int, QJsonDocument::DataValidation);
   /// TODO: static QJsonDocument fromRawData(const char *, int, QJsonDocument::DataValidation);
   // const char * rawData(int *) const;
@@ -101,12 +94,6 @@ static void register_json_document_class(script::Namespace ns)
   bind::void_member_function<QJsonDocument, const QJsonObject &, &QJsonDocument::setObject>(json_document, "setObject").create();
   // void setArray(const QJsonArray &);
   bind::void_member_function<QJsonDocument, const QJsonArray &, &QJsonDocument::setArray>(json_document, "setArray").create();
-  // const QJsonValue operator[](const QString &) const;
-  bind::memop_const_subscript<QJsonDocument, const QJsonValue, const QString &>(json_document);
-  // const QJsonValue operator[](QLatin1String) const;
-  /// TODO: const QJsonValue operator[](QLatin1String) const;
-  // const QJsonValue operator[](int) const;
-  bind::memop_const_subscript<QJsonDocument, const QJsonValue, int>(json_document);
   // bool operator==(const QJsonDocument &) const;
   bind::memop_eq<QJsonDocument, const QJsonDocument &>(json_document);
   // bool operator!=(const QJsonDocument &) const;
@@ -124,8 +111,6 @@ void register_jsondocument_file(script::Namespace core)
 
   register_json_document_class(ns);
 
-  // void swap(QJsonDocument &, QJsonDocument &);
-  bind::void_function<QJsonDocument &, QJsonDocument &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QJsonDocument &);
   /// TODO: QDebug operator<<(QDebug, const QJsonDocument &);
 }

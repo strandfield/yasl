@@ -46,7 +46,6 @@ static void register_data_stream_version_enum(script::Class data_stream)
   version.addValue("Qt_5_7", QDataStream::Qt_5_7);
   version.addValue("Qt_5_8", QDataStream::Qt_5_8);
   version.addValue("Qt_5_9", QDataStream::Qt_5_9);
-  version.addValue("Qt_5_10", QDataStream::Qt_5_10);
   version.addValue("Qt_DefaultCompiledVersion", QDataStream::Qt_DefaultCompiledVersion);
 }
 

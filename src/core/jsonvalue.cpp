@@ -68,12 +68,6 @@ static void register_json_value_class(script::Namespace ns)
   bind::constructor<QJsonValue, const QJsonValue &>(json_value).create();
   // QJsonValue & operator=(const QJsonValue &);
   bind::memop_assign<QJsonValue, const QJsonValue &>(json_value);
-  // QJsonValue(QJsonValue &&);
-  bind::constructor<QJsonValue, QJsonValue &&>(json_value).create();
-  // QJsonValue & operator=(QJsonValue &&);
-  bind::memop_assign<QJsonValue, QJsonValue &&>(json_value);
-  // void swap(QJsonValue &);
-  bind::void_member_function<QJsonValue, QJsonValue &, &QJsonValue::swap>(json_value, "swap").create();
   // static QJsonValue fromVariant(const QVariant &);
   bind::static_member_function<QJsonValue, QJsonValue, const QVariant &, &QJsonValue::fromVariant>(json_value, "fromVariant").create();
   // QVariant toVariant() const;
@@ -117,12 +111,6 @@ static void register_json_value_class(script::Namespace ns)
   bind::member_function<QJsonValue, QJsonObject, &QJsonValue::toObject>(json_value, "toObject").create();
   // QJsonObject toObject(const QJsonObject &) const;
   bind::member_function<QJsonValue, QJsonObject, const QJsonObject &, &QJsonValue::toObject>(json_value, "toObject").create();
-  // const QJsonValue operator[](const QString &) const;
-  bind::memop_const_subscript<QJsonValue, const QJsonValue, const QString &>(json_value);
-  // const QJsonValue operator[](QLatin1String) const;
-  /// TODO: const QJsonValue operator[](QLatin1String) const;
-  // const QJsonValue operator[](int) const;
-  bind::memop_const_subscript<QJsonValue, const QJsonValue, int>(json_value);
   // bool operator==(const QJsonValue &) const;
   bind::memop_eq<QJsonValue, const QJsonValue &>(json_value);
   // bool operator!=(const QJsonValue &) const;
@@ -199,8 +187,6 @@ void register_jsonvalue_file(script::Namespace core)
   register_json_value_class(ns);
   register_json_value_ref_class(ns);
 
-  // void swap(QJsonValue &, QJsonValue &);
-  bind::void_function<QJsonValue &, QJsonValue &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QJsonValue &);
   /// TODO: QDebug operator<<(QDebug, const QJsonValue &);
 }

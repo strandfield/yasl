@@ -206,7 +206,8 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   // void resize(int size);
   bind::void_member_function<QVector<T>, int, &QVector<T>::resize>(vector, "resize").create();
   // void shrink_to_fit();
-  bind::void_member_function<QVector<T>, &QVector<T>::shrink_to_fit>(vector, "shrink_to_fit").create();
+  /// Qt 5.10
+  ///bind::void_member_function<QVector<T>, &QVector<T>::shrink_to_fit>(vector, "shrink_to_fit").create();
   // int size() const;
   bind::member_function<QVector<T>, int, &QVector<T>::size>(vector, "size").create();
   // void squeeze();

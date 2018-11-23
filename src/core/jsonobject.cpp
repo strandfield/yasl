@@ -29,12 +29,6 @@ static void register_json_object_class(script::Namespace ns)
   bind::constructor<QJsonObject, const QJsonObject &>(json_object).create();
   // QJsonObject & operator=(const QJsonObject &);
   bind::memop_assign<QJsonObject, const QJsonObject &>(json_object);
-  // QJsonObject(QJsonObject &&);
-  bind::constructor<QJsonObject, QJsonObject &&>(json_object).create();
-  // QJsonObject & operator=(QJsonObject &&);
-  bind::memop_assign<QJsonObject, QJsonObject &&>(json_object);
-  // void swap(QJsonObject &);
-  bind::void_member_function<QJsonObject, QJsonObject &, &QJsonObject::swap>(json_object, "swap").create();
   // static QJsonObject fromVariantMap(const QVariantMap &);
   /// TODO: static QJsonObject fromVariantMap(const QVariantMap &);
   // QVariantMap toVariantMap() const;
@@ -118,8 +112,6 @@ void register_jsonobject_file(script::Namespace core)
 
   register_json_object_class(ns);
 
-  // void swap(QJsonObject &, QJsonObject &);
-  bind::void_function<QJsonObject &, QJsonObject &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QJsonObject &);
   /// TODO: QDebug operator<<(QDebug, const QJsonObject &);
 }

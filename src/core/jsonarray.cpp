@@ -29,10 +29,6 @@ static void register_json_array_class(script::Namespace ns)
   bind::constructor<QJsonArray, const QJsonArray &>(json_array).create();
   // QJsonArray & operator=(const QJsonArray &);
   bind::memop_assign<QJsonArray, const QJsonArray &>(json_array);
-  // QJsonArray(QJsonArray &&);
-  bind::constructor<QJsonArray, QJsonArray &&>(json_array).create();
-  // QJsonArray & operator=(QJsonArray &&);
-  bind::memop_assign<QJsonArray, QJsonArray &&>(json_array);
   // static QJsonArray fromStringList(const QStringList &);
   /// TODO: static QJsonArray fromStringList(const QStringList &);
   // static QJsonArray fromVariantList(const QVariantList &);
@@ -77,8 +73,6 @@ static void register_json_array_class(script::Namespace ns)
   bind::memop_eq<QJsonArray, const QJsonArray &>(json_array);
   // bool operator!=(const QJsonArray &) const;
   bind::memop_neq<QJsonArray, const QJsonArray &>(json_array);
-  // void swap(QJsonArray &);
-  bind::void_member_function<QJsonArray, QJsonArray &, &QJsonArray::swap>(json_array, "swap").create();
   // QJsonArray::iterator begin();
   /// TODO: QJsonArray::iterator begin();
   // QJsonArray::const_iterator begin() const;
@@ -120,8 +114,6 @@ void register_jsonarray_file(script::Namespace core)
 
   register_json_array_class(ns);
 
-  // void swap(QJsonArray &, QJsonArray &);
-  bind::void_function<QJsonArray &, QJsonArray &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QJsonArray &);
   /// TODO: QDebug operator<<(QDebug, const QJsonArray &);
 }

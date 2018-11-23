@@ -164,8 +164,6 @@ static void register_process_class(script::Namespace ns)
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // void start(QIODevice::OpenMode);
   bind::void_member_function<QProcess, QIODevice::OpenMode, &QProcess::start>(process, "start").create();
-  // bool startDetached(qint64 *);
-  /// TODO: bool startDetached(qint64 *);
   // bool open(QIODevice::OpenMode);
   bind::member_function<QProcess, bool, QIODevice::OpenMode, &QProcess::open>(process, "open")
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
@@ -207,10 +205,6 @@ static void register_process_class(script::Namespace ns)
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::Truncate))).create();
   // void setStandardOutputProcess(QProcess *);
   /// TODO: void setStandardOutputProcess(QProcess *);
-  // QString nativeArguments() const;
-  bind::member_function<QProcess, QString, &QProcess::nativeArguments>(process, "nativeArguments").create();
-  // void setNativeArguments(const QString &);
-  bind::void_member_function<QProcess, const QString &, &QProcess::setNativeArguments>(process, "setNativeArguments").create();
   // QProcess::CreateProcessArgumentModifier createProcessArgumentsModifier() const;
   /// TODO: QProcess::CreateProcessArgumentModifier createProcessArgumentsModifier() const;
   // void setCreateProcessArgumentsModifier(QProcess::CreateProcessArgumentModifier);

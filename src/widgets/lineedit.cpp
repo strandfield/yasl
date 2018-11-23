@@ -146,10 +146,6 @@ static void register_line_edit_class(script::Namespace ns)
   bind::member_function<QLineEdit, QString, &QLineEdit::selectedText>(line_edit, "selectedText").create();
   // int selectionStart() const;
   bind::member_function<QLineEdit, int, &QLineEdit::selectionStart>(line_edit, "selectionStart").create();
-  // int selectionEnd() const;
-  bind::member_function<QLineEdit, int, &QLineEdit::selectionEnd>(line_edit, "selectionEnd").create();
-  // int selectionLength() const;
-  bind::member_function<QLineEdit, int, &QLineEdit::selectionLength>(line_edit, "selectionLength").create();
   // bool isUndoAvailable() const;
   bind::member_function<QLineEdit, bool, &QLineEdit::isUndoAvailable>(line_edit, "isUndoAvailable").create();
   // bool isRedoAvailable() const;
