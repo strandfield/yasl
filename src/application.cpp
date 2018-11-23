@@ -5,7 +5,7 @@
 #include "yasl/application.h"
 
 #include "yasl/core/object.h"
-#include "yasl/binding2/ref.h"
+#include "yasl/binding/ref.h"
 
 #include <script/functionbuilder.h>
 #include <script/namespace.h>

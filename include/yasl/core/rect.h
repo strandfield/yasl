@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_RECT_H
 #define YASL_CORE_RECT_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QRect>
 

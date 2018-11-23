@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_QEVENT_BINDING_H
 #define YASL_CORE_QEVENT_BINDING_H
 
-#include "yasl/binding2/values.h"
+#include "yasl/binding/values.h"
 #include "yasl/core/makeevent.h"
 
 #include <QEvent>

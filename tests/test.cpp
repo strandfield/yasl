@@ -2,15 +2,15 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/binding2/constructor.h"
-#include "yasl/binding2/destructor.h"
-#include "yasl/binding2/function.h"
-#include "yasl/binding2/memberfunction.h"
-#include "yasl/binding2/fn-memfn.h"
-#include "yasl/binding2/chainable-memfn.h"
-#include "yasl/binding2/getter.h"
-#include "yasl/binding2/staticmemberfunction.h"
-#include "yasl/binding2/operators.h"
+#include "yasl/binding/constructor.h"
+#include "yasl/binding/destructor.h"
+#include "yasl/binding/function.h"
+#include "yasl/binding/memberfunction.h"
+#include "yasl/binding/fn-memfn.h"
+#include "yasl/binding/chainable-memfn.h"
+#include "yasl/binding/getter.h"
+#include "yasl/binding/staticmemberfunction.h"
+#include "yasl/binding/operators.h"
 
 #include <script/engine.h>
 #include <script/class.h>

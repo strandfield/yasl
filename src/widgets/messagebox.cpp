@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/messagebox.h"
 
-#include "yasl/binding2/default_arguments.h"
-#include "yasl/binding2/enum.h"
-#include "yasl/binding2/namespace.h"
-#include "yasl/binding2/qclass.h"
+#include "yasl/binding/default_arguments.h"
+#include "yasl/binding/enum.h"
+#include "yasl/binding/namespace.h"
+#include "yasl/binding/qclass.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/enums.h"

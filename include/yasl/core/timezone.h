@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_TIMEZONE_H
 #define YASL_CORE_TIMEZONE_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QTimeZone>
 

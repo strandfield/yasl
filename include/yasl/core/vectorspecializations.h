@@ -7,11 +7,11 @@
 
 #include "yasl/core/vector.h"
 
-#include "yasl/binding2/class.h"
-#include "yasl/binding2/default_arguments.h"
-#include "yasl/binding2/namespace.h"
+#include "yasl/binding/class.h"
+#include "yasl/binding/default_arguments.h"
+#include "yasl/binding/namespace.h"
 
-#include "yasl/binding2/proxy.h"
+#include "yasl/binding/proxy.h"
 
 #include <script/classtemplatespecializationbuilder.h>
 #include <script/namespace.h>

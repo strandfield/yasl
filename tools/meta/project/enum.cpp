@@ -76,8 +76,8 @@ QSharedPointer<Node> Enum::fromJson(const QJsonObject & obj)
     Qt::CheckState check = Qt::Checked;
     if (str.endsWith('-'))
       str.chop(1), check = Qt::Unchecked;
-    QStringList fields = item.toString().split('@', QString::SkipEmptyParts);
-    auto enumerator = QSharedPointer<Enumerator>::create(fields.front());
+    QStringList fields = str.split('@', QString::SkipEmptyParts);
+    auto enumerator = QSharedPointer<Enumerator>::create(fields.front(), check);
     if (fields.size() == 2)
       enumerator->rename = fields.back();
     ret->enumerators.append(enumerator);

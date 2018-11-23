@@ -5,8 +5,8 @@
 #ifndef YASL_CORE_FILEDEVICE_H
 #define YASL_CORE_FILEDEVICE_H
 
-#include "yasl/binding2/qobject-binding.h"
-#include "yasl/binding2/types.h"
+#include "yasl/binding/qobject-binding.h"
+#include "yasl/binding/types.h"
 
 #include <QFileDevice>
 #include "yasl/core/iodevice.h"

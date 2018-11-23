@@ -4,9 +4,9 @@
 
 #include "yasl/core/timer.h"
 
-#include "yasl/binding2/default_arguments.h"
-#include "yasl/binding2/namespace.h"
-#include "yasl/binding2/qclass.h"
+#include "yasl/binding/default_arguments.h"
+#include "yasl/binding/namespace.h"
+#include "yasl/binding/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/object.h"

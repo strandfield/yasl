@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_TRANSFORM_H
 #define YASL_GUI_TRANSFORM_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QTransform>
 

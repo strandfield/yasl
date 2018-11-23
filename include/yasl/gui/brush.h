@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_BRUSH_H
 #define YASL_GUI_BRUSH_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QBrush>
 

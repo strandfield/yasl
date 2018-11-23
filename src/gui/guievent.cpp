@@ -4,7 +4,7 @@
 
 #include "yasl/gui/guievent.h"
 
-#include "yasl/binding2/namespace.h"
+#include "yasl/binding/namespace.h"
 #include "yasl/core/qevent-binder.h"
 
 #include "yasl/core/enums.h"

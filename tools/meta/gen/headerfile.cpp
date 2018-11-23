@@ -47,7 +47,7 @@ void HeaderFile::writeInclude(QTextStream & out, const QString & inc)
 
 HeaderFile::HeaderFile()
 {
-  bindingIncludes.insert("yasl/binding2/types.h");
+  bindingIncludes.insert("yasl/binding/types.h");
 }
 
 QByteArray HeaderFile::readall(const QString & filepath)
@@ -139,7 +139,7 @@ QStringList HeaderFile::generateBindingDefinitions()
     {
       if (t.tag == "qobject_tag")
       {
-        bindingIncludes.insert("yasl/binding2/qobject-binding.h");
+        bindingIncludes.insert("yasl/binding/qobject-binding.h");
         out << ("template<> struct tag_resolver<" + t.name + "> { typedef qobject_tag tag_type; };");
       }
       else if (t.tag == "qevent_tag")

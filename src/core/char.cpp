@@ -4,9 +4,9 @@
 
 #include "yasl/core/char.h"
 
-#include "yasl/binding2/class.h"
-#include "yasl/binding2/enum.h"
-#include "yasl/binding2/namespace.h"
+#include "yasl/binding/class.h"
+#include "yasl/binding/enum.h"
+#include "yasl/binding/namespace.h"
 
 #include "yasl/core/char-functions.h"
 #include "yasl/core/char.h"

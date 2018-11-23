@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_GUIEVENT_H
 #define YASL_GUI_GUIEVENT_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 #include "yasl/core/qevent-binding.h"
 
 #include <qevent.h>

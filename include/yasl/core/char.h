@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_CHAR_H
 #define YASL_CORE_CHAR_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QChar>
 

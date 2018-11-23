@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_LINE_H
 #define YASL_CORE_LINE_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QLine>
 

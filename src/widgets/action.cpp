@@ -4,12 +4,12 @@
 
 #include "yasl/widgets/action.h"
 
-#include "yasl/binding2/default_arguments.h"
-#include "yasl/binding2/enum.h"
-#include "yasl/binding2/namespace.h"
-#include "yasl/binding2/newfunction.h"
-#include "yasl/binding2/qclass.h"
-#include "yasl/binding2/ref.h"
+#include "yasl/binding/default_arguments.h"
+#include "yasl/binding/enum.h"
+#include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
+#include "yasl/binding/qclass.h"
+#include "yasl/binding/ref.h"
 #include "yasl/core/listspecializations.h"
 
 #include "yasl/core/enums.h"

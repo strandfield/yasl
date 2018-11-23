@@ -5,8 +5,8 @@
 #ifndef YASL_CORE_BYTEARRAY_H
 #define YASL_CORE_BYTEARRAY_H
 
-#include "yasl/binding2/proxy.h"
-#include "yasl/binding2/types.h"
+#include "yasl/binding/proxy.h"
+#include "yasl/binding/types.h"
 
 #include <QByteArray>
 

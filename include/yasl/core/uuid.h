@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_UUID_H
 #define YASL_CORE_UUID_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QUuid>
 

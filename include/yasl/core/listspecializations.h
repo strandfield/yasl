@@ -7,8 +7,8 @@
 
 #include "yasl/core/list.h"
 
-#include "yasl/binding2/class.h"
-#include "yasl/binding2/proxyspecialization.h"
+#include "yasl/binding/class.h"
+#include "yasl/binding/proxyspecialization.h"
 
 template<typename T>
 void register_list_specialization(script::Engine *e, script::Type::BuiltInType type_id)

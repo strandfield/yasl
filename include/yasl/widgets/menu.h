@@ -5,8 +5,8 @@
 #ifndef YASL_WIDGETS_MENU_H
 #define YASL_WIDGETS_MENU_H
 
-#include "yasl/binding2/qobject-binding.h"
-#include "yasl/binding2/types.h"
+#include "yasl/binding/qobject-binding.h"
+#include "yasl/binding/types.h"
 
 #include <QMenu>
 

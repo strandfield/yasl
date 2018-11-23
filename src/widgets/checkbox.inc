@@ -1,5 +1,5 @@
 
-#include "yasl/binding2/newfunction_wrapper.h"
+#include "yasl/binding/newfunction_wrapper.h"
 
 
 void register_newcheckbox_functions(script::Namespace widgets)

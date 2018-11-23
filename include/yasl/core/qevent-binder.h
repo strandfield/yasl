@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_QEVENT_BINDER_H
 #define YASL_CORE_QEVENT_BINDER_H
 
-#include "yasl/binding2/class.h"
+#include "yasl/binding/class.h"
 #include "yasl/core/qevent-binding.h"
 
 namespace script

@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_BITMAP_H
 #define YASL_GUI_BITMAP_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QBitmap>
 

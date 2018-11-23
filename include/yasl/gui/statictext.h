@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_STATICTEXT_H
 #define YASL_GUI_STATICTEXT_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QStaticText>
 

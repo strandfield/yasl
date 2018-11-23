@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_PIXMAP_H
 #define YASL_GUI_PIXMAP_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QPixmap>
 

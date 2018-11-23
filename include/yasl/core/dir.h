@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_DIR_H
 #define YASL_CORE_DIR_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QDir>
 

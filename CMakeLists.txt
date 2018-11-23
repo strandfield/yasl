@@ -29,10 +29,10 @@ add_subdirectory(lib)
 ###### bindinglib
 ##################################################################
 
-file(GLOB_RECURSE SRC_BINDINGLIB_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/binding2/*.cpp)
+file(GLOB_RECURSE SRC_BINDINGLIB_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/binding/*.cpp)
 file(GLOB_RECURSE HDR_BINDINGLIB_FILES 
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/yasl/binding2/*.h
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/binding2/*.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/yasl/binding/*.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/binding/*.h
 )
 
 add_library(bindinglib STATIC ${HDR_BINDINGLIB_FILES} ${SRC_BINDINGLIB_FILES})

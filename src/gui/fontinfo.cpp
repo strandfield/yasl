@@ -4,8 +4,8 @@
 
 #include "yasl/gui/fontinfo.h"
 
-#include "yasl/binding2/class.h"
-#include "yasl/binding2/namespace.h"
+#include "yasl/binding/class.h"
+#include "yasl/binding/namespace.h"
 
 #include "yasl/gui/font.h"
 #include "yasl/gui/fontinfo.h"

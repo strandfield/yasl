@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_IMAGE_H
 #define YASL_GUI_IMAGE_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QImage>
 

@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_FLAGS_H
 #define YASL_CORE_FLAGS_H
 
-#include "yasl/binding2/class.h"
+#include "yasl/binding/class.h"
 
 #include <script/classbuilder.h>
 #include <script/namespace.h>

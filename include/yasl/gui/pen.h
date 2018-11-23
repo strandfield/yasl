@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_PEN_H
 #define YASL_GUI_PEN_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QPen>
 

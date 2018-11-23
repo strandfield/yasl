@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/stackedlayout.h"
 
-#include "yasl/binding2/enum.h"
-#include "yasl/binding2/namespace.h"
-#include "yasl/binding2/newfunction.h"
-#include "yasl/binding2/qclass.h"
+#include "yasl/binding/enum.h"
+#include "yasl/binding/namespace.h"
+#include "yasl/binding/newfunction.h"
+#include "yasl/binding/qclass.h"
 
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"

@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/binding2/proxyspecialization.h"
-#include "yasl/binding2/signals.h"
+#include "yasl/binding/proxyspecialization.h"
+#include "yasl/binding/signals.h"
 
 #include <script/engine.h>
 #include <script/module.h>

@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_MIMEDATA_H
 #define YASL_CORE_MIMEDATA_H
 
-#include "yasl/binding2/values.h"
+#include "yasl/binding/values.h"
 
 #include <QMimeData>
 

@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_TEXTOPTION_H
 #define YASL_GUI_TEXTOPTION_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QTextOption>
 

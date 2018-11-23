@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/newwidget.h"
 
-#include "yasl/binding2/qclass.h"
+#include "yasl/binding/qclass.h"
 #include "yasl/core/size.h"
 #include "yasl/gui/guievent.h"
-#include "yasl/binding2/ref.h"
+#include "yasl/binding/ref.h"
 
 #include <script/classbuilder.h>
 #include <script/classtemplate.h>

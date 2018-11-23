@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_URL_H
 #define YASL_CORE_URL_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QUrl>
 

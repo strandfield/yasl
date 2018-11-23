@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_VECTOR4D_H
 #define YASL_GUI_VECTOR4D_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QVector4D>
 

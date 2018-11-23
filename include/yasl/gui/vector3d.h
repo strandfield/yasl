@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_VECTOR3D_H
 #define YASL_GUI_VECTOR3D_H
 
-#include "yasl/binding2/types.h"
+#include "yasl/binding/types.h"
 
 #include <QVector3D>
 
