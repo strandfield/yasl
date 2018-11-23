@@ -196,7 +196,7 @@ static void emit_signal(const script::Value & object, const script::Function & s
   std::vector<script::Value> invoke_args{ script::Value{} };
   invoke_args.insert(invoke_args.end(), args.begin(), args.end());
 
-  QList<bind::Connection> connections = bind::BindingData::get(bind::value_cast<QObject*>(object)).connections;
+  QList<bind::Connection> connections = bind::BindingData::get(object.toQObject()).connections;
   for (const bind::Connection & c : connections)
   {
     if (c.signal != sig)
@@ -222,7 +222,7 @@ static void emit_signal(const std::vector<script::Value> & args)
   std::vector<script::Value> invoke_args{ script::Value{} };
   invoke_args.insert(invoke_args.end(), args.begin() + 2, args.end());
 
-  QList<bind::Connection> connections = bind::BindingData::get(bind::value_cast<QObject*>(object)).connections;
+  QList<bind::Connection> connections = bind::BindingData::get(object.toQObject()).connections;
   for (const bind::Connection & c : connections)
   {
     if (c.signal != signal)
@@ -258,10 +258,10 @@ namespace callbacks
 
 script::Value connect(script::FunctionCall *c)
 {
-  QObject *sender = bind::value_cast<QObject*>(c->arg(0));
+  QObject *sender = c->arg(0).toQObject();
 
   script::Function signal = c->arg(1).toFunction();
-  QObject *receiver = bind::value_cast<QObject*>(c->arg(2));
+  QObject *receiver = c->arg(2).toQObject();
   script::Function slot = c->arg(3).toFunction();
 
   if (signal.isNative())

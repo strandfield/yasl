@@ -81,7 +81,7 @@ namespace bind
 template<> struct make_type_t<Widget*> { inline static script::Type get() { return script::Type::QWidgetStar; } };
 template<> inline Widget* value_cast<Widget*>(const script::Value & val)
 {
-  return qobject_cast<Widget*>(value_cast<QObject*>(val));
+  return qobject_cast<Widget*>(val.toQObject());
 }
 
 } // namespace bind

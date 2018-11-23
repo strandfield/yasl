@@ -18,7 +18,7 @@ namespace callbacks
 static script::Value new_timer(script::FunctionCall *c)
 {
   using namespace script;
-  QTimer *timer = new QTimer(bind::value_cast<QObject*>(c->arg(0)));
+  QTimer *timer = new QTimer(c->arg(0).toQObject());
   return c->engine()->expose(timer, Type::QTimer);
 }
 
