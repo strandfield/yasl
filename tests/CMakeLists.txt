@@ -1,41 +1,10 @@
 
 enable_testing()
 
-configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
-execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
-    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/googletest-download")
-execute_process(COMMAND "${CMAKE_COMMAND}" --build .
-    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/googletest-download" )
-set(GTEST_DIR "${CMAKE_BINARY_DIR}/googletest-src/googletest" CACHE PATH "Root directory for GoogleTest")
 
-add_executable(tests test_binding.cpp test_core.cpp test_widgets.cpp ${GTEST_DIR}/src/gtest-all.cc ${GTEST_DIR}/src/gtest_main.cc)
-add_dependencies(tests libyasl)
+add_executable(tests test.cpp)
+add_dependencies(tests bindinglib)
 target_include_directories(tests PUBLIC "${GTEST_DIR}/include")
 target_include_directories(tests PRIVATE "${GTEST_DIR}")
 target_include_directories(tests PUBLIC "../include")
-target_link_libraries(tests libyasl)
-
-if (NOT DEFINED WIN32)
-  target_link_libraries(tests pthread)
-endif()
-
-
-file(GLOB_RECURSE YASL_TEST_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.y")
-file(COPY ${YASL_TEST_FILES} DESTINATION ${CMAKE_BINARY_DIR})
-
-add_test(Tests tests)
-
-set_target_properties(tests PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
-set_target_properties(tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
-
-
-add_executable(tests2 test_binding2.cpp ${GTEST_DIR}/src/gtest-all.cc ${GTEST_DIR}/src/gtest_main.cc)
-add_dependencies(tests2 bindinglib)
-target_include_directories(tests2 PUBLIC "${GTEST_DIR}/include")
-target_include_directories(tests2 PRIVATE "${GTEST_DIR}")
-target_include_directories(tests2 PUBLIC "../include")
-target_link_libraries(tests2 bindinglib)
-
-if (NOT DEFINED WIN32)
-  target_link_libraries(tests2 pthread)
-endif()
+target_link_libraries(tests bindinglib)

@@ -2,8 +2,6 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include <gtest/gtest.h>
-
 #include "yasl/binding2/constructor.h"
 #include "yasl/binding2/destructor.h"
 #include "yasl/binding2/function.h"
@@ -22,7 +20,13 @@
 
 #include <QList>
 
+#include <cassert>
+#include <iostream>
 #include <type_traits>
+
+#define ASSERT_EQ(a, b) assert((a) == (b))
+#define ASSERT_TRUE(a) assert((a))
+#define ASSERT_FALSE(a) assert(!(a))
 
 int add(int a, int b)
 {
@@ -77,7 +81,8 @@ template<> struct make_type_t<long unsigned int> { inline static script::Type ge
 }
 } // namespace script
 
-TEST(BindingTests, simple_binding) {
+void test_simple_bindind()
+{
   using namespace script;
 
   Engine e;
@@ -197,7 +202,8 @@ template<> struct make_type_t<QList<QByteArray>> { inline static script::Type ge
 }
 } // namespace script
 
-TEST(BindingTests, bytearray) {
+void bytearray_binding()
+{
   using namespace script;
 
   Engine e;
@@ -263,7 +269,8 @@ script::Class parameterized_bind(script::Namespace &ns)
 }
 
 
-TEST(BindingTests, parameterized_binding) {
+void parameterized_binding()
+{
   using namespace script;
 
   Engine e;
@@ -277,96 +284,11 @@ TEST(BindingTests, parameterized_binding) {
 }
 
 
-//
-//TEST(BindingTests, value_cast_2) {
-//  using namespace script;
-//
-//  Engine e;
-//  e.setup();
-//
-//  Class point_class = e.rootNamespace().newClass("Point").setId(bind::make_type<Point>().data()).get();
-//  binding::ClassBinder<Point> binder{ point_class };
-//
-//  binder.default_ctor().create();
-//  binder.ctor<const Point &>().create();
-//  binder.ctor<int, int>().create();
-//  binder.dtor().create();
-//
-//  binder.fun<int, &Point::x>("x").create();
-//  binder.static_fun<Point, const Point &, const Point &, &Point::max>("max").create();
-//  binder.static_void_fun<const Point &, &Point::print>("print").create();
-//  binder.operators().assign<const Point &>();
-//
-//  {
-//    Value p1_val = e.eval("p = Point(3, 4)");
-//    Point & p1_ref = binding::get<Point>(p1_val);
-//    p1_ref.x_ = 4;
-//
-//    Value a = e.eval("p.x()");
-//    ASSERT_EQ(a.type(), Type::Int);
-//    ASSERT_EQ(a.toInt(), 4);
-//  }
-//
-//  {
-//    Value p1_val = e.eval("p = Point(3, 4)");
-//    Point & p1_ref = binding::value_cast<Point&>(p1_val);
-//    p1_ref.x_ = 4;
-//
-//    Value a = e.eval("p.x()");
-//    ASSERT_EQ(a.type(), Type::Int);
-//    ASSERT_EQ(a.toInt(), 4);
-//  }
-//
-//  {
-//    Value p1_val = e.eval("p = Point(3, 4)");
-//    Point p1_copy = binding::value_cast<Point>(p1_val);
-//    p1_copy.x_ = 4;
-//
-//    Value a = e.eval("p.x()");
-//    ASSERT_EQ(a.type(), Type::Int);
-//    ASSERT_EQ(a.toInt(), 3);
-//  }
-//}
-//
-//
-//TEST(BindingTests, free_functions_1) {
-//  using namespace script;
-//
-//  Engine e;
-//  e.setup();
-//
-//  binding::Namespace ns{ e.rootNamespace() };
-//  Function bar_fun = ns.fun<int, bar>("bar").get();
-//  Function incr_fun = ns.void_fun<int&, incr>("incr").get();
-//
-//  Value n = e.eval("bar()");
-//  ASSERT_EQ(n.toInt(), 42);
-//
-//  e.eval("a = 5");
-//  e.eval("incr(a)");
-//  n = e.eval("a");
-//  ASSERT_EQ(n.toInt(), 6);
-//}
-//
-//TEST(BindingTests, class_1) {
-//  using namespace script;
-//
-//  Engine e;
-//  e.setup();
-//
-//  Class point_class = e.rootNamespace().newClass("Point").get();
-//
-//  auto point = binding::ClassBinder<Point>{ point_class };
-//  point.default_ctor().create();
-//  point.ctor<int, int>().create();
-//  point.dtor().create();
-//  point.fun<int, &Point::get2X>("get2X").create();
-//  
-//  Value p = e.eval("p = Point(3, 4)");
-//  Point & point_ref = binding::value_cast<Point&>(p);
-//  point_ref.x_ = 4;
-//
-//  Value a = e.eval("p.get2X()");
-//  ASSERT_EQ(a.toInt(), 2*4);
-//}
-//
+int main(int argc, char *argv[])
+{
+  test_simple_bindind();
+  bytearray_binding();
+  parameterized_binding();
+
+  return 0;
+}
