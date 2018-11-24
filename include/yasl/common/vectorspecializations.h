@@ -2,10 +2,10 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_CORE_VECTOR_SPECIALIZATIONS_H
-#define YASL_CORE_VECTOR_SPECIALIZATIONS_H
+#ifndef YASL_COMMONS_VECTOR_SPECIALIZATIONS_H
+#define YASL_COMMONS_VECTOR_SPECIALIZATIONS_H
 
-#include "yasl/core/vector.h"
+#include "yasl/common/vector.h"
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/default_arguments.h"
@@ -255,4 +255,4 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   bind::memop_subscript<QVector<T>, T, int>(vector);
 }
 
-#endif // YASL_CORE_VECTOR_SPECIALIZATIONS_H
+#endif // YASL_COMMONS_VECTOR_SPECIALIZATIONS_H

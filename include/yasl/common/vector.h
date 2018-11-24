@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_CORE_VECTOR_H
-#define YASL_CORE_VECTOR_H
+#ifndef YASL_COMMONS_VECTOR_H
+#define YASL_COMMONS_VECTOR_H
 
 #include "yasl/common/types.h"
 
@@ -16,4 +16,4 @@ template<> struct make_type_t<QVector<float>> { inline static script::Type get()
 template<> struct make_type_t<QVector<double>> { inline static script::Type get() { return script::Type::QVectorDouble; } };
 } // namespace script
 
-#endif // YASL_CORE_VECTOR_H
+#endif // YASL_COMMONS_VECTOR_H
