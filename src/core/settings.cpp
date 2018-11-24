@@ -5,9 +5,9 @@
 #include "yasl/core/settings.h"
 
 #include "yasl/common/binding/default_arguments.h"
-#include "yasl/common/enums.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/binding/qclass.h"
+#include "yasl/common/enums.h"
 
 #include "yasl/core/object.h"
 #include "yasl/core/settings.h"

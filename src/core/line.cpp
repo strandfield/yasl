@@ -5,8 +5,9 @@
 #include "yasl/core/line.h"
 
 #include "yasl/common/binding/class.h"
-#include "yasl/common/enums.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/line.h"
@@ -74,6 +75,8 @@ static void register_line_class(script::Namespace ns)
   bind::memop_eq<QLine, const QLine &>(line);
   // bool operator!=(const QLine &) const;
   bind::memop_neq<QLine, const QLine &>(line);
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QLine, QMetaType::QLine>>();
 }
 
 

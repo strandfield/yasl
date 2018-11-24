@@ -6,9 +6,69 @@
 
 #include <script/class.h>
 #include <script/engine.h>
+#include <script/initialization.h>
+#include <script/namelookup.h>
+#include <script/namespace.h>
+#include <script/overloadresolution.h>
 
 namespace yasl
 {
+
+static std::map<int, std::shared_ptr<TypeInfo>> & get_typeinfo_map()
+{
+  static std::map<int, std::shared_ptr<TypeInfo>> map = {};
+  return map;
+}
+
+static bool check_op_eq(const script::Type & t, const script::Function & op)
+{
+  if (op.returnType().baseType() != script::Type::Boolean)
+    return false;
+
+  if (op.parameter(0) != script::Type::cref(t) || op.parameter(1) != script::Type::cref(t))
+    return false;
+
+  return true;
+}
+
+std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & t)
+{
+  auto & typeinfomap = get_typeinfo_map();
+
+  auto it = typeinfomap.find(t.baseType().data());
+  if (it != typeinfomap.end())
+    return it->second;
+
+  std::shared_ptr<TypeInfo> ret = std::make_shared<TypeInfo>();
+  ret->element_type = t.baseType();
+  ret->engine = e;
+
+  if (t.isObjectType() || t.isFundamentalType())
+  {
+    auto creftype = script::Type::cref(t);
+
+    std::vector<script::Function> ops = script::NameLookup::resolve(script::EqualOperator, creftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
+    auto resol = script::OverloadResolution::New(e);
+    if (!resol.process(ops, { creftype, creftype }))
+      throw std::runtime_error{ "TypeInfo::get(): type must be equality-comparable" };
+
+    ret->eq = resol.selectedOverload();
+    if(!check_op_eq(t.baseType(), ret->eq))
+      throw std::runtime_error{ "TypeInfo::get(): invalid operator==" };
+  }
+  else
+  {
+    throw std::runtime_error{ "Not implemented" };
+  }
+
+  typeinfomap[t.baseType().data()] = ret;
+  return ret;
+}
+
+std::shared_ptr<TypeInfo> TypeInfo::get(const script::Class & cla)
+{
+  return std::static_pointer_cast<TypeInfo>(cla.data());
+}
 
 Value::Value()
   : typeinfo_(nullptr)
@@ -42,6 +102,18 @@ Value::Value(const std::shared_ptr<TypeInfo> & ti, script::Value && val)
   , value_(val)
 {
 
+}
+
+Value::Value(const script::Value & val)
+{
+  typeinfo_ = TypeInfo::get(val.engine(), val.type());
+  value_ = engine()->copy(val);
+}
+
+Value::Value(script::Value && val)
+  : value_(val)
+{
+  typeinfo_ = TypeInfo::get(val.engine(), val.type());
 }
 
 Value::~Value()
@@ -93,7 +165,7 @@ bool Value::operator==(const Value & other) const
   if (other.isNull() != isNull())
     return false;
 
-  auto ret = engine()->invoke(typeinfo_->compare, { value_, other.value_ });
+  auto ret = engine()->invoke(typeinfo_->eq, { value_, other.value_ });
   bool result = ret.toBool();
   engine()->destroy(ret);
   return result;

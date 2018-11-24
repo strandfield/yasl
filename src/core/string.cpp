@@ -4,7 +4,7 @@
 
 #include "yasl/core/string.h"
 
-#include "yasl/core/listspecializations.h"
+#include "yasl/common/listspecializations.h"
 
 #include <script/namespace.h>
 

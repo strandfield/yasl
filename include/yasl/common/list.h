@@ -2,8 +2,8 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_CORE_LIST_H
-#define YASL_CORE_LIST_H
+#ifndef YASL_COMMONS_LIST_H
+#define YASL_COMMONS_LIST_H
 
 #include "yasl/common/types.h"
 
@@ -21,4 +21,4 @@ void register_qlist_template(Namespace n);
 
 } // namespace script
 
-#endif // YASL_CORE_LIST_H
+#endif // YASL_COMMONS_LIST_H

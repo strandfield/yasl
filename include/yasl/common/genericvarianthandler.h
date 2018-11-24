@@ -2,27 +2,33 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_COMMONS_VARIANT_H
-#define YASL_COMMONS_VARIANT_H
+#ifndef YASL_COMMONS_GENERICVARIANTHANDLER_H
+#define YASL_COMMONS_GENERICVARIANTHANDLER_H
 
 #include "yasl/common/variant.h"
 
 #include "yasl/common/values.h"
 
+#include <QMetaType>
 #include <QVariant>
 
 namespace yasl
 {
 
-template<QMetaType::Type MT, script::Type ST, typename T>
+template<typename T, QMetaType::Type MT>
 class GenericVariantHandler : public VariantHandler
 {
 public:
   GenericVariantHandler() = default;
   ~GenericVariantHandler() = default;
 
-  script::Type script_type() const override { return ST; }
-  QVariant::Type qt_type() const override { return MT; }
+  script::Type script_type() const override { return script::make_type<T>(); }
+  
+  int qt_type() const override
+  {
+    /* We could also return qMetaTypeId<T>() */
+    return MT; 
+  }
 
   QVariant to_qvariant(const script::Value & v) override
   {
@@ -37,4 +43,4 @@ public:
 
 } // namespace yasl
 
-#endif // YASL_COMMONS_VARIANT_H
+#endif // YASL_COMMONS_GENERICVARIANTHANDLER_H

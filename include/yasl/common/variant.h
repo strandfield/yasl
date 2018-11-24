@@ -18,7 +18,7 @@ public:
   virtual ~VariantHandler() = default;
 
   virtual script::Type script_type() const = 0;
-  virtual QVariant::Type qt_type() const = 0;
+  virtual int qt_type() const = 0;
 
   virtual QVariant to_qvariant(const script::Value & v) = 0;
   virtual script::Value from_qvariant(script::Engine *e, const QVariant & v) = 0;

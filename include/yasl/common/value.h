@@ -18,10 +18,10 @@ struct TypeInfo : public script::UserData
 {
   script::Type element_type;
   script::Engine *engine;
-  script::Function assignment;
-  script::Function compare;
+  script::Function eq;
 
-  static std::shared_ptr<TypeInfo> get(const script::Engine *e, const script::Type & t);
+  static std::shared_ptr<TypeInfo> get(script::Engine *e, const script::Type & t);
+  static std::shared_ptr<TypeInfo> get(const script::Class & cla);
 };
 
 class Value
@@ -32,9 +32,12 @@ public:
   Value(Value && other);
   Value(const std::shared_ptr<TypeInfo> & ti, const script::Value & val);
   Value(const std::shared_ptr<TypeInfo> & ti, script::Value && val);
+  explicit Value(const script::Value & val);
+  explicit Value(script::Value && val);
   ~Value();
 
   inline script::Value & get() { return value_; }
+  inline const script::Value & get() const { return value_; }
   script::Value release();
 
   inline bool isValid() const { return typeinfo_ != nullptr && !value_.isNull(); }

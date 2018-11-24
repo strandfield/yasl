@@ -2,10 +2,10 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_CORE_LIST_SPECIALIZATIONS_H
-#define YASL_CORE_LIST_SPECIALIZATIONS_H
+#ifndef YASL_COMMONS_LIST_SPECIALIZATIONS_H
+#define YASL_COMMONS_LIST_SPECIALIZATIONS_H
 
-#include "yasl/core/list.h"
+#include "yasl/common/list.h"
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/proxyspecialization.h"
@@ -195,4 +195,4 @@ void register_list_specialization(script::Engine *e, script::Type::BuiltInType t
   /// TODO !!!
 }
 
-#endif // YASL_CORE_LIST_SPECIALIZATIONS_H
+#endif // YASL_COMMONS_LIST_SPECIALIZATIONS_H

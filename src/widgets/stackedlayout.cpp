@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/stackedlayout.h"
 
-#include "yasl/common/enums.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/binding/newfunction.h"
 #include "yasl/common/binding/qclass.h"
+#include "yasl/common/enums.h"
 
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"

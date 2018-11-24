@@ -30,6 +30,7 @@ protected:
     HeaderColumn,
     TagColumn,
     LinksColumn,
+    MetatypeColumn,
   };
 
   QList<Type> & getTypeList(QTreeWidgetItem *item);

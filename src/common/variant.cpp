@@ -27,7 +27,7 @@ namespace yasl
 struct VariantEngine
 {
   std::map<script::Type, std::unique_ptr<VariantHandler>> handlers;
-  std::map<QVariant::Type, script::Type> typemap;
+  std::map<int, script::Type> typemap;
 };
 
 VariantEngine* get_variant_engine()

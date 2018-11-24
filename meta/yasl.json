@@ -40302,6 +40302,7 @@
             {
                 "header": "yasl/core/line.h",
                 "id": "QLine",
+                "metatype": "QMetaType::QLine",
                 "name": "QLine",
                 "rename": "Line"
             },

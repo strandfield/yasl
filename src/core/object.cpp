@@ -9,7 +9,7 @@
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/binding/qclass.h"
 #include "yasl/common/ref.h"
-#include "yasl/core/listspecializations.h"
+#include "yasl/common/listspecializations.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/enums.h"

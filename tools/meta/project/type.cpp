@@ -25,6 +25,8 @@ QJsonObject Type::toJson() const
     ret["tag"] = tag;
   if (!links.isEmpty())
     ret["links"] = links;
+  if (!metatype.isEmpty())
+    ret["metatype"] = metatype;
 
   return ret;
 }
@@ -36,5 +38,6 @@ Type Type::fromJson(const QJsonObject & obj)
   ret.header = obj.value("header").toString();
   ret.tag = obj.value("tag").toString();
   ret.links = obj.value("links").toString();
+  ret.metatype = obj.value("metatype").toString();
   return ret;
 }

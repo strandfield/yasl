@@ -17,6 +17,7 @@ public:
   QString header;
   QString tag;
   QString links;
+  QString metatype;
 
 public:
   Type() = default;

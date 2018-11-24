@@ -5,8 +5,8 @@
 #include "yasl/gui/pixelformat.h"
 
 #include "yasl/common/binding/class.h"
-#include "yasl/common/enums.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/enums.h"
 
 #include "yasl/gui/pixelformat.h"
 

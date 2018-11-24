@@ -5,11 +5,11 @@
 #include "yasl/widgets/widget.h"
 
 #include "yasl/common/binding/default_arguments.h"
-#include "yasl/common/enums.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/binding/qclass.h"
+#include "yasl/common/enums.h"
 #include "yasl/common/ref.h"
-#include "yasl/core/listspecializations.h"
+#include "yasl/common/listspecializations.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/enums.h"

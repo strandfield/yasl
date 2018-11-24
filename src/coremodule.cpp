@@ -2,7 +2,7 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/core/list.h"
+#include "yasl/common/list.h"
 #include "yasl/common/proxyspecialization.h"
 #include "yasl/common/binding/signals.h"
 
