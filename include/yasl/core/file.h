@@ -5,14 +5,14 @@
 #ifndef YASL_CORE_FILE_H
 #define YASL_CORE_FILE_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QFile>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QFile> { inline static script::Type get() { return script::Type::QFile; } };
 template<> struct tag_resolver<QFile> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_FILE_H

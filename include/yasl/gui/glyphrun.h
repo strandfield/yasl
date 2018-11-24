@@ -5,13 +5,13 @@
 #ifndef YASL_GUI_GLYPHRUN_H
 #define YASL_GUI_GLYPHRUN_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QGlyphRun>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QGlyphRun> { inline static script::Type get() { return script::Type::QGlyphRun; } };
 template<> struct make_type_t<QGlyphRun::GlyphRunFlag> { inline static script::Type get() { return script::Type::QGlyphRunGlyphRunFlag; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_GLYPHRUN_H

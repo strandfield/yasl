@@ -5,14 +5,14 @@
 #ifndef YASL_WIDGETS_ABSTRACTBUTTON_H
 #define YASL_WIDGETS_ABSTRACTBUTTON_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QAbstractButton>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QAbstractButton> { inline static script::Type get() { return script::Type::QAbstractButton; } };
 template<> struct tag_resolver<QAbstractButton> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_ABSTRACTBUTTON_H

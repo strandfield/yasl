@@ -5,16 +5,16 @@
 #ifndef YASL_WIDGETS_FONTCOMBOBOX_H
 #define YASL_WIDGETS_FONTCOMBOBOX_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QFontComboBox>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QFontComboBox> { inline static script::Type get() { return script::Type::QFontComboBox; } };
 template<> struct tag_resolver<QFontComboBox> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QFontComboBox::FontFilter> { inline static script::Type get() { return script::Type::QFontComboBoxFontFilter; } };
 template<> struct make_type_t<QFontComboBox::FontFilters> { inline static script::Type get() { return script::Type::QFontComboBoxFontFilters; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_FONTCOMBOBOX_H

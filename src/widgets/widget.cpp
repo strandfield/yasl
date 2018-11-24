@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/widget.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
-#include "yasl/binding/ref.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/qclass.h"
+#include "yasl/common/ref.h"
 #include "yasl/core/listspecializations.h"
 
 #include "yasl/core/bytearray.h"
@@ -56,8 +56,8 @@ static void register_widget_class(script::Namespace ns)
   Class widget = ns.newClass("Widget").setId(script::Type::QWidget)
     .setBase(script::Type::QObject).get();
 
-  bind::register_ref_specialization(widget.engine(), script::Type::QWidget, script::Type::QWidgetStar);
-  bind::register_proxy_specialization<QWidget*>(widget.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQWidget);
+  register_ref_specialization(widget.engine(), script::Type::QWidget, script::Type::QWidgetStar);
+  register_proxy_specialization<QWidget*>(widget.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQWidget);
   register_list_specialization<QWidget*>(widget.engine(), script::Type::QListQWidget);
   register_widget_render_flag_enum(widget);
 

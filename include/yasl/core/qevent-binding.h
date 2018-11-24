@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_QEVENT_BINDING_H
 #define YASL_CORE_QEVENT_BINDING_H
 
-#include "yasl/binding/values.h"
+#include "yasl/common/values.h"
 #include "yasl/core/makeevent.h"
 
 #include <QEvent>
@@ -13,16 +13,7 @@
 namespace script
 {
 
-namespace bind
-{
-
 struct qevent_tag {};
-
-} // namespace bind
-
-
-namespace bind
-{
 
 template<typename T>
 struct make_value_t<T, qevent_tag>
@@ -32,11 +23,6 @@ struct make_value_t<T, qevent_tag>
     return make_event(e, make_type<T>(), input);
   }
 };
-
-} // namespace bind
-
-namespace bind
-{
 
 template<typename T>
 struct storage_type_default_impl<T, qevent_tag> : heap_storage<T> { };
@@ -49,8 +35,6 @@ struct get_helper<T, qevent_tag>
     return static_cast<T*>(val.getPtr());
   }
 };
-
-} // namespace bind
 
 } // namespace script
 

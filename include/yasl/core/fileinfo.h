@@ -5,12 +5,12 @@
 #ifndef YASL_CORE_FILEINFO_H
 #define YASL_CORE_FILEINFO_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QFileInfo>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QFileInfo> { inline static script::Type get() { return script::Type::QFileInfo; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_FILEINFO_H

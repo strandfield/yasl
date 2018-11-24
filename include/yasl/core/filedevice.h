@@ -5,13 +5,13 @@
 #ifndef YASL_CORE_FILEDEVICE_H
 #define YASL_CORE_FILEDEVICE_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QFileDevice>
 #include "yasl/core/iodevice.h"
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QFileDevice> { inline static script::Type get() { return script::Type::QFileDevice; } };
 template<> struct tag_resolver<QFileDevice> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QFileDevice::FileError> { inline static script::Type get() { return script::Type::QFileDeviceFileError; } };
@@ -20,6 +20,6 @@ template<> struct make_type_t<QFileDevice::FileHandleFlags> { inline static scri
 template<> struct make_type_t<QFileDevice::MemoryMapFlags> { inline static script::Type get() { return script::Type::QFileDeviceMemoryMapFlags; } };
 template<> struct make_type_t<QFileDevice::Permission> { inline static script::Type get() { return script::Type::QFileDevicePermission; } };
 template<> struct make_type_t<QFileDevice::Permissions> { inline static script::Type get() { return script::Type::QFileDevicePermissions; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_FILEDEVICE_H

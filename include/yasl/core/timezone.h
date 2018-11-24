@@ -5,14 +5,14 @@
 #ifndef YASL_CORE_TIMEZONE_H
 #define YASL_CORE_TIMEZONE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QTimeZone>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QTimeZone> { inline static script::Type get() { return script::Type::QTimeZone; } };
 template<> struct make_type_t<QTimeZone::NameType> { inline static script::Type get() { return script::Type::QTimeZoneNameType; } };
 template<> struct make_type_t<QTimeZone::TimeType> { inline static script::Type get() { return script::Type::QTimeZoneTimeType; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_TIMEZONE_H

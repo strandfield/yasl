@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_PEN_H
 #define YASL_GUI_PEN_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QPen>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QPen> { inline static script::Type get() { return script::Type::QPen; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_PEN_H

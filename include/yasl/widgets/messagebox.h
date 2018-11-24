@@ -5,18 +5,18 @@
 #ifndef YASL_WIDGETS_MESSAGEBOX_H
 #define YASL_WIDGETS_MESSAGEBOX_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QMessageBox>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QMessageBox> { inline static script::Type get() { return script::Type::QMessageBox; } };
 template<> struct tag_resolver<QMessageBox> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QMessageBox::ButtonRole> { inline static script::Type get() { return script::Type::QMessageBoxButtonRole; } };
 template<> struct make_type_t<QMessageBox::Icon> { inline static script::Type get() { return script::Type::QMessageBoxIcon; } };
 template<> struct make_type_t<QMessageBox::StandardButton> { inline static script::Type get() { return script::Type::QMessageBoxStandardButton; } };
 template<> struct make_type_t<QMessageBox::StandardButtons> { inline static script::Type get() { return script::Type::QMessageBoxStandardButtons; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_MESSAGEBOX_H

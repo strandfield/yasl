@@ -1,20 +1,25 @@
 
+namespace script
+{
+
 namespace callbacks
 {
 
 static script::Value new_boxlayout(script::FunctionCall *c)
 {
-  QBoxLayout *blayout = new QBoxLayout(script::bind::value_cast<QBoxLayout::Direction>(c->arg(0)));
+  QBoxLayout *blayout = new QBoxLayout(script::value_cast<QBoxLayout::Direction>(c->arg(0)));
   return c->engine()->expose(blayout, script::Type::QBoxLayout);
 }
 
 static script::Value new_boxlayout_parent(script::FunctionCall *c)
 {
-  QBoxLayout *blayout = new QBoxLayout(script::bind::value_cast<QBoxLayout::Direction>(c->arg(0)), script::bind::value_cast<QWidget*>(c->arg(1)));
+  QBoxLayout *blayout = new QBoxLayout(script::value_cast<QBoxLayout::Direction>(c->arg(0)), script::value_cast<QWidget*>(c->arg(1)));
   return c->engine()->expose(blayout, script::Type::QBoxLayout);
 }
 
 } // namespace callbacks
+
+} // namespace script
 
 
 void register_newlayout_functions(script::Namespace widgets)

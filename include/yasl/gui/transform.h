@@ -5,13 +5,13 @@
 #ifndef YASL_GUI_TRANSFORM_H
 #define YASL_GUI_TRANSFORM_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QTransform>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QTransform> { inline static script::Type get() { return script::Type::QTransform; } };
 template<> struct make_type_t<QTransform::TransformationType> { inline static script::Type get() { return script::Type::QTransformTransformationType; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_TRANSFORM_H

@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_PIXMAP_H
 #define YASL_GUI_PIXMAP_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QPixmap>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QPixmap> { inline static script::Type get() { return script::Type::QPixmap; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_PIXMAP_H

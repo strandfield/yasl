@@ -16,6 +16,9 @@
 
 #include <cstring>
 
+namespace script
+{
+
 static script::Value make_list(const QList<ContainerValue> & val, const script::Type & list_type, script::Engine *e)
 {
   return e->construct(list_type, [&val](script::Value & ret) {
@@ -38,7 +41,7 @@ static script::Value default_ctor(script::FunctionCall *c)
 static script::Value copy_ctor(script::FunctionCall *c)
 {
   using namespace script;
-  QList<ContainerValue> & other = script::bind::value_cast<QList<ContainerValue> &>(c->arg(1));
+  QList<ContainerValue> & other = script::value_cast<QList<ContainerValue> &>(c->arg(1));
   new (&c->thisObject().impl()->data.memory) QList<ContainerValue>{other};
   return c->thisObject();
 }
@@ -47,7 +50,7 @@ static script::Value copy_ctor(script::FunctionCall *c)
 static script::Value dtor(script::FunctionCall *c)
 {
   using namespace script;
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   self.~QList<ContainerValue>();
   std::memset(&c->thisObject().impl()->data.memory, 0, sizeof(script::ValueImpl::BuiltIn));
   return script::Value::Void;
@@ -57,7 +60,7 @@ static script::Value dtor(script::FunctionCall *c)
 // void push_back(const T &value)
 static script::Value append_value(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   auto container = ContainerData::get(c->callee());
   self.append(ContainerValue{ container, c->arg(1) });
   return script::Value::Void;
@@ -66,8 +69,8 @@ static script::Value append_value(script::FunctionCall *c)
 // void append(const QList<T> &value)
 static script::Value append_list(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
-  QList<ContainerValue> & other = script::bind::value_cast<QList<ContainerValue> &>(c->arg(1));
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & other = script::value_cast<QList<ContainerValue> &>(c->arg(1));
   self.append(other);
   return script::Value::Void;
 }
@@ -76,7 +79,7 @@ static script::Value append_list(script::FunctionCall *c)
 // const T & operator[](int i) const
 static script::Value at(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   return self.at(c->arg(1).toInt()).value;
 }
 
@@ -84,7 +87,7 @@ static script::Value at(script::FunctionCall *c)
 // const T & back() const
 static script::Value back(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   return self.back().value;
 }
 
@@ -100,7 +103,7 @@ static script::Value back(script::FunctionCall *c)
 // void clear()
 static script::Value clear(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   self.clear();
   return script::Value::Void;
 }
@@ -113,7 +116,7 @@ static script::Value clear(script::FunctionCall *c)
 // bool contains(const T &value) const
 static script::Value contains(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   const bool result = self.contains(value);
   return c->engine()->newBool(result);
@@ -122,7 +125,7 @@ static script::Value contains(script::FunctionCall *c)
 // int count(const T &value) const
 static script::Value count_element(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   const int result = self.count(value);
   return c->engine()->newInt(result);
@@ -133,7 +136,7 @@ static script::Value count_element(script::FunctionCall *c)
 // int size() const
 static script::Value count(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   return c->engine()->newInt(self.count());
 }
 
@@ -145,7 +148,7 @@ static script::Value count(script::FunctionCall *c)
 // bool isEmpty() const
 static script::Value empty(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   return c->engine()->newBool(self.isEmpty());
 }
 
@@ -155,7 +158,7 @@ static script::Value empty(script::FunctionCall *c)
 // bool endsWith(const T &value) const
 static script::Value ends_with(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   const bool result = self.endsWith(value);
   return c->engine()->newBool(result);
@@ -171,14 +174,14 @@ static script::Value ends_with(script::FunctionCall *c)
 // const T & front() const
 static script::Value first(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   return self.first().value;
 }
 
 // int indexOf(const T &value, int from = 0) const
 static script::Value index_of(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   const int from = c->arg(2).toInt();
   const int result = self.indexOf(value, from);
@@ -188,7 +191,7 @@ static script::Value index_of(script::FunctionCall *c)
 // void insert(int i, const T &value)
 static script::Value insert(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(2) };
   self.insert(i, value);
@@ -202,14 +205,14 @@ static script::Value insert(script::FunctionCall *c)
 // const T & constLast() const
 static script::Value last(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   return self.last().value;
 }
 
 // int lastIndexOf(const T &value, int from = -1) const
 static script::Value last_index_of(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   const int from = c->arg(2).toInt();
   const int result = self.lastIndexOf(value, from);
@@ -219,7 +222,7 @@ static script::Value last_index_of(script::FunctionCall *c)
 // QList<T> mid(int pos, int length = -1) const
 static script::Value mid(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int pos = c->arg(1).toInt();
   const int length = c->arg(2).toInt();
   return make_list(self.mid(pos, length), c->callee().returnType(), c->engine());
@@ -228,7 +231,7 @@ static script::Value mid(script::FunctionCall *c)
 // void move(int from, int to)
 static script::Value move(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int from = c->arg(1).toInt();
   const int to = c->arg(2).toInt();
   self.move(from, to);
@@ -238,7 +241,7 @@ static script::Value move(script::FunctionCall *c)
 // void pop_back()
 static script::Value pop_back(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   self.pop_back();
   return script::Value::Void;
 }
@@ -246,7 +249,7 @@ static script::Value pop_back(script::FunctionCall *c)
 // void pop_front()
 static script::Value pop_front(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   self.pop_front();
   return script::Value::Void;
 }
@@ -255,7 +258,7 @@ static script::Value pop_front(script::FunctionCall *c)
 // void push_front(const T &value)
 static script::Value prepend(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   auto container = ContainerData::get(c->callee());
   self.prepend(ContainerValue{ container, c->arg(1) });
   return script::Value::Void;
@@ -267,7 +270,7 @@ static script::Value prepend(script::FunctionCall *c)
 // int removeAll(const T &value)
 static script::Value remove_all(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   const int result = self.removeAll(value);
   return c->engine()->newInt(result);
@@ -276,7 +279,7 @@ static script::Value remove_all(script::FunctionCall *c)
 // void removeAt(int i)
 static script::Value remove_at(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   self.removeAt(i);
   return script::Value::Void;
@@ -285,7 +288,7 @@ static script::Value remove_at(script::FunctionCall *c)
 // void removeFirst()
 static script::Value remove_first(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   self.removeFirst();
   return script::Value::Void;
 }
@@ -293,7 +296,7 @@ static script::Value remove_first(script::FunctionCall *c)
 // void removeLast()
 static script::Value remove_last(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   self.removeLast();
   return script::Value::Void;
 }
@@ -301,7 +304,7 @@ static script::Value remove_last(script::FunctionCall *c)
 // bool removeOne(const T &value)
 static script::Value remove_one(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   const bool result = self.removeOne(value);
   return c->engine()->newBool(result);
@@ -313,7 +316,7 @@ static script::Value remove_one(script::FunctionCall *c)
 // void replace(int i, const T &value)
 static script::Value replace(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(2) };
   self.replace(i, value);
@@ -323,7 +326,7 @@ static script::Value replace(script::FunctionCall *c)
 // void reserve(int alloc)
 static script::Value reserve(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   self.reserve(i);
   return script::Value::Void;
@@ -332,7 +335,7 @@ static script::Value reserve(script::FunctionCall *c)
 // bool startsWith(const T &value) const
 static script::Value starts_with(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   const bool result = self.startsWith(value);
   return c->engine()->newBool(result);
@@ -341,8 +344,8 @@ static script::Value starts_with(script::FunctionCall *c)
 // void swap(QList<T> &other)
 static script::Value swap_list(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
-  QList<ContainerValue> & other = script::bind::value_cast<QList<ContainerValue> &>(c->arg(1));
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & other = script::value_cast<QList<ContainerValue> &>(c->arg(1));
   self.swap(other);
   return script::Value::Void;
 }
@@ -350,7 +353,7 @@ static script::Value swap_list(script::FunctionCall *c)
 // void swap(int i, int j)
 static script::Value swap_element(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   const int j = c->arg(2).toInt();
   self.swap(i, j);
@@ -360,7 +363,7 @@ static script::Value swap_element(script::FunctionCall *c)
 // T takeAt(int i)
 static script::Value take_at(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   auto ret = self.takeAt(i);
   return ret.release();
@@ -369,7 +372,7 @@ static script::Value take_at(script::FunctionCall *c)
 // T takeFirst()
 static script::Value take_first(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   auto ret = self.takeFirst();
   return ret.release();
 }
@@ -377,7 +380,7 @@ static script::Value take_first(script::FunctionCall *c)
 // T takeLast()
 static script::Value take_last(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   auto ret = self.takeLast();
   return ret.release();
 }
@@ -389,7 +392,7 @@ static script::Value take_last(script::FunctionCall *c)
 // T value(int i) const
 static script::Value value(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   ContainerValue ret = self.value(i);
   if (ret.isValid())
@@ -401,7 +404,7 @@ static script::Value value(script::FunctionCall *c)
 // T value(int i, const T &defaultValue) const
 static script::Value value_with_default(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   ContainerValue ret = self.value(i, ContainerValue{});
   if (ret.isValid())
@@ -413,8 +416,8 @@ static script::Value value_with_default(script::FunctionCall *c)
 // bool operator!=(const QList<T> &other) const
 static script::Value op_neq(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
-  QList<ContainerValue> & other = script::bind::value_cast<QList<ContainerValue> &>(c->arg(1));
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & other = script::value_cast<QList<ContainerValue> &>(c->arg(1));
   const bool result = self != other;
   return c->engine()->newBool(result);
 }
@@ -422,16 +425,16 @@ static script::Value op_neq(script::FunctionCall *c)
 // QList<T> operator+(const QList<T> &other) const
 static script::Value op_add(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
-  QList<ContainerValue> & other = script::bind::value_cast<QList<ContainerValue> &>(c->arg(1));
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & other = script::value_cast<QList<ContainerValue> &>(c->arg(1));
   return make_list(self + other, c->callee().returnType(), c->engine());
 }
 
 // QList<T> & operator+=(const QList<T> &other)
 static script::Value op_add_assign(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
-  QList<ContainerValue> & other = script::bind::value_cast<QList<ContainerValue> &>(c->arg(1));
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & other = script::value_cast<QList<ContainerValue> &>(c->arg(1));
   self += other;
   return c->thisObject();
 }
@@ -439,7 +442,7 @@ static script::Value op_add_assign(script::FunctionCall *c)
 // QList<T> & operator+=(const T &value)
 static script::Value op_add_assign_value(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   TemporaryContainerValueWrap value{ ContainerData::get(c->callee()), c->arg(1) };
   self += value;
   return c->thisObject();
@@ -452,8 +455,8 @@ static script::Value op_add_assign_value(script::FunctionCall *c)
 // QList<T> & operator=(const QList<T> &other)
 static script::Value op_assign(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
-  QList<ContainerValue> & other = script::bind::value_cast<QList<ContainerValue> &>(c->arg(1));
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & other = script::value_cast<QList<ContainerValue> &>(c->arg(1));
   self = other;
   return c->thisObject();
 }
@@ -464,8 +467,8 @@ static script::Value op_assign(script::FunctionCall *c)
 // bool operator==(const QList<T> &other) const
 static script::Value op_eq(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
-  QList<ContainerValue> & other = script::bind::value_cast<QList<ContainerValue> &>(c->arg(1));
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & other = script::value_cast<QList<ContainerValue> &>(c->arg(1));
   const bool result = self == other;
   return c->engine()->newBool(result);
 }
@@ -473,7 +476,7 @@ static script::Value op_eq(script::FunctionCall *c)
 // T & operator[](int i)
 static script::Value op_subscript(script::FunctionCall *c)
 {
-  QList<ContainerValue> & self = script::bind::value_cast<QList<ContainerValue> &>(c->thisObject());
+  QList<ContainerValue> & self = script::value_cast<QList<ContainerValue> &>(c->thisObject());
   const int i = c->arg(1).toInt();
   return self[i].value;
 }
@@ -507,7 +510,7 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
   list.newMethod("at", callbacks::at)
     .setConst()
     .returns(Type::cref(element_type))
-    .params(Type::Int).create();  
+    .params(Type::Int).create();
   // T & back()
   list.newMethod("back", callbacks::back)
     .returns(Type::ref(element_type)).create();
@@ -774,3 +777,5 @@ void register_qlist_template(script::Namespace n)
   register_list_specialization<float>(n.engine(), Type::QListfloat);
   register_list_specialization<double>(n.engine(), Type::QListdouble);
 }
+
+} // namespace script

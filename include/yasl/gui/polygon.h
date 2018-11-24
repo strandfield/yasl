@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_POLYGON_H
 #define YASL_GUI_POLYGON_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QPolygon>
 

@@ -5,14 +5,14 @@
 #ifndef YASL_CORE_JSONVALUE_H
 #define YASL_CORE_JSONVALUE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QJsonValue>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QJsonValue> { inline static script::Type get() { return script::Type::QJsonValue; } };
 template<> struct make_type_t<QJsonValue::Type> { inline static script::Type get() { return script::Type::QJsonValueType; } };
 template<> struct make_type_t<QJsonValueRef> { inline static script::Type get() { return script::Type::QJsonValueRef; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_JSONVALUE_H

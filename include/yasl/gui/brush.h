@@ -5,11 +5,11 @@
 #ifndef YASL_GUI_BRUSH_H
 #define YASL_GUI_BRUSH_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QBrush>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QBrush> { inline static script::Type get() { return script::Type::QBrush; } };
 template<> struct make_type_t<QConicalGradient> { inline static script::Type get() { return script::Type::QConicalGradient; } };
 template<> struct make_type_t<QGradient> { inline static script::Type get() { return script::Type::QGradient; } };
@@ -19,6 +19,6 @@ template<> struct make_type_t<QGradient::Spread> { inline static script::Type ge
 template<> struct make_type_t<QGradient::Type> { inline static script::Type get() { return script::Type::QGradientType; } };
 template<> struct make_type_t<QLinearGradient> { inline static script::Type get() { return script::Type::QLinearGradient; } };
 template<> struct make_type_t<QRadialGradient> { inline static script::Type get() { return script::Type::QRadialGradient; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_BRUSH_H

@@ -4,8 +4,8 @@
 
 #include "yasl/core/margins.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/common/binding/class.h"
+#include "yasl/common/binding/namespace.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/margins.h"

@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/newwidget.h"
 
-#include "yasl/binding/qclass.h"
+#include "yasl/common/binding/qclass.h"
 #include "yasl/core/size.h"
 #include "yasl/gui/guievent.h"
-#include "yasl/binding/ref.h"
+#include "yasl/common/ref.h"
 
 #include <script/classbuilder.h>
 #include <script/classtemplate.h>
@@ -24,6 +24,9 @@
 #include <script/userdata.h>
 #include <script/value.h>
 #include <script/private/value_p.h>
+
+namespace script
+{
 
 namespace callbacks
 {
@@ -50,7 +53,7 @@ static script::Value new_widget_window_title(script::FunctionCall *c)
   using namespace script;
 
   QWidget *widget = new QWidget;
-  widget->setWindowTitle(script::bind::value_cast<QString>(c->arg(0)));
+  widget->setWindowTitle(script::value_cast<QString>(c->arg(0)));
 
   Type widget_type = c->callee().returnType().baseType();
 
@@ -61,110 +64,113 @@ static script::Value new_widget_window_title(script::FunctionCall *c)
 
 static script::Value close_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetCloseEvent(script::bind::value_cast<QCloseEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetCloseEvent(script::value_cast<QCloseEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value enter_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetEnterEvent(script::bind::value_cast<QEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetEnterEvent(script::value_cast<QEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value hide_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetHideEvent(script::bind::value_cast<QHideEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetHideEvent(script::value_cast<QHideEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value key_press_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetKeyPressEvent(script::bind::value_cast<QKeyEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetKeyPressEvent(script::value_cast<QKeyEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value key_release_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetKeyReleaseEvent(script::bind::value_cast<QKeyEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetKeyReleaseEvent(script::value_cast<QKeyEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value leave_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetLeaveEvent(script::bind::value_cast<QEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetLeaveEvent(script::value_cast<QEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value mouse_double_click_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetMouseDoubleClickEvent(script::bind::value_cast<QMouseEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetMouseDoubleClickEvent(script::value_cast<QMouseEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value mouse_move_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetMouseMoveEvent(script::bind::value_cast<QMouseEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetMouseMoveEvent(script::value_cast<QMouseEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value mouse_press_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetMousePressEvent(script::bind::value_cast<QMouseEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetMousePressEvent(script::value_cast<QMouseEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value mouse_release_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetMouseReleaseEvent(script::bind::value_cast<QMouseEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetMouseReleaseEvent(script::value_cast<QMouseEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value move_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetMoveEvent(script::bind::value_cast<QMoveEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetMoveEvent(script::value_cast<QMoveEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value paint_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetPaintEvent(script::bind::value_cast<QPaintEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetPaintEvent(script::value_cast<QPaintEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value resize_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetResizeEvent(script::bind::value_cast<QResizeEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetResizeEvent(script::value_cast<QResizeEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value show_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetShowEvent(script::bind::value_cast<QShowEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetShowEvent(script::value_cast<QShowEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 static script::Value wheel_event(script::FunctionCall *c)
 {
-  Widget *self = script::bind::value_cast<Widget*>(c->arg(0));
-  self->QWidgetWheelEvent(script::bind::value_cast<QWheelEvent*>(c->arg(1)));
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  self->QWidgetWheelEvent(script::value_cast<QWheelEvent*>(c->arg(1)));
   return script::Value::Void;
 }
 
 } // namespace callbacks
+
+} // namespace script
+
 
 static void add_events_method(script::Engine *e)
 {
@@ -175,77 +181,77 @@ static void add_events_method(script::Engine *e)
   /* Events */
   widget.newMethod("closeEvent", callbacks::close_event)
     .setProtected()
-    .params(script::bind::make_type<QCloseEvent &>())
+    .params(script::make_type<QCloseEvent &>())
     .create();
 
   widget.newMethod("enterEvent", callbacks::enter_event)
     .setProtected()
-    .params(script::bind::make_type<QEvent &>())
+    .params(script::make_type<QEvent &>())
     .create();
 
   widget.newMethod("hideEvent", callbacks::hide_event)
     .setProtected()
-    .params(script::bind::make_type<QHideEvent &>())
+    .params(script::make_type<QHideEvent &>())
     .create();
 
   widget.newMethod("keyPressEvent", callbacks::key_press_event)
     .setProtected()
-    .params(script::bind::make_type<QKeyEvent &>())
+    .params(script::make_type<QKeyEvent &>())
     .create();
 
   widget.newMethod("keyReleaseEvent", callbacks::key_release_event)
     .setProtected()
-    .params(script::bind::make_type<QKeyEvent &>())
+    .params(script::make_type<QKeyEvent &>())
     .create();
 
   widget.newMethod("leaveEvent", callbacks::leave_event)
     .setProtected()
-    .params(script::bind::make_type<QEvent &>())
+    .params(script::make_type<QEvent &>())
     .create();
 
   widget.newMethod("mouseDoubleClickEvent", callbacks::mouse_double_click_event)
     .setProtected()
-    .params(script::bind::make_type<QMouseEvent &>())
+    .params(script::make_type<QMouseEvent &>())
     .create();
 
   widget.newMethod("mouseMoveEvent", callbacks::mouse_move_event)
     .setProtected()
-    .params(script::bind::make_type<QMouseEvent &>())
+    .params(script::make_type<QMouseEvent &>())
     .create();
 
   widget.newMethod("mousePressEvent", callbacks::mouse_press_event)
     .setProtected()
-    .params(script::bind::make_type<QMouseEvent &>())
+    .params(script::make_type<QMouseEvent &>())
     .create();
 
   widget.newMethod("mouseReleaseEvent", callbacks::mouse_release_event)
     .setProtected()
-    .params(script::bind::make_type<QMouseEvent &>())
+    .params(script::make_type<QMouseEvent &>())
     .create();
 
   widget.newMethod("moveEvent", callbacks::mouse_move_event)
     .setProtected()
-    .params(script::bind::make_type<QMoveEvent &>())
+    .params(script::make_type<QMoveEvent &>())
     .create();
 
   widget.newMethod("paintEvent", callbacks::paint_event)
     .setProtected()
-    .params(script::bind::make_type<QPaintEvent &>())
+    .params(script::make_type<QPaintEvent &>())
     .create();
 
   widget.newMethod("resizeEvent", callbacks::resize_event)
     .setProtected()
-    .params(script::bind::make_type<QResizeEvent &>())
+    .params(script::make_type<QResizeEvent &>())
     .create();
 
   widget.newMethod("showEvent", callbacks::show_event)
     .setProtected()
-    .params(script::bind::make_type<QShowEvent &>())
+    .params(script::make_type<QShowEvent &>())
     .create();
 
   widget.newMethod("wheelEvent", callbacks::wheel_event)
     .setProtected()
-    .params(script::bind::make_type<QWheelEvent &>())
+    .params(script::make_type<QWheelEvent &>())
     .create();
 }
 
@@ -293,6 +299,8 @@ public:
   Widget::Callbacks callbacks;
 };
 
+namespace script
+{
 namespace callbacks
 {
 
@@ -303,11 +311,12 @@ static script::Value new_widget_template(script::FunctionCall *c)
   std::vector<Value> args{ c->args().begin(), c->args().end() };
   c->engine()->applyConversions(args, data->conversions);
   Value widget = c->engine()->invoke(data->target, args);
-  script::bind::value_cast<Widget*>(widget)->mCallbacks = data->callbacks;
+  script::value_cast<Widget*>(widget)->mCallbacks = data->callbacks;
   return widget;
 }
 
 } // namespace callbacks
+} // namespace script
 
 void assign_callback(script::Function & callback, const script::Function & candidate, const std::string & name, const script::Type & param_type)
 {
@@ -499,7 +508,7 @@ void Widget::closeEvent(QCloseEvent *e)
     return QWidget::closeEvent(e);
 
   script::Engine *engine = mCallbacks.close.engine();
-  script::Value val = make_event(e, script::bind::make_type<QCloseEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QCloseEvent>(), engine);
   engine->invoke(mCallbacks.close, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -511,7 +520,7 @@ void Widget::enterEvent(QEvent *e)
     return QWidget::enterEvent(e);
 
   script::Engine *engine = mCallbacks.enter.engine();
-  script::Value val = make_event(e, script::bind::make_type<QEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QEvent>(), engine);
   engine->invoke(mCallbacks.enter, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -523,7 +532,7 @@ void Widget::hideEvent(QHideEvent *e)
     return QWidget::hideEvent(e);
 
   script::Engine *engine = mCallbacks.hide.engine();
-  script::Value val = make_event(e, script::bind::make_type<QHideEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QHideEvent>(), engine);
   engine->invoke(mCallbacks.hide, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -535,7 +544,7 @@ void Widget::keyPressEvent(QKeyEvent *e)
     return QWidget::keyPressEvent(e);
 
   script::Engine *engine = mCallbacks.keyPress.engine();
-  script::Value val = make_event(e, script::bind::make_type<QKeyEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QKeyEvent>(), engine);
   engine->invoke(mCallbacks.keyPress, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -547,7 +556,7 @@ void Widget::keyReleaseEvent(QKeyEvent *e)
     return QWidget::keyReleaseEvent(e);
 
   script::Engine *engine = mCallbacks.keyRelease.engine();
-  script::Value val = make_event(e, script::bind::make_type<QKeyEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QKeyEvent>(), engine);
   engine->invoke(mCallbacks.keyRelease, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -559,7 +568,7 @@ void Widget::leaveEvent(QEvent *e)
     return QWidget::leaveEvent(e);
 
   script::Engine *engine = mCallbacks.leave.engine();
-  script::Value val = make_event(e, script::bind::make_type<QEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QEvent>(), engine);
   engine->invoke(mCallbacks.leave, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -571,7 +580,7 @@ void Widget::mouseDoubleClickEvent(QMouseEvent *e)
     return QWidget::mouseDoubleClickEvent(e);
 
   script::Engine *engine = mCallbacks.mouseDoubleClick.engine();
-  script::Value val = make_event(e, script::bind::make_type<QMouseEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QMouseEvent>(), engine);
   engine->invoke(mCallbacks.mouseDoubleClick, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -583,7 +592,7 @@ void Widget::mouseMoveEvent(QMouseEvent *e)
     return QWidget::mouseMoveEvent(e);
 
   script::Engine *engine = mCallbacks.mouseMove.engine();
-  script::Value val = make_event(e, script::bind::make_type<QMouseEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QMouseEvent>(), engine);
   engine->invoke(mCallbacks.mouseMove, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -595,7 +604,7 @@ void Widget::mousePressEvent(QMouseEvent *e)
     return QWidget::mousePressEvent(e);
 
   script::Engine *engine = mCallbacks.mousePress.engine();
-  script::Value val = make_event(e, script::bind::make_type<QMouseEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QMouseEvent>(), engine);
   engine->invoke(mCallbacks.mousePress, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -607,7 +616,7 @@ void Widget::mouseReleaseEvent(QMouseEvent *e)
     return QWidget::mouseReleaseEvent(e);
 
   script::Engine *engine = mCallbacks.mouseRelease.engine();
-  script::Value val = make_event(e, script::bind::make_type<QMouseEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QMouseEvent>(), engine);
   engine->invoke(mCallbacks.mouseRelease, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -619,7 +628,7 @@ void Widget::moveEvent(QMoveEvent *e)
     return QWidget::moveEvent(e);
 
   script::Engine *engine = mCallbacks.move.engine();
-  script::Value val = make_event(e, script::bind::make_type<QMoveEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QMoveEvent>(), engine);
   engine->invoke(mCallbacks.move, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -631,7 +640,7 @@ void Widget::paintEvent(QPaintEvent *e)
     return QWidget::paintEvent(e);
 
   script::Engine *engine = mCallbacks.paint.engine();
-  script::Value val = make_event(e, script::bind::make_type<QPaintEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QPaintEvent>(), engine);
   engine->invoke(mCallbacks.paint, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -643,7 +652,7 @@ void Widget::resizeEvent(QResizeEvent *e)
     return QWidget::resizeEvent(e);
 
   script::Engine *engine = mCallbacks.resize.engine();
-  script::Value val = make_event(e, script::bind::make_type<QResizeEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QResizeEvent>(), engine);
   engine->invoke(mCallbacks.resize, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -655,7 +664,7 @@ void Widget::showEvent(QShowEvent *e)
     return QWidget::showEvent(e);
 
   script::Engine *engine = mCallbacks.show.engine();
-  script::Value val = make_event(e, script::bind::make_type<QShowEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QShowEvent>(), engine);
   engine->invoke(mCallbacks.show, { self(), val });
   clear_event(val);
   engine->destroy(val);
@@ -667,7 +676,7 @@ void Widget::wheelEvent(QWheelEvent *e)
     return QWidget::wheelEvent(e);
 
   script::Engine *engine = mCallbacks.wheel.engine();
-  script::Value val = make_event(e, script::bind::make_type<QWheelEvent>(), engine);
+  script::Value val = make_event(e, script::make_type<QWheelEvent>(), engine);
   engine->invoke(mCallbacks.wheel, { self(), val });
   clear_event(val);
   engine->destroy(val);

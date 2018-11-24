@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/abstractbutton.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/qclass.h"
 
 #include "yasl/core/size.h"
 #include "yasl/gui/icon.h"

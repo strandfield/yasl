@@ -4,11 +4,11 @@
 
 #include "yasl/gui/window.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
-#include "yasl/binding/ref.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/qclass.h"
+#include "yasl/common/ref.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/margins.h"
@@ -57,7 +57,7 @@ static void register_window_class(script::Namespace ns)
   Class window = ns.newClass("Window").setId(script::Type::QWindow)
     .setBase(script::Type::QObject).get();
 
-  bind::register_ref_specialization(window.engine(), script::Type::QWindow, script::Type::QWindowStar);
+  register_ref_specialization(window.engine(), script::Type::QWindow, script::Type::QWindowStar);
   register_window_visibility_enum(window);
   register_window_ancestor_mode_enum(window);
 

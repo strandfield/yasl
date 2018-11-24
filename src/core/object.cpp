@@ -4,11 +4,11 @@
 
 #include "yasl/core/object.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
-#include "yasl/binding/ref.h"
+#include "yasl/common/binding/class.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/qclass.h"
+#include "yasl/common/ref.h"
 #include "yasl/core/listspecializations.h"
 
 #include "yasl/core/bytearray.h"
@@ -23,8 +23,8 @@ static void register_object_class(script::Namespace ns)
 
   Class object = ns.newClass("Object").setId(script::Type::QObject).get();
 
-  bind::register_ref_specialization(object.engine(), script::Type::QObject, script::Type::QObjectStar);
-  bind::register_proxy_specialization<QObject*>(object.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQObject);
+  register_ref_specialization(object.engine(), script::Type::QObject, script::Type::QObjectStar);
+  register_proxy_specialization<QObject*>(object.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQObject);
   register_list_specialization<QObject*>(object.engine(), script::Type::QListQObject);
 
   // const QMetaObject * metaObject() const;

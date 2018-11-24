@@ -5,13 +5,13 @@
 #ifndef YASL_CORE_RECT_H
 #define YASL_CORE_RECT_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QRect>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QRect> { inline static script::Type get() { return script::Type::QRect; } };
 template<> struct make_type_t<QRectF> { inline static script::Type get() { return script::Type::QRectF; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_RECT_H

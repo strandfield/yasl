@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_RGB_H
 #define YASL_GUI_RGB_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QRgb>
 

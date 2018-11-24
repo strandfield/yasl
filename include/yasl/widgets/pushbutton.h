@@ -5,14 +5,14 @@
 #ifndef YASL_WIDGETS_PUSHBUTTON_H
 #define YASL_WIDGETS_PUSHBUTTON_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QPushButton>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QPushButton> { inline static script::Type get() { return script::Type::QPushButton; } };
 template<> struct tag_resolver<QPushButton> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_PUSHBUTTON_H

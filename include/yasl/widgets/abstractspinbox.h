@@ -5,18 +5,18 @@
 #ifndef YASL_WIDGETS_ABSTRACTSPINBOX_H
 #define YASL_WIDGETS_ABSTRACTSPINBOX_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QAbstractSpinBox>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QAbstractSpinBox> { inline static script::Type get() { return script::Type::QAbstractSpinBox; } };
 template<> struct tag_resolver<QAbstractSpinBox> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QAbstractSpinBox::ButtonSymbols> { inline static script::Type get() { return script::Type::QAbstractSpinBoxButtonSymbols; } };
 template<> struct make_type_t<QAbstractSpinBox::CorrectionMode> { inline static script::Type get() { return script::Type::QAbstractSpinBoxCorrectionMode; } };
 template<> struct make_type_t<QAbstractSpinBox::StepEnabled> { inline static script::Type get() { return script::Type::QAbstractSpinBoxStepEnabled; } };
 template<> struct make_type_t<QAbstractSpinBox::StepEnabledFlag> { inline static script::Type get() { return script::Type::QAbstractSpinBoxStepEnabledFlag; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_ABSTRACTSPINBOX_H

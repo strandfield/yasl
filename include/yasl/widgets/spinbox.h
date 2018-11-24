@@ -5,16 +5,16 @@
 #ifndef YASL_WIDGETS_SPINBOX_H
 #define YASL_WIDGETS_SPINBOX_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QSpinBox>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QDoubleSpinBox> { inline static script::Type get() { return script::Type::QDoubleSpinBox; } };
 template<> struct tag_resolver<QDoubleSpinBox> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QSpinBox> { inline static script::Type get() { return script::Type::QSpinBox; } };
 template<> struct tag_resolver<QSpinBox> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_SPINBOX_H

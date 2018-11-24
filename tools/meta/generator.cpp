@@ -17,11 +17,11 @@
 #include <QDebug>
 
 const QString Generator::endl = "\n";
-const QString Generator::ClassBinderInclude = "yasl/binding/class.h";
-const QString Generator::QClassBinderInclude = "yasl/binding/qclass.h";
+const QString Generator::ClassBinderInclude = "yasl/common/binding/class.h";
+const QString Generator::QClassBinderInclude = "yasl/common/binding/qclass.h";
 const QString Generator::QEventBinderInclude = "yasl/core/qevent-binder.h";
-const QString Generator::EnumBinderInclude = "yasl/binding/enum.h";;
-const QString Generator::NamespaceBinderInclude = "yasl/binding/namespace.h";;
+const QString Generator::EnumBinderInclude = "yasl/common/enums.h";;
+const QString Generator::NamespaceBinderInclude = "yasl/common/binding/namespace.h";;
 const QString Generator::ClassBuilderInclude = "<script/classbuilder.h>";;
 const QString Generator::EnumBuilderInclude = "<script/enumbuilder.h>";;
 
@@ -386,7 +386,7 @@ QString Generator::generate(FunctionRef fun, Function::BindingMethod bm)
 
   if (!fun->defaultArguments.isEmpty())
   {
-    currentSource().bindingIncludes.insert("yasl/binding/default_arguments.h");
+    currentSource().bindingIncludes.insert("yasl/common/binding/default_arguments.h");
 
     ret += endl;
     ret += QString("    .apply(bind::default_arguments(") + fun->defaultArguments.join(", ") + "))";
@@ -497,7 +497,7 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
 
 QString Generator::generateNewFunction(FunctionRef fn)
 {
-  currentSource().bindingIncludes.insert("yasl/binding/newfunction.h");
+  currentSource().bindingIncludes.insert("yasl/common/binding/newfunction.h");
 
   QString rettype = fn->returnType;
   if (rettype.endsWith(" &"))
@@ -703,16 +703,16 @@ void Generator::generate(ClassRef cla)
     if (l.first == "ref")
     {
       Type ref_info = typeinfo(l.second);
-      currentSource().bindingIncludes.insert("yasl/binding/ref.h");
-      const QString format = "  bind::register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
+      currentSource().bindingIncludes.insert("yasl/common/ref.h");
+      const QString format = "  register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
       out += format.arg(snake, class_info.id, ref_info.id);
       recordGeneratedClass(ref_info.name);
     }
     else if (l.first == "proxy")
     {
       Type proxy_info = typeinfo(l.second);
-      currentHeader().bindingIncludes.insert("yasl/binding/proxy.h");
-      const QString format = "  bind::register_proxy_specialization<%1>(%2.engine()->getTemplate(Engine::ProxyTemplate), script::Type::%3);" + endl;
+      currentHeader().bindingIncludes.insert("yasl/common/proxy.h");
+      const QString format = "  register_proxy_specialization<%1>(%2.engine()->getTemplate(Engine::ProxyTemplate), script::Type::%3);" + endl;
       QString proxyelem = proxy_info.name;
       proxyelem.chop(QString(">").length());
       proxyelem.remove(0, proxyelem.indexOf('<') + 1);

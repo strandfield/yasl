@@ -3,8 +3,8 @@ enable_testing()
 
 
 add_executable(tests test.cpp)
-add_dependencies(tests bindinglib)
+add_dependencies(tests commons)
 target_include_directories(tests PUBLIC "${GTEST_DIR}/include")
 target_include_directories(tests PRIVATE "${GTEST_DIR}")
 target_include_directories(tests PUBLIC "../include")
-target_link_libraries(tests bindinglib)
+target_link_libraries(tests commons)

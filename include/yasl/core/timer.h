@@ -5,14 +5,14 @@
 #ifndef YASL_CORE_TIMER_H
 #define YASL_CORE_TIMER_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QTimer>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QTimer> { inline static script::Type get() { return script::Type::QTimer; } };
 template<> struct tag_resolver<QTimer> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_TIMER_H

@@ -5,14 +5,14 @@
 #ifndef YASL_WIDGETS_PROGRESSDIALOG_H
 #define YASL_WIDGETS_PROGRESSDIALOG_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QProgressDialog>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QProgressDialog> { inline static script::Type get() { return script::Type::QProgressDialog; } };
 template<> struct tag_resolver<QProgressDialog> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_PROGRESSDIALOG_H

@@ -5,14 +5,14 @@
 #ifndef YASL_WIDGETS_RADIOBUTTON_H
 #define YASL_WIDGETS_RADIOBUTTON_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QRadioButton>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QRadioButton> { inline static script::Type get() { return script::Type::QRadioButton; } };
 template<> struct tag_resolver<QRadioButton> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_RADIOBUTTON_H

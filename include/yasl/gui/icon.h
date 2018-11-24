@@ -5,14 +5,14 @@
 #ifndef YASL_GUI_ICON_H
 #define YASL_GUI_ICON_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QIcon>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QIcon> { inline static script::Type get() { return script::Type::QIcon; } };
 template<> struct make_type_t<QIcon::Mode> { inline static script::Type get() { return script::Type::QIconMode; } };
 template<> struct make_type_t<QIcon::State> { inline static script::Type get() { return script::Type::QIconState; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_ICON_H

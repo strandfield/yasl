@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_CURSOR_H
 #define YASL_GUI_CURSOR_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QCursor>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QCursor> { inline static script::Type get() { return script::Type::QCursor; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_CURSOR_H

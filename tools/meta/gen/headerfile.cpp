@@ -47,7 +47,7 @@ void HeaderFile::writeInclude(QTextStream & out, const QString & inc)
 
 HeaderFile::HeaderFile()
 {
-  bindingIncludes.insert("yasl/binding/types.h");
+  bindingIncludes.insert("yasl/common/types.h");
 }
 
 QByteArray HeaderFile::readall(const QString & filepath)
@@ -130,7 +130,7 @@ QStringList HeaderFile::generateBindingDefinitions()
     return QStringList{};
 
   QStringList out;
-  out << "namespace script { namespace bind {";
+  out << "namespace script {";
   for (const auto & t : types)
   {
     out << ("template<> struct make_type_t<" + t.name + "> { inline static script::Type get() { return script::Type::" + t.id + "; } };");
@@ -139,7 +139,7 @@ QStringList HeaderFile::generateBindingDefinitions()
     {
       if (t.tag == "qobject_tag")
       {
-        bindingIncludes.insert("yasl/binding/qobject-binding.h");
+        bindingIncludes.insert("yasl/common/qobject-values.h");
         out << ("template<> struct tag_resolver<" + t.name + "> { typedef qobject_tag tag_type; };");
       }
       else if (t.tag == "qevent_tag")
@@ -149,7 +149,7 @@ QStringList HeaderFile::generateBindingDefinitions()
       }
     }
   }
-  out << "} /* namespace bind */ } /* namespace script */";
+  out << "} // namespace script";
 
   return out;
 }

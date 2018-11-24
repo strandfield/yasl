@@ -5,13 +5,13 @@
 #ifndef YASL_WIDGETS_ACTION_H
 #define YASL_WIDGETS_ACTION_H
 
-#include "yasl/binding/proxy.h"
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/proxy.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QAction>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<Proxy<QAction*>> { inline static script::Type get() { return script::Type::ProxyQAction; } };
 template<> struct make_type_t<QAction> { inline static script::Type get() { return script::Type::QAction; } };
 template<> struct tag_resolver<QAction> { typedef qobject_tag tag_type; };
@@ -20,6 +20,6 @@ template<> struct make_type_t<QAction::ActionEvent> { inline static script::Type
 template<> struct make_type_t<QAction::MenuRole> { inline static script::Type get() { return script::Type::QActionMenuRole; } };
 template<> struct make_type_t<QAction::Priority> { inline static script::Type get() { return script::Type::QActionPriority; } };
 template<> struct make_type_t<QList<QAction*>> { inline static script::Type get() { return script::Type::QListQAction; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_ACTION_H

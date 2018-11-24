@@ -5,13 +5,13 @@
 #ifndef YASL_GUI_GUIEVENT_H
 #define YASL_GUI_GUIEVENT_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 #include "yasl/core/qevent-binding.h"
 
 #include <qevent.h>
 #include "yasl/core/event.h"
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QCloseEvent> { inline static script::Type get() { return script::Type::QCloseEvent; } };
 template<> struct tag_resolver<QCloseEvent> { typedef qevent_tag tag_type; };
 template<> struct make_type_t<QHideEvent> { inline static script::Type get() { return script::Type::QHideEvent; } };
@@ -30,6 +30,6 @@ template<> struct make_type_t<QShowEvent> { inline static script::Type get() { r
 template<> struct tag_resolver<QShowEvent> { typedef qevent_tag tag_type; };
 template<> struct make_type_t<QWheelEvent> { inline static script::Type get() { return script::Type::QWheelEvent; } };
 template<> struct tag_resolver<QWheelEvent> { typedef qevent_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_GUIEVENT_H

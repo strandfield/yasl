@@ -5,11 +5,11 @@
 #ifndef YASL_CORE_ENUMS_H
 #define YASL_CORE_ENUMS_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <Qt>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<Qt::Alignment> { inline static script::Type get() { return script::Type::QtAlignment; } };
 template<> struct make_type_t<Qt::AlignmentFlag> { inline static script::Type get() { return script::Type::QtAlignmentFlag; } };
 template<> struct make_type_t<Qt::AnchorPoint> { inline static script::Type get() { return script::Type::QtAnchorPoint; } };
@@ -100,6 +100,6 @@ template<> struct make_type_t<Qt::WindowFrameSection> { inline static script::Ty
 template<> struct make_type_t<Qt::WindowModality> { inline static script::Type get() { return script::Type::QtWindowModality; } };
 template<> struct make_type_t<Qt::WindowState> { inline static script::Type get() { return script::Type::QtWindowState; } };
 template<> struct make_type_t<Qt::WindowType> { inline static script::Type get() { return script::Type::QtWindowType; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_ENUMS_H

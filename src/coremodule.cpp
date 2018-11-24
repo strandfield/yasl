@@ -2,8 +2,9 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/binding/proxyspecialization.h"
-#include "yasl/binding/signals.h"
+#include "yasl/core/list.h"
+#include "yasl/common/proxyspecialization.h"
+#include "yasl/common/binding/signals.h"
 
 #include <script/engine.h>
 #include <script/module.h>
@@ -45,7 +46,6 @@ void register_datastream_file(script::Namespace n); // defined in datastream.cpp
 
 // Start of non-generated code
 void register_vector_template(script::Namespace n); // defined in vector.cpp
-void register_qlist_template(script::Namespace n); // defined in list.cpp
 void register_newobject_file(script::Namespace n); // defined in newobject.cpp
 void register_stringlist_class(script::Namespace n); // defined in string.cpp
 // End of non-generated code
@@ -53,8 +53,8 @@ void register_stringlist_class(script::Namespace n); // defined in string.cpp
 void load_core_module(script::Module core)
 {
   // Start of non-generated code
-  script::bind::register_proxy_template(core.root());
-  register_qlist_template(core.root());
+  script::register_proxy_template(core.root());
+  script::register_qlist_template(core.root());
   register_vector_template(core.root());
   register_stringlist_class(core.root());
   // End of non-generated code
@@ -95,7 +95,7 @@ void load_core_module(script::Module core)
 
   // Start of non-generated code
   register_newobject_file(core.root());
-  script::bind::register_signals_file(core.root());
+  script::register_signals_file(core.root());
   // End of non-generated code
 }
 

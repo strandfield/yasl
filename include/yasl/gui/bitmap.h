@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_BITMAP_H
 #define YASL_GUI_BITMAP_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QBitmap>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QBitmap> { inline static script::Type get() { return script::Type::QBitmap; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_BITMAP_H

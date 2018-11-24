@@ -5,15 +5,15 @@
 #ifndef YASL_WIDGETS_DIALOG_H
 #define YASL_WIDGETS_DIALOG_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QDialog>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QDialog> { inline static script::Type get() { return script::Type::QDialog; } };
 template<> struct tag_resolver<QDialog> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QDialog::DialogCode> { inline static script::Type get() { return script::Type::QDialogDialogCode; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_DIALOG_H

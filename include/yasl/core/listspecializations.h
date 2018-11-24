@@ -7,8 +7,8 @@
 
 #include "yasl/core/list.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/proxyspecialization.h"
+#include "yasl/common/binding/class.h"
+#include "yasl/common/proxyspecialization.h"
 
 template<typename T>
 void register_list_specialization(script::Engine *e, script::Type::BuiltInType type_id)
@@ -20,7 +20,7 @@ void register_list_specialization(script::Engine *e, script::Type::BuiltInType t
   script::ClassTemplate list_template = e->getTemplate(Engine::ListTemplate);
 
   std::vector<TemplateArgument> targs{
-    TemplateArgument{ bind::make_type<T>() }
+    TemplateArgument{ script::make_type<T>() }
   };
 
   Class list = list_template.Specialization(std::move(targs))

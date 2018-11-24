@@ -5,16 +5,16 @@
 #ifndef YASL_WIDGETS_COLORDIALOG_H
 #define YASL_WIDGETS_COLORDIALOG_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QColorDialog>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QColorDialog> { inline static script::Type get() { return script::Type::QColorDialog; } };
 template<> struct tag_resolver<QColorDialog> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QColorDialog::ColorDialogOption> { inline static script::Type get() { return script::Type::QColorDialogColorDialogOption; } };
 template<> struct make_type_t<QColorDialog::ColorDialogOptions> { inline static script::Type get() { return script::Type::QColorDialogColorDialogOptions; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_COLORDIALOG_H

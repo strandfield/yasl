@@ -5,7 +5,7 @@
 #ifndef YASL_CORE_BITARRAY_H
 #define YASL_CORE_BITARRAY_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QBitArray>
 

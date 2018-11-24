@@ -5,17 +5,17 @@
 #ifndef YASL_GUI_WINDOW_H
 #define YASL_GUI_WINDOW_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QWindow>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QWindow> { inline static script::Type get() { return script::Type::QWindow; } };
 template<> struct tag_resolver<QWindow> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QWindow*> { inline static script::Type get() { return script::Type::QWindowStar; } };
 template<> struct make_type_t<QWindow::AncestorMode> { inline static script::Type get() { return script::Type::QWindowAncestorMode; } };
 template<> struct make_type_t<QWindow::Visibility> { inline static script::Type get() { return script::Type::QWindowVisibility; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_WINDOW_H

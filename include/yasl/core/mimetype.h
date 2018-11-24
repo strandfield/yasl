@@ -5,12 +5,12 @@
 #ifndef YASL_CORE_MIMETYPE_H
 #define YASL_CORE_MIMETYPE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QMimeType>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QMimeType> { inline static script::Type get() { return script::Type::QMimeType; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_MIMETYPE_H

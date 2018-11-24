@@ -5,13 +5,13 @@
 #ifndef YASL_CORE_SIZE_H
 #define YASL_CORE_SIZE_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QSize>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QSize> { inline static script::Type get() { return script::Type::QSize; } };
 template<> struct make_type_t<QSizeF> { inline static script::Type get() { return script::Type::QSizeF; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_SIZE_H

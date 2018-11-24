@@ -4,8 +4,8 @@
 
 #include "yasl/core/jsonarray.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/common/binding/class.h"
+#include "yasl/common/binding/namespace.h"
 
 #include "yasl/core/jsonarray.h"
 #include "yasl/core/jsonvalue.h"

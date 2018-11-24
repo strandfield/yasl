@@ -4,10 +4,10 @@
 
 #include "yasl/gui/image.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/common/binding/class.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"

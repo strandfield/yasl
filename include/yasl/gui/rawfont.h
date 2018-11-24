@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_RAW_FONT_H
 #define YASL_GUI_RAW_FONT_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QRawFont>
 

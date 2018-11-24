@@ -5,17 +5,17 @@
 #ifndef YASL_WIDGETS_INPUTDIALOG_H
 #define YASL_WIDGETS_INPUTDIALOG_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QInputDialog>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QInputDialog> { inline static script::Type get() { return script::Type::QInputDialog; } };
 template<> struct tag_resolver<QInputDialog> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QInputDialog::InputDialogOption> { inline static script::Type get() { return script::Type::QInputDialogInputDialogOption; } };
 template<> struct make_type_t<QInputDialog::InputDialogOptions> { inline static script::Type get() { return script::Type::QInputDialogInputDialogOptions; } };
 template<> struct make_type_t<QInputDialog::InputMode> { inline static script::Type get() { return script::Type::QInputDialogInputMode; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_INPUTDIALOG_H

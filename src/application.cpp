@@ -5,7 +5,7 @@
 #include "yasl/application.h"
 
 #include "yasl/core/object.h"
-#include "yasl/binding/ref.h"
+#include "yasl/common/ref.h"
 
 #include <script/functionbuilder.h>
 #include <script/namespace.h>
@@ -58,7 +58,7 @@ Application::Application(int & argc, char **argv)
   mEngine.reserveTypeRange(script::Type::FirstEnumType, script::Type::LastEnumType);
   mEngine.reserveTypeRange(script::Type::FirstClassType, script::Type::LastClassType);
 
-  script::bind::register_ref_template(mEngine.rootNamespace());
+  script::register_ref_template(mEngine.rootNamespace());
 
   register_core_module(&mEngine);
   register_gui_module(&mEngine);

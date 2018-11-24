@@ -5,11 +5,11 @@
 #ifndef YASL_CORE_CHAR_H
 #define YASL_CORE_CHAR_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QChar>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QChar> { inline static script::Type get() { return script::Type::QChar; } };
 template<> struct make_type_t<QChar::Category> { inline static script::Type get() { return script::Type::QCharCategory; } };
 template<> struct make_type_t<QChar::CombiningClass> { inline static script::Type get() { return script::Type::QCharCombiningClass; } };
@@ -20,6 +20,6 @@ template<> struct make_type_t<QChar::JoiningType> { inline static script::Type g
 template<> struct make_type_t<QChar::Script> { inline static script::Type get() { return script::Type::QCharScript; } };
 template<> struct make_type_t<QChar::SpecialCharacter> { inline static script::Type get() { return script::Type::QCharSpecialCharacter; } };
 template<> struct make_type_t<QChar::UnicodeVersion> { inline static script::Type get() { return script::Type::QCharUnicodeVersion; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_CHAR_H

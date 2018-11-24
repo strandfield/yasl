@@ -4,11 +4,11 @@
 
 #include "yasl/widgets/menu.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
-#include "yasl/binding/ref.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/newfunction.h"
+#include "yasl/common/binding/qclass.h"
+#include "yasl/common/ref.h"
 
 #include "yasl/core/object.h"
 #include "yasl/core/point.h"
@@ -28,7 +28,7 @@ static void register_menu_class(script::Namespace ns)
   Class menu = ns.newClass("Menu").setId(script::Type::QMenu)
     .setBase(script::Type::QWidget).get();
 
-  bind::register_ref_specialization(menu.engine(), script::Type::QMenu, script::Type::QMenuStar);
+  register_ref_specialization(menu.engine(), script::Type::QMenu, script::Type::QMenuStar);
 
   // QMenu(QWidget *);
   bind::constructor<QMenu, QWidget *>(menu)

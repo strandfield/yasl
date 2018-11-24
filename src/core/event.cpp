@@ -4,8 +4,8 @@
 
 #include "yasl/core/event.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
 #include "yasl/core/qevent-binder.h"
 
 #include "yasl/core/bytearray.h"

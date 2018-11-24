@@ -5,12 +5,12 @@
 #ifndef YASL_CORE_URLQUERY_H
 #define YASL_CORE_URLQUERY_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QUrlQuery>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QUrlQuery> { inline static script::Type get() { return script::Type::QUrlQuery; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_CORE_URLQUERY_H

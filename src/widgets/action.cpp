@@ -4,12 +4,12 @@
 
 #include "yasl/widgets/action.h"
 
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
-#include "yasl/binding/ref.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/newfunction.h"
+#include "yasl/common/binding/qclass.h"
+#include "yasl/common/ref.h"
 #include "yasl/core/listspecializations.h"
 
 #include "yasl/core/enums.h"
@@ -71,8 +71,8 @@ static void register_action_class(script::Namespace ns)
   Class action = ns.newClass("Action").setId(script::Type::QAction)
     .setBase(script::Type::QObject).get();
 
-  bind::register_ref_specialization(action.engine(), script::Type::QAction, script::Type::QActionStar);
-  bind::register_proxy_specialization<QAction*>(action.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQAction);
+  register_ref_specialization(action.engine(), script::Type::QAction, script::Type::QActionStar);
+  register_proxy_specialization<QAction*>(action.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQAction);
   register_list_specialization<QAction*>(action.engine(), script::Type::QListQAction);
   register_action_menu_role_enum(action);
   register_action_priority_enum(action);

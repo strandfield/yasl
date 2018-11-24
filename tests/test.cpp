@@ -2,15 +2,15 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/binding/constructor.h"
-#include "yasl/binding/destructor.h"
-#include "yasl/binding/function.h"
-#include "yasl/binding/memberfunction.h"
-#include "yasl/binding/fn-memfn.h"
-#include "yasl/binding/chainable-memfn.h"
-#include "yasl/binding/getter.h"
-#include "yasl/binding/staticmemberfunction.h"
-#include "yasl/binding/operators.h"
+#include "yasl/common/binding/constructor.h"
+#include "yasl/common/binding/destructor.h"
+#include "yasl/common/binding/function.h"
+#include "yasl/common/binding/memberfunction.h"
+#include "yasl/common/binding/fn-memfn.h"
+#include "yasl/common/binding/chainable-memfn.h"
+#include "yasl/common/binding/getter.h"
+#include "yasl/common/binding/staticmemberfunction.h"
+#include "yasl/common/binding/operators.h"
 
 #include <script/engine.h>
 #include <script/class.h>
@@ -96,7 +96,7 @@ void test_simple_bindind()
   ASSERT_EQ(add_func.parameter(0), Type::Int);
   ASSERT_EQ(add_func.parameter(1), Type::Int);
 
-  Class pt = ns.newClass("Point").setId(bind::make_type<Point>().data()).get();
+  Class pt = ns.newClass("Point").setId(script::make_type<Point>().data()).get();
 
   Function ctor = bind::default_constructor<Point>(pt).get();
   ASSERT_TRUE(ctor.isConstructor());

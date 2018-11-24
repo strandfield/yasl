@@ -4,8 +4,8 @@
 
 #include "yasl/core/file.h"
 
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/qclass.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/filedevice.h"

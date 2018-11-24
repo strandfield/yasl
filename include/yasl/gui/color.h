@@ -5,14 +5,14 @@
 #ifndef YASL_GUI_COLOR_H
 #define YASL_GUI_COLOR_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QColor>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QColor> { inline static script::Type get() { return script::Type::QColor; } };
 template<> struct make_type_t<QColor::NameFormat> { inline static script::Type get() { return script::Type::QColorNameFormat; } };
 template<> struct make_type_t<QColor::Spec> { inline static script::Type get() { return script::Type::QColorSpec; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_COLOR_H

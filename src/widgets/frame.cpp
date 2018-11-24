@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/frame.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/qclass.h"
 
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"

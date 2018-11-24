@@ -5,12 +5,12 @@
 #ifndef YASL_WIDGETS_WIZARD_H
 #define YASL_WIDGETS_WIZARD_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QWizard>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QWizard> { inline static script::Type get() { return script::Type::QWizard; } };
 template<> struct tag_resolver<QWizard> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QWizard::WizardButton> { inline static script::Type get() { return script::Type::QWizardWizardButton; } };
@@ -20,6 +20,6 @@ template<> struct make_type_t<QWizard::WizardPixmap> { inline static script::Typ
 template<> struct make_type_t<QWizard::WizardStyle> { inline static script::Type get() { return script::Type::QWizardWizardStyle; } };
 template<> struct make_type_t<QWizardPage> { inline static script::Type get() { return script::Type::QWizardPage; } };
 template<> struct tag_resolver<QWizardPage> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_WIZARD_H

@@ -5,12 +5,12 @@
 #ifndef YASL_WIDGETS_DATETIMEEDIT_H
 #define YASL_WIDGETS_DATETIMEEDIT_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QDateTimeEdit>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QDateEdit> { inline static script::Type get() { return script::Type::QDateEdit; } };
 template<> struct tag_resolver<QDateEdit> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QDateTimeEdit> { inline static script::Type get() { return script::Type::QDateTimeEdit; } };
@@ -19,6 +19,6 @@ template<> struct make_type_t<QDateTimeEdit::Section> { inline static script::Ty
 template<> struct make_type_t<QDateTimeEdit::Sections> { inline static script::Type get() { return script::Type::QDateTimeEditSections; } };
 template<> struct make_type_t<QTimeEdit> { inline static script::Type get() { return script::Type::QTimeEdit; } };
 template<> struct tag_resolver<QTimeEdit> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_DATETIMEEDIT_H

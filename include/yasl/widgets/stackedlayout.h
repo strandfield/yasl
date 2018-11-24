@@ -5,15 +5,15 @@
 #ifndef YASL_WIDGETS_STACKEDLAYOUT_H
 #define YASL_WIDGETS_STACKEDLAYOUT_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QStackedLayout>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QStackedLayout> { inline static script::Type get() { return script::Type::QStackedLayout; } };
 template<> struct tag_resolver<QStackedLayout> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QStackedLayout::StackingMode> { inline static script::Type get() { return script::Type::QStackedLayoutStackingMode; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_WIDGETS_STACKEDLAYOUT_H

@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/layout.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
-#include "yasl/binding/ref.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/qclass.h"
+#include "yasl/common/ref.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/margins.h"
@@ -41,7 +41,7 @@ static void register_layout_class(script::Namespace ns)
   Class layout = ns.newClass("Layout").setId(script::Type::QLayout)
     .setBase(script::Type::QObject).get();
 
-  bind::register_ref_specialization(layout.engine(), script::Type::QLayout, script::Type::QLayoutStar);
+  register_ref_specialization(layout.engine(), script::Type::QLayout, script::Type::QLayoutStar);
   register_layout_size_constraint_enum(layout);
 
   // ~QLayout();

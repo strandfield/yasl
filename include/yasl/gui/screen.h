@@ -5,14 +5,14 @@
 #ifndef YASL_GUI_SCREEN_H
 #define YASL_GUI_SCREEN_H
 
-#include "yasl/binding/qobject-binding.h"
-#include "yasl/binding/types.h"
+#include "yasl/common/qobject-values.h"
+#include "yasl/common/types.h"
 
 #include <QScreen>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QScreen> { inline static script::Type get() { return script::Type::QScreen; } };
 template<> struct tag_resolver<QScreen> { typedef qobject_tag tag_type; };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_SCREEN_H

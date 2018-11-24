@@ -4,10 +4,10 @@
 
 #include "yasl/core/locale.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/common/binding/class.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
 #include "yasl/core/flags.h"
 #include "yasl/core/listspecializations.h"
 
@@ -917,7 +917,7 @@ static void register_locale_class(script::Namespace ns)
 
   Class locale = ns.newClass("Locale").setId(script::Type::QLocale).get();
 
-  bind::register_proxy_specialization<QLocale>(locale.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQLocale);
+  register_proxy_specialization<QLocale>(locale.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQLocale);
   register_list_specialization<QLocale>(locale.engine(), script::Type::QListQLocale);
   register_locale_language_enum(locale);
   register_locale_script_enum(locale);

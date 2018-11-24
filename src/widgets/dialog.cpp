@@ -4,9 +4,9 @@
 
 #include "yasl/widgets/dialog.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"

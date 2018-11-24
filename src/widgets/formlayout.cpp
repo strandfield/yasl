@@ -4,10 +4,10 @@
 
 #include "yasl/widgets/formlayout.h"
 
-#include "yasl/binding/enum.h"
-#include "yasl/binding/namespace.h"
-#include "yasl/binding/newfunction.h"
-#include "yasl/binding/qclass.h"
+#include "yasl/common/enums.h"
+#include "yasl/common/binding/namespace.h"
+#include "yasl/common/binding/newfunction.h"
+#include "yasl/common/binding/qclass.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/widgets/formlayout.h"

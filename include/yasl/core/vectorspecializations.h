@@ -7,11 +7,11 @@
 
 #include "yasl/core/vector.h"
 
-#include "yasl/binding/class.h"
-#include "yasl/binding/default_arguments.h"
-#include "yasl/binding/namespace.h"
+#include "yasl/common/binding/class.h"
+#include "yasl/common/binding/default_arguments.h"
+#include "yasl/common/binding/namespace.h"
 
-#include "yasl/binding/proxy.h"
+#include "yasl/common/proxy.h"
 
 #include <script/classtemplatespecializationbuilder.h>
 #include <script/namespace.h>
@@ -27,21 +27,21 @@ namespace vector
 template<typename T>
 script::Value back(script::FunctionCall *c)
 {
-  QVector<T> & self = script::bind::value_cast<QVector<T> &>(c->thisObject());
+  QVector<T> & self = script::value_cast<QVector<T> &>(c->thisObject());
   return c->engine()->newPtr(c->callee().returnType(), &self.back());
 }
 
 template<typename T>
 script::Value first(script::FunctionCall *c)
 {
-  QVector<T> & self = script::bind::value_cast<QVector<T> &>(c->thisObject());
+  QVector<T> & self = script::value_cast<QVector<T> &>(c->thisObject());
   return c->engine()->newPtr(c->callee().returnType(), &self.first());
 }
 
 template<typename T>
 script::Value subscript(script::FunctionCall *c)
 {
-  QVector<T> & self = script::bind::value_cast<QVector<T> &>(c->thisObject());
+  QVector<T> & self = script::value_cast<QVector<T> &>(c->thisObject());
   const int index = c->arg(1).toInt();
   return c->engine()->newPtr(c->callee().returnType(), &self[index]);
 }
@@ -57,7 +57,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   using namespace script;
 
   std::vector<TemplateArgument> targs{
-    TemplateArgument{ bind::make_type<T>() }
+    TemplateArgument{ script::make_type<T>() }
   };
 
   Class vector = vector_template.Specialization(std::move(targs))
@@ -87,7 +87,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   bind::member_function<QVector<T>, const T &, int, &QVector<T>::at>(vector, "at").create();
   // QVector::reference back();
   vector.newMethod("back", callbacks::vector::back<T>)
-    .returns(bind::make_type<bind::Proxy<T>>())
+    .returns(script::make_type<Proxy<T>>())
     .create();
   // QVector::const_reference back() const;
   bind::member_function<QVector<T>, const T &, &QVector<T>::back>(vector, "back").create();
@@ -129,13 +129,13 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
     .apply(bind::default_arguments(-1)).create();
   // T & first();
   vector.newMethod("first", callbacks::vector::first<T>)
-    .returns(bind::make_type<bind::Proxy<T>>())
+    .returns(script::make_type<Proxy<T>>())
     .create();
   // const T & first() const;
   bind::member_function<QVector<T>, const T &, &QVector<T>::first>(vector, "first");
   // T & front();
   vector.newMethod("front", callbacks::vector::first<T>)
-    .returns(bind::make_type<bind::Proxy<T>>())
+    .returns(script::make_type<Proxy<T>>())
     .create();
   // QVector::const_reference front() const;
   bind::member_function<QVector<T>, const T &, &QVector<T>::front>(vector, "front").create();
@@ -154,7 +154,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   bind::member_function<QVector<T>, bool, &QVector<T>::isEmpty>(vector, "isEmpty").create();
   // T & last();
   vector.newMethod("last", callbacks::vector::back<T>)
-    .returns(bind::make_type<bind::Proxy<T>>())
+    .returns(script::make_type<Proxy<T>>())
     .create();
   // const T & last() const;
   bind::member_function<QVector<T>, const T &, &QVector<T>::back>(vector, "last").create();
@@ -248,7 +248,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   bind::memop_eq<QVector<T>, const QVector<T> &>(vector);
   // T & operator[](int i);
   vector.newOperator(SubscriptOperator, callbacks::vector::subscript<T>)
-    .returns(bind::make_type<bind::Proxy<T>>())
+    .returns(script::make_type<Proxy<T>>())
     .params(Type::cref(Type::Int))
     .create();
   // const T & operator[](int i) const

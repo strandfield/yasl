@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_TEXT_ITEM_H
 #define YASL_GUI_TEXT_ITEM_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QTextItem>
 

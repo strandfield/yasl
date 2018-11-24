@@ -5,7 +5,7 @@
 #ifndef YASL_GUI_GENERIC_MATRIX_H
 #define YASL_GUI_GENERIC_MATRIX_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QGenericMatrix>
 #include <QMatrix4x4>

@@ -31,6 +31,6 @@ void register_newtimer_file(script::Namespace core)
 
   core.newFunction("newTimer", callbacks::new_timer)
     .returns(Type::ref(Type::QTimer))
-    .params(bind::make_type<QObject*>())
+    .params(script::make_type<QObject*>())
     .create();
 }

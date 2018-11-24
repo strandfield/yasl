@@ -5,19 +5,16 @@
 #ifndef YASL_CORE_STRING_H
 #define YASL_CORE_STRING_H
 
-#include "yasl/binding/types.h"
-#include "yasl/binding/proxy.h"
+#include "yasl/common/types.h"
+#include "yasl/common/proxy.h"
 
 #include <QStringList>
 
 namespace script 
 {
-namespace bind 
-{
 template<> struct make_type_t<Proxy<QString>> { inline static script::Type get() { return script::Type::ProxyQString; } };
 template<> struct make_type_t<QList<QString>> { inline static script::Type get() { return script::Type::QListQString; } };
 template<> struct make_type_t<QStringList> { inline static script::Type get() { return script::Type::QStringList; } };
-}
 }
 
 #endif // YASL_CORE_STRING_H

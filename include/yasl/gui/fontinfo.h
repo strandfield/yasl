@@ -5,12 +5,12 @@
 #ifndef YASL_GUI_FONTINFO_H
 #define YASL_GUI_FONTINFO_H
 
-#include "yasl/binding/types.h"
+#include "yasl/common/types.h"
 
 #include <QFontInfo>
 
-namespace script { namespace bind {
+namespace script {
 template<> struct make_type_t<QFontInfo> { inline static script::Type get() { return script::Type::QFontInfo; } };
-} /* namespace bind */ } /* namespace script */
+} // namespace script
 
 #endif // YASL_GUI_FONTINFO_H
