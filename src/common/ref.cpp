@@ -19,7 +19,6 @@
 #include <script/operatorbuilder.h>
 #include <script/private/engine_p.h>
 #include <script/private/function_p.h>
-#include <script/private/value_p.h>
 #include <script/templatebuilder.h>
 
 #include <QObject>
@@ -32,21 +31,20 @@ namespace callbacks
 
 script::Value default_ctor(script::FunctionCall *c)
 {
-  c->thisObject().impl()->set_qobject(nullptr);
+  c->thisObject().setPtr(nullptr);
   return c->thisObject();
 }
 
 script::Value copy_ctor(script::FunctionCall *c)
 {
   script::Value other = c->arg(1);
-  c->thisObject().impl()->set_qobject(other.impl()->data.builtin.qobject);
+  c->thisObject().setPtr(other.toQObject());
   return c->thisObject();
 }
 
 script::Value dtor(script::FunctionCall *c)
 {
-  c->thisObject().impl()->set_qobject(nullptr);
-  c->thisObject().impl()->clear();
+  c->thisObject().setPtr(nullptr);
   return c->thisObject();
 }
 
@@ -54,32 +52,32 @@ script::Value get(script::FunctionCall *c)
 {
   /// TODO : throw on error ?
   auto self = c->thisObject();
-  QObject *ptr = self.impl()->data.builtin.qobject;
+  QObject *ptr = self.toQObject();
   return ptr->property("_yasl_data_").value<bind::BindingData>().value;
 }
 
 script::Value is_null(script::FunctionCall *c)
 {
-  return c->engine()->newBool(c->thisObject().impl()->data.builtin.qobject == nullptr);
+  return c->engine()->newBool(c->thisObject().toQObject() == nullptr);
 }
 
 script::Value is_valid(script::FunctionCall *c)
 {
-  return c->engine()->newBool(c->thisObject().impl()->data.builtin.qobject != nullptr);
+  return c->engine()->newBool(c->thisObject().toQObject() != nullptr);
 }
 
 script::Value assign(script::FunctionCall *c)
 {
   script::Value other = c->arg(1);
-  c->thisObject().impl()->set_qobject(other.impl()->data.builtin.qobject);
+  c->thisObject().setPtr(other.toQObject());
   return c->thisObject();
 }
 
 script::Value cast(script::FunctionCall *c)
 {
-  QObject *ptr = c->thisObject().impl()->data.builtin.qobject;
+  QObject *ptr = c->thisObject().toQObject();
   script::Value ret = c->engine()->construct(c->callee().returnType(), {});
-  ret.impl()->set_qobject(ptr);
+  ret.setPtr(ptr);
   return ret;
 }
 
@@ -225,7 +223,7 @@ script::Class register_ref_specialization(script::Engine *e, script::Type object
 script::Value make_ref(script::Engine *e, const script::Type & ref_type, QObject *value)
 {
   return e->construct(ref_type, [value](script::Value & ret) {
-    ret.impl()->set_qobject(value);
+    ret.setPtr(value);
   });
 }
 

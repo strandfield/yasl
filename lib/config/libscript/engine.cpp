@@ -89,7 +89,7 @@ void Engine::bind(const Value & val, QObject *obj)
 Value Engine::newPtr(const script::Type & ptr_type, void *value)
 {
   return this->construct(ptr_type, [value](Value & ret) {
-    ret.impl()->data.ptr = value;
+    ret.impl()->ptr = value;
   });
 }
 

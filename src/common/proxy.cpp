@@ -11,7 +11,6 @@
 #include <script/namespace.h>
 #include <script/private/engine_p.h>
 #include <script/private/function_p.h>
-#include <script/private/value_p.h>
 #include <script/templatebuilder.h>
 
 namespace script
@@ -26,13 +25,13 @@ namespace proxy
 script::Value copy_ctor(script::FunctionCall *c)
 {
   script::Value other = c->arg(1);
-  c->thisObject().impl()->data.ptr = other.impl()->data.ptr;
+  c->thisObject().setPtr(other.getPtr());
   return c->thisObject();
 }
 
 script::Value dtor(script::FunctionCall *c)
 {
-  c->thisObject().impl()->data.ptr = nullptr;
+  c->thisObject().setPtr(nullptr);
   return c->thisObject();
 }
 

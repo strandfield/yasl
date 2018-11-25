@@ -8,6 +8,8 @@
 #include "script/object.h"
 #include "script/string.h"
 
+#include <QVariant>
+
 class QObject;
 
 namespace script
@@ -30,61 +32,66 @@ struct LIBSCRIPT_API ValueImpl
   Type type;
   Engine *engine;
 
-  struct BuiltIn
+  struct Fundamentals
   {
-    BuiltIn();
+    bool boolean;
+    char character;
+    int integer;
+    float realf;
+    double reald;
+  };
 
+  static const int BufferSize = 40;
+
+  union Data
+  {
+    Fundamentals fundamentals;
     String string;
-    QObject *qobject;
     Object object;
     Array array;
     Function function;
     Lambda lambda;
     Enumerator enumerator;
     CharRef charref;
-    Value* valueptr;
     InitializerList initializer_list;
-  };
-
-  union Data
-  {
-    BuiltIn builtin;
-    bool boolean;
-    char character;
-    int integer;
-    float realf;
-    double reald;
-    void *ptr;
-    char memory[sizeof(BuiltIn)];
+    QVariant variant;
+    char memory[40];
 
     Data();
     ~Data();
   };
   Data data;
+  void *ptr;
 
-  inline bool get_bool() const { return data.boolean; }
-  inline void set_bool(bool bval) { data.boolean = bval; }
-  inline char get_char() const { return data.character; }
-  inline void set_char(char cval) { data.character = cval; }
-  inline int get_int() const { return data.integer; }
-  inline void set_int(int ival) { data.integer = ival; }
-  inline float get_float() const { return data.realf; }
-  inline void set_float(float fval) { data.realf = fval; }
-  inline double get_double() const { return data.reald; }
-  inline void set_double(double dval) { data.reald = dval; }
+  enum Field {
+    FundamentalsField,
+    StringField,
+    ObjectField,
+    ArrayField,
+    FunctionField,
+    LambdaField,
+    EnumeratorField,
+    CharrefField,
+    InitListField,
+    VariantField,
+    MemoryField,
+  };
+  char which;
 
-  inline const String & get_string() const { return data.builtin.string; }
-  inline String & get_string() { return data.builtin.string; }
-  inline void set_string(const String & sval)
-  {
-    if (!type.testFlag(Type::BuiltInStorageFlag))
-    {
-      new (&data.builtin) BuiltIn;
-      type = type.withFlag(Type::BuiltInStorageFlag);
-    }
+  inline bool get_bool() const { return data.fundamentals.boolean; }
+  inline void set_bool(bool bval) { data.fundamentals.boolean = bval; }
+  inline char get_char() const { return data.fundamentals.character; }
+  inline void set_char(char cval) { data.fundamentals.character = cval; }
+  inline int get_int() const { return data.fundamentals.integer; }
+  inline void set_int(int ival) { data.fundamentals.integer = ival; }
+  inline float get_float() const { return data.fundamentals.realf; }
+  inline void set_float(float fval) { data.fundamentals.realf = fval; }
+  inline double get_double() const { return data.fundamentals.reald; }
+  inline void set_double(double dval) { data.fundamentals.reald = dval; }
 
-    data.builtin.string = sval;
-  }
+  inline const String & get_string() const { return data.string; }
+  inline String & get_string() { return data.string; }
+  void set_string(const String & sval);
 
   void set_qobject(QObject *obj);
 
@@ -100,6 +107,10 @@ struct LIBSCRIPT_API ValueImpl
   const Array & get_array() const;
   void set_array(const Array & aval);
 
+  bool is_charref() const;
+  CharRef & get_charref_field();
+  void set_charref(const CharRef & cr);
+
   bool is_function() const;
   const Function & get_function() const;
   void set_function(const Function & fval);
@@ -112,14 +123,8 @@ struct LIBSCRIPT_API ValueImpl
   InitializerList get_initializer_list() const;
   void set_initializer_list(const InitializerList & il);
 
-  void clear()
-  {
-    if (type.testFlag(Type::BuiltInStorageFlag))
-    {
-      data.builtin.~BuiltIn();
-      type = type.withoutFlag(Type::BuiltInStorageFlag);
-    }
-  }
+  void clear();
+  void set_cleared();
 };
 
 } // namespace script

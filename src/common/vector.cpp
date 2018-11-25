@@ -18,7 +18,7 @@
 static script::Value make_vector(const QVector<yasl::Value> & val, const script::Type & vector_type, script::Engine *e)
 {
   return e->construct(vector_type, [&val](script::Value & ret) {
-    new (&ret.impl()->data.memory) QVector<yasl::Value>{val};
+    new (ret.getMemory(script::passkey{})) QVector<yasl::Value>{val};
   });
 }
 
@@ -29,7 +29,7 @@ namespace callbacks
 static script::Value default_ctor(script::FunctionCall *c)
 {
   using namespace script;
-  new (&c->thisObject().impl()->data.memory) QVector<yasl::Value>{};
+  new (c->thisObject().getMemory(passkey{})) QVector<yasl::Value>{};
   return c->thisObject();
 }
 
@@ -38,7 +38,7 @@ static script::Value copy_ctor(script::FunctionCall *c)
 {
   using namespace script;
   QVector<yasl::Value> & other = script::value_cast<QVector<yasl::Value> &>(c->arg(1));
-  new (&c->thisObject().impl()->data.memory) QVector<yasl::Value>{other};
+  new (c->thisObject().getMemory(passkey{})) QVector<yasl::Value>{other};
   return c->thisObject();
 }
 
@@ -48,7 +48,7 @@ static script::Value dtor(script::FunctionCall *c)
   using namespace script;
   QVector<yasl::Value> & self = script::value_cast<QVector<yasl::Value> &>(c->thisObject());
   self.~QVector<yasl::Value>();
-  std::memset(&c->thisObject().impl()->data.memory, 0, sizeof(script::ValueImpl::BuiltIn));
+  c->thisObject().releaseMemory(passkey{});
   return script::Value::Void;
 }
 
@@ -57,7 +57,7 @@ static script::Value size_ctor(script::FunctionCall *c)
 {
   using namespace script;
   const int size = script::value_cast<int>(c->arg(1));
-  new (&c->thisObject().impl()->data.memory) QVector<yasl::Value>(size);
+  new (c->thisObject().getMemory(passkey{})) QVector<yasl::Value>(size);
   return c->thisObject();
 }
 
@@ -67,7 +67,7 @@ static script::Value size_value_ctor(script::FunctionCall *c)
   using namespace script;
   const int size = script::value_cast<int>(c->arg(1));
   auto ti = yasl::TypeInfo::get(c->callee().memberOf());
-  new (&c->thisObject().impl()->data.memory) QVector<yasl::Value>(size, yasl::Value{ ti, c->arg(2) });
+  new (c->thisObject().getMemory(passkey{})) QVector<yasl::Value>(size, yasl::Value{ ti, c->arg(2) });
   return c->thisObject();
 }
 

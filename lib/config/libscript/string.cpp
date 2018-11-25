@@ -274,10 +274,11 @@ Value subscript(FunctionCall *c)
   auto & self = that.impl()->get_string();
 
   const int pos = c->arg(1).toInt();
+  CharRef ret{ &self, (size_t)pos };
 
-  Value ret = c->engine()->implementation()->buildValue(charref_id);
-  ret.impl()->data.builtin.charref = CharRef{ &self, (size_t)pos };
-  return ret;
+  return c->engine()->construct(charref_id, [ret](script::Value & v) {
+    v.impl()->set_charref(ret);
+  });
 }
 
 } // namespace operators
@@ -295,7 +296,7 @@ Value ctor(FunctionCall *c)
   auto & str = c->arg(0).impl()->get_string();
   const int pos = c->arg(1).toInt();
 
-  that.impl()->data.builtin.charref = CharRef{ &str, (size_t)pos };
+  that.impl()->set_charref(CharRef{ &str, (size_t)pos });
 
   return that;
 }
@@ -304,9 +305,9 @@ Value ctor(FunctionCall *c)
 Value copy_ctor(FunctionCall *c)
 {
   Value that = c->thisObject();
-  const CharRef & other = c->arg(0).impl()->data.builtin.charref;
+  const CharRef & other = c->arg(0).impl()->get_charref_field();
 
-  that.impl()->data.builtin.charref = other;
+  that.impl()->set_charref(other);
 
   return that;
 }
@@ -316,7 +317,7 @@ Value dtor(FunctionCall *c)
 {
   Value that = c->thisObject();
 
-  that.impl()->data.builtin.charref.string = nullptr;
+  that.impl()->clear();
 
   return that;
 }
@@ -326,16 +327,16 @@ Value operator_char(FunctionCall *c)
 {
   Value that = c->thisObject();
   String & str = that.impl()->get_string();
-  return c->engine()->newChar(static_cast<char>(str.at(that.impl()->data.builtin.charref.pos).toLatin1()));
+  return c->engine()->newChar(static_cast<char>(str.at(that.impl()->get_charref_field().pos).toLatin1()));
 }
 
 // charref & operator=(char c);
 Value assign(FunctionCall *c)
 {
   Value that = c->thisObject();
-  String & self = *(that.impl()->data.builtin.charref.string);
+  String & self = *(that.impl()->get_charref_field().string);
   char character = c->arg(1).toChar();
-  self[uint(that.impl()->data.builtin.charref.pos)] = character;
+  self[uint(that.impl()->get_charref_field().pos)] = character;
 
   return that;
 }

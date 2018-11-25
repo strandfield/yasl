@@ -12494,7 +12494,7 @@
                 },
                 {
                     "checked": 1,
-                    "cppincludes": "yasl/core/variant-functions.h,yasl/common/variant-utils.h",
+                    "cppincludes": "yasl/core/variant-functions.h,yasl/common/variant-utils.h,yasl/core/qvariant-binder.h",
                     "elements": [
                         {
                             "checked": 1,
@@ -13242,7 +13242,7 @@
                             "value": "yasl::complete_variant_class(ns.engine());"
                         }
                     ],
-                    "hincludes": "<QVariant>",
+                    "hincludes": "yasl/core/qvariant-values.h",
                     "name": "variant",
                     "type": "file"
                 },
@@ -40472,7 +40472,8 @@
                 "header": "yasl/core/variant.h",
                 "id": "QVariant",
                 "name": "QVariant",
-                "rename": "Variant"
+                "rename": "Variant",
+                "tag": "qvariant_tag"
             },
             {
                 "header": "yasl/gui/color.h",

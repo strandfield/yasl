@@ -6,8 +6,6 @@
 
 #include <script/engine.h>
 
-#include <script/private/value_p.h>
-
 script::Value make_event(QEvent *event, script::Engine *engine)
 {
   return make_event(event, script::Type::QEvent, engine);
@@ -18,16 +16,16 @@ script::Value make_event(QEvent *event, const script::Type & event_type, script:
   using namespace script;
 
   return engine->construct(event_type, [event](script::Value & val) {
-    val.impl()->data.ptr = event;
+    val.setPtr(event);
   });
 }
 
 void clear_event(script::Value & value)
 {
-  value.impl()->data.ptr = nullptr;
+  value.setPtr(nullptr);
 }
 
 QEvent * get_event(const script::Value & val)
 {
-  return static_cast<QEvent*>(val.impl()->data.ptr);
+  return static_cast<QEvent*>(val.getPtr());
 }

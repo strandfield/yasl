@@ -108,10 +108,10 @@ struct destructor_binder<T, qobject_tag>
   static script::Value destructor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    T *ref = qobject_cast<T*>(self.impl()->data.builtin.qobject);
+    T *ref = qobject_cast<T*>(self.toQObject());
     if (ref != nullptr)
       delete ref;
-    self.impl()->data.builtin.qobject = nullptr;
+    self.setPtr(nullptr);
     return script::Value::Void;
   }
 };

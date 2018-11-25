@@ -147,6 +147,10 @@ QStringList HeaderFile::generateBindingDefinitions()
         bindingIncludes.insert("yasl/core/qevent-binding.h");
         out << ("template<> struct tag_resolver<" + t.name + "> { typedef qevent_tag tag_type; };");
       }
+      else
+      {
+        out << ("template<> struct tag_resolver<" + t.name + "> { typedef " + t.tag + " tag_type; };");
+      }
     }
   }
   out << "} // namespace script";

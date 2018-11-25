@@ -19,7 +19,6 @@
 #include <script/templatebuilder.h>
 #include <script/userdata.h>
 #include <script/value.h>
-#include <script/private/value_p.h>
 #include <script/private/class_p.h> // not that good...
 
 #include <QMap>

@@ -5,7 +5,6 @@
 #include "yasl/common/variant-utils.h"
 
 #include "yasl/common/value.h"
-#include "yasl/common/values.h"
 
 #include <script/class.h>
 #include <script/classbuilder.h>
@@ -146,7 +145,7 @@ static script::Value variant_value_callback(script::FunctionCall *c)
 {
   using namespace script;
   const Type & rt = c->callee().returnType();
-  QVariant v = script::value_cast<QVariant>(c->thisObject());
+  QVariant v = c->thisObject().toVariant();
   if (get_variant_value_type(v) == rt)
     return get_variant_value(c->engine(), v);
   else
@@ -183,8 +182,9 @@ static std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserDa
 static script::Value variant_fromvalue_callback(script::FunctionCall *c)
 {
   using namespace script;
-  throw std::runtime_error{ "Not implemented" };
-  //return script::make_value<QVariant>(make_qvariant(c->arg(0)), c->engine());
+  return c->engine()->construct(Type::QVariant, [&](script::Value & val) {
+    val.setVariant(make_qvariant(c->arg(0)));
+  });
 }
 
 static void variant_fromvalue_deduce(script::TemplateArgumentDeduction &deduc, const script::FunctionTemplate & variant_fromvalue, const std::vector<script::TemplateArgument> & targs, const std::vector<script::Type> & itypes)
@@ -220,7 +220,7 @@ static std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserDa
 
 static script::Value variant_type_callback(script::FunctionCall *c)
 {
-  return c->engine()->newInt(get_variant_value_type(script::value_cast<QVariant>(c->thisObject())).data());
+  return c->engine()->newInt(get_variant_value_type(c->thisObject().toVariant()).data());
 }
 
 

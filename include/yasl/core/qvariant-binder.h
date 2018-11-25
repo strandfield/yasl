@@ -2,11 +2,12 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_CORE_QEVENT_BINDER_H
-#define YASL_CORE_QEVENT_BINDER_H
+#ifndef YASL_CORE_QVARIANT_BINDER_H
+#define YASL_CORE_QVARIANT_BINDER_H
 
-#include "yasl/common/binding/class.h"
-#include "yasl/core/qevent-binding.h"
+#include "yasl/common/binding/constructor_binder.h"
+#include "yasl/common/binding/destructor_binder.h"
+#include "yasl/core/qvariant-values.h"
 
 namespace script
 {
@@ -15,19 +16,19 @@ namespace bind
 {
 
 template<typename T>
-struct constructor_binder<T, qevent_tag>
+struct constructor_binder<T, qvariant_tag>
 {
   static script::Value default_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.setPtr(new T());
+    self.setVariant(QVariant());
     return self;
   }
 
   static script::Value copy_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.setPtr(new T(value_cast<const T &>(c->arg(1))));
+    self.setVariant(QVariant(c->arg(1).toVariant()));
     return self;
   }
 
@@ -35,7 +36,7 @@ struct constructor_binder<T, qevent_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.setPtr(new T(value_cast<A1>(c->arg(1))));
+    self.setVariant(QVariant(value_cast<A1>(c->arg(1))));
     return self;
   }
 
@@ -43,7 +44,7 @@ struct constructor_binder<T, qevent_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))));
+    self.setVariant(QVariant(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))));
     return self;
   }
 
@@ -51,7 +52,7 @@ struct constructor_binder<T, qevent_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))));
+    self.setVariant(QVariant(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))));
     return self;
   }
 
@@ -59,7 +60,7 @@ struct constructor_binder<T, qevent_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))));
+    self.setVariant(QVariant(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))));
     return self;
   }
 
@@ -67,7 +68,7 @@ struct constructor_binder<T, qevent_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5))));
+    self.setVariant(QVariant(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5))));
     return self;
   }
 
@@ -75,23 +76,18 @@ struct constructor_binder<T, qevent_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6))));
+    self.setVariant(QVariant(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6))));
     return self;
   }
 };
 
 template<typename T>
-struct destructor_binder<T, qevent_tag>
+struct destructor_binder<T, qvariant_tag>
 {
   static script::Value destructor(script::FunctionCall *c)
   {
     auto self = c->thisObject();
-    if (self.getPtr() != nullptr)
-    {
-      delete static_cast<QEvent*>(self.getPtr());
-      self.setPtr(nullptr);
-    }
-
+    self.clear(passkey{});
     return script::Value::Void;
   }
 };
@@ -100,4 +96,4 @@ struct destructor_binder<T, qevent_tag>
 
 } // namespace script
 
-#endif // YASL_CORE_QEVENT_BINDER_H
+#endif // YASL_CORE_QVARIANT_BINDER_H

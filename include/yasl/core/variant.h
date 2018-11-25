@@ -7,10 +7,11 @@
 
 #include "yasl/common/types.h"
 
-#include <QVariant>
+#include "yasl/core/qvariant-values.h"
 
 namespace script {
 template<> struct make_type_t<QVariant> { inline static script::Type get() { return script::Type::QVariant; } };
+template<> struct tag_resolver<QVariant> { typedef qvariant_tag tag_type; };
 } // namespace script
 
 #endif // YASL_CORE_VARIANT_H

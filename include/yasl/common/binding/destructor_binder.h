@@ -24,8 +24,9 @@ struct destructor_binder<T, small_object_tag>
   static script::Value destructor(script::FunctionCall *c) 
   {
     script::Value self = c->thisObject();
-    T *ptr = reinterpret_cast<T*>(&self.impl()->data.memory);
+    T *ptr = reinterpret_cast<T*>(self.memory());
     ptr->~T();
+    self.releaseMemory(passkey{});
     return script::Value::Void;
   }
 };
@@ -36,9 +37,9 @@ struct destructor_binder<T, large_object_tag>
   static script::Value destructor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    T *ptr = static_cast<T*>(self.impl()->data.ptr);
+    T *ptr = static_cast<T*>(self.getPtr());
     delete ptr;
-    self.impl()->data.ptr = nullptr;
+    self.setPtr(nullptr);
     return script::Value::Void;
   }
 };

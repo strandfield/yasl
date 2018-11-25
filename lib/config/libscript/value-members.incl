@@ -1,3 +1,19 @@
 
 QObject* toQObject() const;
+const QVariant & toVariant() const;
+QVariant & toVariant();
+void setVariant(const QVariant & v);
 void* getPtr() const;
+void setPtr(void *ptr);
+
+void* getMemory(passkey) const;
+void* memory() const;
+void releaseMemory(passkey);
+void clear(passkey);
+
+bool & getBoolField(passkey) const;
+char & getCharField(passkey) const;
+int & getIntField(passkey) const;
+float & getFloatField(passkey) const;
+double & getDoubleField(passkey) const;
+String & getStringField(passkey) const;

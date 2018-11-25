@@ -20,7 +20,7 @@ namespace script
 static script::Value make_list(const QList<yasl::Value> & val, const script::Type & list_type, script::Engine *e)
 {
   return e->construct(list_type, [&val](script::Value & ret) {
-    new (&ret.impl()->data.memory) QList<yasl::Value>{val};
+    new (ret.getMemory(passkey{})) QList<yasl::Value>{val};
   });
 }
 
@@ -31,7 +31,7 @@ namespace callbacks
 static script::Value default_ctor(script::FunctionCall *c)
 {
   using namespace script;
-  new (&c->thisObject().impl()->data.memory) QList<yasl::Value>{};
+  new (c->thisObject().getMemory(passkey{})) QList<yasl::Value>{};
   return c->thisObject();
 }
 
@@ -40,7 +40,7 @@ static script::Value copy_ctor(script::FunctionCall *c)
 {
   using namespace script;
   QList<yasl::Value> & other = script::value_cast<QList<yasl::Value> &>(c->arg(1));
-  new (&c->thisObject().impl()->data.memory) QList<yasl::Value>{other};
+  new (c->thisObject().getMemory(passkey{})) QList<yasl::Value>{other};
   return c->thisObject();
 }
 
@@ -50,7 +50,7 @@ static script::Value dtor(script::FunctionCall *c)
   using namespace script;
   QList<yasl::Value> & self = script::value_cast<QList<yasl::Value> &>(c->thisObject());
   self.~QList<yasl::Value>();
-  std::memset(&c->thisObject().impl()->data.memory, 0, sizeof(script::ValueImpl::BuiltIn));
+  c->thisObject().releaseMemory(passkey{});
   return script::Value::Void;
 }
 

@@ -25,14 +25,14 @@ struct constructor_binder<T, small_object_tag>
   static script::Value default_ctor(script::FunctionCall *c) 
   {
     script::Value self = c->thisObject();
-    new (&self.impl()->data.memory) T;
+    new (self.getMemory(passkey{})) T;
     return self;
   }
 
   static script::Value copy_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    new (&self.impl()->data.memory) T(value_cast<const T &>(c->arg(1)));
+    new (self.getMemory(passkey{})) T(value_cast<const T &>(c->arg(1)));
     return self;
   }
 
@@ -40,7 +40,7 @@ struct constructor_binder<T, small_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    new (&self.impl()->data.memory) T(value_cast<A1>(c->arg(1)));
+    new (self.getMemory(passkey{})) T(value_cast<A1>(c->arg(1)));
     return self;
   }
 
@@ -48,7 +48,7 @@ struct constructor_binder<T, small_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    new (&self.impl()->data.memory) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)));
+    new (self.getMemory(passkey{})) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)));
     return self;
   }
 
@@ -56,7 +56,7 @@ struct constructor_binder<T, small_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    new (&self.impl()->data.memory) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)));
+    new (self.getMemory(passkey{})) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)));
     return self;
   }
 
@@ -64,7 +64,7 @@ struct constructor_binder<T, small_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    new (&self.impl()->data.memory) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)));
+    new (self.getMemory(passkey{})) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)));
     return self;
   }
 
@@ -72,7 +72,7 @@ struct constructor_binder<T, small_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    new (&self.impl()->data.memory) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)));
+    new (self.getMemory(passkey{})) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)));
     return self;
   }
 
@@ -80,7 +80,7 @@ struct constructor_binder<T, small_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    new (&self.impl()->data.memory) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6)));
+    new (self.getMemory(passkey{})) T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6)));
     return self;
   }
 };
@@ -92,14 +92,14 @@ struct constructor_binder<T, large_object_tag>
   static script::Value default_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.impl()->data.ptr = new T;
+    self.setPtr(new T);
     return self;
   }
 
   static script::Value copy_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.impl()->data.ptr = new T(value_cast<const T &>(c->arg(1)));
+    self.setPtr(new T(value_cast<const T &>(c->arg(1))));
     return self;
   }
 
@@ -107,7 +107,7 @@ struct constructor_binder<T, large_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)));
+    self.setPtr(new T(value_cast<A1>(c->arg(1))));
     return self;
   }
 
@@ -115,7 +115,7 @@ struct constructor_binder<T, large_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)));
+    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))));
     return self;
   }
 
@@ -123,7 +123,7 @@ struct constructor_binder<T, large_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)));
+    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))));
     return self;
   }
 
@@ -131,7 +131,7 @@ struct constructor_binder<T, large_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)));
+    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))));
     return self;
   }
 
@@ -139,7 +139,7 @@ struct constructor_binder<T, large_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)));
+    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5))));
     return self;
   }
 
@@ -147,7 +147,7 @@ struct constructor_binder<T, large_object_tag>
   static script::Value generic_ctor(script::FunctionCall *c)
   {
     script::Value self = c->thisObject();
-    self.impl()->data.ptr = new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6)));
+    self.setPtr(new T(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6))));
     return self;
   }
 };

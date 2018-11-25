@@ -5,8 +5,6 @@
 #ifndef YASL_COMMONS_VARIANTUTILS_H
 #define YASL_COMMONS_VARIANTUTILS_H
 
-/// TODO: maybe rename to variant-utils
-
 #include <script/value.h>
 
 #include <QVariant>

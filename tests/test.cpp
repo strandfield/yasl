@@ -18,6 +18,8 @@
 #include <script/namespace.h>
 #include <script/operator.h>
 
+#include <script/private/value_p.h>
+
 #include <QList>
 
 #include <cassert>
@@ -33,7 +35,8 @@ void print_info()
 {
   using namespace script;
 
-  std::cout << "sizeof(ValueImpl::Builtin) = " << sizeof(script::ValueImpl::BuiltIn) << std::endl;
+  std::cout << "sizeof(ValueImpl) = " << sizeof(script::ValueImpl) << std::endl;
+  std::cout << "sizeof(ValueImpl::Data) = " << sizeof(script::ValueImpl::Data) << std::endl;
 }
 
 int add(int a, int b)

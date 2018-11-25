@@ -23,7 +23,6 @@
 #include <script/templatebuilder.h>
 #include <script/userdata.h>
 #include <script/value.h>
-#include <script/private/value_p.h>
 
 namespace script
 {

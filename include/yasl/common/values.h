@@ -10,7 +10,6 @@
 
 #include <script/engine.h>
 #include <script/value.h>
-#include <script/private/value_p.h>
 
 #include <string>
 
@@ -45,7 +44,7 @@ struct tag_resolver_impl<false, false>
 template<typename T>
 struct tag_resolver
 {
-  typedef typename tag_resolver_impl<(sizeof(T) <= sizeof(script::ValueImpl::BuiltIn)), std::is_enum<T>::value>::type tag_type;
+  typedef typename tag_resolver_impl<(sizeof(T) <= 40), std::is_enum<T>::value>::type tag_type;
 };
 
 } // namespace script
@@ -74,7 +73,7 @@ struct make_value_t<T, small_object_tag>
   static script::Value make(const T & input, script::Engine *e)
   {
     return e->construct(make_type<T>(), [&input](script::Value & ret) {
-      new (&ret.impl()->data.memory) T(input);
+      new (ret.getMemory(passkey{})) T(input);
     });
   }
 };
@@ -85,7 +84,7 @@ struct make_value_t<T, large_object_tag>
   static script::Value make(const T & input, script::Engine *e)
   {
     return e->construct(make_type<T>(), [&input](script::Value & ret) {
-      ret.impl()->data.ptr = new T(input);
+      ret.setPtr(new T(input));
     });
   }
 };
@@ -171,7 +170,7 @@ struct get_helper<T, small_object_tag>
 {
   static T& get(const script::Value & val)
   {
-    return *reinterpret_cast<T*>(&val.impl()->data.memory);
+    return *reinterpret_cast<T*>(val.memory());
   }
 };
 
@@ -180,7 +179,7 @@ struct get_helper<T, large_object_tag>
 {
   static T* get(const script::Value & val)
   {
-    return static_cast<T*>(val.impl()->data.ptr);
+    return static_cast<T*>(val.getPtr());
   }
 };
 
@@ -200,27 +199,27 @@ typename storage_type<T>::type get(const script::Value & val)
   return get_helper<T>::get(val);
 }
 
-template<> inline bool& get<bool>(const script::Value & val) { return val.impl()->data.boolean; }
-template<> inline char& get<char>(const script::Value & val) { return val.impl()->data.character; }
-template<> inline int& get<int>(const script::Value & val) { return val.impl()->data.integer; }
-template<> inline float& get<float>(const script::Value & val) { return val.impl()->data.realf; }
-template<> inline double& get<double>(const script::Value & val) { return val.impl()->data.reald; }
-template<> inline script::String& get<script::String>(const script::Value & v) { return v.impl()->data.builtin.string; }
+template<> inline bool& get<bool>(const script::Value & val) { return val.getBoolField(passkey{}); }
+template<> inline char& get<char>(const script::Value & val) { return val.getCharField(passkey{}); }
+template<> inline int& get<int>(const script::Value & val) { return val.getIntField(passkey{}); }
+template<> inline float& get<float>(const script::Value & val) { return val.getFloatField(passkey{}); }
+template<> inline double& get<double>(const script::Value & val) { return val.getDoubleField(passkey{}); }
+template<> inline script::String& get<script::String>(const script::Value & v) { return v.getStringField(passkey{}); }
 
 template<> struct storage_type<qint64> { typedef qint64 type; };
-template<> inline qint64 get<qint64>(const script::Value & v) { return v.impl()->data.integer; }
+template<> inline qint64 get<qint64>(const script::Value & v) { return v.toInt(); }
 
 template<> struct storage_type<qulonglong> { typedef qulonglong type; };
-template<> inline qulonglong get<qulonglong>(const script::Value & v) { return v.impl()->data.integer; }
+template<> inline qulonglong get<qulonglong>(const script::Value & v) { return v.toInt(); }
 
 template<> struct storage_type<short> { typedef short type; };
-template<> inline short get<short>(const script::Value & v) { return v.impl()->data.integer; }
+template<> inline short get<short>(const script::Value & v) { return v.toInt(); }
 
 template<> struct storage_type<uint> { typedef uint type; };
-template<> inline uint get<uint>(const script::Value & v) { return v.impl()->data.integer; }
+template<> inline uint get<uint>(const script::Value & v) { return v.toInt(); }
 
 template<> struct storage_type<ushort> { typedef ushort type; };
-template<> inline ushort get<ushort>(const script::Value & v) { return v.impl()->data.integer; }
+template<> inline ushort get<ushort>(const script::Value & v) { return v.toInt(); }
 
 template<typename T>
 struct decay
