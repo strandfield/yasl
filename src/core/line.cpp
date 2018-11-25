@@ -178,6 +178,8 @@ static void register_line_f_class(script::Namespace ns)
   bind::memop_neq<QLineF, const QLineF &>(line_f);
   // QLine toLine() const;
   bind::member_function<QLineF, QLine, &QLineF::toLine>(line_f, "toLine").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QLineF, QMetaType::QLineF>>();
 }
 
 

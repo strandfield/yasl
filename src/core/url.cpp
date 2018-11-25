@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/bytearray.h"
@@ -252,6 +253,8 @@ static void register_url_class(script::Namespace ns)
   /// TODO: static void setIdnWhitelist(const QStringList &);
   // QUrl::DataPtr & data_ptr();
   /// TODO: QUrl::DataPtr & data_ptr();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QUrl, QMetaType::QUrl>>();
 }
 
 

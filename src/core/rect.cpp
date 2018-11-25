@@ -6,6 +6,7 @@
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/margins.h"
@@ -170,6 +171,8 @@ static void register_rect_class(script::Namespace ns)
   bind::memop_add_assign<QRect, const QMargins &>(rect);
   // QRect & operator-=(const QMargins &);
   bind::memop_sub_assign<QRect, const QMargins &>(rect);
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QRect, QMetaType::QRect>>();
 }
 
 
@@ -332,6 +335,8 @@ static void register_rect_f_class(script::Namespace ns)
   bind::member_function<QRectF, QRect, &QRectF::toRect>(rect_f, "toRect").create();
   // QRect toAlignedRect() const;
   bind::member_function<QRectF, QRect, &QRectF::toAlignedRect>(rect_f, "toAlignedRect").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QRectF, QMetaType::QRectF>>();
 }
 
 

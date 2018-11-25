@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/gui/keysequence.h"
@@ -186,6 +187,8 @@ static void register_key_sequence_class(script::Namespace ns)
   bind::member_function<QKeySequence, bool, &QKeySequence::isDetached>(key_sequence, "isDetached").create();
   // QKeySequence::DataPtr & data_ptr();
   /// TODO: QKeySequence::DataPtr & data_ptr();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QKeySequence, QMetaType::QKeySequence>>();
 }
 
 

@@ -40071,29 +40071,9 @@
     "types": {
         "classes": [
             {
-                "header": "yasl/core/enums.h",
-                "id": "QtAlignment",
-                "name": "Qt::Alignment",
-                "rename": "Alignment"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtImageConversionFlags",
-                "name": "Qt::ImageConversionFlags",
-                "rename": "ImageConversionFlags"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtKeyboardModifiers",
-                "name": "Qt::KeyboardModifiers",
-                "rename": "KeyboardModifiers"
-            },
-            {
-                "header": "yasl/core/bytearray.h",
-                "id": "QByteArray",
-                "links": "proxy@Proxy<QByteArray>;list@QList<QByteArray>",
-                "name": "QByteArray",
-                "rename": "ByteArray"
+                "header": "yasl/widgets/action.h",
+                "id": "ProxyQAction",
+                "name": "Proxy<QAction*>"
             },
             {
                 "header": "yasl/core/bytearray.h",
@@ -40101,9 +40081,88 @@
                 "name": "Proxy<QByteArray>"
             },
             {
+                "header": "yasl/core/locale.h",
+                "id": "ProxyQLocale",
+                "name": "Proxy<QLocale>"
+            },
+            {
+                "header": "yasl/core/object.h",
+                "id": "ProxyQObject",
+                "name": "Proxy<QObject*>"
+            },
+            {
+                "header": "yasl/widgets/widget.h",
+                "id": "ProxyQWidget",
+                "name": "Proxy<QWidget*>"
+            },
+            {
+                "header": "yasl/widgets/abstractbutton.h",
+                "id": "QAbstractButton",
+                "name": "QAbstractButton",
+                "rename": "AbstractButton",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/abstractslider.h",
+                "id": "QAbstractSlider",
+                "name": "QAbstractSlider",
+                "rename": "AbstractSlider",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBox",
+                "name": "QAbstractSpinBox",
+                "rename": "AbstractSpinBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBoxStepEnabled",
+                "name": "QAbstractSpinBox::StepEnabled",
+                "rename": "StepEnabled"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QAction",
+                "links": "ref@QAction*;proxy@Proxy<QAction*>;list@QList<QAction*>",
+                "name": "QAction",
+                "rename": "Action",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QActionStar",
+                "name": "QAction*"
+            },
+            {
+                "header": "yasl/gui/bitmap.h",
+                "id": "QBitmap",
+                "metatype": "QMetaType::QBitmap",
+                "name": "QBitmap",
+                "rename": "Bitmap"
+            },
+            {
+                "header": "yasl/widgets/boxlayout.h",
+                "id": "QBoxLayout",
+                "name": "QBoxLayout",
+                "rename": "BoxLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QBrush",
+                "metatype": "QMetaType::QBrush",
+                "name": "QBrush",
+                "rename": "Brush"
+            },
+            {
                 "header": "yasl/core/bytearray.h",
-                "id": "QListQByteArray",
-                "name": "QList<QByteArray>"
+                "id": "QByteArray",
+                "links": "proxy@Proxy<QByteArray>;list@QList<QByteArray>",
+                "metatype": "QMetaType::QByteArray",
+                "name": "QByteArray",
+                "rename": "ByteArray"
             },
             {
                 "header": "yasl/core/bytearray.h",
@@ -40120,8 +40179,16 @@
             {
                 "header": "yasl/core/char.h",
                 "id": "QChar",
+                "metatype": "QMetaType::QChar",
                 "name": "QChar",
                 "rename": "Char"
+            },
+            {
+                "header": "yasl/widgets/checkbox.h",
+                "id": "QCheckBox",
+                "name": "QCheckBox",
+                "rename": "CheckBox",
+                "tag": "qobject_tag"
             },
             {
                 "header": "yasl/core/event.h",
@@ -40129,6 +40196,60 @@
                 "name": "QChildEvent",
                 "rename": "ChildEvent",
                 "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/clipboard.h",
+                "id": "QClipboard",
+                "name": "QClipboard",
+                "rename": "Clipboard",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QCloseEvent",
+                "name": "QCloseEvent",
+                "rename": "CloseEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/color.h",
+                "id": "QColor",
+                "metatype": "QMetaType::QColor",
+                "name": "QColor",
+                "rename": "Color"
+            },
+            {
+                "header": "yasl/widgets/colordialog.h",
+                "id": "QColorDialog",
+                "name": "QColorDialog",
+                "rename": "ColorDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/colordialog.h",
+                "id": "QColorDialogColorDialogOptions",
+                "name": "QColorDialog::ColorDialogOptions",
+                "rename": "ColorDialogOptions"
+            },
+            {
+                "header": "yasl/widgets/combobox.h",
+                "id": "QComboBox",
+                "name": "QComboBox",
+                "rename": "ComboBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QConicalGradient",
+                "name": "QConicalGradient",
+                "rename": "ConicalGradient"
+            },
+            {
+                "header": "yasl/gui/cursor.h",
+                "id": "QCursor",
+                "metatype": "QMetaType::QCursor",
+                "name": "QCursor",
+                "rename": "Cursor"
             },
             {
                 "header": "yasl/core/datastream.h",
@@ -40139,14 +40260,36 @@
             {
                 "header": "yasl/core/datetime.h",
                 "id": "QDate",
+                "metatype": "QMetaType::QDate",
                 "name": "QDate",
                 "rename": "Date"
             },
             {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QDateEdit",
+                "name": "QDateEdit",
+                "rename": "DateEdit",
+                "tag": "qobject_tag"
+            },
+            {
                 "header": "yasl/core/datetime.h",
                 "id": "QDateTime",
+                "metatype": "QMetaType::QDateTime",
                 "name": "QDateTime",
                 "rename": "DateTime"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QDateTimeEdit",
+                "name": "QDateTimeEdit",
+                "rename": "DateTimeEdit",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QDateTimeEditSections",
+                "name": "QDateTimeEdit::Sections",
+                "rename": "Sections"
             },
             {
                 "header": "yasl/core/event.h",
@@ -40154,6 +40297,20 @@
                 "name": "QDeferredDeleteEvent",
                 "rename": "DeferredDeleteEvent",
                 "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/widgets/dial.h",
+                "id": "QDial",
+                "name": "QDial",
+                "rename": "Dial",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/dialog.h",
+                "id": "QDialog",
+                "name": "QDialog",
+                "rename": "Dialog",
+                "tag": "qobject_tag"
             },
             {
                 "header": "yasl/core/dir.h",
@@ -40174,6 +40331,20 @@
                 "rename": "SortFlags"
             },
             {
+                "header": "yasl/widgets/spinbox.h",
+                "id": "QDoubleSpinBox",
+                "name": "QDoubleSpinBox",
+                "rename": "DoubleSpinBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QDoubleValidator",
+                "name": "QDoubleValidator",
+                "rename": "DoubleValidator",
+                "tag": "qobject_tag"
+            },
+            {
                 "header": "yasl/core/event.h",
                 "id": "QDynamicPropertyChangeEvent",
                 "name": "QDynamicPropertyChangeEvent",
@@ -40185,6 +40356,13 @@
                 "id": "QElapsedTimer",
                 "name": "QElapsedTimer",
                 "rename": "ElapsedTimer"
+            },
+            {
+                "header": "yasl/widgets/errormessage.h",
+                "id": "QErrorMessage",
+                "name": "QErrorMessage",
+                "rename": "ErrorMessage",
+                "tag": "qobject_tag"
             },
             {
                 "header": "yasl/core/event.h",
@@ -40209,21 +40387,179 @@
             },
             {
                 "header": "yasl/core/filedevice.h",
+                "id": "QFileDeviceFileHandleFlags",
+                "name": "QFileDevice::FileHandleFlags",
+                "rename": "FileHandleFlags"
+            },
+            {
+                "header": "yasl/core/filedevice.h",
                 "id": "QFileDevicePermissions",
                 "name": "QFileDevice::Permissions",
                 "rename": "Permissions"
             },
             {
-                "header": "yasl/core/filedevice.h",
-                "id": "QFileDeviceFileHandleFlags",
-                "name": "QFileDevice::FileHandleFlags",
-                "rename": "FileHandleFlags"
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialog",
+                "name": "QFileDialog",
+                "rename": "FileDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogOptions",
+                "name": "QFileDialog::Options",
+                "rename": "Options"
             },
             {
                 "header": "yasl/core/fileinfo.h",
                 "id": "QFileInfo",
                 "name": "QFileInfo",
                 "rename": "FileInfo"
+            },
+            {
+                "header": "yasl/gui/font.h",
+                "id": "QFont",
+                "metatype": "QMetaType::QFont",
+                "name": "QFont",
+                "rename": "Font"
+            },
+            {
+                "header": "yasl/widgets/fontcombobox.h",
+                "id": "QFontComboBox",
+                "name": "QFontComboBox",
+                "rename": "FontComboBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/fontcombobox.h",
+                "id": "QFontComboBoxFontFilters",
+                "name": "QFontComboBox::FontFilters",
+                "rename": "FontFilters"
+            },
+            {
+                "header": "yasl/gui/fontdatabase.h",
+                "id": "QFontDatabase",
+                "name": "QFontDatabase",
+                "rename": "FontDatabase"
+            },
+            {
+                "header": "yasl/widgets/fontdialog.h",
+                "id": "QFontDialog",
+                "name": "QFontDialog",
+                "rename": "FontDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/fontdialog.h",
+                "id": "QFontDialogFontDialogOptions",
+                "name": "QFontDialog::FontDialogOptions",
+                "rename": "FontDialogOptions"
+            },
+            {
+                "header": "yasl/gui/fontinfo.h",
+                "id": "QFontInfo",
+                "name": "QFontInfo",
+                "rename": "FontInfo"
+            },
+            {
+                "header": "yasl/gui/fontmetrics.h",
+                "id": "QFontMetrics",
+                "name": "QFontMetrics",
+                "rename": "FontMetrics"
+            },
+            {
+                "header": "yasl/gui/fontmetrics.h",
+                "id": "QFontMetricsF",
+                "name": "QFontMetricsF",
+                "rename": "FontMetricsF"
+            },
+            {
+                "header": "yasl/widgets/formlayout.h",
+                "id": "QFormLayout",
+                "name": "QFormLayout",
+                "rename": "FormLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/frame.h",
+                "id": "QFrame",
+                "name": "QFrame",
+                "rename": "Frame",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/glyphrun.h",
+                "id": "QGlyphRun",
+                "name": "QGlyphRun",
+                "rename": "GlyphRun"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradient",
+                "name": "QGradient",
+                "rename": "Gradient"
+            },
+            {
+                "header": "yasl/widgets/gridlayout.h",
+                "id": "QGridLayout",
+                "name": "QGridLayout",
+                "rename": "GridLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/groupbox.h",
+                "id": "QGroupBox",
+                "name": "QGroupBox",
+                "rename": "GroupBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/boxlayout.h",
+                "id": "QHBoxLayout",
+                "name": "QHBoxLayout",
+                "rename": "QHBoxLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QHideEvent",
+                "name": "QHideEvent",
+                "rename": "HideEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/icon.h",
+                "id": "QIcon",
+                "metatype": "QMetaType::QIcon",
+                "name": "QIcon",
+                "rename": "Icon"
+            },
+            {
+                "header": "yasl/gui/image.h",
+                "id": "QImage",
+                "metatype": "QMetaType::QImage",
+                "name": "QImage",
+                "rename": "Image"
+            },
+            {
+                "header": "yasl/widgets/inputdialog.h",
+                "id": "QInputDialog",
+                "name": "QInputDialog",
+                "rename": "InputDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/inputdialog.h",
+                "id": "QInputDialogInputDialogOptions",
+                "name": "QInputDialog::InputDialogOptions",
+                "rename": "InputDialogOptions"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QIntValidator",
+                "name": "QIntValidator",
+                "rename": "IntValidator",
+                "tag": "qobject_tag"
             },
             {
                 "header": "yasl/core/iodevice.h",
@@ -40239,6 +40575,74 @@
                 "rename": "OpenMode"
             },
             {
+                "header": "yasl/core/jsonarray.h",
+                "id": "QJsonArray",
+                "metatype": "QMetaType::QJsonArray",
+                "name": "QJsonArray",
+                "rename": "JsonArray"
+            },
+            {
+                "header": "yasl/core/jsondocument.h",
+                "id": "QJsonDocument",
+                "metatype": "QMetaType::QJsonDocument",
+                "name": "QJsonDocument",
+                "rename": "JsonDocument"
+            },
+            {
+                "header": "yasl/core/jsonobject.h",
+                "id": "QJsonObject",
+                "metatype": "QMetaType::QJsonObject",
+                "name": "QJsonObject",
+                "rename": "JsonObject"
+            },
+            {
+                "header": "yasl/core/jsonvalue.h",
+                "id": "QJsonValue",
+                "metatype": "QMetaType::QJsonValue",
+                "name": "QJsonValue",
+                "rename": "JsonValue"
+            },
+            {
+                "header": "yasl/core/jsonvalue.h",
+                "id": "QJsonValueRef",
+                "name": "QJsonValueRef",
+                "rename": "JsonValueRef"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QKeyEvent",
+                "name": "QKeyEvent",
+                "rename": "KeyEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/keysequence.h",
+                "id": "QKeySequence",
+                "metatype": "QMetaType::QKeySequence",
+                "name": "QKeySequence",
+                "rename": "KeySequence"
+            },
+            {
+                "header": "yasl/widgets/label.h",
+                "id": "QLabel",
+                "name": "QLabel",
+                "rename": "Label",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/layout.h",
+                "id": "QLayout",
+                "links": "ref@QLayout*",
+                "name": "QLayout",
+                "rename": "Layout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/layout.h",
+                "id": "QLayoutStar",
+                "name": "QLayout*"
+            },
+            {
                 "header": "yasl/core/line.h",
                 "id": "QLine",
                 "metatype": "QMetaType::QLine",
@@ -40246,27 +40650,57 @@
                 "rename": "Line"
             },
             {
+                "header": "yasl/gui/brush.h",
+                "id": "QLinearGradient",
+                "name": "QLinearGradient",
+                "rename": "LinearGradient"
+            },
+            {
+                "header": "yasl/widgets/lineedit.h",
+                "id": "QLineEdit",
+                "name": "QLineEdit",
+                "rename": "LineEdit",
+                "tag": "qobject_tag"
+            },
+            {
                 "header": "yasl/core/line.h",
                 "id": "QLineF",
+                "metatype": "QMetaType::QLineF",
                 "name": "QLineF",
                 "rename": "LineF"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocale",
-                "links": "proxy@Proxy<QLocale>;list@QList<QLocale>",
-                "name": "QLocale",
-                "rename": "Locale"
+                "header": "yasl/widgets/action.h",
+                "id": "QListQAction",
+                "name": "QList<QAction*>"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "ProxyQLocale",
-                "name": "Proxy<QLocale>"
+                "header": "yasl/core/bytearray.h",
+                "id": "QListQByteArray",
+                "name": "QList<QByteArray>"
             },
             {
                 "header": "yasl/core/locale.h",
                 "id": "QListQLocale",
                 "name": "QList<QLocale>"
+            },
+            {
+                "header": "yasl/core/object.h",
+                "id": "QListQObject",
+                "name": "QList<QObject*>"
+            },
+            {
+                "header": "yasl/widgets/widget.h",
+                "id": "QListQWidget",
+                "name": "QList<QWidget*>"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocale",
+                "links": "proxy@Proxy<QLocale>;list@QList<QLocale>",
+                "metatype": "QMetaType::QLocale",
+                "name": "QLocale",
+                "rename": "Locale"
             },
             {
                 "header": "yasl/core/locale.h",
@@ -40287,22 +40721,50 @@
                 "rename": "MarginsF"
             },
             {
+                "header": "yasl/widgets/menu.h",
+                "id": "QMenu",
+                "links": "ref@QMenu*",
+                "name": "QMenu",
+                "rename": "Menu",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/menu.h",
+                "id": "QMenuStar",
+                "name": "QMenu*"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBox",
+                "name": "QMessageBox",
+                "rename": "MessageBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBoxStandardButtons",
+                "name": "QMessageBox::StandardButtons",
+                "rename": "StandardButtons"
+            },
+            {
                 "header": "yasl/core/mimetype.h",
                 "id": "QMimeType",
                 "name": "QMimeType",
                 "rename": "MimeType"
             },
             {
-                "header": "yasl/core/point.h",
-                "id": "QPoint",
-                "name": "QPoint",
-                "rename": "Point"
+                "header": "yasl/gui/guievent.h",
+                "id": "QMouseEvent",
+                "name": "QMouseEvent",
+                "rename": "MouseEvent",
+                "tag": "qevent_tag"
             },
             {
-                "header": "yasl/core/point.h",
-                "id": "QPointF",
-                "name": "QPointF",
-                "rename": "PointF"
+                "header": "yasl/gui/guievent.h",
+                "id": "QMoveEvent",
+                "name": "QMoveEvent",
+                "rename": "MoveEvent",
+                "tag": "qevent_tag"
             },
             {
                 "header": "yasl/core/object.h",
@@ -40319,18 +40781,98 @@
             },
             {
                 "header": "yasl/core/object.h",
-                "id": "ProxyQObject",
-                "name": "Proxy<QObject*>"
-            },
-            {
-                "header": "yasl/core/object.h",
-                "id": "QListQObject",
-                "name": "QList<QObject*>"
-            },
-            {
-                "header": "yasl/core/object.h",
                 "id": "QListQObject",
                 "name": "QObjectList"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainter",
+                "name": "QPainter",
+                "rename": "Painter"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainterPixmapFragmentHints",
+                "name": "QPainter::PixmapFragmentHints",
+                "rename": "PixmapFragmentHints"
+            },
+            {
+                "header": "yasl/gui/painter.h",
+                "id": "QPainterRenderHints",
+                "name": "QPainter::RenderHints",
+                "rename": "RenderHints"
+            },
+            {
+                "header": "yasl/gui/painterpath.h",
+                "id": "QPainterPath",
+                "name": "QPainterPath",
+                "rename": "PainterPath"
+            },
+            {
+                "header": "yasl/gui/painterpath.h",
+                "id": "QPainterPathStroker",
+                "name": "QPainterPathStroker",
+                "rename": "PainterPathStroker"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QPaintEvent",
+                "name": "QPaintEvent",
+                "rename": "PaintEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/palette.h",
+                "id": "QPalette",
+                "metatype": "QMetaType::QPalette",
+                "name": "QPalette",
+                "rename": "Palette"
+            },
+            {
+                "header": "yasl/gui/pen.h",
+                "id": "QPen",
+                "metatype": "QMetaType::QPen",
+                "name": "QPen",
+                "rename": "Pen"
+            },
+            {
+                "header": "yasl/gui/picture.h",
+                "id": "QPicture",
+                "name": "QPicture",
+                "rename": "Picture"
+            },
+            {
+                "header": "yasl/gui/picture.h",
+                "id": "QPictureIO",
+                "name": "QPictureIO",
+                "rename": "PictureIO"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormat",
+                "name": "QPixelFormat",
+                "rename": "PixelFormat"
+            },
+            {
+                "header": "yasl/gui/pixmap.h",
+                "id": "QPixmap",
+                "metatype": "QMetaType::QPixmap",
+                "name": "QPixmap",
+                "rename": "Pixmap"
+            },
+            {
+                "header": "yasl/core/point.h",
+                "id": "QPoint",
+                "metatype": "QMetaType::QPoint",
+                "name": "QPoint",
+                "rename": "Point"
+            },
+            {
+                "header": "yasl/core/point.h",
+                "id": "QPointF",
+                "metatype": "QMetaType::QPointF",
+                "name": "QPointF",
+                "rename": "PointF"
             },
             {
                 "header": "yasl/core/process.h",
@@ -40346,20 +40888,70 @@
                 "rename": "ProcessEnvironment"
             },
             {
+                "header": "yasl/widgets/progressbar.h",
+                "id": "QProgressBar",
+                "name": "QProgressBar",
+                "rename": "ProgressBar",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/progressdialog.h",
+                "id": "QProgressDialog",
+                "name": "QProgressDialog",
+                "rename": "ProgressDialog",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/pushbutton.h",
+                "id": "QPushButton",
+                "name": "QPushButton",
+                "rename": "PushButton",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/quaternion.h",
+                "id": "QQuaternion",
+                "name": "QQuaternion",
+                "rename": "Quaternion"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QRadialGradient",
+                "name": "QRadialGradient",
+                "rename": "RadialGradient"
+            },
+            {
+                "header": "yasl/widgets/radiobutton.h",
+                "id": "QRadioButton",
+                "name": "QRadioButton",
+                "rename": "RadioButton",
+                "tag": "qobject_tag"
+            },
+            {
                 "header": "yasl/core/rect.h",
                 "id": "QRect",
+                "metatype": "QMetaType::QRect",
                 "name": "QRect",
                 "rename": "Rect"
             },
             {
                 "header": "yasl/core/rect.h",
                 "id": "QRectF",
+                "metatype": "QMetaType::QRectF",
                 "name": "QRectF",
                 "rename": "RectF"
             },
             {
+                "header": "yasl/gui/region.h",
+                "id": "QRegion",
+                "metatype": "QMetaType::QRegion",
+                "name": "QRegion",
+                "rename": "Region"
+            },
+            {
                 "header": "yasl/core/regularexpression.h",
                 "id": "QRegularExpression",
+                "metatype": "QMetaType::QRegularExpression",
                 "name": "QRegularExpression",
                 "rename": "RegularExpression"
             },
@@ -40388,11 +40980,46 @@
                 "rename": "RegularExpressionMatchIterator"
             },
             {
+                "header": "yasl/gui/validator.h",
+                "id": "QRegularExpressionValidator",
+                "name": "QRegularExpressionValidator",
+                "rename": "RegularExpressionValidator",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QResizeEvent",
+                "name": "QResizeEvent",
+                "rename": "ResizeEvent",
+                "tag": "qevent_tag"
+            },
+            {
+                "header": "yasl/gui/screen.h",
+                "id": "QScreen",
+                "name": "QScreen",
+                "rename": "Screen",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/scrollbar.h",
+                "id": "QScrollBar",
+                "name": "QScrollBar",
+                "rename": "ScrollBar",
+                "tag": "qobject_tag"
+            },
+            {
                 "header": "yasl/core/settings.h",
                 "id": "QSettings",
                 "name": "QSettings",
                 "rename": "Settings",
                 "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/guievent.h",
+                "id": "QShowEvent",
+                "name": "QShowEvent",
+                "rename": "ShowEvent",
+                "tag": "qevent_tag"
             },
             {
                 "header": "yasl/core/object.h",
@@ -40403,20 +41030,100 @@
             {
                 "header": "yasl/core/size.h",
                 "id": "QSize",
+                "metatype": "QMetaType::QSize",
                 "name": "QSize",
                 "rename": "Size"
             },
             {
                 "header": "yasl/core/size.h",
                 "id": "QSizeF",
+                "metatype": "QMetaType::QSizeF",
                 "name": "QSizeF",
                 "rename": "SizeF"
             },
             {
+                "header": "yasl/widgets/slider.h",
+                "id": "QSlider",
+                "name": "QSlider",
+                "rename": "Slider",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/spinbox.h",
+                "id": "QSpinBox",
+                "name": "QSpinBox",
+                "rename": "SpinBox",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/stackedlayout.h",
+                "id": "QStackedLayout",
+                "name": "QStackedLayout",
+                "rename": "StackedLayout",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/statictext.h",
+                "id": "QStaticText",
+                "name": "QStaticText",
+                "rename": "StaticText"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtAlignment",
+                "name": "Qt::Alignment",
+                "rename": "Alignment"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtImageConversionFlags",
+                "name": "Qt::ImageConversionFlags",
+                "rename": "ImageConversionFlags"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtKeyboardModifiers",
+                "name": "Qt::KeyboardModifiers",
+                "rename": "KeyboardModifiers"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtToolBarAreas",
+                "name": "Qt::ToolBarAreas",
+                "rename": "ToolBarAreas"
+            },
+            {
+                "header": "yasl/widgets/tabwidget.h",
+                "id": "QTabWidget",
+                "name": "QTabWidget",
+                "rename": "TabWidget",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOption",
+                "name": "QTextOption",
+                "rename": "TextOption"
+            },
+            {
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOptionFlags",
+                "name": "QTextOption::Flags",
+                "rename": "Flags"
+            },
+            {
                 "header": "yasl/core/datetime.h",
                 "id": "QTime",
+                "metatype": "QMetaType::QTime",
                 "name": "QTime",
                 "rename": "Time"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QTimeEdit",
+                "name": "QTimeEdit",
+                "rename": "TimeEdit",
+                "tag": "qobject_tag"
             },
             {
                 "header": "yasl/core/timer.h",
@@ -40439,8 +41146,30 @@
                 "rename": "TimeZone"
             },
             {
+                "header": "yasl/widgets/toolbar.h",
+                "id": "QToolBar",
+                "name": "QToolBar",
+                "rename": "ToolBar",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/widgets/toolbutton.h",
+                "id": "QToolButton",
+                "name": "QToolButton",
+                "rename": "ToolButton",
+                "tag": "qobject_tag"
+            },
+            {
+                "header": "yasl/gui/transform.h",
+                "id": "QTransform",
+                "metatype": "QMetaType::QTransform",
+                "name": "QTransform",
+                "rename": "Transform"
+            },
+            {
                 "header": "yasl/core/url.h",
                 "id": "QUrl",
+                "metatype": "QMetaType::QUrl",
                 "name": "QUrl",
                 "rename": "Url"
             },
@@ -40465,251 +41194,9 @@
             {
                 "header": "yasl/core/uuid.h",
                 "id": "QUuid",
+                "metatype": "QMetaType::QUuid",
                 "name": "QUuid",
                 "rename": "Uuid"
-            },
-            {
-                "header": "yasl/core/variant.h",
-                "id": "QVariant",
-                "name": "QVariant",
-                "rename": "Variant",
-                "tag": "qvariant_tag"
-            },
-            {
-                "header": "yasl/gui/color.h",
-                "id": "QColor",
-                "name": "QColor",
-                "rename": "Color"
-            },
-            {
-                "header": "yasl/gui/cursor.h",
-                "id": "QCursor",
-                "name": "QCursor",
-                "rename": "Cursor"
-            },
-            {
-                "header": "yasl/gui/font.h",
-                "id": "QFont",
-                "name": "QFont",
-                "rename": "Font"
-            },
-            {
-                "header": "yasl/gui/fontdatabase.h",
-                "id": "QFontDatabase",
-                "name": "QFontDatabase",
-                "rename": "FontDatabase"
-            },
-            {
-                "header": "yasl/gui/fontinfo.h",
-                "id": "QFontInfo",
-                "name": "QFontInfo",
-                "rename": "FontInfo"
-            },
-            {
-                "header": "yasl/gui/fontmetrics.h",
-                "id": "QFontMetrics",
-                "name": "QFontMetrics",
-                "rename": "FontMetrics"
-            },
-            {
-                "header": "yasl/gui/fontmetrics.h",
-                "id": "QFontMetricsF",
-                "name": "QFontMetricsF",
-                "rename": "FontMetricsF"
-            },
-            {
-                "header": "yasl/gui/pixmap.h",
-                "id": "QPixmap",
-                "name": "QPixmap",
-                "rename": "Pixmap"
-            },
-            {
-                "header": "yasl/gui/bitmap.h",
-                "id": "QBitmap",
-                "name": "QBitmap",
-                "rename": "Bitmap"
-            },
-            {
-                "header": "yasl/gui/icon.h",
-                "id": "QIcon",
-                "name": "QIcon",
-                "rename": "Icon"
-            },
-            {
-                "header": "yasl/gui/image.h",
-                "id": "QImage",
-                "name": "QImage",
-                "rename": "Image"
-            },
-            {
-                "header": "yasl/gui/transform.h",
-                "id": "QTransform",
-                "name": "QTransform",
-                "rename": "Transform"
-            },
-            {
-                "header": "yasl/gui/vector2d.h",
-                "id": "QVector2D",
-                "name": "QVector2D",
-                "rename": "Vector2D"
-            },
-            {
-                "header": "yasl/gui/vector3d.h",
-                "id": "QVector3D",
-                "name": "QVector3D",
-                "rename": "Vector3D"
-            },
-            {
-                "header": "yasl/gui/vector4d.h",
-                "id": "QVector4D",
-                "name": "QVector4D",
-                "rename": "Vector4D"
-            },
-            {
-                "header": "yasl/gui/quaternion.h",
-                "id": "QQuaternion",
-                "name": "QQuaternion",
-                "rename": "Quaternion"
-            },
-            {
-                "header": "yasl/gui/region.h",
-                "id": "QRegion",
-                "name": "QRegion",
-                "rename": "Region"
-            },
-            {
-                "header": "yasl/gui/clipboard.h",
-                "id": "QClipboard",
-                "name": "QClipboard",
-                "rename": "Clipboard",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/gui/keysequence.h",
-                "id": "QKeySequence",
-                "name": "QKeySequence",
-                "rename": "KeySequence"
-            },
-            {
-                "header": "yasl/gui/brush.h",
-                "id": "QBrush",
-                "name": "QBrush",
-                "rename": "Brush"
-            },
-            {
-                "header": "yasl/gui/brush.h",
-                "id": "QGradient",
-                "name": "QGradient",
-                "rename": "Gradient"
-            },
-            {
-                "header": "yasl/gui/brush.h",
-                "id": "QLinearGradient",
-                "name": "QLinearGradient",
-                "rename": "LinearGradient"
-            },
-            {
-                "header": "yasl/gui/brush.h",
-                "id": "QRadialGradient",
-                "name": "QRadialGradient",
-                "rename": "RadialGradient"
-            },
-            {
-                "header": "yasl/gui/brush.h",
-                "id": "QConicalGradient",
-                "name": "QConicalGradient",
-                "rename": "ConicalGradient"
-            },
-            {
-                "header": "yasl/gui/glyphrun.h",
-                "id": "QGlyphRun",
-                "name": "QGlyphRun",
-                "rename": "GlyphRun"
-            },
-            {
-                "header": "yasl/gui/painter.h",
-                "id": "QPainter",
-                "name": "QPainter",
-                "rename": "Painter"
-            },
-            {
-                "header": "yasl/gui/painter.h",
-                "id": "QPainterRenderHints",
-                "name": "QPainter::RenderHints",
-                "rename": "RenderHints"
-            },
-            {
-                "header": "yasl/gui/painter.h",
-                "id": "QPainterPixmapFragmentHints",
-                "name": "QPainter::PixmapFragmentHints",
-                "rename": "PixmapFragmentHints"
-            },
-            {
-                "header": "yasl/gui/painterpath.h",
-                "id": "QPainterPath",
-                "name": "QPainterPath",
-                "rename": "PainterPath"
-            },
-            {
-                "header": "yasl/gui/painterpath.h",
-                "id": "QPainterPathStroker",
-                "name": "QPainterPathStroker",
-                "rename": "PainterPathStroker"
-            },
-            {
-                "header": "yasl/gui/palette.h",
-                "id": "QPalette",
-                "name": "QPalette",
-                "rename": "Palette"
-            },
-            {
-                "header": "yasl/gui/pen.h",
-                "id": "QPen",
-                "name": "QPen",
-                "rename": "Pen"
-            },
-            {
-                "header": "yasl/gui/picture.h",
-                "id": "QPicture",
-                "name": "QPicture",
-                "rename": "Picture"
-            },
-            {
-                "header": "yasl/gui/picture.h",
-                "id": "QPictureIO",
-                "name": "QPictureIO",
-                "rename": "PictureIO"
-            },
-            {
-                "header": "yasl/gui/pixelformat.h",
-                "id": "QPixelFormat",
-                "name": "QPixelFormat",
-                "rename": "PixelFormat"
-            },
-            {
-                "header": "yasl/gui/screen.h",
-                "id": "QScreen",
-                "name": "QScreen",
-                "rename": "Screen",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/gui/statictext.h",
-                "id": "QStaticText",
-                "name": "QStaticText",
-                "rename": "StaticText"
-            },
-            {
-                "header": "yasl/gui/textoption.h",
-                "id": "QTextOption",
-                "name": "QTextOption",
-                "rename": "TextOption"
-            },
-            {
-                "header": "yasl/gui/textoption.h",
-                "id": "QTextOptionFlags",
-                "name": "QTextOption::Flags",
-                "rename": "Flags"
             },
             {
                 "header": "yasl/gui/validator.h",
@@ -40719,100 +41206,45 @@
                 "tag": "qobject_tag"
             },
             {
-                "header": "yasl/gui/validator.h",
-                "id": "QIntValidator",
-                "name": "QIntValidator",
-                "rename": "IntValidator",
+                "header": "yasl/core/variant.h",
+                "id": "QVariant",
+                "name": "QVariant",
+                "rename": "Variant",
+                "tag": "qvariant_tag"
+            },
+            {
+                "header": "yasl/widgets/boxlayout.h",
+                "id": "QVBoxLayout",
+                "name": "QVBoxLayout",
+                "rename": "QVBoxLayout",
                 "tag": "qobject_tag"
             },
             {
-                "header": "yasl/gui/validator.h",
-                "id": "QDoubleValidator",
-                "name": "QDoubleValidator",
-                "rename": "DoubleValidator",
-                "tag": "qobject_tag"
+                "header": "yasl/gui/vector2d.h",
+                "id": "QVector2D",
+                "metatype": "QMetaType::QVector2D",
+                "name": "QVector2D",
+                "rename": "Vector2D"
             },
             {
-                "header": "yasl/gui/validator.h",
-                "id": "QRegularExpressionValidator",
-                "name": "QRegularExpressionValidator",
-                "rename": "RegularExpressionValidator",
-                "tag": "qobject_tag"
+                "header": "yasl/gui/vector3d.h",
+                "id": "QVector3D",
+                "metatype": "QMetaType::QVector3D",
+                "name": "QVector3D",
+                "rename": "Vector3D"
             },
             {
-                "header": "yasl/gui/window.h",
-                "id": "QWindow",
-                "links": "ref@QWindow*",
-                "name": "QWindow",
-                "rename": "Window",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/gui/window.h",
-                "id": "QWindowStar",
-                "name": "QWindow*"
-            },
-            {
-                "header": "yasl/gui/guievent.h",
-                "id": "QMouseEvent",
-                "name": "QMouseEvent",
-                "rename": "MouseEvent",
-                "tag": "qevent_tag"
+                "header": "yasl/gui/vector4d.h",
+                "id": "QVector4D",
+                "metatype": "QMetaType::QVector4D",
+                "name": "QVector4D",
+                "rename": "Vector4D"
             },
             {
                 "header": "yasl/gui/guievent.h",
                 "id": "QWheelEvent",
                 "name": "QWheelEvent",
                 "rename": "WheelEvent",
-                "tag": "qevent_tag"
-            },
-            {
-                "header": "yasl/gui/guievent.h",
-                "id": "QKeyEvent",
-                "name": "QKeyEvent",
-                "rename": "KeyEvent",
-                "tag": "qevent_tag"
-            },
-            {
-                "header": "yasl/gui/guievent.h",
-                "id": "QPaintEvent",
-                "name": "QPaintEvent",
-                "rename": "PaintEvent",
-                "tag": "qevent_tag"
-            },
-            {
-                "header": "yasl/gui/guievent.h",
-                "id": "QMoveEvent",
-                "name": "QMoveEvent",
-                "rename": "MoveEvent",
-                "tag": "qevent_tag"
-            },
-            {
-                "header": "yasl/gui/guievent.h",
-                "id": "QResizeEvent",
-                "name": "QResizeEvent",
-                "rename": "ResizeEvent",
-                "tag": "qevent_tag"
-            },
-            {
-                "header": "yasl/gui/guievent.h",
-                "id": "QCloseEvent",
-                "name": "QCloseEvent",
-                "rename": "CloseEvent",
-                "tag": "qevent_tag"
-            },
-            {
-                "header": "yasl/gui/guievent.h",
-                "id": "QShowEvent",
-                "name": "QShowEvent",
-                "rename": "ShowEvent",
-                "tag": "qevent_tag"
-            },
-            {
-                "header": "yasl/gui/guievent.h",
-                "id": "QHideEvent",
-                "name": "QHideEvent",
-                "rename": "HideEvent",
                 "tag": "qevent_tag"
             },
             {
@@ -40829,393 +41261,17 @@
                 "name": "QWidget*"
             },
             {
-                "header": "yasl/widgets/widget.h",
-                "id": "ProxyQWidget",
-                "name": "Proxy<QWidget*>"
-            },
-            {
-                "header": "yasl/widgets/widget.h",
-                "id": "QListQWidget",
-                "name": "QList<QWidget*>"
-            },
-            {
-                "header": "yasl/widgets/abstractbutton.h",
-                "id": "QAbstractButton",
-                "name": "QAbstractButton",
-                "rename": "AbstractButton",
+                "header": "yasl/gui/window.h",
+                "id": "QWindow",
+                "links": "ref@QWindow*",
+                "name": "QWindow",
+                "rename": "Window",
                 "tag": "qobject_tag"
             },
             {
-                "header": "yasl/widgets/pushbutton.h",
-                "id": "QPushButton",
-                "name": "QPushButton",
-                "rename": "PushButton",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/frame.h",
-                "id": "QFrame",
-                "name": "QFrame",
-                "rename": "Frame",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/label.h",
-                "id": "QLabel",
-                "name": "QLabel",
-                "rename": "Label",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/tabwidget.h",
-                "id": "QTabWidget",
-                "name": "QTabWidget",
-                "rename": "TabWidget",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/lineedit.h",
-                "id": "QLineEdit",
-                "name": "QLineEdit",
-                "rename": "LineEdit",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/core/jsonvalue.h",
-                "id": "QJsonValue",
-                "name": "QJsonValue",
-                "rename": "JsonValue"
-            },
-            {
-                "header": "yasl/core/jsonvalue.h",
-                "id": "QJsonValueRef",
-                "name": "QJsonValueRef",
-                "rename": "JsonValueRef"
-            },
-            {
-                "header": "yasl/core/jsonarray.h",
-                "id": "QJsonArray",
-                "name": "QJsonArray",
-                "rename": "JsonArray"
-            },
-            {
-                "header": "yasl/core/jsonobject.h",
-                "id": "QJsonObject",
-                "name": "QJsonObject",
-                "rename": "JsonObject"
-            },
-            {
-                "header": "yasl/core/jsondocument.h",
-                "id": "QJsonDocument",
-                "name": "QJsonDocument",
-                "rename": "JsonDocument"
-            },
-            {
-                "header": "yasl/widgets/groupbox.h",
-                "id": "QGroupBox",
-                "name": "QGroupBox",
-                "rename": "GroupBox",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/combobox.h",
-                "id": "QComboBox",
-                "name": "QComboBox",
-                "rename": "ComboBox",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/fontcombobox.h",
-                "id": "QFontComboBox",
-                "name": "QFontComboBox",
-                "rename": "FontComboBox",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/fontcombobox.h",
-                "id": "QFontComboBoxFontFilters",
-                "name": "QFontComboBox::FontFilters",
-                "rename": "FontFilters"
-            },
-            {
-                "header": "yasl/widgets/abstractslider.h",
-                "id": "QAbstractSlider",
-                "name": "QAbstractSlider",
-                "rename": "AbstractSlider",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/slider.h",
-                "id": "QSlider",
-                "name": "QSlider",
-                "rename": "Slider",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/scrollbar.h",
-                "id": "QScrollBar",
-                "name": "QScrollBar",
-                "rename": "ScrollBar",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/dial.h",
-                "id": "QDial",
-                "name": "QDial",
-                "rename": "Dial",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/abstractspinbox.h",
-                "id": "QAbstractSpinBox",
-                "name": "QAbstractSpinBox",
-                "rename": "AbstractSpinBox",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/abstractspinbox.h",
-                "id": "QAbstractSpinBoxStepEnabled",
-                "name": "QAbstractSpinBox::StepEnabled",
-                "rename": "StepEnabled"
-            },
-            {
-                "header": "yasl/widgets/spinbox.h",
-                "id": "QSpinBox",
-                "name": "QSpinBox",
-                "rename": "SpinBox",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/spinbox.h",
-                "id": "QDoubleSpinBox",
-                "name": "QDoubleSpinBox",
-                "rename": "DoubleSpinBox",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/datetimeedit.h",
-                "id": "QDateTimeEdit",
-                "name": "QDateTimeEdit",
-                "rename": "DateTimeEdit",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/datetimeedit.h",
-                "id": "QTimeEdit",
-                "name": "QTimeEdit",
-                "rename": "TimeEdit",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/datetimeedit.h",
-                "id": "QDateEdit",
-                "name": "QDateEdit",
-                "rename": "DateEdit",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/datetimeedit.h",
-                "id": "QDateTimeEditSections",
-                "name": "QDateTimeEdit::Sections",
-                "rename": "Sections"
-            },
-            {
-                "header": "yasl/widgets/checkbox.h",
-                "id": "QCheckBox",
-                "name": "QCheckBox",
-                "rename": "CheckBox",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/radiobutton.h",
-                "id": "QRadioButton",
-                "name": "QRadioButton",
-                "rename": "RadioButton",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/toolbutton.h",
-                "id": "QToolButton",
-                "name": "QToolButton",
-                "rename": "ToolButton",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/action.h",
-                "id": "QAction",
-                "links": "ref@QAction*;proxy@Proxy<QAction*>;list@QList<QAction*>",
-                "name": "QAction",
-                "rename": "Action",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/action.h",
-                "id": "QActionStar",
-                "name": "QAction*"
-            },
-            {
-                "header": "yasl/widgets/action.h",
-                "id": "ProxyQAction",
-                "name": "Proxy<QAction*>"
-            },
-            {
-                "header": "yasl/widgets/action.h",
-                "id": "QListQAction",
-                "name": "QList<QAction*>"
-            },
-            {
-                "header": "yasl/widgets/menu.h",
-                "id": "QMenu",
-                "links": "ref@QMenu*",
-                "name": "QMenu",
-                "rename": "Menu",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/menu.h",
-                "id": "QMenuStar",
-                "name": "QMenu*"
-            },
-            {
-                "header": "yasl/widgets/layout.h",
-                "id": "QLayout",
-                "links": "ref@QLayout*",
-                "name": "QLayout",
-                "rename": "Layout",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/layout.h",
-                "id": "QLayoutStar",
-                "name": "QLayout*"
-            },
-            {
-                "header": "yasl/widgets/boxlayout.h",
-                "id": "QBoxLayout",
-                "name": "QBoxLayout",
-                "rename": "BoxLayout",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/boxlayout.h",
-                "id": "QHBoxLayout",
-                "name": "QHBoxLayout",
-                "rename": "QHBoxLayout",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/boxlayout.h",
-                "id": "QVBoxLayout",
-                "name": "QVBoxLayout",
-                "rename": "QVBoxLayout",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/formlayout.h",
-                "id": "QFormLayout",
-                "name": "QFormLayout",
-                "rename": "FormLayout",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/gridlayout.h",
-                "id": "QGridLayout",
-                "name": "QGridLayout",
-                "rename": "GridLayout",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/stackedlayout.h",
-                "id": "QStackedLayout",
-                "name": "QStackedLayout",
-                "rename": "StackedLayout",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/dialog.h",
-                "id": "QDialog",
-                "name": "QDialog",
-                "rename": "Dialog",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/messagebox.h",
-                "id": "QMessageBox",
-                "name": "QMessageBox",
-                "rename": "MessageBox",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/messagebox.h",
-                "id": "QMessageBoxStandardButtons",
-                "name": "QMessageBox::StandardButtons",
-                "rename": "StandardButtons"
-            },
-            {
-                "header": "yasl/widgets/filedialog.h",
-                "id": "QFileDialog",
-                "name": "QFileDialog",
-                "rename": "FileDialog",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/filedialog.h",
-                "id": "QFileDialogOptions",
-                "name": "QFileDialog::Options",
-                "rename": "Options"
-            },
-            {
-                "header": "yasl/widgets/errormessage.h",
-                "id": "QErrorMessage",
-                "name": "QErrorMessage",
-                "rename": "ErrorMessage",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/colordialog.h",
-                "id": "QColorDialog",
-                "name": "QColorDialog",
-                "rename": "ColorDialog",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/colordialog.h",
-                "id": "QColorDialogColorDialogOptions",
-                "name": "QColorDialog::ColorDialogOptions",
-                "rename": "ColorDialogOptions"
-            },
-            {
-                "header": "yasl/widgets/fontdialog.h",
-                "id": "QFontDialog",
-                "name": "QFontDialog",
-                "rename": "FontDialog",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/fontdialog.h",
-                "id": "QFontDialogFontDialogOptions",
-                "name": "QFontDialog::FontDialogOptions",
-                "rename": "FontDialogOptions"
-            },
-            {
-                "header": "yasl/widgets/inputdialog.h",
-                "id": "QInputDialog",
-                "name": "QInputDialog",
-                "rename": "InputDialog",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/inputdialog.h",
-                "id": "QInputDialogInputDialogOptions",
-                "name": "QInputDialog::InputDialogOptions",
-                "rename": "InputDialogOptions"
-            },
-            {
-                "header": "yasl/widgets/progressdialog.h",
-                "id": "QProgressDialog",
-                "name": "QProgressDialog",
-                "rename": "ProgressDialog",
-                "tag": "qobject_tag"
+                "header": "yasl/gui/window.h",
+                "id": "QWindowStar",
+                "name": "QWindow*"
             },
             {
                 "header": "yasl/widgets/wizard.h",
@@ -41226,483 +41282,65 @@
             },
             {
                 "header": "yasl/widgets/wizard.h",
-                "id": "QWizardPage",
-                "name": "QWizardPage",
-                "rename": "WizardPage",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/widgets/wizard.h",
                 "id": "QWizardWizardOptions",
                 "name": "QWizard::WizardOptions",
                 "rename": "WizardOptions"
             },
             {
-                "header": "yasl/widgets/toolbar.h",
-                "id": "QToolBar",
-                "name": "QToolBar",
-                "rename": "ToolBar",
-                "tag": "qobject_tag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtToolBarAreas",
-                "name": "Qt::ToolBarAreas",
-                "rename": "ToolBarAreas"
-            },
-            {
-                "header": "yasl/widgets/progressbar.h",
-                "id": "QProgressBar",
-                "name": "QProgressBar",
-                "rename": "ProgressBar",
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizardPage",
+                "name": "QWizardPage",
+                "rename": "WizardPage",
                 "tag": "qobject_tag"
             }
         ],
         "enums": [
             {
+                "header": "yasl/widgets/abstractslider.h",
+                "id": "QAbstractSliderSliderAction",
+                "name": "QAbstractSlider::SliderAction"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBoxButtonSymbols",
+                "name": "QAbstractSpinBox::ButtonSymbols"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBoxCorrectionMode",
+                "name": "QAbstractSpinBox::CorrectionMode"
+            },
+            {
+                "header": "yasl/widgets/abstractspinbox.h",
+                "id": "QAbstractSpinBoxStepEnabledFlag",
+                "links": "flags@QAbstractSpinBox::StepEnabled",
+                "name": "QAbstractSpinBox::StepEnabledFlag"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QActionActionEvent",
+                "name": "QAction::ActionEvent"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QActionMenuRole",
+                "name": "QAction::MenuRole"
+            },
+            {
+                "header": "yasl/widgets/action.h",
+                "id": "QActionPriority",
+                "name": "QAction::Priority"
+            },
+            {
+                "header": "yasl/widgets/boxlayout.h",
+                "id": "QBoxLayoutDirection",
+                "name": "QBoxLayout::Direction"
+            },
+            {
                 "header": "yasl/core/bytearray.h",
                 "id": "QByteArrayBase64Option",
                 "links": "flags@QByteArray::Base64Options",
                 "name": "QByteArray::Base64Option"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtGlobalColor",
-                "name": "Qt::GlobalColor"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtKeyboardModifier",
-                "links": "flags@Qt::KeyboardModifiers",
-                "name": "Qt::KeyboardModifier"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtModifier",
-                "name": "Qt::Modifier"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtMouseButton",
-                "name": "Qt::MouseButton"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtOrientation",
-                "name": "Qt::Orientation"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtFocusPolicy",
-                "name": "Qt::FocusPolicy"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTabFocusBehavior",
-                "name": "Qt::TabFocusBehavior"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtSortOrder",
-                "name": "Qt::SortOrder"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTileRule",
-                "name": "Qt::TileRule"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtAlignmentFlag",
-                "links": "flags@Qt::Alignment",
-                "name": "Qt::AlignmentFlag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTextFlag",
-                "name": "Qt::TextFlag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTextElideMode",
-                "name": "Qt::TextElideMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtWhiteSpaceMode",
-                "name": "Qt::WhiteSpaceMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtHitTestAccuracy",
-                "name": "Qt::HitTestAccuracy"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtWindowType",
-                "name": "Qt::WindowType"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtWindowState",
-                "name": "Qt::WindowState"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtApplicationState",
-                "name": "Qt::ApplicationState"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtScreenOrientation",
-                "name": "Qt::ScreenOrientation"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtWidgetAttribute",
-                "name": "Qt::WidgetAttribute"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtApplicationAttribute",
-                "name": "Qt::ApplicationAttribute"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtImageConversionFlag",
-                "links": "flags@Qt::ImageConversionFlags",
-                "name": "Qt::ImageConversionFlag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtBGMode",
-                "name": "Qt::BGMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtKey",
-                "name": "Qt::Key"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtArrowType",
-                "name": "Qt::ArrowType"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtPenStyle",
-                "name": "Qt::PenStyle"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtPenCapStyle",
-                "name": "Qt::PenCapStyle"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtPenJoinStyle",
-                "name": "Qt::PenJoinStyle"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtBrushStyle",
-                "name": "Qt::BrushStyle"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtSizeMode",
-                "name": "Qt::SizeMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtUIEffect",
-                "name": "Qt::UIEffect"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtCursorShape",
-                "name": "Qt::CursorShape"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTextFormat",
-                "name": "Qt::TextFormat"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtAspectRatioMode",
-                "name": "Qt::AspectRatioMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtDockWidgetArea",
-                "name": "Qt::DockWidgetArea"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtDockWidgetAreaSizes",
-                "name": "Qt::DockWidgetAreaSizes"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtToolBarArea",
-                "links": "flags@Qt::ToolBarAreas",
-                "name": "Qt::ToolBarArea"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtToolBarAreaSizes",
-                "name": "Qt::ToolBarAreaSizes"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtDateFormat",
-                "name": "Qt::DateFormat"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTimeSpec",
-                "name": "Qt::TimeSpec"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtDayOfWeek",
-                "name": "Qt::DayOfWeek"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtScrollBarPolicy",
-                "name": "Qt::ScrollBarPolicy"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtCaseSensitivity",
-                "name": "Qt::CaseSensitivity"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtCorner",
-                "name": "Qt::Corner"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtEdge",
-                "name": "Qt::Edge"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtConnectionType",
-                "name": "Qt::ConnectionType"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtShortcutContext",
-                "name": "Qt::ShortcutContext"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtFillRule",
-                "name": "Qt::FillRule"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtMaskMode",
-                "name": "Qt::MaskMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtClipOperation",
-                "name": "Qt::ClipOperation"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtItemSelectionMode",
-                "name": "Qt::ItemSelectionMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtItemSelectionOperation",
-                "name": "Qt::ItemSelectionOperation"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTransformationMode",
-                "name": "Qt::TransformationMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtAxis",
-                "name": "Qt::Axis"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtFocusReason",
-                "name": "Qt::FocusReason"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtContextMenuPolicy",
-                "name": "Qt::ContextMenuPolicy"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtInputMethodQuery",
-                "name": "Qt::InputMethodQuery"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtInputMethodHint",
-                "name": "Qt::InputMethodHint"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtEnterKeyType",
-                "name": "Qt::EnterKeyType"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtToolButtonStyle",
-                "name": "Qt::ToolButtonStyle"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtLayoutDirection",
-                "name": "Qt::LayoutDirection"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtAnchorPoint",
-                "name": "Qt::AnchorPoint"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtFindChildOption",
-                "name": "Qt::FindChildOption"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtDropAction",
-                "name": "Qt::DropAction"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtCheckState",
-                "name": "Qt::CheckState"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtItemDataRole",
-                "name": "Qt::ItemDataRole"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtItemFlag",
-                "name": "Qt::ItemFlag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtMatchFlag",
-                "name": "Qt::MatchFlag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtWindowModality",
-                "name": "Qt::WindowModality"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTextInteractionFlag",
-                "name": "Qt::TextInteractionFlag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtEventPriority",
-                "name": "Qt::EventPriority"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtSizeHint",
-                "name": "Qt::SizeHint"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtWindowFrameSection",
-                "name": "Qt::WindowFrameSection"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtInitialization",
-                "name": "Qt::Initialization"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtCoordinateSystem",
-                "name": "Qt::CoordinateSystem"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTouchPointState",
-                "name": "Qt::TouchPointState"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtGestureState",
-                "name": "Qt::GestureState"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtGestureType",
-                "name": "Qt::GestureType"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtGestureFlag",
-                "name": "Qt::GestureFlag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtNativeGestureType",
-                "name": "Qt::NativeGestureType"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtNavigationMode",
-                "name": "Qt::NavigationMode"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtCursorMoveStyle",
-                "name": "Qt::CursorMoveStyle"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtTimerType",
-                "name": "Qt::TimerType"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtScrollPhase",
-                "name": "Qt::ScrollPhase"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtMouseEventSource",
-                "name": "Qt::MouseEventSource"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtMouseEventFlag",
-                "name": "Qt::MouseEventFlag"
-            },
-            {
-                "header": "yasl/core/enums.h",
-                "id": "QtChecksumType",
-                "name": "Qt::ChecksumType"
-            },
-            {
-                "header": "yasl/core/char.h",
-                "id": "QCharSpecialCharacter",
-                "name": "QChar::SpecialCharacter"
             },
             {
                 "header": "yasl/core/char.h",
@@ -41711,13 +41349,8 @@
             },
             {
                 "header": "yasl/core/char.h",
-                "id": "QCharScript",
-                "name": "QChar::Script"
-            },
-            {
-                "header": "yasl/core/char.h",
-                "id": "QCharDirection",
-                "name": "QChar::Direction"
+                "id": "QCharCombiningClass",
+                "name": "QChar::CombiningClass"
             },
             {
                 "header": "yasl/core/char.h",
@@ -41726,8 +41359,8 @@
             },
             {
                 "header": "yasl/core/char.h",
-                "id": "QCharJoiningType",
-                "name": "QChar::JoiningType"
+                "id": "QCharDirection",
+                "name": "QChar::Direction"
             },
             {
                 "header": "yasl/core/char.h",
@@ -41736,8 +41369,18 @@
             },
             {
                 "header": "yasl/core/char.h",
-                "id": "QCharCombiningClass",
-                "name": "QChar::CombiningClass"
+                "id": "QCharJoiningType",
+                "name": "QChar::JoiningType"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharScript",
+                "name": "QChar::Script"
+            },
+            {
+                "header": "yasl/core/char.h",
+                "id": "QCharSpecialCharacter",
+                "name": "QChar::SpecialCharacter"
             },
             {
                 "header": "yasl/core/char.h",
@@ -41745,9 +41388,35 @@
                 "name": "QChar::UnicodeVersion"
             },
             {
-                "header": "yasl/core/datastream.h",
-                "id": "QDataStreamVersion",
-                "name": "QDataStream::Version"
+                "header": "yasl/gui/clipboard.h",
+                "id": "QClipboardMode",
+                "name": "QClipboard::Mode"
+            },
+            {
+                "header": "yasl/gui/color.h",
+                "id": "QColorNameFormat",
+                "name": "QColor::NameFormat"
+            },
+            {
+                "header": "yasl/gui/color.h",
+                "id": "QColorSpec",
+                "name": "QColor::Spec"
+            },
+            {
+                "header": "yasl/widgets/colordialog.h",
+                "id": "QColorDialogColorDialogOption",
+                "links": "flags@QColorDialog::ColorDialogOptions",
+                "name": "QColorDialog::ColorDialogOption"
+            },
+            {
+                "header": "yasl/widgets/combobox.h",
+                "id": "QComboBoxInsertPolicy",
+                "name": "QComboBox::InsertPolicy"
+            },
+            {
+                "header": "yasl/widgets/combobox.h",
+                "id": "QComboBoxSizeAdjustPolicy",
+                "name": "QComboBox::SizeAdjustPolicy"
             },
             {
                 "header": "yasl/core/datastream.h",
@@ -41756,18 +41425,34 @@
             },
             {
                 "header": "yasl/core/datastream.h",
+                "id": "QDataStreamFloatingPointPrecision",
+                "name": "QDataStream::FloatingPointPrecision"
+            },
+            {
+                "header": "yasl/core/datastream.h",
                 "id": "QDataStreamStatus",
                 "name": "QDataStream::Status"
             },
             {
                 "header": "yasl/core/datastream.h",
-                "id": "QDataStreamFloatingPointPrecision",
-                "name": "QDataStream::FloatingPointPrecision"
+                "id": "QDataStreamVersion",
+                "name": "QDataStream::Version"
             },
             {
                 "header": "yasl/core/datetime.h",
                 "id": "QDateMonthNameType",
                 "name": "QDate::MonthNameType"
+            },
+            {
+                "header": "yasl/widgets/datetimeedit.h",
+                "id": "QDateTimeEditSection",
+                "links": "flags@QDateTimeEdit::Sections",
+                "name": "QDateTimeEdit::Section"
+            },
+            {
+                "header": "yasl/widgets/dialog.h",
+                "id": "QDialogDialogCode",
+                "name": "QDialog::DialogCode"
             },
             {
                 "header": "yasl/core/dir.h",
@@ -41780,6 +41465,11 @@
                 "id": "QDirSortFlag",
                 "links": "flags@QDir::SortFlags",
                 "name": "QDir::SortFlag"
+            },
+            {
+                "header": "yasl/gui/validator.h",
+                "id": "QDoubleValidatorNotation",
+                "name": "QDoubleValidator::Notation"
             },
             {
                 "header": "yasl/core/elapsedtimer.h",
@@ -41798,12 +41488,6 @@
             },
             {
                 "header": "yasl/core/filedevice.h",
-                "id": "QFileDevicePermission",
-                "links": "flags@QFileDevice::Permissions",
-                "name": "QFileDevice::Permission"
-            },
-            {
-                "header": "yasl/core/filedevice.h",
                 "id": "QFileDeviceFileHandleFlag",
                 "links": "flags@QFileDevice::FileHandleFlags",
                 "name": "QFileDevice::FileHandleFlag"
@@ -41814,175 +41498,66 @@
                 "name": "QFileDevice::MemoryMapFlags"
             },
             {
-                "header": "yasl/core/iodevice.h",
-                "id": "QIODeviceOpenModeFlag",
-                "links": "flags@QIODevice::OpenMode",
-                "name": "QIODevice::OpenModeFlag"
+                "header": "yasl/core/filedevice.h",
+                "id": "QFileDevicePermission",
+                "links": "flags@QFileDevice::Permissions",
+                "name": "QFileDevice::Permission"
             },
             {
-                "header": "yasl/core/line.h",
-                "id": "QLineFIntersectType",
-                "name": "QLineF::IntersectType"
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogAcceptMode",
+                "name": "QFileDialog::AcceptMode"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleLanguage",
-                "name": "QLocale::Language"
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogDialogLabel",
+                "name": "QFileDialog::DialogLabel"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleScript",
-                "name": "QLocale::Script"
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogFileMode",
+                "name": "QFileDialog::FileMode"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleCountry",
-                "name": "QLocale::Country"
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogOption",
+                "links": "flags@QFileDialog::Options",
+                "name": "QFileDialog::Option"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleMeasurementSystem",
-                "name": "QLocale::MeasurementSystem"
+                "header": "yasl/widgets/filedialog.h",
+                "id": "QFileDialogViewMode",
+                "name": "QFileDialog::ViewMode"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleFormatType",
-                "name": "QLocale::FormatType"
+                "header": "yasl/gui/font.h",
+                "id": "QFontCapitalization",
+                "name": "QFont::Capitalization"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleNumberOption",
-                "links": "flags@QLocale::NumberOptions",
-                "name": "QLocale::NumberOption"
+                "header": "yasl/gui/font.h",
+                "id": "QFontHintingPreference",
+                "name": "QFont::HintingPreference"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleFloatingPointPrecisionOption",
-                "name": "QLocale::FloatingPointPrecisionOption"
+                "header": "yasl/gui/font.h",
+                "id": "QFontResolveProperties",
+                "name": "QFont::ResolveProperties"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleCurrencySymbolFormat",
-                "name": "QLocale::CurrencySymbolFormat"
+                "header": "yasl/gui/font.h",
+                "id": "QFontSpacingType",
+                "name": "QFont::SpacingType"
             },
             {
-                "header": "yasl/core/locale.h",
-                "id": "QLocaleQuotationStyle",
-                "name": "QLocale::QuotationStyle"
+                "header": "yasl/gui/font.h",
+                "id": "QFontStretch",
+                "name": "QFont::Stretch"
             },
             {
-                "header": "yasl/core/process.h",
-                "id": "QProcessProcessError",
-                "name": "QProcess::ProcessError"
-            },
-            {
-                "header": "yasl/core/process.h",
-                "id": "QProcessProcessState",
-                "name": "QProcess::ProcessState"
-            },
-            {
-                "header": "yasl/core/process.h",
-                "id": "QProcessProcessChannel",
-                "name": "QProcess::ProcessChannel"
-            },
-            {
-                "header": "yasl/core/process.h",
-                "id": "QProcessProcessChannelMode",
-                "name": "QProcess::ProcessChannelMode"
-            },
-            {
-                "header": "yasl/core/process.h",
-                "id": "QProcessInputChannelMode",
-                "name": "QProcess::InputChannelMode"
-            },
-            {
-                "header": "yasl/core/process.h",
-                "id": "QProcessExitStatus",
-                "name": "QProcess::ExitStatus"
-            },
-            {
-                "header": "yasl/core/regularexpression.h",
-                "id": "QRegularExpressionPatternOption",
-                "links": "flags@QRegularExpression::PatternOptions",
-                "name": "QRegularExpression::PatternOption"
-            },
-            {
-                "header": "yasl/core/regularexpression.h",
-                "id": "QRegularExpressionMatchType",
-                "name": "QRegularExpression::MatchType"
-            },
-            {
-                "header": "yasl/core/regularexpression.h",
-                "id": "QRegularExpressionMatchOption",
-                "links": "flags@QRegularExpression::MatchOptions",
-                "name": "QRegularExpression::MatchOption"
-            },
-            {
-                "header": "yasl/core/settings.h",
-                "id": "QSettingsStatus",
-                "name": "QSettings::Status"
-            },
-            {
-                "header": "yasl/core/settings.h",
-                "id": "QSettingsFormat",
-                "name": "QSettings::Format"
-            },
-            {
-                "header": "yasl/core/settings.h",
-                "id": "QSettingsScope",
-                "name": "QSettings::Scope"
-            },
-            {
-                "header": "yasl/core/timezone.h",
-                "id": "QTimeZoneTimeType",
-                "name": "QTimeZone::TimeType"
-            },
-            {
-                "header": "yasl/core/timezone.h",
-                "id": "QTimeZoneNameType",
-                "name": "QTimeZone::NameType"
-            },
-            {
-                "header": "yasl/core/url.h",
-                "id": "QUrlParsingMode",
-                "name": "QUrl::ParsingMode"
-            },
-            {
-                "header": "yasl/core/url.h",
-                "id": "QUrlUrlFormattingOption",
-                "name": "QUrl::UrlFormattingOption"
-            },
-            {
-                "header": "yasl/core/url.h",
-                "id": "QUrlComponentFormattingOption",
-                "links": "flags@QUrl::ComponentFormattingOptions",
-                "name": "QUrl::ComponentFormattingOption"
-            },
-            {
-                "header": "yasl/core/url.h",
-                "id": "QUrlUserInputResolutionOption",
-                "links": "flags@QUrl::UserInputResolutionOptions",
-                "name": "QUrl::UserInputResolutionOption"
-            },
-            {
-                "header": "yasl/core/uuid.h",
-                "id": "QUuidVariant",
-                "name": "QUuid::Variant"
-            },
-            {
-                "header": "yasl/core/uuid.h",
-                "id": "QUuidVersion",
-                "name": "QUuid::Version"
-            },
-            {
-                "header": "yasl/gui/color.h",
-                "id": "QColorSpec",
-                "name": "QColor::Spec"
-            },
-            {
-                "header": "yasl/gui/color.h",
-                "id": "QColorNameFormat",
-                "name": "QColor::NameFormat"
+                "header": "yasl/gui/font.h",
+                "id": "QFontStyle",
+                "name": "QFont::Style"
             },
             {
                 "header": "yasl/gui/font.h",
@@ -41996,38 +41571,19 @@
             },
             {
                 "header": "yasl/gui/font.h",
-                "id": "QFontHintingPreference",
-                "name": "QFont::HintingPreference"
-            },
-            {
-                "header": "yasl/gui/font.h",
                 "id": "QFontWeight",
                 "name": "QFont::Weight"
             },
             {
-                "header": "yasl/gui/font.h",
-                "id": "QFontStyle",
-                "name": "QFont::Style"
+                "header": "yasl/widgets/fontcombobox.h",
+                "id": "QFontComboBoxFontFilter",
+                "links": "flags@QFontComboBox::FontFilters",
+                "name": "QFontComboBox::FontFilter"
             },
             {
-                "header": "yasl/gui/font.h",
-                "id": "QFontStretch",
-                "name": "QFont::Stretch"
-            },
-            {
-                "header": "yasl/gui/font.h",
-                "id": "QFontCapitalization",
-                "name": "QFont::Capitalization"
-            },
-            {
-                "header": "yasl/gui/font.h",
-                "id": "QFontSpacingType",
-                "name": "QFont::SpacingType"
-            },
-            {
-                "header": "yasl/gui/font.h",
-                "id": "QFontResolveProperties",
-                "name": "QFont::ResolveProperties"
+                "header": "yasl/gui/fontdatabase.h",
+                "id": "QFontDatabaseSystemFont",
+                "name": "QFontDatabase::SystemFont"
             },
             {
                 "header": "yasl/gui/fontdatabase.h",
@@ -42035,9 +41591,65 @@
                 "name": "QFontDatabase::WritingSystem"
             },
             {
-                "header": "yasl/gui/fontdatabase.h",
-                "id": "QFontDatabaseSystemFont",
-                "name": "QFontDatabase::SystemFont"
+                "header": "yasl/widgets/fontdialog.h",
+                "id": "QFontDialogFontDialogOption",
+                "links": "flags@QFontDialog::FontDialogOptions",
+                "name": "QFontDialog::FontDialogOption"
+            },
+            {
+                "header": "yasl/widgets/formlayout.h",
+                "id": "QFormLayoutFieldGrowthPolicy",
+                "name": "QFormLayout::FieldGrowthPolicy"
+            },
+            {
+                "header": "yasl/widgets/formlayout.h",
+                "id": "QFormLayoutItemRole",
+                "name": "QFormLayout::ItemRole"
+            },
+            {
+                "header": "yasl/widgets/formlayout.h",
+                "id": "QFormLayoutRowWrapPolicy",
+                "name": "QFormLayout::RowWrapPolicy"
+            },
+            {
+                "header": "yasl/widgets/frame.h",
+                "id": "QFrameShadow",
+                "name": "QFrame::Shadow"
+            },
+            {
+                "header": "yasl/widgets/frame.h",
+                "id": "QFrameShape",
+                "name": "QFrame::Shape"
+            },
+            {
+                "header": "yasl/widgets/frame.h",
+                "id": "QFrameStyleMask",
+                "name": "QFrame::StyleMask"
+            },
+            {
+                "header": "yasl/gui/glyphrun.h",
+                "id": "QGlyphRunGlyphRunFlag",
+                "name": "QGlyphRun::GlyphRunFlag"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradientCoordinateMode",
+                "name": "QGradient::CoordinateMode"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradientInterpolationMode",
+                "name": "QGradient::InterpolationMode"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradientSpread",
+                "name": "QGradient::Spread"
+            },
+            {
+                "header": "yasl/gui/brush.h",
+                "id": "QGradientType",
+                "name": "QGradient::Type"
             },
             {
                 "header": "yasl/gui/icon.h",
@@ -42051,33 +41663,45 @@
             },
             {
                 "header": "yasl/gui/image.h",
-                "id": "QImageInvertMode",
-                "name": "QImage::InvertMode"
-            },
-            {
-                "header": "yasl/gui/image.h",
                 "id": "QImageFormat",
                 "name": "QImage::Format"
             },
             {
-                "header": "yasl/gui/transform.h",
-                "id": "QTransformTransformationType",
-                "name": "QTransform::TransformationType"
+                "header": "yasl/gui/image.h",
+                "id": "QImageInvertMode",
+                "name": "QImage::InvertMode"
             },
             {
-                "header": "yasl/gui/region.h",
-                "id": "QRegionRegionType",
-                "name": "QRegion::RegionType"
+                "header": "yasl/widgets/inputdialog.h",
+                "id": "QInputDialogInputDialogOption",
+                "links": "flags@QInputDialog::InputDialogOptions",
+                "name": "QInputDialog::InputDialogOption"
             },
             {
-                "header": "yasl/gui/clipboard.h",
-                "id": "QClipboardMode",
-                "name": "QClipboard::Mode"
+                "header": "yasl/widgets/inputdialog.h",
+                "id": "QInputDialogInputMode",
+                "name": "QInputDialog::InputMode"
             },
             {
-                "header": "yasl/gui/keysequence.h",
-                "id": "QKeySequenceStandardKey",
-                "name": "QKeySequence::StandardKey"
+                "header": "yasl/core/iodevice.h",
+                "id": "QIODeviceOpenModeFlag",
+                "links": "flags@QIODevice::OpenMode",
+                "name": "QIODevice::OpenModeFlag"
+            },
+            {
+                "header": "yasl/core/jsondocument.h",
+                "id": "QJsonDocumentDataValidation",
+                "name": "QJsonDocument::DataValidation"
+            },
+            {
+                "header": "yasl/core/jsondocument.h",
+                "id": "QJsonDocumentJsonFormat",
+                "name": "QJsonDocument::JsonFormat"
+            },
+            {
+                "header": "yasl/core/jsonvalue.h",
+                "id": "QJsonValueType",
+                "name": "QJsonValue::Type"
             },
             {
                 "header": "yasl/gui/keysequence.h",
@@ -42090,35 +41714,96 @@
                 "name": "QKeySequence::SequenceMatch"
             },
             {
-                "header": "yasl/gui/brush.h",
-                "id": "QGradientType",
-                "name": "QGradient::Type"
+                "header": "yasl/gui/keysequence.h",
+                "id": "QKeySequenceStandardKey",
+                "name": "QKeySequence::StandardKey"
             },
             {
-                "header": "yasl/gui/brush.h",
-                "id": "QGradientSpread",
-                "name": "QGradient::Spread"
+                "header": "yasl/widgets/layout.h",
+                "id": "QLayoutSizeConstraint",
+                "name": "QLayout::SizeConstraint"
             },
             {
-                "header": "yasl/gui/brush.h",
-                "id": "QGradientCoordinateMode",
-                "name": "QGradient::CoordinateMode"
+                "header": "yasl/widgets/lineedit.h",
+                "id": "QLineEditActionPosition",
+                "name": "QLineEdit::ActionPosition"
             },
             {
-                "header": "yasl/gui/brush.h",
-                "id": "QGradientInterpolationMode",
-                "name": "QGradient::InterpolationMode"
+                "header": "yasl/widgets/lineedit.h",
+                "id": "QLineEditEchoMode",
+                "name": "QLineEdit::EchoMode"
             },
             {
-                "header": "yasl/gui/glyphrun.h",
-                "id": "QGlyphRunGlyphRunFlag",
-                "name": "QGlyphRun::GlyphRunFlag"
+                "header": "yasl/core/line.h",
+                "id": "QLineFIntersectType",
+                "name": "QLineF::IntersectType"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleCountry",
+                "name": "QLocale::Country"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleCurrencySymbolFormat",
+                "name": "QLocale::CurrencySymbolFormat"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleFloatingPointPrecisionOption",
+                "name": "QLocale::FloatingPointPrecisionOption"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleFormatType",
+                "name": "QLocale::FormatType"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleLanguage",
+                "name": "QLocale::Language"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleMeasurementSystem",
+                "name": "QLocale::MeasurementSystem"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleNumberOption",
+                "links": "flags@QLocale::NumberOptions",
+                "name": "QLocale::NumberOption"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleQuotationStyle",
+                "name": "QLocale::QuotationStyle"
+            },
+            {
+                "header": "yasl/core/locale.h",
+                "id": "QLocaleScript",
+                "name": "QLocale::Script"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBoxButtonRole",
+                "name": "QMessageBox::ButtonRole"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBoxIcon",
+                "name": "QMessageBox::Icon"
+            },
+            {
+                "header": "yasl/widgets/messagebox.h",
+                "id": "QMessageBoxStandardButton",
+                "links": "flags@QMessageBox::StandardButtons",
+                "name": "QMessageBox::StandardButton"
             },
             {
                 "header": "yasl/gui/painter.h",
-                "id": "QPainterRenderHint",
-                "links": "flags@QPainter::RenderHints",
-                "name": "QPainter::RenderHint"
+                "id": "QPainterCompositionMode",
+                "name": "QPainter::CompositionMode"
             },
             {
                 "header": "yasl/gui/painter.h",
@@ -42128,8 +41813,9 @@
             },
             {
                 "header": "yasl/gui/painter.h",
-                "id": "QPainterCompositionMode",
-                "name": "QPainter::CompositionMode"
+                "id": "QPainterRenderHint",
+                "links": "flags@QPainter::RenderHints",
+                "name": "QPainter::RenderHint"
             },
             {
                 "header": "yasl/gui/painterpath.h",
@@ -42148,8 +41834,13 @@
             },
             {
                 "header": "yasl/gui/pixelformat.h",
-                "id": "QPixelFormatColorModel",
-                "name": "QPixelFormat::ColorModel"
+                "id": "QPixelFormatAlphaPosition",
+                "name": "QPixelFormat::AlphaPosition"
+            },
+            {
+                "header": "yasl/gui/pixelformat.h",
+                "id": "QPixelFormatAlphaPremultiplied",
+                "name": "QPixelFormat::AlphaPremultiplied"
             },
             {
                 "header": "yasl/gui/pixelformat.h",
@@ -42158,13 +41849,13 @@
             },
             {
                 "header": "yasl/gui/pixelformat.h",
-                "id": "QPixelFormatAlphaPosition",
-                "name": "QPixelFormat::AlphaPosition"
+                "id": "QPixelFormatByteOrder",
+                "name": "QPixelFormat::ByteOrder"
             },
             {
                 "header": "yasl/gui/pixelformat.h",
-                "id": "QPixelFormatAlphaPremultiplied",
-                "name": "QPixelFormat::AlphaPremultiplied"
+                "id": "QPixelFormatColorModel",
+                "name": "QPixelFormat::ColorModel"
             },
             {
                 "header": "yasl/gui/pixelformat.h",
@@ -42177,9 +41868,86 @@
                 "name": "QPixelFormat::YUVLayout"
             },
             {
-                "header": "yasl/gui/pixelformat.h",
-                "id": "QPixelFormatByteOrder",
-                "name": "QPixelFormat::ByteOrder"
+                "header": "yasl/core/process.h",
+                "id": "QProcessExitStatus",
+                "name": "QProcess::ExitStatus"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessInputChannelMode",
+                "name": "QProcess::InputChannelMode"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessProcessChannel",
+                "name": "QProcess::ProcessChannel"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessProcessChannelMode",
+                "name": "QProcess::ProcessChannelMode"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessProcessError",
+                "name": "QProcess::ProcessError"
+            },
+            {
+                "header": "yasl/core/process.h",
+                "id": "QProcessProcessState",
+                "name": "QProcess::ProcessState"
+            },
+            {
+                "header": "yasl/widgets/progressbar.h",
+                "id": "QProgressBarDirection",
+                "name": "QProgressBar::Direction"
+            },
+            {
+                "header": "yasl/gui/region.h",
+                "id": "QRegionRegionType",
+                "name": "QRegion::RegionType"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionMatchOption",
+                "links": "flags@QRegularExpression::MatchOptions",
+                "name": "QRegularExpression::MatchOption"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionMatchType",
+                "name": "QRegularExpression::MatchType"
+            },
+            {
+                "header": "yasl/core/regularexpression.h",
+                "id": "QRegularExpressionPatternOption",
+                "links": "flags@QRegularExpression::PatternOptions",
+                "name": "QRegularExpression::PatternOption"
+            },
+            {
+                "header": "yasl/core/settings.h",
+                "id": "QSettingsFormat",
+                "name": "QSettings::Format"
+            },
+            {
+                "header": "yasl/core/settings.h",
+                "id": "QSettingsScope",
+                "name": "QSettings::Scope"
+            },
+            {
+                "header": "yasl/core/settings.h",
+                "id": "QSettingsStatus",
+                "name": "QSettings::Status"
+            },
+            {
+                "header": "yasl/widgets/slider.h",
+                "id": "QSliderTickPosition",
+                "name": "QSlider::TickPosition"
+            },
+            {
+                "header": "yasl/widgets/stackedlayout.h",
+                "id": "QStackedLayoutStackingMode",
+                "name": "QStackedLayout::StackingMode"
             },
             {
                 "header": "yasl/gui/statictext.h",
@@ -42187,60 +41955,438 @@
                 "name": "QStaticText::PerformanceHint"
             },
             {
-                "header": "yasl/gui/textoption.h",
-                "id": "QTextOptionTabType",
-                "name": "QTextOption::TabType"
+                "header": "yasl/core/enums.h",
+                "id": "QtAlignmentFlag",
+                "links": "flags@Qt::Alignment",
+                "name": "Qt::AlignmentFlag"
             },
             {
-                "header": "yasl/gui/textoption.h",
-                "id": "QTextOptionWrapMode",
-                "name": "QTextOption::WrapMode"
+                "header": "yasl/core/enums.h",
+                "id": "QtAnchorPoint",
+                "name": "Qt::AnchorPoint"
             },
             {
-                "header": "yasl/gui/textoption.h",
-                "id": "QTextOptionFlag",
-                "links": "flags@QTextOption::Flags",
-                "name": "QTextOption::Flag"
+                "header": "yasl/core/enums.h",
+                "id": "QtApplicationAttribute",
+                "name": "Qt::ApplicationAttribute"
             },
             {
-                "header": "yasl/gui/validator.h",
-                "id": "QValidatorState",
-                "name": "QValidator::State"
+                "header": "yasl/core/enums.h",
+                "id": "QtApplicationState",
+                "name": "Qt::ApplicationState"
             },
             {
-                "header": "yasl/gui/validator.h",
-                "id": "QDoubleValidatorNotation",
-                "name": "QDoubleValidator::Notation"
+                "header": "yasl/core/enums.h",
+                "id": "QtArrowType",
+                "name": "Qt::ArrowType"
             },
             {
-                "header": "yasl/gui/window.h",
-                "id": "QWindowVisibility",
-                "name": "QWindow::Visibility"
+                "header": "yasl/core/enums.h",
+                "id": "QtAspectRatioMode",
+                "name": "Qt::AspectRatioMode"
             },
             {
-                "header": "yasl/gui/window.h",
-                "id": "QWindowAncestorMode",
-                "name": "QWindow::AncestorMode"
+                "header": "yasl/core/enums.h",
+                "id": "QtAxis",
+                "name": "Qt::Axis"
             },
             {
-                "header": "yasl/widgets/widget.h",
-                "id": "QWidgetRenderFlag",
-                "name": "QWidget::RenderFlag"
+                "header": "yasl/core/enums.h",
+                "id": "QtBGMode",
+                "name": "Qt::BGMode"
             },
             {
-                "header": "yasl/widgets/frame.h",
-                "id": "QFrameShape",
-                "name": "QFrame::Shape"
+                "header": "yasl/core/enums.h",
+                "id": "QtBrushStyle",
+                "name": "Qt::BrushStyle"
             },
             {
-                "header": "yasl/widgets/frame.h",
-                "id": "QFrameShadow",
-                "name": "QFrame::Shadow"
+                "header": "yasl/core/enums.h",
+                "id": "QtCaseSensitivity",
+                "name": "Qt::CaseSensitivity"
             },
             {
-                "header": "yasl/widgets/frame.h",
-                "id": "QFrameStyleMask",
-                "name": "QFrame::StyleMask"
+                "header": "yasl/core/enums.h",
+                "id": "QtCheckState",
+                "name": "Qt::CheckState"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtChecksumType",
+                "name": "Qt::ChecksumType"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtClipOperation",
+                "name": "Qt::ClipOperation"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtConnectionType",
+                "name": "Qt::ConnectionType"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtContextMenuPolicy",
+                "name": "Qt::ContextMenuPolicy"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtCoordinateSystem",
+                "name": "Qt::CoordinateSystem"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtCorner",
+                "name": "Qt::Corner"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtCursorMoveStyle",
+                "name": "Qt::CursorMoveStyle"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtCursorShape",
+                "name": "Qt::CursorShape"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtDateFormat",
+                "name": "Qt::DateFormat"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtDayOfWeek",
+                "name": "Qt::DayOfWeek"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtDockWidgetArea",
+                "name": "Qt::DockWidgetArea"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtDockWidgetAreaSizes",
+                "name": "Qt::DockWidgetAreaSizes"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtDropAction",
+                "name": "Qt::DropAction"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtEdge",
+                "name": "Qt::Edge"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtEnterKeyType",
+                "name": "Qt::EnterKeyType"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtEventPriority",
+                "name": "Qt::EventPriority"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtFillRule",
+                "name": "Qt::FillRule"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtFindChildOption",
+                "name": "Qt::FindChildOption"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtFocusPolicy",
+                "name": "Qt::FocusPolicy"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtFocusReason",
+                "name": "Qt::FocusReason"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtGestureFlag",
+                "name": "Qt::GestureFlag"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtGestureState",
+                "name": "Qt::GestureState"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtGestureType",
+                "name": "Qt::GestureType"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtGlobalColor",
+                "name": "Qt::GlobalColor"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtHitTestAccuracy",
+                "name": "Qt::HitTestAccuracy"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtImageConversionFlag",
+                "links": "flags@Qt::ImageConversionFlags",
+                "name": "Qt::ImageConversionFlag"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtInitialization",
+                "name": "Qt::Initialization"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtInputMethodHint",
+                "name": "Qt::InputMethodHint"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtInputMethodQuery",
+                "name": "Qt::InputMethodQuery"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtItemDataRole",
+                "name": "Qt::ItemDataRole"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtItemFlag",
+                "name": "Qt::ItemFlag"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtItemSelectionMode",
+                "name": "Qt::ItemSelectionMode"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtItemSelectionOperation",
+                "name": "Qt::ItemSelectionOperation"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtKey",
+                "name": "Qt::Key"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtKeyboardModifier",
+                "links": "flags@Qt::KeyboardModifiers",
+                "name": "Qt::KeyboardModifier"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtLayoutDirection",
+                "name": "Qt::LayoutDirection"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtMaskMode",
+                "name": "Qt::MaskMode"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtMatchFlag",
+                "name": "Qt::MatchFlag"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtModifier",
+                "name": "Qt::Modifier"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtMouseButton",
+                "name": "Qt::MouseButton"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtMouseEventFlag",
+                "name": "Qt::MouseEventFlag"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtMouseEventSource",
+                "name": "Qt::MouseEventSource"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtNativeGestureType",
+                "name": "Qt::NativeGestureType"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtNavigationMode",
+                "name": "Qt::NavigationMode"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtOrientation",
+                "name": "Qt::Orientation"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtPenCapStyle",
+                "name": "Qt::PenCapStyle"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtPenJoinStyle",
+                "name": "Qt::PenJoinStyle"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtPenStyle",
+                "name": "Qt::PenStyle"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtScreenOrientation",
+                "name": "Qt::ScreenOrientation"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtScrollBarPolicy",
+                "name": "Qt::ScrollBarPolicy"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtScrollPhase",
+                "name": "Qt::ScrollPhase"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtShortcutContext",
+                "name": "Qt::ShortcutContext"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtSizeHint",
+                "name": "Qt::SizeHint"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtSizeMode",
+                "name": "Qt::SizeMode"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtSortOrder",
+                "name": "Qt::SortOrder"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTabFocusBehavior",
+                "name": "Qt::TabFocusBehavior"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTextElideMode",
+                "name": "Qt::TextElideMode"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTextFlag",
+                "name": "Qt::TextFlag"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTextFormat",
+                "name": "Qt::TextFormat"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTextInteractionFlag",
+                "name": "Qt::TextInteractionFlag"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTileRule",
+                "name": "Qt::TileRule"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTimerType",
+                "name": "Qt::TimerType"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTimeSpec",
+                "name": "Qt::TimeSpec"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtToolBarArea",
+                "links": "flags@Qt::ToolBarAreas",
+                "name": "Qt::ToolBarArea"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtToolBarAreaSizes",
+                "name": "Qt::ToolBarAreaSizes"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtToolButtonStyle",
+                "name": "Qt::ToolButtonStyle"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTouchPointState",
+                "name": "Qt::TouchPointState"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtTransformationMode",
+                "name": "Qt::TransformationMode"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtUIEffect",
+                "name": "Qt::UIEffect"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtWhiteSpaceMode",
+                "name": "Qt::WhiteSpaceMode"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtWidgetAttribute",
+                "name": "Qt::WidgetAttribute"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtWindowFrameSection",
+                "name": "Qt::WindowFrameSection"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtWindowModality",
+                "name": "Qt::WindowModality"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtWindowState",
+                "name": "Qt::WindowState"
+            },
+            {
+                "header": "yasl/core/enums.h",
+                "id": "QtWindowType",
+                "name": "Qt::WindowType"
             },
             {
                 "header": "yasl/widgets/tabwidget.h",
@@ -42253,77 +42399,30 @@
                 "name": "QTabWidget::TabShape"
             },
             {
-                "header": "yasl/widgets/lineedit.h",
-                "id": "QLineEditActionPosition",
-                "name": "QLineEdit::ActionPosition"
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOptionFlag",
+                "links": "flags@QTextOption::Flags",
+                "name": "QTextOption::Flag"
             },
             {
-                "header": "yasl/widgets/lineedit.h",
-                "id": "QLineEditEchoMode",
-                "name": "QLineEdit::EchoMode"
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOptionTabType",
+                "name": "QTextOption::TabType"
             },
             {
-                "header": "yasl/core/jsonvalue.h",
-                "id": "QJsonValueType",
-                "name": "QJsonValue::Type"
+                "header": "yasl/gui/textoption.h",
+                "id": "QTextOptionWrapMode",
+                "name": "QTextOption::WrapMode"
             },
             {
-                "header": "yasl/core/jsondocument.h",
-                "id": "QJsonDocumentDataValidation",
-                "name": "QJsonDocument::DataValidation"
+                "header": "yasl/core/timezone.h",
+                "id": "QTimeZoneNameType",
+                "name": "QTimeZone::NameType"
             },
             {
-                "header": "yasl/core/jsondocument.h",
-                "id": "QJsonDocumentJsonFormat",
-                "name": "QJsonDocument::JsonFormat"
-            },
-            {
-                "header": "yasl/widgets/combobox.h",
-                "id": "QComboBoxInsertPolicy",
-                "name": "QComboBox::InsertPolicy"
-            },
-            {
-                "header": "yasl/widgets/combobox.h",
-                "id": "QComboBoxSizeAdjustPolicy",
-                "name": "QComboBox::SizeAdjustPolicy"
-            },
-            {
-                "header": "yasl/widgets/fontcombobox.h",
-                "id": "QFontComboBoxFontFilter",
-                "links": "flags@QFontComboBox::FontFilters",
-                "name": "QFontComboBox::FontFilter"
-            },
-            {
-                "header": "yasl/widgets/abstractslider.h",
-                "id": "QAbstractSliderSliderAction",
-                "name": "QAbstractSlider::SliderAction"
-            },
-            {
-                "header": "yasl/widgets/slider.h",
-                "id": "QSliderTickPosition",
-                "name": "QSlider::TickPosition"
-            },
-            {
-                "header": "yasl/widgets/abstractspinbox.h",
-                "id": "QAbstractSpinBoxStepEnabledFlag",
-                "links": "flags@QAbstractSpinBox::StepEnabled",
-                "name": "QAbstractSpinBox::StepEnabledFlag"
-            },
-            {
-                "header": "yasl/widgets/abstractspinbox.h",
-                "id": "QAbstractSpinBoxButtonSymbols",
-                "name": "QAbstractSpinBox::ButtonSymbols"
-            },
-            {
-                "header": "yasl/widgets/abstractspinbox.h",
-                "id": "QAbstractSpinBoxCorrectionMode",
-                "name": "QAbstractSpinBox::CorrectionMode"
-            },
-            {
-                "header": "yasl/widgets/datetimeedit.h",
-                "id": "QDateTimeEditSection",
-                "links": "flags@QDateTimeEdit::Sections",
-                "name": "QDateTimeEdit::Section"
+                "header": "yasl/core/timezone.h",
+                "id": "QTimeZoneTimeType",
+                "name": "QTimeZone::TimeType"
             },
             {
                 "header": "yasl/widgets/toolbutton.h",
@@ -42331,124 +42430,72 @@
                 "name": "QToolButton::ToolButtonPopupMode"
             },
             {
-                "header": "yasl/widgets/action.h",
-                "id": "QActionMenuRole",
-                "name": "QAction::MenuRole"
+                "header": "yasl/gui/transform.h",
+                "id": "QTransformTransformationType",
+                "name": "QTransform::TransformationType"
             },
             {
-                "header": "yasl/widgets/action.h",
-                "id": "QActionPriority",
-                "name": "QAction::Priority"
+                "header": "yasl/core/url.h",
+                "id": "QUrlComponentFormattingOption",
+                "links": "flags@QUrl::ComponentFormattingOptions",
+                "name": "QUrl::ComponentFormattingOption"
             },
             {
-                "header": "yasl/widgets/action.h",
-                "id": "QActionActionEvent",
-                "name": "QAction::ActionEvent"
+                "header": "yasl/core/url.h",
+                "id": "QUrlParsingMode",
+                "name": "QUrl::ParsingMode"
             },
             {
-                "header": "yasl/widgets/layout.h",
-                "id": "QLayoutSizeConstraint",
-                "name": "QLayout::SizeConstraint"
+                "header": "yasl/core/url.h",
+                "id": "QUrlUrlFormattingOption",
+                "name": "QUrl::UrlFormattingOption"
             },
             {
-                "header": "yasl/widgets/boxlayout.h",
-                "id": "QBoxLayoutDirection",
-                "name": "QBoxLayout::Direction"
+                "header": "yasl/core/url.h",
+                "id": "QUrlUserInputResolutionOption",
+                "links": "flags@QUrl::UserInputResolutionOptions",
+                "name": "QUrl::UserInputResolutionOption"
             },
             {
-                "header": "yasl/widgets/formlayout.h",
-                "id": "QFormLayoutFieldGrowthPolicy",
-                "name": "QFormLayout::FieldGrowthPolicy"
+                "header": "yasl/core/uuid.h",
+                "id": "QUuidVariant",
+                "name": "QUuid::Variant"
             },
             {
-                "header": "yasl/widgets/formlayout.h",
-                "id": "QFormLayoutRowWrapPolicy",
-                "name": "QFormLayout::RowWrapPolicy"
+                "header": "yasl/core/uuid.h",
+                "id": "QUuidVersion",
+                "name": "QUuid::Version"
             },
             {
-                "header": "yasl/widgets/formlayout.h",
-                "id": "QFormLayoutItemRole",
-                "name": "QFormLayout::ItemRole"
+                "header": "yasl/gui/validator.h",
+                "id": "QValidatorState",
+                "name": "QValidator::State"
             },
             {
-                "header": "yasl/widgets/stackedlayout.h",
-                "id": "QStackedLayoutStackingMode",
-                "name": "QStackedLayout::StackingMode"
+                "header": "yasl/widgets/widget.h",
+                "id": "QWidgetRenderFlag",
+                "name": "QWidget::RenderFlag"
             },
             {
-                "header": "yasl/widgets/dialog.h",
-                "id": "QDialogDialogCode",
-                "name": "QDialog::DialogCode"
+                "header": "yasl/gui/window.h",
+                "id": "QWindowAncestorMode",
+                "name": "QWindow::AncestorMode"
             },
             {
-                "header": "yasl/widgets/messagebox.h",
-                "id": "QMessageBoxIcon",
-                "name": "QMessageBox::Icon"
-            },
-            {
-                "header": "yasl/widgets/messagebox.h",
-                "id": "QMessageBoxButtonRole",
-                "name": "QMessageBox::ButtonRole"
-            },
-            {
-                "header": "yasl/widgets/messagebox.h",
-                "id": "QMessageBoxStandardButton",
-                "links": "flags@QMessageBox::StandardButtons",
-                "name": "QMessageBox::StandardButton"
-            },
-            {
-                "header": "yasl/widgets/filedialog.h",
-                "id": "QFileDialogViewMode",
-                "name": "QFileDialog::ViewMode"
-            },
-            {
-                "header": "yasl/widgets/filedialog.h",
-                "id": "QFileDialogFileMode",
-                "name": "QFileDialog::FileMode"
-            },
-            {
-                "header": "yasl/widgets/filedialog.h",
-                "id": "QFileDialogAcceptMode",
-                "name": "QFileDialog::AcceptMode"
-            },
-            {
-                "header": "yasl/widgets/filedialog.h",
-                "id": "QFileDialogDialogLabel",
-                "name": "QFileDialog::DialogLabel"
-            },
-            {
-                "header": "yasl/widgets/filedialog.h",
-                "id": "QFileDialogOption",
-                "links": "flags@QFileDialog::Options",
-                "name": "QFileDialog::Option"
-            },
-            {
-                "header": "yasl/widgets/colordialog.h",
-                "id": "QColorDialogColorDialogOption",
-                "links": "flags@QColorDialog::ColorDialogOptions",
-                "name": "QColorDialog::ColorDialogOption"
-            },
-            {
-                "header": "yasl/widgets/fontdialog.h",
-                "id": "QFontDialogFontDialogOption",
-                "links": "flags@QFontDialog::FontDialogOptions",
-                "name": "QFontDialog::FontDialogOption"
-            },
-            {
-                "header": "yasl/widgets/inputdialog.h",
-                "id": "QInputDialogInputDialogOption",
-                "links": "flags@QInputDialog::InputDialogOptions",
-                "name": "QInputDialog::InputDialogOption"
-            },
-            {
-                "header": "yasl/widgets/inputdialog.h",
-                "id": "QInputDialogInputMode",
-                "name": "QInputDialog::InputMode"
+                "header": "yasl/gui/window.h",
+                "id": "QWindowVisibility",
+                "name": "QWindow::Visibility"
             },
             {
                 "header": "yasl/widgets/wizard.h",
                 "id": "QWizardWizardButton",
                 "name": "QWizard::WizardButton"
+            },
+            {
+                "header": "yasl/widgets/wizard.h",
+                "id": "QWizardWizardOption",
+                "links": "flags@QWizard::WizardOptions",
+                "name": "QWizard::WizardOption"
             },
             {
                 "header": "yasl/widgets/wizard.h",
@@ -42459,17 +42506,6 @@
                 "header": "yasl/widgets/wizard.h",
                 "id": "QWizardWizardStyle",
                 "name": "QWizard::WizardStyle"
-            },
-            {
-                "header": "yasl/widgets/wizard.h",
-                "id": "QWizardWizardOption",
-                "links": "flags@QWizard::WizardOptions",
-                "name": "QWizard::WizardOption"
-            },
-            {
-                "header": "yasl/widgets/progressbar.h",
-                "id": "QProgressBarDirection",
-                "name": "QProgressBar::Direction"
             }
         ],
         "fundamentals": [

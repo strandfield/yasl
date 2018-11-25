@@ -7,6 +7,7 @@
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
@@ -110,6 +111,8 @@ static void register_uuid_class(script::Namespace ns)
   bind::member_function<QUuid, QUuid::Variant, &QUuid::variant>(uuid, "variant").create();
   // QUuid::Version version() const;
   bind::member_function<QUuid, QUuid::Version, &QUuid::version>(uuid, "version").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QUuid, QMetaType::QUuid>>();
 }
 
 

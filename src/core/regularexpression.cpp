@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 #include "yasl/core/flags.h"
 
 #include "yasl/core/datastream.h"
@@ -121,6 +122,8 @@ static void register_regular_expression_class(script::Namespace ns)
   bind::memop_eq<QRegularExpression, const QRegularExpression &>(regular_expression);
   // bool operator!=(const QRegularExpression &) const;
   bind::memop_neq<QRegularExpression, const QRegularExpression &>(regular_expression);
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QRegularExpression, QMetaType::QRegularExpression>>();
 }
 
 

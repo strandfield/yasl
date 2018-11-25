@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/point.h"
@@ -149,6 +150,8 @@ static void register_region_class(script::Namespace ns)
   bind::memop_eq<QRegion, const QRegion &>(region);
   // bool operator!=(const QRegion &) const;
   bind::memop_neq<QRegion, const QRegion &>(region);
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QRegion, QMetaType::QRegion>>();
 }
 
 

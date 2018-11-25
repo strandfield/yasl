@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/datetime.h"
@@ -122,6 +123,8 @@ static void register_date_class(script::Namespace ns)
   /// TODO: static QDate fromJulianDay(qint64);
   // qint64 toJulianDay() const;
   /// TODO: qint64 toJulianDay() const;
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QDate, QMetaType::QDate>>();
 }
 
 
@@ -205,6 +208,8 @@ static void register_time_class(script::Namespace ns)
   bind::member_function<QTime, int, &QTime::restart>(time, "restart").create();
   // int elapsed() const;
   bind::member_function<QTime, int, &QTime::elapsed>(time, "elapsed").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QTime, QMetaType::QTime>>();
 }
 
 
@@ -356,6 +361,8 @@ static void register_date_time_class(script::Namespace ns)
   /// TODO: static qint64 currentMSecsSinceEpoch();
   // static qint64 currentSecsSinceEpoch();
   /// TODO: static qint64 currentSecsSinceEpoch();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QDateTime, QMetaType::QDateTime>>();
 }
 
 

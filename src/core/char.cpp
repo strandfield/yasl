@@ -7,6 +7,7 @@
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/char-functions.h"
 #include "yasl/core/char.h"
@@ -561,6 +562,8 @@ static void register_char__class(script::Namespace ns)
   bind::static_member_function<QChar, bool, uint, &QChar::isUpper>(char_, "isUpper").create();
   // static bool isTitleCase(uint);
   bind::static_member_function<QChar, bool, uint, &QChar::isTitleCase>(char_, "isTitleCase").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QChar, QMetaType::QChar>>();
 }
 
 

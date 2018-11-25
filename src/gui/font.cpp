@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/gui/font.h"
@@ -347,6 +348,8 @@ static void register_font_class(script::Namespace ns)
   bind::member_function<QFont, uint, &QFont::resolve>(font, "resolve").create();
   // void resolve(uint);
   bind::void_member_function<QFont, uint, &QFont::resolve>(font, "resolve").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QFont, QMetaType::QFont>>();
 }
 
 

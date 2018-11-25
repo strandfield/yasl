@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -96,6 +97,8 @@ static void register_brush_class(script::Namespace ns)
   bind::member_function<QBrush, bool, &QBrush::isDetached>(brush, "isDetached").create();
   // QBrush::DataPtr & data_ptr();
   /// TODO: QBrush::DataPtr & data_ptr();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QBrush, QMetaType::QBrush>>();
 }
 
 

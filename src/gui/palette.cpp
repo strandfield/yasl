@@ -7,6 +7,7 @@
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -174,6 +175,8 @@ static void register_palette_class(script::Namespace ns)
   bind::member_function<QPalette, uint, &QPalette::resolve>(palette, "resolve").create();
   // void resolve(uint);
   bind::void_member_function<QPalette, uint, &QPalette::resolve>(palette, "resolve").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QPalette, QMetaType::QPalette>>();
 }
 
 

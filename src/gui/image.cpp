@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
@@ -304,6 +305,8 @@ static void register_image_class(script::Namespace ns)
   bind::static_member_function<QImage, QImage::Format, QPixelFormat, &QImage::toImageFormat>(image, "toImageFormat").create();
   // QImage::DataPtr & data_ptr();
   /// TODO: QImage::DataPtr & data_ptr();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QImage, QMetaType::QImage>>();
 }
 
 

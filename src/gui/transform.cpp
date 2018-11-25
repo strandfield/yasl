@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -174,6 +175,8 @@ static void register_transform_class(script::Namespace ns)
   bind::static_member_function<QTransform, QTransform, qreal, qreal, &QTransform::fromTranslate>(transform, "fromTranslate").create();
   // static QTransform fromScale(qreal, qreal);
   bind::static_member_function<QTransform, QTransform, qreal, qreal, &QTransform::fromScale>(transform, "fromScale").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QTransform, QMetaType::QTransform>>();
 }
 
 

@@ -7,6 +7,7 @@
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
@@ -58,6 +59,8 @@ static void register_bitmap_class(script::Namespace ns)
   /// TODO: QBitmap transformed(const QMatrix &) const;
   // QBitmap transformed(const QTransform &) const;
   bind::member_function<QBitmap, QBitmap, const QTransform &, &QBitmap::transformed>(bitmap, "transformed").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QBitmap, QMetaType::QBitmap>>();
 }
 
 

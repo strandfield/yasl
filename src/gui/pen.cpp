@@ -7,6 +7,7 @@
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -98,6 +99,8 @@ static void register_pen_class(script::Namespace ns)
   bind::member_function<QPen, bool, &QPen::isDetached>(pen, "isDetached").create();
   // QPen::DataPtr & data_ptr();
   /// TODO: QPen::DataPtr & data_ptr();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QPen, QMetaType::QPen>>();
 }
 
 

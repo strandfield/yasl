@@ -92,6 +92,9 @@ QSharedPointer<Project> Project::load(const QString & filename)
 
 void Project::save(const QString & filename)
 {
+  sort(types.classes);
+  sort(types.enums);
+
   QFile file{ filename };
   if (!file.open(QIODevice::WriteOnly))
     return;
@@ -335,4 +338,15 @@ Type & Project::getType(const QString & name)
   throw std::runtime_error{ "Project::getType() : Unsupported type" };
 }
 
+void Project::sort(QList<Type> & types)
+{
+  struct LessThan
+  {
+    bool operator()(const Type & a, const Type & b)
+    {
+      return QString::compare(a.name, b.name, Qt::CaseInsensitive) < 0;
+    }
+  };
 
+  qSort(types.begin(), types.end(), LessThan{});
+}

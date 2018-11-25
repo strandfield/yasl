@@ -6,6 +6,7 @@
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/point.h"
@@ -55,6 +56,8 @@ static void register_point_class(script::Namespace ns)
   bind::memop_div_assign<QPoint, qreal>(point);
   // static int dotProduct(const QPoint &, const QPoint &);
   bind::static_member_function<QPoint, int, const QPoint &, const QPoint &, &QPoint::dotProduct>(point, "dotProduct").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QPoint, QMetaType::QPoint>>();
 }
 
 
@@ -101,6 +104,8 @@ static void register_point_f_class(script::Namespace ns)
   bind::static_member_function<QPointF, qreal, const QPointF &, const QPointF &, &QPointF::dotProduct>(point_f, "dotProduct").create();
   // QPoint toPoint() const;
   bind::member_function<QPointF, QPoint, &QPointF::toPoint>(point_f, "toPoint").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QPointF, QMetaType::QPointF>>();
 }
 
 

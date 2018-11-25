@@ -6,6 +6,7 @@
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -89,6 +90,8 @@ static void register_vector2_d_class(script::Namespace ns)
   bind::member_function<QVector2D, QPoint, &QVector2D::toPoint>(vector2_d, "toPoint").create();
   // QPointF toPointF() const;
   bind::member_function<QVector2D, QPointF, &QVector2D::toPointF>(vector2_d, "toPointF").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QVector2D, QMetaType::QVector2D>>();
 }
 
 

@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/jsonarray.h"
@@ -100,6 +101,8 @@ static void register_json_document_class(script::Namespace ns)
   bind::memop_neq<QJsonDocument, const QJsonDocument &>(json_document);
   // bool isNull() const;
   bind::member_function<QJsonDocument, bool, &QJsonDocument::isNull>(json_document, "isNull").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QJsonDocument, QMetaType::QJsonDocument>>();
 }
 
 

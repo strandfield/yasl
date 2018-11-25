@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/jsonarray.h"
 #include "yasl/core/jsonobject.h"
@@ -115,6 +116,8 @@ static void register_json_value_class(script::Namespace ns)
   bind::memop_eq<QJsonValue, const QJsonValue &>(json_value);
   // bool operator!=(const QJsonValue &) const;
   bind::memop_neq<QJsonValue, const QJsonValue &>(json_value);
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QJsonValue, QMetaType::QJsonValue>>();
 }
 
 

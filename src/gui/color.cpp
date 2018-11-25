@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -292,6 +293,8 @@ static void register_color_class(script::Namespace ns)
   /// TODO: static bool isValidColor(QStringView);
   // static bool isValidColor(QLatin1String);
   /// TODO: static bool isValidColor(QLatin1String);
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QColor, QMetaType::QColor>>();
 }
 
 

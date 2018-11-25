@@ -7,6 +7,7 @@
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -70,6 +71,8 @@ static void register_cursor_class(script::Namespace ns)
   bind::static_void_member_function<QCursor, const QPoint &, &QCursor::setPos>(cursor, "setPos").create();
   // static void setPos(QScreen *, const QPoint &);
   /// TODO: static void setPos(QScreen *, const QPoint &);
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QCursor, QMetaType::QCursor>>();
 }
 
 

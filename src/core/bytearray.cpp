@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 #include "yasl/common/listspecializations.h"
 #include "yasl/core/flags.h"
 
@@ -310,6 +311,8 @@ static void register_byte_array_class(script::Namespace ns)
   bind::member_function<QByteArray, int, &QByteArray::length>(byte_array, "length").create();
   // bool isNull() const;
   bind::member_function<QByteArray, bool, &QByteArray::isNull>(byte_array, "isNull").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QByteArray, QMetaType::QByteArray>>();
 }
 
 

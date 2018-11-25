@@ -7,6 +7,7 @@
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
@@ -167,6 +168,8 @@ static void register_pixmap_class(script::Namespace ns)
   /// TODO: QPlatformPixmap * handle() const;
   // QPixmap::DataPtr & data_ptr();
   /// TODO: QPixmap::DataPtr & data_ptr();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QPixmap, QMetaType::QPixmap>>();
 }
 
 

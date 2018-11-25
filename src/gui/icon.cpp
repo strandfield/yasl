@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/size.h"
@@ -131,6 +132,8 @@ static void register_icon_class(script::Namespace ns)
   bind::static_void_member_function<QIcon, const QString &, &QIcon::setThemeName>(icon, "setThemeName").create();
   // QIcon::DataPtr & data_ptr();
   /// TODO: QIcon::DataPtr & data_ptr();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QIcon, QMetaType::QIcon>>();
 }
 
 

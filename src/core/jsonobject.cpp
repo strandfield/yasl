@@ -6,6 +6,7 @@
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/jsonobject.h"
 #include "yasl/core/jsonvalue.h"
@@ -101,6 +102,8 @@ static void register_json_object_class(script::Namespace ns)
   /// TODO: QJsonObject::iterator insert(const QString &, const QJsonValue &);
   // bool empty() const;
   bind::member_function<QJsonObject, bool, &QJsonObject::empty>(json_object, "empty").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QJsonObject, QMetaType::QJsonObject>>();
 }
 
 

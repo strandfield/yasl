@@ -8,6 +8,7 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
+#include "yasl/common/genericvarianthandler.h"
 #include "yasl/common/listspecializations.h"
 #include "yasl/core/flags.h"
 
@@ -1172,6 +1173,8 @@ static void register_locale_class(script::Namespace ns)
   /// TODO: QString quoteString(const QStringRef &, QLocale::QuotationStyle) const;
   // QString createSeparatedList(const QStringList &) const;
   /// TODO: QString createSeparatedList(const QStringList &) const;
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QLocale, QMetaType::QLocale>>();
 }
 
 

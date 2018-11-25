@@ -6,6 +6,7 @@
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
@@ -70,6 +71,8 @@ static void register_size_class(script::Namespace ns)
   bind::memop_mul_assign<QSize, qreal>(size);
   // QSize & operator/=(qreal);
   bind::memop_div_assign<QSize, qreal>(size);
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QSize, QMetaType::QSize>>();
 }
 
 
@@ -134,6 +137,8 @@ static void register_size_f_class(script::Namespace ns)
   bind::memop_div_assign<QSizeF, qreal>(size_f);
   // QSize toSize() const;
   bind::member_function<QSizeF, QSize, &QSizeF::toSize>(size_f, "toSize").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QSizeF, QMetaType::QSizeF>>();
 }
 
 

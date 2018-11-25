@@ -50,6 +50,8 @@ public:
     modules.append(ret);
     return ret;
   }
+
+  static void sort(QList<Type> & types);
 };
 
 typedef QSharedPointer<Project> ProjectRef;

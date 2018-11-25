@@ -6,6 +6,7 @@
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/jsonarray.h"
 #include "yasl/core/jsonvalue.h"
@@ -103,6 +104,8 @@ static void register_json_array_class(script::Namespace ns)
   bind::void_member_function<QJsonArray, &QJsonArray::pop_back>(json_array, "pop_back").create();
   // bool empty() const;
   bind::member_function<QJsonArray, bool, &QJsonArray::empty>(json_array, "empty").create();
+
+  yasl::registerVariantHandler<yasl::GenericVariantHandler<QJsonArray, QMetaType::QJsonArray>>();
 }
 
 
