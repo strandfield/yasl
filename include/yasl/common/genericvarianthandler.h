@@ -5,12 +5,11 @@
 #ifndef YASL_COMMONS_GENERICVARIANTHANDLER_H
 #define YASL_COMMONS_GENERICVARIANTHANDLER_H
 
-#include "yasl/common/variant.h"
+#include "yasl/common/variant-utils.h"
 
 #include "yasl/common/values.h"
 
 #include <QMetaType>
-#include <QVariant>
 
 namespace yasl
 {

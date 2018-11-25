@@ -11,7 +11,6 @@
 
 namespace script {
 template<> struct make_type_t<QVariant> { inline static script::Type get() { return script::Type::QVariant; } };
-template<> struct make_type_t<QVariant::Type> { inline static script::Type get() { return script::Type::QVariantType; } };
 } // namespace script
 
 #endif // YASL_CORE_VARIANT_H

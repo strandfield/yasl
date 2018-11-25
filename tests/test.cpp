@@ -28,6 +28,14 @@
 #define ASSERT_TRUE(a) assert((a))
 #define ASSERT_FALSE(a) assert(!(a))
 
+
+void print_info()
+{
+  using namespace script;
+
+  std::cout << "sizeof(ValueImpl::Builtin) = " << sizeof(script::ValueImpl::BuiltIn) << std::endl;
+}
+
 int add(int a, int b)
 {
   return a + b;
@@ -74,13 +82,9 @@ int point_y(const Point & pt)
 
 namespace script
 {
-namespace bind
-{
 template<> struct make_type_t<Point> { inline static script::Type get() { return script::Type::QPoint; } };
 template<> struct make_type_t<long unsigned int> { inline static script::Type get() { return script::Type::Int; } };
-}
 } // namespace script
-
 void test_simple_bindind()
 {
   using namespace script;
@@ -190,16 +194,14 @@ void test_simple_bindind()
   ASSERT_EQ(assign.memberOf(), pt);
 }
 
+
 #include <QByteArray>
 
 namespace script
 {
-namespace bind
-{
 template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
 template<> struct make_type_t<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
 template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
-}
 } // namespace script
 
 void bytearray_binding()
@@ -245,10 +247,7 @@ void bytearray_binding()
 
 namespace script
 {
-namespace bind
-{
 template<> struct make_type_t<QList<int>> { inline static script::Type get() { return script::Type::QListint; } };
-}
 } // namespace script
 
 template<typename T>
@@ -286,6 +285,7 @@ void parameterized_binding()
 
 int main(int argc, char *argv[])
 {
+  print_info();
   test_simple_bindind();
   bytearray_binding();
   parameterized_binding();

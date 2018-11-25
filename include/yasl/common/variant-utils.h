@@ -2,8 +2,10 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#ifndef YASL_COMMONS_VARIANT_H
-#define YASL_COMMONS_VARIANT_H
+#ifndef YASL_COMMONS_VARIANTUTILS_H
+#define YASL_COMMONS_VARIANTUTILS_H
+
+/// TODO: maybe rename to variant-utils
 
 #include <script/value.h>
 
@@ -36,6 +38,8 @@ QVariant make_qvariant(const script::Value & v);
 script::Value get_variant_value(script::Engine *e, const QVariant & v);
 script::Type get_variant_value_type(const QVariant & v);
 
+void complete_variant_class(script::Engine *e);
+
 } // namespace yasl
 
-#endif // YASL_COMMONS_VARIANT_H
+#endif // YASL_COMMONS_VARIANTUTILS_H

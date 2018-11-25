@@ -8,8 +8,8 @@
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
 #include "yasl/common/enums.h"
-#include "yasl/core/flags.h"
 #include "yasl/common/listspecializations.h"
+#include "yasl/core/flags.h"
 
 #include "yasl/core/bytearray-functions.h"
 #include "yasl/core/bytearray.h"

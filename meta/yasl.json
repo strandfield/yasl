@@ -12494,79 +12494,11 @@
                 },
                 {
                     "checked": 1,
-                    "cppincludes": "yasl/core/variant-functions.h",
+                    "cppincludes": "yasl/core/variant-functions.h,yasl/common/variant-utils.h",
                     "elements": [
                         {
                             "checked": 1,
                             "elements": [
-                                {
-                                    "enumerators": [
-                                        "Invalid",
-                                        "Bool",
-                                        "Int",
-                                        "UInt",
-                                        "LongLong",
-                                        "ULongLong",
-                                        "Double",
-                                        "Char",
-                                        "Map",
-                                        "List",
-                                        "String",
-                                        "StringList",
-                                        "ByteArray",
-                                        "BitArray",
-                                        "Date",
-                                        "Time",
-                                        "DateTime",
-                                        "Url",
-                                        "Locale",
-                                        "Rect",
-                                        "RectF",
-                                        "Size",
-                                        "SizeF",
-                                        "Line",
-                                        "LineF",
-                                        "Point",
-                                        "PointF",
-                                        "RegExp",
-                                        "RegularExpression",
-                                        "Hash",
-                                        "EasingCurve",
-                                        "Uuid",
-                                        "ModelIndex",
-                                        "PersistentModelIndex",
-                                        "LastCoreType",
-                                        "Font",
-                                        "Pixmap",
-                                        "Brush",
-                                        "Color",
-                                        "Palette",
-                                        "Image",
-                                        "Polygon",
-                                        "Region",
-                                        "Bitmap",
-                                        "Cursor",
-                                        "KeySequence",
-                                        "Pen",
-                                        "TextLength",
-                                        "TextFormat",
-                                        "Matrix",
-                                        "Transform",
-                                        "Matrix4x4",
-                                        "Vector2D",
-                                        "Vector3D",
-                                        "Vector4D",
-                                        "Quaternion",
-                                        "PolygonF",
-                                        "Icon",
-                                        "LastGuiType",
-                                        "SizePolicy",
-                                        "UserType",
-                                        "LastType"
-                                    ],
-                                    "name": "Type",
-                                    "type": "enum"
-                                },
                                 {
                                     "name": "QVariant",
                                     "signature": "",
@@ -12823,12 +12755,14 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
                                     "name": "type",
                                     "signature": "->QVariant::Type",
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "const": true,
                                     "name": "userType",
                                     "signature": "->int",
@@ -13152,6 +13086,7 @@
                                     "type": "function"
                                 },
                                 {
+                                    "checked": 0,
                                     "name": "typeToName",
                                     "signature": "int->const char *",
                                     "static": true,
@@ -13301,6 +13236,10 @@
                             "name": "operator<<",
                             "signature": "QDebug;const QVariant::Type->QDebug",
                             "type": "function"
+                        },
+                        {
+                            "type": "statement",
+                            "value": "yasl::complete_variant_class(ns.engine());"
                         }
                     ],
                     "hincludes": "<QVariant>",
@@ -42033,11 +41972,6 @@
                 "header": "yasl/core/uuid.h",
                 "id": "QUuidVersion",
                 "name": "QUuid::Version"
-            },
-            {
-                "header": "yasl/core/variant.h",
-                "id": "QVariantType",
-                "name": "QVariant::Type"
             },
             {
                 "header": "yasl/gui/color.h",

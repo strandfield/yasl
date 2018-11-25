@@ -6,8 +6,8 @@
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
-#include "yasl/common/enums.h"
 
+#include "yasl/common/variant-utils.h"
 #include "yasl/core/bytearray.h"
 #include "yasl/core/char.h"
 #include "yasl/core/datastream.h"
@@ -28,78 +28,6 @@
 #include "yasl/core/variant.h"
 
 #include <script/classbuilder.h>
-#include <script/enumbuilder.h>
-
-static void register_variant_type_enum(script::Class variant)
-{
-  using namespace script;
-
-  Enum type = variant.newEnum("Type").setId(script::Type::QVariantType).get();
-
-  type.addValue("Invalid", QVariant::Invalid);
-  type.addValue("Bool", QVariant::Bool);
-  type.addValue("Int", QVariant::Int);
-  type.addValue("UInt", QVariant::UInt);
-  type.addValue("LongLong", QVariant::LongLong);
-  type.addValue("ULongLong", QVariant::ULongLong);
-  type.addValue("Double", QVariant::Double);
-  type.addValue("Char", QVariant::Char);
-  type.addValue("Map", QVariant::Map);
-  type.addValue("List", QVariant::List);
-  type.addValue("String", QVariant::String);
-  type.addValue("StringList", QVariant::StringList);
-  type.addValue("ByteArray", QVariant::ByteArray);
-  type.addValue("BitArray", QVariant::BitArray);
-  type.addValue("Date", QVariant::Date);
-  type.addValue("Time", QVariant::Time);
-  type.addValue("DateTime", QVariant::DateTime);
-  type.addValue("Url", QVariant::Url);
-  type.addValue("Locale", QVariant::Locale);
-  type.addValue("Rect", QVariant::Rect);
-  type.addValue("RectF", QVariant::RectF);
-  type.addValue("Size", QVariant::Size);
-  type.addValue("SizeF", QVariant::SizeF);
-  type.addValue("Line", QVariant::Line);
-  type.addValue("LineF", QVariant::LineF);
-  type.addValue("Point", QVariant::Point);
-  type.addValue("PointF", QVariant::PointF);
-  type.addValue("RegExp", QVariant::RegExp);
-  type.addValue("RegularExpression", QVariant::RegularExpression);
-  type.addValue("Hash", QVariant::Hash);
-  type.addValue("EasingCurve", QVariant::EasingCurve);
-  type.addValue("Uuid", QVariant::Uuid);
-  type.addValue("ModelIndex", QVariant::ModelIndex);
-  type.addValue("PersistentModelIndex", QVariant::PersistentModelIndex);
-  type.addValue("LastCoreType", QVariant::LastCoreType);
-  type.addValue("Font", QVariant::Font);
-  type.addValue("Pixmap", QVariant::Pixmap);
-  type.addValue("Brush", QVariant::Brush);
-  type.addValue("Color", QVariant::Color);
-  type.addValue("Palette", QVariant::Palette);
-  type.addValue("Image", QVariant::Image);
-  type.addValue("Polygon", QVariant::Polygon);
-  type.addValue("Region", QVariant::Region);
-  type.addValue("Bitmap", QVariant::Bitmap);
-  type.addValue("Cursor", QVariant::Cursor);
-  type.addValue("KeySequence", QVariant::KeySequence);
-  type.addValue("Pen", QVariant::Pen);
-  type.addValue("TextLength", QVariant::TextLength);
-  type.addValue("TextFormat", QVariant::TextFormat);
-  type.addValue("Matrix", QVariant::Matrix);
-  type.addValue("Transform", QVariant::Transform);
-  type.addValue("Matrix4x4", QVariant::Matrix4x4);
-  type.addValue("Vector2D", QVariant::Vector2D);
-  type.addValue("Vector3D", QVariant::Vector3D);
-  type.addValue("Vector4D", QVariant::Vector4D);
-  type.addValue("Quaternion", QVariant::Quaternion);
-  type.addValue("PolygonF", QVariant::PolygonF);
-  type.addValue("Icon", QVariant::Icon);
-  type.addValue("LastGuiType", QVariant::LastGuiType);
-  type.addValue("SizePolicy", QVariant::SizePolicy);
-  type.addValue("UserType", QVariant::UserType);
-  type.addValue("LastType", QVariant::LastType);
-}
-
 
 static void register_variant_class(script::Namespace ns)
 {
@@ -107,14 +35,13 @@ static void register_variant_class(script::Namespace ns)
 
   Class variant = ns.newClass("Variant").setId(script::Type::QVariant).get();
 
-  register_variant_type_enum(variant);
 
   // QVariant();
   bind::default_constructor<QVariant>(variant).create();
   // ~QVariant();
   bind::destructor<QVariant>(variant).create();
   // QVariant(QVariant::Type);
-  bind::constructor<QVariant, QVariant::Type>(variant).create();
+  /// TODO: QVariant(QVariant::Type);
   // QVariant(int, const void *);
   /// TODO: QVariant(int, const void *);
   // QVariant(int, const void *, uint);
@@ -209,10 +136,6 @@ static void register_variant_class(script::Namespace ns)
   bind::memop_assign<QVariant, QVariant &&>(variant);
   // void swap(QVariant &);
   bind::void_member_function<QVariant, QVariant &, &QVariant::swap>(variant, "swap").create();
-  // QVariant::Type type() const;
-  bind::member_function<QVariant, QVariant::Type, &QVariant::type>(variant, "type").create();
-  // int userType() const;
-  bind::member_function<QVariant, int, &QVariant::userType>(variant, "userType").create();
   // const char * typeName() const;
   /// TODO: const char * typeName() const;
   // bool canConvert(int) const;
@@ -305,8 +228,6 @@ static void register_variant_class(script::Namespace ns)
   bind::void_member_function<QVariant, QDataStream &, &QVariant::load>(variant, "load").create();
   // void save(QDataStream &) const;
   bind::const_void_member_function<QVariant, QDataStream &, &QVariant::save>(variant, "save").create();
-  // static const char * typeToName(int);
-  /// TODO: static const char * typeToName(int);
   // static QVariant::Type nameToType(const char *);
   /// TODO: static QVariant::Type nameToType(const char *);
   // void * data();
@@ -351,14 +272,15 @@ void register_variant_file(script::Namespace core)
   // QDataStream & operator<<(QDataStream &, const QVariant &);
   bind::op_put_to<QDataStream &, const QVariant &>(ns);
   // QDataStream & operator>>(QDataStream &, QVariant::Type &);
-  bind::op_read_from<QDataStream &, QVariant::Type &>(ns);
+  /// TODO: QDataStream & operator>>(QDataStream &, QVariant::Type &);
   // QDataStream & operator<<(QDataStream &, const QVariant::Type);
-  bind::op_put_to<QDataStream &, const QVariant::Type>(ns);
+  /// TODO: QDataStream & operator<<(QDataStream &, const QVariant::Type);
   // void swap(QVariant &, QVariant &);
   bind::void_function<QVariant &, QVariant &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QVariant &);
   /// TODO: QDebug operator<<(QDebug, const QVariant &);
   // QDebug operator<<(QDebug, const QVariant::Type);
   /// TODO: QDebug operator<<(QDebug, const QVariant::Type);
+  yasl::complete_variant_class(ns.engine());
 }
 
