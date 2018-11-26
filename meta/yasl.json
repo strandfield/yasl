@@ -21542,6 +21542,10 @@
                                     "type": "constructor"
                                 },
                                 {
+                                    "name": "~QTransform",
+                                    "type": "destructor"
+                                },
+                                {
                                     "checked": 0,
                                     "defaults": "qreal(1.0)",
                                     "name": "QTransform",

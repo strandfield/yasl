@@ -49,6 +49,8 @@ static void register_transform_class(script::Namespace ns)
   bind::constructor<QTransform, Qt::Initialization>(transform).create();
   // QTransform();
   bind::default_constructor<QTransform>(transform).create();
+  // ~QTransform();
+  bind::destructor<QTransform>(transform).create();
   // QTransform(qreal, qreal, qreal, qreal, qreal, qreal);
   bind::constructor<QTransform, qreal, qreal, qreal, qreal, qreal, qreal>(transform).create();
   // QTransform(const QMatrix &);
