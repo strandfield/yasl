@@ -36,7 +36,7 @@ Value default_ctor(FunctionCall *c)
 Value copy_ctor(FunctionCall *c)
 {
   Value that = c->thisObject();
-  that.impl()->set_string(c->arg(0).toString());
+  that.impl()->set_string(c->arg(1).toString());
   return that;
 }
 
@@ -44,7 +44,7 @@ Value copy_ctor(FunctionCall *c)
 Value char_ctor(FunctionCall *c)
 {
   Value that = c->thisObject();
-  that.impl()->set_string(String{ c->arg(0).toChar() });
+  that.impl()->set_string(String{ c->arg(1).toChar() });
   return that;
 }
 
@@ -293,8 +293,8 @@ Value ctor(FunctionCall *c)
 {
   Value that = c->thisObject();
 
-  auto & str = c->arg(0).impl()->get_string();
-  const int pos = c->arg(1).toInt();
+  auto & str = c->arg(1).impl()->get_string();
+  const int pos = c->arg(2).toInt();
 
   that.impl()->set_charref(CharRef{ &str, (size_t)pos });
 
@@ -305,7 +305,7 @@ Value ctor(FunctionCall *c)
 Value copy_ctor(FunctionCall *c)
 {
   Value that = c->thisObject();
-  const CharRef & other = c->arg(0).impl()->get_charref_field();
+  const CharRef & other = c->arg(1).impl()->get_charref_field();
 
   that.impl()->set_charref(other);
 
