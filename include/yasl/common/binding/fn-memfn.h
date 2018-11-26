@@ -140,6 +140,57 @@ script::FunctionBuilder fn_as_memfn(Class & cla, std::string && name)
     .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
 }
 
+
+/* void non-static non-const member functions */
+
+template<typename T, void(*F)(T &)>
+script::FunctionBuilder void_fn_as_memfn(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), wrapper::void_function_wrapper_t<decltype(F), F>::wrap);
+}
+
+template<typename T, typename A1, void(*F)(T &, A1)>
+script::FunctionBuilder void_fn_as_memfn(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), wrapper::void_function_wrapper_t<decltype(F), F>::wrap)
+    .params(make_type<A1>());
+}
+
+template<typename T, typename A1, typename A2, void(*F)(T &, A1, A2)>
+script::FunctionBuilder void_fn_as_memfn(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), wrapper::void_function_wrapper_t<decltype(F), F>::wrap)
+    .params(make_type<A1>(), make_type<A2>());
+}
+
+template<typename T, typename A1, typename A2, typename A3, void(*F)(T &, A1, A2, A3)>
+script::FunctionBuilder void_fn_as_memfn(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), wrapper::void_function_wrapper_t<decltype(F), F>::wrap)
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>());
+}
+
+template<typename T, typename A1, typename A2, typename A3, typename A4, void(*F)(T &, A1, A2, A3, A4)>
+script::FunctionBuilder void_fn_as_memfn(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), wrapper::void_function_wrapper_t<decltype(F), F>::wrap)
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>());
+}
+
+template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5, void(*F)(T &, A1, A2, A3, A4, A5)>
+script::FunctionBuilder void_fn_as_memfn(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), wrapper::void_function_wrapper_t<decltype(F), F>::wrap)
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>());
+}
+
+template<typename T, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, void(*F)(T &, A1, A2, A3, A4, A5, A6)>
+script::FunctionBuilder void_fn_as_memfn(Class & cla, std::string && name)
+{
+  return cla.newMethod(std::move(name), wrapper::void_function_wrapper_t<decltype(F), F>::wrap)
+    .params(make_type<A1>(), make_type<A2>(), make_type<A3>(), make_type<A4>(), make_type<A5>(), make_type<A6>());
+}
+
 } // namespace bind
 
 } // namespace script
