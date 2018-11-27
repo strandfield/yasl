@@ -52,7 +52,10 @@ public:
 
   QString typeCode() const override { return staticTypeCode; }
 
-  QString displayedName() const override;
+  QString display() const override;
+
+  QStringList getSpecifiers() const;
+  void setSpecifiers(const QStringList & specs);
 
   inline static QString serialize(BindingMethod bm)
   {
@@ -147,7 +150,7 @@ struct Constructor : public Function
 
   QString typeCode() const override { return staticTypeCode; }
 
-  QString displayedName() const override;
+  QString display() const override;
 
 };
 typedef QSharedPointer<Constructor> ConstructorRef;
@@ -164,7 +167,7 @@ struct Destructor : public Function
 
   QString typeCode() const override { return staticTypeCode; }
 
-  QString displayedName() const override;
+  QString display() const override;
 
 };
 typedef QSharedPointer<Destructor> DestructorRef;

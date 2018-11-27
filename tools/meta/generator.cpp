@@ -766,14 +766,14 @@ void Generator::generate(ClassRef cla)
       continue;
       
     FunctionRef fun = qSharedPointerCast<Function>(n);
-    out += "  // " + fun->displayedName() + endl;
+    out += "  // " + fun->display() + endl;
     try
     {
       out += generate(fun) + endl;
     }
     catch (...)
     {
-      out += "  /// TODO: " + fun->displayedName() + endl;
+      out += "  /// TODO: " + fun->display() + endl;
     }
   }
 
@@ -927,14 +927,14 @@ void Generator::generate(NamespaceRef ns)
     if (n->is<Function>())
     {
       FunctionRef fun = qSharedPointerCast<Function>(n);
-      out += "  // " + fun->displayedName() + endl;
+      out += "  // " + fun->display() + endl;
       try
       {
         out += generate(fun) + endl;
       }
       catch (...)
       {
-        out += "  /// TODO: " + fun->displayedName() + endl;
+        out += "  /// TODO: " + fun->display() + endl;
       }
     }
     else if (n->is<Statement>())

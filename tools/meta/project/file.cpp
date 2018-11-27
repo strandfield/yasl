@@ -15,6 +15,23 @@ File::File(const QString & n, Qt::CheckState c)
 
 }
 
+QString File::display() const
+{
+  QString ret = this->name;
+
+  if (!hincludes.isEmpty())
+  {
+    ret += " [h-includes:" + hincludes.join(",") + "]";
+  }
+
+  if (!cppincludes.isEmpty())
+  {
+    ret += " [cpp-includes:" + cppincludes.join(",") + "]";
+  }
+
+  return ret;
+}
+
 void File::fillJson(QJsonObject & obj) const
 {
   Namespace::fillJson(obj);

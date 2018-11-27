@@ -15,6 +15,20 @@ Class::Class(const QString & n, Qt::CheckState c)
 
 }
 
+QString Class::display() const
+{
+  QString ret = name;
+  if (isFinal)
+    ret += " final";
+  if (!base.isEmpty())
+    ret += " : " + base;
+
+  if (!version.isNull())
+    ret += " [" + version.toString() + "]";
+
+  return ret;
+}
+
 void Class::fillJson(QJsonObject & obj) const
 {
   Node::fillJson(obj);
@@ -35,6 +49,7 @@ void Class::fillJson(QJsonObject & obj) const
 QSharedPointer<Node> Class::fromJson(const QJsonObject & obj)
 {
   auto ret = ClassRef::create(obj.value("name").toString(), json::readCheckState(obj));
+  ret->version = json::readQtVersion(obj);
 
   QJsonArray elements = obj.value("elements").toArray();
   ret->elements.reserve(elements.size());

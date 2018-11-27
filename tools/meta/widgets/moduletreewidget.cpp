@@ -14,6 +14,12 @@
 #include "project/namespace.h"
 #include "project/statement.h"
 
+#include "widgets/editors/classnodeeditor.h"
+#include "widgets/editors/enumnodeeditor.h"
+#include "widgets/editors/filenodeeditor.h"
+#include "widgets/editors/functionnodeeditor.h"
+#include "widgets/editors/namespacenodeeditor.h"
+
 #include <QAction>
 #include <QKeyEvent>
 #include <QMenu>
@@ -29,10 +35,81 @@ public:
     QTreeWidgetItem *item = static_cast<QTreeWidgetItem*>(index.internalPointer());
     NodeRef node = item->data(0, ModuleTreeWidget::ProjectNodeRole).value<NodeRef>();
     if (node->is<Function>() && index.column() == 0)
-      return nullptr;
+      return new FunctionNodeEditor(qSharedPointerCast<Function>(node), parent);
+    else if (node->is<File>() && index.column() == 0)
+      return new FileNodeEditor(qSharedPointerCast<File>(node), parent);
+    else if (node->is<Namespace>() && index.column() == 0)
+      return new NamespaceNodeEditor(qSharedPointerCast<Namespace>(node), parent);
+    else if (node->is<Class>() && index.column() == 0)
+      return new ClassNodeEditor(qSharedPointerCast<Class>(node), parent);
+    else if (node->is<Enum>() && index.column() == 0)
+      return new EnumNodeEditor(qSharedPointerCast<Enum>(node), parent);
     return QStyledItemDelegate::createEditor(parent, option, index);
   }
 
+  void setEditorData(QWidget *editor, const QModelIndex & index) const override
+  {
+    QTreeWidgetItem *item = static_cast<QTreeWidgetItem*>(index.internalPointer());
+    NodeRef node = item->data(0, ModuleTreeWidget::ProjectNodeRole).value<NodeRef>();
+
+    EnumNodeEditor *enmedit = qobject_cast<EnumNodeEditor*>(editor);
+    FileNodeEditor *fileedit = qobject_cast<FileNodeEditor*>(editor);
+    FunctionNodeEditor *funedit = qobject_cast<FunctionNodeEditor*>(editor);
+    ClassNodeEditor *classedit = qobject_cast<ClassNodeEditor*>(editor);
+    NamespaceNodeEditor *nsedit = qobject_cast<NamespaceNodeEditor*>(editor);
+    if (funedit != nullptr)
+    {
+      funedit->read(qSharedPointerCast<Function>(node));
+      return;
+    }
+    else if (fileedit != nullptr)
+    {
+      fileedit->read(qSharedPointerCast<File>(node));
+      return;
+    }
+    else if (classedit != nullptr)
+    {
+      classedit->read(qSharedPointerCast<Class>(node));
+      return;
+    }
+    else if (enmedit != nullptr)
+    {
+      enmedit->read(qSharedPointerCast<Enum>(node));
+      return;
+    }
+    else if (nsedit != nullptr)
+    {
+      nsedit->read(qSharedPointerCast<Namespace>(node));
+      return;
+    }
+    else
+    {
+      return QStyledItemDelegate::setEditorData(editor, index);
+    }
+  }
+
+  void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex & index) const override
+  {
+    QTreeWidgetItem *item = static_cast<QTreeWidgetItem*>(index.internalPointer());
+    NodeRef node = item->data(0, ModuleTreeWidget::ProjectNodeRole).value<NodeRef>();
+
+    AbstractNodeEditor *nodeedit = qobject_cast<AbstractNodeEditor*>(editor);
+    if (nodeedit != nullptr)
+    {
+      nodeedit->write();
+      item->setText(0, nodeedit->getNode()->display());
+      return;
+    }
+    else
+    {
+      return QStyledItemDelegate::setModelData(editor, model, index);
+    }
+  }
+
+  void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &/* index */) const override
+  {
+    editor->setGeometry(option.rect);
+  }
 };
 
 
@@ -40,9 +117,8 @@ ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   : mProject(pro)
   , mShowCheckboxes(true)
 {
-  setColumnCount(6);
-  setHeaderHidden(false);
-  clearHeaders();
+  setColumnCount(1);
+  setHeaderHidden(true);
   setSelectionBehavior(QAbstractItemView::SelectRows);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   setItemDelegate(new ItemDelegate(this));
@@ -58,8 +134,6 @@ ModuleTreeWidget::ModuleTreeWidget(const ProjectRef & pro)
   connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(updateItem(QTreeWidgetItem*, int)));
   connect(this, SIGNAL(collapsed(const QModelIndex&)), this, SLOT(resizeColumnsAuto()));
   connect(this, SIGNAL(expanded(const QModelIndex&)), this, SLOT(resizeColumnsAuto()));
-  connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(updateHeaders(QTreeWidgetItem*, int)));
-  connect(this, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(clearHeaders()));
   connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(displayContextMenu(const QPoint &)));
 }
 
@@ -280,42 +354,7 @@ void ModuleTreeWidget::refreshItem(QTreeWidgetItem* item)
 
   blockSignals(true);
 
-  if (node->is<Module>())
-  {
-    Module & m = node->as<Module>();
-  }
-  else if (node->is<File>())
-  {
-    File & f = node->as<File>();
-    item->setText(1, f.hincludes.join(","));
-    item->setText(2, f.cppincludes.join(","));
-  }
-  else if (node->is<Namespace>())
-  {
-    Namespace & ns = node->as<Namespace>();
-  }
-  else if (node->is<Class>())
-  {
-    Class & c = node->as<Class>();
-    item->setText(1, c.base);
-    item->setText(2, c.isFinal ? QString{ "true" } : QString{});
-  }
-  else if (node->is<Enum>())
-  {
-    Enum & enm = node->as<Enum>();
-
-  }
-  else if (node->is<Enumerator>())
-  {
-  }
-  else if (node->is<Function>())
-  {
-    Function & fun = node->as<Function>();
-    item->setText(0, fun.displayedName());
-    item->setText(1, Function::serialize(fun.bindingMethod));
-    item->setText(2, fun.rename);
-    item->setText(3, fun.defaultArguments.join(';'));
-  }
+  item->setText(0, node->display());
 
   blockSignals(false);
 }
@@ -376,14 +415,12 @@ void ModuleTreeWidget::fillTreeWidget(const ProjectRef & pro)
 
 QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
 {
-  QTreeWidgetItem *item = new QTreeWidgetItem(QStringList{ node->displayedName() });
-  item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable);
+  QTreeWidgetItem *item = new QTreeWidgetItem(QStringList{ node->display() });
+  item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable | Qt::ItemIsEditable);
   item->setData(0, ProjectNodeRole, QVariant::fromValue<NodeRef>(node));
 
   if (node->is<Module>())
   {
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-
     item->setIcon(0, QIcon(":/assets/namespace.png"));
 
     Module & m = node->as<Module>();
@@ -392,44 +429,29 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
   }
   else if (node->is<File>())
   {
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-
     item->setIcon(0, QIcon(":/assets/namespace.png"));
     File & f = node->as<File>();
-    item->setText(1, f.hincludes.join(","));
-    item->setText(2, f.cppincludes.join(","));
     for (const auto & n : f.elements)
       item->addChild(createItem(n));
   }
   else if (node->is<Namespace>())
   {
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-
     item->setIcon(0, QIcon(":/assets/namespace.png"));
     Namespace & ns = node->as<Namespace>();
-    item->setText(1, ns.rename);
     for (const auto & n : ns.elements)
       item->addChild(createItem(n));
   }
   else if (node->is<Class>())
   {
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-
     item->setIcon(0, QIcon(":/assets/class.png"));
     Class & c = node->as<Class>();
-    item->setText(1, c.base);
-    item->setText(2, c.isFinal ? QString{ "true" } : QString{});
     for (const auto & n : c.elements)
       item->addChild(createItem(n));
   }
   else if (node->is<Enum>())
   {
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-
     item->setIcon(0, QIcon(":/assets/enum.png"));
     Enum & enm = node->as<Enum>();
-    item->setCheckState(1, enm.isEnumClass ? Qt::Checked : Qt::Unchecked);
-    item->setCheckState(2, enm.isCppEnumClass ? Qt::Checked : Qt::Unchecked);
     for (const auto & n : enm.enumerators)
       item->addChild(createItem(n));
   }
@@ -439,17 +461,10 @@ QTreeWidgetItem* ModuleTreeWidget::createItem(const NodeRef & node)
   }
   else if (node->is<Function>())
   {
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-
     item->setIcon(0, QIcon(":/assets/func.png"));
-    item->setText(1, Function::serialize(node->as<Function>().bindingMethod));
-    item->setText(2, node->as<Function>().rename);
-    item->setText(3, node->as<Function>().defaultArguments.join(';'));
   }
   else if (node->is<Statement>())
   {
-    item->setFlags(item->flags() | Qt::ItemIsEditable);
-
     item->setIcon(0, QIcon(":/assets/statement.png"));
   }
 
@@ -477,31 +492,7 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
     node->name = item->text(0);
   }
 
-  if (node->is<Function>())
-  {
-    node->as<Function>().bindingMethod = Function::deserialize<Function::BindingMethod>(item->text(1));
-    node->as<Function>().rename = item->text(2);
-    node->as<Function>().defaultArguments = item->text(3).split(';');
-  }
-  else if (node->is<Class>())
-  {
-    Class & c = node->as<Class>();
-    c.base = item->text(1);
-    c.isFinal = item->text(2).toLower() == "true";
-  }
-  else if (node->is<Enum>())
-  {
-    Enum & enm = node->as<Enum>();
-    enm.isEnumClass = item->checkState(1) == Qt::Checked;
-    enm.isCppEnumClass = item->checkState(2) == Qt::Checked;
-  }
-  else if (node->is<File>())
-  {
-    File & f = node->as<File>();
-    f.hincludes = item->text(1).split(",", QString::SkipEmptyParts);
-    f.cppincludes = item->text(2).split(",", QString::SkipEmptyParts);
-  }
-  else if (node->is<Namespace>())
+  if (node->is<Namespace>())
   {
     Namespace & ns = node->as<Namespace>();
     ns.rename = item->text(1);
@@ -558,52 +549,8 @@ void ModuleTreeWidget::updateCheckState(QTreeWidgetItem *item)
 
 void ModuleTreeWidget::resizeColumnsAuto()
 {
-  for (int i(0); i < columnCount(); ++i)
-    resizeColumnToContents(i);
-}
-
-void ModuleTreeWidget::updateHeaders(QTreeWidgetItem *item, int column)
-{
-  if (item == nullptr)
-    return clearHeaders();
-
-  NodeRef node = item->data(0, ProjectNodeRole).value<NodeRef>();
-  if (item == nullptr)
-    return clearHeaders();
-
-  if (node->is<Function>())
-  {
-    setHeaderLabels(QStringList() << "Function" << "binding" << "rename" << "defaults" << "" << "");
-  }
-  else if (node->is<Class>())
-  {
-    setHeaderLabels(QStringList() << "Name" << "Base" << "final ?" << "QObject" << "" << "");
-  }
-  else if (node->is<Enum>())
-  {
-    setHeaderLabels(QStringList() << "Name" << "Enum class ?" << " Cpp enum class" << "" << "" << "");
-  }
-  else if (node->is<Module>())
-  {
-    setHeaderLabels(QStringList() << "Name" << "" << "" << "" << "" << "");
-  }
-  else if (node->is<File>())
-  {
-    setHeaderLabels(QStringList() << "Name" << ".h include" << ".cpp include" << "" << "" << "");
-  }
-  else if (node->is<Namespace>())
-  {
-    setHeaderLabels(QStringList() << "Name" << "Rename");
-  }
-  else if (node->is<Statement>())
-  {
-    setHeaderLabels(QStringList() << "Statement");
-  }
-}
-
-void ModuleTreeWidget::clearHeaders()
-{
-  setHeaderLabels(QStringList() << "" << "" << "" << "" << "" << "");
+  //for (int i(0); i < columnCount(); ++i)
+  //  resizeColumnToContents(i);
 }
 
 void ModuleTreeWidget::displayContextMenu(const QPoint & p)

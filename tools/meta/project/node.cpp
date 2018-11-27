@@ -26,7 +26,40 @@ void writeCheckState(QJsonObject & obj, Qt::CheckState cs)
     obj["checked"] = static_cast<int>(cs);
 }
 
+QtVersion readQtVersion(const QJsonObject & obj)
+{
+  if (!obj.contains("version"))
+    return {};
+
+  QString version = obj.value("version").toString();
+  return QtVersion::fromString(version);
+}
+
+void writeQtVersion(QJsonObject & obj, QtVersion v)
+{
+  if (v.isNull())
+    return;
+
+  obj["version"] = v.toString();
+}
+
 } // namespace json
+
+QString QtVersion::toString() const
+{
+  if (isNull())
+    return QString{};
+  return QString("%1.%2.%3").arg(int(major)).arg(int(minor)).arg(int(patch));
+}
+
+QtVersion QtVersion::fromString(const QString & str)
+{
+  if (str.isEmpty())
+    return QtVersion{};
+
+  QStringList list = str.split('.');
+  return QtVersion{ list.front().toInt(), list.size() > 1 ? list.at(1).toInt() : 0, list.size() > 2 ? list.back().toInt() : 0 };
+}
 
 Node::Node(const QString & n, Qt::CheckState c)
   : checkState(c)
@@ -40,6 +73,7 @@ void Node::fillJson(QJsonObject & obj) const
   obj["name"] = this->name;
   json::writeCheckState(obj, this->checkState);
   obj["type"] = typeCode();
+  json::writeQtVersion(obj, this->version);
 }
 
 QJsonObject Node::toJson() const
@@ -89,7 +123,7 @@ bool eq(const NodeRef & lhs, const NodeRef & rhs)
   if (lhs->name != rhs->name)
     return false;
 
-  if (lhs->displayedName() != rhs->displayedName())
+  if (lhs->display() != rhs->display())
     return false;
 
   return true;

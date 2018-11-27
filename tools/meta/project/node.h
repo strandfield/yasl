@@ -10,10 +10,35 @@
 #include <QSharedPointer>
 #include <QStack>
 
+
+class QtVersion
+{
+public:
+  QtVersion()
+    : major(0), minor(0), patch(0)
+  { }
+
+  QtVersion(const QtVersion &) = default;
+
+  QtVersion(int ma, int mi, int pa = 0)
+    : major(ma), minor(mi), patch(pa) {}
+
+  char major;
+  char minor;
+  char patch;
+
+  QString toString() const;
+  static QtVersion fromString(const QString & str);
+
+  inline bool isNull() const { return major == 0 && minor == 0 && patch == 0; }
+};
+
 namespace json
 {
 Qt::CheckState readCheckState(const QJsonObject & obj);
 void writeCheckState(QJsonObject & obj, Qt::CheckState cs);
+QtVersion readQtVersion(const QJsonObject & obj);
+void writeQtVersion(QJsonObject & obj, QtVersion v);
 } //  namespace json
 
 class Node
@@ -38,7 +63,7 @@ public:
   QJsonObject toJson() const;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
-  virtual QString displayedName() const { return name; }
+  virtual QString display() const { return name; }
   virtual QString typeCode() const = 0;
 
   typedef QSharedPointer<Node>(*JsonDeserializer)(const QJsonObject &);
@@ -49,6 +74,7 @@ public:
 
   QString name;
   Qt::CheckState checkState;
+  QtVersion version;
 };
 typedef QSharedPointer<Node> NodeRef;
 

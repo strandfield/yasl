@@ -49,8 +49,6 @@ protected Q_SLOTS:
   void updateItem(QTreeWidgetItem *item, int column);
   void updateCheckState(QTreeWidgetItem *item);
   void resizeColumnsAuto();
-  void updateHeaders(QTreeWidgetItem *item, int column);
-  void clearHeaders();
   void displayContextMenu(const QPoint & p);
 
 private:

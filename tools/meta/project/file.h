@@ -19,6 +19,8 @@ public:
 
   static const QString staticTypeCode;
 
+  QString display() const override;
+
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & obj);
 

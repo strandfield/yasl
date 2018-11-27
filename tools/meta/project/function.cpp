@@ -48,6 +48,7 @@ void Function::fillJson(QJsonObject & obj) const
 QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
 {
   auto ret = FunctionRef::create(obj.value("name").toString(), json::readCheckState(obj));
+  ret->version = json::readQtVersion(obj);
 
   ret->rename = obj.value("rename").toString();
 
@@ -67,7 +68,7 @@ QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
   return ret;
 }
 
-QString Function::displayedName() const
+QString Function::display() const
 {
   QString result;
   if (isExplicit)
@@ -78,10 +79,12 @@ QString Function::displayedName() const
   result += returnType;
   result += " " + name;
   result += "(";
-  for (const auto & p : parameters)
-    result += p + ", ";
-  if (result.endsWith(", "))
-    result.chop(2);
+  {
+    QStringList params = parameters;
+    for (int i(0); i < defaultArguments.size(); ++i)
+      params[params.size() - i - 1] += " = " + defaultArguments.at(i);
+    result += params.join(", ");
+  }
   result += ")";
 
   if (isConst)
@@ -91,7 +94,39 @@ QString Function::displayedName() const
     result += " = delete";
 
   result += ";";
+
+  if (!version.isNull())
+    result += " [" + version.toString() + "]";
+
+  if (!rename.isEmpty())
+    result += " [" + rename + "]";
+
+  if (bindingMethod != Function::AutoBinding)
+    result += " [" + serialize(bindingMethod) + "]";
+
   return result;
+}
+
+QStringList Function::getSpecifiers() const
+{
+  QStringList specifiers;
+  if (isConst)
+    specifiers << "const";
+  if (isDeleted)
+    specifiers << "delete";
+  if (isExplicit)
+    specifiers << "explicit";
+  if (isStatic)
+    specifiers << "static";
+  return specifiers;
+}
+
+void Function::setSpecifiers(const QStringList & specs)
+{
+  isConst = specs.contains("const");
+  isDeleted = specs.contains("delete");
+  isExplicit = specs.contains("explicit");
+  isStatic = specs.contains("static");
 }
 
 Constructor::Constructor(const QString & n, Qt::CheckState cs)
@@ -109,6 +144,7 @@ void Constructor::fillJson(QJsonObject & obj) const
 QSharedPointer<Node> Constructor::fromJson(const QJsonObject & obj)
 {
   auto ret = ConstructorRef::create(obj.value("name").toString(), json::readCheckState(obj));
+  ret->version = json::readQtVersion(obj);
 
   ret->parameters = obj.value("signature").toString().split(';', QString::SkipEmptyParts);
   ret->returnType = QString();
@@ -123,7 +159,7 @@ QSharedPointer<Node> Constructor::fromJson(const QJsonObject & obj)
   return ret;
 }
 
-QString Constructor::displayedName() const
+QString Constructor::display() const
 {
   QString result;
   if (isExplicit)
@@ -169,13 +205,14 @@ void Destructor::fillJson(QJsonObject & obj) const
 QSharedPointer<Node> Destructor::fromJson(const QJsonObject & obj)
 {
   auto ret = DestructorRef::create(obj.value("name").toString(), json::readCheckState(obj));
+  ret->version = json::readQtVersion(obj);
 
   ret->isDeleted = obj.value("deleted").toBool();
 
   return ret;
 }
 
-QString Destructor::displayedName() const
+QString Destructor::display() const
 {
   QString result;
 

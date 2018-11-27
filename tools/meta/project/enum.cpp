@@ -42,6 +42,16 @@ Enum::Enum(const QString & n, Qt::CheckState c)
 
 }
 
+QString Enum::display() const
+{
+  QString ret = name;
+  if (isCppEnumClass)
+    ret += " [from-enum-class]";
+  if (isEnumClass)
+    ret += " [to-enum-class]";
+  return ret;
+}
+
 void Enum::fillJson(QJsonObject & obj) const
 {
   Node::fillJson(obj);

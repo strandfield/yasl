@@ -37,6 +37,8 @@ public:
   Enum(const QString & n, Qt::CheckState c = Qt::Checked);
   ~Enum() = default;
 
+  QString display() const override;
+
   static const QString staticTypeCode;
 
   void fillJson(QJsonObject & obj) const override;

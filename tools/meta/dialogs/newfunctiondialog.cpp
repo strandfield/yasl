@@ -28,15 +28,7 @@ NewFunctionDialog::NewFunctionDialog(FunctionRef fun, QWidget *parent)
   mReturnTypeLineEdit->setText(fun->returnType);
   mParametersLineEdit->setText(fun->parameters.join(";"));
   
-  QStringList specifiers;
-  if (fun->isConst)
-    specifiers << "const";
-  if (fun->isDeleted)
-    specifiers << "delete";
-  if (fun->isExplicit)
-    specifiers << "explicit";
-  if (fun->isStatic)
-    specifiers << "static";
+  QStringList specifiers = fun->getSpecifiers();
   mSpecifiersLineEdit->setText(specifiers.join(","));
 
   mBindingMethodComboBox->setCurrentIndex(fun->bindingMethod - Function::FirstBindingMethod);
@@ -79,9 +71,6 @@ void NewFunctionDialog::sync()
   mFunction->bindingMethod = Function::deserialize<Function::BindingMethod>(mBindingMethodComboBox->currentText());
 
   QString specifiers = mSpecifiersLineEdit->text();
-  mFunction->isConst = specifiers.contains("const");
-  mFunction->isDeleted = specifiers.contains("delete");
-  mFunction->isExplicit = specifiers.contains("explicit");
-  mFunction->isStatic = specifiers.contains("static");
+  mFunction->setSpecifiers(specifiers.split(','));
 }
 
