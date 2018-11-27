@@ -14,13 +14,15 @@ int main(int argc, char *argv[])
 
   if (app.arguments().size() <= 1) 
   {
-    app.interactive();
+    app.startInteractiveSession();
+    return app.exec();
   }
   else 
   {
     script::SourceFile src{ app.arguments().at(1).toLocal8Bit().data() };
-    app.run(src);
+    int ret = app.runScript(src);
+    if (ret == 0 && app.runEventLoop())
+      return app.exec();
+    return ret;
   }
-
-  return app.exec();
 }

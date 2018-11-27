@@ -19,11 +19,22 @@ public:
 
   inline script::Engine * scriptEngine() { return &mEngine; }
 
-  void run(const script::SourceFile & src);
-  void interactive();
+  int runScript(const script::SourceFile & src);
+  void startInteractiveSession();
+
+  inline bool runEventLoop() const { return mRunEventLoop; }
+  inline void setRunEventLoop(bool r) { mRunEventLoop = r; }
   
+protected:
+  void display(const script::Value & val);
+
+protected Q_SLOTS:
+  void readCommand();
+
 private:
   script::Engine mEngine;
+  bool mRunEventLoop;
+  QObject *mStdinNotifier;
 };
 
 #if defined(qApp)
