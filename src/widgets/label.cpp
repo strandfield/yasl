@@ -24,10 +24,10 @@ static void register_label_class(script::Namespace ns)
     .setBase(script::Type::QFrame).get();
 
 
-  // QLabel(QWidget *, Qt::WindowFlags);
-  /// TODO: QLabel(QWidget *, Qt::WindowFlags);
-  // QLabel(const QString &, QWidget *, Qt::WindowFlags);
-  /// TODO: QLabel(const QString &, QWidget *, Qt::WindowFlags);
+  // QLabel(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QLabel(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  // QLabel(const QString &, QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QLabel(const QString &, QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   // ~QLabel();
   bind::destructor<QLabel>(label).create();
   // QString text() const;

@@ -45,22 +45,6 @@ void writeQtVersion(QJsonObject & obj, QtVersion v)
 
 } // namespace json
 
-QString QtVersion::toString() const
-{
-  if (isNull())
-    return QString{};
-  return QString("%1.%2.%3").arg(int(major)).arg(int(minor)).arg(int(patch));
-}
-
-QtVersion QtVersion::fromString(const QString & str)
-{
-  if (str.isEmpty())
-    return QtVersion{};
-
-  QStringList list = str.split('.');
-  return QtVersion{ list.front().toInt(), list.size() > 1 ? list.at(1).toInt() : 0, list.size() > 2 ? list.back().toInt() : 0 };
-}
-
 Node::Node(const QString & n, Qt::CheckState c)
   : checkState(c)
   , name(n)

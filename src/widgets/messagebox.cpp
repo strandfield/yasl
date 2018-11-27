@@ -101,11 +101,11 @@ static void register_message_box_class(script::Namespace ns)
   register_message_box_button_role_enum(message_box);
   register_message_box_standard_button_enum(message_box);
 
-  // QMessageBox(QWidget *);
+  // QMessageBox(QWidget * = (QWidget*)nullptr);
   bind::constructor<QMessageBox, QWidget *>(message_box)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons, QWidget *, Qt::WindowFlags);
-  /// TODO: QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons, QWidget *, Qt::WindowFlags);
+  // QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons = QMessageBox::StandardButtons(QMessageBox::NoButton), QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint));
+  /// TODO: QMessageBox(QMessageBox::Icon, const QString &, const QString &, QMessageBox::StandardButtons = QMessageBox::StandardButtons(QMessageBox::NoButton), QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint));
   // ~QMessageBox();
   bind::destructor<QMessageBox>(message_box).create();
   // void addButton(QAbstractButton *, QMessageBox::ButtonRole);

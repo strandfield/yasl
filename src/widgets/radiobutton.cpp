@@ -21,10 +21,10 @@ static void register_radio_button_class(script::Namespace ns)
     .setBase(script::Type::QAbstractButton).get();
 
 
-  // QRadioButton(QWidget *);
+  // QRadioButton(QWidget * = (QWidget*)nullptr);
   bind::constructor<QRadioButton, QWidget *>(radio_button)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QRadioButton(const QString &, QWidget *);
+  // QRadioButton(const QString &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QRadioButton, const QString &, QWidget *>(radio_button)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QRadioButton();
@@ -42,9 +42,9 @@ void register_radiobutton_file(script::Namespace widgets)
 
   register_radio_button_class(ns);
 
-  // QRadioButton& newRadioButton(QWidget*);
+  // QRadioButton& newRadioButton(QWidget* = (QWidget*)nullptr);
   bind::new_function<QRadioButton, QWidget*>(ns, "newRadioButton");
-  // QRadioButton& newRadioButton(const QString&, QWidget*);
+  // QRadioButton& newRadioButton(const QString&, QWidget* = (QWidget*)nullptr);
   bind::new_function<QRadioButton, const QString&, QWidget*>(ns, "newRadioButton");
 }
 

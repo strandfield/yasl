@@ -38,7 +38,7 @@ static void register_progress_bar_class(script::Namespace ns)
 
   register_progress_bar_direction_enum(progress_bar);
 
-  // QProgressBar(QWidget *);
+  // QProgressBar(QWidget * = (QWidget*)nullptr);
   bind::constructor<QProgressBar, QWidget *>(progress_bar)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QProgressBar();
@@ -106,7 +106,7 @@ void register_progressbar_file(script::Namespace widgets)
 
   register_progress_bar_class(ns);
 
-  // QProgressBar& newProgressBar(QWidget*);
+  // QProgressBar& newProgressBar(QWidget* = (QWidget*)nullptr);
   bind::new_function<QProgressBar, QWidget*>(ns, "newProgressBar");
 }
 

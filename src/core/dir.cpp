@@ -79,10 +79,10 @@ static void register_dir_class(script::Namespace ns)
 
   // QDir(const QDir &);
   bind::constructor<QDir, const QDir &>(dir).create();
-  // QDir(const QString &);
+  // QDir(const QString & = QString());
   bind::constructor<QDir, const QString &>(dir)
     .apply(bind::default_arguments(QString())).create();
-  // QDir(const QString &, const QString &, QDir::SortFlags, QDir::Filters);
+  // QDir(const QString &, const QString &, QDir::SortFlags = QDir::SortFlags(QDir::Name | QDir::IgnoreCase), QDir::Filters = QDir::Filters(QDir::AllEntries));
   bind::constructor<QDir, const QString &, const QString &, QDir::SortFlags, QDir::Filters>(dir)
     .apply(bind::default_arguments(QDir::Filters(QDir::AllEntries), QDir::SortFlags(QDir::Name | QDir::IgnoreCase))).create();
   // ~QDir();
@@ -141,21 +141,21 @@ static void register_dir_class(script::Namespace ns)
   bind::void_member_function<QDir, QDir::SortFlags, &QDir::setSorting>(dir, "setSorting").create();
   // uint count() const;
   bind::member_function<QDir, uint, &QDir::count>(dir, "count").create();
-  // bool isEmpty(QDir::Filters) const;
+  // bool isEmpty(QDir::Filters = QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot)) const;
   bind::member_function<QDir, bool, QDir::Filters, &QDir::isEmpty>(dir, "isEmpty")
     .apply(bind::default_arguments(QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot))).create();
   // QString operator[](int) const;
   bind::memop_const_subscript<QDir, QString, int>(dir);
   // static QStringList nameFiltersFromString(const QString &);
   /// TODO: static QStringList nameFiltersFromString(const QString &);
-  // QStringList entryList(QDir::Filters, QDir::SortFlags) const;
-  /// TODO: QStringList entryList(QDir::Filters, QDir::SortFlags) const;
-  // QStringList entryList(const QStringList &, QDir::Filters, QDir::SortFlags) const;
-  /// TODO: QStringList entryList(const QStringList &, QDir::Filters, QDir::SortFlags) const;
-  // QFileInfoList entryInfoList(QDir::Filters, QDir::SortFlags) const;
-  /// TODO: QFileInfoList entryInfoList(QDir::Filters, QDir::SortFlags) const;
-  // QFileInfoList entryInfoList(const QStringList &, QDir::Filters, QDir::SortFlags) const;
-  /// TODO: QFileInfoList entryInfoList(const QStringList &, QDir::Filters, QDir::SortFlags) const;
+  // QStringList entryList(QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  /// TODO: QStringList entryList(QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  // QStringList entryList(const QStringList &, QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  /// TODO: QStringList entryList(const QStringList &, QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  // QFileInfoList entryInfoList(QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  /// TODO: QFileInfoList entryInfoList(QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  // QFileInfoList entryInfoList(const QStringList &, QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  /// TODO: QFileInfoList entryInfoList(const QStringList &, QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
   // bool mkdir(const QString &) const;
   bind::member_function<QDir, bool, const QString &, &QDir::mkdir>(dir, "mkdir").create();
   // bool rmdir(const QString &) const;

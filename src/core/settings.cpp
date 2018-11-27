@@ -78,19 +78,19 @@ static void register_settings_class(script::Namespace ns)
   register_settings_format_enum(settings);
   register_settings_scope_enum(settings);
 
-  // QSettings(const QString &, const QString &, QObject *);
+  // QSettings(const QString &, const QString & = QString(), QObject * = (QObject*)nullptr);
   bind::constructor<QSettings, const QString &, const QString &, QObject *>(settings)
     .apply(bind::default_arguments((QObject*)nullptr, QString())).create();
-  // QSettings(QSettings::Scope, const QString &, const QString &, QObject *);
+  // QSettings(QSettings::Scope, const QString &, const QString & = QString(), QObject * = (QObject*)nullptr);
   bind::constructor<QSettings, QSettings::Scope, const QString &, const QString &, QObject *>(settings)
     .apply(bind::default_arguments((QObject*)nullptr, QString())).create();
-  // QSettings(QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *);
+  // QSettings(QSettings::Format, QSettings::Scope, const QString &, const QString & = QString(), QObject * = (QObject*)nullptr);
   bind::constructor<QSettings, QSettings::Format, QSettings::Scope, const QString &, const QString &, QObject *>(settings)
     .apply(bind::default_arguments((QObject*)nullptr, QString())).create();
-  // QSettings(const QString &, QSettings::Format, QObject *);
+  // QSettings(const QString &, QSettings::Format, QObject * = (QObject*)nullptr);
   bind::constructor<QSettings, const QString &, QSettings::Format, QObject *>(settings)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
-  // QSettings(QObject *);
+  // QSettings(QObject * = (QObject*)nullptr);
   bind::constructor<QSettings, QObject *>(settings)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QSettings();
@@ -109,7 +109,7 @@ static void register_settings_class(script::Namespace ns)
   bind::member_function<QSettings, QString, &QSettings::group>(settings, "group").create();
   // int beginReadArray(const QString &);
   bind::member_function<QSettings, int, const QString &, &QSettings::beginReadArray>(settings, "beginReadArray").create();
-  // void beginWriteArray(const QString &, int);
+  // void beginWriteArray(const QString &, int = -1);
   bind::void_member_function<QSettings, const QString &, int, &QSettings::beginWriteArray>(settings, "beginWriteArray")
     .apply(bind::default_arguments(-1)).create();
   // void endArray();
@@ -126,7 +126,7 @@ static void register_settings_class(script::Namespace ns)
   bind::member_function<QSettings, bool, &QSettings::isWritable>(settings, "isWritable").create();
   // void setValue(const QString &, const QVariant &);
   bind::void_member_function<QSettings, const QString &, const QVariant &, &QSettings::setValue>(settings, "setValue").create();
-  // QVariant value(const QString &, const QVariant &) const;
+  // QVariant value(const QString &, const QVariant & = QVariant()) const;
   bind::member_function<QSettings, QVariant, const QString &, const QVariant &, &QSettings::value>(settings, "value")
     .apply(bind::default_arguments(QVariant())).create();
   // void remove(const QString &);

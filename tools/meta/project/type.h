@@ -8,6 +8,8 @@
 #include <QJsonObject>
 #include <QString>
 
+#include "qtversion.h"
+
 class Type
 {
 public:
@@ -18,6 +20,7 @@ public:
   QString tag;
   QString links;
   QString metatype;
+  QtVersion version;
 
 public:
   Type() = default;

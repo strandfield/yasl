@@ -50,7 +50,7 @@ static void register_bitmap_class(script::Namespace ns)
   bind::void_member_function<QBitmap, QBitmap &, &QBitmap::swap>(bitmap, "swap").create();
   // void clear();
   bind::void_member_function<QBitmap, &QBitmap::clear>(bitmap, "clear").create();
-  // static QBitmap fromImage(const QImage &, Qt::ImageConversionFlags);
+  // static QBitmap fromImage(const QImage &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::static_member_function<QBitmap, QBitmap, const QImage &, Qt::ImageConversionFlags, &QBitmap::fromImage>(bitmap, "fromImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // static QBitmap fromData(const QSize &, const uchar *, QImage::Format);

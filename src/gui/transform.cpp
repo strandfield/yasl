@@ -115,10 +115,10 @@ static void register_transform_class(script::Namespace ns)
   bind::chainable_memfn<QTransform, qreal, qreal, &QTransform::scale>(transform, "scale").create();
   // QTransform & shear(qreal, qreal);
   bind::chainable_memfn<QTransform, qreal, qreal, &QTransform::shear>(transform, "shear").create();
-  // QTransform & rotate(qreal, Qt::Axis);
+  // QTransform & rotate(qreal, Qt::Axis = Qt::ZAxis);
   bind::chainable_memfn<QTransform, qreal, Qt::Axis, &QTransform::rotate>(transform, "rotate")
     .apply(bind::default_arguments(Qt::ZAxis)).create();
-  // QTransform & rotateRadians(qreal, Qt::Axis);
+  // QTransform & rotateRadians(qreal, Qt::Axis = Qt::ZAxis);
   bind::chainable_memfn<QTransform, qreal, Qt::Axis, &QTransform::rotateRadians>(transform, "rotateRadians")
     .apply(bind::default_arguments(Qt::ZAxis)).create();
   // static bool squareToQuad(const QPolygonF &, QTransform &);

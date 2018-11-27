@@ -22,10 +22,10 @@ static void register_scroll_bar_class(script::Namespace ns)
     .setBase(script::Type::QAbstractSlider).get();
 
 
-  // QScrollBar(QWidget *);
+  // QScrollBar(QWidget * = (QWidget*)nullptr);
   bind::constructor<QScrollBar, QWidget *>(scroll_bar)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QScrollBar(Qt::Orientation, QWidget *);
+  // QScrollBar(Qt::Orientation, QWidget * = (QWidget*)nullptr);
   bind::constructor<QScrollBar, Qt::Orientation, QWidget *>(scroll_bar)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QScrollBar();
@@ -43,9 +43,9 @@ void register_scrollbar_file(script::Namespace widgets)
 
   register_scroll_bar_class(ns);
 
-  // QScrollBar& newScrollBar(QWidget*);
+  // QScrollBar& newScrollBar(QWidget* = (QWidget*)nullptr);
   bind::new_function<QScrollBar, QWidget*>(ns, "newScrollBar");
-  // QScrollBar& newScrollBar(Qt::Orientation, QWidget*);
+  // QScrollBar& newScrollBar(Qt::Orientation, QWidget* = (QWidget*)nullptr);
   bind::new_function<QScrollBar, Qt::Orientation, QWidget*>(ns, "newScrollBar");
 }
 

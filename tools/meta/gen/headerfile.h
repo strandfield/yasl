@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QMap>
 
+#include "qtversion.h"
 #include "project/type.h"
 
 class QTextStream;
@@ -44,6 +45,8 @@ public:
 
   static QByteArray readall(const QString & filepath);
   static void validate(const QFileInfo & finfo);
+
+  static QString versionCheck(QtVersion v);
 
 protected:
   QStringList generateBindingDefinitions();

@@ -41,7 +41,7 @@ static void register_tool_button_class(script::Namespace ns)
 
   register_tool_button_tool_button_popup_mode_enum(tool_button);
 
-  // QToolButton(QWidget *);
+  // QToolButton(QWidget * = (QWidget*)nullptr);
   bind::constructor<QToolButton, QWidget *>(tool_button)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QToolButton();
@@ -91,7 +91,7 @@ void register_toolbutton_file(script::Namespace widgets)
 
   register_tool_button_class(ns);
 
-  // QToolButton& newToolButton(QWidget*);
+  // QToolButton& newToolButton(QWidget* = (QWidget*)nullptr);
   bind::new_function<QToolButton, QWidget*>(ns, "newToolButton");
 }
 

@@ -40,10 +40,10 @@ static void register_color_dialog_class(script::Namespace ns)
 
   register_color_dialog_color_dialog_option_enum(color_dialog);
 
-  // QColorDialog(QWidget *);
+  // QColorDialog(QWidget * = (QWidget*)nullptr);
   bind::constructor<QColorDialog, QWidget *>(color_dialog)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QColorDialog(const QColor &, QWidget *);
+  // QColorDialog(const QColor &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QColorDialog, const QColor &, QWidget *>(color_dialog)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QColorDialog();
@@ -54,7 +54,7 @@ static void register_color_dialog_class(script::Namespace ns)
   bind::member_function<QColorDialog, QColor, &QColorDialog::currentColor>(color_dialog, "currentColor").create();
   // QColor selectedColor() const;
   bind::member_function<QColorDialog, QColor, &QColorDialog::selectedColor>(color_dialog, "selectedColor").create();
-  // void setOption(QColorDialog::ColorDialogOption, bool);
+  // void setOption(QColorDialog::ColorDialogOption, bool = true);
   bind::void_member_function<QColorDialog, QColorDialog::ColorDialogOption, bool, &QColorDialog::setOption>(color_dialog, "setOption")
     .apply(bind::default_arguments(true)).create();
   // bool testOption(QColorDialog::ColorDialogOption) const;

@@ -28,10 +28,10 @@ static void register_tool_bar_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
 
-  // QToolBar(const QString &, QWidget *);
+  // QToolBar(const QString &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QToolBar, const QString &, QWidget *>(tool_bar)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QToolBar(QWidget *);
+  // QToolBar(QWidget * = (QWidget*)nullptr);
   bind::constructor<QToolBar, QWidget *>(tool_bar)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QToolBar();

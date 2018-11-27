@@ -934,7 +934,7 @@ static void register_locale_class(script::Namespace ns)
   bind::default_constructor<QLocale>(locale).create();
   // QLocale(const QString &);
   bind::constructor<QLocale, const QString &>(locale).create();
-  // QLocale(QLocale::Language, QLocale::Country);
+  // QLocale(QLocale::Language, QLocale::Country = QLocale::AnyCountry);
   bind::constructor<QLocale, QLocale::Language, QLocale::Country>(locale)
     .apply(bind::default_arguments(QLocale::AnyCountry)).create();
   // QLocale(QLocale::Language, QLocale::Script, QLocale::Country);
@@ -1023,10 +1023,10 @@ static void register_locale_class(script::Namespace ns)
   bind::member_function<QLocale, QString, int, &QLocale::toString>(locale, "toString").create();
   // QString toString(uint) const;
   bind::member_function<QLocale, QString, uint, &QLocale::toString>(locale, "toString").create();
-  // QString toString(double, char, int) const;
+  // QString toString(double, char = 'g', int = 6) const;
   bind::member_function<QLocale, QString, double, char, int, &QLocale::toString>(locale, "toString")
     .apply(bind::default_arguments(6, 'g')).create();
-  // QString toString(float, char, int) const;
+  // QString toString(float, char = 'g', int = 6) const;
   bind::member_function<QLocale, QString, float, char, int, &QLocale::toString>(locale, "toString")
     .apply(bind::default_arguments(6, 'g')).create();
   // QString toString(const QDate &, const QString &) const;
@@ -1047,22 +1047,22 @@ static void register_locale_class(script::Namespace ns)
   bind::member_function<QLocale, QString, const QTime &, QLocale::FormatType, &QLocale::toString>(locale, "toString").create();
   // QString toString(const QDateTime &, QLocale::FormatType) const;
   bind::member_function<QLocale, QString, const QDateTime &, QLocale::FormatType, &QLocale::toString>(locale, "toString").create();
-  // QString dateFormat(QLocale::FormatType) const;
+  // QString dateFormat(QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QString, QLocale::FormatType, &QLocale::dateFormat>(locale, "dateFormat")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
-  // QString timeFormat(QLocale::FormatType) const;
+  // QString timeFormat(QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QString, QLocale::FormatType, &QLocale::timeFormat>(locale, "timeFormat")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
-  // QString dateTimeFormat(QLocale::FormatType) const;
+  // QString dateTimeFormat(QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QString, QLocale::FormatType, &QLocale::dateTimeFormat>(locale, "dateTimeFormat")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
-  // QDate toDate(const QString &, QLocale::FormatType) const;
+  // QDate toDate(const QString &, QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QDate, const QString &, QLocale::FormatType, &QLocale::toDate>(locale, "toDate")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
-  // QTime toTime(const QString &, QLocale::FormatType) const;
+  // QTime toTime(const QString &, QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QTime, const QString &, QLocale::FormatType, &QLocale::toTime>(locale, "toTime")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
-  // QDateTime toDateTime(const QString &, QLocale::FormatType) const;
+  // QDateTime toDateTime(const QString &, QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QDateTime, const QString &, QLocale::FormatType, &QLocale::toDateTime>(locale, "toDateTime")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // QDate toDate(const QString &, const QString &) const;
@@ -1085,16 +1085,16 @@ static void register_locale_class(script::Namespace ns)
   bind::member_function<QLocale, QChar, &QLocale::positiveSign>(locale, "positiveSign").create();
   // QChar exponential() const;
   bind::member_function<QLocale, QChar, &QLocale::exponential>(locale, "exponential").create();
-  // QString monthName(int, QLocale::FormatType) const;
+  // QString monthName(int, QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QString, int, QLocale::FormatType, &QLocale::monthName>(locale, "monthName")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
-  // QString standaloneMonthName(int, QLocale::FormatType) const;
+  // QString standaloneMonthName(int, QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QString, int, QLocale::FormatType, &QLocale::standaloneMonthName>(locale, "standaloneMonthName")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
-  // QString dayName(int, QLocale::FormatType) const;
+  // QString dayName(int, QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QString, int, QLocale::FormatType, &QLocale::dayName>(locale, "dayName")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
-  // QString standaloneDayName(int, QLocale::FormatType) const;
+  // QString standaloneDayName(int, QLocale::FormatType = QLocale::LongFormat) const;
   bind::member_function<QLocale, QString, int, QLocale::FormatType, &QLocale::standaloneDayName>(locale, "standaloneDayName")
     .apply(bind::default_arguments(QLocale::LongFormat)).create();
   // Qt::DayOfWeek firstDayOfWeek() const;
@@ -1123,23 +1123,23 @@ static void register_locale_class(script::Namespace ns)
   /// TODO: QString toCurrencyString(short, const QString &) const;
   // QString toCurrencyString(ushort, const QString &) const;
   /// TODO: QString toCurrencyString(ushort, const QString &) const;
-  // QString toCurrencyString(int, const QString &) const;
+  // QString toCurrencyString(int, const QString & = QString()) const;
   bind::member_function<QLocale, QString, int, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString")
     .apply(bind::default_arguments(QString())).create();
   // QString toCurrencyString(uint, const QString &) const;
   bind::member_function<QLocale, QString, uint, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString").create();
-  // QString toCurrencyString(double, const QString &) const;
+  // QString toCurrencyString(double, const QString & = QString()) const;
   bind::member_function<QLocale, QString, double, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString")
     .apply(bind::default_arguments(QString())).create();
   // QString toCurrencyString(double, const QString &, int) const;
   bind::member_function<QLocale, QString, double, const QString &, int, &QLocale::toCurrencyString>(locale, "toCurrencyString").create();
-  // QString toCurrencyString(float, const QString &) const;
+  // QString toCurrencyString(float, const QString & = QString()) const;
   bind::member_function<QLocale, QString, float, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString")
     .apply(bind::default_arguments(QString())).create();
   // QString toCurrencyString(float, const QString &, int) const;
   bind::member_function<QLocale, QString, float, const QString &, int, &QLocale::toCurrencyString>(locale, "toCurrencyString").create();
-  // QString formattedDataSize(qint64, int, QLocale::DataSizeFormats);
-  /// TODO: QString formattedDataSize(qint64, int, QLocale::DataSizeFormats);
+  // QString formattedDataSize(qint64, int = 2, QLocale::DataSizeFormats = QLocale::DataSizeIecFormat);
+  /// TODO: QString formattedDataSize(qint64, int = 2, QLocale::DataSizeFormats = QLocale::DataSizeIecFormat);
   // QStringList uiLanguages() const;
   /// TODO: QStringList uiLanguages() const;
   // bool operator==(const QLocale &) const;
@@ -1166,11 +1166,11 @@ static void register_locale_class(script::Namespace ns)
   bind::void_member_function<QLocale, QLocale::NumberOptions, &QLocale::setNumberOptions>(locale, "setNumberOptions").create();
   // QLocale::NumberOptions numberOptions() const;
   bind::member_function<QLocale, QLocale::NumberOptions, &QLocale::numberOptions>(locale, "numberOptions").create();
-  // QString quoteString(const QString &, QLocale::QuotationStyle) const;
+  // QString quoteString(const QString &, QLocale::QuotationStyle = QLocale::StandardQuotation) const;
   bind::member_function<QLocale, QString, const QString &, QLocale::QuotationStyle, &QLocale::quoteString>(locale, "quoteString")
     .apply(bind::default_arguments(QLocale::StandardQuotation)).create();
-  // QString quoteString(const QStringRef &, QLocale::QuotationStyle) const;
-  /// TODO: QString quoteString(const QStringRef &, QLocale::QuotationStyle) const;
+  // QString quoteString(const QStringRef &, QLocale::QuotationStyle = QLocale::StandardQuotation) const;
+  /// TODO: QString quoteString(const QStringRef &, QLocale::QuotationStyle = QLocale::StandardQuotation) const;
   // QString createSeparatedList(const QStringList &) const;
   /// TODO: QString createSeparatedList(const QStringList &) const;
 

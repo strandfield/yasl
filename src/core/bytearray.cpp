@@ -68,7 +68,7 @@ static void register_byte_array_class(script::Namespace ns)
   bind::member_function<QByteArray, bool, &QByteArray::isEmpty>(byte_array, "isEmpty").create();
   // void resize(int);
   bind::void_member_function<QByteArray, int, &QByteArray::resize>(byte_array, "resize").create();
-  // QByteArray & fill(char, int);
+  // QByteArray & fill(char, int = -1);
   bind::chainable_memfn<QByteArray, char, int, &QByteArray::fill>(byte_array, "fill")
     .apply(bind::default_arguments(-1)).create();
   // int capacity() const;
@@ -91,16 +91,16 @@ static void register_byte_array_class(script::Namespace ns)
   bind::memop_const_subscript<QByteArray, char, int>(byte_array);
   // QByteRef operator[](int);
   bind::memop_subscript<QByteArray, QByteRef, int>(byte_array);
-  // int indexOf(char, int) const;
+  // int indexOf(char, int = 0) const;
   bind::member_function<QByteArray, int, char, int, &QByteArray::indexOf>(byte_array, "indexOf")
     .apply(bind::default_arguments(0)).create();
-  // int indexOf(const QByteArray &, int) const;
+  // int indexOf(const QByteArray &, int = 0) const;
   bind::member_function<QByteArray, int, const QByteArray &, int, &QByteArray::indexOf>(byte_array, "indexOf")
     .apply(bind::default_arguments(0)).create();
-  // int lastIndexOf(char, int) const;
+  // int lastIndexOf(char, int = -1) const;
   bind::member_function<QByteArray, int, char, int, &QByteArray::lastIndexOf>(byte_array, "lastIndexOf")
     .apply(bind::default_arguments(-1)).create();
-  // int lastIndexOf(const QByteArray &, int) const;
+  // int lastIndexOf(const QByteArray &, int = -1) const;
   bind::member_function<QByteArray, int, const QByteArray &, int, &QByteArray::lastIndexOf>(byte_array, "lastIndexOf")
     .apply(bind::default_arguments(-1)).create();
   // bool contains(char) const;
@@ -115,7 +115,7 @@ static void register_byte_array_class(script::Namespace ns)
   bind::member_function<QByteArray, QByteArray, int, &QByteArray::left>(byte_array, "left").create();
   // QByteArray right(int) const;
   bind::member_function<QByteArray, QByteArray, int, &QByteArray::right>(byte_array, "right").create();
-  // QByteArray mid(int, int) const;
+  // QByteArray mid(int, int = -1) const;
   bind::member_function<QByteArray, QByteArray, int, int, &QByteArray::mid>(byte_array, "mid")
     .apply(bind::default_arguments(-1)).create();
   // bool startsWith(const QByteArray &) const;
@@ -138,10 +138,10 @@ static void register_byte_array_class(script::Namespace ns)
   bind::fn_as_memfn<QByteArray, QByteArray, &ba_trimmed>(byte_array, "trimmed").create();
   // QByteArray ba_simplified();
   bind::fn_as_memfn<QByteArray, QByteArray, &ba_simplified>(byte_array, "simplified").create();
-  // QByteArray leftJustified(int, char, bool) const;
+  // QByteArray leftJustified(int, char = ' ', bool = false) const;
   bind::member_function<QByteArray, QByteArray, int, char, bool, &QByteArray::leftJustified>(byte_array, "leftJustified")
     .apply(bind::default_arguments(false, ' ')).create();
-  // QByteArray rightJustified(int, char, bool) const;
+  // QByteArray rightJustified(int, char = ' ', bool = false) const;
   bind::member_function<QByteArray, QByteArray, int, char, bool, &QByteArray::rightJustified>(byte_array, "rightJustified")
     .apply(bind::default_arguments(false, ' ')).create();
   // QByteArray & prepend(char);
@@ -240,17 +240,17 @@ static void register_byte_array_class(script::Namespace ns)
   /// TODO: QByteArray & setNum(short, int);
   // QByteArray & setNum(ushort, int);
   /// TODO: QByteArray & setNum(ushort, int);
-  // QByteArray & setNum(int, int);
+  // QByteArray & setNum(int, int = 10);
   bind::chainable_memfn<QByteArray, int, int, &QByteArray::setNum>(byte_array, "setNum")
     .apply(bind::default_arguments(10)).create();
   // QByteArray & setNum(qlonglong, int);
   /// TODO: QByteArray & setNum(qlonglong, int);
   // QByteArray & setNum(qulonglong, int);
   /// TODO: QByteArray & setNum(qulonglong, int);
-  // QByteArray & setNum(float, char, int);
+  // QByteArray & setNum(float, char = 'g', int = 6);
   bind::chainable_memfn<QByteArray, float, char, int, &QByteArray::setNum>(byte_array, "setNum")
     .apply(bind::default_arguments(6, 'g')).create();
-  // QByteArray & setNum(double, char, int);
+  // QByteArray & setNum(double, char = 'g', int = 6);
   bind::chainable_memfn<QByteArray, double, char, int, &QByteArray::setNum>(byte_array, "setNum")
     .apply(bind::default_arguments(6, 'g')).create();
   // static QByteArray number(int, int);

@@ -53,7 +53,7 @@ static void register_tab_widget_class(script::Namespace ns)
   register_tab_widget_tab_position_enum(tab_widget);
   register_tab_widget_tab_shape_enum(tab_widget);
 
-  // QTabWidget(QWidget *);
+  // QTabWidget(QWidget * = (QWidget*)nullptr);
   bind::constructor<QTabWidget, QWidget *>(tab_widget)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QTabWidget();
@@ -122,10 +122,10 @@ static void register_tab_widget_class(script::Namespace ns)
   bind::member_function<QTabWidget, int, int, &QTabWidget::heightForWidth>(tab_widget, "heightForWidth").create();
   // bool hasHeightForWidth() const;
   bind::member_function<QTabWidget, bool, &QTabWidget::hasHeightForWidth>(tab_widget, "hasHeightForWidth").create();
-  // void setCornerWidget(QWidget *, Qt::Corner);
+  // void setCornerWidget(QWidget *, Qt::Corner = Qt::TopRightCorner);
   bind::void_member_function<QTabWidget, QWidget *, Qt::Corner, &QTabWidget::setCornerWidget>(tab_widget, "setCornerWidget")
     .apply(bind::default_arguments(Qt::TopRightCorner)).create();
-  // QWidget * cornerWidget(Qt::Corner) const;
+  // QWidget * cornerWidget(Qt::Corner = Qt::TopRightCorner) const;
   bind::member_function<QTabWidget, QWidget *, Qt::Corner, &QTabWidget::cornerWidget>(tab_widget, "cornerWidget")
     .apply(bind::default_arguments(Qt::TopRightCorner)).create();
   // Qt::TextElideMode elideMode() const;

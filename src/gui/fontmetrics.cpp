@@ -67,7 +67,7 @@ static void register_font_metrics_class(script::Namespace ns)
   bind::member_function<QFontMetrics, int, QChar, &QFontMetrics::leftBearing>(font_metrics, "leftBearing").create();
   // int rightBearing(QChar) const;
   bind::member_function<QFontMetrics, int, QChar, &QFontMetrics::rightBearing>(font_metrics, "rightBearing").create();
-  // int width(const QString &, int) const;
+  // int width(const QString &, int = -1) const;
   bind::member_function<QFontMetrics, int, const QString &, int, &QFontMetrics::width>(font_metrics, "width")
     .apply(bind::default_arguments(-1)).create();
   // int width(const QString &, int, int) const;
@@ -88,7 +88,7 @@ static void register_font_metrics_class(script::Namespace ns)
   /// TODO: QSize size(int, const QString &, int, int *) const;
   // QRect tightBoundingRect(const QString &) const;
   bind::member_function<QFontMetrics, QRect, const QString &, &QFontMetrics::tightBoundingRect>(font_metrics, "tightBoundingRect").create();
-  // QString elidedText(const QString &, Qt::TextElideMode, int, int) const;
+  // QString elidedText(const QString &, Qt::TextElideMode, int, int = 0) const;
   bind::member_function<QFontMetrics, QString, const QString &, Qt::TextElideMode, int, int, &QFontMetrics::elidedText>(font_metrics, "elidedText")
     .apply(bind::default_arguments(0)).create();
   // int underlinePos() const;
@@ -175,7 +175,7 @@ static void register_font_metrics_f_class(script::Namespace ns)
   /// TODO: QSizeF size(int, const QString &, int, int *) const;
   // QRectF tightBoundingRect(const QString &) const;
   bind::member_function<QFontMetricsF, QRectF, const QString &, &QFontMetricsF::tightBoundingRect>(font_metrics_f, "tightBoundingRect").create();
-  // QString elidedText(const QString &, Qt::TextElideMode, qreal, int) const;
+  // QString elidedText(const QString &, Qt::TextElideMode, qreal, int = 0) const;
   bind::member_function<QFontMetricsF, QString, const QString &, Qt::TextElideMode, qreal, int, &QFontMetricsF::elidedText>(font_metrics_f, "elidedText")
     .apply(bind::default_arguments(0)).create();
   // qreal underlinePos() const;

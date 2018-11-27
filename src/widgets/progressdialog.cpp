@@ -21,10 +21,10 @@ static void register_progress_dialog_class(script::Namespace ns)
     .setBase(script::Type::QDialog).get();
 
 
-  // QProgressDialog(QWidget *, Qt::WindowFlags);
-  /// TODO: QProgressDialog(QWidget *, Qt::WindowFlags);
-  // QProgressDialog(const QString &, const QString &, int, int, QWidget *, Qt::WindowFlags);
-  /// TODO: QProgressDialog(const QString &, const QString &, int, int, QWidget *, Qt::WindowFlags);
+  // QProgressDialog(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QProgressDialog(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  // QProgressDialog(const QString &, const QString &, int, int, QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QProgressDialog(const QString &, const QString &, int, int, QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   // ~QProgressDialog();
   bind::destructor<QProgressDialog>(progress_dialog).create();
   // void setLabel(QLabel *);

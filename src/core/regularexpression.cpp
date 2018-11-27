@@ -79,7 +79,7 @@ static void register_regular_expression_class(script::Namespace ns)
   bind::void_member_function<QRegularExpression, QRegularExpression::PatternOptions, &QRegularExpression::setPatternOptions>(regular_expression, "setPatternOptions").create();
   // QRegularExpression();
   bind::default_constructor<QRegularExpression>(regular_expression).create();
-  // QRegularExpression(const QString &, QRegularExpression::PatternOptions);
+  // QRegularExpression(const QString &, QRegularExpression::PatternOptions = QRegularExpression::PatternOptions(QRegularExpression::NoPatternOption));
   bind::constructor<QRegularExpression, const QString &, QRegularExpression::PatternOptions>(regular_expression)
     .apply(bind::default_arguments(QRegularExpression::PatternOptions(QRegularExpression::NoPatternOption))).create();
   // QRegularExpression(const QRegularExpression &);
@@ -106,12 +106,12 @@ static void register_regular_expression_class(script::Namespace ns)
   bind::member_function<QRegularExpression, int, &QRegularExpression::captureCount>(regular_expression, "captureCount").create();
   // QStringList namedCaptureGroups() const;
   /// TODO: QStringList namedCaptureGroups() const;
-  // QRegularExpressionMatch match(const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
+  // QRegularExpressionMatch match(const QString &, int, QRegularExpression::MatchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions = QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption)) const;
   bind::member_function<QRegularExpression, QRegularExpressionMatch, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::match>(regular_expression, "match")
     .apply(bind::default_arguments(QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption), QRegularExpression::NormalMatch)).create();
   // QRegularExpressionMatch match(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
   /// TODO: QRegularExpressionMatch match(const QStringRef &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
-  // QRegularExpressionMatchIterator globalMatch(const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions) const;
+  // QRegularExpressionMatchIterator globalMatch(const QString &, int, QRegularExpression::MatchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions = QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption)) const;
   bind::member_function<QRegularExpression, QRegularExpressionMatchIterator, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::globalMatch>(regular_expression, "globalMatch")
     .apply(bind::default_arguments(QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption), QRegularExpression::NormalMatch)).create();
   // void optimize() const;

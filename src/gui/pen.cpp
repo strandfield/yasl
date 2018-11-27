@@ -30,7 +30,7 @@ static void register_pen_class(script::Namespace ns)
   bind::constructor<QPen, Qt::PenStyle>(pen).create();
   // QPen(const QColor &);
   bind::constructor<QPen, const QColor &>(pen).create();
-  // QPen(const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle);
+  // QPen(const QBrush &, qreal, Qt::PenStyle = Qt::SolidLine, Qt::PenCapStyle = Qt::SquareCap, Qt::PenJoinStyle = Qt::BevelJoin);
   bind::constructor<QPen, const QBrush &, qreal, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle>(pen)
     .apply(bind::default_arguments(Qt::BevelJoin, Qt::SquareCap, Qt::SolidLine)).create();
   // QPen(const QPen &);

@@ -66,10 +66,10 @@ static void register_grid_layout_class(script::Namespace ns)
   bind::member_function<QGridLayout, QRect, int, int, &QGridLayout::cellRect>(grid_layout, "cellRect").create();
   // void addWidget(QWidget *);
   bind::void_member_function<QGridLayout, QWidget *, &QGridLayout::addWidget>(grid_layout, "addWidget").create();
-  // void addWidget(QWidget *, int, int, Qt::Alignment);
+  // void addWidget(QWidget *, int, int, Qt::Alignment = Qt::Alignment());
   bind::void_member_function<QGridLayout, QWidget *, int, int, Qt::Alignment, &QGridLayout::addWidget>(grid_layout, "addWidget")
     .apply(bind::default_arguments(Qt::Alignment())).create();
-  // void addLayout(QLayout *, int, int, Qt::Alignment);
+  // void addLayout(QLayout *, int, int, Qt::Alignment = Qt::Alignment());
   bind::void_member_function<QGridLayout, QLayout *, int, int, Qt::Alignment, &QGridLayout::addLayout>(grid_layout, "addLayout")
     .apply(bind::default_arguments(Qt::Alignment())).create();
   // void setOriginCorner(Qt::Corner);

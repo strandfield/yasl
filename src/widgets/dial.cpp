@@ -21,7 +21,7 @@ static void register_dial_class(script::Namespace ns)
     .setBase(script::Type::QAbstractSlider).get();
 
 
-  // QDial(QWidget *);
+  // QDial(QWidget * = (QWidget*)nullptr);
   bind::constructor<QDial, QWidget *>(dial)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QDial();
@@ -53,7 +53,7 @@ void register_dial_file(script::Namespace widgets)
 
   register_dial_class(ns);
 
-  // QDial& newDial(QWidget*);
+  // QDial& newDial(QWidget* = (QWidget*)nullptr);
   bind::new_function<QDial, QWidget*>(ns, "newDial");
 }
 

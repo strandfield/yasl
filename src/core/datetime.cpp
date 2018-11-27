@@ -73,7 +73,7 @@ static void register_date_class(script::Namespace ns)
   bind::static_member_function<QDate, QString, int, QDate::MonthNameType, &QDate::longMonthName>(date, "longMonthName").create();
   // static QString longDayName(int, QDate::MonthNameType);
   bind::static_member_function<QDate, QString, int, QDate::MonthNameType, &QDate::longDayName>(date, "longDayName").create();
-  // QString toString(Qt::DateFormat) const;
+  // QString toString(Qt::DateFormat = Qt::TextDate) const;
   bind::member_function<QDate, QString, Qt::DateFormat, &QDate::toString>(date, "toString")
     .apply(bind::default_arguments(Qt::TextDate)).create();
   // QString toString(const QString &) const;
@@ -110,7 +110,7 @@ static void register_date_class(script::Namespace ns)
   bind::memop_geq<QDate, const QDate &>(date);
   // static QDate currentDate();
   bind::static_member_function<QDate, QDate, &QDate::currentDate>(date, "currentDate").create();
-  // static QDate fromString(const QString &, Qt::DateFormat);
+  // static QDate fromString(const QString &, Qt::DateFormat = Qt::TextDate);
   bind::static_member_function<QDate, QDate, const QString &, Qt::DateFormat, &QDate::fromString>(date, "fromString")
     .apply(bind::default_arguments(Qt::TextDate)).create();
   // static QDate fromString(const QString &, const QString &);
@@ -141,7 +141,7 @@ static void register_time_class(script::Namespace ns)
   bind::constructor<QTime, const QTime &>(time).create();
   // ~QTime();
   bind::destructor<QTime>(time).create();
-  // QTime(int, int, int, int);
+  // QTime(int, int, int = 0, int = 0);
   bind::constructor<QTime, int, int, int, int>(time)
     .apply(bind::default_arguments(0, 0)).create();
   // bool isNull() const;
@@ -156,14 +156,14 @@ static void register_time_class(script::Namespace ns)
   bind::member_function<QTime, int, &QTime::second>(time, "second").create();
   // int msec() const;
   bind::member_function<QTime, int, &QTime::msec>(time, "msec").create();
-  // QString toString(Qt::DateFormat) const;
+  // QString toString(Qt::DateFormat = Qt::TextDate) const;
   bind::member_function<QTime, QString, Qt::DateFormat, &QTime::toString>(time, "toString")
     .apply(bind::default_arguments(Qt::TextDate)).create();
   // QString toString(const QString &) const;
   bind::member_function<QTime, QString, const QString &, &QTime::toString>(time, "toString").create();
   // QString toString(QStringView) const;
   /// TODO: QString toString(QStringView) const;
-  // bool setHMS(int, int, int, int);
+  // bool setHMS(int, int, int, int = 0);
   bind::member_function<QTime, bool, int, int, int, int, &QTime::setHMS>(time, "setHMS")
     .apply(bind::default_arguments(0)).create();
   // QTime addSecs(int) const;
@@ -194,12 +194,12 @@ static void register_time_class(script::Namespace ns)
   bind::member_function<QTime, int, &QTime::msecsSinceStartOfDay>(time, "msecsSinceStartOfDay").create();
   // static QTime currentTime();
   bind::static_member_function<QTime, QTime, &QTime::currentTime>(time, "currentTime").create();
-  // static QTime fromString(const QString &, Qt::DateFormat);
+  // static QTime fromString(const QString &, Qt::DateFormat = Qt::TextDate);
   bind::static_member_function<QTime, QTime, const QString &, Qt::DateFormat, &QTime::fromString>(time, "fromString")
     .apply(bind::default_arguments(Qt::TextDate)).create();
   // static QTime fromString(const QString &, const QString &);
   bind::static_member_function<QTime, QTime, const QString &, const QString &, &QTime::fromString>(time, "fromString").create();
-  // static bool isValid(int, int, int, int);
+  // static bool isValid(int, int, int, int = 0);
   bind::static_member_function<QTime, bool, int, int, int, int, &QTime::isValid>(time, "isValid")
     .apply(bind::default_arguments(0)).create();
   // void start();
@@ -224,7 +224,7 @@ static void register_date_time_class(script::Namespace ns)
   bind::default_constructor<QDateTime>(date_time).create();
   // QDateTime(const QDate &);
   bind::constructor<QDateTime, const QDate &>(date_time).create();
-  // QDateTime(const QDate &, const QTime &, Qt::TimeSpec);
+  // QDateTime(const QDate &, const QTime &, Qt::TimeSpec = Qt::LocalTime);
   bind::constructor<QDateTime, const QDate &, const QTime &, Qt::TimeSpec>(date_time)
     .apply(bind::default_arguments(Qt::LocalTime)).create();
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec, int);
@@ -279,7 +279,7 @@ static void register_date_time_class(script::Namespace ns)
   /// TODO: void setMSecsSinceEpoch(qint64);
   // void setSecsSinceEpoch(qint64);
   /// TODO: void setSecsSinceEpoch(qint64);
-  // QString toString(Qt::DateFormat) const;
+  // QString toString(Qt::DateFormat = Qt::TextDate) const;
   bind::member_function<QDateTime, QString, Qt::DateFormat, &QDateTime::toString>(date_time, "toString")
     .apply(bind::default_arguments(Qt::TextDate)).create();
   // QString toString(const QString &) const;
@@ -332,7 +332,7 @@ static void register_date_time_class(script::Namespace ns)
   bind::static_member_function<QDateTime, QDateTime, &QDateTime::currentDateTime>(date_time, "currentDateTime").create();
   // static QDateTime currentDateTimeUtc();
   bind::static_member_function<QDateTime, QDateTime, &QDateTime::currentDateTimeUtc>(date_time, "currentDateTimeUtc").create();
-  // static QDateTime fromString(const QString &, Qt::DateFormat);
+  // static QDateTime fromString(const QString &, Qt::DateFormat = Qt::TextDate);
   bind::static_member_function<QDateTime, QDateTime, const QString &, Qt::DateFormat, &QDateTime::fromString>(date_time, "fromString")
     .apply(bind::default_arguments(Qt::TextDate)).create();
   // static QDateTime fromString(const QString &, const QString &);
@@ -349,8 +349,8 @@ static void register_date_time_class(script::Namespace ns)
   bind::static_member_function<QDateTime, QDateTime, uint, const QTimeZone &, &QDateTime::fromTime_t>(date_time, "fromTime_t").create();
   // static QDateTime fromMSecsSinceEpoch(qint64);
   /// TODO: static QDateTime fromMSecsSinceEpoch(qint64);
-  // static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec, int);
-  /// TODO: static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec, int);
+  // static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec = Qt::LocalTime, int = 0);
+  /// TODO: static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec = Qt::LocalTime, int = 0);
   // static QDateTime fromSecsSinceEpoch(qint64, Qt::TimeSpec, int);
   /// TODO: static QDateTime fromSecsSinceEpoch(qint64, Qt::TimeSpec, int);
   // static QDateTime fromMSecsSinceEpoch(qint64, const QTimeZone &);

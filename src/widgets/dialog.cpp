@@ -35,8 +35,8 @@ static void register_dialog_class(script::Namespace ns)
 
   register_dialog_dialog_code_enum(dialog);
 
-  // QDialog(QWidget *, Qt::WindowFlags);
-  /// TODO: QDialog(QWidget *, Qt::WindowFlags);
+  // QDialog(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QDialog(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   // ~QDialog();
   bind::destructor<QDialog>(dialog).create();
   // int result() const;

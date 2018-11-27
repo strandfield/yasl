@@ -22,7 +22,7 @@ static void register_picture_class(script::Namespace ns)
   Class picture = ns.newClass("Picture").setId(script::Type::QPicture).get();
 
 
-  // QPicture(int);
+  // QPicture(int = -1);
   bind::constructor<QPicture, int>(picture)
     .apply(bind::default_arguments(-1)).create();
   // QPicture(const QPicture &);

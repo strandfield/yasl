@@ -648,6 +648,40 @@ QList<QPair<QString, QString>> Generator::extractLinks(const QString & str)
   return ret;
 }
 
+QString Generator::fundisplay(FunctionRef fun)
+{
+  QStringList builder;
+
+  if (fun->isExplicit)
+    builder << "explicit ";
+  if (fun->isStatic)
+    builder << "static ";
+
+  if (!fun->returnType.isEmpty())
+  {
+    builder << fun->returnType << " ";
+  }
+  builder << fun->name;
+  builder << "(";
+  {
+    QStringList params = fun->parameters;
+    for (int i(0); i < fun->defaultArguments.size(); ++i)
+      params[params.size() - i - 1] += " = " + fun->defaultArguments.at(i);
+    builder << params.join(", ");
+  }
+  builder << ")";
+
+  if (fun->isConst)
+    builder << " const";
+
+  if (fun->isDeleted)
+    builder << " = delete";
+
+  builder << ";";
+
+  return builder.join("");
+}
+
 void Generator::generate(ClassRef cla)
 {
   if (cla->checkState == Qt::Unchecked)
@@ -675,6 +709,10 @@ void Generator::generate(ClassRef cla)
   }
 
   QString out;
+
+  if(!cla->version.isNull())
+    out += QString("#if %1").arg(HeaderFile::versionCheck(cla->version)) + endl;
+
   out += "static void register_" + pre + snake + "_class(script::" + enclosing_entity + " " + enclosing_snake + ")" + endl;
   out += "{" + endl;
   out += "  using namespace script;" + endl;
@@ -706,7 +744,7 @@ void Generator::generate(ClassRef cla)
       currentSource().bindingIncludes.insert("yasl/common/ref.h");
       const QString format = "  register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
       out += format.arg(snake, class_info.id, ref_info.id);
-      recordGeneratedClass(ref_info.name);
+      recordGeneratedClass(ref_info.name, cla->version);
     }
     else if (l.first == "proxy")
     {
@@ -717,7 +755,7 @@ void Generator::generate(ClassRef cla)
       proxyelem.chop(QString(">").length());
       proxyelem.remove(0, proxyelem.indexOf('<') + 1);
       out += format.arg(proxyelem, snake, proxy_info.id);
-      recordGeneratedClass(proxy_info.name);
+      recordGeneratedClass(proxy_info.name, cla->version);
     }
     else if (l.first == "list")
     {
@@ -728,7 +766,7 @@ void Generator::generate(ClassRef cla)
       listelement.chop(QString(">").length());
       listelement.remove(0, QString("QList<").length());
       out += format.arg(listelement, snake, list_info.id);
-      recordGeneratedClass(list_info.name);
+      recordGeneratedClass(list_info.name, cla->version);
     }
   }
 
@@ -737,10 +775,16 @@ void Generator::generate(ClassRef cla)
     if (n->checkState == Qt::Unchecked)
       continue;
 
+    if (!n->version.isNull())
+      out += QString("#if %1").arg(HeaderFile::versionCheck(n->version)) + endl;
+
     if (n->is<Enum>())
       out += "  register_" + prefix() + to_snake_case(n->name) + "_enum(" + snake + ");" + endl;
     else if(n->is<Class>())
       out += "  register_" + prefix() + to_snake_case(n->name) + "_class(" + snake + ");" + endl;
+
+    if (!n->version.isNull())
+      out += QString("#endif") + endl;
   }
 
 
@@ -766,15 +810,22 @@ void Generator::generate(ClassRef cla)
       continue;
       
     FunctionRef fun = qSharedPointerCast<Function>(n);
-    out += "  // " + fun->display() + endl;
+
+    if (!fun->version.isNull())
+      out += QString("#if %1").arg(HeaderFile::versionCheck(fun->version)) + endl;
+
+    out += "  // " + fundisplay(fun) + endl;
     try
     {
       out += generate(fun) + endl;
     }
     catch (...)
     {
-      out += "  /// TODO: " + fun->display() + endl;
+      out += "  /// TODO: " + fundisplay(fun) + endl;
     }
+
+    if (!fun->version.isNull())
+      out += QString("#endif") + endl;
   }
 
   if (is_qclass)
@@ -793,10 +844,14 @@ void Generator::generate(ClassRef cla)
   }
 
   out += "}" + endl;
+
+  if (!cla->version.isNull())
+    out += QString("#endif") + endl;
+
   out += endl;
 
   currentSource().functions.append(out);
-  recordGeneratedClass(qual + cla->name);
+  recordGeneratedClass(qual + cla->name, cla->version);
 }
 
 void Generator::generate(EnumRef enm)
@@ -835,7 +890,7 @@ void Generator::generate(EnumRef enm)
       currentSource().bindingIncludes.insert("yasl/core/flags.h");
       const QString format = "  register_qflags_type<%1>(%2, \"%3\", script::Type::%4);" + endl;
       out += format.arg(enum_info.name, enclosing_snake_name(), flagname, flags_info.id);
-      recordGeneratedClass(flags_info.name);
+      recordGeneratedClass(flags_info.name, enm->version);
     }
   }
 
@@ -857,7 +912,7 @@ void Generator::generate(EnumRef enm)
   out += endl;
 
   currentSource().functions.append(out);
-  recordGeneratedEnum(nameQualification() + enm->name);
+  recordGeneratedEnum(nameQualification() + enm->name, enm->version);
 }
 
 void Generator::generate(NamespaceRef ns)
@@ -909,12 +964,18 @@ void Generator::generate(NamespaceRef ns)
     if (n->checkState == Qt::Unchecked)
       continue;
 
+    if (!n->version.isNull())
+      out += QString("#if %1").arg(HeaderFile::versionCheck(n->version)) + endl;
+
     if (n->is<Enum>())
       out += "  register_" + prefix() + to_snake_case(n->name) + "_enum(" + snake + ");" + endl;
     else if (n->is<Class>())
       out += "  register_" + prefix() + to_snake_case(n->name) + "_class(" + snake + ");" + endl;
     else if (n->is<Namespace>())
       out += "  register_" + prefix() + to_snake_case(n->name) + "_namespace(" + snake + ");" + endl;
+
+    if (!n->version.isNull())
+      out += QString("#endif") + endl;
   }
 
   out += endl;
@@ -927,15 +988,21 @@ void Generator::generate(NamespaceRef ns)
     if (n->is<Function>())
     {
       FunctionRef fun = qSharedPointerCast<Function>(n);
-      out += "  // " + fun->display() + endl;
+      if (!fun->version.isNull())
+        out += QString("#if %1").arg(HeaderFile::versionCheck(fun->version)) + endl;
+
+      out += "  // " + fundisplay(fun) + endl;
       try
       {
         out += generate(fun) + endl;
       }
       catch (...)
       {
-        out += "  /// TODO: " + fun->display() + endl;
+        out += "  /// TODO: " + fundisplay(fun) + endl;
       }
+
+      if (!fun->version.isNull())
+        out += QString("#endif") + endl;
     }
     else if (n->is<Statement>())
     {
@@ -1051,9 +1118,10 @@ QString Generator::currentSourceDirectory()
   return mRootDirectory + "/src/" + QString{ mCurrentModule }.replace(".", "/");
 }
 
-void Generator::recordGeneratedEnum(const QString & name)
+void Generator::recordGeneratedEnum(const QString & name, QtVersion version)
 {
   TypeInfo & info = typeinfo(name);
+  info.version = version;
   currentHeader().types[name] = info;
 
   mProject->getType(name).header = +"yasl/" + QString{ mCurrentModule }.replace(".", "/") + "/" + currentHeader().file.fileName();
@@ -1061,9 +1129,10 @@ void Generator::recordGeneratedEnum(const QString & name)
   mGeneratedTypes.enums[mCurrentModule].insert(info.id);
 }
 
-void Generator::recordGeneratedClass(const QString & name)
+void Generator::recordGeneratedClass(const QString & name, QtVersion version)
 {
   TypeInfo & info = typeinfo(name);
+  info.version = version;
   currentHeader().types[name] = info;
 
   mProject->getType(name).header = +"yasl/" + QString{ mCurrentModule }.replace(".", "/") + "/" + currentHeader().file.fileName();

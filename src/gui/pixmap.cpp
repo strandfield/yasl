@@ -68,7 +68,7 @@ static void register_pixmap_class(script::Namespace ns)
   bind::member_function<QPixmap, int, &QPixmap::depth>(pixmap, "depth").create();
   // static int defaultDepth();
   bind::static_member_function<QPixmap, int, &QPixmap::defaultDepth>(pixmap, "defaultDepth").create();
-  // void fill(const QColor &);
+  // void fill(const QColor & = QColor(Qt::white));
   bind::void_member_function<QPixmap, const QColor &, &QPixmap::fill>(pixmap, "fill")
     .apply(bind::default_arguments(QColor(Qt::white))).create();
   // void fill(const QPaintDevice *, const QPoint &);
@@ -87,10 +87,10 @@ static void register_pixmap_class(script::Namespace ns)
   bind::member_function<QPixmap, bool, &QPixmap::hasAlpha>(pixmap, "hasAlpha").create();
   // bool hasAlphaChannel() const;
   bind::member_function<QPixmap, bool, &QPixmap::hasAlphaChannel>(pixmap, "hasAlphaChannel").create();
-  // QBitmap createHeuristicMask(bool) const;
+  // QBitmap createHeuristicMask(bool = true) const;
   bind::member_function<QPixmap, QBitmap, bool, &QPixmap::createHeuristicMask>(pixmap, "createHeuristicMask")
     .apply(bind::default_arguments(true)).create();
-  // QBitmap createMaskFromColor(const QColor &, Qt::MaskMode) const;
+  // QBitmap createMaskFromColor(const QColor &, Qt::MaskMode = Qt::MaskInColor) const;
   bind::member_function<QPixmap, QBitmap, const QColor &, Qt::MaskMode, &QPixmap::createMaskFromColor>(pixmap, "createMaskFromColor")
     .apply(bind::default_arguments(Qt::MaskInColor)).create();
   // static QPixmap grabWindow(WId, int, int, int, int);
@@ -99,35 +99,35 @@ static void register_pixmap_class(script::Namespace ns)
   bind::static_member_function<QPixmap, QPixmap, QObject *, const QRect &, &QPixmap::grabWidget>(pixmap, "grabWidget").create();
   // static QPixmap grabWidget(QObject *, int, int, int, int);
   bind::static_member_function<QPixmap, QPixmap, QObject *, int, int, int, int, &QPixmap::grabWidget>(pixmap, "grabWidget").create();
-  // QPixmap scaled(int, int, Qt::AspectRatioMode, Qt::TransformationMode) const;
+  // QPixmap scaled(int, int, Qt::AspectRatioMode = Qt::IgnoreAspectRatio, Qt::TransformationMode = Qt::FastTransformation) const;
   bind::member_function<QPixmap, QPixmap, int, int, Qt::AspectRatioMode, Qt::TransformationMode, &QPixmap::scaled>(pixmap, "scaled")
     .apply(bind::default_arguments(Qt::FastTransformation, Qt::IgnoreAspectRatio)).create();
-  // QPixmap scaled(const QSize &, Qt::AspectRatioMode, Qt::TransformationMode) const;
+  // QPixmap scaled(const QSize &, Qt::AspectRatioMode = Qt::IgnoreAspectRatio, Qt::TransformationMode = Qt::FastTransformation) const;
   bind::member_function<QPixmap, QPixmap, const QSize &, Qt::AspectRatioMode, Qt::TransformationMode, &QPixmap::scaled>(pixmap, "scaled")
     .apply(bind::default_arguments(Qt::FastTransformation, Qt::IgnoreAspectRatio)).create();
-  // QPixmap scaledToWidth(int, Qt::TransformationMode) const;
+  // QPixmap scaledToWidth(int, Qt::TransformationMode = Qt::FastTransformation) const;
   bind::member_function<QPixmap, QPixmap, int, Qt::TransformationMode, &QPixmap::scaledToWidth>(pixmap, "scaledToWidth")
     .apply(bind::default_arguments(Qt::FastTransformation)).create();
-  // QPixmap scaledToHeight(int, Qt::TransformationMode) const;
+  // QPixmap scaledToHeight(int, Qt::TransformationMode = Qt::FastTransformation) const;
   bind::member_function<QPixmap, QPixmap, int, Qt::TransformationMode, &QPixmap::scaledToHeight>(pixmap, "scaledToHeight")
     .apply(bind::default_arguments(Qt::FastTransformation)).create();
-  // QPixmap transformed(const QMatrix &, Qt::TransformationMode) const;
-  /// TODO: QPixmap transformed(const QMatrix &, Qt::TransformationMode) const;
+  // QPixmap transformed(const QMatrix &, Qt::TransformationMode = Qt::FastTransformation) const;
+  /// TODO: QPixmap transformed(const QMatrix &, Qt::TransformationMode = Qt::FastTransformation) const;
   // static QMatrix trueMatrix(const QMatrix &, int, int);
   /// TODO: static QMatrix trueMatrix(const QMatrix &, int, int);
-  // QPixmap transformed(const QTransform &, Qt::TransformationMode) const;
+  // QPixmap transformed(const QTransform &, Qt::TransformationMode = Qt::FastTransformation) const;
   bind::member_function<QPixmap, QPixmap, const QTransform &, Qt::TransformationMode, &QPixmap::transformed>(pixmap, "transformed")
     .apply(bind::default_arguments(Qt::FastTransformation)).create();
   // static QTransform trueMatrix(const QTransform &, int, int);
   bind::static_member_function<QPixmap, QTransform, const QTransform &, int, int, &QPixmap::trueMatrix>(pixmap, "trueMatrix").create();
   // QImage toImage() const;
   bind::member_function<QPixmap, QImage, &QPixmap::toImage>(pixmap, "toImage").create();
-  // static QPixmap fromImage(const QImage &, Qt::ImageConversionFlags);
+  // static QPixmap fromImage(const QImage &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::static_member_function<QPixmap, QPixmap, const QImage &, Qt::ImageConversionFlags, &QPixmap::fromImage>(pixmap, "fromImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
-  // static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags);
-  /// TODO: static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags);
-  // static QPixmap fromImage(QImage &&, Qt::ImageConversionFlags);
+  // static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
+  /// TODO: static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
+  // static QPixmap fromImage(QImage &&, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::static_member_function<QPixmap, QPixmap, QImage &&, Qt::ImageConversionFlags, &QPixmap::fromImage>(pixmap, "fromImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // bool load(const QString &, const char *, Qt::ImageConversionFlags);
@@ -140,12 +140,12 @@ static void register_pixmap_class(script::Namespace ns)
   /// TODO: bool save(const QString &, const char *, int) const;
   // bool save(QIODevice *, const char *, int) const;
   /// TODO: bool save(QIODevice *, const char *, int) const;
-  // bool convertFromImage(const QImage &, Qt::ImageConversionFlags);
+  // bool convertFromImage(const QImage &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::member_function<QPixmap, bool, const QImage &, Qt::ImageConversionFlags, &QPixmap::convertFromImage>(pixmap, "convertFromImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // QPixmap copy(int, int, int, int) const;
   bind::member_function<QPixmap, QPixmap, int, int, int, int, &QPixmap::copy>(pixmap, "copy").create();
-  // QPixmap copy(const QRect &) const;
+  // QPixmap copy(const QRect & = QRect()) const;
   bind::member_function<QPixmap, QPixmap, const QRect &, &QPixmap::copy>(pixmap, "copy")
     .apply(bind::default_arguments(QRect())).create();
   // void scroll(int, int, int, int, int, int, QRegion *);

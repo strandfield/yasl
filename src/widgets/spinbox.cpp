@@ -22,7 +22,7 @@ static void register_spin_box_class(script::Namespace ns)
     .setBase(script::Type::QAbstractSpinBox).get();
 
 
-  // QSpinBox(QWidget *);
+  // QSpinBox(QWidget * = (QWidget*)nullptr);
   bind::constructor<QSpinBox, QWidget *>(spin_box)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QSpinBox();

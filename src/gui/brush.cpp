@@ -33,10 +33,10 @@ static void register_brush_class(script::Namespace ns)
   bind::default_constructor<QBrush>(brush).create();
   // QBrush(Qt::BrushStyle);
   bind::constructor<QBrush, Qt::BrushStyle>(brush).create();
-  // QBrush(const QColor &, Qt::BrushStyle);
+  // QBrush(const QColor &, Qt::BrushStyle = Qt::SolidPattern);
   bind::constructor<QBrush, const QColor &, Qt::BrushStyle>(brush)
     .apply(bind::default_arguments(Qt::SolidPattern)).create();
-  // QBrush(Qt::GlobalColor, Qt::BrushStyle);
+  // QBrush(Qt::GlobalColor, Qt::BrushStyle = Qt::SolidPattern);
   bind::constructor<QBrush, Qt::GlobalColor, Qt::BrushStyle>(brush)
     .apply(bind::default_arguments(Qt::SolidPattern)).create();
   // QBrush(const QColor &, const QPixmap &);

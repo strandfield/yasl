@@ -42,7 +42,7 @@ static void register_json_value_class(script::Namespace ns)
 
   register_json_value_type_enum(json_value);
 
-  // QJsonValue(QJsonValue::Type);
+  // QJsonValue(QJsonValue::Type = QJsonValue::Null);
   bind::constructor<QJsonValue, QJsonValue::Type>(json_value)
     .apply(bind::default_arguments(QJsonValue::Null)).create();
   // QJsonValue(bool);
@@ -89,23 +89,23 @@ static void register_json_value_class(script::Namespace ns)
   bind::member_function<QJsonValue, bool, &QJsonValue::isObject>(json_value, "isObject").create();
   // bool isUndefined() const;
   bind::member_function<QJsonValue, bool, &QJsonValue::isUndefined>(json_value, "isUndefined").create();
-  // bool toBool(bool) const;
+  // bool toBool(bool = false) const;
   bind::member_function<QJsonValue, bool, bool, &QJsonValue::toBool>(json_value, "toBool")
     .apply(bind::default_arguments(false)).create();
-  // int toInt(int) const;
+  // int toInt(int = 0) const;
   bind::member_function<QJsonValue, int, int, &QJsonValue::toInt>(json_value, "toInt")
     .apply(bind::default_arguments(0)).create();
-  // double toDouble(double) const;
+  // double toDouble(double = double(0)) const;
   bind::member_function<QJsonValue, double, double, &QJsonValue::toDouble>(json_value, "toDouble")
     .apply(bind::default_arguments(double(0))).create();
   // QString toString() const;
   bind::member_function<QJsonValue, QString, &QJsonValue::toString>(json_value, "toString").create();
-  // QString toString(const QString &) const;
+  // QString toString(const QString & = QString()) const;
   bind::member_function<QJsonValue, QString, const QString &, &QJsonValue::toString>(json_value, "toString")
     .apply(bind::default_arguments(QString())).create();
   // QJsonArray toArray() const;
   bind::member_function<QJsonValue, QJsonArray, &QJsonValue::toArray>(json_value, "toArray").create();
-  // QJsonArray toArray(const QJsonArray &) const;
+  // QJsonArray toArray(const QJsonArray & = QJsonArray()) const;
   bind::member_function<QJsonValue, QJsonArray, const QJsonArray &, &QJsonValue::toArray>(json_value, "toArray")
     .apply(bind::default_arguments(QJsonArray())).create();
   // QJsonObject toObject() const;

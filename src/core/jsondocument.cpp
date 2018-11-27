@@ -66,7 +66,7 @@ static void register_json_document_class(script::Namespace ns)
   /// TODO: static QJsonDocument fromRawData(const char *, int, QJsonDocument::DataValidation);
   // const char * rawData(int *) const;
   /// TODO: const char * rawData(int *) const;
-  // static QJsonDocument fromBinaryData(const QByteArray &, QJsonDocument::DataValidation);
+  // static QJsonDocument fromBinaryData(const QByteArray &, QJsonDocument::DataValidation = QJsonDocument::Validate);
   bind::static_member_function<QJsonDocument, QJsonDocument, const QByteArray &, QJsonDocument::DataValidation, &QJsonDocument::fromBinaryData>(json_document, "fromBinaryData")
     .apply(bind::default_arguments(QJsonDocument::Validate)).create();
   // QByteArray toBinaryData() const;

@@ -10,28 +10,7 @@
 #include <QSharedPointer>
 #include <QStack>
 
-
-class QtVersion
-{
-public:
-  QtVersion()
-    : major(0), minor(0), patch(0)
-  { }
-
-  QtVersion(const QtVersion &) = default;
-
-  QtVersion(int ma, int mi, int pa = 0)
-    : major(ma), minor(mi), patch(pa) {}
-
-  char major;
-  char minor;
-  char patch;
-
-  QString toString() const;
-  static QtVersion fromString(const QString & str);
-
-  inline bool isNull() const { return major == 0 && minor == 0 && patch == 0; }
-};
+#include "qtversion.h"
 
 namespace json
 {

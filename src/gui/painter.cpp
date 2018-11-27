@@ -184,19 +184,19 @@ static void register_painter_class(script::Namespace ns)
   bind::member_function<QPainter, QRegion, &QPainter::clipRegion>(painter, "clipRegion").create();
   // QPainterPath clipPath() const;
   bind::member_function<QPainter, QPainterPath, &QPainter::clipPath>(painter, "clipPath").create();
-  // void setClipRect(const QRectF &, Qt::ClipOperation);
+  // void setClipRect(const QRectF &, Qt::ClipOperation = Qt::ReplaceClip);
   bind::void_member_function<QPainter, const QRectF &, Qt::ClipOperation, &QPainter::setClipRect>(painter, "setClipRect")
     .apply(bind::default_arguments(Qt::ReplaceClip)).create();
-  // void setClipRect(const QRect &, Qt::ClipOperation);
+  // void setClipRect(const QRect &, Qt::ClipOperation = Qt::ReplaceClip);
   bind::void_member_function<QPainter, const QRect &, Qt::ClipOperation, &QPainter::setClipRect>(painter, "setClipRect")
     .apply(bind::default_arguments(Qt::ReplaceClip)).create();
-  // void setClipRect(int, int, int, int, Qt::ClipOperation);
+  // void setClipRect(int, int, int, int, Qt::ClipOperation = Qt::ReplaceClip);
   bind::void_member_function<QPainter, int, int, int, int, Qt::ClipOperation, &QPainter::setClipRect>(painter, "setClipRect")
     .apply(bind::default_arguments(Qt::ReplaceClip)).create();
-  // void setClipRegion(const QRegion &, Qt::ClipOperation);
+  // void setClipRegion(const QRegion &, Qt::ClipOperation = Qt::ReplaceClip);
   bind::void_member_function<QPainter, const QRegion &, Qt::ClipOperation, &QPainter::setClipRegion>(painter, "setClipRegion")
     .apply(bind::default_arguments(Qt::ReplaceClip)).create();
-  // void setClipPath(const QPainterPath &, Qt::ClipOperation);
+  // void setClipPath(const QPainterPath &, Qt::ClipOperation = Qt::ReplaceClip);
   bind::void_member_function<QPainter, const QPainterPath &, Qt::ClipOperation, &QPainter::setClipPath>(painter, "setClipPath")
     .apply(bind::default_arguments(Qt::ReplaceClip)).create();
   // void setClipping(bool);
@@ -217,7 +217,7 @@ static void register_painter_class(script::Namespace ns)
   /// TODO: const QMatrix & deviceMatrix() const;
   // void resetMatrix();
   bind::void_member_function<QPainter, &QPainter::resetMatrix>(painter, "resetMatrix").create();
-  // void setTransform(const QTransform &, bool);
+  // void setTransform(const QTransform &, bool = false);
   bind::void_member_function<QPainter, const QTransform &, bool, &QPainter::setTransform>(painter, "setTransform")
     .apply(bind::default_arguments(false)).create();
   // const QTransform & transform() const;
@@ -230,7 +230,7 @@ static void register_painter_class(script::Namespace ns)
   /// TODO: void setWorldMatrix(const QMatrix &, bool);
   // const QMatrix & worldMatrix() const;
   /// TODO: const QMatrix & worldMatrix() const;
-  // void setWorldTransform(const QTransform &, bool);
+  // void setWorldTransform(const QTransform &, bool = false);
   bind::void_member_function<QPainter, const QTransform &, bool, &QPainter::setWorldTransform>(painter, "setWorldTransform")
     .apply(bind::default_arguments(false)).create();
   // const QTransform & worldTransform() const;
@@ -353,14 +353,14 @@ static void register_painter_class(script::Namespace ns)
   /// TODO: void drawPolyline(const QPoint *, int);
   // void drawPolyline(const QPolygon &);
   /// TODO: void drawPolyline(const QPolygon &);
-  // void drawPolygon(const QPointF *, int, Qt::FillRule);
-  /// TODO: void drawPolygon(const QPointF *, int, Qt::FillRule);
-  // void drawPolygon(const QPolygonF &, Qt::FillRule);
-  /// TODO: void drawPolygon(const QPolygonF &, Qt::FillRule);
-  // void drawPolygon(const QPoint *, int, Qt::FillRule);
-  /// TODO: void drawPolygon(const QPoint *, int, Qt::FillRule);
-  // void drawPolygon(const QPolygon &, Qt::FillRule);
-  /// TODO: void drawPolygon(const QPolygon &, Qt::FillRule);
+  // void drawPolygon(const QPointF *, int, Qt::FillRule = Qt::OddEvenFill);
+  /// TODO: void drawPolygon(const QPointF *, int, Qt::FillRule = Qt::OddEvenFill);
+  // void drawPolygon(const QPolygonF &, Qt::FillRule = Qt::OddEvenFill);
+  /// TODO: void drawPolygon(const QPolygonF &, Qt::FillRule = Qt::OddEvenFill);
+  // void drawPolygon(const QPoint *, int, Qt::FillRule = Qt::OddEvenFill);
+  /// TODO: void drawPolygon(const QPoint *, int, Qt::FillRule = Qt::OddEvenFill);
+  // void drawPolygon(const QPolygon &, Qt::FillRule = Qt::OddEvenFill);
+  /// TODO: void drawPolygon(const QPolygon &, Qt::FillRule = Qt::OddEvenFill);
   // void drawConvexPolygon(const QPointF *, int);
   /// TODO: void drawConvexPolygon(const QPointF *, int);
   // void drawConvexPolygon(const QPolygonF &);
@@ -387,10 +387,10 @@ static void register_painter_class(script::Namespace ns)
   bind::void_member_function<QPainter, int, int, int, int, int, int, &QPainter::drawChord>(painter, "drawChord").create();
   // void drawChord(const QRect &, int, int);
   bind::void_member_function<QPainter, const QRect &, int, int, &QPainter::drawChord>(painter, "drawChord").create();
-  // void drawRoundedRect(const QRectF &, qreal, qreal, Qt::SizeMode);
+  // void drawRoundedRect(const QRectF &, qreal, qreal, Qt::SizeMode = Qt::AbsoluteSize);
   bind::void_member_function<QPainter, const QRectF &, qreal, qreal, Qt::SizeMode, &QPainter::drawRoundedRect>(painter, "drawRoundedRect")
     .apply(bind::default_arguments(Qt::AbsoluteSize)).create();
-  // void drawRoundedRect(const QRect &, qreal, qreal, Qt::SizeMode);
+  // void drawRoundedRect(const QRect &, qreal, qreal, Qt::SizeMode = Qt::AbsoluteSize);
   bind::void_member_function<QPainter, const QRect &, qreal, qreal, Qt::SizeMode, &QPainter::drawRoundedRect>(painter, "drawRoundedRect")
     .apply(bind::default_arguments(Qt::AbsoluteSize)).create();
   // void drawRoundRect(const QRectF &, int, int);
@@ -399,10 +399,10 @@ static void register_painter_class(script::Namespace ns)
   bind::void_member_function<QPainter, int, int, int, int, int, int, &QPainter::drawRoundRect>(painter, "drawRoundRect").create();
   // void drawRoundRect(const QRect &, int, int);
   bind::void_member_function<QPainter, const QRect &, int, int, &QPainter::drawRoundRect>(painter, "drawRoundRect").create();
-  // void drawTiledPixmap(const QRectF &, const QPixmap &, const QPointF &);
+  // void drawTiledPixmap(const QRectF &, const QPixmap &, const QPointF & = QPointF());
   bind::void_member_function<QPainter, const QRectF &, const QPixmap &, const QPointF &, &QPainter::drawTiledPixmap>(painter, "drawTiledPixmap")
     .apply(bind::default_arguments(QPointF())).create();
-  // void drawTiledPixmap(const QRect &, const QPixmap &, const QPoint &);
+  // void drawTiledPixmap(const QRect &, const QPixmap &, const QPoint & = QPoint());
   bind::void_member_function<QPainter, const QRect &, const QPixmap &, const QPoint &, &QPainter::drawTiledPixmap>(painter, "drawTiledPixmap")
     .apply(bind::default_arguments(QPoint())).create();
   // void drawPicture(const QPointF &, const QPicture &);
@@ -431,16 +431,16 @@ static void register_painter_class(script::Namespace ns)
   bind::void_member_function<QPainter, int, int, int, int, const QPixmap &, &QPainter::drawPixmap>(painter, "drawPixmap").create();
   // void drawPixmapFragments(const QPainter::PixmapFragment *, int, const QPixmap &, QPainter::PixmapFragmentHints);
   /// TODO: void drawPixmapFragments(const QPainter::PixmapFragment *, int, const QPixmap &, QPainter::PixmapFragmentHints);
-  // void drawImage(const QRectF &, const QImage &, const QRectF &, Qt::ImageConversionFlags);
+  // void drawImage(const QRectF &, const QImage &, const QRectF &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::void_member_function<QPainter, const QRectF &, const QImage &, const QRectF &, Qt::ImageConversionFlags, &QPainter::drawImage>(painter, "drawImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
-  // void drawImage(const QRect &, const QImage &, const QRect &, Qt::ImageConversionFlags);
+  // void drawImage(const QRect &, const QImage &, const QRect &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::void_member_function<QPainter, const QRect &, const QImage &, const QRect &, Qt::ImageConversionFlags, &QPainter::drawImage>(painter, "drawImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
-  // void drawImage(const QPointF &, const QImage &, const QRectF &, Qt::ImageConversionFlags);
+  // void drawImage(const QPointF &, const QImage &, const QRectF &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::void_member_function<QPainter, const QPointF &, const QImage &, const QRectF &, Qt::ImageConversionFlags, &QPainter::drawImage>(painter, "drawImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
-  // void drawImage(const QPoint &, const QImage &, const QRect &, Qt::ImageConversionFlags);
+  // void drawImage(const QPoint &, const QImage &, const QRect &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::void_member_function<QPainter, const QPoint &, const QImage &, const QRect &, Qt::ImageConversionFlags, &QPainter::drawImage>(painter, "drawImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // void drawImage(const QRectF &, const QImage &);
@@ -477,7 +477,7 @@ static void register_painter_class(script::Namespace ns)
   /// TODO: void drawText(const QRect &, int, const QString &, QRect *);
   // void drawText(int, int, int, int, int, const QString &, QRect *);
   /// TODO: void drawText(int, int, int, int, int, const QString &, QRect *);
-  // void drawText(const QRectF &, const QString &, const QTextOption &);
+  // void drawText(const QRectF &, const QString &, const QTextOption & = QTextOption());
   bind::void_member_function<QPainter, const QRectF &, const QString &, const QTextOption &, &QPainter::drawText>(painter, "drawText")
     .apply(bind::default_arguments(QTextOption())).create();
   // QRectF boundingRect(const QRectF &, int, const QString &);
@@ -486,7 +486,7 @@ static void register_painter_class(script::Namespace ns)
   bind::member_function<QPainter, QRect, const QRect &, int, const QString &, &QPainter::boundingRect>(painter, "boundingRect").create();
   // QRect boundingRect(int, int, int, int, int, const QString &);
   bind::member_function<QPainter, QRect, int, int, int, int, int, const QString &, &QPainter::boundingRect>(painter, "boundingRect").create();
-  // QRectF boundingRect(const QRectF &, const QString &, const QTextOption &);
+  // QRectF boundingRect(const QRectF &, const QString &, const QTextOption & = QTextOption());
   bind::member_function<QPainter, QRectF, const QRectF &, const QString &, const QTextOption &, &QPainter::boundingRect>(painter, "boundingRect")
     .apply(bind::default_arguments(QTextOption())).create();
   // void drawTextItem(const QPointF &, const QTextItem &);

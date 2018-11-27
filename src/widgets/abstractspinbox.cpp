@@ -67,7 +67,7 @@ static void register_abstract_spin_box_class(script::Namespace ns)
   register_abstract_spin_box_button_symbols_enum(abstract_spin_box);
   register_abstract_spin_box_correction_mode_enum(abstract_spin_box);
 
-  // QAbstractSpinBox(QWidget *);
+  // QAbstractSpinBox(QWidget * = (QWidget*)nullptr);
   bind::constructor<QAbstractSpinBox, QWidget *>(abstract_spin_box)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QAbstractSpinBox();

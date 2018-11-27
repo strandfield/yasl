@@ -125,6 +125,8 @@ private:
   typedef QList<Link> Links;
   static Links extractLinks(const QString & str);
 
+  static QString fundisplay(FunctionRef fun);
+
 private:
   QString prefix() const;
   QString enclosingEntity() const; // returns Namespace or Class
@@ -139,8 +141,8 @@ private:
   QString currentHeaderDirectory();
   QString currentSourceDirectory();
 
-  void recordGeneratedEnum(const QString & name);
-  void recordGeneratedClass(const QString & name);
+  void recordGeneratedEnum(const QString & name, QtVersion version);
+  void recordGeneratedClass(const QString & name, QtVersion version);
   void generateInjectedTypeList();
 
 private:

@@ -50,16 +50,16 @@ static void register_date_time_edit_class(script::Namespace ns)
 
   register_date_time_edit_section_enum(date_time_edit);
 
-  // QDateTimeEdit(QWidget *);
+  // QDateTimeEdit(QWidget * = (QWidget*)nullptr);
   bind::constructor<QDateTimeEdit, QWidget *>(date_time_edit)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QDateTimeEdit(const QDateTime &, QWidget *);
+  // QDateTimeEdit(const QDateTime &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QDateTimeEdit, const QDateTime &, QWidget *>(date_time_edit)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QDateTimeEdit(const QDate &, QWidget *);
+  // QDateTimeEdit(const QDate &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QDateTimeEdit, const QDate &, QWidget *>(date_time_edit)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QDateTimeEdit(const QTime &, QWidget *);
+  // QDateTimeEdit(const QTime &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QDateTimeEdit, const QTime &, QWidget *>(date_time_edit)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QDateTimeEdit();

@@ -70,7 +70,7 @@ static void register_static_text_class(script::Namespace ns)
   bind::member_function<QStaticText, QTextOption, &QStaticText::textOption>(static_text, "textOption").create();
   // QSizeF size() const;
   bind::member_function<QStaticText, QSizeF, &QStaticText::size>(static_text, "size").create();
-  // void prepare(const QTransform &, const QFont &);
+  // void prepare(const QTransform & = QTransform(), const QFont & = QFont());
   bind::void_member_function<QStaticText, const QTransform &, const QFont &, &QStaticText::prepare>(static_text, "prepare")
     .apply(bind::default_arguments(QFont(), QTransform())).create();
   // void setPerformanceHint(QStaticText::PerformanceHint);

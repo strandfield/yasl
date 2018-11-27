@@ -54,8 +54,8 @@ static void register_input_dialog_class(script::Namespace ns)
   register_input_dialog_input_dialog_option_enum(input_dialog);
   register_input_dialog_input_mode_enum(input_dialog);
 
-  // QInputDialog(QWidget *, Qt::WindowFlags);
-  /// TODO: QInputDialog(QWidget *, Qt::WindowFlags);
+  // QInputDialog(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QInputDialog(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   // ~QInputDialog();
   bind::destructor<QInputDialog>(input_dialog).create();
   // void setInputMode(QInputDialog::InputMode);
@@ -66,7 +66,7 @@ static void register_input_dialog_class(script::Namespace ns)
   bind::void_member_function<QInputDialog, const QString &, &QInputDialog::setLabelText>(input_dialog, "setLabelText").create();
   // QString labelText() const;
   bind::member_function<QInputDialog, QString, &QInputDialog::labelText>(input_dialog, "labelText").create();
-  // void setOption(QInputDialog::InputDialogOption, bool);
+  // void setOption(QInputDialog::InputDialogOption, bool = true);
   bind::void_member_function<QInputDialog, QInputDialog::InputDialogOption, bool, &QInputDialog::setOption>(input_dialog, "setOption")
     .apply(bind::default_arguments(true)).create();
   // bool testOption(QInputDialog::InputDialogOption) const;

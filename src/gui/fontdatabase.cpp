@@ -92,12 +92,12 @@ static void register_font_database_class(script::Namespace ns)
   /// TODO: QList<QFontDatabase::WritingSystem> writingSystems() const;
   // QList<QFontDatabase::WritingSystem> writingSystems(const QString &) const;
   /// TODO: QList<QFontDatabase::WritingSystem> writingSystems(const QString &) const;
-  // QStringList families(QFontDatabase::WritingSystem) const;
-  /// TODO: QStringList families(QFontDatabase::WritingSystem) const;
+  // QStringList families(QFontDatabase::WritingSystem = QFontDatabase::Any) const;
+  /// TODO: QStringList families(QFontDatabase::WritingSystem = QFontDatabase::Any) const;
   // QStringList styles(const QString &) const;
   /// TODO: QStringList styles(const QString &) const;
-  // QList<int> pointSizes(const QString &, const QString &);
-  /// TODO: QList<int> pointSizes(const QString &, const QString &);
+  // QList<int> pointSizes(const QString &, const QString & = QString());
+  /// TODO: QList<int> pointSizes(const QString &, const QString & = QString());
   // QList<int> smoothSizes(const QString &, const QString &);
   /// TODO: QList<int> smoothSizes(const QString &, const QString &);
   // QString styleString(const QFont &);
@@ -106,16 +106,16 @@ static void register_font_database_class(script::Namespace ns)
   bind::member_function<QFontDatabase, QString, const QFontInfo &, &QFontDatabase::styleString>(font_database, "styleString").create();
   // QFont font(const QString &, const QString &, int) const;
   bind::member_function<QFontDatabase, QFont, const QString &, const QString &, int, &QFontDatabase::font>(font_database, "font").create();
-  // bool isBitmapScalable(const QString &, const QString &) const;
+  // bool isBitmapScalable(const QString &, const QString & = QString()) const;
   bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::isBitmapScalable>(font_database, "isBitmapScalable")
     .apply(bind::default_arguments(QString())).create();
-  // bool isSmoothlyScalable(const QString &, const QString &) const;
+  // bool isSmoothlyScalable(const QString &, const QString & = QString()) const;
   bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::isSmoothlyScalable>(font_database, "isSmoothlyScalable")
     .apply(bind::default_arguments(QString())).create();
-  // bool isScalable(const QString &, const QString &) const;
+  // bool isScalable(const QString &, const QString & = QString()) const;
   bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::isScalable>(font_database, "isScalable")
     .apply(bind::default_arguments(QString())).create();
-  // bool isFixedPitch(const QString &, const QString &) const;
+  // bool isFixedPitch(const QString &, const QString & = QString()) const;
   bind::member_function<QFontDatabase, bool, const QString &, const QString &, &QFontDatabase::isFixedPitch>(font_database, "isFixedPitch")
     .apply(bind::default_arguments(QString())).create();
   // bool italic(const QString &, const QString &) const;

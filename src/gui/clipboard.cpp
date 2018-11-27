@@ -38,7 +38,7 @@ static void register_clipboard_class(script::Namespace ns)
 
   register_clipboard_mode_enum(clipboard);
 
-  // void clear(QClipboard::Mode);
+  // void clear(QClipboard::Mode = QClipboard::Clipboard);
   bind::void_member_function<QClipboard, QClipboard::Mode, &QClipboard::clear>(clipboard, "clear")
     .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // bool supportsSelection() const;
@@ -51,29 +51,29 @@ static void register_clipboard_class(script::Namespace ns)
   bind::member_function<QClipboard, bool, &QClipboard::ownsClipboard>(clipboard, "ownsClipboard").create();
   // bool ownsFindBuffer() const;
   bind::member_function<QClipboard, bool, &QClipboard::ownsFindBuffer>(clipboard, "ownsFindBuffer").create();
-  // QString text(QClipboard::Mode) const;
+  // QString text(QClipboard::Mode = QClipboard::Clipboard) const;
   bind::member_function<QClipboard, QString, QClipboard::Mode, &QClipboard::text>(clipboard, "text")
     .apply(bind::default_arguments(QClipboard::Clipboard)).create();
-  // QString text(QString &, QClipboard::Mode) const;
+  // QString text(QString &, QClipboard::Mode = QClipboard::Clipboard) const;
   bind::member_function<QClipboard, QString, QString &, QClipboard::Mode, &QClipboard::text>(clipboard, "text")
     .apply(bind::default_arguments(QClipboard::Clipboard)).create();
-  // void setText(const QString &, QClipboard::Mode);
+  // void setText(const QString &, QClipboard::Mode = QClipboard::Clipboard);
   bind::void_member_function<QClipboard, const QString &, QClipboard::Mode, &QClipboard::setText>(clipboard, "setText")
     .apply(bind::default_arguments(QClipboard::Clipboard)).create();
-  // const QMimeData * mimeData(QClipboard::Mode) const;
-  /// TODO: const QMimeData * mimeData(QClipboard::Mode) const;
-  // void setMimeData(QMimeData *, QClipboard::Mode);
-  /// TODO: void setMimeData(QMimeData *, QClipboard::Mode);
-  // QImage image(QClipboard::Mode) const;
+  // const QMimeData * mimeData(QClipboard::Mode = QClipboard::Clipboard) const;
+  /// TODO: const QMimeData * mimeData(QClipboard::Mode = QClipboard::Clipboard) const;
+  // void setMimeData(QMimeData *, QClipboard::Mode = QClipboard::Clipboard);
+  /// TODO: void setMimeData(QMimeData *, QClipboard::Mode = QClipboard::Clipboard);
+  // QImage image(QClipboard::Mode = QClipboard::Clipboard) const;
   bind::member_function<QClipboard, QImage, QClipboard::Mode, &QClipboard::image>(clipboard, "image")
     .apply(bind::default_arguments(QClipboard::Clipboard)).create();
-  // QPixmap pixmap(QClipboard::Mode) const;
+  // QPixmap pixmap(QClipboard::Mode = QClipboard::Clipboard) const;
   bind::member_function<QClipboard, QPixmap, QClipboard::Mode, &QClipboard::pixmap>(clipboard, "pixmap")
     .apply(bind::default_arguments(QClipboard::Clipboard)).create();
-  // void setImage(const QImage &, QClipboard::Mode);
+  // void setImage(const QImage &, QClipboard::Mode = QClipboard::Clipboard);
   bind::void_member_function<QClipboard, const QImage &, QClipboard::Mode, &QClipboard::setImage>(clipboard, "setImage")
     .apply(bind::default_arguments(QClipboard::Clipboard)).create();
-  // void setPixmap(const QPixmap &, QClipboard::Mode);
+  // void setPixmap(const QPixmap &, QClipboard::Mode = QClipboard::Clipboard);
   bind::void_member_function<QClipboard, const QPixmap &, QClipboard::Mode, &QClipboard::setPixmap>(clipboard, "setPixmap")
     .apply(bind::default_arguments(QClipboard::Clipboard)).create();
   // void changed(QClipboard::Mode);

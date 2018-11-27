@@ -66,8 +66,8 @@ static void register_frame_class(script::Namespace ns)
   register_frame_shadow_enum(frame);
   register_frame_style_mask_enum(frame);
 
-  // QFrame(QWidget *, Qt::WindowFlags);
-  /// TODO: QFrame(QWidget *, Qt::WindowFlags);
+  // QFrame(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QFrame(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   // ~QFrame();
   bind::destructor<QFrame>(frame).create();
   // int frameStyle() const;

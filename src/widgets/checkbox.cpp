@@ -22,15 +22,15 @@ static void register_check_box_class(script::Namespace ns)
     .setBase(script::Type::QAbstractButton).get();
 
 
-  // QCheckBox(QWidget *);
+  // QCheckBox(QWidget * = (QWidget*)nullptr);
   bind::constructor<QCheckBox, QWidget *>(check_box)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QCheckBox(const QString &, QWidget *);
+  // QCheckBox(const QString &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QCheckBox, const QString &, QWidget *>(check_box)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QCheckBox();
   bind::destructor<QCheckBox>(check_box).create();
-  // void setTristate(bool);
+  // void setTristate(bool = true);
   bind::void_member_function<QCheckBox, bool, &QCheckBox::setTristate>(check_box, "setTristate")
     .apply(bind::default_arguments(true)).create();
   // bool isTristate() const;

@@ -42,7 +42,7 @@ static void register_abstract_slider_class(script::Namespace ns)
 
   register_abstract_slider_slider_action_enum(abstract_slider);
 
-  // QAbstractSlider(QWidget *);
+  // QAbstractSlider(QWidget * = (QWidget*)nullptr);
   bind::constructor<QAbstractSlider, QWidget *>(abstract_slider)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QAbstractSlider();

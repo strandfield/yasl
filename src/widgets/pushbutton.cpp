@@ -23,13 +23,13 @@ static void register_push_button_class(script::Namespace ns)
     .setBase(script::Type::QAbstractButton).get();
 
 
-  // QPushButton(QWidget *);
+  // QPushButton(QWidget * = (QWidget*)nullptr);
   bind::constructor<QPushButton, QWidget *>(push_button)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QPushButton(const QString &, QWidget *);
+  // QPushButton(const QString &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QPushButton, const QString &, QWidget *>(push_button)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QPushButton(const QIcon &, const QString &, QWidget *);
+  // QPushButton(const QIcon &, const QString &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QPushButton, const QIcon &, const QString &, QWidget *>(push_button)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QPushButton();

@@ -29,10 +29,10 @@ static void register_cursor_class(script::Namespace ns)
   bind::default_constructor<QCursor>(cursor).create();
   // QCursor(Qt::CursorShape);
   bind::constructor<QCursor, Qt::CursorShape>(cursor).create();
-  // QCursor(const QBitmap &, const QBitmap &, int, int);
+  // QCursor(const QBitmap &, const QBitmap &, int = -1, int = -1);
   bind::constructor<QCursor, const QBitmap &, const QBitmap &, int, int>(cursor)
     .apply(bind::default_arguments(-1, -1)).create();
-  // QCursor(const QPixmap &, int, int);
+  // QCursor(const QPixmap &, int = -1, int = -1);
   bind::constructor<QCursor, const QPixmap &, int, int>(cursor)
     .apply(bind::default_arguments(-1, -1)).create();
   // QCursor(const QCursor &);

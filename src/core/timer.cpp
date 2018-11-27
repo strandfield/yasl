@@ -21,7 +21,7 @@ static void register_timer_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
 
-  // QTimer(QObject *);
+  // QTimer(QObject * = (QObject*)nullptr);
   bind::constructor<QTimer, QObject *>(timer)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QTimer();

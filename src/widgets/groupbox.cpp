@@ -23,10 +23,10 @@ static void register_group_box_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
 
-  // QGroupBox(QWidget *);
+  // QGroupBox(QWidget * = (QWidget*)nullptr);
   bind::constructor<QGroupBox, QWidget *>(group_box)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QGroupBox(const QString &, QWidget *);
+  // QGroupBox(const QString &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QGroupBox, const QString &, QWidget *>(group_box)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QGroupBox();

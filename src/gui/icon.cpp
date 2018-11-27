@@ -72,30 +72,30 @@ static void register_icon_class(script::Namespace ns)
   bind::memop_assign<QIcon, QIcon &&>(icon);
   // void swap(QIcon &);
   bind::void_member_function<QIcon, QIcon &, &QIcon::swap>(icon, "swap").create();
-  // QPixmap pixmap(const QSize &, QIcon::Mode, QIcon::State) const;
+  // QPixmap pixmap(const QSize &, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QPixmap, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
-  // QPixmap pixmap(int, int, QIcon::Mode, QIcon::State) const;
+  // QPixmap pixmap(int, int, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QPixmap, int, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
-  // QPixmap pixmap(int, QIcon::Mode, QIcon::State) const;
+  // QPixmap pixmap(int, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QPixmap, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
-  // QPixmap pixmap(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
+  // QPixmap pixmap(QWindow *, const QSize &, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QPixmap, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
-  // QSize actualSize(const QSize &, QIcon::Mode, QIcon::State) const;
+  // QSize actualSize(const QSize &, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QSize, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>(icon, "actualSize")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
-  // QSize actualSize(QWindow *, const QSize &, QIcon::Mode, QIcon::State) const;
+  // QSize actualSize(QWindow *, const QSize &, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QSize, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>(icon, "actualSize")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
   // QString name() const;
   bind::member_function<QIcon, QString, &QIcon::name>(icon, "name").create();
-  // void paint(QPainter *, const QRect &, Qt::Alignment, QIcon::Mode, QIcon::State) const;
-  /// TODO: void paint(QPainter *, const QRect &, Qt::Alignment, QIcon::Mode, QIcon::State) const;
-  // void paint(QPainter *, int, int, int, int, Qt::Alignment, QIcon::Mode, QIcon::State) const;
-  /// TODO: void paint(QPainter *, int, int, int, int, Qt::Alignment, QIcon::Mode, QIcon::State) const;
+  // void paint(QPainter *, const QRect &, Qt::Alignment = Qt::Alignment(Qt::AlignCenter), QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
+  /// TODO: void paint(QPainter *, const QRect &, Qt::Alignment = Qt::Alignment(Qt::AlignCenter), QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
+  // void paint(QPainter *, int, int, int, int, Qt::Alignment = Qt::Alignment(Qt::AlignCenter), QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
+  /// TODO: void paint(QPainter *, int, int, int, int, Qt::Alignment = Qt::Alignment(Qt::AlignCenter), QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   // bool isNull() const;
   bind::member_function<QIcon, bool, &QIcon::isNull>(icon, "isNull").create();
   // bool isDetached() const;
@@ -104,14 +104,14 @@ static void register_icon_class(script::Namespace ns)
   bind::void_member_function<QIcon, &QIcon::detach>(icon, "detach").create();
   // qint64 cacheKey() const;
   /// TODO: qint64 cacheKey() const;
-  // void addPixmap(const QPixmap &, QIcon::Mode, QIcon::State);
+  // void addPixmap(const QPixmap &, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off);
   bind::void_member_function<QIcon, const QPixmap &, QIcon::Mode, QIcon::State, &QIcon::addPixmap>(icon, "addPixmap")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
-  // void addFile(const QString &, const QSize &, QIcon::Mode, QIcon::State);
+  // void addFile(const QString &, const QSize & = QSize(), QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off);
   bind::void_member_function<QIcon, const QString &, const QSize &, QIcon::Mode, QIcon::State, &QIcon::addFile>(icon, "addFile")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal, QSize())).create();
-  // QList<QSize> availableSizes(QIcon::Mode, QIcon::State) const;
-  /// TODO: QList<QSize> availableSizes(QIcon::Mode, QIcon::State) const;
+  // QList<QSize> availableSizes(QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
+  /// TODO: QList<QSize> availableSizes(QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   // void setIsMask(bool);
   bind::void_member_function<QIcon, bool, &QIcon::setIsMask>(icon, "setIsMask").create();
   // bool isMask() const;

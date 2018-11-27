@@ -41,7 +41,7 @@ static void register_slider_class(script::Namespace ns)
 
   register_slider_tick_position_enum(slider);
 
-  // QSlider(QWidget *);
+  // QSlider(QWidget * = (QWidget*)nullptr);
   bind::constructor<QSlider, QWidget *>(slider)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // QSlider(Qt::Orientation, QWidget *);

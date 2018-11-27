@@ -68,7 +68,7 @@ static void register_abstract_button_class(script::Namespace ns)
   /// TODO: QButtonGroup * group() const;
   // void setIconSize(const QSize &);
   bind::void_member_function<QAbstractButton, const QSize &, &QAbstractButton::setIconSize>(abstract_button, "setIconSize").create();
-  // void animateClick(int);
+  // void animateClick(int = 100);
   bind::void_member_function<QAbstractButton, int, &QAbstractButton::animateClick>(abstract_button, "animateClick")
     .apply(bind::default_arguments(100)).create();
   // void click();

@@ -44,7 +44,7 @@ static void register_font_combo_box_class(script::Namespace ns)
 
   register_font_combo_box_font_filter_enum(font_combo_box);
 
-  // QFontComboBox(QWidget *);
+  // QFontComboBox(QWidget * = (QWidget*)nullptr);
   bind::constructor<QFontComboBox, QWidget *>(font_combo_box)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QFontComboBox();

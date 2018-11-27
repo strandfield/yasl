@@ -63,10 +63,10 @@ static void register_int_validator_class(script::Namespace ns)
     .setBase(script::Type::QValidator).get();
 
 
-  // QIntValidator(QObject *);
+  // QIntValidator(QObject * = (QObject*)nullptr);
   bind::constructor<QIntValidator, QObject *>(int_validator)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
-  // QIntValidator(int, int, QObject *);
+  // QIntValidator(int, int, QObject * = (QObject*)nullptr);
   bind::constructor<QIntValidator, int, int, QObject *>(int_validator)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QIntValidator();
@@ -114,17 +114,17 @@ static void register_double_validator_class(script::Namespace ns)
 
   register_double_validator_notation_enum(double_validator);
 
-  // QDoubleValidator(QObject *);
+  // QDoubleValidator(QObject * = (QObject*)nullptr);
   bind::constructor<QDoubleValidator, QObject *>(double_validator)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
-  // QDoubleValidator(double, double, int, QObject *);
+  // QDoubleValidator(double, double, int, QObject * = (QObject*)nullptr);
   bind::constructor<QDoubleValidator, double, double, int, QObject *>(double_validator)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QDoubleValidator();
   bind::destructor<QDoubleValidator>(double_validator).create();
   // QValidator::State validate(QString &, int &) const;
   bind::member_function<QDoubleValidator, QValidator::State, QString &, int &, &QDoubleValidator::validate>(double_validator, "validate").create();
-  // void setRange(double, double, int);
+  // void setRange(double, double, int = 0);
   bind::void_member_function<QDoubleValidator, double, double, int, &QDoubleValidator::setRange>(double_validator, "setRange")
     .apply(bind::default_arguments(0)).create();
   // void setBottom(double);
@@ -164,10 +164,10 @@ static void register_regular_expression_validator_class(script::Namespace ns)
     .setBase(script::Type::QValidator).get();
 
 
-  // QRegularExpressionValidator(QObject *);
+  // QRegularExpressionValidator(QObject * = (QObject*)nullptr);
   bind::constructor<QRegularExpressionValidator, QObject *>(regular_expression_validator)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
-  // QRegularExpressionValidator(const QRegularExpression &, QObject *);
+  // QRegularExpressionValidator(const QRegularExpression &, QObject * = (QObject*)nullptr);
   bind::constructor<QRegularExpressionValidator, const QRegularExpression &, QObject *>(regular_expression_validator)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QRegularExpressionValidator();

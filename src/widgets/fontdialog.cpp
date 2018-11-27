@@ -43,10 +43,10 @@ static void register_font_dialog_class(script::Namespace ns)
 
   register_font_dialog_font_dialog_option_enum(font_dialog);
 
-  // QFontDialog(QWidget *);
+  // QFontDialog(QWidget * = (QWidget*)nullptr);
   bind::constructor<QFontDialog, QWidget *>(font_dialog)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QFontDialog(const QFont &, QWidget *);
+  // QFontDialog(const QFont &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QFontDialog, const QFont &, QWidget *>(font_dialog)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QFontDialog();
@@ -57,7 +57,7 @@ static void register_font_dialog_class(script::Namespace ns)
   bind::member_function<QFontDialog, QFont, &QFontDialog::currentFont>(font_dialog, "currentFont").create();
   // QFont selectedFont() const;
   bind::member_function<QFontDialog, QFont, &QFontDialog::selectedFont>(font_dialog, "selectedFont").create();
-  // void setOption(QFontDialog::FontDialogOption, bool);
+  // void setOption(QFontDialog::FontDialogOption, bool = true);
   bind::void_member_function<QFontDialog, QFontDialog::FontDialogOption, bool, &QFontDialog::setOption>(font_dialog, "setOption")
     .apply(bind::default_arguments(true)).create();
   // bool testOption(QFontDialog::FontDialogOption) const;

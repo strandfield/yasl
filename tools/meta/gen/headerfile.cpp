@@ -81,6 +81,11 @@ void HeaderFile::validate(const QFileInfo & finfo)
   QFile::rename(finfo.absoluteFilePath() + "gen", finfo.absoluteFilePath());
 }
 
+QString HeaderFile::versionCheck(QtVersion v)
+{
+  return QString("(QT_VERSION >= QT_VERSION_CHECK(%1, %2, %3))").arg(int(v.major)).arg(int(v.minor)).arg(int(v.patch));
+}
+
 void HeaderFile::write()
 {
   QFile f{ this->file.absoluteFilePath() + "gen" };
@@ -133,6 +138,9 @@ QStringList HeaderFile::generateBindingDefinitions()
   out << "namespace script {";
   for (const auto & t : types)
   {
+    if (!t.version.isNull())
+      out << QString("#if %1").arg(versionCheck(t.version));
+
     out << ("template<> struct make_type_t<" + t.name + "> { inline static script::Type get() { return script::Type::" + t.id + "; } };");
 
     if (!t.tag.isEmpty())
@@ -152,6 +160,9 @@ QStringList HeaderFile::generateBindingDefinitions()
         out << ("template<> struct tag_resolver<" + t.name + "> { typedef " + t.tag + " tag_type; };");
       }
     }
+
+    if (!t.version.isNull())
+      out << QString("#endif");
   }
   out << "} // namespace script";
 

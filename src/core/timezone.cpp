@@ -58,7 +58,7 @@ static void register_time_zone_class(script::Namespace ns)
   bind::constructor<QTimeZone, const QByteArray &>(time_zone).create();
   // QTimeZone(int);
   bind::constructor<QTimeZone, int>(time_zone).create();
-  // QTimeZone(const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &);
+  // QTimeZone(const QByteArray &, int, const QString &, const QString &, QLocale::Country = QLocale::AnyCountry, const QString & = QString());
   bind::constructor<QTimeZone, const QByteArray &, int, const QString &, const QString &, QLocale::Country, const QString &>(time_zone)
     .apply(bind::default_arguments(QString(), QLocale::AnyCountry)).create();
   // QTimeZone(const QTimeZone &);
@@ -83,10 +83,10 @@ static void register_time_zone_class(script::Namespace ns)
   bind::member_function<QTimeZone, QLocale::Country, &QTimeZone::country>(time_zone, "country").create();
   // QString comment() const;
   bind::member_function<QTimeZone, QString, &QTimeZone::comment>(time_zone, "comment").create();
-  // QString displayName(const QDateTime &, QTimeZone::NameType, const QLocale &) const;
+  // QString displayName(const QDateTime &, QTimeZone::NameType =  QTimeZone::DefaultName, const QLocale & = QLocale()) const;
   bind::member_function<QTimeZone, QString, const QDateTime &, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>(time_zone, "displayName")
     .apply(bind::default_arguments(QLocale(),  QTimeZone::DefaultName)).create();
-  // QString displayName(QTimeZone::TimeType, QTimeZone::NameType, const QLocale &) const;
+  // QString displayName(QTimeZone::TimeType, QTimeZone::NameType =  QTimeZone::DefaultName, const QLocale & = QLocale()) const;
   bind::member_function<QTimeZone, QString, QTimeZone::TimeType, QTimeZone::NameType, const QLocale &, &QTimeZone::displayName>(time_zone, "displayName")
     .apply(bind::default_arguments(QLocale(),  QTimeZone::DefaultName)).create();
   // QString abbreviation(const QDateTime &) const;

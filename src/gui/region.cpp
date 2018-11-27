@@ -40,14 +40,14 @@ static void register_region_class(script::Namespace ns)
 
   // QRegion();
   bind::default_constructor<QRegion>(region).create();
-  // QRegion(int, int, int, int, QRegion::RegionType);
+  // QRegion(int, int, int, int, QRegion::RegionType = QRegion::Rectangle);
   bind::constructor<QRegion, int, int, int, int, QRegion::RegionType>(region)
     .apply(bind::default_arguments(QRegion::Rectangle)).create();
-  // QRegion(const QRect &, QRegion::RegionType);
+  // QRegion(const QRect &, QRegion::RegionType = QRegion::Rectangle);
   bind::constructor<QRegion, const QRect &, QRegion::RegionType>(region)
     .apply(bind::default_arguments(QRegion::Rectangle)).create();
-  // QRegion(const QPolygon &, Qt::FillRule);
-  /// TODO: QRegion(const QPolygon &, Qt::FillRule);
+  // QRegion(const QPolygon &, Qt::FillRule = Qt::OddEvenFill);
+  /// TODO: QRegion(const QPolygon &, Qt::FillRule = Qt::OddEvenFill);
   // QRegion(const QRegion &);
   bind::constructor<QRegion, const QRegion &>(region).create();
   // QRegion(QRegion &&);

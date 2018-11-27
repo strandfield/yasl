@@ -100,7 +100,7 @@ static void register_url_class(script::Namespace ns)
   bind::constructor<QUrl, const QUrl &>(url).create();
   // QUrl & operator=(const QUrl &);
   bind::memop_assign<QUrl, const QUrl &>(url);
-  // QUrl(const QString &, QUrl::ParsingMode);
+  // QUrl(const QString &, QUrl::ParsingMode = QUrl::TolerantMode);
   bind::constructor<QUrl, const QString &, QUrl::ParsingMode>(url)
     .apply(bind::default_arguments(QUrl::TolerantMode)).create();
   // QUrl & operator=(const QString &);
@@ -113,25 +113,25 @@ static void register_url_class(script::Namespace ns)
   bind::destructor<QUrl>(url).create();
   // void swap(QUrl &);
   bind::void_member_function<QUrl, QUrl &, &QUrl::swap>(url, "swap").create();
-  // void setUrl(const QString &, QUrl::ParsingMode);
+  // void setUrl(const QString &, QUrl::ParsingMode = QUrl::TolerantMode);
   bind::void_member_function<QUrl, const QString &, QUrl::ParsingMode, &QUrl::setUrl>(url, "setUrl")
     .apply(bind::default_arguments(QUrl::TolerantMode)).create();
-  // QString url(QUrl::FormattingOptions) const;
-  /// TODO: QString url(QUrl::FormattingOptions) const;
-  // QString toString(QUrl::FormattingOptions) const;
-  /// TODO: QString toString(QUrl::FormattingOptions) const;
-  // QString toDisplayString(QUrl::FormattingOptions) const;
-  /// TODO: QString toDisplayString(QUrl::FormattingOptions) const;
+  // QString url(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::FullyEncoded)) const;
+  /// TODO: QString url(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::FullyEncoded)) const;
+  // QString toString(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded)) const;
+  /// TODO: QString toString(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded)) const;
+  // QString toDisplayString(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded)) const;
+  /// TODO: QString toDisplayString(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded)) const;
   // QUrl adjusted(QUrl::FormattingOptions) const;
   /// TODO: QUrl adjusted(QUrl::FormattingOptions) const;
-  // QByteArray toEncoded(QUrl::FormattingOptions) const;
-  /// TODO: QByteArray toEncoded(QUrl::FormattingOptions) const;
-  // static QUrl fromEncoded(const QByteArray &, QUrl::ParsingMode);
+  // QByteArray toEncoded(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::FullyEncoded)) const;
+  /// TODO: QByteArray toEncoded(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::FullyEncoded)) const;
+  // static QUrl fromEncoded(const QByteArray &, QUrl::ParsingMode = QUrl::TolerantMode);
   bind::static_member_function<QUrl, QUrl, const QByteArray &, QUrl::ParsingMode, &QUrl::fromEncoded>(url, "fromEncoded")
     .apply(bind::default_arguments(QUrl::TolerantMode)).create();
   // static QUrl fromUserInput(const QString &);
   bind::static_member_function<QUrl, QUrl, const QString &, &QUrl::fromUserInput>(url, "fromUserInput").create();
-  // static QUrl fromUserInput(const QString &, const QString &, QUrl::UserInputResolutionOptions);
+  // static QUrl fromUserInput(const QString &, const QString &, QUrl::UserInputResolutionOptions = QUrl::UserInputResolutionOptions(QUrl::DefaultResolution));
   bind::static_member_function<QUrl, QUrl, const QString &, const QString &, QUrl::UserInputResolutionOptions, &QUrl::fromUserInput>(url, "fromUserInput")
     .apply(bind::default_arguments(QUrl::UserInputResolutionOptions(QUrl::DefaultResolution))).create();
   // bool isValid() const;
@@ -146,66 +146,66 @@ static void register_url_class(script::Namespace ns)
   bind::void_member_function<QUrl, const QString &, &QUrl::setScheme>(url, "setScheme").create();
   // QString scheme() const;
   bind::member_function<QUrl, QString, &QUrl::scheme>(url, "scheme").create();
-  // void setAuthority(const QString &, QUrl::ParsingMode);
+  // void setAuthority(const QString &, QUrl::ParsingMode = QUrl::TolerantMode);
   bind::void_member_function<QUrl, const QString &, QUrl::ParsingMode, &QUrl::setAuthority>(url, "setAuthority")
     .apply(bind::default_arguments(QUrl::TolerantMode)).create();
-  // QString authority(QUrl::ComponentFormattingOptions) const;
+  // QString authority(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::authority>(url, "authority")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
-  // void setUserInfo(const QString &, QUrl::ParsingMode);
+  // void setUserInfo(const QString &, QUrl::ParsingMode = QUrl::TolerantMode);
   bind::void_member_function<QUrl, const QString &, QUrl::ParsingMode, &QUrl::setUserInfo>(url, "setUserInfo")
     .apply(bind::default_arguments(QUrl::TolerantMode)).create();
-  // QString userInfo(QUrl::ComponentFormattingOptions) const;
+  // QString userInfo(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::userInfo>(url, "userInfo")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
-  // void setUserName(const QString &, QUrl::ParsingMode);
+  // void setUserName(const QString &, QUrl::ParsingMode = QUrl::DecodedMode);
   bind::void_member_function<QUrl, const QString &, QUrl::ParsingMode, &QUrl::setUserName>(url, "setUserName")
     .apply(bind::default_arguments(QUrl::DecodedMode)).create();
-  // QString userName(QUrl::ComponentFormattingOptions) const;
+  // QString userName(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::userName>(url, "userName")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
-  // void setPassword(const QString &, QUrl::ParsingMode);
+  // void setPassword(const QString &, QUrl::ParsingMode = QUrl::DecodedMode);
   bind::void_member_function<QUrl, const QString &, QUrl::ParsingMode, &QUrl::setPassword>(url, "setPassword")
     .apply(bind::default_arguments(QUrl::DecodedMode)).create();
-  // QString password(QUrl::ComponentFormattingOptions) const;
+  // QString password(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::password>(url, "password")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
-  // void setHost(const QString &, QUrl::ParsingMode);
+  // void setHost(const QString &, QUrl::ParsingMode = QUrl::DecodedMode);
   bind::void_member_function<QUrl, const QString &, QUrl::ParsingMode, &QUrl::setHost>(url, "setHost")
     .apply(bind::default_arguments(QUrl::DecodedMode)).create();
-  // QString host(QUrl::ComponentFormattingOptions) const;
+  // QString host(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::host>(url, "host")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
-  // QString topLevelDomain(QUrl::ComponentFormattingOptions) const;
+  // QString topLevelDomain(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::topLevelDomain>(url, "topLevelDomain")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
   // void setPort(int);
   bind::void_member_function<QUrl, int, &QUrl::setPort>(url, "setPort").create();
-  // int port(int) const;
+  // int port(int = -1) const;
   bind::member_function<QUrl, int, int, &QUrl::port>(url, "port")
     .apply(bind::default_arguments(-1)).create();
-  // void setPath(const QString &, QUrl::ParsingMode);
+  // void setPath(const QString &, QUrl::ParsingMode = QUrl::DecodedMode);
   bind::void_member_function<QUrl, const QString &, QUrl::ParsingMode, &QUrl::setPath>(url, "setPath")
     .apply(bind::default_arguments(QUrl::DecodedMode)).create();
-  // QString path(QUrl::ComponentFormattingOptions) const;
+  // QString path(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::path>(url, "path")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
-  // QString fileName(QUrl::ComponentFormattingOptions) const;
+  // QString fileName(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::fileName>(url, "fileName")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
   // bool hasQuery() const;
   bind::member_function<QUrl, bool, &QUrl::hasQuery>(url, "hasQuery").create();
-  // void setQuery(const QString &, QUrl::ParsingMode);
+  // void setQuery(const QString &, QUrl::ParsingMode = QUrl::TolerantMode);
   bind::void_member_function<QUrl, const QString &, QUrl::ParsingMode, &QUrl::setQuery>(url, "setQuery")
     .apply(bind::default_arguments(QUrl::TolerantMode)).create();
   // void setQuery(const QUrlQuery &);
   bind::void_member_function<QUrl, const QUrlQuery &, &QUrl::setQuery>(url, "setQuery").create();
-  // QString query(QUrl::ComponentFormattingOptions) const;
+  // QString query(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::query>(url, "query")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // bool hasFragment() const;
   bind::member_function<QUrl, bool, &QUrl::hasFragment>(url, "hasFragment").create();
-  // QString fragment(QUrl::ComponentFormattingOptions) const;
+  // QString fragment(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::fragment>(url, "fragment")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void setFragment(const QString &, QUrl::ParsingMode);
@@ -236,7 +236,7 @@ static void register_url_class(script::Namespace ns)
   /// TODO: bool matches(const QUrl &, QUrl::FormattingOptions) const;
   // static QString fromPercentEncoding(const QByteArray &);
   bind::static_member_function<QUrl, QString, const QByteArray &, &QUrl::fromPercentEncoding>(url, "fromPercentEncoding").create();
-  // static QByteArray toPercentEncoding(const QString &, const QByteArray &, const QByteArray &);
+  // static QByteArray toPercentEncoding(const QString &, const QByteArray & = QByteArray(), const QByteArray & = QByteArray());
   bind::static_member_function<QUrl, QByteArray, const QString &, const QByteArray &, const QByteArray &, &QUrl::toPercentEncoding>(url, "toPercentEncoding")
     .apply(bind::default_arguments(QByteArray(), QByteArray())).create();
   // static QString fromAce(const QByteArray &);
@@ -245,10 +245,10 @@ static void register_url_class(script::Namespace ns)
   bind::static_member_function<QUrl, QByteArray, const QString &, &QUrl::toAce>(url, "toAce").create();
   // static QStringList idnWhitelist();
   /// TODO: static QStringList idnWhitelist();
-  // static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions);
-  /// TODO: static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions);
-  // static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode);
-  /// TODO: static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode);
+  // static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded));
+  /// TODO: static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded));
+  // static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode = QUrl::TolerantMode);
+  /// TODO: static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode = QUrl::TolerantMode);
   // static void setIdnWhitelist(const QStringList &);
   /// TODO: static void setIdnWhitelist(const QStringList &);
   // QUrl::DataPtr & data_ptr();

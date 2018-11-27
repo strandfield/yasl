@@ -58,10 +58,10 @@ static void register_line_edit_class(script::Namespace ns)
   register_line_edit_action_position_enum(line_edit);
   register_line_edit_echo_mode_enum(line_edit);
 
-  // QLineEdit(QWidget *);
+  // QLineEdit(QWidget * = (QWidget*)nullptr);
   bind::constructor<QLineEdit, QWidget *>(line_edit)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QLineEdit(const QString &, QWidget *);
+  // QLineEdit(const QString &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QLineEdit, const QString &, QWidget *>(line_edit)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QLineEdit();
@@ -116,10 +116,10 @@ static void register_line_edit_class(script::Namespace ns)
   bind::void_member_function<QLineEdit, Qt::Alignment, &QLineEdit::setAlignment>(line_edit, "setAlignment").create();
   // Qt::Alignment alignment() const;
   bind::member_function<QLineEdit, Qt::Alignment, &QLineEdit::alignment>(line_edit, "alignment").create();
-  // void cursorForward(bool, int);
+  // void cursorForward(bool, int = 1);
   bind::void_member_function<QLineEdit, bool, int, &QLineEdit::cursorForward>(line_edit, "cursorForward")
     .apply(bind::default_arguments(1)).create();
-  // void cursorBackward(bool, int);
+  // void cursorBackward(bool, int = 1);
   bind::void_member_function<QLineEdit, bool, int, &QLineEdit::cursorBackward>(line_edit, "cursorBackward")
     .apply(bind::default_arguments(1)).create();
   // void cursorWordForward(bool);

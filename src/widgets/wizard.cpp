@@ -109,8 +109,8 @@ static void register_wizard_class(script::Namespace ns)
   register_wizard_wizard_style_enum(wizard);
   register_wizard_wizard_option_enum(wizard);
 
-  // QWizard(QWidget *, Qt::WindowFlags);
-  /// TODO: QWizard(QWidget *, Qt::WindowFlags);
+  // QWizard(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QWizard(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   // ~QWizard();
   bind::destructor<QWizard>(wizard).create();
   // int addPage(QWizardPage *);
@@ -216,7 +216,7 @@ static void register_wizard_page_class(script::Namespace ns)
     .setBase(script::Type::QWidget).get();
 
 
-  // QWizardPage(QWidget *);
+  // QWizardPage(QWidget * = (QWidget*)nullptr);
   bind::constructor<QWizardPage, QWidget *>(wizard_page)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QWizardPage();

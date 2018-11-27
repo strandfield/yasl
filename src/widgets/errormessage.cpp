@@ -20,7 +20,7 @@ static void register_error_message_class(script::Namespace ns)
     .setBase(script::Type::QDialog).get();
 
 
-  // QErrorMessage(QWidget *);
+  // QErrorMessage(QWidget * = (QWidget*)nullptr);
   bind::constructor<QErrorMessage, QWidget *>(error_message)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QErrorMessage();

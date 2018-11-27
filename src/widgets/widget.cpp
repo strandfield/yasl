@@ -61,8 +61,8 @@ static void register_widget_class(script::Namespace ns)
   register_list_specialization<QWidget*>(widget.engine(), script::Type::QListQWidget);
   register_widget_render_flag_enum(widget);
 
-  // QWidget(QWidget *, Qt::WindowFlags);
-  /// TODO: QWidget(QWidget *, Qt::WindowFlags);
+  // QWidget(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: QWidget(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   // ~QWidget();
   bind::destructor<QWidget>(widget).create();
   // int devType() const;
@@ -239,17 +239,17 @@ static void register_widget_class(script::Namespace ns)
   bind::void_member_function<QWidget, &QWidget::clearMask>(widget, "clearMask").create();
   // void render(QPaintDevice *, const QPoint &, const QRegion &, QWidget::RenderFlags);
   /// TODO: void render(QPaintDevice *, const QPoint &, const QRegion &, QWidget::RenderFlags);
-  // void render(QPainter *, const QPoint &, const QRegion &, QWidget::RenderFlags);
-  /// TODO: void render(QPainter *, const QPoint &, const QRegion &, QWidget::RenderFlags);
-  // QPixmap grab(const QRect &);
+  // void render(QPainter *, const QPoint &, const QRegion &, QWidget::RenderFlags = QWidget::RenderFlags(QWidget::DrawWindowBackground | QWidget::DrawChildren));
+  /// TODO: void render(QPainter *, const QPoint &, const QRegion &, QWidget::RenderFlags = QWidget::RenderFlags(QWidget::DrawWindowBackground | QWidget::DrawChildren));
+  // QPixmap grab(const QRect & = QRect(QPoint(0, 0), QSize(-1, -1)));
   bind::member_function<QWidget, QPixmap, const QRect &, &QWidget::grab>(widget, "grab")
     .apply(bind::default_arguments(QRect(QPoint(0, 0), QSize(-1, -1)))).create();
   // QGraphicsEffect * graphicsEffect() const;
   /// TODO: QGraphicsEffect * graphicsEffect() const;
   // void setGraphicsEffect(QGraphicsEffect *);
   /// TODO: void setGraphicsEffect(QGraphicsEffect *);
-  // void grabGesture(Qt::GestureType, Qt::GestureFlags);
-  /// TODO: void grabGesture(Qt::GestureType, Qt::GestureFlags);
+  // void grabGesture(Qt::GestureType, Qt::GestureFlags = Qt::GestureFlags());
+  /// TODO: void grabGesture(Qt::GestureType, Qt::GestureFlags = Qt::GestureFlags());
   // void ungrabGesture(Qt::GestureType);
   bind::void_member_function<QWidget, Qt::GestureType, &QWidget::ungrabGesture>(widget, "ungrabGesture").create();
   // void setWindowTitle(const QString &);
@@ -358,15 +358,15 @@ static void register_widget_class(script::Namespace ns)
   bind::void_member_function<QWidget, &QWidget::grabKeyboard>(widget, "grabKeyboard").create();
   // void releaseKeyboard();
   bind::void_member_function<QWidget, &QWidget::releaseKeyboard>(widget, "releaseKeyboard").create();
-  // int grabShortcut(const QKeySequence &, Qt::ShortcutContext);
+  // int grabShortcut(const QKeySequence &, Qt::ShortcutContext = Qt::WindowShortcut);
   bind::member_function<QWidget, int, const QKeySequence &, Qt::ShortcutContext, &QWidget::grabShortcut>(widget, "grabShortcut")
     .apply(bind::default_arguments(Qt::WindowShortcut)).create();
   // void releaseShortcut(int);
   bind::void_member_function<QWidget, int, &QWidget::releaseShortcut>(widget, "releaseShortcut").create();
-  // void setShortcutEnabled(int, bool);
+  // void setShortcutEnabled(int, bool = true);
   bind::void_member_function<QWidget, int, bool, &QWidget::setShortcutEnabled>(widget, "setShortcutEnabled")
     .apply(bind::default_arguments(true)).create();
-  // void setShortcutAutoRepeat(int, bool);
+  // void setShortcutAutoRepeat(int, bool = true);
   bind::void_member_function<QWidget, int, bool, &QWidget::setShortcutAutoRepeat>(widget, "setShortcutAutoRepeat")
     .apply(bind::default_arguments(true)).create();
   // static QWidget * mouseGrabber();
@@ -523,7 +523,7 @@ static void register_widget_class(script::Namespace ns)
   /// TODO: void setWindowFlags(Qt::WindowFlags);
   // Qt::WindowFlags windowFlags() const;
   /// TODO: Qt::WindowFlags windowFlags() const;
-  // void setWindowFlag(Qt::WindowType, bool);
+  // void setWindowFlag(Qt::WindowType, bool = true);
   bind::void_member_function<QWidget, Qt::WindowType, bool, &QWidget::setWindowFlag>(widget, "setWindowFlag")
     .apply(bind::default_arguments(true)).create();
   // void overrideWindowFlags(Qt::WindowFlags);
@@ -536,7 +536,7 @@ static void register_widget_class(script::Namespace ns)
   bind::member_function<QWidget, QWidget *, int, int, &QWidget::childAt>(widget, "childAt").create();
   // QWidget * childAt(const QPoint &) const;
   bind::member_function<QWidget, QWidget *, const QPoint &, &QWidget::childAt>(widget, "childAt").create();
-  // void setAttribute(Qt::WidgetAttribute, bool);
+  // void setAttribute(Qt::WidgetAttribute, bool = true);
   bind::void_member_function<QWidget, Qt::WidgetAttribute, bool, &QWidget::setAttribute>(widget, "setAttribute")
     .apply(bind::default_arguments(true)).create();
   // bool testAttribute(Qt::WidgetAttribute) const;
@@ -555,8 +555,8 @@ static void register_widget_class(script::Namespace ns)
   /// TODO: QBackingStore * backingStore() const;
   // QWindow * windowHandle() const;
   bind::member_function<QWidget, QWindow *, &QWidget::windowHandle>(widget, "windowHandle").create();
-  // static QWidget * createWindowContainer(QWindow *, QWidget *, Qt::WindowFlags);
-  /// TODO: static QWidget * createWindowContainer(QWindow *, QWidget *, Qt::WindowFlags);
+  // static QWidget * createWindowContainer(QWindow *, QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+  /// TODO: static QWidget * createWindowContainer(QWindow *, QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   // void windowTitleChanged(const QString &);
   bind::signal<QWidget, const QString &>(widget, "windowTitleChanged", "windowTitleChanged(const QString &)");
   // void windowIconChanged(const QIcon &);

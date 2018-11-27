@@ -152,19 +152,19 @@ static void register_process_class(script::Namespace ns)
   register_process_input_channel_mode_enum(process);
   register_process_exit_status_enum(process);
 
-  // QProcess(QObject *);
+  // QProcess(QObject * = (QObject*) nullptr);
   bind::constructor<QProcess, QObject *>(process)
     .apply(bind::default_arguments((QObject*) nullptr)).create();
   // ~QProcess();
   bind::destructor<QProcess>(process).create();
   // void start(const QString &, const QStringList &, QIODevice::OpenMode);
   /// TODO: void start(const QString &, const QStringList &, QIODevice::OpenMode);
-  // void start(const QString &, QIODevice::OpenMode);
+  // void start(const QString &, QIODevice::OpenMode = QIODevice::OpenMode(QIODevice::ReadWrite));
   bind::void_member_function<QProcess, const QString &, QIODevice::OpenMode, &QProcess::start>(process, "start")
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // void start(QIODevice::OpenMode);
   bind::void_member_function<QProcess, QIODevice::OpenMode, &QProcess::start>(process, "start").create();
-  // bool open(QIODevice::OpenMode);
+  // bool open(QIODevice::OpenMode = QIODevice::OpenMode(QIODevice::ReadWrite));
   bind::member_function<QProcess, bool, QIODevice::OpenMode, &QProcess::open>(process, "open")
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // QString program() const;
@@ -197,10 +197,10 @@ static void register_process_class(script::Namespace ns)
   bind::void_member_function<QProcess, &QProcess::closeWriteChannel>(process, "closeWriteChannel").create();
   // void setStandardInputFile(const QString &);
   bind::void_member_function<QProcess, const QString &, &QProcess::setStandardInputFile>(process, "setStandardInputFile").create();
-  // void setStandardOutputFile(const QString &, QIODevice::OpenMode);
+  // void setStandardOutputFile(const QString &, QIODevice::OpenMode = QIODevice::OpenMode(QIODevice::Truncate));
   bind::void_member_function<QProcess, const QString &, QIODevice::OpenMode, &QProcess::setStandardOutputFile>(process, "setStandardOutputFile")
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::Truncate))).create();
-  // void setStandardErrorFile(const QString &, QIODevice::OpenMode);
+  // void setStandardErrorFile(const QString &, QIODevice::OpenMode = QIODevice::OpenMode(QIODevice::Truncate));
   bind::void_member_function<QProcess, const QString &, QIODevice::OpenMode, &QProcess::setStandardErrorFile>(process, "setStandardErrorFile")
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::Truncate))).create();
   // void setStandardOutputProcess(QProcess *);
@@ -229,16 +229,16 @@ static void register_process_class(script::Namespace ns)
   /// TODO: Q_PID pid() const;
   // qint64 processId() const;
   /// TODO: qint64 processId() const;
-  // bool waitForStarted(int);
+  // bool waitForStarted(int = 30000);
   bind::member_function<QProcess, bool, int, &QProcess::waitForStarted>(process, "waitForStarted")
     .apply(bind::default_arguments(30000)).create();
-  // bool waitForReadyRead(int);
+  // bool waitForReadyRead(int = 30000);
   bind::member_function<QProcess, bool, int, &QProcess::waitForReadyRead>(process, "waitForReadyRead")
     .apply(bind::default_arguments(30000)).create();
-  // bool waitForBytesWritten(int);
+  // bool waitForBytesWritten(int = 30000);
   bind::member_function<QProcess, bool, int, &QProcess::waitForBytesWritten>(process, "waitForBytesWritten")
     .apply(bind::default_arguments(30000)).create();
-  // bool waitForFinished(int);
+  // bool waitForFinished(int = 30000);
   bind::member_function<QProcess, bool, int, &QProcess::waitForFinished>(process, "waitForFinished")
     .apply(bind::default_arguments(30000)).create();
   // QByteArray readAllStandardOutput();

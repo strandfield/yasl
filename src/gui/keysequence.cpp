@@ -131,10 +131,10 @@ static void register_key_sequence_class(script::Namespace ns)
 
   // QKeySequence();
   bind::default_constructor<QKeySequence>(key_sequence).create();
-  // QKeySequence(const QString &, QKeySequence::SequenceFormat);
+  // QKeySequence(const QString &, QKeySequence::SequenceFormat = QKeySequence::NativeText);
   bind::constructor<QKeySequence, const QString &, QKeySequence::SequenceFormat>(key_sequence)
     .apply(bind::default_arguments(QKeySequence::NativeText)).create();
-  // QKeySequence(int, int, int, int);
+  // QKeySequence(int, int = 0, int = 0, int = 0);
   bind::constructor<QKeySequence, int, int, int, int>(key_sequence)
     .apply(bind::default_arguments(0, 0, 0)).create();
   // QKeySequence(const QKeySequence &);
@@ -147,16 +147,16 @@ static void register_key_sequence_class(script::Namespace ns)
   bind::member_function<QKeySequence, int, &QKeySequence::count>(key_sequence, "count").create();
   // bool isEmpty() const;
   bind::member_function<QKeySequence, bool, &QKeySequence::isEmpty>(key_sequence, "isEmpty").create();
-  // QString toString(QKeySequence::SequenceFormat) const;
+  // QString toString(QKeySequence::SequenceFormat = QKeySequence::PortableText) const;
   bind::member_function<QKeySequence, QString, QKeySequence::SequenceFormat, &QKeySequence::toString>(key_sequence, "toString")
     .apply(bind::default_arguments(QKeySequence::PortableText)).create();
-  // static QKeySequence fromString(const QString &, QKeySequence::SequenceFormat);
+  // static QKeySequence fromString(const QString &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
   bind::static_member_function<QKeySequence, QKeySequence, const QString &, QKeySequence::SequenceFormat, &QKeySequence::fromString>(key_sequence, "fromString")
     .apply(bind::default_arguments(QKeySequence::PortableText)).create();
-  // static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat);
-  /// TODO: static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat);
-  // static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat);
-  /// TODO: static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat);
+  // static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
+  /// TODO: static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
+  // static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
+  /// TODO: static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
   // QKeySequence::SequenceMatch matches(const QKeySequence &) const;
   bind::member_function<QKeySequence, QKeySequence::SequenceMatch, const QKeySequence &, &QKeySequence::matches>(key_sequence, "matches").create();
   // static QKeySequence mnemonic(const QString &);

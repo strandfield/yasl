@@ -61,8 +61,8 @@ static void register_window_class(script::Namespace ns)
   register_window_visibility_enum(window);
   register_window_ancestor_mode_enum(window);
 
-  // QWindow(QScreen *);
-  /// TODO: QWindow(QScreen *);
+  // QWindow(QScreen * = (QScreen*)nullptr);
+  /// TODO: QWindow(QScreen * = (QScreen*)nullptr);
   // QWindow(QWindow *);
   bind::constructor<QWindow, QWindow *>(window).create();
   // ~QWindow();
@@ -105,7 +105,7 @@ static void register_window_class(script::Namespace ns)
   /// TODO: void setFlags(Qt::WindowFlags);
   // Qt::WindowFlags flags() const;
   /// TODO: Qt::WindowFlags flags() const;
-  // void setFlag(Qt::WindowType, bool);
+  // void setFlag(Qt::WindowType, bool = true);
   bind::void_member_function<QWindow, Qt::WindowType, bool, &QWindow::setFlag>(window, "setFlag")
     .apply(bind::default_arguments(true)).create();
   // Qt::WindowType type() const;
@@ -140,7 +140,7 @@ static void register_window_class(script::Namespace ns)
   bind::void_member_function<QWindow, QWindow *, &QWindow::setTransientParent>(window, "setTransientParent").create();
   // QWindow * transientParent() const;
   bind::member_function<QWindow, QWindow *, &QWindow::transientParent>(window, "transientParent").create();
-  // bool isAncestorOf(const QWindow *, QWindow::AncestorMode) const;
+  // bool isAncestorOf(const QWindow *, QWindow::AncestorMode = QWindow::IncludeTransients) const;
   bind::member_function<QWindow, bool, const QWindow *, QWindow::AncestorMode, &QWindow::isAncestorOf>(window, "isAncestorOf")
     .apply(bind::default_arguments(QWindow::IncludeTransients)).create();
   // bool isExposed() const;

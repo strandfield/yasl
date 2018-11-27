@@ -78,13 +78,13 @@ static void register_action_class(script::Namespace ns)
   register_action_priority_enum(action);
   register_action_action_event_enum(action);
 
-  // QAction(QObject *);
+  // QAction(QObject * = (QObject*)nullptr);
   bind::constructor<QAction, QObject *>(action)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
-  // QAction(const QString &, QObject *);
+  // QAction(const QString &, QObject * = (QObject*)nullptr);
   bind::constructor<QAction, const QString &, QObject *>(action)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
-  // QAction(const QIcon &, const QString &, QObject *);
+  // QAction(const QIcon &, const QString &, QObject * = (QObject*)nullptr);
   bind::constructor<QAction, const QIcon &, const QString &, QObject *>(action)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QAction();
@@ -167,7 +167,7 @@ static void register_action_class(script::Namespace ns)
   bind::member_function<QAction, bool, &QAction::isVisible>(action, "isVisible").create();
   // void activate(QAction::ActionEvent);
   bind::void_member_function<QAction, QAction::ActionEvent, &QAction::activate>(action, "activate").create();
-  // bool showStatusText(QWidget *);
+  // bool showStatusText(QWidget * = (QWidget*)nullptr);
   bind::member_function<QAction, bool, QWidget *, &QAction::showStatusText>(action, "showStatusText")
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // void setMenuRole(QAction::MenuRole);

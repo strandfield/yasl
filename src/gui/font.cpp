@@ -192,7 +192,7 @@ static void register_font_class(script::Namespace ns)
 
   // QFont();
   bind::default_constructor<QFont>(font).create();
-  // QFont(const QString &, int, int, bool);
+  // QFont(const QString &, int = -1, int = -1, bool = false);
   bind::constructor<QFont, const QString &, int, int, bool>(font)
     .apply(bind::default_arguments(false, -1, -1)).create();
   // QFont(const QFont &, QPaintDevice *);
@@ -263,7 +263,7 @@ static void register_font_class(script::Namespace ns)
   bind::member_function<QFont, QFont::StyleHint, &QFont::styleHint>(font, "styleHint").create();
   // QFont::StyleStrategy styleStrategy() const;
   bind::member_function<QFont, QFont::StyleStrategy, &QFont::styleStrategy>(font, "styleStrategy").create();
-  // void setStyleHint(QFont::StyleHint, QFont::StyleStrategy);
+  // void setStyleHint(QFont::StyleHint, QFont::StyleStrategy = QFont::PreferDefault);
   bind::void_member_function<QFont, QFont::StyleHint, QFont::StyleStrategy, &QFont::setStyleHint>(font, "setStyleHint")
     .apply(bind::default_arguments(QFont::PreferDefault)).create();
   // void setStyleStrategy(QFont::StyleStrategy);

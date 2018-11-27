@@ -30,10 +30,10 @@ static void register_menu_class(script::Namespace ns)
 
   register_ref_specialization(menu.engine(), script::Type::QMenu, script::Type::QMenuStar);
 
-  // QMenu(QWidget *);
+  // QMenu(QWidget * = (QWidget*)nullptr);
   bind::constructor<QMenu, QWidget *>(menu)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
-  // QMenu(const QString &, QWidget *);
+  // QMenu(const QString &, QWidget * = (QWidget*)nullptr);
   bind::constructor<QMenu, const QString &, QWidget *>(menu)
     .apply(bind::default_arguments((QWidget*)nullptr)).create();
   // ~QMenu();
@@ -42,10 +42,10 @@ static void register_menu_class(script::Namespace ns)
   bind::member_function<QMenu, QAction *, const QString &, &QMenu::addAction>(menu, "addAction").create();
   // QAction * addAction(const QIcon &, const QString &);
   bind::member_function<QMenu, QAction *, const QIcon &, const QString &, &QMenu::addAction>(menu, "addAction").create();
-  // QAction * addAction(const QString &, const QObject *, const char *, const QKeySequence &);
-  /// TODO: QAction * addAction(const QString &, const QObject *, const char *, const QKeySequence &);
-  // QAction * addAction(const QIcon &, const QString &, const QObject *, const char *, const QKeySequence &);
-  /// TODO: QAction * addAction(const QIcon &, const QString &, const QObject *, const char *, const QKeySequence &);
+  // QAction * addAction(const QString &, const QObject *, const char *, const QKeySequence & = QKeySequence());
+  /// TODO: QAction * addAction(const QString &, const QObject *, const char *, const QKeySequence & = QKeySequence());
+  // QAction * addAction(const QIcon &, const QString &, const QObject *, const char *, const QKeySequence & = QKeySequence());
+  /// TODO: QAction * addAction(const QIcon &, const QString &, const QObject *, const char *, const QKeySequence & = QKeySequence());
   // QAction * addMenu(QMenu *);
   bind::member_function<QMenu, QAction *, QMenu *, &QMenu::addMenu>(menu, "addMenu").create();
   // QMenu * addMenu(const QString &);
@@ -90,12 +90,12 @@ static void register_menu_class(script::Namespace ns)
   bind::void_member_function<QMenu, QAction *, &QMenu::setActiveAction>(menu, "setActiveAction").create();
   // QAction * activeAction() const;
   bind::member_function<QMenu, QAction *, &QMenu::activeAction>(menu, "activeAction").create();
-  // void popup(const QPoint &, QAction *);
+  // void popup(const QPoint &, QAction * = (QAction*)nullptr);
   bind::void_member_function<QMenu, const QPoint &, QAction *, &QMenu::popup>(menu, "popup")
     .apply(bind::default_arguments((QAction*)nullptr)).create();
   // QAction * exec();
   bind::member_function<QMenu, QAction *, &QMenu::exec>(menu, "exec").create();
-  // QAction * exec(const QPoint &, QAction *);
+  // QAction * exec(const QPoint &, QAction * = (QAction*)nullptr);
   bind::member_function<QMenu, QAction *, const QPoint &, QAction *, &QMenu::exec>(menu, "exec")
     .apply(bind::default_arguments((QAction*)nullptr)).create();
   // static QAction * exec(QList<QAction *>, const QPoint &, QAction *, QWidget *);

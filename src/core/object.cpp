@@ -33,7 +33,7 @@ static void register_object_class(script::Namespace ns)
   /// TODO: static QString tr(const char *, const char *, int);
   // static QString trUtf8(const char *, const char *, int);
   /// TODO: static QString trUtf8(const char *, const char *, int);
-  // QObject(QObject *);
+  // QObject(QObject * = (QObject*)nullptr);
   bind::constructor<QObject, QObject *>(object)
     .apply(bind::default_arguments((QObject*)nullptr)).create();
   // ~QObject();
@@ -58,7 +58,7 @@ static void register_object_class(script::Namespace ns)
   /// TODO: QThread * thread() const;
   // void moveToThread(QThread *);
   /// TODO: void moveToThread(QThread *);
-  // int startTimer(int, Qt::TimerType);
+  // int startTimer(int, Qt::TimerType = Qt::CoarseTimer);
   bind::member_function<QObject, int, int, Qt::TimerType, &QObject::startTimer>(object, "startTimer")
     .apply(bind::default_arguments(Qt::CoarseTimer)).create();
   // int startTimer(std::chrono::milliseconds, Qt::TimerType);
@@ -112,6 +112,7 @@ static void register_object_class(script::Namespace ns)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 static void register_signal_blocker_class(script::Namespace ns)
 {
   using namespace script;
@@ -134,6 +135,7 @@ static void register_signal_blocker_class(script::Namespace ns)
   // void unblock();
   bind::void_member_function<QSignalBlocker, &QSignalBlocker::unblock>(signal_blocker, "unblock").create();
 }
+#endif
 
 
 void register_object_file(script::Namespace core)
@@ -143,7 +145,9 @@ void register_object_file(script::Namespace core)
   Namespace ns = core;
 
   register_object_class(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   register_signal_blocker_class(ns);
+#endif
 
   // QDebug operator<<(QDebug, const QObject *);
   /// TODO: QDebug operator<<(QDebug, const QObject *);

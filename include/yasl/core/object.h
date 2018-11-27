@@ -17,7 +17,9 @@ template<> struct make_type_t<QList<QObject*>> { inline static script::Type get(
 template<> struct make_type_t<QObject> { inline static script::Type get() { return script::Type::QObject; } };
 template<> struct tag_resolver<QObject> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QObject*> { inline static script::Type get() { return script::Type::QObjectStar; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 template<> struct make_type_t<QSignalBlocker> { inline static script::Type get() { return script::Type::QSignalBlocker; } };
+#endif
 } // namespace script
 
 #endif // YASL_CORE_OBJECT_H

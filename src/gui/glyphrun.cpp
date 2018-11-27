@@ -85,7 +85,7 @@ static void register_glyph_run_class(script::Namespace ns)
   bind::void_member_function<QGlyphRun, bool, &QGlyphRun::setRightToLeft>(glyph_run, "setRightToLeft").create();
   // bool isRightToLeft() const;
   bind::member_function<QGlyphRun, bool, &QGlyphRun::isRightToLeft>(glyph_run, "isRightToLeft").create();
-  // void setFlag(QGlyphRun::GlyphRunFlag, bool);
+  // void setFlag(QGlyphRun::GlyphRunFlag, bool = true);
   bind::void_member_function<QGlyphRun, QGlyphRun::GlyphRunFlag, bool, &QGlyphRun::setFlag>(glyph_run, "setFlag")
     .apply(bind::default_arguments(true)).create();
   // void setFlags(QGlyphRun::GlyphRunFlags);
