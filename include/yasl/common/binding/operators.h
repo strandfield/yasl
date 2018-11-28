@@ -9,6 +9,7 @@
 
 #include "yasl/common/wrappers/operator_wrapper.h"
 
+#include <script/class.h>
 #include <script/namespace.h>
 #include <script/operator.h>
 #include <script/operatorbuilder.h>

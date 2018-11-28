@@ -200,5 +200,5 @@ void Application::display(const script::Value & val)
   }
 
   /// TODO: better print
-  std::cout << mEngine.typeName(val.type()) << "@" << (int)val.impl() << std::endl;
+  std::cout << mEngine.typeName(val.type()) << "@" << (void*)(val.impl()) << std::endl;
 }
