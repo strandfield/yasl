@@ -4,6 +4,8 @@
 
 #include "cppparser.h"
 
+#ifdef YASL_META_HAS_LIBCLANG
+
 #include "project/class.h"
 #include "project/enum.h"
 #include "project/file.h"
@@ -243,3 +245,5 @@ void CppParser::parse(const QString & file, const ModuleRef & mo)
 
   mActiveModule = nullptr;
 }
+
+#endif // YASL_META_HAS_LIBCLANG

@@ -46,7 +46,9 @@ MainWindow::MainWindow()
   menuBar()->addAction("Open", this, SLOT(openProject()));
   menuBar()->addAction("Save", this, SLOT(saveProject()));
   menuBar()->addAction("New type", this, SLOT(createNewType()));
+#ifdef YASL_META_HAS_LIBCLANG
   menuBar()->addAction("Import", this, SLOT(importCpp()));
+#endif // YASL_META_HAS_LIBCLANG
   menuBar()->addAction("Generate", this, SLOT(generateBinding()));
 }
 

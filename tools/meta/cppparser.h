@@ -5,6 +5,8 @@
 #ifndef YASL_META_CPPPARSER_H
 #define YASL_META_CPPPARSER_H
 
+#ifdef YASL_META_HAS_LIBCLANG
+
 #include "project.h"
 
 #include "project/module.h"
@@ -27,5 +29,7 @@ public:
 
   void parse(const QString & file, const ModuleRef & mo);
 };
+
+#endif // YASL_META_HAS_LIBCLANG
 
 #endif // YASL_META_CPPPARSER_H

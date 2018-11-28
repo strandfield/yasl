@@ -56,11 +56,13 @@ void ImportPage::initializePage()
     m = m->get<Module>(modules.takeFirst());
   }
 
+#ifdef YASL_META_HAS_LIBCLANG
   CppParser parser{ fields.importedSymbols };
   parser.setIncludeDirectories(fields.includeDirectories);
 
   for (const auto & f : fields.fileList)
     parser.parse(f, m);
+#endif // YASL_META_HAS_LIBCLANG
 
   selectionTreeWidget->setProject(fields.importedSymbols);
   selectionTreeWidget->setShowCheckboxes(true);
