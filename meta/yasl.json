@@ -1,7 +1,6 @@
 {
     "modules": [
         {
-            "checked": 1,
             "elements": [
                 {
                     "checked": 1,
@@ -8869,7 +8868,7 @@
                         }
                     ],
                     "hincludes": "<QFileInfo>",
-                    "name": "fileinfo [h-includes:<QFileInfo>]",
+                    "name": "fileinfo",
                     "type": "file"
                 },
                 {
@@ -17727,7 +17726,6 @@
             "type": "module"
         },
         {
-            "checked": 1,
             "elements": [
                 {
                     "checked": 1,
@@ -30049,7 +30047,6 @@
             "type": "module"
         },
         {
-            "checked": 1,
             "elements": [
                 {
                     "elements": [
@@ -41773,6 +41770,10 @@
                 "header": "yasl/core/locale.h",
                 "id": "QLocaleCurrencySymbolFormat",
                 "name": "QLocale::CurrencySymbolFormat"
+            },
+            {
+                "id": "QLocaleDataSizeFormat",
+                "name": "QLocale::DataSizeFormat"
             },
             {
                 "header": "yasl/core/locale.h",
