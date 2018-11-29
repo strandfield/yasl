@@ -162,11 +162,11 @@
                                     "type": "function"
                                 },
                                 {
-                                    "checked": 0,
                                     "const": true,
                                     "name": "front",
                                     "signature": "->char",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.10.0"
                                 },
                                 {
                                     "checked": 0,
@@ -175,11 +175,11 @@
                                     "type": "function"
                                 },
                                 {
-                                    "checked": 0,
                                     "const": true,
                                     "name": "back",
                                     "signature": "->char",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.10.0"
                                 },
                                 {
                                     "checked": 0,
@@ -259,11 +259,11 @@
                                     "type": "function"
                                 },
                                 {
-                                    "checked": 0,
                                     "const": true,
                                     "name": "chopped",
                                     "signature": "int->QByteArray",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.10.0"
                                 },
                                 {
                                     "const": true,
@@ -395,7 +395,8 @@
                                 {
                                     "name": "prepend",
                                     "signature": "int;char->QByteArray &",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.7.0"
                                 },
                                 {
                                     "name": "prepend",
@@ -410,7 +411,8 @@
                                 {
                                     "name": "append",
                                     "signature": "int;char->QByteArray &",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.7.0"
                                 },
                                 {
                                     "name": "append",
@@ -425,7 +427,8 @@
                                 {
                                     "name": "insert",
                                     "signature": "int;int;char->QByteArray &",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.7.0"
                                 },
                                 {
                                     "name": "insert",
@@ -616,7 +619,8 @@
                                     "const": true,
                                     "name": "toBase64",
                                     "signature": "QByteArray::Base64Options->QByteArray",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
@@ -634,7 +638,8 @@
                                     "const": true,
                                     "name": "toHex",
                                     "signature": "char->QByteArray",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.9.0"
                                 },
                                 {
                                     "const": true,
@@ -727,7 +732,8 @@
                                     "name": "fromBase64",
                                     "signature": "const QByteArray &;QByteArray::Base64Options->QByteArray",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "name": "fromBase64",
@@ -848,10 +854,10 @@
                                     "type": "function"
                                 },
                                 {
-                                    "checked": 0,
                                     "name": "shrink_to_fit",
                                     "signature": "->void",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.10.0"
                                 },
                                 {
                                     "const": true,
@@ -7489,12 +7495,14 @@
                                 {
                                     "name": "QDateTime",
                                     "signature": "const QDate &;const QTime &;Qt::TimeSpec;int",
-                                    "type": "constructor"
+                                    "type": "constructor",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "name": "QDateTime",
                                     "signature": "const QDate &;const QTime &;const QTimeZone &",
-                                    "type": "constructor"
+                                    "type": "constructor",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "name": "QDateTime",
@@ -7559,25 +7567,29 @@
                                     "const": true,
                                     "name": "offsetFromUtc",
                                     "signature": "->int",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
                                     "name": "timeZone",
                                     "signature": "->QTimeZone",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
                                     "name": "timeZoneAbbreviation",
                                     "signature": "->QString",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
                                     "name": "isDaylightTime",
                                     "signature": "->bool",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
@@ -7589,7 +7601,8 @@
                                     "const": true,
                                     "name": "toSecsSinceEpoch",
                                     "signature": "->qint64",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.8.0"
                                 },
                                 {
                                     "name": "setDate",
@@ -7609,12 +7622,14 @@
                                 {
                                     "name": "setOffsetFromUtc",
                                     "signature": "int->void",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "name": "setTimeZone",
                                     "signature": "const QTimeZone &->void",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "name": "setMSecsSinceEpoch",
@@ -7624,7 +7639,8 @@
                                 {
                                     "name": "setSecsSinceEpoch",
                                     "signature": "qint64->void",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.8.0"
                                 },
                                 {
                                     "const": true,
@@ -7697,13 +7713,15 @@
                                     "const": true,
                                     "name": "toOffsetFromUtc",
                                     "signature": "int->QDateTime",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
                                     "name": "toTimeZone",
                                     "signature": "const QTimeZone &->QDateTime",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
@@ -7831,29 +7849,34 @@
                                     "type": "function"
                                 },
                                 {
+                                    "defaults": "0",
+                                    "name": "fromMSecsSinceEpoch",
+                                    "signature": "qint64;Qt::TimeSpec;int->QDateTime",
+                                    "static": true,
+                                    "type": "function",
+                                    "version": "5.2.0"
+                                },
+                                {
                                     "defaults": "0;Qt::LocalTime",
-                                    "name": "fromMSecsSinceEpoch",
-                                    "signature": "qint64;Qt::TimeSpec;int->QDateTime",
-                                    "static": true,
-                                    "type": "function"
-                                },
-                                {
                                     "name": "fromSecsSinceEpoch",
                                     "signature": "qint64;Qt::TimeSpec;int->QDateTime",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.8.0"
                                 },
                                 {
                                     "name": "fromMSecsSinceEpoch",
                                     "signature": "qint64;const QTimeZone &->QDateTime",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "name": "fromSecsSinceEpoch",
                                     "signature": "qint64;const QTimeZone &->QDateTime",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.8.0"
                                 },
                                 {
                                     "name": "currentMSecsSinceEpoch",
@@ -7865,7 +7888,8 @@
                                     "name": "currentSecsSinceEpoch",
                                     "signature": "->qint64",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.8.0"
                                 }
                             ],
                             "name": "QDateTime",
@@ -8168,7 +8192,8 @@
                                     "defaults": "QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot)",
                                     "name": "isEmpty",
                                     "signature": "QDir::Filters->bool",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.9.0"
                                 },
                                 {
                                     "const": true,
@@ -8324,7 +8349,8 @@
                                     "name": "listSeparator",
                                     "signature": "->QChar",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.6.0"
                                 },
                                 {
                                     "name": "separator",
@@ -8465,10 +8491,8 @@
                     "type": "file"
                 },
                 {
-                    "checked": 1,
                     "elements": [
                         {
-                            "checked": 1,
                             "elements": [
                                 {
                                     "name": "QFileInfo",
@@ -8556,7 +8580,8 @@
                                     "name": "exists",
                                     "signature": "const QString &->bool",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "name": "refresh",
@@ -8785,18 +8810,18 @@
                                     "type": "function"
                                 },
                                 {
-                                    "checked": 0,
                                     "const": true,
                                     "name": "birthTime",
                                     "signature": "->QDateTime",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.10.0"
                                 },
                                 {
-                                    "checked": 0,
                                     "const": true,
                                     "name": "metadataChangeTime",
                                     "signature": "->QDateTime",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.10.0"
                                 },
                                 {
                                     "const": true,
@@ -8811,11 +8836,11 @@
                                     "type": "function"
                                 },
                                 {
-                                    "checked": 0,
                                     "const": true,
                                     "name": "fileTime",
                                     "signature": "QFile::FileTime->QDateTime",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.10.0"
                                 },
                                 {
                                     "const": true,
@@ -8844,7 +8869,7 @@
                         }
                     ],
                     "hincludes": "<QFileInfo>",
-                    "name": "fileinfo",
+                    "name": "fileinfo [h-includes:<QFileInfo>]",
                     "type": "file"
                 },
                 {
@@ -9395,7 +9420,8 @@
                                     "const": true,
                                     "name": "adjusted",
                                     "signature": "QUrl::FormattingOptions->QUrl",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
@@ -9430,7 +9456,8 @@
                                     "name": "fromUserInput",
                                     "signature": "const QString &;const QString &;QUrl::UserInputResolutionOptions->QUrl",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.4.0"
                                 },
                                 {
                                     "const": true,
@@ -9568,7 +9595,8 @@
                                     "defaults": "QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)",
                                     "name": "fileName",
                                     "signature": "QUrl::ComponentFormattingOptions->QString",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "const": true,
@@ -9681,7 +9709,8 @@
                                     "const": true,
                                     "name": "matches",
                                     "signature": "const QUrl &;QUrl::FormattingOptions->bool",
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.2.0"
                                 },
                                 {
                                     "name": "fromPercentEncoding",
@@ -9719,14 +9748,16 @@
                                     "name": "toStringList",
                                     "signature": "const QList<QUrl> &;QUrl::FormattingOptions->QStringList",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.1.0"
                                 },
                                 {
                                     "defaults": "QUrl::TolerantMode",
                                     "name": "fromStringList",
                                     "signature": "const QStringList &;QUrl::ParsingMode->QList<QUrl>",
                                     "static": true,
-                                    "type": "function"
+                                    "type": "function",
+                                    "version": "5.1.0"
                                 },
                                 {
                                     "name": "setIdnWhitelist",

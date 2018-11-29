@@ -59,10 +59,12 @@ void register_list_specialization(script::Engine *e, script::Type::BuiltInType t
   /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::constBegin>(list, "constBegin").create();
   // const_iterator constEnd() const
   /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::constEnd>(list, "constEnd").create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   // const T & constFirst() const
   bind::member_function<List, const T &, &QList<T>::constFirst>(list, "constFirst").create();
   // const T & constLast() const
   bind::member_function<List, const T &, &QList<T>::constLast>(list, "constLast").create();
+#endif
   // bool contains(const T &value) const
   bind::member_function<List, bool, const T &, &QList<T>::contains>(list, "contains").create();
   // int count(const T &value) const
