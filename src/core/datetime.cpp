@@ -227,10 +227,14 @@ static void register_date_time_class(script::Namespace ns)
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec = Qt::LocalTime);
   bind::constructor<QDateTime, const QDate &, const QTime &, Qt::TimeSpec>(date_time)
     .apply(bind::default_arguments(Qt::LocalTime)).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QDateTime(const QDate &, const QTime &, Qt::TimeSpec, int);
   bind::constructor<QDateTime, const QDate &, const QTime &, Qt::TimeSpec, int>(date_time).create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QDateTime(const QDate &, const QTime &, const QTimeZone &);
   bind::constructor<QDateTime, const QDate &, const QTime &, const QTimeZone &>(date_time).create();
+#endif
   // QDateTime(const QDateTime &);
   bind::constructor<QDateTime, const QDateTime &>(date_time).create();
   // QDateTime(QDateTime &&);
@@ -253,32 +257,48 @@ static void register_date_time_class(script::Namespace ns)
   bind::member_function<QDateTime, QTime, &QDateTime::time>(date_time, "time").create();
   // Qt::TimeSpec timeSpec() const;
   bind::member_function<QDateTime, Qt::TimeSpec, &QDateTime::timeSpec>(date_time, "timeSpec").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // int offsetFromUtc() const;
   bind::member_function<QDateTime, int, &QDateTime::offsetFromUtc>(date_time, "offsetFromUtc").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QTimeZone timeZone() const;
   bind::member_function<QDateTime, QTimeZone, &QDateTime::timeZone>(date_time, "timeZone").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QString timeZoneAbbreviation() const;
   bind::member_function<QDateTime, QString, &QDateTime::timeZoneAbbreviation>(date_time, "timeZoneAbbreviation").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // bool isDaylightTime() const;
   bind::member_function<QDateTime, bool, &QDateTime::isDaylightTime>(date_time, "isDaylightTime").create();
+#endif
   // qint64 toMSecsSinceEpoch() const;
   /// TODO: qint64 toMSecsSinceEpoch() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // qint64 toSecsSinceEpoch() const;
   /// TODO: qint64 toSecsSinceEpoch() const;
+#endif
   // void setDate(const QDate &);
   bind::void_member_function<QDateTime, const QDate &, &QDateTime::setDate>(date_time, "setDate").create();
   // void setTime(const QTime &);
   bind::void_member_function<QDateTime, const QTime &, &QDateTime::setTime>(date_time, "setTime").create();
   // void setTimeSpec(Qt::TimeSpec);
   bind::void_member_function<QDateTime, Qt::TimeSpec, &QDateTime::setTimeSpec>(date_time, "setTimeSpec").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setOffsetFromUtc(int);
   bind::void_member_function<QDateTime, int, &QDateTime::setOffsetFromUtc>(date_time, "setOffsetFromUtc").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setTimeZone(const QTimeZone &);
   bind::void_member_function<QDateTime, const QTimeZone &, &QDateTime::setTimeZone>(date_time, "setTimeZone").create();
+#endif
   // void setMSecsSinceEpoch(qint64);
   /// TODO: void setMSecsSinceEpoch(qint64);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // void setSecsSinceEpoch(qint64);
   /// TODO: void setSecsSinceEpoch(qint64);
+#endif
   // QString toString(Qt::DateFormat = Qt::TextDate) const;
   bind::member_function<QDateTime, QString, Qt::DateFormat, &QDateTime::toString>(date_time, "toString")
     .apply(bind::default_arguments(Qt::TextDate)).create();
@@ -302,10 +322,14 @@ static void register_date_time_class(script::Namespace ns)
   bind::member_function<QDateTime, QDateTime, &QDateTime::toLocalTime>(date_time, "toLocalTime").create();
   // QDateTime toUTC() const;
   bind::member_function<QDateTime, QDateTime, &QDateTime::toUTC>(date_time, "toUTC").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QDateTime toOffsetFromUtc(int) const;
   bind::member_function<QDateTime, QDateTime, int, &QDateTime::toOffsetFromUtc>(date_time, "toOffsetFromUtc").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QDateTime toTimeZone(const QTimeZone &) const;
   bind::member_function<QDateTime, QDateTime, const QTimeZone &, &QDateTime::toTimeZone>(date_time, "toTimeZone").create();
+#endif
   // qint64 daysTo(const QDateTime &) const;
   /// TODO: qint64 daysTo(const QDateTime &) const;
   // qint64 secsTo(const QDateTime &) const;
@@ -349,18 +373,28 @@ static void register_date_time_class(script::Namespace ns)
   bind::static_member_function<QDateTime, QDateTime, uint, const QTimeZone &, &QDateTime::fromTime_t>(date_time, "fromTime_t").create();
   // static QDateTime fromMSecsSinceEpoch(qint64);
   /// TODO: static QDateTime fromMSecsSinceEpoch(qint64);
-  // static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec = Qt::LocalTime, int = 0);
-  /// TODO: static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec = Qt::LocalTime, int = 0);
-  // static QDateTime fromSecsSinceEpoch(qint64, Qt::TimeSpec, int);
-  /// TODO: static QDateTime fromSecsSinceEpoch(qint64, Qt::TimeSpec, int);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+  // static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec, int = 0);
+  /// TODO: static QDateTime fromMSecsSinceEpoch(qint64, Qt::TimeSpec, int = 0);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
+  // static QDateTime fromSecsSinceEpoch(qint64, Qt::TimeSpec = Qt::LocalTime, int = 0);
+  /// TODO: static QDateTime fromSecsSinceEpoch(qint64, Qt::TimeSpec = Qt::LocalTime, int = 0);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QDateTime fromMSecsSinceEpoch(qint64, const QTimeZone &);
   /// TODO: static QDateTime fromMSecsSinceEpoch(qint64, const QTimeZone &);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // static QDateTime fromSecsSinceEpoch(qint64, const QTimeZone &);
   /// TODO: static QDateTime fromSecsSinceEpoch(qint64, const QTimeZone &);
+#endif
   // static qint64 currentMSecsSinceEpoch();
   /// TODO: static qint64 currentMSecsSinceEpoch();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // static qint64 currentSecsSinceEpoch();
   /// TODO: static qint64 currentSecsSinceEpoch();
+#endif
 
   yasl::registerVariantHandler<yasl::GenericVariantHandler<QDateTime, QMetaType::QDateTime>>();
 }

@@ -53,8 +53,10 @@ static void register_file_info_class(script::Namespace ns)
   bind::void_member_function<QFileInfo, const QDir &, const QString &, &QFileInfo::setFile>(file_info, "setFile").create();
   // bool exists() const;
   bind::member_function<QFileInfo, bool, &QFileInfo::exists>(file_info, "exists").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static bool exists(const QString &);
   bind::static_member_function<QFileInfo, bool, const QString &, &QFileInfo::exists>(file_info, "exists").create();
+#endif
   // void refresh();
   bind::void_member_function<QFileInfo, &QFileInfo::refresh>(file_info, "refresh").create();
   // QString filePath() const;
@@ -131,10 +133,22 @@ static void register_file_info_class(script::Namespace ns)
   /// TODO: qint64 size() const;
   // QDateTime created() const;
   bind::member_function<QFileInfo, QDateTime, &QFileInfo::created>(file_info, "created").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // QDateTime birthTime() const;
+  bind::member_function<QFileInfo, QDateTime, &QFileInfo::birthTime>(file_info, "birthTime").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // QDateTime metadataChangeTime() const;
+  bind::member_function<QFileInfo, QDateTime, &QFileInfo::metadataChangeTime>(file_info, "metadataChangeTime").create();
+#endif
   // QDateTime lastModified() const;
   bind::member_function<QFileInfo, QDateTime, &QFileInfo::lastModified>(file_info, "lastModified").create();
   // QDateTime lastRead() const;
   bind::member_function<QFileInfo, QDateTime, &QFileInfo::lastRead>(file_info, "lastRead").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // QDateTime fileTime(QFile::FileTime) const;
+  /// TODO: QDateTime fileTime(QFile::FileTime) const;
+#endif
   // bool caching() const;
   bind::member_function<QFileInfo, bool, &QFileInfo::caching>(file_info, "caching").create();
   // void setCaching(bool);

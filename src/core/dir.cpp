@@ -141,9 +141,11 @@ static void register_dir_class(script::Namespace ns)
   bind::void_member_function<QDir, QDir::SortFlags, &QDir::setSorting>(dir, "setSorting").create();
   // uint count() const;
   bind::member_function<QDir, uint, &QDir::count>(dir, "count").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // bool isEmpty(QDir::Filters = QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot)) const;
   bind::member_function<QDir, bool, QDir::Filters, &QDir::isEmpty>(dir, "isEmpty")
     .apply(bind::default_arguments(QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot))).create();
+#endif
   // QString operator[](int) const;
   bind::memop_const_subscript<QDir, QString, int>(dir);
   // static QStringList nameFiltersFromString(const QString &);
@@ -194,8 +196,10 @@ static void register_dir_class(script::Namespace ns)
   bind::member_function<QDir, bool, const QString &, &QDir::exists>(dir, "exists").create();
   // static QFileInfoList drives();
   /// TODO: static QFileInfoList drives();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // static QChar listSeparator();
   bind::static_member_function<QDir, QChar, &QDir::listSeparator>(dir, "listSeparator").create();
+#endif
   // static QChar separator();
   bind::static_member_function<QDir, QChar, &QDir::separator>(dir, "separator").create();
   // static bool setCurrent(const QString &);

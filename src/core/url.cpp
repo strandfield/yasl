@@ -122,8 +122,10 @@ static void register_url_class(script::Namespace ns)
   /// TODO: QString toString(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded)) const;
   // QString toDisplayString(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded)) const;
   /// TODO: QString toDisplayString(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded)) const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QUrl adjusted(QUrl::FormattingOptions) const;
   /// TODO: QUrl adjusted(QUrl::FormattingOptions) const;
+#endif
   // QByteArray toEncoded(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::FullyEncoded)) const;
   /// TODO: QByteArray toEncoded(QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::FullyEncoded)) const;
   // static QUrl fromEncoded(const QByteArray &, QUrl::ParsingMode = QUrl::TolerantMode);
@@ -131,9 +133,11 @@ static void register_url_class(script::Namespace ns)
     .apply(bind::default_arguments(QUrl::TolerantMode)).create();
   // static QUrl fromUserInput(const QString &);
   bind::static_member_function<QUrl, QUrl, const QString &, &QUrl::fromUserInput>(url, "fromUserInput").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // static QUrl fromUserInput(const QString &, const QString &, QUrl::UserInputResolutionOptions = QUrl::UserInputResolutionOptions(QUrl::DefaultResolution));
   bind::static_member_function<QUrl, QUrl, const QString &, const QString &, QUrl::UserInputResolutionOptions, &QUrl::fromUserInput>(url, "fromUserInput")
     .apply(bind::default_arguments(QUrl::UserInputResolutionOptions(QUrl::DefaultResolution))).create();
+#endif
   // bool isValid() const;
   bind::member_function<QUrl, bool, &QUrl::isValid>(url, "isValid").create();
   // QString errorString() const;
@@ -190,9 +194,11 @@ static void register_url_class(script::Namespace ns)
   // QString path(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::path>(url, "path")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QString fileName(QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::FullyDecoded)) const;
   bind::member_function<QUrl, QString, QUrl::ComponentFormattingOptions, &QUrl::fileName>(url, "fileName")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::FullyDecoded))).create();
+#endif
   // bool hasQuery() const;
   bind::member_function<QUrl, bool, &QUrl::hasQuery>(url, "hasQuery").create();
   // void setQuery(const QString &, QUrl::ParsingMode = QUrl::TolerantMode);
@@ -232,8 +238,10 @@ static void register_url_class(script::Namespace ns)
   bind::memop_eq<QUrl, const QUrl &>(url);
   // bool operator!=(const QUrl &) const;
   bind::memop_neq<QUrl, const QUrl &>(url);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // bool matches(const QUrl &, QUrl::FormattingOptions) const;
   /// TODO: bool matches(const QUrl &, QUrl::FormattingOptions) const;
+#endif
   // static QString fromPercentEncoding(const QByteArray &);
   bind::static_member_function<QUrl, QString, const QByteArray &, &QUrl::fromPercentEncoding>(url, "fromPercentEncoding").create();
   // static QByteArray toPercentEncoding(const QString &, const QByteArray & = QByteArray(), const QByteArray & = QByteArray());
@@ -245,10 +253,14 @@ static void register_url_class(script::Namespace ns)
   bind::static_member_function<QUrl, QByteArray, const QString &, &QUrl::toAce>(url, "toAce").create();
   // static QStringList idnWhitelist();
   /// TODO: static QStringList idnWhitelist();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded));
   /// TODO: static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded));
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode = QUrl::TolerantMode);
   /// TODO: static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode = QUrl::TolerantMode);
+#endif
   // static void setIdnWhitelist(const QStringList &);
   /// TODO: static void setIdnWhitelist(const QStringList &);
   // QUrl::DataPtr & data_ptr();

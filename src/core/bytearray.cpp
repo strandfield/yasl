@@ -91,6 +91,14 @@ static void register_byte_array_class(script::Namespace ns)
   bind::memop_const_subscript<QByteArray, char, int>(byte_array);
   // QByteRef operator[](int);
   bind::memop_subscript<QByteArray, QByteRef, int>(byte_array);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // char front() const;
+  bind::member_function<QByteArray, char, &QByteArray::front>(byte_array, "front").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // char back() const;
+  bind::member_function<QByteArray, char, &QByteArray::back>(byte_array, "back").create();
+#endif
   // int indexOf(char, int = 0) const;
   bind::member_function<QByteArray, int, char, int, &QByteArray::indexOf>(byte_array, "indexOf")
     .apply(bind::default_arguments(0)).create();
@@ -118,6 +126,10 @@ static void register_byte_array_class(script::Namespace ns)
   // QByteArray mid(int, int = -1) const;
   bind::member_function<QByteArray, QByteArray, int, int, &QByteArray::mid>(byte_array, "mid")
     .apply(bind::default_arguments(-1)).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // QByteArray chopped(int) const;
+  bind::member_function<QByteArray, QByteArray, int, &QByteArray::chopped>(byte_array, "chopped").create();
+#endif
   // bool startsWith(const QByteArray &) const;
   bind::member_function<QByteArray, bool, const QByteArray &, &QByteArray::startsWith>(byte_array, "startsWith").create();
   // bool startsWith(char) const;
@@ -146,20 +158,26 @@ static void register_byte_array_class(script::Namespace ns)
     .apply(bind::default_arguments(false, ' ')).create();
   // QByteArray & prepend(char);
   bind::chainable_memfn<QByteArray, char, &QByteArray::prepend>(byte_array, "prepend").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QByteArray & prepend(int, char);
   bind::chainable_memfn<QByteArray, int, char, &QByteArray::prepend>(byte_array, "prepend").create();
+#endif
   // QByteArray & prepend(const QByteArray &);
   bind::chainable_memfn<QByteArray, const QByteArray &, &QByteArray::prepend>(byte_array, "prepend").create();
   // QByteArray & append(char);
   bind::chainable_memfn<QByteArray, char, &QByteArray::append>(byte_array, "append").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QByteArray & append(int, char);
   bind::chainable_memfn<QByteArray, int, char, &QByteArray::append>(byte_array, "append").create();
+#endif
   // QByteArray & append(const QByteArray &);
   bind::chainable_memfn<QByteArray, const QByteArray &, &QByteArray::append>(byte_array, "append").create();
   // QByteArray & insert(int, char);
   bind::chainable_memfn<QByteArray, int, char, &QByteArray::insert>(byte_array, "insert").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QByteArray & insert(int, int, char);
   bind::chainable_memfn<QByteArray, int, int, char, &QByteArray::insert>(byte_array, "insert").create();
+#endif
   // QByteArray & insert(int, const QByteArray &);
   bind::chainable_memfn<QByteArray, int, const QByteArray &, &QByteArray::insert>(byte_array, "insert").create();
   // QByteArray & remove(int, int);
@@ -226,14 +244,18 @@ static void register_byte_array_class(script::Namespace ns)
   /// TODO: float toFloat(bool *) const;
   // double toDouble(bool *) const;
   /// TODO: double toDouble(bool *) const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QByteArray toBase64(QByteArray::Base64Options) const;
   bind::member_function<QByteArray, QByteArray, QByteArray::Base64Options, &QByteArray::toBase64>(byte_array, "toBase64").create();
+#endif
   // QByteArray toBase64() const;
   bind::member_function<QByteArray, QByteArray, &QByteArray::toBase64>(byte_array, "toBase64").create();
   // QByteArray toHex() const;
   bind::member_function<QByteArray, QByteArray, &QByteArray::toHex>(byte_array, "toHex").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // QByteArray toHex(char) const;
   bind::member_function<QByteArray, QByteArray, char, &QByteArray::toHex>(byte_array, "toHex").create();
+#endif
   // QByteArray toPercentEncoding(const QByteArray &, const QByteArray &, char) const;
   bind::member_function<QByteArray, QByteArray, const QByteArray &, const QByteArray &, char, &QByteArray::toPercentEncoding>(byte_array, "toPercentEncoding").create();
   // QByteArray & setNum(short, int);
@@ -261,8 +283,10 @@ static void register_byte_array_class(script::Namespace ns)
   /// TODO: static QByteArray number(qulonglong, int);
   // static QByteArray number(double, char, int);
   bind::static_member_function<QByteArray, QByteArray, double, char, int, &QByteArray::number>(byte_array, "number").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QByteArray fromBase64(const QByteArray &, QByteArray::Base64Options);
   bind::static_member_function<QByteArray, QByteArray, const QByteArray &, QByteArray::Base64Options, &QByteArray::fromBase64>(byte_array, "fromBase64").create();
+#endif
   // static QByteArray fromBase64(const QByteArray &);
   bind::static_member_function<QByteArray, QByteArray, const QByteArray &, &QByteArray::fromBase64>(byte_array, "fromBase64").create();
   // static QByteArray fromHex(const QByteArray &);
@@ -305,6 +329,10 @@ static void register_byte_array_class(script::Namespace ns)
   bind::void_member_function<QByteArray, char, &QByteArray::push_front>(byte_array, "push_front").create();
   // void push_front(const QByteArray &);
   bind::void_member_function<QByteArray, const QByteArray &, &QByteArray::push_front>(byte_array, "push_front").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // void shrink_to_fit();
+  bind::void_member_function<QByteArray, &QByteArray::shrink_to_fit>(byte_array, "shrink_to_fit").create();
+#endif
   // int count() const;
   bind::member_function<QByteArray, int, &QByteArray::count>(byte_array, "count").create();
   // int length() const;

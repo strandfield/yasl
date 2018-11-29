@@ -40,8 +40,6 @@ static void register_pixmap_class(script::Namespace ns)
   bind::constructor<QPixmap, const QSize &>(pixmap).create();
   // QPixmap(const QString &, const char *, Qt::ImageConversionFlags);
   /// TODO: QPixmap(const QString &, const char *, Qt::ImageConversionFlags);
-  // QPixmap(const char *const []);
-  /// TODO: QPixmap(const char *const []);
   // QPixmap(const QPixmap &);
   bind::constructor<QPixmap, const QPixmap &>(pixmap).create();
   // ~QPixmap();

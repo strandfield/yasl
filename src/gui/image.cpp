@@ -94,8 +94,6 @@ static void register_image_class(script::Namespace ns)
   /// TODO: QImage(uchar *, int, int, int, QImage::Format, QImageCleanupFunction, void *);
   // QImage(const uchar *, int, int, int, QImage::Format, QImageCleanupFunction, void *);
   /// TODO: QImage(const uchar *, int, int, int, QImage::Format, QImageCleanupFunction, void *);
-  // QImage(const char *const []);
-  /// TODO: QImage(const char *const []);
   // QImage(const QString &, const char *);
   /// TODO: QImage(const QString &, const char *);
   // QImage(const QImage &);
