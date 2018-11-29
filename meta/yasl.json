@@ -20090,11 +20090,6 @@
                                 },
                                 {
                                     "name": "QPixmap",
-                                    "signature": "const char *const []",
-                                    "type": "constructor"
-                                },
-                                {
-                                    "name": "QPixmap",
                                     "signature": "const QPixmap &",
                                     "type": "constructor"
                                 },
@@ -20911,11 +20906,6 @@
                                 {
                                     "name": "QImage",
                                     "signature": "const uchar *;int;int;int;QImage::Format;QImageCleanupFunction;void *",
-                                    "type": "constructor"
-                                },
-                                {
-                                    "name": "QImage",
-                                    "signature": "const char *const []",
                                     "type": "constructor"
                                 },
                                 {
