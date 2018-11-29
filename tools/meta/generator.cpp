@@ -872,6 +872,10 @@ void Generator::generate(EnumRef enm)
   QString enmname = enum_info.rename.isEmpty() ? removeQualification(enum_info.name) : enum_info.rename;
 
   QString out;
+
+  if (!enm->version.isNull())
+    out += QString("#if %1").arg(HeaderFile::versionCheck(enm->version)) + endl;
+
   out += "static void register_" + pre + snake + "_enum(script::" + enclosingEntity() + " " + enclosing_snake_name() + ")" + endl;
   out += "{" + endl;
   out += "  using namespace script;" + endl;
@@ -908,10 +912,20 @@ void Generator::generate(EnumRef enm)
     if (v->checkState == Qt::Unchecked)
       continue;
 
+    if (!v->version.isNull())
+      out += QString("#if %1").arg(HeaderFile::versionCheck(v->version)) + endl;
+
     out += format.arg(snake, v->name, nameQualification() + v->name) + endl;
+
+    if (!v->version.isNull())
+      out += QString("#endif") + endl;
   }
 
   out += "}" + endl;
+
+  if (!enm->version.isNull())
+    out += QString("#endif") + endl;
+
   out += endl;
 
   currentSource().functions.append(out);
