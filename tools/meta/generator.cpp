@@ -775,6 +775,9 @@ void Generator::generate(ClassRef cla)
     if (n->checkState == Qt::Unchecked)
       continue;
 
+    if (!n->is<Enum>() && !n->is<Class>())
+      continue;
+
     if (!n->version.isNull())
       out += QString("#if %1").arg(HeaderFile::versionCheck(n->version)) + endl;
 
@@ -962,6 +965,9 @@ void Generator::generate(NamespaceRef ns)
   for (const auto n : ns->elements)
   {
     if (n->checkState == Qt::Unchecked)
+      continue;
+
+    if (!n->is<Enum>() && !n->is<Class>() && !n->is<Namespace>())
       continue;
 
     if (!n->version.isNull())
