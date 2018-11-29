@@ -54,7 +54,7 @@ MainWindow::MainWindow()
 
 void MainWindow::openProject()
 {
-  QString path = QFileDialog::getOpenFileName(this, "Open project", QString(), QString("Meta project (*.json)"));
+  QString path = QFileDialog::getOpenFileName(this, "Open project", QString(), QString("Meta project (*.json *.yaml)"));
   if (path.isEmpty())
     return;
 

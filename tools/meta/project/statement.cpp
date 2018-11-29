@@ -4,6 +4,8 @@
 
 #include "project/statement.h"
 
+#include "yaml/value.h"
+
 #include <QJsonArray>
 
 const QString Statement::staticTypeCode = "statement";
@@ -24,4 +26,24 @@ void Statement::fillJson(QJsonObject & obj) const
 QSharedPointer<Node> Statement::fromJson(const QJsonObject & val)
 {
   return StatementRef::create(val.value("value").toString(), json::readCheckState(val));
+}
+
+yaml::Value Statement::toYaml() const
+{
+  QStringList elems;
+
+  elems << name;
+  elems << yaml::checkStateField(checkState);
+
+  yaml::Object ret;
+  ret["statement"] = elems.join(QString());
+  return ret;
+}
+
+QSharedPointer<Node> Statement::fromYaml(const yaml::Object & inputobj)
+{
+  QString value = inputobj.value("statement").toString();
+
+  auto ret = StatementRef::create(value.mid(0, value.indexOf('[')), yaml::checkstate(value));
+  return ret;
 }

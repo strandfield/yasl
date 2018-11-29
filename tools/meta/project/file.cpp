@@ -4,6 +4,8 @@
 
 #include "project/file.h"
 
+#include "yaml/value.h"
+
 #include <QJsonArray>
 #include <QJsonObject>
 
@@ -57,6 +59,59 @@ QSharedPointer<Node> File::fromJson(const QJsonObject & obj)
 
   if (obj.contains("cppincludes"))
     ret->cppincludes = obj.value("cppincludes").toString().split(",", QString::SkipEmptyParts);
+
+  return ret;
+}
+
+yaml::Value File::toYaml() const
+{
+  yaml::Object content;
+
+  content["name"] = name;
+  yaml::writeCheckstate(content, checkState);
+
+  if (!rename.isEmpty())
+    content["rename"] = rename;
+
+  {
+    yaml::Array elems;
+
+    for (const auto & e : elements)
+    {
+      elems.push(e->toYaml());
+    }
+
+    content["elements"] = elems;
+  }
+
+  if (!hincludes.empty())
+  {
+    content["hincludes"] = hincludes.join(";");
+  }
+
+  if (!cppincludes.empty())
+  {
+    content["cppincludes"] = cppincludes.join(";");
+  }
+
+  yaml::Object ret;
+  ret[File::staticTypeCode] = content;
+  return ret;
+}
+
+QSharedPointer<Node> File::fromYaml(const yaml::Object & inputobj)
+{
+  yaml::Object obj = inputobj.value("file").toObject();
+
+  auto ret = FileRef::create(obj.value("name").toString(), yaml::readCheckState(obj));
+
+  yaml::Array elements = obj.value("elements").toArray();
+  ret->elements.reserve(elements.size());
+  for (const auto & item : elements)
+    ret->elements.push_back(Node::fromYaml(item.toObject()));
+
+  ret->hincludes = obj.value("hincludes").toString().split(';', QString::SkipEmptyParts);
+  ret->cppincludes = obj.value("cppincludes").toString().split(';', QString::SkipEmptyParts);
 
   return ret;
 }

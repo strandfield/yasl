@@ -50,6 +50,10 @@ public:
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
+  QString yamlDescription() const;
+  yaml::Value toYaml() const override;
+  static QSharedPointer<Node> fromYaml(const yaml::Object & val);
+
   QString typeCode() const override { return staticTypeCode; }
 
   QString display() const override;
@@ -148,6 +152,9 @@ struct Constructor : public Function
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
+  yaml::Value toYaml() const override;
+  static QSharedPointer<Node> fromYaml(const yaml::Object & obj);
+
   QString typeCode() const override { return staticTypeCode; }
 
   QString display() const override;
@@ -164,6 +171,9 @@ struct Destructor : public Function
 
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
+
+  yaml::Value toYaml() const override;
+  static QSharedPointer<Node> fromYaml(const yaml::Object & obj);
 
   QString typeCode() const override { return staticTypeCode; }
 

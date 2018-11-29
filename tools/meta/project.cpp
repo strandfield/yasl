@@ -8,6 +8,9 @@
 #include "project/enum.h"
 #include "project/namespace.h"
 
+#include "yaml/parser.h"
+#include "yaml/value.h"
+
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -79,15 +82,92 @@ QSharedPointer<Project> Project::fromJson(const QJsonObject & obj)
 
 QSharedPointer<Project> Project::load(const QString & filename)
 {
-  QFile file{ filename };
-  if (!file.exists() || !file.open(QIODevice::ReadOnly))
-    return nullptr;
+  if(filename.endsWith(".json"))
+  {
+    QFile file{ filename };
+    if (!file.exists() || !file.open(QIODevice::ReadOnly))
+      return nullptr;
 
-  QJsonParseError error;
-  QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &error);
-  file.close();
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &error);
+    file.close();
 
-  return fromJson(doc.object());
+    return fromJson(doc.object());
+  }
+  else if(filename.endsWith(".yaml"))
+  {
+    QFile file{ filename };
+    if (!file.exists() || !file.open(QIODevice::ReadOnly))
+      return nullptr;
+
+    QTextStream textstream{ &file };
+
+    yaml::Parser yamlparser;
+    yaml::Object pro = yamlparser.parse(textstream).toObject();
+    return fromYaml(pro);
+  }
+
+  return nullptr;
+}
+
+QString Project::toYaml() const
+{
+  QStringList lines;
+  lines << "types:";
+  lines << "  fundamentals:";
+  for (const auto t : types.fundamentals)
+    lines << ("    - " + t.toYaml());
+  lines << "  enums:";
+  for (const auto t : types.enums)
+    lines << ("    - " + t.toYaml());
+  lines << "  classes:";
+  for (const auto t : types.classes)
+    lines << ("    - " + t.toYaml());
+
+  QString ret = lines.join("\n");
+  ret += "\n";
+
+  {
+    yaml::Array modulesyaml;
+    for (const auto & m : modules)
+      modulesyaml.push(m->toYaml());
+
+    yaml::Object obj;
+    obj["modules"] = modulesyaml;
+    QString modulesyamlstr = obj.serialize();
+    ret += modulesyamlstr;
+  }
+
+  return ret;
+}
+
+QList<Type> Project::typelistFromYaml(yaml::Array list)
+{
+  QList<Type> ret;
+  for (auto e : list)
+    ret.append(Type::fromYaml(e.toObject()));
+  return ret;
+}
+
+QSharedPointer<Project> Project::fromYaml(const yaml::Object & obj)
+{
+  auto ret = ProjectRef::create();
+
+  yaml::Array modules = obj.value("modules").toArray();
+  ret->modules.reserve(modules.size());
+  for (const auto & m : modules)
+    ret->modules.append(qSharedPointerCast<Module>(Module::fromYaml(m.toObject())));
+
+  yaml::Array types = obj.value("types").toObject().value("fundamentals").toArray();
+  ret->types.fundamentals = typelistFromYaml(types);
+
+  types = obj.value("types").toObject().value("enums").toArray();
+  ret->types.enums = typelistFromYaml(types);
+
+  types = obj.value("types").toObject().value("classes").toArray();
+  ret->types.classes = typelistFromYaml(types);
+
+  return ret;
 }
 
 void Project::save(const QString & filename)
@@ -95,11 +175,25 @@ void Project::save(const QString & filename)
   sort(types.classes);
   sort(types.enums);
 
-  QFile file{ filename };
+  QString fn = filename;
+  if (fn.endsWith(".json"))
+    fn.chop(5);
+  else if (fn.endsWith(".yaml"))
+    fn.chop(5);
+
+  QFile file{ fn + ".json" };
   if (!file.open(QIODevice::WriteOnly))
     return;
 
   file.write(QJsonDocument{ toJson() }.toJson());
+  file.close();
+
+  // Yaml save
+  file.setFileName(fn + ".yaml");
+  if (!file.open(QIODevice::WriteOnly))
+    return;
+
+  file.write(toYaml().toUtf8());
   file.close();
 }
 

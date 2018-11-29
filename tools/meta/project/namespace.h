@@ -22,6 +22,9 @@ public:
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
+  yaml::Value toYaml() const override;
+  static QSharedPointer<Node> fromYaml(const yaml::Object & inputobj);
+
   QString typeCode() const override { return staticTypeCode; }
 
   template<typename T>

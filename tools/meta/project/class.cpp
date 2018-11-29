@@ -4,6 +4,8 @@
 
 #include "project/class.h"
 
+#include "yaml/value.h"
+
 #include <QJsonArray>
 
 const QString Class::staticTypeCode = "class";
@@ -66,3 +68,50 @@ QSharedPointer<Node> Class::fromJson(const QJsonObject & obj)
   return ret;
 }
 
+yaml::Value Class::toYaml() const
+{
+  yaml::Object content;
+
+  content["name"] = name;
+  yaml::writeCheckstate(content, checkState);
+  yaml::writeQtVersion(content, version);
+
+  if (!base.isEmpty())
+    content["base"] = base;
+
+  if (isFinal)
+    content["final"] = "true";
+
+  {
+    yaml::Array elems;
+
+    for (const auto & e : elements)
+    {
+      elems.push(e->toYaml());
+    }
+
+    content["elements"] = elems;
+  }
+
+  yaml::Object ret;
+  ret["class"] = content;
+  return ret;
+}
+
+QSharedPointer<Node> Class::fromYaml(const yaml::Object & inputobj)
+{
+  yaml::Object obj = inputobj.value("class").toObject();
+
+  auto ret = ClassRef::create(obj.value("name").toString(), yaml::readCheckState(obj));
+  ret->version = yaml::readQtVersion(obj);
+
+  yaml::Array elements = obj.value("elements").toArray();
+  ret->elements.reserve(elements.size());
+  for (const auto & item : elements.underlyingList())
+    ret->elements.push_back(Node::fromYaml(item.toObject()));
+
+  ret->base = obj.value("base").toString();
+  ret->isFinal = obj.value("final").toString() == "true";
+
+  return ret;
+}

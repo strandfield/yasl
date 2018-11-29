@@ -30,6 +30,15 @@ int main(int argc, char *argv[])
   Node::registerDeserializer(Namespace::staticTypeCode, Namespace::fromJson);
   Node::registerDeserializer(Statement::staticTypeCode, Statement::fromJson);
 
+  Node::registerDeserializer(Class::staticTypeCode, Class::fromYaml);
+  Node::registerDeserializer(Enum::staticTypeCode, Enum::fromYaml);
+  Node::registerDeserializer(File::staticTypeCode, File::fromYaml);
+  Node::registerDeserializer(Function::staticTypeCode, Function::fromYaml);
+  Node::registerDeserializer(Constructor::staticTypeCode, Constructor::fromYaml);
+  Node::registerDeserializer(Destructor::staticTypeCode, Destructor::fromYaml);
+  Node::registerDeserializer(Namespace::staticTypeCode, Namespace::fromYaml);
+  Node::registerDeserializer(Statement::staticTypeCode, Statement::fromYaml);
+
   MainWindow w;
   w.show();
 

@@ -10,6 +10,11 @@
 #include "project/module.h"
 #include "project/type.h"
 
+namespace yaml
+{
+class Array;
+} // namespace yaml
+
 class Project
 {
 public:
@@ -27,6 +32,11 @@ public:
   QJsonObject toJson() const;
   static QSharedPointer<Project> fromJson(const QJsonObject & obj);
   static QSharedPointer<Project> load(const QString & filename);
+
+  QString toYaml() const;
+  static QList<Type> typelistFromYaml(yaml::Array list);
+  static QSharedPointer<Project> fromYaml(const yaml::Object & obj);
+
   void save(const QString & filename);
 
   void importSymbols(const QSharedPointer<Project> symbols);

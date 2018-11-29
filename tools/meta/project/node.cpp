@@ -8,6 +8,102 @@
 #include "project/function.h"
 #include "project/module.h"
 
+#include "yaml/value.h"
+
+namespace yaml
+{
+
+QString extractField(QString str, const QString & fieldName)
+{
+  const int index = str.indexOf("[" + fieldName + ":");
+  if (index == -1)
+    return QString();
+
+  const int end = str.indexOf(']', index + 2 + fieldName.size());
+  Q_ASSERT(end != -1);
+  const int begin = index + 2 + fieldName.size();
+  return str.mid(begin, end - begin).trimmed();
+}
+
+QString createField(const QString &fieldName, const QString & content)
+{
+  static const QString fmt = "[%1:%2]";
+  return fmt.arg(fieldName, content);
+}
+
+QString checkStateField(Qt::CheckState cs)
+{
+  static const QString unchecked = "[unchecked]";
+  static const QString partiallychecked = "[partially-checked]";
+
+  if (cs == Qt::Unchecked)
+    return unchecked;
+  else if (cs == Qt::PartiallyChecked)
+    return partiallychecked;
+  return QString();
+}
+
+Qt::CheckState checkstate(const QString & str)
+{
+  static const QString unchecked = "[unchecked]";
+  static const QString partiallychecked = "[partially-checked]";
+
+  if (str.contains(unchecked))
+    return Qt::Unchecked;
+  else if (str.contains(partiallychecked))
+    return Qt::PartiallyChecked;
+  return Qt::Checked;
+}
+
+void writeCheckstate(yaml::Object & obj, Qt::CheckState cs)
+{
+  if (cs == Qt::Checked)
+    return;
+
+  static const QString checkstate = "checkstate";
+  static const QString unchecked = "unchecked";
+  static const QString partiallychecked = "partially-checked";
+
+  obj[checkstate] = cs == Qt::Unchecked ? unchecked : partiallychecked;
+}
+
+Qt::CheckState readCheckState(const yaml::Object & obj)
+{
+  static const QString checkstate = "checkstate";
+  static const QString unchecked = "unchecked";
+  static const QString partiallychecked = "partially-checked";
+  QString cs = obj.value(checkstate).toString();
+  if (cs == unchecked)
+    return Qt::Unchecked;
+  else if (cs == partiallychecked)
+    return Qt::PartiallyChecked;
+  return Qt::Checked;
+}
+
+QtVersion readQtVersion(const yaml::Object & obj)
+{
+  QString version = obj.value("version").toString();
+  if (version.isNull())
+    return QtVersion();
+  return QtVersion::fromString(version);
+}
+
+void writeQtVersion(yaml::Object & obj, QtVersion v)
+{
+  if (!v.isNull())
+    obj["version"] = v.toString();
+}
+
+int firstFieldIndex(const QString & str)
+{
+  int ret = str.indexOf('[');
+  while (ret != -1 && str.at(ret + 1) == ']')
+    ret = str.indexOf('[', ret + 1);
+  return ret;
+}
+
+} // namespace yaml
+
 QMap<QString, Node::JsonDeserializer> Node::staticFactory = QMap<QString, Node::JsonDeserializer>{};
 
 namespace json
@@ -75,6 +171,23 @@ QSharedPointer<Node> Node::fromJson(const QJsonObject & obj)
 void Node::registerDeserializer(const QString & name, JsonDeserializer func)
 {
   staticFactory[name] = func;
+}
+
+QSharedPointer<Node> Node::fromYaml(const yaml::Object & obj)
+{
+  auto map = obj.underlyingMap();
+  if (map.size() != 1)
+    throw std::runtime_error{ "Invalid call to Node::fromYaml" };
+
+  auto it = map.begin();
+  return staticYamlFactory.value(it.key(), nullptr)(obj);
+}
+
+QMap<QString, Node::YamlDeserializer> Node::staticYamlFactory = QMap<QString, Node::YamlDeserializer>{};
+
+void Node::registerDeserializer(const QString & name, YamlDeserializer func)
+{
+  staticYamlFactory[name] = func;
 }
 
 QString Node::nameQualification(const QStack<QSharedPointer<Node>> & nodes)

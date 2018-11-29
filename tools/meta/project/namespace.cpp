@@ -4,6 +4,8 @@
 
 #include "project/namespace.h"
 
+#include "yaml/value.h"
+
 #include <QJsonArray>
 
 const QString Namespace::staticTypeCode = "namespace";
@@ -36,6 +38,48 @@ QSharedPointer<Node> Namespace::fromJson(const QJsonObject & obj)
   ret->elements.reserve(elements.size());
   for (const auto & item : elements)
     ret->elements.push_back(Node::fromJson(item.toObject()));
+
+  ret->rename = obj.value("rename").toString();
+
+  return ret;
+}
+
+yaml::Value Namespace::toYaml() const
+{
+  yaml::Object content;
+
+  content["name"] = name;
+  yaml::writeCheckstate(content, checkState);
+
+  if (!rename.isEmpty())
+    content["rename"] = rename;
+
+  {
+    yaml::Array elems;
+
+    for (const auto & e : elements)
+    {
+      elems.push(e->toYaml());
+    }
+
+    content["elements"] = elems;
+  }
+
+  yaml::Object ret;
+  ret["namespace"] = content;
+  return ret;
+}
+
+QSharedPointer<Node> Namespace::fromYaml(const yaml::Object & inputobj)
+{
+  yaml::Object obj = inputobj.value("namespace").toObject();
+
+  auto ret = NamespaceRef::create(obj.value("name").toString(), yaml::readCheckState(obj));
+
+  yaml::Array elements = obj.value("elements").toArray();
+  ret->elements.reserve(elements.size());
+  for (const auto & item : elements)
+    ret->elements.push_back(Node::fromYaml(item.toObject()));
 
   ret->rename = obj.value("rename").toString();
 

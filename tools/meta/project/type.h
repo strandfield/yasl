@@ -10,6 +10,11 @@
 
 #include "qtversion.h"
 
+namespace yaml
+{
+class Object;
+}
+
 class Type
 {
 public:
@@ -35,6 +40,9 @@ public:
 
   QJsonObject toJson() const;
   static Type fromJson(const QJsonObject & obj);
+
+  QString toYaml() const;
+  static Type fromYaml(const yaml::Object & obj);
 };
 
 #endif // YASL_META_TYPE_H

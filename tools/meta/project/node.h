@@ -12,6 +12,21 @@
 
 #include "qtversion.h"
 
+namespace yaml
+{
+class Value;
+class Object;
+QString extractField(QString str, const QString & fieldName);
+QString createField(const QString &fieldName, const QString & content);
+QString checkStateField(Qt::CheckState cs);
+Qt::CheckState checkstate(const QString & str);
+void writeCheckstate(yaml::Object & obj, Qt::CheckState cs);
+Qt::CheckState readCheckState(const yaml::Object & obj);
+QtVersion readQtVersion(const yaml::Object & obj);
+void writeQtVersion(yaml::Object & obj, QtVersion v);
+int firstFieldIndex(const QString & str);
+} // namespace yaml
+
 namespace json
 {
 Qt::CheckState readCheckState(const QJsonObject & obj);
@@ -42,6 +57,12 @@ public:
   QJsonObject toJson() const;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
+  virtual yaml::Value toYaml() const = 0;
+  static QSharedPointer<Node> fromYaml(const yaml::Object & val);
+  typedef QSharedPointer<Node>(*YamlDeserializer)(const yaml::Object &);
+  static QMap<QString, YamlDeserializer> staticYamlFactory;
+  static void registerDeserializer(const QString & name, YamlDeserializer func);
+
   virtual QString display() const { return name; }
   virtual QString typeCode() const = 0;
 
@@ -59,7 +80,7 @@ typedef QSharedPointer<Node> NodeRef;
 
 Q_DECLARE_METATYPE(QSharedPointer<Node>);
 
-
+/// TODO: this seems to be dead code, remove!
 class NodeValue
 {
 public:

@@ -4,6 +4,8 @@
 
 #include "project/module.h"
 
+#include "yaml/value.h"
+
 #include <QJsonArray>
 #include <QJsonObject>
 
@@ -34,6 +36,33 @@ QSharedPointer<Node> Module::fromJson(const QJsonObject & obj)
   ret->elements.reserve(elements.size());
   for (const auto & item : elements)
     ret->elements.push_back(Node::fromJson(item.toObject()));
+
+  return ret;
+}
+
+yaml::Value Module::toYaml() const
+{
+  yaml::Array elems;
+  for (const auto & e : elements)
+  {
+    elems.push(e->toYaml());
+  }
+
+  yaml::Object ret;
+  ret[name] = elems;
+  return ret;
+}
+
+QSharedPointer<Module> Module::fromYaml(const yaml::Object & inputobj)
+{
+  auto it = inputobj.underlyingMap().begin();
+
+  ModuleRef ret = ModuleRef::create(it.key(), Qt::Checked);
+
+  yaml::Array elements = it.value().toArray();
+  ret->elements.reserve(elements.size());
+  for (const auto & item : elements)
+    ret->elements.push_back(Node::fromYaml(item.toObject()));
 
   return ret;
 }

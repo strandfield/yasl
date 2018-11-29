@@ -4,6 +4,8 @@
 
 #include "project/function.h"
 
+#include "yaml/value.h"
+
 #include <QJsonArray>
 
 const QString Function::staticTypeCode = "function";
@@ -64,6 +66,76 @@ QSharedPointer<Node> Function::fromJson(const QJsonObject & obj)
   ret->isDeleted = obj.contains("deleted") ? obj.value("deleted").toBool() : false;
   ret->bindingMethod = json::readBindingMethod(obj);
   ret->defaultArguments = obj.contains("defaults") ? obj.value("defaults").toString().split(';', QString::SkipEmptyParts) : QStringList();
+
+  return ret;
+}
+
+QString Function::yamlDescription() const
+{
+  QStringList elems;
+
+  elems << name;
+
+  if (!returnType.isEmpty())
+    elems << yaml::createField("r", returnType);
+
+  if (!parameters.isEmpty())
+  {
+    QStringList p = parameters;
+    for (int i(0); i < defaultArguments.size(); ++i)
+      p[p.size() - 1 - i].append("=" + defaultArguments.at(i));
+    elems << yaml::createField("p", p.join(';'));
+  }
+
+  {
+    QStringList specs = getSpecifiers();
+    if (!specs.isEmpty())
+      elems << yaml::createField("specs", specs.join(';'));
+  }
+
+  if (bindingMethod != AutoBinding)
+    elems << yaml::createField("binding", serialize(bindingMethod));
+
+  if (!rename.isEmpty())
+    elems << yaml::createField("rename", rename);
+
+  if (!version.isNull())
+    elems << yaml::createField("v", version.toString());
+
+  if (checkState != Qt::Checked)
+    elems << "[unchecked]";
+
+  return elems.join(QString());
+}
+
+yaml::Value Function::toYaml() const
+{
+  yaml::Object ret;
+  ret["function"] = yaml::Value{ yamlDescription() };
+  return ret;
+}
+
+QSharedPointer<Node> Function::fromYaml(const yaml::Object & obj)
+{
+  QString value = obj.value("function").toString();
+
+  auto ret = FunctionRef::create(value.mid(0, yaml::firstFieldIndex(value)), yaml::checkstate(value));
+  ret->version = QtVersion::fromString(yaml::extractField(value, "v"));
+
+  ret->rename = yaml::extractField(value, "rename");
+  ret->returnType = yaml::extractField(value, "r");
+  ret->parameters = yaml::extractField(value, "p").split(';', QString::SkipEmptyParts);
+  for (int i(ret->parameters.size() - 1); i >= 0; --i)
+  {
+    const int eqindex = ret->parameters[i].indexOf('=');
+    if (eqindex == -1)
+      break;
+    ret->defaultArguments.append(ret->parameters[i].mid(eqindex + 1));
+    ret->parameters[i] = ret->parameters[i].mid(0, eqindex);
+  }
+
+  ret->setSpecifiers(yaml::extractField(value, "specs").split(';'));
+  ret->bindingMethod = deserialize<Function::BindingMethod>(yaml::extractField(value, "binding"));
 
   return ret;
 }
@@ -159,26 +231,58 @@ QSharedPointer<Node> Constructor::fromJson(const QJsonObject & obj)
   return ret;
 }
 
+yaml::Value Constructor::toYaml() const
+{
+  yaml::Object ret;
+  ret["constructor"] = yaml::Value{ yamlDescription() };
+  return ret;
+}
+
+QSharedPointer<Node> Constructor::fromYaml(const yaml::Object & obj)
+{
+  QString value = obj.value("constructor").toString();
+
+  auto ret = ConstructorRef::create(value.mid(0, value.indexOf('[')), yaml::checkstate(value));
+  ret->version = QtVersion::fromString(yaml::extractField(value, "v"));
+
+  ret->parameters = yaml::extractField(value, "p").split(';', QString::SkipEmptyParts);
+  for (int i(ret->parameters.size() - 1); i >= 0; --i)
+  {
+    const int eqindex = ret->parameters[i].indexOf('=');
+    if (eqindex == -1)
+      break;
+    ret->defaultArguments.append(ret->parameters[i].mid(eqindex + 1));
+    ret->parameters[i] = ret->parameters[i].mid(0, eqindex);
+  }
+
+  ret->setSpecifiers(yaml::extractField(value, "specs").split(';'));
+
+  return ret;
+}
+
 QString Constructor::display() const
 {
   QString result;
   if (isExplicit)
     result += "explicit ";
-  if (isStatic)
-    result += "static ";
-
   result += name;
   result += "(";
-  for (const auto & p : parameters)
-    result += p + ", ";
-  if (result.endsWith(", "))
-    result.chop(2);
+  {
+    QStringList params = parameters;
+    for (int i(0); i < defaultArguments.size(); ++i)
+      params[params.size() - i - 1] += " = " + defaultArguments.at(i);
+    result += params.join(", ");
+  }
   result += ")";
 
   if (isDeleted)
     result += " = delete";
 
   result += ";";
+
+  if (!version.isNull())
+    result += " [" + version.toString() + "]";
+
   return result;
 }
 
@@ -208,6 +312,25 @@ QSharedPointer<Node> Destructor::fromJson(const QJsonObject & obj)
   ret->version = json::readQtVersion(obj);
 
   ret->isDeleted = obj.value("deleted").toBool();
+
+  return ret;
+}
+
+yaml::Value Destructor::toYaml() const
+{
+  yaml::Object ret;
+  ret["destructor"] = yaml::Value{ yamlDescription() };
+  return ret;
+}
+
+QSharedPointer<Node> Destructor::fromYaml(const yaml::Object & obj)
+{
+  QString value = obj.value("destructor").toString();
+
+  auto ret = DestructorRef::create(value.mid(0, value.indexOf('[')), yaml::checkstate(value));
+  ret->version = QtVersion::fromString(yaml::extractField(value, "v"));
+
+  ret->setSpecifiers(yaml::extractField(value, "specs").split(';'));
 
   return ret;
 }
