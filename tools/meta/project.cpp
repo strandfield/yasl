@@ -182,11 +182,11 @@ void Project::save(const QString & filename)
     fn.chop(5);
 
   QFile file{ fn + ".json" };
-  if (!file.open(QIODevice::WriteOnly))
-    return;
+  //if (!file.open(QIODevice::WriteOnly))
+  //  return;
 
-  file.write(QJsonDocument{ toJson() }.toJson());
-  file.close();
+  //file.write(QJsonDocument{ toJson() }.toJson());
+  //file.close();
 
   // Yaml save
   file.setFileName(fn + ".yaml");
