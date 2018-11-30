@@ -10,6 +10,7 @@
 #include "project/statement.h"
 
 #include <QDir>
+#include <QElapsedTimer>
 #include <QFile>
 #include <QJsonObject>
 #include <QTextStream>
@@ -85,6 +86,9 @@ Generator::Generator(const QString & dir, QObject *parent)
 
 void Generator::generate(const ProjectRef & p)
 {
+  QElapsedTimer timer;
+  timer.start();
+
   mProject = p;
   buildTypeInfo();
 
@@ -105,6 +109,9 @@ void Generator::generate(const ProjectRef & p)
     generate(m);
 
   generateInjectedTypeList();
+
+  auto elapsed = timer.elapsed();
+  qDebug() << "Generation done in" << elapsed;
 }
 
 QString Generator::to_snake_case(const QString & camelCaseName)
