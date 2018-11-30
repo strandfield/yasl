@@ -55,7 +55,7 @@ QString Type::toYaml() const
 {
   QStringList elems;
 
-  elems << ("id: " + id);
+  elems << ("id: " + (id.isEmpty() ? "\"\"" : id));
   elems << ("name: " + quote(name));
 
   if (!rename.isEmpty())

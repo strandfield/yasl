@@ -7,8 +7,8 @@ types:
     - {id: Float, name: float}
     - {id: Double, name: double}
     - {id: String, name: QString, rename: String}
-    - {id: , name: qreal}
-    - {id: , name: uint}
+    - {id: "", name: qreal}
+    - {id: "", name: uint}
   enums:
     - {id: QAbstractSliderSliderAction, name: QAbstractSlider::SliderAction, header: yasl/widgets/abstractslider.h}
     - {id: QAbstractSpinBoxButtonSymbols, name: QAbstractSpinBox::ButtonSymbols, header: yasl/widgets/abstractspinbox.h}
