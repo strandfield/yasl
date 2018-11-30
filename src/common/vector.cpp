@@ -86,6 +86,7 @@ static script::Value append_value(script::FunctionCall *c)
 
 /// TODO: void append(T &&value);
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
 // void append(const QVector<T> &value);
 static script::Value append_vector(script::FunctionCall *c)
 {
@@ -94,6 +95,7 @@ static script::Value append_vector(script::FunctionCall *c)
   self.append(other);
   return script::Value::Void;
 }
+#endif
 
 // const T & at(int i) const;
 // const T & operator[](int i) const
@@ -139,6 +141,7 @@ static script::Value clear(script::FunctionCall *c)
 /// ignore: const T * constData() const;
 /// TODO: QVector::const_iterator constEnd() const;
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
 // const T & constFirst() const;
 // T & first();
 // const T & first() const;
@@ -148,6 +151,15 @@ static script::Value const_first(script::FunctionCall *c)
 {
   QVector<yasl::Value> & self = script::value_cast<QVector<yasl::Value> &>(c->thisObject());
   return self.constFirst().get();
+}
+#endif
+
+// T & first();
+// T & front();
+static script::Value first(script::FunctionCall *c)
+{
+  QVector<yasl::Value> & self = script::value_cast<QVector<yasl::Value> &>(c->thisObject());
+  return self.first().get();
 }
 
 // bool contains(const T &value) const;
@@ -338,6 +350,7 @@ static script::Value remove_count(script::FunctionCall *c)
   return script::Value::Void;
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
 // int removeAll(const T &t);
 static script::Value remove_all(script::FunctionCall *c)
 {
@@ -346,7 +359,9 @@ static script::Value remove_all(script::FunctionCall *c)
   const int result = self.removeAll(value);
   return c->engine()->newInt(result);
 }
+#endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
 // bool removeOne(const T &t);
 static script::Value remove_one(script::FunctionCall *c)
 {
@@ -355,9 +370,15 @@ static script::Value remove_one(script::FunctionCall *c)
   const bool result = self.removeOne(value);
   return c->engine()->newBool(result);
 }
+#endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
 /// TODO: QVector::reverse_iterator rend();
+#endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
 /// TODO: QVector::const_reverse_iterator rend() const;
+#endif
 
 // void replace(int i, const T &value);
 static script::Value replace(script::FunctionCall *c)
@@ -389,7 +410,7 @@ static script::Value resize(script::FunctionCall *c)
 
 // void shrink_to_fit();
 // void squeeze();
-static script::Value shrink_to_fit(script::FunctionCall *c)
+static script::Value squeeze(script::FunctionCall *c)
 {
   QVector<yasl::Value> & self = script::value_cast<QVector<yasl::Value> &>(c->thisObject());
   self.squeeze();
@@ -414,6 +435,7 @@ static script::Value swap(script::FunctionCall *c)
   return script::Value::Void;
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
 // T takeAt(int i);
 static script::Value take_at(script::FunctionCall *c)
 {
@@ -422,7 +444,9 @@ static script::Value take_at(script::FunctionCall *c)
   auto ret = self.takeAt(i);
   return ret.release();
 }
+#endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
 // T takeFirst();
 static script::Value take_first(script::FunctionCall *c)
 {
@@ -430,7 +454,9 @@ static script::Value take_first(script::FunctionCall *c)
   auto ret = self.takeFirst();
   return ret.release();
 }
+#endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
 // T takeLast();
 static script::Value take_last(script::FunctionCall *c)
 {
@@ -438,6 +464,7 @@ static script::Value take_last(script::FunctionCall *c)
   auto ret = self.takeLast();
   return ret.release();
 }
+#endif
 
 /// TODO: QList<T> toList() const;
 /// ignore: std::vector<T> toStdVector() const;
@@ -582,10 +609,14 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   // void append(const T &value);
   vector.newMethod("append", callbacks::append_value)
     .params(Type::cref(element_type)).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: void append(T &&value);
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
   // void append(const QVector<T> &value);
   vector.newMethod("append", callbacks::append_vector)
     .params(Type::cref(vector.id())).create();
+#endif
   // const T & at(int i) const;
   vector.newMethod("at", callbacks::at)
     .setConst()
@@ -612,12 +643,16 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   /// TODO: QVector::const_iterator constBegin() const;
   /// ignore: const T * constData() const;
   /// TODO: QVector::const_iterator constEnd() const;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   // const T & constFirst() const;
   vector.newMethod("constFirst", callbacks::const_first)
     .returns(Type::cref(element_type)).create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   // const T & constLast() const;
   vector.newMethod("constLast", callbacks::back)
     .returns(Type::cref(element_type)).create();
+#endif
   // bool contains(const T &value) const;
   vector.newMethod("contains", callbacks::contains)
     .setConst()
@@ -655,17 +690,17 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
     .params(Type::cref(element_type), Type::Int)
     .apply(bind::default_arguments(-1)).create();
   // T & first();
-  vector.newMethod("first", callbacks::const_first)
+  vector.newMethod("first", callbacks::first)
     .returns(Type::ref(element_type)).create();
   // const T & first() const;
-  vector.newMethod("first", callbacks::const_first)
+  vector.newMethod("first", callbacks::first)
     .setConst()
     .returns(Type::cref(element_type)).create();
   // T & front();
-  vector.newMethod("front", callbacks::const_first)
+  vector.newMethod("front", callbacks::first)
     .returns(Type::ref(element_type)).create();
   // QVector::const_reference front() const;
-  vector.newMethod("front", callbacks::const_first)
+  vector.newMethod("front", callbacks::first)
     .setConst()
     .returns(Type::cref(element_type)).create();
   // int indexOf(const T &value, int from = ...) const;
@@ -701,19 +736,23 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
     .returns(Type::Int)
     .params(Type::cref(element_type), Type::Int)
     .apply(bind::default_arguments(-1)).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
   // int length() const;
   vector.newMethod("length", callbacks::count)
     .setConst()
     .returns(Type::Int).create();
+#endif
   // QVector<T> mid(int pos, int length = ...) const;
   vector.newMethod("mid", callbacks::mid)
     .setConst()
     .returns(vector.id())
     .params(Type::Int, Type::Int)
     .apply(bind::default_arguments(-1)).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   // void move(int from, int to);
   vector.newMethod("move", callbacks::move)
     .params(Type::Int, Type::Int).create();
+#endif
   // void pop_back();
   vector.newMethod("pop_back", callbacks::pop_back).create();
   // void pop_front();
@@ -725,36 +764,56 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   // void push_back(const T &value);
   vector.newMethod("push_back", callbacks::append_value)
     .params(Type::cref(element_type)).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: void push_back(T &&value);
+#endif
   /// TODO: void push_front(T &&value);
   // void push_front(const T &value);
   vector.newMethod("push_front", callbacks::prepend)
     .params(Type::cref(element_type)).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: QVector::reverse_iterator rbegin();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: QVector::const_reverse_iterator rbegin() const;
+#endif
   // void remove(int i);
   vector.newMethod("remove", callbacks::remove_at)
     .params(Type::Int).create();
   // void remove(int i, int count);
   vector.newMethod("remove", callbacks::remove_count)
     .params(Type::Int, Type::Int).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
   // int removeAll(const T &t);
   vector.newMethod("removeAll", callbacks::remove_all)
     .returns(Type::Int)
     .params(Type::cref(element_type)).create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
   // void removeAt(int i);
   vector.newMethod("removeAt", callbacks::remove_at)
     .params(Type::Int).create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
   // void removeFirst();
   vector.newMethod("removeFirst", callbacks::pop_front).create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
   // void removeLast();
   vector.newMethod("removeLast", callbacks::pop_back).create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
   // bool removeOne(const T &t);
   vector.newMethod("removeOne", callbacks::remove_one)
     .returns(Type::Boolean)
     .params(Type::cref(element_type)).create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: QVector::reverse_iterator rend();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: QVector::const_reverse_iterator rend() const;
+#endif
   // void replace(int i, const T &value);
   vector.newMethod("replace", callbacks::replace)
     .params(Type::Int, Type::cref(element_type)).create();
@@ -764,14 +823,16 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   // void resize(int size);
   vector.newMethod("resize", callbacks::resize)
     .params(Type::Int).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
   // void shrink_to_fit();
-  vector.newMethod("shrink_to_fit", callbacks::shrink_to_fit).create();
+  vector.newMethod("shrink_to_fit", callbacks::squeeze).create();
+#endif
   // int size() const;
   vector.newMethod("size", callbacks::count)
     .setConst()
     .returns(Type::Int).create();
   // void squeeze();
-  vector.newMethod("squeeze", callbacks::shrink_to_fit).create();
+  vector.newMethod("squeeze", callbacks::squeeze).create();
   // bool startsWith(const T &value) const;
   vector.newMethod("startsWith", callbacks::starts_with)
     .setConst()
@@ -780,16 +841,22 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   // void swap(QVector<T> &other);
   vector.newMethod("swap", callbacks::swap)
     .params(Type::ref(vector.id())).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
   // T takeAt(int i);
   vector.newMethod("takeAt", callbacks::take_at)
     .returns(element_type)
     .params(Type::Int).create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
   // T takeFirst();
   vector.newMethod("takeFirst", callbacks::take_first)
     .returns(element_type).create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
   // T takeLast();
   vector.newMethod("takeLast", callbacks::take_last)
     .returns(element_type).create();
+#endif
   /// TODO: QList<T> toList() const;
   /// ignore: std::vector<T> toStdVector() const;
   // T value(int i) const;

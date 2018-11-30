@@ -80,9 +80,13 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
 
   // void append(const T &value);
   bind::void_member_function<QVector<T>, const T &, &QVector<T>::append>(vector, "append").create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: void append(T &&value);
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
   // void append(const QVector<T> &value);
   bind::void_member_function<QVector<T>, const QVector<T> &, &QVector<T>::append>(vector, "append").create();
+#endif
   // const T & at(int i) const;
   bind::member_function<QVector<T>, const T &, int, &QVector<T>::at>(vector, "at").create();
   // QVector::reference back();
@@ -102,10 +106,14 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   /// TODO: QVector::const_iterator constBegin() const;
   /// ignore: const T * constData() const;
   /// TODO: QVector::const_iterator constEnd() const;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   // const T & constFirst() const;
   bind::member_function<QVector<T>, const T &, &QVector<T>::constFirst>(vector, "constFirst").create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   // const T & constLast() const;
   bind::member_function<QVector<T>, const T &, &QVector<T>::constLast>(vector, "constLast").create();
+#endif
   // bool contains(const T &value) const;
   bind::member_function<QVector<T>, bool, const T &, &QVector<T>::contains>(vector, "contains").create();
   // int count(const T &value) const;
@@ -161,13 +169,17 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   // int lastIndexOf(const T &value, int from = ...) const;
   bind::member_function<QVector<T>, int, const T&, int, &QVector<T>::lastIndexOf>(vector, "lastIndexOf")
     .apply(bind::default_arguments(-1)).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
   // int length() const;
   bind::member_function<QVector<T>, int, &QVector<T>::length>(vector, "length").create();
+#endif
   // QVector<T> mid(int pos, int length = ...) const;
   bind::member_function<QVector<T>, QVector<T>, int, int, &QVector<T>::mid>(vector, "mid")
     .apply(bind::default_arguments(-1)).create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   // void move(int from, int to);
   bind::void_member_function<QVector<T>, int, int, &QVector<T>::move>(vector, "move").create();
+#endif
   // void pop_back();
   bind::void_member_function<QVector<T>, &QVector<T>::pop_back>(vector, "pop_back").create();
   // void pop_front();
@@ -177,37 +189,58 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   bind::void_member_function<QVector<T>, const T &, &QVector<T>::prepend>(vector, "prepend").create();
   // void push_back(const T &value);
   bind::void_member_function<QVector<T>, const T &, &QVector<T>::push_back>(vector, "push_back").create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: void push_back(T &&value);
+#endif
   /// TODO: void push_front(T &&value);
   // void push_front(const T &value);
   bind::void_member_function<QVector<T>, const T &, &QVector<T>::push_front>(vector, "push_front").create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: QVector::reverse_iterator rbegin();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: QVector::const_reverse_iterator rbegin() const;
+#endif
   // void remove(int i);
   bind::void_member_function<QVector<T>, int, &QVector<T>::remove>(vector, "remove").create();
   // void remove(int i, int count);
   bind::void_member_function<QVector<T>, int, int, &QVector<T>::remove>(vector, "remove").create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
   // int removeAll(const T &t);
   bind::member_function<QVector<T>, int, const T &, &QVector<T>::removeAll>(vector, "removeAll").create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
   // void removeAt(int i);
   bind::void_member_function<QVector<T>, int, &QVector<T>::removeAt>(vector, "removeAt").create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
   // void removeFirst();
   bind::void_member_function<QVector<T>, &QVector<T>::removeFirst>(vector, "removeFirst").create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
   // void removeLast();
   bind::void_member_function<QVector<T>, &QVector<T>::removeLast>(vector, "removeLast").create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
   // bool removeOne(const T &t);
   bind::member_function<QVector<T>, bool, const T&, &QVector<T>::removeOne>(vector, "removeOne").create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: QVector::reverse_iterator rend();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   /// TODO: QVector::const_reverse_iterator rend() const;
+#endif
   // void replace(int i, const T &value);
   bind::void_member_function<QVector<T>, int, const T&, &QVector<T>::replace>(vector, "replace").create();
   // void reserve(int size);
   bind::void_member_function<QVector<T>, int, &QVector<T>::reserve>(vector, "reserve").create();
   // void resize(int size);
   bind::void_member_function<QVector<T>, int, &QVector<T>::resize>(vector, "resize").create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
   // void shrink_to_fit();
-  /// Qt 5.10
-  ///bind::void_member_function<QVector<T>, &QVector<T>::shrink_to_fit>(vector, "shrink_to_fit").create();
+  bind::void_member_function<QVector<T>, &QVector<T>::shrink_to_fit>(vector, "shrink_to_fit").create();
+#endif
   // int size() const;
   bind::member_function<QVector<T>, int, &QVector<T>::size>(vector, "size").create();
   // void squeeze();
@@ -216,12 +249,18 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
   bind::member_function<QVector<T>, bool, const T &, &QVector<T>::startsWith>(vector, "startsWith").create();
   // void swap(QVector<T> &other);
   bind::void_member_function<QVector<T>, QVector<T>&, &QVector<T>::swap>(vector, "swap").create();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
   // T takeAt(int i);
   bind::member_function<QVector<T>, T, int, &QVector<T>::takeAt>(vector, "takeAt").create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
   // T takeFirst();
   bind::member_function<QVector<T>, T, &QVector<T>::takeFirst>(vector, "takeFirst").create();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
   // T takeLast();
   bind::member_function<QVector<T>, T, &QVector<T>::takeLast>(vector, "takeLast").create();
+#endif
   /// TODO: QList<T> toList() const;
   /// ignore: std::vector<T> toStdVector() const;
   // T value(int i) const;
