@@ -125,9 +125,11 @@ static void register_pixmap_class(script::Namespace ns)
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   /// TODO: static QPixmap fromImageReader(QImageReader *, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // static QPixmap fromImage(QImage &&, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor));
   bind::static_member_function<QPixmap, QPixmap, QImage &&, Qt::ImageConversionFlags, &QPixmap::fromImage>(pixmap, "fromImage")
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
+#endif
   // bool load(const QString &, const char *, Qt::ImageConversionFlags);
   /// TODO: bool load(const QString &, const char *, Qt::ImageConversionFlags);
   // bool loadFromData(const uchar *, uint, const char *, Qt::ImageConversionFlags);

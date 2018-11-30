@@ -119,8 +119,10 @@ static void register_variant_class(script::Namespace ns)
   bind::constructor<QVariant, const QUuid &>(variant).create();
   // QVariant(const QModelIndex &);
   /// TODO: QVariant(const QModelIndex &);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVariant(const QPersistentModelIndex &);
   /// TODO: QVariant(const QPersistentModelIndex &);
+#endif
   // QVariant(const QJsonValue &);
   bind::constructor<QVariant, const QJsonValue &>(variant).create();
   // QVariant(const QJsonObject &);
@@ -215,8 +217,10 @@ static void register_variant_class(script::Namespace ns)
   bind::member_function<QVariant, QUuid, &QVariant::toUuid>(variant, "toUuid").create();
   // QModelIndex toModelIndex() const;
   /// TODO: QModelIndex toModelIndex() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QPersistentModelIndex toPersistentModelIndex() const;
   /// TODO: QPersistentModelIndex toPersistentModelIndex() const;
+#endif
   // QJsonValue toJsonValue() const;
   bind::member_function<QVariant, QJsonValue, &QVariant::toJsonValue>(variant, "toJsonValue").create();
   // QJsonObject toJsonObject() const;

@@ -89,10 +89,14 @@ static void register_object_class(script::Namespace ns)
   /// TODO: bool disconnect(const QObject *, const char *) const;
   // static bool disconnect(const QMetaObject::Connection &);
   /// TODO: static bool disconnect(const QMetaObject::Connection &);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // void dumpObjectTree() const;
   bind::const_void_member_function<QObject, &QObject::dumpObjectTree>(object, "dumpObjectTree").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // void dumpObjectInfo() const;
   bind::const_void_member_function<QObject, &QObject::dumpObjectInfo>(object, "dumpObjectInfo").create();
+#endif
   // bool setProperty(const char *, const QVariant &);
   /// TODO: bool setProperty(const char *, const QVariant &);
   // QVariant property(const char *) const;

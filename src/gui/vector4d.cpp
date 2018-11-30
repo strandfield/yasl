@@ -66,8 +66,10 @@ static void register_vector4_d_class(script::Namespace ns)
   bind::void_member_function<QVector4D, float, &QVector4D::setZ>(vector4_d, "setZ").create();
   // void setW(float);
   bind::void_member_function<QVector4D, float, &QVector4D::setW>(vector4_d, "setW").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // float operator[](int) const;
   bind::memop_const_subscript<QVector4D, float, int>(vector4_d);
+#endif
   // float length() const;
   bind::member_function<QVector4D, float, &QVector4D::length>(vector4_d, "length").create();
   // float lengthSquared() const;
@@ -86,8 +88,10 @@ static void register_vector4_d_class(script::Namespace ns)
   bind::memop_mul_assign<QVector4D, const QVector4D &>(vector4_d);
   // QVector4D & operator/=(float);
   bind::memop_div_assign<QVector4D, float>(vector4_d);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector4D & operator/=(const QVector4D &);
   bind::memop_div_assign<QVector4D, const QVector4D &>(vector4_d);
+#endif
   // static float dotProduct(const QVector4D &, const QVector4D &);
   bind::static_member_function<QVector4D, float, const QVector4D &, const QVector4D &, &QVector4D::dotProduct>(vector4_d, "dotProduct").create();
   // QVector2D toVector2D() const;
@@ -133,8 +137,10 @@ void register_vector4d_file(script::Namespace gui)
   bind::op_unary_minus<const QVector4D, const QVector4D &>(ns);
   // const QVector4D operator/(const QVector4D &, float);
   bind::op_div<const QVector4D, const QVector4D &, float>(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // const QVector4D operator/(const QVector4D &, const QVector4D &);
   bind::op_div<const QVector4D, const QVector4D &, const QVector4D &>(ns);
+#endif
   // bool qFuzzyCompare(const QVector4D &, const QVector4D &);
   bind::function<bool, const QVector4D &, const QVector4D &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
   // QDebug operator<<(QDebug, const QVector4D &);

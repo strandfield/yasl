@@ -32,8 +32,12 @@ static void register_regular_expression_pattern_option_enum(script::Class regula
   pattern_option.addValue("InvertedGreedinessOption", QRegularExpression::InvertedGreedinessOption);
   pattern_option.addValue("DontCaptureOption", QRegularExpression::DontCaptureOption);
   pattern_option.addValue("UseUnicodePropertiesOption", QRegularExpression::UseUnicodePropertiesOption);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   pattern_option.addValue("OptimizeOnFirstUsageOption", QRegularExpression::OptimizeOnFirstUsageOption);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   pattern_option.addValue("DontAutomaticallyOptimizeOption", QRegularExpression::DontAutomaticallyOptimizeOption);
+#endif
 }
 
 
@@ -46,7 +50,9 @@ static void register_regular_expression_match_type_enum(script::Class regular_ex
   match_type.addValue("NormalMatch", QRegularExpression::NormalMatch);
   match_type.addValue("PartialPreferCompleteMatch", QRegularExpression::PartialPreferCompleteMatch);
   match_type.addValue("PartialPreferFirstMatch", QRegularExpression::PartialPreferFirstMatch);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   match_type.addValue("NoMatch", QRegularExpression::NoMatch);
+#endif
 }
 
 
@@ -59,7 +65,9 @@ static void register_regular_expression_match_option_enum(script::Class regular_
   register_qflags_type<QRegularExpression::MatchOption>(regular_expression, "MatchOptions", script::Type::QRegularExpressionMatchOptions);
   match_option.addValue("NoMatchOption", QRegularExpression::NoMatchOption);
   match_option.addValue("AnchoredMatchOption", QRegularExpression::AnchoredMatchOption);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   match_option.addValue("DontCheckSubjectStringMatchOption", QRegularExpression::DontCheckSubjectStringMatchOption);
+#endif
 }
 
 
@@ -104,8 +112,10 @@ static void register_regular_expression_class(script::Namespace ns)
   bind::member_function<QRegularExpression, QString, &QRegularExpression::errorString>(regular_expression, "errorString").create();
   // int captureCount() const;
   bind::member_function<QRegularExpression, int, &QRegularExpression::captureCount>(regular_expression, "captureCount").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QStringList namedCaptureGroups() const;
   /// TODO: QStringList namedCaptureGroups() const;
+#endif
   // QRegularExpressionMatch match(const QString &, int, QRegularExpression::MatchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions = QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption)) const;
   bind::member_function<QRegularExpression, QRegularExpressionMatch, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::match>(regular_expression, "match")
     .apply(bind::default_arguments(QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption), QRegularExpression::NormalMatch)).create();
@@ -114,8 +124,10 @@ static void register_regular_expression_class(script::Namespace ns)
   // QRegularExpressionMatchIterator globalMatch(const QString &, int, QRegularExpression::MatchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions = QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption)) const;
   bind::member_function<QRegularExpression, QRegularExpressionMatchIterator, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::globalMatch>(regular_expression, "globalMatch")
     .apply(bind::default_arguments(QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption), QRegularExpression::NormalMatch)).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // void optimize() const;
   bind::const_void_member_function<QRegularExpression, &QRegularExpression::optimize>(regular_expression, "optimize").create();
+#endif
   // static QString escape(const QString &);
   bind::static_member_function<QRegularExpression, QString, const QString &, &QRegularExpression::escape>(regular_expression, "escape").create();
   // bool operator==(const QRegularExpression &) const;
@@ -245,8 +257,10 @@ void register_regularexpression_file(script::Namespace core)
   register_regular_expression_match_class(ns);
   register_regular_expression_match_iterator_class(ns);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // uint qHash(const QRegularExpression &, uint);
   bind::function<uint, const QRegularExpression &, uint, &qHash>(ns, "qHash").create();
+#endif
   // void swap(QRegularExpression &, QRegularExpression &);
   bind::void_function<QRegularExpression &, QRegularExpression &, &swap>(ns, "swap").create();
   // QRegularExpression::PatternOptions operator|(QRegularExpression::PatternOption, QRegularExpression::PatternOption);

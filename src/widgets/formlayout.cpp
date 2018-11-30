@@ -120,18 +120,30 @@ static void register_form_layout_class(script::Namespace ns)
   bind::void_member_function<QFormLayout, int, QWidget *, &QFormLayout::insertRow>(form_layout, "insertRow").create();
   // void insertRow(int, QLayout *);
   bind::void_member_function<QFormLayout, int, QLayout *, &QFormLayout::insertRow>(form_layout, "insertRow").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // void removeRow(int);
   bind::void_member_function<QFormLayout, int, &QFormLayout::removeRow>(form_layout, "removeRow").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // void removeRow(QWidget *);
   bind::void_member_function<QFormLayout, QWidget *, &QFormLayout::removeRow>(form_layout, "removeRow").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // void removeRow(QLayout *);
   bind::void_member_function<QFormLayout, QLayout *, &QFormLayout::removeRow>(form_layout, "removeRow").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QFormLayout::TakeRowResult takeRow(int);
   /// TODO: QFormLayout::TakeRowResult takeRow(int);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QFormLayout::TakeRowResult takeRow(QWidget *);
   /// TODO: QFormLayout::TakeRowResult takeRow(QWidget *);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QFormLayout::TakeRowResult takeRow(QLayout *);
   /// TODO: QFormLayout::TakeRowResult takeRow(QLayout *);
+#endif
   // void setItem(int, QFormLayout::ItemRole, QLayoutItem *);
   /// TODO: void setItem(int, QFormLayout::ItemRole, QLayoutItem *);
   // void setWidget(int, QFormLayout::ItemRole, QWidget *);

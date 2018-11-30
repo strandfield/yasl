@@ -60,8 +60,10 @@ static void register_vector3_d_class(script::Namespace ns)
   bind::void_member_function<QVector3D, float, &QVector3D::setY>(vector3_d, "setY").create();
   // void setZ(float);
   bind::void_member_function<QVector3D, float, &QVector3D::setZ>(vector3_d, "setZ").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // float operator[](int) const;
   bind::memop_const_subscript<QVector3D, float, int>(vector3_d);
+#endif
   // float length() const;
   bind::member_function<QVector3D, float, &QVector3D::length>(vector3_d, "length").create();
   // float lengthSquared() const;
@@ -80,8 +82,10 @@ static void register_vector3_d_class(script::Namespace ns)
   bind::memop_mul_assign<QVector3D, const QVector3D &>(vector3_d);
   // QVector3D & operator/=(float);
   bind::memop_div_assign<QVector3D, float>(vector3_d);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector3D & operator/=(const QVector3D &);
   bind::memop_div_assign<QVector3D, const QVector3D &>(vector3_d);
+#endif
   // static float dotProduct(const QVector3D &, const QVector3D &);
   bind::static_member_function<QVector3D, float, const QVector3D &, const QVector3D &, &QVector3D::dotProduct>(vector3_d, "dotProduct").create();
   // static QVector3D crossProduct(const QVector3D &, const QVector3D &);
@@ -90,12 +94,18 @@ static void register_vector3_d_class(script::Namespace ns)
   bind::static_member_function<QVector3D, QVector3D, const QVector3D &, const QVector3D &, &QVector3D::normal>(vector3_d, "normal").create();
   // static QVector3D normal(const QVector3D &, const QVector3D &, const QVector3D &);
   bind::static_member_function<QVector3D, QVector3D, const QVector3D &, const QVector3D &, const QVector3D &, &QVector3D::normal>(vector3_d, "normal").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector3D project(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
   /// TODO: QVector3D project(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector3D unproject(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
   /// TODO: QVector3D unproject(const QMatrix4x4 &, const QMatrix4x4 &, const QRect &) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // float distanceToPoint(const QVector3D &) const;
   bind::member_function<QVector3D, float, const QVector3D &, &QVector3D::distanceToPoint>(vector3_d, "distanceToPoint").create();
+#endif
   // float distanceToPlane(const QVector3D &, const QVector3D &) const;
   bind::member_function<QVector3D, float, const QVector3D &, const QVector3D &, &QVector3D::distanceToPlane>(vector3_d, "distanceToPlane").create();
   // float distanceToPlane(const QVector3D &, const QVector3D &, const QVector3D &) const;
@@ -141,8 +151,10 @@ void register_vector3d_file(script::Namespace gui)
   bind::op_unary_minus<const QVector3D, const QVector3D &>(ns);
   // const QVector3D operator/(const QVector3D &, float);
   bind::op_div<const QVector3D, const QVector3D &, float>(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // const QVector3D operator/(const QVector3D &, const QVector3D &);
   bind::op_div<const QVector3D, const QVector3D &, const QVector3D &>(ns);
+#endif
   // bool qFuzzyCompare(const QVector3D &, const QVector3D &);
   bind::function<bool, const QVector3D &, const QVector3D &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
   // QDebug operator<<(QDebug, const QVector3D &);

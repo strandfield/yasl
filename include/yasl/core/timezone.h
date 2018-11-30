@@ -10,7 +10,9 @@
 #include <QTimeZone>
 
 namespace script {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_t<QTimeZone> { inline static script::Type get() { return script::Type::QTimeZone; } };
+#endif
 template<> struct make_type_t<QTimeZone::NameType> { inline static script::Type get() { return script::Type::QTimeZoneNameType; } };
 template<> struct make_type_t<QTimeZone::TimeType> { inline static script::Type get() { return script::Type::QTimeZoneTimeType; } };
 } // namespace script

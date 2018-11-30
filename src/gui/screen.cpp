@@ -28,12 +28,18 @@ static void register_screen_class(script::Namespace ns)
   /// TODO: QPlatformScreen * handle() const;
   // QString name() const;
   bind::member_function<QScreen, QString, &QScreen::name>(screen, "name").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // QString manufacturer() const;
   bind::member_function<QScreen, QString, &QScreen::manufacturer>(screen, "manufacturer").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // QString model() const;
   bind::member_function<QScreen, QString, &QScreen::model>(screen, "model").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // QString serialNumber() const;
   bind::member_function<QScreen, QString, &QScreen::serialNumber>(screen, "serialNumber").create();
+#endif
   // int depth() const;
   bind::member_function<QScreen, int, &QScreen::depth>(screen, "depth").create();
   // QSize size() const;
@@ -54,8 +60,10 @@ static void register_screen_class(script::Namespace ns)
   bind::member_function<QScreen, qreal, &QScreen::logicalDotsPerInchY>(screen, "logicalDotsPerInchY").create();
   // qreal logicalDotsPerInch() const;
   bind::member_function<QScreen, qreal, &QScreen::logicalDotsPerInch>(screen, "logicalDotsPerInch").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // qreal devicePixelRatio() const;
   bind::member_function<QScreen, qreal, &QScreen::devicePixelRatio>(screen, "devicePixelRatio").create();
+#endif
   // QSize availableSize() const;
   bind::member_function<QScreen, QSize, &QScreen::availableSize>(screen, "availableSize").create();
   // QRect availableGeometry() const;
@@ -74,8 +82,10 @@ static void register_screen_class(script::Namespace ns)
   bind::member_function<QScreen, Qt::ScreenOrientation, &QScreen::primaryOrientation>(screen, "primaryOrientation").create();
   // Qt::ScreenOrientation orientation() const;
   bind::member_function<QScreen, Qt::ScreenOrientation, &QScreen::orientation>(screen, "orientation").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // Qt::ScreenOrientation nativeOrientation() const;
   bind::member_function<QScreen, Qt::ScreenOrientation, &QScreen::nativeOrientation>(screen, "nativeOrientation").create();
+#endif
   // Qt::ScreenOrientations orientationUpdateMask() const;
   /// TODO: Qt::ScreenOrientations orientationUpdateMask() const;
   // void setOrientationUpdateMask(Qt::ScreenOrientations);

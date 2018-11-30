@@ -81,15 +81,19 @@ static void register_icon_class(script::Namespace ns)
   // QPixmap pixmap(int, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QPixmap, int, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QPixmap pixmap(QWindow *, const QSize &, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QPixmap, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::pixmap>(icon, "pixmap")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
+#endif
   // QSize actualSize(const QSize &, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QSize, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>(icon, "actualSize")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QSize actualSize(QWindow *, const QSize &, QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   bind::member_function<QIcon, QSize, QWindow *, const QSize &, QIcon::Mode, QIcon::State, &QIcon::actualSize>(icon, "actualSize")
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal)).create();
+#endif
   // QString name() const;
   bind::member_function<QIcon, QString, &QIcon::name>(icon, "name").create();
   // void paint(QPainter *, const QRect &, Qt::Alignment = Qt::Alignment(Qt::AlignCenter), QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
@@ -112,10 +116,14 @@ static void register_icon_class(script::Namespace ns)
     .apply(bind::default_arguments(QIcon::Off, QIcon::Normal, QSize())).create();
   // QList<QSize> availableSizes(QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
   /// TODO: QList<QSize> availableSizes(QIcon::Mode = QIcon::Normal, QIcon::State = QIcon::Off) const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // void setIsMask(bool);
   bind::void_member_function<QIcon, bool, &QIcon::setIsMask>(icon, "setIsMask").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // bool isMask() const;
   bind::member_function<QIcon, bool, &QIcon::isMask>(icon, "isMask").create();
+#endif
   // static QIcon fromTheme(const QString &);
   bind::static_member_function<QIcon, QIcon, const QString &, &QIcon::fromTheme>(icon, "fromTheme").create();
   // static QIcon fromTheme(const QString &, const QIcon &);

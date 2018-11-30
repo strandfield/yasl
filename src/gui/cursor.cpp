@@ -86,6 +86,14 @@ void register_cursor_file(script::Namespace gui)
 
   // void swap(QCursor &, QCursor &);
   bind::void_function<QCursor &, QCursor &, &swap>(ns, "swap").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // bool operator==(const QCursor &, const QCursor &);
+  bind::op_eq<const QCursor &, const QCursor &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // bool operator!=(const QCursor &, const QCursor &);
+  bind::op_neq<const QCursor &, const QCursor &>(ns);
+#endif
   // QDataStream & operator<<(QDataStream &, const QCursor &);
   bind::op_put_to<QDataStream &, const QCursor &>(ns);
   // QDataStream & operator>>(QDataStream &, QCursor &);

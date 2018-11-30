@@ -54,18 +54,26 @@ static void register_menu_class(script::Namespace ns)
   bind::member_function<QMenu, QMenu *, const QIcon &, const QString &, &QMenu::addMenu>(menu, "addMenu").create();
   // QAction * addSeparator();
   bind::member_function<QMenu, QAction *, &QMenu::addSeparator>(menu, "addSeparator").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QAction * addSection(const QString &);
   bind::member_function<QMenu, QAction *, const QString &, &QMenu::addSection>(menu, "addSection").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QAction * addSection(const QIcon &, const QString &);
   bind::member_function<QMenu, QAction *, const QIcon &, const QString &, &QMenu::addSection>(menu, "addSection").create();
+#endif
   // QAction * insertMenu(QAction *, QMenu *);
   bind::member_function<QMenu, QAction *, QAction *, QMenu *, &QMenu::insertMenu>(menu, "insertMenu").create();
   // QAction * insertSeparator(QAction *);
   bind::member_function<QMenu, QAction *, QAction *, &QMenu::insertSeparator>(menu, "insertSeparator").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QAction * insertSection(QAction *, const QString &);
   bind::member_function<QMenu, QAction *, QAction *, const QString &, &QMenu::insertSection>(menu, "insertSection").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QAction * insertSection(QAction *, const QIcon &, const QString &);
   bind::member_function<QMenu, QAction *, QAction *, const QIcon &, const QString &, &QMenu::insertSection>(menu, "insertSection").create();
+#endif
   // bool isEmpty() const;
   bind::member_function<QMenu, bool, &QMenu::isEmpty>(menu, "isEmpty").create();
   // void clear();
@@ -76,10 +84,14 @@ static void register_menu_class(script::Namespace ns)
   bind::member_function<QMenu, bool, &QMenu::isTearOffEnabled>(menu, "isTearOffEnabled").create();
   // bool isTearOffMenuVisible() const;
   bind::member_function<QMenu, bool, &QMenu::isTearOffMenuVisible>(menu, "isTearOffMenuVisible").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void showTearOffMenu();
   bind::void_member_function<QMenu, &QMenu::showTearOffMenu>(menu, "showTearOffMenu").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void showTearOffMenu(const QPoint &);
   bind::void_member_function<QMenu, const QPoint &, &QMenu::showTearOffMenu>(menu, "showTearOffMenu").create();
+#endif
   // void hideTearOffMenu();
   bind::void_member_function<QMenu, &QMenu::hideTearOffMenu>(menu, "hideTearOffMenu").create();
   // void setDefaultAction(QAction *);
@@ -126,10 +138,14 @@ static void register_menu_class(script::Namespace ns)
   bind::member_function<QMenu, bool, &QMenu::separatorsCollapsible>(menu, "separatorsCollapsible").create();
   // void setSeparatorsCollapsible(bool);
   bind::void_member_function<QMenu, bool, &QMenu::setSeparatorsCollapsible>(menu, "setSeparatorsCollapsible").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // bool toolTipsVisible() const;
   bind::member_function<QMenu, bool, &QMenu::toolTipsVisible>(menu, "toolTipsVisible").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void setToolTipsVisible(bool);
   bind::void_member_function<QMenu, bool, &QMenu::setToolTipsVisible>(menu, "setToolTipsVisible").create();
+#endif
   // void aboutToShow();
   bind::signal<QMenu>(menu, "aboutToShow", "aboutToShow()");
   // void aboutToHide();

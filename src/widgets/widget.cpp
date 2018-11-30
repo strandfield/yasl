@@ -286,10 +286,14 @@ static void register_widget_class(script::Namespace ns)
   bind::void_member_function<QWidget, const QString &, &QWidget::setToolTip>(widget, "setToolTip").create();
   // QString toolTip() const;
   bind::member_function<QWidget, QString, &QWidget::toolTip>(widget, "toolTip").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setToolTipDuration(int);
   bind::void_member_function<QWidget, int, &QWidget::setToolTipDuration>(widget, "setToolTipDuration").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // int toolTipDuration() const;
   bind::member_function<QWidget, int, &QWidget::toolTipDuration>(widget, "toolTipDuration").create();
+#endif
   // void setStatusTip(const QString &);
   bind::void_member_function<QWidget, const QString &, &QWidget::setStatusTip>(widget, "setStatusTip").create();
   // QString statusTip() const;
@@ -523,9 +527,11 @@ static void register_widget_class(script::Namespace ns)
   /// TODO: void setWindowFlags(Qt::WindowFlags);
   // Qt::WindowFlags windowFlags() const;
   /// TODO: Qt::WindowFlags windowFlags() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // void setWindowFlag(Qt::WindowType, bool = true);
   bind::void_member_function<QWidget, Qt::WindowType, bool, &QWidget::setWindowFlag>(widget, "setWindowFlag")
     .apply(bind::default_arguments(true)).create();
+#endif
   // void overrideWindowFlags(Qt::WindowFlags);
   /// TODO: void overrideWindowFlags(Qt::WindowFlags);
   // Qt::WindowType windowType() const;
@@ -557,10 +563,14 @@ static void register_widget_class(script::Namespace ns)
   bind::member_function<QWidget, QWindow *, &QWidget::windowHandle>(widget, "windowHandle").create();
   // static QWidget * createWindowContainer(QWindow *, QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
   /// TODO: static QWidget * createWindowContainer(QWindow *, QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void windowTitleChanged(const QString &);
   bind::signal<QWidget, const QString &>(widget, "windowTitleChanged", "windowTitleChanged(const QString &)");
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void windowIconChanged(const QIcon &);
   bind::signal<QWidget, const QIcon &>(widget, "windowIconChanged", "windowIconChanged(const QIcon &)");
+#endif
   // void windowIconTextChanged(const QString &);
   bind::signal<QWidget, const QString &>(widget, "windowIconTextChanged", "windowIconTextChanged(const QString &)");
   // void customContextMenuRequested(const QPoint &);

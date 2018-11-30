@@ -43,6 +43,7 @@ static void register_time_zone_name_type_enum(script::Class time_zone)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 static void register_time_zone_class(script::Namespace ns)
 {
   using namespace script;
@@ -111,12 +112,16 @@ static void register_time_zone_class(script::Namespace ns)
   /// TODO: QTimeZone::OffsetData previousTransition(const QDateTime &) const;
   // QTimeZone::OffsetDataList transitions(const QDateTime &, const QDateTime &) const;
   /// TODO: QTimeZone::OffsetDataList transitions(const QDateTime &, const QDateTime &) const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QByteArray systemTimeZoneId();
   bind::static_member_function<QTimeZone, QByteArray, &QTimeZone::systemTimeZoneId>(time_zone, "systemTimeZoneId").create();
+#endif
   // static QTimeZone systemTimeZone();
   bind::static_member_function<QTimeZone, QTimeZone, &QTimeZone::systemTimeZone>(time_zone, "systemTimeZone").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QTimeZone utc();
   bind::static_member_function<QTimeZone, QTimeZone, &QTimeZone::utc>(time_zone, "utc").create();
+#endif
   // static bool isTimeZoneIdAvailable(const QByteArray &);
   bind::static_member_function<QTimeZone, bool, const QByteArray &, &QTimeZone::isTimeZoneIdAvailable>(time_zone, "isTimeZoneIdAvailable").create();
   // static QList<QByteArray> availableTimeZoneIds();
@@ -136,6 +141,7 @@ static void register_time_zone_class(script::Namespace ns)
   // static QList<QByteArray> windowsIdToIanaIds(const QByteArray &, QLocale::Country);
   bind::static_member_function<QTimeZone, QList<QByteArray>, const QByteArray &, QLocale::Country, &QTimeZone::windowsIdToIanaIds>(time_zone, "windowsIdToIanaIds").create();
 }
+#endif
 
 
 void register_timezone_file(script::Namespace core)
@@ -144,7 +150,9 @@ void register_timezone_file(script::Namespace core)
 
   Namespace ns = core;
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_time_zone_class(ns);
+#endif
 
   // void swap(QTimeZone &, QTimeZone &);
   bind::void_function<QTimeZone &, QTimeZone &, &swap>(ns, "swap").create();

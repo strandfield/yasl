@@ -126,8 +126,10 @@ static void register_font_database_class(script::Namespace ns)
   bind::member_function<QFontDatabase, int, const QString &, const QString &, &QFontDatabase::weight>(font_database, "weight").create();
   // bool hasFamily(const QString &) const;
   bind::member_function<QFontDatabase, bool, const QString &, &QFontDatabase::hasFamily>(font_database, "hasFamily").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // bool isPrivateFamily(const QString &) const;
   bind::member_function<QFontDatabase, bool, const QString &, &QFontDatabase::isPrivateFamily>(font_database, "isPrivateFamily").create();
+#endif
   // static QString writingSystemName(QFontDatabase::WritingSystem);
   bind::static_member_function<QFontDatabase, QString, QFontDatabase::WritingSystem, &QFontDatabase::writingSystemName>(font_database, "writingSystemName").create();
   // static QString writingSystemSample(QFontDatabase::WritingSystem);
@@ -144,8 +146,10 @@ static void register_font_database_class(script::Namespace ns)
   bind::static_member_function<QFontDatabase, bool, &QFontDatabase::removeAllApplicationFonts>(font_database, "removeAllApplicationFonts").create();
   // static bool supportsThreadedFontRendering();
   bind::static_member_function<QFontDatabase, bool, &QFontDatabase::supportsThreadedFontRendering>(font_database, "supportsThreadedFontRendering").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QFont systemFont(QFontDatabase::SystemFont);
   bind::static_member_function<QFontDatabase, QFont, QFontDatabase::SystemFont, &QFontDatabase::systemFont>(font_database, "systemFont").create();
+#endif
 }
 
 

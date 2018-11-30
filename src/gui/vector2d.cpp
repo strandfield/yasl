@@ -54,8 +54,10 @@ static void register_vector2_d_class(script::Namespace ns)
   bind::void_member_function<QVector2D, float, &QVector2D::setX>(vector2_d, "setX").create();
   // void setY(float);
   bind::void_member_function<QVector2D, float, &QVector2D::setY>(vector2_d, "setY").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // float operator[](int) const;
   bind::memop_const_subscript<QVector2D, float, int>(vector2_d);
+#endif
   // float length() const;
   bind::member_function<QVector2D, float, &QVector2D::length>(vector2_d, "length").create();
   // float lengthSquared() const;
@@ -64,10 +66,14 @@ static void register_vector2_d_class(script::Namespace ns)
   bind::member_function<QVector2D, QVector2D, &QVector2D::normalized>(vector2_d, "normalized").create();
   // void normalize();
   bind::void_member_function<QVector2D, &QVector2D::normalize>(vector2_d, "normalize").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // float distanceToPoint(const QVector2D &) const;
   bind::member_function<QVector2D, float, const QVector2D &, &QVector2D::distanceToPoint>(vector2_d, "distanceToPoint").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // float distanceToLine(const QVector2D &, const QVector2D &) const;
   bind::member_function<QVector2D, float, const QVector2D &, const QVector2D &, &QVector2D::distanceToLine>(vector2_d, "distanceToLine").create();
+#endif
   // QVector2D & operator+=(const QVector2D &);
   bind::memop_add_assign<QVector2D, const QVector2D &>(vector2_d);
   // QVector2D & operator-=(const QVector2D &);
@@ -78,8 +84,10 @@ static void register_vector2_d_class(script::Namespace ns)
   bind::memop_mul_assign<QVector2D, const QVector2D &>(vector2_d);
   // QVector2D & operator/=(float);
   bind::memop_div_assign<QVector2D, float>(vector2_d);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector2D & operator/=(const QVector2D &);
   bind::memop_div_assign<QVector2D, const QVector2D &>(vector2_d);
+#endif
   // static float dotProduct(const QVector2D &, const QVector2D &);
   bind::static_member_function<QVector2D, float, const QVector2D &, const QVector2D &, &QVector2D::dotProduct>(vector2_d, "dotProduct").create();
   // QVector3D toVector3D() const;
@@ -121,8 +129,10 @@ void register_vector2d_file(script::Namespace gui)
   bind::op_unary_minus<const QVector2D, const QVector2D &>(ns);
   // const QVector2D operator/(const QVector2D &, float);
   bind::op_div<const QVector2D, const QVector2D &, float>(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // const QVector2D operator/(const QVector2D &, const QVector2D &);
   bind::op_div<const QVector2D, const QVector2D &, const QVector2D &>(ns);
+#endif
   // bool qFuzzyCompare(const QVector2D &, const QVector2D &);
   bind::function<bool, const QVector2D &, const QVector2D &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
   // QDebug operator<<(QDebug, const QVector2D &);

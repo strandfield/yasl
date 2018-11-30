@@ -111,11 +111,16 @@ static void register_process_process_channel_mode_enum(script::Class process)
   process_channel_mode.addValue("SeparateChannels", QProcess::SeparateChannels);
   process_channel_mode.addValue("MergedChannels", QProcess::MergedChannels);
   process_channel_mode.addValue("ForwardedChannels", QProcess::ForwardedChannels);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   process_channel_mode.addValue("ForwardedOutputChannel", QProcess::ForwardedOutputChannel);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   process_channel_mode.addValue("ForwardedErrorChannel", QProcess::ForwardedErrorChannel);
+#endif
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 static void register_process_input_channel_mode_enum(script::Class process)
 {
   using namespace script;
@@ -125,6 +130,7 @@ static void register_process_input_channel_mode_enum(script::Class process)
   input_channel_mode.addValue("ManagedInputChannel", QProcess::ManagedInputChannel);
   input_channel_mode.addValue("ForwardedInputChannel", QProcess::ForwardedInputChannel);
 }
+#endif
 
 
 static void register_process_exit_status_enum(script::Class process)
@@ -149,7 +155,9 @@ static void register_process_class(script::Namespace ns)
   register_process_process_state_enum(process);
   register_process_process_channel_enum(process);
   register_process_process_channel_mode_enum(process);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_process_input_channel_mode_enum(process);
+#endif
   register_process_exit_status_enum(process);
 
   // QProcess(QObject * = (QObject*) nullptr);
@@ -162,19 +170,25 @@ static void register_process_class(script::Namespace ns)
   // void start(const QString &, QIODevice::OpenMode = QIODevice::OpenMode(QIODevice::ReadWrite));
   bind::void_member_function<QProcess, const QString &, QIODevice::OpenMode, &QProcess::start>(process, "start")
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void start(QIODevice::OpenMode);
   bind::void_member_function<QProcess, QIODevice::OpenMode, &QProcess::start>(process, "start").create();
+#endif
   // bool open(QIODevice::OpenMode = QIODevice::OpenMode(QIODevice::ReadWrite));
   bind::member_function<QProcess, bool, QIODevice::OpenMode, &QProcess::open>(process, "open")
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // QString program() const;
   bind::member_function<QProcess, QString, &QProcess::program>(process, "program").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void setProgram(const QString &);
   bind::void_member_function<QProcess, const QString &, &QProcess::setProgram>(process, "setProgram").create();
+#endif
   // QStringList arguments() const;
   /// TODO: QStringList arguments() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void setArguments(const QStringList &);
   /// TODO: void setArguments(const QStringList &);
+#endif
   // QProcess::ProcessChannelMode readChannelMode() const;
   bind::member_function<QProcess, QProcess::ProcessChannelMode, &QProcess::readChannelMode>(process, "readChannelMode").create();
   // void setReadChannelMode(QProcess::ProcessChannelMode);
@@ -183,10 +197,14 @@ static void register_process_class(script::Namespace ns)
   bind::member_function<QProcess, QProcess::ProcessChannelMode, &QProcess::processChannelMode>(process, "processChannelMode").create();
   // void setProcessChannelMode(QProcess::ProcessChannelMode);
   bind::void_member_function<QProcess, QProcess::ProcessChannelMode, &QProcess::setProcessChannelMode>(process, "setProcessChannelMode").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QProcess::InputChannelMode inputChannelMode() const;
   bind::member_function<QProcess, QProcess::InputChannelMode, &QProcess::inputChannelMode>(process, "inputChannelMode").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setInputChannelMode(QProcess::InputChannelMode);
   bind::void_member_function<QProcess, QProcess::InputChannelMode, &QProcess::setInputChannelMode>(process, "setInputChannelMode").create();
+#endif
   // QProcess::ProcessChannel readChannel() const;
   bind::member_function<QProcess, QProcess::ProcessChannel, &QProcess::readChannel>(process, "readChannel").create();
   // void setReadChannel(QProcess::ProcessChannel);
@@ -205,10 +223,6 @@ static void register_process_class(script::Namespace ns)
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::Truncate))).create();
   // void setStandardOutputProcess(QProcess *);
   /// TODO: void setStandardOutputProcess(QProcess *);
-  // QProcess::CreateProcessArgumentModifier createProcessArgumentsModifier() const;
-  /// TODO: QProcess::CreateProcessArgumentModifier createProcessArgumentsModifier() const;
-  // void setCreateProcessArgumentsModifier(QProcess::CreateProcessArgumentModifier);
-  /// TODO: void setCreateProcessArgumentsModifier(QProcess::CreateProcessArgumentModifier);
   // QString workingDirectory() const;
   bind::member_function<QProcess, QString, &QProcess::workingDirectory>(process, "workingDirectory").create();
   // void setWorkingDirectory(const QString &);
@@ -227,8 +241,10 @@ static void register_process_class(script::Namespace ns)
   bind::member_function<QProcess, QProcess::ProcessState, &QProcess::state>(process, "state").create();
   // Q_PID pid() const;
   /// TODO: Q_PID pid() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // qint64 processId() const;
   /// TODO: qint64 processId() const;
+#endif
   // bool waitForStarted(int = 30000);
   bind::member_function<QProcess, bool, int, &QProcess::waitForStarted>(process, "waitForStarted")
     .apply(bind::default_arguments(30000)).create();
@@ -273,8 +289,10 @@ static void register_process_class(script::Namespace ns)
   bind::static_member_function<QProcess, bool, const QString &, &QProcess::startDetached>(process, "startDetached").create();
   // static QStringList systemEnvironment();
   /// TODO: static QStringList systemEnvironment();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QString nullDevice();
   bind::static_member_function<QProcess, QString, &QProcess::nullDevice>(process, "nullDevice").create();
+#endif
   // void terminate();
   bind::void_member_function<QProcess, &QProcess::terminate>(process, "terminate").create();
   // void kill();
@@ -287,8 +305,10 @@ static void register_process_class(script::Namespace ns)
   bind::signal<QProcess, int, QProcess::ExitStatus>(process, "finished", "finished(int,QProcess::ExitStatus)");
   // void error(QProcess::ProcessError);
   bind::void_member_function<QProcess, QProcess::ProcessError, &QProcess::error>(process, "error").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // void errorOccurred(QProcess::ProcessError);
   bind::signal<QProcess, QProcess::ProcessError>(process, "errorOccurred", "errorOccurred(QProcess::ProcessError)");
+#endif
   // void stateChanged(QProcess::ProcessState);
   bind::signal<QProcess, QProcess::ProcessState>(process, "stateChanged", "stateChanged(QProcess::ProcessState)");
   // void readyReadStandardOutput();

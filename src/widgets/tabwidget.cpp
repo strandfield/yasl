@@ -144,10 +144,14 @@ static void register_tab_widget_class(script::Namespace ns)
   bind::member_function<QTabWidget, bool, &QTabWidget::documentMode>(tab_widget, "documentMode").create();
   // void setDocumentMode(bool);
   bind::void_member_function<QTabWidget, bool, &QTabWidget::setDocumentMode>(tab_widget, "setDocumentMode").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // bool tabBarAutoHide() const;
   bind::member_function<QTabWidget, bool, &QTabWidget::tabBarAutoHide>(tab_widget, "tabBarAutoHide").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // void setTabBarAutoHide(bool);
   bind::void_member_function<QTabWidget, bool, &QTabWidget::setTabBarAutoHide>(tab_widget, "setTabBarAutoHide").create();
+#endif
   // void clear();
   bind::void_member_function<QTabWidget, &QTabWidget::clear>(tab_widget, "clear").create();
   // QTabBar * tabBar() const;
@@ -160,10 +164,14 @@ static void register_tab_widget_class(script::Namespace ns)
   bind::signal<QTabWidget, int>(tab_widget, "currentChanged", "currentChanged(int)");
   // void tabCloseRequested(int);
   bind::signal<QTabWidget, int>(tab_widget, "tabCloseRequested", "tabCloseRequested(int)");
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void tabBarClicked(int);
   bind::signal<QTabWidget, int>(tab_widget, "tabBarClicked", "tabBarClicked(int)");
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void tabBarDoubleClicked(int);
   bind::signal<QTabWidget, int>(tab_widget, "tabBarDoubleClicked", "tabBarDoubleClicked(int)");
+#endif
 
   bind::link(tab_widget, &QTabWidget::staticMetaObject);
 }

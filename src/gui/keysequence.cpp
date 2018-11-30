@@ -89,7 +89,9 @@ static void register_key_sequence_standard_key_enum(script::Class key_sequence)
   standard_key.addValue("Preferences", QKeySequence::Preferences);
   standard_key.addValue("Quit", QKeySequence::Quit);
   standard_key.addValue("FullScreen", QKeySequence::FullScreen);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   standard_key.addValue("Deselect", QKeySequence::Deselect);
+#endif
   standard_key.addValue("DeleteCompleteLine", QKeySequence::DeleteCompleteLine);
   standard_key.addValue("Backspace", QKeySequence::Backspace);
   standard_key.addValue("Cancel", QKeySequence::Cancel);
@@ -153,10 +155,14 @@ static void register_key_sequence_class(script::Namespace ns)
   // static QKeySequence fromString(const QString &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
   bind::static_member_function<QKeySequence, QKeySequence, const QString &, QKeySequence::SequenceFormat, &QKeySequence::fromString>(key_sequence, "fromString")
     .apply(bind::default_arguments(QKeySequence::PortableText)).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
   /// TODO: static QList<QKeySequence> listFromString(const QString &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
   /// TODO: static QString listToString(const QList<QKeySequence> &, QKeySequence::SequenceFormat = QKeySequence::PortableText);
+#endif
   // QKeySequence::SequenceMatch matches(const QKeySequence &) const;
   bind::member_function<QKeySequence, QKeySequence::SequenceMatch, const QKeySequence &, &QKeySequence::matches>(key_sequence, "matches").create();
   // static QKeySequence mnemonic(const QString &);

@@ -14,7 +14,9 @@ namespace script {
 template<> struct make_type_t<QProcess> { inline static script::Type get() { return script::Type::QProcess; } };
 template<> struct tag_resolver<QProcess> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QProcess::ExitStatus> { inline static script::Type get() { return script::Type::QProcessExitStatus; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_t<QProcess::InputChannelMode> { inline static script::Type get() { return script::Type::QProcessInputChannelMode; } };
+#endif
 template<> struct make_type_t<QProcess::ProcessChannel> { inline static script::Type get() { return script::Type::QProcessProcessChannel; } };
 template<> struct make_type_t<QProcess::ProcessChannelMode> { inline static script::Type get() { return script::Type::QProcessProcessChannelMode; } };
 template<> struct make_type_t<QProcess::ProcessError> { inline static script::Type get() { return script::Type::QProcessProcessError; } };

@@ -28,7 +28,9 @@ static void register_input_dialog_input_dialog_option_enum(script::Class input_d
   register_qflags_type<QInputDialog::InputDialogOption>(input_dialog, "InputDialogOptions", script::Type::QInputDialogInputDialogOptions);
   input_dialog_option.addValue("NoButtons", QInputDialog::NoButtons);
   input_dialog_option.addValue("UseListViewForComboBoxItems", QInputDialog::UseListViewForComboBoxItems);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   input_dialog_option.addValue("UsePlainTextEditForTextInput", QInputDialog::UsePlainTextEditForTextInput);
+#endif
 }
 
 
@@ -145,8 +147,10 @@ static void register_input_dialog_class(script::Namespace ns)
   bind::void_member_function<QInputDialog, bool, &QInputDialog::setVisible>(input_dialog, "setVisible").create();
   // static QString getText(QWidget *, const QString &, const QString &, QLineEdit::EchoMode, const QString &, bool *, Qt::WindowFlags, Qt::InputMethodHints);
   /// TODO: static QString getText(QWidget *, const QString &, const QString &, QLineEdit::EchoMode, const QString &, bool *, Qt::WindowFlags, Qt::InputMethodHints);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QString getMultiLineText(QWidget *, const QString &, const QString &, const QString &, bool *, Qt::WindowFlags, Qt::InputMethodHints);
   /// TODO: static QString getMultiLineText(QWidget *, const QString &, const QString &, const QString &, bool *, Qt::WindowFlags, Qt::InputMethodHints);
+#endif
   // static QString getItem(QWidget *, const QString &, const QString &, const QStringList &, int, bool, bool *, Qt::WindowFlags, Qt::InputMethodHints);
   /// TODO: static QString getItem(QWidget *, const QString &, const QString &, const QStringList &, int, bool, bool *, Qt::WindowFlags, Qt::InputMethodHints);
   // static int getInt(QWidget *, const QString &, const QString &, int, int, int, int, bool *, Qt::WindowFlags);
@@ -155,6 +159,14 @@ static void register_input_dialog_class(script::Namespace ns)
   /// TODO: static double getDouble(QWidget *, const QString &, const QString &, double, double, double, int, bool *, Qt::WindowFlags);
   // static double getDouble(QWidget *, const QString &, const QString &, double, double, double, int, bool *, Qt::WindowFlags, double);
   /// TODO: static double getDouble(QWidget *, const QString &, const QString &, double, double, double, int, bool *, Qt::WindowFlags, double);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // void setDoubleStep(double);
+  bind::void_member_function<QInputDialog, double, &QInputDialog::setDoubleStep>(input_dialog, "setDoubleStep").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // double doubleStep() const;
+  bind::member_function<QInputDialog, double, &QInputDialog::doubleStep>(input_dialog, "doubleStep").create();
+#endif
   // void textValueChanged(const QString &);
   bind::signal<QInputDialog, const QString &>(input_dialog, "textValueChanged", "textValueChanged(const QString &)");
   // void textValueSelected(const QString &);

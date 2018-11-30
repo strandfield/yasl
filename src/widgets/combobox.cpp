@@ -146,9 +146,11 @@ static void register_combo_box_class(script::Namespace ns)
   bind::member_function<QComboBox, int, &QComboBox::currentIndex>(combo_box, "currentIndex").create();
   // QString currentText() const;
   bind::member_function<QComboBox, QString, &QComboBox::currentText>(combo_box, "currentText").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QVariant currentData(int = int(Qt::UserRole)) const;
   bind::member_function<QComboBox, QVariant, int, &QComboBox::currentData>(combo_box, "currentData")
     .apply(bind::default_arguments(int(Qt::UserRole))).create();
+#endif
   // QString itemText(int) const;
   bind::member_function<QComboBox, QString, int, &QComboBox::itemText>(combo_box, "itemText").create();
   // QIcon itemIcon(int) const;

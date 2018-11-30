@@ -74,6 +74,10 @@ static void register_json_array_class(script::Namespace ns)
   bind::memop_eq<QJsonArray, const QJsonArray &>(json_array);
   // bool operator!=(const QJsonArray &) const;
   bind::memop_neq<QJsonArray, const QJsonArray &>(json_array);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // void swap(QJsonArray &);
+  bind::void_member_function<QJsonArray, QJsonArray &, &QJsonArray::swap>(json_array, "swap").create();
+#endif
   // QJsonArray::iterator begin();
   /// TODO: QJsonArray::iterator begin();
   // QJsonArray::const_iterator begin() const;
@@ -90,10 +94,18 @@ static void register_json_array_class(script::Namespace ns)
   /// TODO: QJsonArray::iterator insert(QJsonArray::iterator, const QJsonValue &);
   // QJsonArray::iterator erase(QJsonArray::iterator);
   /// TODO: QJsonArray::iterator erase(QJsonArray::iterator);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QJsonArray operator+(const QJsonValue &) const;
   bind::memop_add<QJsonArray, QJsonArray, const QJsonValue &>(json_array);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QJsonArray & operator+=(const QJsonValue &);
   bind::memop_add_assign<QJsonArray, const QJsonValue &>(json_array);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
+  // QJsonArray & operator<<(const QJsonValue &);
+  bind::memop_put_to<QJsonArray, const QJsonValue &>(json_array);
+#endif
   // void push_back(const QJsonValue &);
   bind::void_member_function<QJsonArray, const QJsonValue &, &QJsonArray::push_back>(json_array, "push_back").create();
   // void push_front(const QJsonValue &);

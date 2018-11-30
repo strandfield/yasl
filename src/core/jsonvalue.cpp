@@ -112,6 +112,14 @@ static void register_json_value_class(script::Namespace ns)
   bind::member_function<QJsonValue, QJsonObject, &QJsonValue::toObject>(json_value, "toObject").create();
   // QJsonObject toObject(const QJsonObject &) const;
   bind::member_function<QJsonValue, QJsonObject, const QJsonObject &, &QJsonValue::toObject>(json_value, "toObject").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // const QJsonValue operator[](const QString &) const;
+  bind::memop_const_subscript<QJsonValue, const QJsonValue, const QString &>(json_value);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // const QJsonValue operator[](int) const;
+  bind::memop_const_subscript<QJsonValue, const QJsonValue, int>(json_value);
+#endif
   // bool operator==(const QJsonValue &) const;
   bind::memop_eq<QJsonValue, const QJsonValue &>(json_value);
   // bool operator!=(const QJsonValue &) const;

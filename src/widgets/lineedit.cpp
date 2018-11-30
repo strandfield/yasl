@@ -146,6 +146,14 @@ static void register_line_edit_class(script::Namespace ns)
   bind::member_function<QLineEdit, QString, &QLineEdit::selectedText>(line_edit, "selectedText").create();
   // int selectionStart() const;
   bind::member_function<QLineEdit, int, &QLineEdit::selectionStart>(line_edit, "selectionStart").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // int selectionEnd() const;
+  bind::member_function<QLineEdit, int, &QLineEdit::selectionEnd>(line_edit, "selectionEnd").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // int selectionLength() const;
+  bind::member_function<QLineEdit, int, &QLineEdit::selectionLength>(line_edit, "selectionLength").create();
+#endif
   // bool isUndoAvailable() const;
   bind::member_function<QLineEdit, bool, &QLineEdit::isUndoAvailable>(line_edit, "isUndoAvailable").create();
   // bool isRedoAvailable() const;
@@ -172,10 +180,14 @@ static void register_line_edit_class(script::Namespace ns)
   /// TODO: void getTextMargins(int *, int *, int *, int *) const;
   // QMargins textMargins() const;
   bind::member_function<QLineEdit, QMargins, &QLineEdit::textMargins>(line_edit, "textMargins").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void addAction(QAction *, QLineEdit::ActionPosition);
   bind::void_member_function<QLineEdit, QAction *, QLineEdit::ActionPosition, &QLineEdit::addAction>(line_edit, "addAction").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QAction * addAction(const QIcon &, QLineEdit::ActionPosition);
   bind::member_function<QLineEdit, QAction *, const QIcon &, QLineEdit::ActionPosition, &QLineEdit::addAction>(line_edit, "addAction").create();
+#endif
   // void setText(const QString &);
   bind::void_member_function<QLineEdit, const QString &, &QLineEdit::setText>(line_edit, "setText").create();
   // void clear();

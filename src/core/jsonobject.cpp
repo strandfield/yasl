@@ -30,14 +30,20 @@ static void register_json_object_class(script::Namespace ns)
   bind::constructor<QJsonObject, const QJsonObject &>(json_object).create();
   // QJsonObject & operator=(const QJsonObject &);
   bind::memop_assign<QJsonObject, const QJsonObject &>(json_object);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // void swap(QJsonObject &);
+  bind::void_member_function<QJsonObject, QJsonObject &, &QJsonObject::swap>(json_object, "swap").create();
+#endif
   // static QJsonObject fromVariantMap(const QVariantMap &);
   /// TODO: static QJsonObject fromVariantMap(const QVariantMap &);
   // QVariantMap toVariantMap() const;
   /// TODO: QVariantMap toVariantMap() const;
   // static QJsonObject fromVariantHash(const QVariantHash &);
   /// TODO: static QJsonObject fromVariantHash(const QVariantHash &);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVariantHash toVariantHash() const;
   /// TODO: QVariantHash toVariantHash() const;
+#endif
   // QStringList keys() const;
   /// TODO: QStringList keys() const;
   // int size() const;

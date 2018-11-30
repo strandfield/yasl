@@ -160,14 +160,22 @@ static void register_message_box_class(script::Namespace ns)
   bind::member_function<QMessageBox, Qt::TextFormat, &QMessageBox::textFormat>(message_box, "textFormat").create();
   // void setTextFormat(Qt::TextFormat);
   bind::void_member_function<QMessageBox, Qt::TextFormat, &QMessageBox::setTextFormat>(message_box, "setTextFormat").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void setTextInteractionFlags(Qt::TextInteractionFlags);
   /// TODO: void setTextInteractionFlags(Qt::TextInteractionFlags);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // Qt::TextInteractionFlags textInteractionFlags() const;
   /// TODO: Qt::TextInteractionFlags textInteractionFlags() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setCheckBox(QCheckBox *);
   /// TODO: void setCheckBox(QCheckBox *);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QCheckBox * checkBox() const;
   /// TODO: QCheckBox * checkBox() const;
+#endif
   // static QMessageBox::StandardButton information(QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton);
   bind::static_member_function<QMessageBox, QMessageBox::StandardButton, QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton, &QMessageBox::information>(message_box, "information").create();
   // static QMessageBox::StandardButton question(QWidget *, const QString &, const QString &, QMessageBox::StandardButtons, QMessageBox::StandardButton);

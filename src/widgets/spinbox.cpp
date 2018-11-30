@@ -53,10 +53,14 @@ static void register_spin_box_class(script::Namespace ns)
   bind::void_member_function<QSpinBox, int, &QSpinBox::setMaximum>(spin_box, "setMaximum").create();
   // void setRange(int, int);
   bind::void_member_function<QSpinBox, int, int, &QSpinBox::setRange>(spin_box, "setRange").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // int displayIntegerBase() const;
   bind::member_function<QSpinBox, int, &QSpinBox::displayIntegerBase>(spin_box, "displayIntegerBase").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setDisplayIntegerBase(int);
   bind::void_member_function<QSpinBox, int, &QSpinBox::setDisplayIntegerBase>(spin_box, "setDisplayIntegerBase").create();
+#endif
   // void setValue(int);
   bind::void_member_function<QSpinBox, int, &QSpinBox::setValue>(spin_box, "setValue").create();
   // void valueChanged(int);

@@ -35,8 +35,10 @@ static void register_elapsed_timer_class(script::Namespace ns)
 
   register_elapsed_timer_clock_type_enum(elapsed_timer);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // QElapsedTimer();
   bind::default_constructor<QElapsedTimer>(elapsed_timer).create();
+#endif
   // ~QElapsedTimer();
   bind::destructor<QElapsedTimer>(elapsed_timer).create();
   // static QElapsedTimer::ClockType clockType();

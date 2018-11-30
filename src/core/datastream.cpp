@@ -37,15 +37,36 @@ static void register_data_stream_version_enum(script::Class data_stream)
   version.addValue("Qt_4_8", QDataStream::Qt_4_8);
   version.addValue("Qt_4_9", QDataStream::Qt_4_9);
   version.addValue("Qt_5_0", QDataStream::Qt_5_0);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   version.addValue("Qt_5_1", QDataStream::Qt_5_1);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   version.addValue("Qt_5_2", QDataStream::Qt_5_2);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   version.addValue("Qt_5_3", QDataStream::Qt_5_3);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   version.addValue("Qt_5_4", QDataStream::Qt_5_4);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   version.addValue("Qt_5_5", QDataStream::Qt_5_5);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   version.addValue("Qt_5_6", QDataStream::Qt_5_6);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   version.addValue("Qt_5_7", QDataStream::Qt_5_7);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   version.addValue("Qt_5_8", QDataStream::Qt_5_8);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   version.addValue("Qt_5_9", QDataStream::Qt_5_9);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  version.addValue("Qt_5_10", QDataStream::Qt_5_10);
+#endif
   version.addValue("Qt_DefaultCompiledVersion", QDataStream::Qt_DefaultCompiledVersion);
 }
 
@@ -198,14 +219,22 @@ static void register_data_stream_class(script::Namespace ns)
   /// TODO: int writeRawData(const char *, int);
   // int skipRawData(int);
   bind::member_function<QDataStream, int, int, &QDataStream::skipRawData>(data_stream, "skipRawData").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void startTransaction();
   bind::void_member_function<QDataStream, &QDataStream::startTransaction>(data_stream, "startTransaction").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // bool commitTransaction();
   bind::member_function<QDataStream, bool, &QDataStream::commitTransaction>(data_stream, "commitTransaction").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void rollbackTransaction();
   bind::void_member_function<QDataStream, &QDataStream::rollbackTransaction>(data_stream, "rollbackTransaction").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void abortTransaction();
   bind::void_member_function<QDataStream, &QDataStream::abortTransaction>(data_stream, "abortTransaction").create();
+#endif
 }
 
 

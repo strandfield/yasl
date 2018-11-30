@@ -114,8 +114,10 @@ static void register_layout_class(script::Namespace ns)
   bind::member_function<QLayout, bool, &QLayout::isEmpty>(layout, "isEmpty").create();
   // QSizePolicy::ControlTypes controlTypes() const;
   /// TODO: QSizePolicy::ControlTypes controlTypes() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QLayoutItem * replaceWidget(QWidget *, QWidget *, Qt::FindChildOptions);
   /// TODO: QLayoutItem * replaceWidget(QWidget *, QWidget *, Qt::FindChildOptions);
+#endif
   // int totalHeightForWidth(int) const;
   bind::member_function<QLayout, int, int, &QLayout::totalHeightForWidth>(layout, "totalHeightForWidth").create();
   // QSize totalMinimumSize() const;

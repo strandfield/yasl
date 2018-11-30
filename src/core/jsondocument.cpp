@@ -14,6 +14,7 @@
 #include "yasl/core/jsonarray.h"
 #include "yasl/core/jsondocument.h"
 #include "yasl/core/jsonobject.h"
+#include "yasl/core/jsonvalue.h"
 #include "yasl/core/variant.h"
 
 #include <script/classbuilder.h>
@@ -62,6 +63,10 @@ static void register_json_document_class(script::Namespace ns)
   bind::constructor<QJsonDocument, const QJsonDocument &>(json_document).create();
   // QJsonDocument & operator=(const QJsonDocument &);
   bind::memop_assign<QJsonDocument, const QJsonDocument &>(json_document);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // void swap(QJsonDocument &);
+  bind::void_member_function<QJsonDocument, QJsonDocument &, &QJsonDocument::swap>(json_document, "swap").create();
+#endif
   // static QJsonDocument fromRawData(const char *, int, QJsonDocument::DataValidation);
   /// TODO: static QJsonDocument fromRawData(const char *, int, QJsonDocument::DataValidation);
   // const char * rawData(int *) const;
@@ -95,6 +100,14 @@ static void register_json_document_class(script::Namespace ns)
   bind::void_member_function<QJsonDocument, const QJsonObject &, &QJsonDocument::setObject>(json_document, "setObject").create();
   // void setArray(const QJsonArray &);
   bind::void_member_function<QJsonDocument, const QJsonArray &, &QJsonDocument::setArray>(json_document, "setArray").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // const QJsonValue operator[](const QString &) const;
+  bind::memop_const_subscript<QJsonDocument, const QJsonValue, const QString &>(json_document);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // const QJsonValue operator[](int) const;
+  bind::memop_const_subscript<QJsonDocument, const QJsonValue, int>(json_document);
+#endif
   // bool operator==(const QJsonDocument &) const;
   bind::memop_eq<QJsonDocument, const QJsonDocument &>(json_document);
   // bool operator!=(const QJsonDocument &) const;

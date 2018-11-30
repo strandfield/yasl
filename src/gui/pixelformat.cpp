@@ -27,7 +27,9 @@ static void register_pixel_format_color_model_enum(script::Class pixel_format)
   color_model.addValue("HSL", QPixelFormat::HSL);
   color_model.addValue("HSV", QPixelFormat::HSV);
   color_model.addValue("YUV", QPixelFormat::YUV);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   color_model.addValue("Alpha", QPixelFormat::Alpha);
+#endif
 }
 
 
@@ -197,8 +199,10 @@ void register_pixelformat_file(script::Namespace gui)
   /// TODO: QPixelFormat qPixelFormatRgba(uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation);
   // QPixelFormat qPixelFormatGrayscale(uchar, QPixelFormat::TypeInterpretation);
   /// TODO: QPixelFormat qPixelFormatGrayscale(uchar, QPixelFormat::TypeInterpretation);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QPixelFormat qPixelFormatAlpha(uchar, QPixelFormat::TypeInterpretation);
   /// TODO: QPixelFormat qPixelFormatAlpha(uchar, QPixelFormat::TypeInterpretation);
+#endif
   // QPixelFormat qPixelFormatCmyk(uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::TypeInterpretation);
   /// TODO: QPixelFormat qPixelFormatCmyk(uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::TypeInterpretation);
   // QPixelFormat qPixelFormatHsl(uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::TypeInterpretation);

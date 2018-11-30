@@ -58,18 +58,30 @@ static void register_i_o_device_class(script::Namespace ns)
   bind::member_function<QIODevice, bool, &QIODevice::isWritable>(i_o_device, "isWritable").create();
   // bool isSequential() const;
   bind::member_function<QIODevice, bool, &QIODevice::isSequential>(i_o_device, "isSequential").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // int readChannelCount() const;
   bind::member_function<QIODevice, int, &QIODevice::readChannelCount>(i_o_device, "readChannelCount").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // int writeChannelCount() const;
   bind::member_function<QIODevice, int, &QIODevice::writeChannelCount>(i_o_device, "writeChannelCount").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // int currentReadChannel() const;
   bind::member_function<QIODevice, int, &QIODevice::currentReadChannel>(i_o_device, "currentReadChannel").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void setCurrentReadChannel(int);
   bind::void_member_function<QIODevice, int, &QIODevice::setCurrentReadChannel>(i_o_device, "setCurrentReadChannel").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // int currentWriteChannel() const;
   bind::member_function<QIODevice, int, &QIODevice::currentWriteChannel>(i_o_device, "currentWriteChannel").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void setCurrentWriteChannel(int);
   bind::void_member_function<QIODevice, int, &QIODevice::setCurrentWriteChannel>(i_o_device, "setCurrentWriteChannel").create();
+#endif
   // bool open(QIODevice::OpenMode);
   bind::member_function<QIODevice, bool, QIODevice::OpenMode, &QIODevice::open>(i_o_device, "open").create();
   // void close();
@@ -100,14 +112,20 @@ static void register_i_o_device_class(script::Namespace ns)
   /// TODO: QByteArray readLine(qint64);
   // bool canReadLine() const;
   bind::member_function<QIODevice, bool, &QIODevice::canReadLine>(i_o_device, "canReadLine").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void startTransaction();
   bind::void_member_function<QIODevice, &QIODevice::startTransaction>(i_o_device, "startTransaction").create();
+#endif
   // void commitTransaction();
   bind::void_member_function<QIODevice, &QIODevice::commitTransaction>(i_o_device, "commitTransaction").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void rollbackTransaction();
   bind::void_member_function<QIODevice, &QIODevice::rollbackTransaction>(i_o_device, "rollbackTransaction").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // bool isTransactionStarted() const;
   bind::member_function<QIODevice, bool, &QIODevice::isTransactionStarted>(i_o_device, "isTransactionStarted").create();
+#endif
   // qint64 write(const char *, qint64);
   /// TODO: qint64 write(const char *, qint64);
   // qint64 write(const char *);
@@ -118,8 +136,10 @@ static void register_i_o_device_class(script::Namespace ns)
   /// TODO: qint64 peek(char *, qint64);
   // QByteArray peek(qint64);
   /// TODO: QByteArray peek(qint64);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
   // qint64 skip(qint64);
   /// TODO: qint64 skip(qint64);
+#endif
   // bool waitForReadyRead(int);
   bind::member_function<QIODevice, bool, int, &QIODevice::waitForReadyRead>(i_o_device, "waitForReadyRead").create();
   // bool waitForBytesWritten(int);
@@ -134,16 +154,20 @@ static void register_i_o_device_class(script::Namespace ns)
   bind::member_function<QIODevice, QString, &QIODevice::errorString>(i_o_device, "errorString").create();
   // void readyRead();
   bind::signal<QIODevice>(i_o_device, "readyRead", "readyRead()");
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void channelReadyRead(int);
   bind::signal<QIODevice, int>(i_o_device, "channelReadyRead", "channelReadyRead(int)");
+#endif
   // void bytesWritten(qint64);
   /// TODO: void bytesWritten(qint64);
   // void channelBytesWritten(int, qint64);
   /// TODO: void channelBytesWritten(int, qint64);
   // void aboutToClose();
   bind::signal<QIODevice>(i_o_device, "aboutToClose", "aboutToClose()");
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void readChannelFinished();
   bind::signal<QIODevice>(i_o_device, "readChannelFinished", "readChannelFinished()");
+#endif
 
   bind::link(i_o_device, &QIODevice::staticMetaObject);
 }

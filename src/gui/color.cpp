@@ -88,8 +88,10 @@ static void register_color_class(script::Namespace ns)
   bind::member_function<QColor, bool, &QColor::isValid>(color, "isValid").create();
   // QString name() const;
   bind::member_function<QColor, QString, &QColor::name>(color, "name").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QString name(QColor::NameFormat) const;
   bind::member_function<QColor, QString, QColor::NameFormat, &QColor::name>(color, "name").create();
+#endif
   // void setNamedColor(const QString &);
   bind::void_member_function<QColor, const QString &, &QColor::setNamedColor>(color, "setNamedColor").create();
   // void setNamedColor(QStringView);
@@ -142,10 +144,14 @@ static void register_color_class(script::Namespace ns)
   // void setRgbF(qreal, qreal, qreal, qreal = qreal(1.0));
   bind::void_member_function<QColor, qreal, qreal, qreal, qreal, &QColor::setRgbF>(color, "setRgbF")
     .apply(bind::default_arguments(qreal(1.0))).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // QRgba64 rgba64() const;
   /// TODO: QRgba64 rgba64() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // void setRgba64(QRgba64);
   /// TODO: void setRgba64(QRgba64);
+#endif
   // QRgb rgba() const;
   /// TODO: QRgb rgba() const;
   // void setRgba(QRgb);

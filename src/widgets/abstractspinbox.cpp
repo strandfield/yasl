@@ -112,10 +112,14 @@ static void register_abstract_spin_box_class(script::Namespace ns)
   bind::void_member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::setAccelerated>(abstract_spin_box, "setAccelerated").create();
   // bool isAccelerated() const;
   bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::isAccelerated>(abstract_spin_box, "isAccelerated").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // void setGroupSeparatorShown(bool);
   bind::void_member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::setGroupSeparatorShown>(abstract_spin_box, "setGroupSeparatorShown").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // bool isGroupSeparatorShown() const;
   bind::member_function<QAbstractSpinBox, bool, &QAbstractSpinBox::isGroupSeparatorShown>(abstract_spin_box, "isGroupSeparatorShown").create();
+#endif
   // QSize sizeHint() const;
   bind::member_function<QAbstractSpinBox, QSize, &QAbstractSpinBox::sizeHint>(abstract_spin_box, "sizeHint").create();
   // QSize minimumSizeHint() const;

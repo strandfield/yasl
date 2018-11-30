@@ -103,7 +103,9 @@ static void register_event_type_enum(script::Class event)
   type.addValue("WindowBlocked", QEvent::WindowBlocked);
   type.addValue("WindowUnblocked", QEvent::WindowUnblocked);
   type.addValue("WindowStateChange", QEvent::WindowStateChange);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   type.addValue("ReadOnlyChange", QEvent::ReadOnlyChange);
+#endif
   type.addValue("ToolTip", QEvent::ToolTip);
   type.addValue("WhatsThis", QEvent::WhatsThis);
   type.addValue("StatusTip", QEvent::StatusTip);
@@ -190,7 +192,9 @@ static void register_event_type_enum(script::Class event)
   type.addValue("ScreenChangeInternal", QEvent::ScreenChangeInternal);
   type.addValue("PlatformSurface", QEvent::PlatformSurface);
   type.addValue("Pointer", QEvent::Pointer);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   type.addValue("TabletTrackingChange", QEvent::TabletTrackingChange);
+#endif
   type.addValue("User", QEvent::User);
   type.addValue("MaxUser", QEvent::MaxUser);
 }

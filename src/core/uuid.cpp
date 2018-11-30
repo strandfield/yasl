@@ -132,9 +132,13 @@ void register_uuid_file(script::Namespace core)
   /// TODO: QDebug operator<<(QDebug, const QUuid &);
   // uint qHash(const QUuid &, uint);
   bind::function<uint, const QUuid &, uint, &qHash>(ns, "qHash").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // bool operator<=(const QUuid &, const QUuid &);
   bind::op_leq<const QUuid &, const QUuid &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // bool operator>=(const QUuid &, const QUuid &);
   bind::op_geq<const QUuid &, const QUuid &>(ns);
+#endif
 }
 

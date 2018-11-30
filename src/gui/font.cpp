@@ -109,7 +109,9 @@ static void register_font_stretch_enum(script::Class font)
 
   Enum stretch = font.newEnum("Stretch").setId(script::Type::QFontStretch).get();
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   stretch.addValue("AnyStretch", QFont::AnyStretch);
+#endif
   stretch.addValue("UltraCondensed", QFont::UltraCondensed);
   stretch.addValue("ExtraCondensed", QFont::ExtraCondensed);
   stretch.addValue("Condensed", QFont::Condensed);
@@ -363,8 +365,10 @@ void register_font_file(script::Namespace gui)
 
   // void swap(QFont &, QFont &);
   bind::void_function<QFont &, QFont &, &swap>(ns, "swap").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // uint qHash(const QFont &, uint);
   bind::function<uint, const QFont &, uint, &qHash>(ns, "qHash").create();
+#endif
   // QDataStream & operator<<(QDataStream &, const QFont &);
   bind::op_put_to<QDataStream &, const QFont &>(ns);
   // QDataStream & operator>>(QDataStream &, QFont &);

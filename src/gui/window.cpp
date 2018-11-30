@@ -81,8 +81,10 @@ static void register_window_class(script::Namespace ns)
   bind::void_member_function<QWindow, &QWindow::create>(window, "create").create();
   // WId winId() const;
   /// TODO: WId winId() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // QWindow * parent(QWindow::AncestorMode) const;
   bind::member_function<QWindow, QWindow *, QWindow::AncestorMode, &QWindow::parent>(window, "parent").create();
+#endif
   // QWindow * parent() const;
   bind::member_function<QWindow, QWindow *, &QWindow::parent>(window, "parent").create();
   // void setParent(QWindow *);
@@ -105,9 +107,11 @@ static void register_window_class(script::Namespace ns)
   /// TODO: void setFlags(Qt::WindowFlags);
   // Qt::WindowFlags flags() const;
   /// TODO: Qt::WindowFlags flags() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // void setFlag(Qt::WindowType, bool = true);
   bind::void_member_function<QWindow, Qt::WindowType, bool, &QWindow::setFlag>(window, "setFlag")
     .apply(bind::default_arguments(true)).create();
+#endif
   // Qt::WindowType type() const;
   bind::member_function<QWindow, Qt::WindowType, &QWindow::type>(window, "type").create();
   // QString title() const;
@@ -130,12 +134,16 @@ static void register_window_class(script::Namespace ns)
   bind::member_function<QWindow, qreal, &QWindow::devicePixelRatio>(window, "devicePixelRatio").create();
   // Qt::WindowState windowState() const;
   bind::member_function<QWindow, Qt::WindowState, &QWindow::windowState>(window, "windowState").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // Qt::WindowStates windowStates() const;
   /// TODO: Qt::WindowStates windowStates() const;
+#endif
   // void setWindowState(Qt::WindowState);
   bind::void_member_function<QWindow, Qt::WindowState, &QWindow::setWindowState>(window, "setWindowState").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // void setWindowStates(Qt::WindowStates);
   /// TODO: void setWindowStates(Qt::WindowStates);
+#endif
   // void setTransientParent(QWindow *);
   bind::void_member_function<QWindow, QWindow *, &QWindow::setTransientParent>(window, "setTransientParent").create();
   // QWindow * transientParent() const;
@@ -283,10 +291,14 @@ static void register_window_class(script::Namespace ns)
   bind::void_member_function<QWindow, int, &QWindow::setMaximumWidth>(window, "setMaximumWidth").create();
   // void setMaximumHeight(int);
   bind::void_member_function<QWindow, int, &QWindow::setMaximumHeight>(window, "setMaximumHeight").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void alert(int);
   bind::void_member_function<QWindow, int, &QWindow::alert>(window, "alert").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // void requestUpdate();
   bind::void_member_function<QWindow, &QWindow::requestUpdate>(window, "requestUpdate").create();
+#endif
   // void modalityChanged(Qt::WindowModality);
   bind::signal<QWindow, Qt::WindowModality>(window, "modalityChanged", "modalityChanged(Qt::WindowModality)");
   // void windowStateChanged(Qt::WindowState);

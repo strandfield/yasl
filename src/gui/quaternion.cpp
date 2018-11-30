@@ -64,8 +64,10 @@ static void register_quaternion_class(script::Namespace ns)
   bind::void_member_function<QQuaternion, float, &QQuaternion::setZ>(quaternion, "setZ").create();
   // void setScalar(float);
   bind::void_member_function<QQuaternion, float, &QQuaternion::setScalar>(quaternion, "setScalar").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static float dotProduct(const QQuaternion &, const QQuaternion &);
   bind::static_member_function<QQuaternion, float, const QQuaternion &, const QQuaternion &, &QQuaternion::dotProduct>(quaternion, "dotProduct").create();
+#endif
   // float length() const;
   bind::member_function<QQuaternion, float, &QQuaternion::length>(quaternion, "length").create();
   // float lengthSquared() const;
@@ -74,10 +76,14 @@ static void register_quaternion_class(script::Namespace ns)
   bind::member_function<QQuaternion, QQuaternion, &QQuaternion::normalized>(quaternion, "normalized").create();
   // void normalize();
   bind::void_member_function<QQuaternion, &QQuaternion::normalize>(quaternion, "normalize").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QQuaternion inverted() const;
   bind::member_function<QQuaternion, QQuaternion, &QQuaternion::inverted>(quaternion, "inverted").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QQuaternion conjugated() const;
   bind::member_function<QQuaternion, QQuaternion, &QQuaternion::conjugated>(quaternion, "conjugated").create();
+#endif
   // QQuaternion conjugate() const;
   bind::member_function<QQuaternion, QQuaternion, &QQuaternion::conjugate>(quaternion, "conjugate").create();
   // QVector3D rotatedVector(const QVector3D &) const;
@@ -94,34 +100,58 @@ static void register_quaternion_class(script::Namespace ns)
   bind::memop_div_assign<QQuaternion, float>(quaternion);
   // QVector4D toVector4D() const;
   bind::member_function<QQuaternion, QVector4D, &QQuaternion::toVector4D>(quaternion, "toVector4D").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // void getAxisAndAngle(QVector3D *, float *) const;
   /// TODO: void getAxisAndAngle(QVector3D *, float *) const;
+#endif
   // static QQuaternion fromAxisAndAngle(const QVector3D &, float);
   bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, float, &QQuaternion::fromAxisAndAngle>(quaternion, "fromAxisAndAngle").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // void getAxisAndAngle(float *, float *, float *, float *) const;
   /// TODO: void getAxisAndAngle(float *, float *, float *, float *) const;
+#endif
   // static QQuaternion fromAxisAndAngle(float, float, float, float);
   bind::static_member_function<QQuaternion, QQuaternion, float, float, float, float, &QQuaternion::fromAxisAndAngle>(quaternion, "fromAxisAndAngle").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector3D toEulerAngles() const;
   bind::member_function<QQuaternion, QVector3D, &QQuaternion::toEulerAngles>(quaternion, "toEulerAngles").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QQuaternion fromEulerAngles(const QVector3D &);
   bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, &QQuaternion::fromEulerAngles>(quaternion, "fromEulerAngles").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // void getEulerAngles(float *, float *, float *) const;
   /// TODO: void getEulerAngles(float *, float *, float *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QQuaternion fromEulerAngles(float, float, float);
   bind::static_member_function<QQuaternion, QQuaternion, float, float, float, &QQuaternion::fromEulerAngles>(quaternion, "fromEulerAngles").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QMatrix3x3 toRotationMatrix() const;
   /// TODO: QMatrix3x3 toRotationMatrix() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QQuaternion fromRotationMatrix(const QMatrix3x3 &);
   /// TODO: static QQuaternion fromRotationMatrix(const QMatrix3x3 &);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // void getAxes(QVector3D *, QVector3D *, QVector3D *) const;
   /// TODO: void getAxes(QVector3D *, QVector3D *, QVector3D *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QQuaternion fromAxes(const QVector3D &, const QVector3D &, const QVector3D &);
   bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, const QVector3D &, const QVector3D &, &QQuaternion::fromAxes>(quaternion, "fromAxes").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QQuaternion fromDirection(const QVector3D &, const QVector3D &);
   bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, const QVector3D &, &QQuaternion::fromDirection>(quaternion, "fromDirection").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QQuaternion rotationTo(const QVector3D &, const QVector3D &);
   bind::static_member_function<QQuaternion, QQuaternion, const QVector3D &, const QVector3D &, &QQuaternion::rotationTo>(quaternion, "rotationTo").create();
+#endif
   // static QQuaternion slerp(const QQuaternion &, const QQuaternion &, float);
   bind::static_member_function<QQuaternion, QQuaternion, const QQuaternion &, const QQuaternion &, float, &QQuaternion::slerp>(quaternion, "slerp").create();
   // static QQuaternion nlerp(const QQuaternion &, const QQuaternion &, float);
@@ -157,8 +187,10 @@ void register_quaternion_file(script::Namespace gui)
   bind::op_div<const QQuaternion, const QQuaternion &, float>(ns);
   // bool qFuzzyCompare(const QQuaternion &, const QQuaternion &);
   bind::function<bool, const QQuaternion &, const QQuaternion &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector3D operator*(const QQuaternion &, const QVector3D &);
   bind::op_mul<QVector3D, const QQuaternion &, const QVector3D &>(ns);
+#endif
   // QDebug operator<<(QDebug, const QQuaternion &);
   /// TODO: QDebug operator<<(QDebug, const QQuaternion &);
   // QDataStream & operator<<(QDataStream &, const QQuaternion &);

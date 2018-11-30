@@ -39,8 +39,10 @@ static void register_font_metrics_class(script::Namespace ns)
   bind::void_member_function<QFontMetrics, QFontMetrics &, &QFontMetrics::swap>(font_metrics, "swap").create();
   // int ascent() const;
   bind::member_function<QFontMetrics, int, &QFontMetrics::ascent>(font_metrics, "ascent").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // int capHeight() const;
   bind::member_function<QFontMetrics, int, &QFontMetrics::capHeight>(font_metrics, "capHeight").create();
+#endif
   // int descent() const;
   bind::member_function<QFontMetrics, int, &QFontMetrics::descent>(font_metrics, "descent").create();
   // int height() const;
@@ -133,8 +135,10 @@ static void register_font_metrics_f_class(script::Namespace ns)
   bind::void_member_function<QFontMetricsF, QFontMetricsF &, &QFontMetricsF::swap>(font_metrics_f, "swap").create();
   // qreal ascent() const;
   bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::ascent>(font_metrics_f, "ascent").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // qreal capHeight() const;
   bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::capHeight>(font_metrics_f, "capHeight").create();
+#endif
   // qreal descent() const;
   bind::member_function<QFontMetricsF, qreal, &QFontMetricsF::descent>(font_metrics_f, "descent").create();
   // qreal height() const;

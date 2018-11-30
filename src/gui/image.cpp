@@ -58,15 +58,33 @@ static void register_image_format_enum(script::Class image)
   format.addValue("Format_RGB888", QImage::Format_RGB888);
   format.addValue("Format_RGB444", QImage::Format_RGB444);
   format.addValue("Format_ARGB4444_Premultiplied", QImage::Format_ARGB4444_Premultiplied);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   format.addValue("Format_RGBX8888", QImage::Format_RGBX8888);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   format.addValue("Format_RGBA8888", QImage::Format_RGBA8888);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   format.addValue("Format_RGBA8888_Premultiplied", QImage::Format_RGBA8888_Premultiplied);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   format.addValue("Format_BGR30", QImage::Format_BGR30);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   format.addValue("Format_A2BGR30_Premultiplied", QImage::Format_A2BGR30_Premultiplied);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   format.addValue("Format_RGB30", QImage::Format_RGB30);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   format.addValue("Format_A2RGB30_Premultiplied", QImage::Format_A2RGB30_Premultiplied);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   format.addValue("Format_Alpha8", QImage::Format_Alpha8);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   format.addValue("Format_Grayscale8", QImage::Format_Grayscale8);
+#endif
   format.addValue("NImageFormats", QImage::NImageFormats);
 }
 
@@ -132,8 +150,10 @@ static void register_image_class(script::Namespace ns)
     .apply(bind::default_arguments(Qt::ImageConversionFlags(Qt::AutoColor))).create();
   // QImage convertToFormat(QImage::Format, const QVector<QRgb> &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor)) const;
   /// TODO: QImage convertToFormat(QImage::Format, const QVector<QRgb> &, Qt::ImageConversionFlags = Qt::ImageConversionFlags(Qt::AutoColor)) const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // bool reinterpretAsFormat(QImage::Format);
   bind::member_function<QImage, bool, QImage::Format, &QImage::reinterpretAsFormat>(image, "reinterpretAsFormat").create();
+#endif
   // int width() const;
   bind::member_function<QImage, int, &QImage::width>(image, "width").create();
   // int height() const;
@@ -166,8 +186,10 @@ static void register_image_class(script::Namespace ns)
   /// TODO: const uchar * constBits() const;
   // int byteCount() const;
   bind::member_function<QImage, int, &QImage::byteCount>(image, "byteCount").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // qsizetype sizeInBytes() const;
   /// TODO: qsizetype sizeInBytes() const;
+#endif
   // uchar * scanLine(int);
   /// TODO: uchar * scanLine(int);
   // const uchar * scanLine(int) const;
@@ -192,10 +214,14 @@ static void register_image_class(script::Namespace ns)
   bind::void_member_function<QImage, int, int, uint, &QImage::setPixel>(image, "setPixel").create();
   // void setPixel(const QPoint &, uint);
   bind::void_member_function<QImage, const QPoint &, uint, &QImage::setPixel>(image, "setPixel").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // QColor pixelColor(int, int) const;
   bind::member_function<QImage, QColor, int, int, &QImage::pixelColor>(image, "pixelColor").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // QColor pixelColor(const QPoint &) const;
   bind::member_function<QImage, QColor, const QPoint &, &QImage::pixelColor>(image, "pixelColor").create();
+#endif
   // void setPixelColor(int, int, const QColor &);
   bind::void_member_function<QImage, int, int, const QColor &, &QImage::setPixelColor>(image, "setPixelColor").create();
   // void setPixelColor(const QPoint &, const QColor &);

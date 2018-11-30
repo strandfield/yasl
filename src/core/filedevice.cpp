@@ -80,7 +80,9 @@ static void register_file_device_memory_map_flags_enum(script::Class file_device
   Enum memory_map_flags = file_device.newEnum("MemoryMapFlags").setId(script::Type::QFileDeviceMemoryMapFlags).get();
 
   memory_map_flags.addValue("NoOptions", QFileDevice::NoOptions);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   memory_map_flags.addValue("MapPrivateOption", QFileDevice::MapPrivateOption);
+#endif
 }
 
 
@@ -126,10 +128,14 @@ static void register_file_device_class(script::Namespace ns)
   bind::member_function<QFileDevice, QFileDevice::Permissions, &QFileDevice::permissions>(file_device, "permissions").create();
   // bool setPermissions(QFileDevice::Permissions);
   bind::member_function<QFileDevice, bool, QFileDevice::Permissions, &QFileDevice::setPermissions>(file_device, "setPermissions").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // QDateTime fileTime(QFileDevice::FileTime) const;
   /// TODO: QDateTime fileTime(QFileDevice::FileTime) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // bool setFileTime(const QDateTime &, QFileDevice::FileTime);
   /// TODO: bool setFileTime(const QDateTime &, QFileDevice::FileTime);
+#endif
 
   bind::link(file_device, &QFileDevice::staticMetaObject);
 }

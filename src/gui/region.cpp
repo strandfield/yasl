@@ -66,22 +66,38 @@ static void register_region_class(script::Namespace ns)
   bind::member_function<QRegion, bool, &QRegion::isEmpty>(region, "isEmpty").create();
   // bool isNull() const;
   bind::member_function<QRegion, bool, &QRegion::isNull>(region, "isNull").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QRegion::const_iterator begin() const;
   /// TODO: QRegion::const_iterator begin() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QRegion::const_iterator cbegin() const;
   /// TODO: QRegion::const_iterator cbegin() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QRegion::const_iterator end() const;
   /// TODO: QRegion::const_iterator end() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QRegion::const_iterator cend() const;
   /// TODO: QRegion::const_iterator cend() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QRegion::const_reverse_iterator rbegin() const;
   /// TODO: QRegion::const_reverse_iterator rbegin() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QRegion::const_reverse_iterator crbegin() const;
   /// TODO: QRegion::const_reverse_iterator crbegin() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QRegion::const_reverse_iterator rend() const;
   /// TODO: QRegion::const_reverse_iterator rend() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QRegion::const_reverse_iterator crend() const;
   /// TODO: QRegion::const_reverse_iterator crend() const;
+#endif
   // bool contains(const QPoint &) const;
   bind::member_function<QRegion, bool, const QPoint &, &QRegion::contains>(region, "contains").create();
   // bool contains(const QRect &) const;

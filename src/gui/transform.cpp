@@ -190,8 +190,10 @@ void register_transform_file(script::Namespace gui)
 
   register_transform_class(ns);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // uint qHash(const QTransform &, uint);
   bind::function<uint, const QTransform &, uint, &qHash>(ns, "qHash").create();
+#endif
   // bool qFuzzyCompare(const QTransform &, const QTransform &);
   bind::function<bool, const QTransform &, const QTransform &, &qFuzzyCompare>(ns, "qFuzzyCompare").create();
   // QDataStream & operator<<(QDataStream &, const QTransform &);

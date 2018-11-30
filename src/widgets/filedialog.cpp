@@ -83,7 +83,9 @@ static void register_file_dialog_option_enum(script::Class file_dialog)
   option.addValue("DontUseNativeDialog", QFileDialog::DontUseNativeDialog);
   option.addValue("ReadOnly", QFileDialog::ReadOnly);
   option.addValue("HideNameFilterDetails", QFileDialog::HideNameFilterDetails);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   option.addValue("DontUseCustomDirectoryIcons", QFileDialog::DontUseCustomDirectoryIcons);
+#endif
 }
 
 
@@ -112,18 +114,26 @@ static void register_file_dialog_class(script::Namespace ns)
   bind::void_member_function<QFileDialog, const QDir &, &QFileDialog::setDirectory>(file_dialog, "setDirectory").create();
   // QDir directory() const;
   bind::member_function<QFileDialog, QDir, &QFileDialog::directory>(file_dialog, "directory").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setDirectoryUrl(const QUrl &);
   bind::void_member_function<QFileDialog, const QUrl &, &QFileDialog::setDirectoryUrl>(file_dialog, "setDirectoryUrl").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QUrl directoryUrl() const;
   bind::member_function<QFileDialog, QUrl, &QFileDialog::directoryUrl>(file_dialog, "directoryUrl").create();
+#endif
   // void selectFile(const QString &);
   bind::void_member_function<QFileDialog, const QString &, &QFileDialog::selectFile>(file_dialog, "selectFile").create();
   // QStringList selectedFiles() const;
   /// TODO: QStringList selectedFiles() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void selectUrl(const QUrl &);
   bind::void_member_function<QFileDialog, const QUrl &, &QFileDialog::selectUrl>(file_dialog, "selectUrl").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QList<QUrl> selectedUrls() const;
   /// TODO: QList<QUrl> selectedUrls() const;
+#endif
   // void setNameFilterDetailsVisible(bool);
   bind::void_member_function<QFileDialog, bool, &QFileDialog::setNameFilterDetailsVisible>(file_dialog, "setNameFilterDetailsVisible").create();
   // bool isNameFilterDetailsVisible() const;
@@ -136,16 +146,24 @@ static void register_file_dialog_class(script::Namespace ns)
   /// TODO: QStringList nameFilters() const;
   // void selectNameFilter(const QString &);
   bind::void_member_function<QFileDialog, const QString &, &QFileDialog::selectNameFilter>(file_dialog, "selectNameFilter").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // QString selectedMimeTypeFilter() const;
   bind::member_function<QFileDialog, QString, &QFileDialog::selectedMimeTypeFilter>(file_dialog, "selectedMimeTypeFilter").create();
+#endif
   // QString selectedNameFilter() const;
   bind::member_function<QFileDialog, QString, &QFileDialog::selectedNameFilter>(file_dialog, "selectedNameFilter").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setMimeTypeFilters(const QStringList &);
   /// TODO: void setMimeTypeFilters(const QStringList &);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QStringList mimeTypeFilters() const;
   /// TODO: QStringList mimeTypeFilters() const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void selectMimeTypeFilter(const QString &);
   bind::void_member_function<QFileDialog, const QString &, &QFileDialog::selectMimeTypeFilter>(file_dialog, "selectMimeTypeFilter").create();
+#endif
   // QDir::Filters filter() const;
   bind::member_function<QFileDialog, QDir::Filters, &QFileDialog::filter>(file_dialog, "filter").create();
   // void setFilter(QDir::Filters);
@@ -202,10 +220,14 @@ static void register_file_dialog_class(script::Namespace ns)
   bind::void_member_function<QFileDialog, QFileDialog::DialogLabel, const QString &, &QFileDialog::setLabelText>(file_dialog, "setLabelText").create();
   // QString labelText(QFileDialog::DialogLabel) const;
   bind::member_function<QFileDialog, QString, QFileDialog::DialogLabel, &QFileDialog::labelText>(file_dialog, "labelText").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // void setSupportedSchemes(const QStringList &);
   /// TODO: void setSupportedSchemes(const QStringList &);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // QStringList supportedSchemes() const;
   /// TODO: QStringList supportedSchemes() const;
+#endif
   // void setProxyModel(QAbstractProxyModel *);
   /// TODO: void setProxyModel(QAbstractProxyModel *);
   // QAbstractProxyModel * proxyModel() const;
@@ -232,20 +254,28 @@ static void register_file_dialog_class(script::Namespace ns)
   bind::signal<QFileDialog, const QString &>(file_dialog, "filterSelected", "filterSelected(const QString &)");
   // static QString getOpenFileName(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
   /// TODO: static QString getOpenFileName(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QUrl getOpenFileUrl(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
   /// TODO: static QUrl getOpenFileUrl(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
+#endif
   // static QString getSaveFileName(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
   /// TODO: static QString getSaveFileName(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QUrl getSaveFileUrl(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
   /// TODO: static QUrl getSaveFileUrl(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
+#endif
   // static QString getExistingDirectory(QWidget *, const QString &, const QString &, QFileDialog::Options);
   bind::static_member_function<QFileDialog, QString, QWidget *, const QString &, const QString &, QFileDialog::Options, &QFileDialog::getExistingDirectory>(file_dialog, "getExistingDirectory").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QUrl getExistingDirectoryUrl(QWidget *, const QString &, const QUrl &, QFileDialog::Options, const QStringList &);
   /// TODO: static QUrl getExistingDirectoryUrl(QWidget *, const QString &, const QUrl &, QFileDialog::Options, const QStringList &);
+#endif
   // static QStringList getOpenFileNames(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
   /// TODO: static QStringList getOpenFileNames(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QList<QUrl> getOpenFileUrls(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
   /// TODO: static QList<QUrl> getOpenFileUrls(QWidget *, const QString &, const QUrl &, const QString &, QString *, QFileDialog::Options, const QStringList &);
+#endif
 
   bind::link(file_dialog, &QFileDialog::staticMetaObject);
 }

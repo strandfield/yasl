@@ -53,7 +53,9 @@ static void register_text_option_flag_enum(script::Class text_option)
   flag.addValue("ShowLineAndParagraphSeparators", QTextOption::ShowLineAndParagraphSeparators);
   flag.addValue("AddSpaceForLineAndParagraphSeparators", QTextOption::AddSpaceForLineAndParagraphSeparators);
   flag.addValue("SuppressColors", QTextOption::SuppressColors);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   flag.addValue("ShowDocumentTerminator", QTextOption::ShowDocumentTerminator);
+#endif
   flag.addValue("IncludeTrailingSpaces", QTextOption::IncludeTrailingSpaces);
 }
 
@@ -98,6 +100,14 @@ static void register_text_option_class(script::Namespace ns)
   bind::void_member_function<QTextOption, qreal, &QTextOption::setTabStop>(text_option, "setTabStop").create();
   // qreal tabStop() const;
   bind::member_function<QTextOption, qreal, &QTextOption::tabStop>(text_option, "tabStop").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // void setTabStopDistance(qreal);
+  bind::void_member_function<QTextOption, qreal, &QTextOption::setTabStopDistance>(text_option, "setTabStopDistance").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  // qreal tabStopDistance() const;
+  bind::member_function<QTextOption, qreal, &QTextOption::tabStopDistance>(text_option, "tabStopDistance").create();
+#endif
   // void setTabArray(const QList<qreal> &);
   /// TODO: void setTabArray(const QList<qreal> &);
   // QList<qreal> tabArray() const;
