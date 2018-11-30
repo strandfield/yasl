@@ -617,7 +617,7 @@ modules:
             - function: operator>>[r:QDataStream &][p:QDataStream &;QByteArray &]
             - function: qCompress[r:QByteArray][p:const QByteArray &;int]
             - function: qUncompress[r:QByteArray][p:const QByteArray &]
-            - function: swap[r:void][p:QByteArray &;QByteArray &]
+            - function: swap[r:void][p:QByteArray &;QByteArray &][unchecked]
             - class:
                 name: QByteRef
                 elements:
@@ -806,36 +806,37 @@ modules:
                         - Script_Sharada
                         - Script_SoraSompeng
                         - Script_Takri
-                        - Script_CaucasianAlbanian
-                        - Script_BassaVah
-                        - Script_Duployan
-                        - Script_Elbasan
-                        - Script_Grantha
-                        - Script_PahawhHmong
-                        - Script_Khojki
-                        - Script_LinearA
-                        - Script_Mahajani
-                        - Script_Manichaean
-                        - Script_MendeKikakui
-                        - Script_Modi
-                        - Script_Mro
-                        - Script_OldNorthArabian
-                        - Script_Nabataean
-                        - Script_Palmyrene
-                        - Script_PauCinHau
-                        - Script_OldPermic
-                        - Script_PsalterPahlavi
-                        - Script_Siddham
-                        - Script_Khudawadi
-                        - Script_Tirhuta
-                        - Script_WarangCiti
-                        - Script_Ahom
-                        - Script_AnatolianHieroglyphs
-                        - Script_Hatran
-                        - Script_Multani
-                        - Script_OldHungarian
-                        - Script_SignWriting
+                        - Script_CaucasianAlbanian[v:5.5.0]
+                        - Script_BassaVah[v:5.5.0]
+                        - Script_Duployan[v:5.5.0]
+                        - Script_Elbasan[v:5.5.0]
+                        - Script_Grantha[v:5.5.0]
+                        - Script_PahawhHmong[v:5.5.0]
+                        - Script_Khojki[v:5.5.0]
+                        - Script_LinearA[v:5.5.0]
+                        - Script_Mahajani[v:5.5.0]
+                        - Script_Manichaean[v:5.5.0]
+                        - Script_MendeKikakui[v:5.5.0]
+                        - Script_Modi[v:5.5.0]
+                        - Script_Mro[v:5.5.0]
+                        - Script_OldNorthArabian[v:5.5.0]
+                        - Script_Nabataean[v:5.5.0]
+                        - Script_Palmyrene[v:5.5.0]
+                        - Script_PauCinHau[v:5.5.0]
+                        - Script_OldPermic[v:5.5.0]
+                        - Script_PsalterPahlavi[v:5.5.0]
+                        - Script_Siddham[v:5.5.0]
+                        - Script_Khudawadi[v:5.5.0]
+                        - Script_Tirhuta[v:5.5.0]
+                        - Script_WarangCiti[v:5.5.0]
+                        - Script_Ahom[v:5.6.0]
+                        - Script_AnatolianHieroglyphs[v:5.6.0]
+                        - Script_Hatran[v:5.6.0]
+                        - Script_Multani[v:5.6.0]
+                        - Script_OldHungarian[v:5.6.0]
+                        - Script_SignWriting[v:5.6.0]
                         - ScriptCount
+                      version: 5.1.0
                   - enum:
                       name: Direction
                       enumerators:
@@ -858,10 +859,10 @@ modules:
                         - DirPDF
                         - DirNSM
                         - DirBN
-                        - DirLRI
-                        - DirRLI
-                        - DirFSI
-                        - DirPDI
+                        - DirLRI[v:5.3.0]
+                        - DirRLI[v:5.3.0]
+                        - DirFSI[v:5.3.0]
+                        - DirPDI[v:5.3.0]
                   - enum:
                       name: Decomposition
                       enumerators:
@@ -892,6 +893,7 @@ modules:
                         - Joining_Right
                         - Joining_Left
                         - Joining_Transparent
+                      version: 5.3.0
                   - enum:
                       name: Joining
                       enumerators:
@@ -939,12 +941,12 @@ modules:
                         - Unicode_6_0
                         - Unicode_6_1
                         - Unicode_6_2
-                        - Unicode_6_3
-                        - Unicode_7_0
-                        - Unicode_8_0
+                        - Unicode_6_3[v:5.3.0]
+                        - Unicode_7_0[v:5.5.0]
+                        - Unicode_8_0[v:5.6.0]
                   - function: category[r:QChar::Category][specs:const]
                   - function: direction[r:QChar::Direction][specs:const]
-                  - function: joiningType[r:QChar::JoiningType][specs:const]
+                  - function: joiningType[r:QChar::JoiningType][specs:const][v:5.3.0]
                   - function: joining[r:QChar::Joining][specs:const]
                   - function: combiningClass[r:unsigned char][specs:const]
                   - function: mirroredChar[r:QChar][specs:const]
@@ -956,7 +958,7 @@ modules:
                   - function: toUpper[r:QChar][specs:const]
                   - function: toTitleCase[r:QChar][specs:const]
                   - function: toCaseFolded[r:QChar][specs:const]
-                  - function: script[r:QChar::Script][specs:const]
+                  - function: script[r:QChar::Script][specs:const][v:5.1.0]
                   - function: unicodeVersion[r:QChar::UnicodeVersion][specs:const]
                   - function: toLatin1[r:char][specs:const]
                   - function: unicode[r:ushort][specs:const]
@@ -994,7 +996,7 @@ modules:
                   - function: lowSurrogate[r:ushort][p:uint][specs:static]
                   - function: qchar_category[r:QChar::Category][p:uint][binding:freestatic][rename:category]
                   - function: qchar_direction[r:QChar::Direction][p:uint][binding:freestatic][rename:direction]
-                  - function: qchar_joiningType[r:QChar::JoiningType][p:uint][binding:freestatic][rename:joiningType]
+                  - function: qchar_joiningType[r:QChar::JoiningType][p:uint][binding:freestatic][rename:joiningType][v:5.3.0]
                   - function: qchar_joining[r:QChar::Joining][p:uint][binding:freestatic][rename:joining]
                   - function: qchar_combiningClass[r:unsigned char][p:uint][binding:freestatic][rename:combiningClass]
                   - function: qchar_mirroredChar[r:uint][p:uint][binding:freestatic][rename:mirroredChar]
@@ -1006,7 +1008,7 @@ modules:
                   - function: qchar_toUpper[r:uint][p:uint][binding:freestatic][rename:toUpper]
                   - function: qchar_toTitleCase[r:uint][p:uint][binding:freestatic][rename:toTitleCase]
                   - function: qchar_toCaseFolded[r:uint][p:uint][binding:freestatic][rename:toCaseFolded]
-                  - function: qchar_script[r:QChar::Script][p:uint][binding:freestatic][rename:script]
+                  - function: qchar_script[r:QChar::Script][p:uint][binding:freestatic][rename:script][v:5.1.0]
                   - function: qchar_unicodeVersion[r:QChar::UnicodeVersion][p:uint][binding:freestatic][rename:unicodeVersion]
                   - function: qchar_currentUnicodeVersion[r:QChar::UnicodeVersion][binding:freestatic][rename:currentUnicodeVersion]
                   - function: qchar_isPrint[r:bool][p:uint][binding:freestatic][rename:isPrint]
@@ -1161,6 +1163,7 @@ modules:
                         - TabFocusListControls
                         - TabFocusAllControls
                       toEnumClass: true
+                      version: 5.5.0
                   - enum:
                       name: SortOrder
                       enumerators:
@@ -1426,7 +1429,7 @@ modules:
                         - AA_DontShowIconsInMenus
                         - AA_NativeWindows
                         - AA_DontCreateNativeWidgetSiblings
-                        - AA_PluginApplication
+                        - AA_PluginApplication[v:5.7.0]
                         - AA_MacPluginApplication
                         - AA_DontUseNativeMenuBar
                         - AA_MacDontSwapCtrlAndMeta
@@ -1436,22 +1439,22 @@ modules:
                         - AA_SynthesizeMouseForUnhandledTouchEvents
                         - AA_UseHighDpiPixmaps
                         - AA_ForceRasterWidgets
-                        - AA_UseDesktopOpenGL
-                        - AA_UseOpenGLES
-                        - AA_UseSoftwareOpenGL
-                        - AA_ShareOpenGLContexts
-                        - AA_SetPalette
-                        - AA_EnableHighDpiScaling
-                        - AA_DisableHighDpiScaling
-                        - AA_UseStyleSheetPropagationInWidgetStyles
-                        - AA_DontUseNativeDialogs
-                        - AA_SynthesizeMouseForUnhandledTabletEvents
-                        - AA_CompressHighFrequencyEvents
-                        - AA_DontCheckOpenGLContextThreadAffinity
+                        - AA_UseDesktopOpenGL[v:5.3.0]
+                        - AA_UseOpenGLES[v:5.3.0]
+                        - AA_UseSoftwareOpenGL[v:5.4.0]
+                        - AA_ShareOpenGLContexts[v:5.4.0]
+                        - AA_SetPalette[v:5.5.0]
+                        - AA_EnableHighDpiScaling[v:5.6.0]
+                        - AA_DisableHighDpiScaling[v:5.6.0]
+                        - AA_UseStyleSheetPropagationInWidgetStyles[v:5.7.0]
+                        - AA_DontUseNativeDialogs[v:5.7.0]
+                        - AA_SynthesizeMouseForUnhandledTabletEvents[v:5.7.0]
+                        - AA_CompressHighFrequencyEvents[v:5.7.0]
+                        - AA_DontCheckOpenGLContextThreadAffinity[v:5.8.0]
                         - AA_DisableShaderDiskCache
-                        - AA_DontShowShortcutsInContextMenus[unchecked]
-                        - AA_CompressTabletEvents[unchecked]
-                        - AA_DisableWindowContextHelpButton[unchecked]
+                        - AA_DontShowShortcutsInContextMenus[v:5.10.0]
+                        - AA_CompressTabletEvents[v:5.10.0]
+                        - AA_DisableWindowContextHelpButton[v:5.10.0]
                         - AA_AttributeCount
                       toEnumClass: true
                   - enum:
@@ -2192,6 +2195,7 @@ modules:
                         - ReplaceSelection
                         - AddToSelection
                       toEnumClass: true
+                      version: 5.5.0
                   - enum:
                       name: TransformationMode
                       enumerators:
@@ -2245,7 +2249,7 @@ modules:
                         - ImTextBeforeCursor
                         - ImTextAfterCursor
                         - ImEnterKeyType
-                        - ImAnchorRectangle
+                        - ImAnchorRectangle[v:5.7.0]
                         - ImInputItemClipRectangle
                         - ImPlatformData
                         - ImQueryInput
@@ -2288,6 +2292,7 @@ modules:
                         - EnterKeyNext
                         - EnterKeyPrevious
                       toEnumClass: true
+                      version: 5.6.0
                   - enum:
                       name: ToolButtonStyle
                       enumerators:
@@ -2377,7 +2382,7 @@ modules:
                         - ItemIsAutoTristate
                         - ItemIsTristate
                         - ItemNeverHasChildren
-                        - ItemIsUserTristate
+                        - ItemIsUserTristate[v:5.5.0]
                       toEnumClass: true
                   - enum:
                       name: MatchFlag
@@ -2525,7 +2530,7 @@ modules:
                   - enum:
                       name: ScrollPhase
                       enumerators:
-                        - NoScrollPhase
+                        - NoScrollPhase[v:5.7.0]
                         - ScrollBegin
                         - ScrollUpdate
                         - ScrollEnd
@@ -2536,20 +2541,23 @@ modules:
                         - MouseEventNotSynthesized
                         - MouseEventSynthesizedBySystem
                         - MouseEventSynthesizedByQt
-                        - MouseEventSynthesizedByApplication
+                        - MouseEventSynthesizedByApplication[v:5.6.0]
                       toEnumClass: true
+                      version: 5.3.0
                   - enum:
                       name: MouseEventFlag
                       enumerators:
                         - MouseEventCreatedDoubleClick
                         - MouseEventFlagMask
                       toEnumClass: true
+                      version: 5.3.0
                   - enum:
                       name: ChecksumType
                       enumerators:
                         - ChecksumIso3309
                         - ChecksumItuV41
                       toEnumClass: true
+                      version: 5.9.0
                   - function: qt_getEnumMetaObject[r:const QMetaObject *][p:Qt::ScrollBarPolicy]
                   - function: qt_getEnumName[r:const char *][p:Qt::ScrollBarPolicy]
                   - function: qt_getEnumMetaObject[r:const QMetaObject *][p:Qt::FocusPolicy]
@@ -2799,7 +2807,7 @@ modules:
                   - function: operator*=[r:QPoint &][p:double]
                   - function: operator*=[r:QPoint &][p:int]
                   - function: operator/=[r:QPoint &][p:qreal]
-                  - function: dotProduct[r:int][p:const QPoint &;const QPoint &][specs:static]
+                  - function: dotProduct[r:int][p:const QPoint &;const QPoint &][specs:static][v:5.1.0]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QPoint &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QPoint &]
             - function: operator==[r:bool][p:const QPoint &;const QPoint &]
@@ -2835,7 +2843,7 @@ modules:
                   - function: operator-=[r:QPointF &][p:const QPointF &]
                   - function: operator*=[r:QPointF &][p:qreal]
                   - function: operator/=[r:QPointF &][p:qreal]
-                  - function: dotProduct[r:qreal][p:const QPointF &;const QPointF &][specs:static]
+                  - function: dotProduct[r:qreal][p:const QPointF &;const QPointF &][specs:static][v:5.1.0]
                   - function: toPoint[r:QPoint][specs:const]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QPointF &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QPointF &]
@@ -2982,7 +2990,7 @@ modules:
                   - function: translate[r:void][p:const QPoint &]
                   - function: translated[r:QRect][p:int;int][specs:const]
                   - function: translated[r:QRect][p:const QPoint &][specs:const]
-                  - function: transposed[r:QRect][specs:const]
+                  - function: transposed[r:QRect][specs:const][v:5.7.0]
                   - function: moveTo[r:void][p:int;int]
                   - function: moveTo[r:void][p:const QPoint &]
                   - function: setRect[r:void][p:int;int;int;int]
@@ -3008,19 +3016,19 @@ modules:
                   - function: united[r:QRect][p:const QRect &][specs:const]
                   - function: intersected[r:QRect][p:const QRect &][specs:const]
                   - function: intersects[r:bool][p:const QRect &][specs:const]
-                  - function: marginsAdded[r:QRect][p:const QMargins &][specs:const]
-                  - function: marginsRemoved[r:QRect][p:const QMargins &][specs:const]
-                  - function: operator+=[r:QRect &][p:const QMargins &]
-                  - function: operator-=[r:QRect &][p:const QMargins &]
+                  - function: marginsAdded[r:QRect][p:const QMargins &][specs:const][v:5.1.0]
+                  - function: marginsRemoved[r:QRect][p:const QMargins &][specs:const][v:5.1.0]
+                  - function: operator+=[r:QRect &][p:const QMargins &][v:5.1.0]
+                  - function: operator-=[r:QRect &][p:const QMargins &][v:5.1.0]
             - function: operator==[r:bool][p:const QRect &;const QRect &]
             - function: operator!=[r:bool][p:const QRect &;const QRect &]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QRect &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QRect &]
             - function: operator==[r:bool][p:const QRect &;const QRect &]
             - function: operator!=[r:bool][p:const QRect &;const QRect &]
-            - function: operator+[r:QRect][p:const QRect &;const QMargins &]
-            - function: operator+[r:QRect][p:const QMargins &;const QRect &]
-            - function: operator-[r:QRect][p:const QRect &;const QMargins &]
+            - function: operator+[r:QRect][p:const QRect &;const QMargins &][v:5.1.0]
+            - function: operator+[r:QRect][p:const QMargins &;const QRect &][v:5.1.0]
+            - function: operator-[r:QRect][p:const QRect &;const QMargins &][v:5.3.0]
             - function: operator<<[r:QDebug][p:QDebug;const QRect &]
             - class:
                 name: QRectF
@@ -3070,7 +3078,7 @@ modules:
                   - function: translate[r:void][p:const QPointF &]
                   - function: translated[r:QRectF][p:qreal;qreal][specs:const]
                   - function: translated[r:QRectF][p:const QPointF &][specs:const]
-                  - function: transposed[r:QRectF][specs:const]
+                  - function: transposed[r:QRectF][specs:const][v:5.7.0]
                   - function: moveTo[r:void][p:qreal;qreal]
                   - function: moveTo[r:void][p:const QPointF &]
                   - function: setRect[r:void][p:qreal;qreal;qreal;qreal]
@@ -3095,10 +3103,10 @@ modules:
                   - function: united[r:QRectF][p:const QRectF &][specs:const]
                   - function: intersected[r:QRectF][p:const QRectF &][specs:const]
                   - function: intersects[r:bool][p:const QRectF &][specs:const]
-                  - function: marginsAdded[r:QRectF][p:const QMarginsF &][specs:const]
-                  - function: marginsRemoved[r:QRectF][p:const QMarginsF &][specs:const]
-                  - function: operator+=[r:QRectF &][p:const QMarginsF &]
-                  - function: operator-=[r:QRectF &][p:const QMarginsF &]
+                  - function: marginsAdded[r:QRectF][p:const QMarginsF &][specs:const][v:5.3.0]
+                  - function: marginsRemoved[r:QRectF][p:const QMarginsF &][specs:const][v:5.3.0]
+                  - function: operator+=[r:QRectF &][p:const QMarginsF &][v:5.3.0]
+                  - function: operator-=[r:QRectF &][p:const QMarginsF &][v:5.3.0]
                   - function: toRect[r:QRect][specs:const]
                   - function: toAlignedRect[r:QRect][specs:const]
             - function: operator==[r:bool][p:const QRectF &;const QRectF &]
@@ -3107,9 +3115,9 @@ modules:
             - function: operator>>[r:QDataStream &][p:QDataStream &;QRectF &]
             - function: operator==[r:bool][p:const QRectF &;const QRectF &]
             - function: operator!=[r:bool][p:const QRectF &;const QRectF &]
-            - function: operator+[r:QRectF][p:const QRectF &;const QMarginsF &]
-            - function: operator+[r:QRectF][p:const QMarginsF &;const QRectF &]
-            - function: operator-[r:QRectF][p:const QRectF &;const QMarginsF &]
+            - function: operator+[r:QRectF][p:const QRectF &;const QMarginsF &][v:5.3.0]
+            - function: operator+[r:QRectF][p:const QMarginsF &;const QRectF &][v:5.3.0]
+            - function: operator-[r:QRectF][p:const QRectF &;const QMarginsF &][v:5.3.0]
             - function: operator<<[r:QDebug][p:QDebug;const QRectF &]
           hincludes: <QRect>
       - file:
@@ -3131,31 +3139,31 @@ modules:
                   - function: setTop[r:void][p:int]
                   - function: setRight[r:void][p:int]
                   - function: setBottom[r:void][p:int]
-                  - function: operator+=[r:QMargins &][p:const QMargins &]
-                  - function: operator-=[r:QMargins &][p:const QMargins &]
+                  - function: operator+=[r:QMargins &][p:const QMargins &][v:5.1.0]
+                  - function: operator-=[r:QMargins &][p:const QMargins &][v:5.1.0]
                   - function: operator+=[r:QMargins &][p:int]
                   - function: operator-=[r:QMargins &][p:int]
-                  - function: operator*=[r:QMargins &][p:int]
-                  - function: operator/=[r:QMargins &][p:int]
-                  - function: operator*=[r:QMargins &][p:qreal]
-                  - function: operator/=[r:QMargins &][p:qreal]
+                  - function: operator*=[r:QMargins &][p:int][v:5.1.0]
+                  - function: operator/=[r:QMargins &][p:int][v:5.1.0]
+                  - function: operator*=[r:QMargins &][p:qreal][v:5.1.0]
+                  - function: operator/=[r:QMargins &][p:qreal][v:5.1.0]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QMargins &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QMargins &]
             - function: operator==[r:bool][p:const QMargins &;const QMargins &]
             - function: operator!=[r:bool][p:const QMargins &;const QMargins &]
-            - function: operator+[r:QMargins][p:const QMargins &;const QMargins &]
-            - function: operator-[r:QMargins][p:const QMargins &;const QMargins &]
-            - function: operator+[r:QMargins][p:const QMargins &;int]
-            - function: operator+[r:QMargins][p:int;const QMargins &]
-            - function: operator-[r:QMargins][p:const QMargins &;int]
-            - function: operator*[r:QMargins][p:const QMargins &;int]
-            - function: operator*[r:QMargins][p:int;const QMargins &]
-            - function: operator*[r:QMargins][p:const QMargins &;qreal]
-            - function: operator*[r:QMargins][p:qreal;const QMargins &]
-            - function: operator/[r:QMargins][p:const QMargins &;int]
-            - function: operator/[r:QMargins][p:const QMargins &;qreal]
-            - function: operator+[r:QMargins][p:const QMargins &]
-            - function: operator-[r:QMargins][p:const QMargins &]
+            - function: operator+[r:QMargins][p:const QMargins &;const QMargins &][v:5.1.0]
+            - function: operator-[r:QMargins][p:const QMargins &;const QMargins &][v:5.1.0]
+            - function: operator+[r:QMargins][p:const QMargins &;int][v:5.3.0]
+            - function: operator+[r:QMargins][p:int;const QMargins &][v:5.3.0]
+            - function: operator-[r:QMargins][p:const QMargins &;int][v:5.3.0]
+            - function: operator*[r:QMargins][p:const QMargins &;int][v:5.1.0]
+            - function: operator*[r:QMargins][p:int;const QMargins &][v:5.1.0]
+            - function: operator*[r:QMargins][p:const QMargins &;qreal][v:5.1.0]
+            - function: operator*[r:QMargins][p:qreal;const QMargins &][v:5.1.0]
+            - function: operator/[r:QMargins][p:const QMargins &;int][v:5.1.0]
+            - function: operator/[r:QMargins][p:const QMargins &;qreal][v:5.1.0]
+            - function: operator+[r:QMargins][p:const QMargins &][v:5.3.0]
+            - function: operator-[r:QMargins][p:const QMargins &][v:5.1.0]
             - function: operator<<[r:QDebug][p:QDebug;const QMargins &]
             - class:
                 name: QMarginsF
@@ -3181,6 +3189,7 @@ modules:
                   - function: operator*=[r:QMarginsF &][p:qreal]
                   - function: operator/=[r:QMarginsF &][p:qreal]
                   - function: toMargins[r:QMargins][specs:const]
+                version: 5.3.0
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QMarginsF &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QMarginsF &]
             - function: operator==[r:bool][p:const QMarginsF &;const QMarginsF &]
@@ -3596,7 +3605,7 @@ modules:
                   - function: translate[r:void][p:int;int]
                   - function: translated[r:QLine][p:const QPoint &][specs:const]
                   - function: translated[r:QLine][p:int;int][specs:const]
-                  - function: center[r:QPoint][specs:const]
+                  - function: center[r:QPoint][specs:const][v:5.8.0]
                   - function: setP1[r:void][p:const QPoint &]
                   - function: setP2[r:void][p:const QPoint &]
                   - function: setPoints[r:void][p:const QPoint &;const QPoint &]
@@ -3646,7 +3655,7 @@ modules:
                   - function: translate[r:void][p:qreal;qreal]
                   - function: translated[r:QLineF][p:const QPointF &][specs:const]
                   - function: translated[r:QLineF][p:qreal;qreal][specs:const]
-                  - function: center[r:QPointF][specs:const]
+                  - function: center[r:QPointF][specs:const][v:5.8.0]
                   - function: setP1[r:void][p:const QPointF &]
                   - function: setP2[r:void][p:const QPointF &]
                   - function: setPoints[r:void][p:const QPointF &;const QPointF &]
@@ -3721,6 +3730,7 @@ modules:
                       enumerators:
                         - DefaultResolution
                         - AssumeLocalFile
+                      version: 5.4.0
                   - function: fromUserInput[r:QUrl][p:const QString &][specs:static]
                   - function: fromUserInput[r:QUrl][p:const QString &;const QString &;QUrl::UserInputResolutionOptions=QUrl::UserInputResolutionOptions(QUrl::DefaultResolution)][specs:static][v:5.4.0]
                   - function: isValid[r:bool][specs:const]
@@ -4864,8 +4874,8 @@ modules:
                   - function: nextTransition[r:QTimeZone::OffsetData][p:const QDateTime &][specs:const]
                   - function: previousTransition[r:QTimeZone::OffsetData][p:const QDateTime &][specs:const]
                   - function: transitions[r:QTimeZone::OffsetDataList][p:const QDateTime &;const QDateTime &][specs:const]
-                  - function: systemTimeZoneId[r:QByteArray][specs:static][v:5.5.0]
-                  - function: systemTimeZone[r:QTimeZone][specs:static]
+                  - function: systemTimeZoneId[r:QByteArray][specs:static]
+                  - function: systemTimeZone[r:QTimeZone][specs:static][v:5.5.0]
                   - function: utc[r:QTimeZone][specs:static][v:5.5.0]
                   - function: isTimeZoneIdAvailable[r:bool][p:const QByteArray &][specs:static]
                   - function: availableTimeZoneIds[r:QList<QByteArray>][specs:static]
@@ -6308,7 +6318,7 @@ modules:
                         - Qt_5_8[v:5.8.0]
                         - Qt_5_9[v:5.9.0]
                         - Qt_5_10[v:5.10.0]
-                        - Qt_DefaultCompiledVersion
+                        - Qt_DefaultCompiledVersion[v:5.4.0]
                   - enum:
                       name: ByteOrder
                       enumerators:

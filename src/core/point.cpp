@@ -54,8 +54,10 @@ static void register_point_class(script::Namespace ns)
   bind::memop_mul_assign<QPoint, int>(point);
   // QPoint & operator/=(qreal);
   bind::memop_div_assign<QPoint, qreal>(point);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // static int dotProduct(const QPoint &, const QPoint &);
   bind::static_member_function<QPoint, int, const QPoint &, const QPoint &, &QPoint::dotProduct>(point, "dotProduct").create();
+#endif
 
   yasl::registerVariantHandler<yasl::GenericVariantHandler<QPoint, QMetaType::QPoint>>();
 }
@@ -100,8 +102,10 @@ static void register_point_f_class(script::Namespace ns)
   bind::memop_mul_assign<QPointF, qreal>(point_f);
   // QPointF & operator/=(qreal);
   bind::memop_div_assign<QPointF, qreal>(point_f);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // static qreal dotProduct(const QPointF &, const QPointF &);
   bind::static_member_function<QPointF, qreal, const QPointF &, const QPointF &, &QPointF::dotProduct>(point_f, "dotProduct").create();
+#endif
   // QPoint toPoint() const;
   bind::member_function<QPointF, QPoint, &QPointF::toPoint>(point_f, "toPoint").create();
 

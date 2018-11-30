@@ -78,6 +78,7 @@ static void register_char__category_enum(script::Class char_)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 static void register_char__script_enum(script::Class char_)
 {
   using namespace script;
@@ -187,37 +188,96 @@ static void register_char__script_enum(script::Class char_)
   script.addValue("Script_Sharada", QChar::Script_Sharada);
   script.addValue("Script_SoraSompeng", QChar::Script_SoraSompeng);
   script.addValue("Script_Takri", QChar::Script_Takri);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_CaucasianAlbanian", QChar::Script_CaucasianAlbanian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_BassaVah", QChar::Script_BassaVah);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Duployan", QChar::Script_Duployan);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Elbasan", QChar::Script_Elbasan);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Grantha", QChar::Script_Grantha);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_PahawhHmong", QChar::Script_PahawhHmong);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Khojki", QChar::Script_Khojki);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_LinearA", QChar::Script_LinearA);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Mahajani", QChar::Script_Mahajani);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Manichaean", QChar::Script_Manichaean);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_MendeKikakui", QChar::Script_MendeKikakui);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Modi", QChar::Script_Modi);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Mro", QChar::Script_Mro);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_OldNorthArabian", QChar::Script_OldNorthArabian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Nabataean", QChar::Script_Nabataean);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Palmyrene", QChar::Script_Palmyrene);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_PauCinHau", QChar::Script_PauCinHau);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_OldPermic", QChar::Script_OldPermic);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_PsalterPahlavi", QChar::Script_PsalterPahlavi);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Siddham", QChar::Script_Siddham);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Khudawadi", QChar::Script_Khudawadi);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_Tirhuta", QChar::Script_Tirhuta);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("Script_WarangCiti", QChar::Script_WarangCiti);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   script.addValue("Script_Ahom", QChar::Script_Ahom);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   script.addValue("Script_AnatolianHieroglyphs", QChar::Script_AnatolianHieroglyphs);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   script.addValue("Script_Hatran", QChar::Script_Hatran);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   script.addValue("Script_Multani", QChar::Script_Multani);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   script.addValue("Script_OldHungarian", QChar::Script_OldHungarian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   script.addValue("Script_SignWriting", QChar::Script_SignWriting);
+#endif
   script.addValue("ScriptCount", QChar::ScriptCount);
 }
+#endif
 
 
 static void register_char__direction_enum(script::Class char_)
@@ -245,10 +305,18 @@ static void register_char__direction_enum(script::Class char_)
   direction.addValue("DirPDF", QChar::DirPDF);
   direction.addValue("DirNSM", QChar::DirNSM);
   direction.addValue("DirBN", QChar::DirBN);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   direction.addValue("DirLRI", QChar::DirLRI);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   direction.addValue("DirRLI", QChar::DirRLI);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   direction.addValue("DirFSI", QChar::DirFSI);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   direction.addValue("DirPDI", QChar::DirPDI);
+#endif
 }
 
 
@@ -279,6 +347,7 @@ static void register_char__decomposition_enum(script::Class char_)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 static void register_char__joining_type_enum(script::Class char_)
 {
   using namespace script;
@@ -292,6 +361,7 @@ static void register_char__joining_type_enum(script::Class char_)
   joining_type.addValue("Joining_Left", QChar::Joining_Left);
   joining_type.addValue("Joining_Transparent", QChar::Joining_Transparent);
 }
+#endif
 
 
 static void register_char__joining_enum(script::Class char_)
@@ -356,9 +426,15 @@ static void register_char__unicode_version_enum(script::Class char_)
   unicode_version.addValue("Unicode_6_0", QChar::Unicode_6_0);
   unicode_version.addValue("Unicode_6_1", QChar::Unicode_6_1);
   unicode_version.addValue("Unicode_6_2", QChar::Unicode_6_2);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   unicode_version.addValue("Unicode_6_3", QChar::Unicode_6_3);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   unicode_version.addValue("Unicode_7_0", QChar::Unicode_7_0);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   unicode_version.addValue("Unicode_8_0", QChar::Unicode_8_0);
+#endif
 }
 
 
@@ -370,10 +446,14 @@ static void register_char__class(script::Namespace ns)
 
   register_char__special_character_enum(char_);
   register_char__category_enum(char_);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   register_char__script_enum(char_);
+#endif
   register_char__direction_enum(char_);
   register_char__decomposition_enum(char_);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   register_char__joining_type_enum(char_);
+#endif
   register_char__joining_enum(char_);
   register_char__combining_class_enum(char_);
   register_char__unicode_version_enum(char_);
@@ -408,8 +488,10 @@ static void register_char__class(script::Namespace ns)
   bind::member_function<QChar, QChar::Category, &QChar::category>(char_, "category").create();
   // QChar::Direction direction() const;
   bind::member_function<QChar, QChar::Direction, &QChar::direction>(char_, "direction").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QChar::JoiningType joiningType() const;
   bind::member_function<QChar, QChar::JoiningType, &QChar::joiningType>(char_, "joiningType").create();
+#endif
   // QChar::Joining joining() const;
   bind::member_function<QChar, QChar::Joining, &QChar::joining>(char_, "joining").create();
   // unsigned char combiningClass() const;
@@ -432,8 +514,10 @@ static void register_char__class(script::Namespace ns)
   bind::member_function<QChar, QChar, &QChar::toTitleCase>(char_, "toTitleCase").create();
   // QChar toCaseFolded() const;
   bind::member_function<QChar, QChar, &QChar::toCaseFolded>(char_, "toCaseFolded").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QChar::Script script() const;
   bind::member_function<QChar, QChar::Script, &QChar::script>(char_, "script").create();
+#endif
   // QChar::UnicodeVersion unicodeVersion() const;
   bind::member_function<QChar, QChar::UnicodeVersion, &QChar::unicodeVersion>(char_, "unicodeVersion").create();
   // char toLatin1() const;
@@ -508,8 +592,10 @@ static void register_char__class(script::Namespace ns)
   bind::static_member_function<QChar, QChar::Category, uint, &qchar_category>(char_, "category").create();
   // QChar::Direction qchar_direction(uint);
   bind::static_member_function<QChar, QChar::Direction, uint, &qchar_direction>(char_, "direction").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QChar::JoiningType qchar_joiningType(uint);
   bind::static_member_function<QChar, QChar::JoiningType, uint, &qchar_joiningType>(char_, "joiningType").create();
+#endif
   // QChar::Joining qchar_joining(uint);
   bind::static_member_function<QChar, QChar::Joining, uint, &qchar_joining>(char_, "joining").create();
   // unsigned char qchar_combiningClass(uint);
@@ -532,8 +618,10 @@ static void register_char__class(script::Namespace ns)
   bind::static_member_function<QChar, uint, uint, &qchar_toTitleCase>(char_, "toTitleCase").create();
   // uint qchar_toCaseFolded(uint);
   bind::static_member_function<QChar, uint, uint, &qchar_toCaseFolded>(char_, "toCaseFolded").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QChar::Script qchar_script(uint);
   bind::static_member_function<QChar, QChar::Script, uint, &qchar_script>(char_, "script").create();
+#endif
   // QChar::UnicodeVersion qchar_unicodeVersion(uint);
   bind::static_member_function<QChar, QChar::UnicodeVersion, uint, &qchar_unicodeVersion>(char_, "unicodeVersion").create();
   // QChar::UnicodeVersion qchar_currentUnicodeVersion();

@@ -16,8 +16,12 @@ template<> struct make_type_t<QChar::CombiningClass> { inline static script::Typ
 template<> struct make_type_t<QChar::Decomposition> { inline static script::Type get() { return script::Type::QCharDecomposition; } };
 template<> struct make_type_t<QChar::Direction> { inline static script::Type get() { return script::Type::QCharDirection; } };
 template<> struct make_type_t<QChar::Joining> { inline static script::Type get() { return script::Type::QCharJoining; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 template<> struct make_type_t<QChar::JoiningType> { inline static script::Type get() { return script::Type::QCharJoiningType; } };
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 template<> struct make_type_t<QChar::Script> { inline static script::Type get() { return script::Type::QCharScript; } };
+#endif
 template<> struct make_type_t<QChar::SpecialCharacter> { inline static script::Type get() { return script::Type::QCharSpecialCharacter; } };
 template<> struct make_type_t<QChar::UnicodeVersion> { inline static script::Type get() { return script::Type::QCharUnicodeVersion; } };
 } // namespace script

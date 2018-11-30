@@ -89,7 +89,7 @@ script::Value get_variant_value(script::Engine *e, const QVariant & v)
   if (v.type() == qMetaTypeId<yasl::Value>())
     return v.value<yasl::Value>().release();
 
-  switch (v.type())
+  switch (v.userType())
   {
   case QMetaType::Bool:
     return e->newBool(v.toBool());

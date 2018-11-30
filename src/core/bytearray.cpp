@@ -413,7 +413,5 @@ void register_bytearray_file(script::Namespace core)
   bind::function<QByteArray, const QByteArray &, int, &qCompress>(ns, "qCompress").create();
   // QByteArray qUncompress(const QByteArray &);
   bind::function<QByteArray, const QByteArray &, &qUncompress>(ns, "qUncompress").create();
-  // void swap(QByteArray &, QByteArray &);
-  bind::void_function<QByteArray &, QByteArray &, &swap>(ns, "swap").create();
 }
 

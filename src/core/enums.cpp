@@ -151,6 +151,7 @@ static void register_qt_focus_policy_enum(script::Namespace qt)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
 static void register_qt_tab_focus_behavior_enum(script::Namespace qt)
 {
   using namespace script;
@@ -163,6 +164,7 @@ static void register_qt_tab_focus_behavior_enum(script::Namespace qt)
   tab_focus_behavior.addValue("TabFocusListControls", Qt::TabFocusListControls);
   tab_focus_behavior.addValue("TabFocusAllControls", Qt::TabFocusAllControls);
 }
+#endif
 
 
 static void register_qt_sort_order_enum(script::Namespace qt)
@@ -506,7 +508,9 @@ static void register_qt_application_attribute_enum(script::Namespace qt)
   application_attribute.addValue("AA_DontShowIconsInMenus", Qt::AA_DontShowIconsInMenus);
   application_attribute.addValue("AA_NativeWindows", Qt::AA_NativeWindows);
   application_attribute.addValue("AA_DontCreateNativeWidgetSiblings", Qt::AA_DontCreateNativeWidgetSiblings);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   application_attribute.addValue("AA_PluginApplication", Qt::AA_PluginApplication);
+#endif
   application_attribute.addValue("AA_MacPluginApplication", Qt::AA_MacPluginApplication);
   application_attribute.addValue("AA_DontUseNativeMenuBar", Qt::AA_DontUseNativeMenuBar);
   application_attribute.addValue("AA_MacDontSwapCtrlAndMeta", Qt::AA_MacDontSwapCtrlAndMeta);
@@ -516,19 +520,52 @@ static void register_qt_application_attribute_enum(script::Namespace qt)
   application_attribute.addValue("AA_SynthesizeMouseForUnhandledTouchEvents", Qt::AA_SynthesizeMouseForUnhandledTouchEvents);
   application_attribute.addValue("AA_UseHighDpiPixmaps", Qt::AA_UseHighDpiPixmaps);
   application_attribute.addValue("AA_ForceRasterWidgets", Qt::AA_ForceRasterWidgets);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   application_attribute.addValue("AA_UseDesktopOpenGL", Qt::AA_UseDesktopOpenGL);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   application_attribute.addValue("AA_UseOpenGLES", Qt::AA_UseOpenGLES);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   application_attribute.addValue("AA_UseSoftwareOpenGL", Qt::AA_UseSoftwareOpenGL);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   application_attribute.addValue("AA_ShareOpenGLContexts", Qt::AA_ShareOpenGLContexts);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   application_attribute.addValue("AA_SetPalette", Qt::AA_SetPalette);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   application_attribute.addValue("AA_EnableHighDpiScaling", Qt::AA_EnableHighDpiScaling);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   application_attribute.addValue("AA_DisableHighDpiScaling", Qt::AA_DisableHighDpiScaling);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   application_attribute.addValue("AA_UseStyleSheetPropagationInWidgetStyles", Qt::AA_UseStyleSheetPropagationInWidgetStyles);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   application_attribute.addValue("AA_DontUseNativeDialogs", Qt::AA_DontUseNativeDialogs);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   application_attribute.addValue("AA_SynthesizeMouseForUnhandledTabletEvents", Qt::AA_SynthesizeMouseForUnhandledTabletEvents);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   application_attribute.addValue("AA_CompressHighFrequencyEvents", Qt::AA_CompressHighFrequencyEvents);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   application_attribute.addValue("AA_DontCheckOpenGLContextThreadAffinity", Qt::AA_DontCheckOpenGLContextThreadAffinity);
+#endif
   application_attribute.addValue("AA_DisableShaderDiskCache", Qt::AA_DisableShaderDiskCache);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  application_attribute.addValue("AA_DontShowShortcutsInContextMenus", Qt::AA_DontShowShortcutsInContextMenus);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  application_attribute.addValue("AA_CompressTabletEvents", Qt::AA_CompressTabletEvents);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  application_attribute.addValue("AA_DisableWindowContextHelpButton", Qt::AA_DisableWindowContextHelpButton);
+#endif
   application_attribute.addValue("AA_AttributeCount", Qt::AA_AttributeCount);
 }
 
@@ -1447,6 +1484,7 @@ static void register_qt_item_selection_mode_enum(script::Namespace qt)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
 static void register_qt_item_selection_operation_enum(script::Namespace qt)
 {
   using namespace script;
@@ -1457,6 +1495,7 @@ static void register_qt_item_selection_operation_enum(script::Namespace qt)
   item_selection_operation.addValue("ReplaceSelection", Qt::ReplaceSelection);
   item_selection_operation.addValue("AddToSelection", Qt::AddToSelection);
 }
+#endif
 
 
 static void register_qt_transformation_mode_enum(script::Namespace qt)
@@ -1540,7 +1579,9 @@ static void register_qt_input_method_query_enum(script::Namespace qt)
   input_method_query.addValue("ImTextBeforeCursor", Qt::ImTextBeforeCursor);
   input_method_query.addValue("ImTextAfterCursor", Qt::ImTextAfterCursor);
   input_method_query.addValue("ImEnterKeyType", Qt::ImEnterKeyType);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   input_method_query.addValue("ImAnchorRectangle", Qt::ImAnchorRectangle);
+#endif
   input_method_query.addValue("ImInputItemClipRectangle", Qt::ImInputItemClipRectangle);
   input_method_query.addValue("ImPlatformData", Qt::ImPlatformData);
   input_method_query.addValue("ImQueryInput", Qt::ImQueryInput);
@@ -1579,6 +1620,7 @@ static void register_qt_input_method_hint_enum(script::Namespace qt)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
 static void register_qt_enter_key_type_enum(script::Namespace qt)
 {
   using namespace script;
@@ -1595,6 +1637,7 @@ static void register_qt_enter_key_type_enum(script::Namespace qt)
   enter_key_type.addValue("EnterKeyNext", Qt::EnterKeyNext);
   enter_key_type.addValue("EnterKeyPrevious", Qt::EnterKeyPrevious);
 }
+#endif
 
 
 static void register_qt_tool_button_style_enum(script::Namespace qt)
@@ -1732,7 +1775,9 @@ static void register_qt_item_flag_enum(script::Namespace qt)
   item_flag.addValue("ItemIsAutoTristate", Qt::ItemIsAutoTristate);
   item_flag.addValue("ItemIsTristate", Qt::ItemIsTristate);
   item_flag.addValue("ItemNeverHasChildren", Qt::ItemNeverHasChildren);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   item_flag.addValue("ItemIsUserTristate", Qt::ItemIsUserTristate);
+#endif
 }
 
 
@@ -1981,13 +2026,16 @@ static void register_qt_scroll_phase_enum(script::Namespace qt)
   Enum scroll_phase = qt.newEnum("ScrollPhase").setId(script::Type::QtScrollPhase)
     .setEnumClass().get();
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   scroll_phase.addValue("NoScrollPhase", Qt::NoScrollPhase);
+#endif
   scroll_phase.addValue("ScrollBegin", Qt::ScrollBegin);
   scroll_phase.addValue("ScrollUpdate", Qt::ScrollUpdate);
   scroll_phase.addValue("ScrollEnd", Qt::ScrollEnd);
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 static void register_qt_mouse_event_source_enum(script::Namespace qt)
 {
   using namespace script;
@@ -1998,10 +2046,14 @@ static void register_qt_mouse_event_source_enum(script::Namespace qt)
   mouse_event_source.addValue("MouseEventNotSynthesized", Qt::MouseEventNotSynthesized);
   mouse_event_source.addValue("MouseEventSynthesizedBySystem", Qt::MouseEventSynthesizedBySystem);
   mouse_event_source.addValue("MouseEventSynthesizedByQt", Qt::MouseEventSynthesizedByQt);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   mouse_event_source.addValue("MouseEventSynthesizedByApplication", Qt::MouseEventSynthesizedByApplication);
+#endif
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 static void register_qt_mouse_event_flag_enum(script::Namespace qt)
 {
   using namespace script;
@@ -2012,8 +2064,10 @@ static void register_qt_mouse_event_flag_enum(script::Namespace qt)
   mouse_event_flag.addValue("MouseEventCreatedDoubleClick", Qt::MouseEventCreatedDoubleClick);
   mouse_event_flag.addValue("MouseEventFlagMask", Qt::MouseEventFlagMask);
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 static void register_qt_checksum_type_enum(script::Namespace qt)
 {
   using namespace script;
@@ -2024,6 +2078,7 @@ static void register_qt_checksum_type_enum(script::Namespace qt)
   checksum_type.addValue("ChecksumIso3309", Qt::ChecksumIso3309);
   checksum_type.addValue("ChecksumItuV41", Qt::ChecksumItuV41);
 }
+#endif
 
 
 static void register_qt_namespace(script::Namespace ns)
@@ -2038,7 +2093,9 @@ static void register_qt_namespace(script::Namespace ns)
   register_qt_mouse_button_enum(qt);
   register_qt_orientation_enum(qt);
   register_qt_focus_policy_enum(qt);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   register_qt_tab_focus_behavior_enum(qt);
+#endif
   register_qt_sort_order_enum(qt);
   register_qt_tile_rule_enum(qt);
   register_qt_alignment_flag_enum(qt);
@@ -2082,14 +2139,18 @@ static void register_qt_namespace(script::Namespace ns)
   register_qt_mask_mode_enum(qt);
   register_qt_clip_operation_enum(qt);
   register_qt_item_selection_mode_enum(qt);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   register_qt_item_selection_operation_enum(qt);
+#endif
   register_qt_transformation_mode_enum(qt);
   register_qt_axis_enum(qt);
   register_qt_focus_reason_enum(qt);
   register_qt_context_menu_policy_enum(qt);
   register_qt_input_method_query_enum(qt);
   register_qt_input_method_hint_enum(qt);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   register_qt_enter_key_type_enum(qt);
+#endif
   register_qt_tool_button_style_enum(qt);
   register_qt_layout_direction_enum(qt);
   register_qt_anchor_point_enum(qt);
@@ -2115,9 +2176,15 @@ static void register_qt_namespace(script::Namespace ns)
   register_qt_cursor_move_style_enum(qt);
   register_qt_timer_type_enum(qt);
   register_qt_scroll_phase_enum(qt);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   register_qt_mouse_event_source_enum(qt);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   register_qt_mouse_event_flag_enum(qt);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   register_qt_checksum_type_enum(qt);
+#endif
 
   // const QMetaObject * qt_getEnumMetaObject(Qt::ScrollBarPolicy);
   /// TODO: const QMetaObject * qt_getEnumMetaObject(Qt::ScrollBarPolicy);

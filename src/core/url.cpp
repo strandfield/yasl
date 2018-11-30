@@ -71,6 +71,7 @@ static void register_url_component_formatting_option_enum(script::Class url)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_url_user_input_resolution_option_enum(script::Class url)
 {
   using namespace script;
@@ -81,6 +82,7 @@ static void register_url_user_input_resolution_option_enum(script::Class url)
   user_input_resolution_option.addValue("DefaultResolution", QUrl::DefaultResolution);
   user_input_resolution_option.addValue("AssumeLocalFile", QUrl::AssumeLocalFile);
 }
+#endif
 
 
 static void register_url_class(script::Namespace ns)
@@ -92,7 +94,9 @@ static void register_url_class(script::Namespace ns)
   register_url_parsing_mode_enum(url);
   register_url_url_formatting_option_enum(url);
   register_url_component_formatting_option_enum(url);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_url_user_input_resolution_option_enum(url);
+#endif
 
   // QUrl();
   bind::default_constructor<QUrl>(url).create();

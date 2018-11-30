@@ -111,8 +111,10 @@ static void register_rect_class(script::Namespace ns)
   bind::member_function<QRect, QRect, int, int, &QRect::translated>(rect, "translated").create();
   // QRect translated(const QPoint &) const;
   bind::member_function<QRect, QRect, const QPoint &, &QRect::translated>(rect, "translated").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QRect transposed() const;
   bind::member_function<QRect, QRect, &QRect::transposed>(rect, "transposed").create();
+#endif
   // void moveTo(int, int);
   bind::void_member_function<QRect, int, int, &QRect::moveTo>(rect, "moveTo").create();
   // void moveTo(const QPoint &);
@@ -163,14 +165,22 @@ static void register_rect_class(script::Namespace ns)
   bind::member_function<QRect, QRect, const QRect &, &QRect::intersected>(rect, "intersected").create();
   // bool intersects(const QRect &) const;
   bind::member_function<QRect, bool, const QRect &, &QRect::intersects>(rect, "intersects").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRect marginsAdded(const QMargins &) const;
   bind::member_function<QRect, QRect, const QMargins &, &QRect::marginsAdded>(rect, "marginsAdded").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRect marginsRemoved(const QMargins &) const;
   bind::member_function<QRect, QRect, const QMargins &, &QRect::marginsRemoved>(rect, "marginsRemoved").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRect & operator+=(const QMargins &);
   bind::memop_add_assign<QRect, const QMargins &>(rect);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRect & operator-=(const QMargins &);
   bind::memop_sub_assign<QRect, const QMargins &>(rect);
+#endif
 
   yasl::registerVariantHandler<yasl::GenericVariantHandler<QRect, QMetaType::QRect>>();
 }
@@ -273,8 +283,10 @@ static void register_rect_f_class(script::Namespace ns)
   bind::member_function<QRectF, QRectF, qreal, qreal, &QRectF::translated>(rect_f, "translated").create();
   // QRectF translated(const QPointF &) const;
   bind::member_function<QRectF, QRectF, const QPointF &, &QRectF::translated>(rect_f, "translated").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QRectF transposed() const;
   bind::member_function<QRectF, QRectF, &QRectF::transposed>(rect_f, "transposed").create();
+#endif
   // void moveTo(qreal, qreal);
   bind::void_member_function<QRectF, qreal, qreal, &QRectF::moveTo>(rect_f, "moveTo").create();
   // void moveTo(const QPointF &);
@@ -323,14 +335,22 @@ static void register_rect_f_class(script::Namespace ns)
   bind::member_function<QRectF, QRectF, const QRectF &, &QRectF::intersected>(rect_f, "intersected").create();
   // bool intersects(const QRectF &) const;
   bind::member_function<QRectF, bool, const QRectF &, &QRectF::intersects>(rect_f, "intersects").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QRectF marginsAdded(const QMarginsF &) const;
   bind::member_function<QRectF, QRectF, const QMarginsF &, &QRectF::marginsAdded>(rect_f, "marginsAdded").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QRectF marginsRemoved(const QMarginsF &) const;
   bind::member_function<QRectF, QRectF, const QMarginsF &, &QRectF::marginsRemoved>(rect_f, "marginsRemoved").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QRectF & operator+=(const QMarginsF &);
   bind::memop_add_assign<QRectF, const QMarginsF &>(rect_f);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QRectF & operator-=(const QMarginsF &);
   bind::memop_sub_assign<QRectF, const QMarginsF &>(rect_f);
+#endif
   // QRect toRect() const;
   bind::member_function<QRectF, QRect, &QRectF::toRect>(rect_f, "toRect").create();
   // QRect toAlignedRect() const;
@@ -361,12 +381,18 @@ void register_rect_file(script::Namespace core)
   bind::op_eq<const QRect &, const QRect &>(ns);
   // bool operator!=(const QRect &, const QRect &);
   bind::op_neq<const QRect &, const QRect &>(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRect operator+(const QRect &, const QMargins &);
   bind::op_add<QRect, const QRect &, const QMargins &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRect operator+(const QMargins &, const QRect &);
   bind::op_add<QRect, const QMargins &, const QRect &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QRect operator-(const QRect &, const QMargins &);
   bind::op_sub<QRect, const QRect &, const QMargins &>(ns);
+#endif
   // QDebug operator<<(QDebug, const QRect &);
   /// TODO: QDebug operator<<(QDebug, const QRect &);
   // bool operator==(const QRectF &, const QRectF &);
@@ -381,12 +407,18 @@ void register_rect_file(script::Namespace core)
   bind::op_eq<const QRectF &, const QRectF &>(ns);
   // bool operator!=(const QRectF &, const QRectF &);
   bind::op_neq<const QRectF &, const QRectF &>(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QRectF operator+(const QRectF &, const QMarginsF &);
   bind::op_add<QRectF, const QRectF &, const QMarginsF &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QRectF operator+(const QMarginsF &, const QRectF &);
   bind::op_add<QRectF, const QMarginsF &, const QRectF &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QRectF operator-(const QRectF &, const QMarginsF &);
   bind::op_sub<QRectF, const QRectF &, const QMarginsF &>(ns);
+#endif
   // QDebug operator<<(QDebug, const QRectF &);
   /// TODO: QDebug operator<<(QDebug, const QRectF &);
 }

@@ -112,12 +112,12 @@ static void register_time_zone_class(script::Namespace ns)
   /// TODO: QTimeZone::OffsetData previousTransition(const QDateTime &) const;
   // QTimeZone::OffsetDataList transitions(const QDateTime &, const QDateTime &) const;
   /// TODO: QTimeZone::OffsetDataList transitions(const QDateTime &, const QDateTime &) const;
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QByteArray systemTimeZoneId();
   bind::static_member_function<QTimeZone, QByteArray, &QTimeZone::systemTimeZoneId>(time_zone, "systemTimeZoneId").create();
-#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QTimeZone systemTimeZone();
   bind::static_member_function<QTimeZone, QTimeZone, &QTimeZone::systemTimeZone>(time_zone, "systemTimeZone").create();
+#endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // static QTimeZone utc();
   bind::static_member_function<QTimeZone, QTimeZone, &QTimeZone::utc>(time_zone, "utc").create();

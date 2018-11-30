@@ -17,6 +17,7 @@
 #include <script/interpreter/executioncontext.h>
 
 #include <QDebug>
+#include <QtGlobal>
 
 #ifdef Q_OS_WIN
 #include <QWinEventNotifier>
@@ -72,8 +73,7 @@ script::Value app_exit(script::FunctionCall *c)
 
 script::Value app_qtVersion(script::FunctionCall *c)
 {
-  QString ret = QString("%1.%2.%3").arg(QT_VERSION_MAJOR).arg(QT_VERSION_MINOR).arg(QT_VERSION_PATCH);
-  return c->engine()->newString(ret);
+  return c->engine()->newString(QString(QT_VERSION_STR));
 }
 
 }

@@ -12,10 +12,12 @@ QChar::Direction qchar_direction(uint c)
   return QChar::direction(c);
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 3, 0)
 QChar::JoiningType qchar_joiningType(uint c)
 {
   return QChar::joiningType(c);
 }
+#endif
 
 QChar::Joining qchar_joining(uint c)
 {
@@ -72,10 +74,12 @@ uint qchar_toCaseFolded(uint ucs4)
   return QChar::toCaseFolded(ucs4);
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
 QChar::Script qchar_script(uint ucs4)
 {
   return QChar::script(ucs4);
 }
+#endif
 
 QChar::UnicodeVersion qchar_unicodeVersion(uint ucs4)
 {

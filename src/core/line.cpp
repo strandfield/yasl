@@ -59,8 +59,10 @@ static void register_line_class(script::Namespace ns)
   bind::member_function<QLine, QLine, const QPoint &, &QLine::translated>(line, "translated").create();
   // QLine translated(int, int) const;
   bind::member_function<QLine, QLine, int, int, &QLine::translated>(line, "translated").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QPoint center() const;
   bind::member_function<QLine, QPoint, &QLine::center>(line, "center").create();
+#endif
   // void setP1(const QPoint &);
   bind::void_member_function<QLine, const QPoint &, &QLine::setP1>(line, "setP1").create();
   // void setP2(const QPoint &);
@@ -160,8 +162,10 @@ static void register_line_f_class(script::Namespace ns)
   bind::member_function<QLineF, QLineF, const QPointF &, &QLineF::translated>(line_f, "translated").create();
   // QLineF translated(qreal, qreal) const;
   bind::member_function<QLineF, QLineF, qreal, qreal, &QLineF::translated>(line_f, "translated").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // QPointF center() const;
   bind::member_function<QLineF, QPointF, &QLineF::center>(line_f, "center").create();
+#endif
   // void setP1(const QPointF &);
   bind::void_member_function<QLineF, const QPointF &, &QLineF::setP1>(line_f, "setP1").create();
   // void setP2(const QPointF &);

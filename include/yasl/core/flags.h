@@ -30,8 +30,10 @@ script::Class register_qflags_type_impl(script::Class flags)
   // ~QFlags();
   bind::destructor<FlagType>(flags).create();
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
   // QFlags<T> & setFlag(T flag, bool on = true);
   bind::chainable_memfn<FlagType, T, bool, &FlagType::setFlag>(flags, "setFlag").create();
+#endif
   // bool testFlag(T flag) const;
   bind::member_function<FlagType, bool, T, &FlagType::testFlag>(flags, "testFlag").create();
 

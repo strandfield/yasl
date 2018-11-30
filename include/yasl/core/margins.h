@@ -11,7 +11,9 @@
 
 namespace script {
 template<> struct make_type_t<QMargins> { inline static script::Type get() { return script::Type::QMargins; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 template<> struct make_type_t<QMarginsF> { inline static script::Type get() { return script::Type::QMarginsF; } };
+#endif
 } // namespace script
 
 #endif // YASL_CORE_MARGINS_H

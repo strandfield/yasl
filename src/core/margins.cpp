@@ -45,25 +45,38 @@ static void register_margins_class(script::Namespace ns)
   bind::void_member_function<QMargins, int, &QMargins::setRight>(margins, "setRight").create();
   // void setBottom(int);
   bind::void_member_function<QMargins, int, &QMargins::setBottom>(margins, "setBottom").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins & operator+=(const QMargins &);
   bind::memop_add_assign<QMargins, const QMargins &>(margins);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins & operator-=(const QMargins &);
   bind::memop_sub_assign<QMargins, const QMargins &>(margins);
+#endif
   // QMargins & operator+=(int);
   bind::memop_add_assign<QMargins, int>(margins);
   // QMargins & operator-=(int);
   bind::memop_sub_assign<QMargins, int>(margins);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins & operator*=(int);
   bind::memop_mul_assign<QMargins, int>(margins);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins & operator/=(int);
   bind::memop_div_assign<QMargins, int>(margins);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins & operator*=(qreal);
   bind::memop_mul_assign<QMargins, qreal>(margins);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins & operator/=(qreal);
   bind::memop_div_assign<QMargins, qreal>(margins);
+#endif
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 static void register_margins_f_class(script::Namespace ns)
 {
   using namespace script;
@@ -114,6 +127,7 @@ static void register_margins_f_class(script::Namespace ns)
   // QMargins toMargins() const;
   bind::member_function<QMarginsF, QMargins, &QMarginsF::toMargins>(margins_f, "toMargins").create();
 }
+#endif
 
 
 void register_margins_file(script::Namespace core)
@@ -123,7 +137,9 @@ void register_margins_file(script::Namespace core)
   Namespace ns = core;
 
   register_margins_class(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   register_margins_f_class(ns);
+#endif
 
   // QDataStream & operator<<(QDataStream &, const QMargins &);
   bind::op_put_to<QDataStream &, const QMargins &>(ns);
@@ -133,32 +149,58 @@ void register_margins_file(script::Namespace core)
   bind::op_eq<const QMargins &, const QMargins &>(ns);
   // bool operator!=(const QMargins &, const QMargins &);
   bind::op_neq<const QMargins &, const QMargins &>(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator+(const QMargins &, const QMargins &);
   bind::op_add<QMargins, const QMargins &, const QMargins &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator-(const QMargins &, const QMargins &);
   bind::op_sub<QMargins, const QMargins &, const QMargins &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QMargins operator+(const QMargins &, int);
   bind::op_add<QMargins, const QMargins &, int>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QMargins operator+(int, const QMargins &);
   bind::op_add<QMargins, int, const QMargins &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QMargins operator-(const QMargins &, int);
   bind::op_sub<QMargins, const QMargins &, int>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator*(const QMargins &, int);
   bind::op_mul<QMargins, const QMargins &, int>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator*(int, const QMargins &);
   bind::op_mul<QMargins, int, const QMargins &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator*(const QMargins &, qreal);
   bind::op_mul<QMargins, const QMargins &, qreal>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator*(qreal, const QMargins &);
   bind::op_mul<QMargins, qreal, const QMargins &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator/(const QMargins &, int);
   bind::op_div<QMargins, const QMargins &, int>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator/(const QMargins &, qreal);
   bind::op_div<QMargins, const QMargins &, qreal>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QMargins operator+(const QMargins &);
   bind::op_unary_plus<QMargins, const QMargins &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QMargins operator-(const QMargins &);
   bind::op_unary_minus<QMargins, const QMargins &>(ns);
+#endif
   // QDebug operator<<(QDebug, const QMargins &);
   /// TODO: QDebug operator<<(QDebug, const QMargins &);
   // QDataStream & operator<<(QDataStream &, const QMarginsF &);

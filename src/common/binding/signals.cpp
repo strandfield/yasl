@@ -24,13 +24,18 @@
 #include <QMap>
 #include <QMetaMethod>
 
+//bool operator<(const script::Function & lhs, const script::Function & rhs)
+//{
+//  return lhs.impl() < rhs.impl();
+//}
+
+namespace script
+{
+
 bool operator<(const script::Function & lhs, const script::Function & rhs)
 {
   return lhs.impl() < rhs.impl();
 }
-
-namespace script
-{
 
 struct SignalTableClassData;
 struct SignalTableEntry;

@@ -283,6 +283,7 @@ static script::Value mid(script::FunctionCall *c)
   return make_vector(self.mid(pos, length), c->callee().returnType(), c->engine());
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
 // void move(int from, int to);
 static script::Value move(script::FunctionCall *c)
 {
@@ -292,6 +293,7 @@ static script::Value move(script::FunctionCall *c)
   self.move(from, to);
   return script::Value::Void;
 }
+#endif
 
 // void pop_back();
 // void removeLast();
