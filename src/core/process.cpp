@@ -174,9 +174,6 @@ static void register_process_class(script::Namespace ns)
   // void start(QIODevice::OpenMode);
   bind::void_member_function<QProcess, QIODevice::OpenMode, &QProcess::start>(process, "start").create();
 #endif
-  // bool open(QIODevice::OpenMode = QIODevice::OpenMode(QIODevice::ReadWrite));
-  bind::member_function<QProcess, bool, QIODevice::OpenMode, &QProcess::open>(process, "open")
-    .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
   // QString program() const;
   bind::member_function<QProcess, QString, &QProcess::program>(process, "program").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
@@ -248,12 +245,6 @@ static void register_process_class(script::Namespace ns)
   // bool waitForStarted(int = 30000);
   bind::member_function<QProcess, bool, int, &QProcess::waitForStarted>(process, "waitForStarted")
     .apply(bind::default_arguments(30000)).create();
-  // bool waitForReadyRead(int = 30000);
-  bind::member_function<QProcess, bool, int, &QProcess::waitForReadyRead>(process, "waitForReadyRead")
-    .apply(bind::default_arguments(30000)).create();
-  // bool waitForBytesWritten(int = 30000);
-  bind::member_function<QProcess, bool, int, &QProcess::waitForBytesWritten>(process, "waitForBytesWritten")
-    .apply(bind::default_arguments(30000)).create();
   // bool waitForFinished(int = 30000);
   bind::member_function<QProcess, bool, int, &QProcess::waitForFinished>(process, "waitForFinished")
     .apply(bind::default_arguments(30000)).create();
@@ -265,18 +256,6 @@ static void register_process_class(script::Namespace ns)
   bind::member_function<QProcess, int, &QProcess::exitCode>(process, "exitCode").create();
   // QProcess::ExitStatus exitStatus() const;
   bind::member_function<QProcess, QProcess::ExitStatus, &QProcess::exitStatus>(process, "exitStatus").create();
-  // qint64 bytesAvailable() const;
-  /// TODO: qint64 bytesAvailable() const;
-  // qint64 bytesToWrite() const;
-  /// TODO: qint64 bytesToWrite() const;
-  // bool isSequential() const;
-  bind::member_function<QProcess, bool, &QProcess::isSequential>(process, "isSequential").create();
-  // bool canReadLine() const;
-  bind::member_function<QProcess, bool, &QProcess::canReadLine>(process, "canReadLine").create();
-  // void close();
-  bind::void_member_function<QProcess, &QProcess::close>(process, "close").create();
-  // bool atEnd() const;
-  bind::member_function<QProcess, bool, &QProcess::atEnd>(process, "atEnd").create();
   // static int execute(const QString &, const QStringList &);
   /// TODO: static int execute(const QString &, const QStringList &);
   // static int execute(const QString &);
@@ -329,7 +308,5 @@ void register_process_file(script::Namespace core)
   register_process_environment_class(ns);
   register_process_class(ns);
 
-  // void swap(QProcessEnvironment &, QProcessEnvironment &);
-  bind::void_function<QProcessEnvironment &, QProcessEnvironment &, &swap>(ns, "swap").create();
 }
 

@@ -72,7 +72,5 @@ void register_bitmap_file(script::Namespace gui)
 
   register_bitmap_class(ns);
 
-  // void swap(QBitmap &, QBitmap &);
-  bind::void_function<QBitmap &, QBitmap &, &swap>(ns, "swap").create();
 }
 

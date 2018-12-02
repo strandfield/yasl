@@ -14,7 +14,9 @@ template<> struct make_type_t<Qt::Alignment> { inline static script::Type get() 
 template<> struct make_type_t<Qt::AlignmentFlag> { inline static script::Type get() { return script::Type::QtAlignmentFlag; } };
 template<> struct make_type_t<Qt::AnchorPoint> { inline static script::Type get() { return script::Type::QtAnchorPoint; } };
 template<> struct make_type_t<Qt::ApplicationAttribute> { inline static script::Type get() { return script::Type::QtApplicationAttribute; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 template<> struct make_type_t<Qt::ApplicationState> { inline static script::Type get() { return script::Type::QtApplicationState; } };
+#endif
 template<> struct make_type_t<Qt::ArrowType> { inline static script::Type get() { return script::Type::QtArrowType; } };
 template<> struct make_type_t<Qt::AspectRatioMode> { inline static script::Type get() { return script::Type::QtAspectRatioMode; } };
 template<> struct make_type_t<Qt::Axis> { inline static script::Type get() { return script::Type::QtAxis; } };
@@ -37,7 +39,9 @@ template<> struct make_type_t<Qt::DayOfWeek> { inline static script::Type get() 
 template<> struct make_type_t<Qt::DockWidgetArea> { inline static script::Type get() { return script::Type::QtDockWidgetArea; } };
 template<> struct make_type_t<Qt::DockWidgetAreaSizes> { inline static script::Type get() { return script::Type::QtDockWidgetAreaSizes; } };
 template<> struct make_type_t<Qt::DropAction> { inline static script::Type get() { return script::Type::QtDropAction; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 template<> struct make_type_t<Qt::Edge> { inline static script::Type get() { return script::Type::QtEdge; } };
+#endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
 template<> struct make_type_t<Qt::EnterKeyType> { inline static script::Type get() { return script::Type::QtEnterKeyType; } };
 #endif
@@ -76,7 +80,9 @@ template<> struct make_type_t<Qt::MouseEventFlag> { inline static script::Type g
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 template<> struct make_type_t<Qt::MouseEventSource> { inline static script::Type get() { return script::Type::QtMouseEventSource; } };
 #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_t<Qt::NativeGestureType> { inline static script::Type get() { return script::Type::QtNativeGestureType; } };
+#endif
 template<> struct make_type_t<Qt::NavigationMode> { inline static script::Type get() { return script::Type::QtNavigationMode; } };
 template<> struct make_type_t<Qt::Orientation> { inline static script::Type get() { return script::Type::QtOrientation; } };
 template<> struct make_type_t<Qt::PenCapStyle> { inline static script::Type get() { return script::Type::QtPenCapStyle; } };
@@ -84,7 +90,9 @@ template<> struct make_type_t<Qt::PenJoinStyle> { inline static script::Type get
 template<> struct make_type_t<Qt::PenStyle> { inline static script::Type get() { return script::Type::QtPenStyle; } };
 template<> struct make_type_t<Qt::ScreenOrientation> { inline static script::Type get() { return script::Type::QtScreenOrientation; } };
 template<> struct make_type_t<Qt::ScrollBarPolicy> { inline static script::Type get() { return script::Type::QtScrollBarPolicy; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_t<Qt::ScrollPhase> { inline static script::Type get() { return script::Type::QtScrollPhase; } };
+#endif
 template<> struct make_type_t<Qt::ShortcutContext> { inline static script::Type get() { return script::Type::QtShortcutContext; } };
 template<> struct make_type_t<Qt::SizeHint> { inline static script::Type get() { return script::Type::QtSizeHint; } };
 template<> struct make_type_t<Qt::SizeMode> { inline static script::Type get() { return script::Type::QtSizeMode; } };

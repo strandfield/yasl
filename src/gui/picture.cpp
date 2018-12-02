@@ -157,8 +157,6 @@ void register_picture_file(script::Namespace gui)
   register_picture_class(ns);
   register_picture_i_o_class(ns);
 
-  // void swap(QPicture &, QPicture &);
-  bind::void_function<QPicture &, QPicture &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QPicture &);
   bind::op_put_to<QDataStream &, const QPicture &>(ns);
   // QDataStream & operator>>(QDataStream &, QPicture &);

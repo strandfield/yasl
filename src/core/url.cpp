@@ -48,8 +48,12 @@ static void register_url_url_formatting_option_enum(script::Class url)
   url_formatting_option.addValue("RemoveFragment", QUrl::RemoveFragment);
   url_formatting_option.addValue("PreferLocalFile", QUrl::PreferLocalFile);
   url_formatting_option.addValue("StripTrailingSlash", QUrl::StripTrailingSlash);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   url_formatting_option.addValue("RemoveFilename", QUrl::RemoveFilename);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   url_formatting_option.addValue("NormalizePathSegments", QUrl::NormalizePathSegments);
+#endif
 }
 
 
@@ -282,10 +286,10 @@ void register_url_file(script::Namespace core)
 
   register_url_class(ns);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // uint qHash(const QUrl &, uint);
   bind::function<uint, const QUrl &, uint, &qHash>(ns, "qHash").create();
-  // void swap(QUrl &, QUrl &);
-  bind::void_function<QUrl &, QUrl &, &swap>(ns, "swap").create();
+#endif
   // QUrl::ComponentFormattingOptions operator|(QUrl::ComponentFormattingOption, QUrl::ComponentFormattingOption);
   bind::op_bitor<QUrl::ComponentFormattingOptions, QUrl::ComponentFormattingOption, QUrl::ComponentFormattingOption>(ns);
   // QUrl::ComponentFormattingOptions operator|(QUrl::ComponentFormattingOption, QUrl::ComponentFormattingOptions);

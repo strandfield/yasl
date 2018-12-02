@@ -124,8 +124,10 @@ static void register_icon_class(script::Namespace ns)
   // bool isMask() const;
   bind::member_function<QIcon, bool, &QIcon::isMask>(icon, "isMask").create();
 #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // static QIcon fromTheme(const QString &);
   bind::static_member_function<QIcon, QIcon, const QString &, &QIcon::fromTheme>(icon, "fromTheme").create();
+#endif
   // static QIcon fromTheme(const QString &, const QIcon &);
   bind::static_member_function<QIcon, QIcon, const QString &, const QIcon &, &QIcon::fromTheme>(icon, "fromTheme").create();
   // static bool hasThemeIcon(const QString &);
@@ -153,8 +155,6 @@ void register_icon_file(script::Namespace gui)
 
   register_icon_class(ns);
 
-  // void swap(QIcon &, QIcon &);
-  bind::void_function<QIcon &, QIcon &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QIcon &);
   bind::op_put_to<QDataStream &, const QIcon &>(ns);
   // QDataStream & operator>>(QDataStream &, QIcon &);

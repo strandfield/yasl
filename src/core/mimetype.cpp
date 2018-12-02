@@ -75,10 +75,10 @@ void register_mimetype_file(script::Namespace core)
 
   register_mime_type_class(ns);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // uint qHash(const QMimeType &, uint);
   bind::function<uint, const QMimeType &, uint, &qHash>(ns, "qHash").create();
-  // void swap(QMimeType &, QMimeType &);
-  bind::void_function<QMimeType &, QMimeType &, &swap>(ns, "swap").create();
+#endif
   // QDebug operator<<(QDebug, const QMimeType &);
   /// TODO: QDebug operator<<(QDebug, const QMimeType &);
 }

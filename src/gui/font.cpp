@@ -55,7 +55,9 @@ static void register_font_style_strategy_enum(script::Class font)
   style_strategy.addValue("NoAntialias", QFont::NoAntialias);
   style_strategy.addValue("OpenGLCompatible", QFont::OpenGLCompatible);
   style_strategy.addValue("ForceIntegerMetrics", QFont::ForceIntegerMetrics);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   style_strategy.addValue("NoSubpixelAntialias", QFont::NoSubpixelAntialias);
+#endif
   style_strategy.addValue("NoFontMerging", QFont::NoFontMerging);
 }
 
@@ -79,14 +81,22 @@ static void register_font_weight_enum(script::Class font)
 
   Enum weight = font.newEnum("Weight").setId(script::Type::QFontWeight).get();
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   weight.addValue("Thin", QFont::Thin);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   weight.addValue("ExtraLight", QFont::ExtraLight);
+#endif
   weight.addValue("Light", QFont::Light);
   weight.addValue("Normal", QFont::Normal);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   weight.addValue("Medium", QFont::Medium);
+#endif
   weight.addValue("DemiBold", QFont::DemiBold);
   weight.addValue("Bold", QFont::Bold);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   weight.addValue("ExtraBold", QFont::ExtraBold);
+#endif
   weight.addValue("Black", QFont::Black);
 }
 
@@ -363,8 +373,6 @@ void register_font_file(script::Namespace gui)
 
   register_font_class(ns);
 
-  // void swap(QFont &, QFont &);
-  bind::void_function<QFont &, QFont &, &swap>(ns, "swap").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // uint qHash(const QFont &, uint);
   bind::function<uint, const QFont &, uint, &qHash>(ns, "qHash").create();

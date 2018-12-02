@@ -199,10 +199,6 @@ static void register_combo_box_class(script::Namespace ns)
   bind::void_member_function<QComboBox, &QComboBox::hidePopup>(combo_box, "hidePopup").create();
   // bool event(QEvent *);
   /// TODO: bool event(QEvent *);
-  // QVariant inputMethodQuery(Qt::InputMethodQuery) const;
-  bind::member_function<QComboBox, QVariant, Qt::InputMethodQuery, &QComboBox::inputMethodQuery>(combo_box, "inputMethodQuery").create();
-  // QVariant inputMethodQuery(Qt::InputMethodQuery, const QVariant &) const;
-  bind::member_function<QComboBox, QVariant, Qt::InputMethodQuery, const QVariant &, &QComboBox::inputMethodQuery>(combo_box, "inputMethodQuery").create();
   // void clear();
   bind::void_member_function<QComboBox, &QComboBox::clear>(combo_box, "clear").create();
   // void clearEditText();

@@ -206,9 +206,5 @@ void register_fontmetrics_file(script::Namespace gui)
   register_font_metrics_class(ns);
   register_font_metrics_f_class(ns);
 
-  // void swap(QFontMetrics &, QFontMetrics &);
-  bind::void_function<QFontMetrics &, QFontMetrics &, &swap>(ns, "swap").create();
-  // void swap(QFontMetricsF &, QFontMetricsF &);
-  bind::void_function<QFontMetricsF &, QFontMetricsF &, &swap>(ns, "swap").create();
 }
 

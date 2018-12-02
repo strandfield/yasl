@@ -333,12 +333,11 @@ static script::Value prepend(script::FunctionCall *c)
 /// TODO: QVector::const_reverse_iterator rbegin() const;
 
 // void remove(int i);
-// void removeAt(int i);
-static script::Value remove_at(script::FunctionCall *c)
+static script::Value remove(script::FunctionCall *c)
 {
   QVector<yasl::Value> & self = script::value_cast<QVector<yasl::Value> &>(c->thisObject());
   const int i = c->arg(1).toInt();
-  self.removeAt(i);
+  self.remove(i);
   return script::Value::Void;
 }
 
@@ -780,7 +779,7 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   /// TODO: QVector::const_reverse_iterator rbegin() const;
 #endif
   // void remove(int i);
-  vector.newMethod("remove", callbacks::remove_at)
+  vector.newMethod("remove", callbacks::remove)
     .params(Type::Int).create();
   // void remove(int i, int count);
   vector.newMethod("remove", callbacks::remove_count)
@@ -793,7 +792,7 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
   // void removeAt(int i);
-  vector.newMethod("removeAt", callbacks::remove_at)
+  vector.newMethod("removeAt", callbacks::remove)
     .params(Type::Int).create();
 #endif
 #if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)

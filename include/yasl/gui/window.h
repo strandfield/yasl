@@ -15,7 +15,9 @@ template<> struct make_type_t<QWindow> { inline static script::Type get() { retu
 template<> struct tag_resolver<QWindow> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QWindow*> { inline static script::Type get() { return script::Type::QWindowStar; } };
 template<> struct make_type_t<QWindow::AncestorMode> { inline static script::Type get() { return script::Type::QWindowAncestorMode; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 template<> struct make_type_t<QWindow::Visibility> { inline static script::Type get() { return script::Type::QWindowVisibility; } };
+#endif
 } // namespace script
 
 #endif // YASL_GUI_WINDOW_H

@@ -24,6 +24,7 @@
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 static void register_window_visibility_enum(script::Class window)
 {
   using namespace script;
@@ -37,6 +38,7 @@ static void register_window_visibility_enum(script::Class window)
   visibility.addValue("Maximized", QWindow::Maximized);
   visibility.addValue("FullScreen", QWindow::FullScreen);
 }
+#endif
 
 
 static void register_window_ancestor_mode_enum(script::Class window)
@@ -58,7 +60,9 @@ static void register_window_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(window.engine(), script::Type::QWindow, script::Type::QWindowStar);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   register_window_visibility_enum(window);
+#endif
   register_window_ancestor_mode_enum(window);
 
   // QWindow(QScreen * = (QScreen*)nullptr);
@@ -73,10 +77,14 @@ static void register_window_class(script::Namespace ns)
   /// TODO: QSurface::SurfaceType surfaceType() const;
   // bool isVisible() const;
   bind::member_function<QWindow, bool, &QWindow::isVisible>(window, "isVisible").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QWindow::Visibility visibility() const;
   bind::member_function<QWindow, QWindow::Visibility, &QWindow::visibility>(window, "visibility").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void setVisibility(QWindow::Visibility);
   bind::void_member_function<QWindow, QWindow::Visibility, &QWindow::setVisibility>(window, "setVisibility").create();
+#endif
   // void create();
   bind::void_member_function<QWindow, &QWindow::create>(window, "create").create();
   // WId winId() const;
@@ -118,12 +126,18 @@ static void register_window_class(script::Namespace ns)
   bind::member_function<QWindow, QString, &QWindow::title>(window, "title").create();
   // void setOpacity(qreal);
   bind::void_member_function<QWindow, qreal, &QWindow::setOpacity>(window, "setOpacity").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // qreal opacity() const;
   bind::member_function<QWindow, qreal, &QWindow::opacity>(window, "opacity").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void setMask(const QRegion &);
   bind::void_member_function<QWindow, const QRegion &, &QWindow::setMask>(window, "setMask").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRegion mask() const;
   bind::member_function<QWindow, QRegion, &QWindow::mask>(window, "mask").create();
+#endif
   // bool isActive() const;
   bind::member_function<QWindow, bool, &QWindow::isActive>(window, "isActive").create();
   // void reportContentOrientationChange(Qt::ScreenOrientation);
@@ -247,8 +261,10 @@ static void register_window_class(script::Namespace ns)
   /// TODO: void setVulkanInstance(QVulkanInstance *);
   // QVulkanInstance * vulkanInstance() const;
   /// TODO: QVulkanInstance * vulkanInstance() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void requestActivate();
   bind::void_member_function<QWindow, &QWindow::requestActivate>(window, "requestActivate").create();
+#endif
   // void setVisible(bool);
   bind::void_member_function<QWindow, bool, &QWindow::setVisible>(window, "setVisible").create();
   // void show();
@@ -323,16 +339,22 @@ static void register_window_class(script::Namespace ns)
   bind::signal<QWindow, int>(window, "maximumHeightChanged", "maximumHeightChanged(int)");
   // void visibleChanged(bool);
   bind::signal<QWindow, bool>(window, "visibleChanged", "visibleChanged(bool)");
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void visibilityChanged(QWindow::Visibility);
   bind::signal<QWindow, QWindow::Visibility>(window, "visibilityChanged", "visibilityChanged(QWindow::Visibility)");
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void activeChanged();
   bind::signal<QWindow>(window, "activeChanged", "activeChanged()");
+#endif
   // void contentOrientationChanged(Qt::ScreenOrientation);
   bind::signal<QWindow, Qt::ScreenOrientation>(window, "contentOrientationChanged", "contentOrientationChanged(Qt::ScreenOrientation)");
   // void focusObjectChanged(QObject *);
   bind::signal<QWindow, QObject *>(window, "focusObjectChanged", "focusObjectChanged(QObject *)");
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void opacityChanged(qreal);
   bind::signal<QWindow, qreal>(window, "opacityChanged", "opacityChanged(qreal)");
+#endif
 
   bind::link(window, &QWindow::staticMetaObject);
 }

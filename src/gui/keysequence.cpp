@@ -92,9 +92,15 @@ static void register_key_sequence_standard_key_enum(script::Class key_sequence)
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   standard_key.addValue("Deselect", QKeySequence::Deselect);
 #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   standard_key.addValue("DeleteCompleteLine", QKeySequence::DeleteCompleteLine);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   standard_key.addValue("Backspace", QKeySequence::Backspace);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   standard_key.addValue("Cancel", QKeySequence::Cancel);
+#endif
 }
 
 
@@ -210,10 +216,10 @@ void register_keysequence_file(script::Namespace gui)
   bind::op_put_to<QDataStream &, const QKeySequence &>(ns);
   // QDataStream & operator>>(QDataStream &, QKeySequence &);
   bind::op_read_from<QDataStream &, QKeySequence &>(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // uint qHash(const QKeySequence &, uint);
   bind::function<uint, const QKeySequence &, uint, &qHash>(ns, "qHash").create();
-  // void swap(QKeySequence &, QKeySequence &);
-  bind::void_function<QKeySequence &, QKeySequence &, &swap>(ns, "swap").create();
+#endif
   // QDebug operator<<(QDebug, const QKeySequence &);
   /// TODO: QDebug operator<<(QDebug, const QKeySequence &);
 }

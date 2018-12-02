@@ -156,6 +156,7 @@ static void register_double_validator_class(script::Namespace ns)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 static void register_regular_expression_validator_class(script::Namespace ns)
 {
   using namespace script;
@@ -183,6 +184,7 @@ static void register_regular_expression_validator_class(script::Namespace ns)
 
   bind::link(regular_expression_validator, &QRegularExpressionValidator::staticMetaObject);
 }
+#endif
 
 
 void register_validator_file(script::Namespace gui)
@@ -194,7 +196,9 @@ void register_validator_file(script::Namespace gui)
   register_validator_class(ns);
   register_int_validator_class(ns);
   register_double_validator_class(ns);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   register_regular_expression_validator_class(ns);
+#endif
 
 }
 

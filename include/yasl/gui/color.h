@@ -11,7 +11,9 @@
 
 namespace script {
 template<> struct make_type_t<QColor> { inline static script::Type get() { return script::Type::QColor; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_t<QColor::NameFormat> { inline static script::Type get() { return script::Type::QColorNameFormat; } };
+#endif
 template<> struct make_type_t<QColor::Spec> { inline static script::Type get() { return script::Type::QColorSpec; } };
 } // namespace script
 

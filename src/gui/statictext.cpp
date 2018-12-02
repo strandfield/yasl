@@ -92,7 +92,5 @@ void register_statictext_file(script::Namespace gui)
 
   register_static_text_class(ns);
 
-  // void swap(QStaticText &, QStaticText &);
-  bind::void_function<QStaticText &, QStaticText &, &swap>(ns, "swap").create();
 }
 

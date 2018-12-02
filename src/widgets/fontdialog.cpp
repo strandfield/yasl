@@ -27,10 +27,18 @@ static void register_font_dialog_font_dialog_option_enum(script::Class font_dial
   register_qflags_type<QFontDialog::FontDialogOption>(font_dialog, "FontDialogOptions", script::Type::QFontDialogFontDialogOptions);
   font_dialog_option.addValue("NoButtons", QFontDialog::NoButtons);
   font_dialog_option.addValue("DontUseNativeDialog", QFontDialog::DontUseNativeDialog);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   font_dialog_option.addValue("ScalableFonts", QFontDialog::ScalableFonts);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   font_dialog_option.addValue("NonScalableFonts", QFontDialog::NonScalableFonts);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   font_dialog_option.addValue("MonospacedFonts", QFontDialog::MonospacedFonts);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   font_dialog_option.addValue("ProportionalFonts", QFontDialog::ProportionalFonts);
+#endif
 }
 
 

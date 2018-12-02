@@ -245,14 +245,22 @@ static void register_variant_class(script::Namespace ns)
   bind::memop_eq<QVariant, const QVariant &>(variant);
   // bool operator!=(const QVariant &) const;
   bind::memop_neq<QVariant, const QVariant &>(variant);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // bool operator<(const QVariant &) const;
   bind::memop_less<QVariant, const QVariant &>(variant);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // bool operator<=(const QVariant &) const;
   bind::memop_leq<QVariant, const QVariant &>(variant);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // bool operator>(const QVariant &) const;
   bind::memop_greater<QVariant, const QVariant &>(variant);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // bool operator>=(const QVariant &) const;
   bind::memop_geq<QVariant, const QVariant &>(variant);
+#endif
   // void create(int, const void *);
   /// TODO: void create(int, const void *);
   // bool convert(const int, void *) const;
@@ -280,8 +288,6 @@ void register_variant_file(script::Namespace core)
   /// TODO: QDataStream & operator>>(QDataStream &, QVariant::Type &);
   // QDataStream & operator<<(QDataStream &, const QVariant::Type);
   /// TODO: QDataStream & operator<<(QDataStream &, const QVariant::Type);
-  // void swap(QVariant &, QVariant &);
-  bind::void_function<QVariant &, QVariant &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QVariant &);
   /// TODO: QDebug operator<<(QDebug, const QVariant &);
   // QDebug operator<<(QDebug, const QVariant::Type);

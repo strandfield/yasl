@@ -11,6 +11,12 @@
 
 #include <QDebug>
 
+SourceFile::SourceFile(const QMap<QString, QtVersion> & incsver)
+  : includesVersion(incsver)
+{
+
+}
+
 void SourceFile::write()
 {
   QFile f{ this->file.absoluteFilePath() + "gen" };
@@ -26,12 +32,7 @@ void SourceFile::write()
   out << endl;
 
   if (!header.isEmpty())
-  {
-    if(header.startsWith("<") || header.startsWith("\""))
-      out << "#include " << header << endl;
-    else
-      out << "#include \"" << header << "\"" << endl;
-  }
+    HeaderFile::writeInclude(out, header, includesVersion);
 
   out << endl;
 

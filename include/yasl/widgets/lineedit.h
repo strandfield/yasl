@@ -13,7 +13,9 @@
 namespace script {
 template<> struct make_type_t<QLineEdit> { inline static script::Type get() { return script::Type::QLineEdit; } };
 template<> struct tag_resolver<QLineEdit> { typedef qobject_tag tag_type; };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_t<QLineEdit::ActionPosition> { inline static script::Type get() { return script::Type::QLineEditActionPosition; } };
+#endif
 template<> struct make_type_t<QLineEdit::EchoMode> { inline static script::Type get() { return script::Type::QLineEditEchoMode; } };
 } // namespace script
 

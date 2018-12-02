@@ -181,8 +181,6 @@ void register_pixmap_file(script::Namespace gui)
 
   register_pixmap_class(ns);
 
-  // void swap(QPixmap &, QPixmap &);
-  bind::void_function<QPixmap &, QPixmap &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QPixmap &);
   bind::op_put_to<QDataStream &, const QPixmap &>(ns);
   // QDataStream & operator>>(QDataStream &, QPixmap &);

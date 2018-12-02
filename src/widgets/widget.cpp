@@ -225,10 +225,14 @@ static void register_widget_class(script::Namespace ns)
   bind::member_function<QWidget, bool, &QWidget::hasMouseTracking>(widget, "hasMouseTracking").create();
   // bool underMouse() const;
   bind::member_function<QWidget, bool, &QWidget::underMouse>(widget, "underMouse").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // void setTabletTracking(bool);
   bind::void_member_function<QWidget, bool, &QWidget::setTabletTracking>(widget, "setTabletTracking").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   // bool hasTabletTracking() const;
   bind::member_function<QWidget, bool, &QWidget::hasTabletTracking>(widget, "hasTabletTracking").create();
+#endif
   // void setMask(const QBitmap &);
   bind::void_member_function<QWidget, const QBitmap &, &QWidget::setMask>(widget, "setMask").create();
   // void setMask(const QRegion &);

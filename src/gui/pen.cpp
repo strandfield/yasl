@@ -116,8 +116,6 @@ void register_pen_file(script::Namespace gui)
   bind::op_put_to<QDataStream &, const QPen &>(ns);
   // QDataStream & operator>>(QDataStream &, QPen &);
   bind::op_read_from<QDataStream &, QPen &>(ns);
-  // void swap(QPen &, QPen &);
-  bind::void_function<QPen &, QPen &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QPen &);
   /// TODO: QDebug operator<<(QDebug, const QPen &);
 }

@@ -30,6 +30,12 @@ QStringList Includes::get() const
   return result;
 }
 
+HeaderFile::HeaderFile(const QMap<QString, QtVersion> & incsver)
+  : includesVersion(incsver)
+{
+  bindingIncludes.insert("yasl/common/types.h");
+}
+
 void HeaderFile::writeCopyrightMessage(QTextStream & out)
 {
   out << "// Copyright (C) 2018 Vincent Chambrin" << endl;
@@ -37,17 +43,31 @@ void HeaderFile::writeCopyrightMessage(QTextStream & out)
   out << "// For conditions of distribution and use, see copyright notice in LICENSE" << endl;
 }
 
-void HeaderFile::writeInclude(QTextStream & out, const QString & inc)
+void HeaderFile::writeInclude(QTextStream & out, const QString & inc, const QMap<QString, QtVersion> & versions)
 {
-  if (inc.startsWith("<") || inc.startsWith("\""))
-    out << "#include " << inc << endl;
-  else
-    out << "#include \"" << inc << "\"" << endl;
-}
+  if (inc.startsWith("<"))
+  {
+    QString file = inc.mid(1);
+    file.chop(1);
 
-HeaderFile::HeaderFile()
-{
-  bindingIncludes.insert("yasl/common/types.h");
+    QtVersion v = versions.value(file, QtVersion{});
+
+    if (!v.isNull())
+      out << "#if " << versionCheck(v) << endl;
+
+    out << "#include " << inc << endl;
+
+    if (!v.isNull())
+      out << "#endif" << endl;
+  }
+  else if (inc.startsWith("\""))
+  {
+    out << "#include " << inc << endl;
+  }
+  else
+  {
+    out << "#include \"" << inc << "\"" << endl;
+  }
 }
 
 QByteArray HeaderFile::readall(const QString & filepath)
@@ -109,11 +129,11 @@ void HeaderFile::write()
   QStringList bindings = generateBindingDefinitions();
 
   for (const auto & inc : bindingIncludes.get())
-    writeInclude(out, inc);
+    writeInclude(out, inc, includesVersion);
   out << endl;
 
   for (const auto inc : generalIncludes.get())
-    writeInclude(out, inc);
+    writeInclude(out, inc, includesVersion);
   if(!generalIncludes.isEmpty())
     out << endl;
 

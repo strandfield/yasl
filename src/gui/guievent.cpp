@@ -57,12 +57,18 @@ static void register_mouse_event_class(script::Namespace ns)
   bind::member_function<QMouseEvent, Qt::MouseButton, &QMouseEvent::button>(mouse_event, "button").create();
   // Qt::MouseButtons buttons() const;
   /// TODO: Qt::MouseButtons buttons() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // void setLocalPos(const QPointF &);
   bind::void_member_function<QMouseEvent, const QPointF &, &QMouseEvent::setLocalPos>(mouse_event, "setLocalPos").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // Qt::MouseEventSource source() const;
   bind::member_function<QMouseEvent, Qt::MouseEventSource, &QMouseEvent::source>(mouse_event, "source").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // Qt::MouseEventFlags flags() const;
   /// TODO: Qt::MouseEventFlags flags() const;
+#endif
 }
 
 
@@ -84,8 +90,10 @@ static void register_wheel_event_class(script::Namespace ns)
   /// TODO: QWheelEvent(const QPointF &, const QPointF &, QPoint, QPoint, int, Qt::Orientation, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::ScrollPhase);
   // QWheelEvent(const QPointF &, const QPointF &, QPoint, QPoint, int, Qt::Orientation, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::ScrollPhase, Qt::MouseEventSource);
   /// TODO: QWheelEvent(const QPointF &, const QPointF &, QPoint, QPoint, int, Qt::Orientation, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::ScrollPhase, Qt::MouseEventSource);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QWheelEvent(const QPointF &, const QPointF &, QPoint, QPoint, int, Qt::Orientation, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::ScrollPhase, Qt::MouseEventSource, bool);
   /// TODO: QWheelEvent(const QPointF &, const QPointF &, QPoint, QPoint, int, Qt::Orientation, Qt::MouseButtons, Qt::KeyboardModifiers, Qt::ScrollPhase, Qt::MouseEventSource, bool);
+#endif
   // ~QWheelEvent();
   bind::destructor<QWheelEvent>(wheel_event).create();
   // QPoint pixelDelta() const;
@@ -114,12 +122,18 @@ static void register_wheel_event_class(script::Namespace ns)
   bind::member_function<QWheelEvent, const QPointF &, &QWheelEvent::globalPosF>(wheel_event, "globalPosF").create();
   // Qt::MouseButtons buttons() const;
   /// TODO: Qt::MouseButtons buttons() const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // Qt::ScrollPhase phase() const;
   bind::member_function<QWheelEvent, Qt::ScrollPhase, &QWheelEvent::phase>(wheel_event, "phase").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // bool inverted() const;
   bind::member_function<QWheelEvent, bool, &QWheelEvent::inverted>(wheel_event, "inverted").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // Qt::MouseEventSource source() const;
   bind::member_function<QWheelEvent, Qt::MouseEventSource, &QWheelEvent::source>(wheel_event, "source").create();
+#endif
 }
 
 

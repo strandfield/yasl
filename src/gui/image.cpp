@@ -222,10 +222,14 @@ static void register_image_class(script::Namespace ns)
   // QColor pixelColor(const QPoint &) const;
   bind::member_function<QImage, QColor, const QPoint &, &QImage::pixelColor>(image, "pixelColor").create();
 #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // void setPixelColor(int, int, const QColor &);
   bind::void_member_function<QImage, int, int, const QColor &, &QImage::setPixelColor>(image, "setPixelColor").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // void setPixelColor(const QPoint &, const QColor &);
   bind::void_member_function<QImage, const QPoint &, const QColor &, &QImage::setPixelColor>(image, "setPixelColor").create();
+#endif
   // QVector<QRgb> colorTable() const;
   /// TODO: QVector<QRgb> colorTable() const;
   // void setColorTable(const QVector<QRgb>);
@@ -321,12 +325,18 @@ static void register_image_class(script::Namespace ns)
   bind::member_function<QImage, QString, const QString &, &QImage::text>(image, "text").create();
   // void setText(const QString &, const QString &);
   bind::void_member_function<QImage, const QString &, const QString &, &QImage::setText>(image, "setText").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // QPixelFormat pixelFormat() const;
   bind::member_function<QImage, QPixelFormat, &QImage::pixelFormat>(image, "pixelFormat").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // static QPixelFormat toPixelFormat(QImage::Format);
   bind::static_member_function<QImage, QPixelFormat, QImage::Format, &QImage::toPixelFormat>(image, "toPixelFormat").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // static QImage::Format toImageFormat(QPixelFormat);
   bind::static_member_function<QImage, QImage::Format, QPixelFormat, &QImage::toImageFormat>(image, "toImageFormat").create();
+#endif
   // QImage::DataPtr & data_ptr();
   /// TODO: QImage::DataPtr & data_ptr();
 
@@ -342,8 +352,6 @@ void register_image_file(script::Namespace gui)
 
   register_image_class(ns);
 
-  // void swap(QImage &, QImage &);
-  bind::void_function<QImage &, QImage &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QImage &);
   bind::op_put_to<QDataStream &, const QImage &>(ns);
   // QDataStream & operator>>(QDataStream &, QImage &);

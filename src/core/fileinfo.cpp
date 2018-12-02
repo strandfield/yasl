@@ -164,8 +164,6 @@ void register_fileinfo_file(script::Namespace core)
 
   register_file_info_class(ns);
 
-  // void swap(QFileInfo &, QFileInfo &);
-  bind::void_function<QFileInfo &, QFileInfo &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QFileInfo &);
   /// TODO: QDebug operator<<(QDebug, const QFileInfo &);
 }

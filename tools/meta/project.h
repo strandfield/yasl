@@ -27,6 +27,7 @@ public:
 
 public:
   QList<ModuleRef> modules;
+  QMap<QString, QtVersion> includes;
   Types types;
 
   QJsonObject toJson() const;

@@ -102,6 +102,11 @@ int firstFieldIndex(const QString & str)
   return ret;
 }
 
+QString extractName(QString str)
+{
+  return str.mid(0, yaml::firstFieldIndex(str));
+}
+
 } // namespace yaml
 
 QMap<QString, Node::JsonDeserializer> Node::staticFactory = QMap<QString, Node::JsonDeserializer>{};

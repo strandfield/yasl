@@ -20,6 +20,7 @@
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 static void register_byte_array_base64_option_enum(script::Class byte_array)
 {
   using namespace script;
@@ -32,6 +33,7 @@ static void register_byte_array_base64_option_enum(script::Class byte_array)
   base64_option.addValue("KeepTrailingEquals", QByteArray::KeepTrailingEquals);
   base64_option.addValue("OmitTrailingEquals", QByteArray::OmitTrailingEquals);
 }
+#endif
 
 
 static void register_byte_array_class(script::Namespace ns)
@@ -42,7 +44,9 @@ static void register_byte_array_class(script::Namespace ns)
 
   register_proxy_specialization<QByteArray>(byte_array.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQByteArray);
   register_list_specialization<QByteArray>(byte_array.engine(), script::Type::QListQByteArray);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_byte_array_base64_option_enum(byte_array);
+#endif
 
   // QByteArray();
   bind::default_constructor<QByteArray>(byte_array).create();
@@ -381,12 +385,18 @@ void register_bytearray_file(script::Namespace core)
 
   // int qstrcmp(const QByteArray &, const QByteArray &);
   bind::function<int, const QByteArray &, const QByteArray &, &qstrcmp>(ns, "strcmp").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QByteArray::Base64Options operator|(QByteArray::Base64Option, QByteArray::Base64Option);
   bind::op_bitor<QByteArray::Base64Options, QByteArray::Base64Option, QByteArray::Base64Option>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QByteArray::Base64Options operator|(QByteArray::Base64Option, QByteArray::Base64Options);
   bind::op_bitor<QByteArray::Base64Options, QByteArray::Base64Option, QByteArray::Base64Options>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QIncompatibleFlag operator|(QByteArray::Base64Options::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QByteArray::Base64Options::enum_type, int);
+#endif
   // bool operator==(const QByteArray &, const QByteArray &);
   bind::op_eq<const QByteArray &, const QByteArray &>(ns);
   // bool operator!=(const QByteArray &, const QByteArray &);

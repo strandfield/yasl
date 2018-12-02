@@ -13,8 +13,12 @@
 namespace script {
 template<> struct make_type_t<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
 template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_t<QByteArray::Base64Option> { inline static script::Type get() { return script::Type::QByteArrayBase64Option; } };
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_t<QByteArray::Base64Options> { inline static script::Type get() { return script::Type::QByteArrayBase64Options; } };
+#endif
 template<> struct make_type_t<QByteRef> { inline static script::Type get() { return script::Type::QByteRef; } };
 template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
 } // namespace script

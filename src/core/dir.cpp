@@ -239,8 +239,6 @@ void register_dir_file(script::Namespace core)
 
   register_dir_class(ns);
 
-  // void swap(QDir &, QDir &);
-  bind::void_function<QDir &, QDir &, &swap>(ns, "swap").create();
   // QDir::Filters operator|(QDir::Filter, QDir::Filter);
   bind::op_bitor<QDir::Filters, QDir::Filter, QDir::Filter>(ns);
   // QDir::Filters operator|(QDir::Filter, QDir::Filters);

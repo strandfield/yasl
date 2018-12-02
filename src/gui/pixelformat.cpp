@@ -13,6 +13,7 @@
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_pixel_format_color_model_enum(script::Class pixel_format)
 {
   using namespace script;
@@ -31,8 +32,10 @@ static void register_pixel_format_color_model_enum(script::Class pixel_format)
   color_model.addValue("Alpha", QPixelFormat::Alpha);
 #endif
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_pixel_format_alpha_usage_enum(script::Class pixel_format)
 {
   using namespace script;
@@ -42,8 +45,10 @@ static void register_pixel_format_alpha_usage_enum(script::Class pixel_format)
   alpha_usage.addValue("UsesAlpha", QPixelFormat::UsesAlpha);
   alpha_usage.addValue("IgnoresAlpha", QPixelFormat::IgnoresAlpha);
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_pixel_format_alpha_position_enum(script::Class pixel_format)
 {
   using namespace script;
@@ -53,8 +58,10 @@ static void register_pixel_format_alpha_position_enum(script::Class pixel_format
   alpha_position.addValue("AtBeginning", QPixelFormat::AtBeginning);
   alpha_position.addValue("AtEnd", QPixelFormat::AtEnd);
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_pixel_format_alpha_premultiplied_enum(script::Class pixel_format)
 {
   using namespace script;
@@ -64,8 +71,10 @@ static void register_pixel_format_alpha_premultiplied_enum(script::Class pixel_f
   alpha_premultiplied.addValue("NotPremultiplied", QPixelFormat::NotPremultiplied);
   alpha_premultiplied.addValue("Premultiplied", QPixelFormat::Premultiplied);
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_pixel_format_type_interpretation_enum(script::Class pixel_format)
 {
   using namespace script;
@@ -77,8 +86,10 @@ static void register_pixel_format_type_interpretation_enum(script::Class pixel_f
   type_interpretation.addValue("UnsignedByte", QPixelFormat::UnsignedByte);
   type_interpretation.addValue("FloatingPoint", QPixelFormat::FloatingPoint);
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_pixel_format_y_u_v_layout_enum(script::Class pixel_format)
 {
   using namespace script;
@@ -102,8 +113,10 @@ static void register_pixel_format_y_u_v_layout_enum(script::Class pixel_format)
   y_u_v_layout.addValue("Y8", QPixelFormat::Y8);
   y_u_v_layout.addValue("Y16", QPixelFormat::Y16);
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_pixel_format_byte_order_enum(script::Class pixel_format)
 {
   using namespace script;
@@ -114,21 +127,37 @@ static void register_pixel_format_byte_order_enum(script::Class pixel_format)
   byte_order.addValue("BigEndian", QPixelFormat::BigEndian);
   byte_order.addValue("CurrentSystemEndian", QPixelFormat::CurrentSystemEndian);
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
 static void register_pixel_format_class(script::Namespace ns)
 {
   using namespace script;
 
   Class pixel_format = ns.newClass("PixelFormat").setId(script::Type::QPixelFormat).get();
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_pixel_format_color_model_enum(pixel_format);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_pixel_format_alpha_usage_enum(pixel_format);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_pixel_format_alpha_position_enum(pixel_format);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_pixel_format_alpha_premultiplied_enum(pixel_format);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_pixel_format_type_interpretation_enum(pixel_format);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_pixel_format_y_u_v_layout_enum(pixel_format);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_pixel_format_byte_order_enum(pixel_format);
+#endif
 
   // QPixelFormat();
   bind::default_constructor<QPixelFormat>(pixel_format).create();
@@ -185,6 +214,7 @@ static void register_pixel_format_class(script::Namespace ns)
   // uchar subEnum() const;
   /// TODO: uchar subEnum() const;
 }
+#endif
 
 
 void register_pixelformat_file(script::Namespace gui)
@@ -193,7 +223,9 @@ void register_pixelformat_file(script::Namespace gui)
 
   Namespace ns = gui;
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   register_pixel_format_class(ns);
+#endif
 
   // QPixelFormat qPixelFormatRgba(uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation);
   /// TODO: QPixelFormat qPixelFormatRgba(uchar, uchar, uchar, uchar, QPixelFormat::AlphaUsage, QPixelFormat::AlphaPosition, QPixelFormat::AlphaPremultiplied, QPixelFormat::TypeInterpretation);

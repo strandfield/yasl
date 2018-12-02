@@ -16,6 +16,9 @@ template<> struct make_type_t<QList<QLocale>> { inline static script::Type get()
 template<> struct make_type_t<QLocale> { inline static script::Type get() { return script::Type::QLocale; } };
 template<> struct make_type_t<QLocale::Country> { inline static script::Type get() { return script::Type::QLocaleCountry; } };
 template<> struct make_type_t<QLocale::CurrencySymbolFormat> { inline static script::Type get() { return script::Type::QLocaleCurrencySymbolFormat; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+template<> struct make_type_t<QLocale::DataSizeFormat> { inline static script::Type get() { return script::Type::QLocaleDataSizeFormat; } };
+#endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
 template<> struct make_type_t<QLocale::FloatingPointPrecisionOption> { inline static script::Type get() { return script::Type::QLocaleFloatingPointPrecisionOption; } };
 #endif

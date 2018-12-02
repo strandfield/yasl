@@ -106,8 +106,10 @@ static void register_screen_class(script::Namespace ns)
   bind::member_function<QScreen, qreal, &QScreen::refreshRate>(screen, "refreshRate").create();
   // void geometryChanged(const QRect &);
   bind::void_member_function<QScreen, const QRect &, &QScreen::geometryChanged>(screen, "geometryChanged").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // void availableGeometryChanged(const QRect &);
   bind::void_member_function<QScreen, const QRect &, &QScreen::availableGeometryChanged>(screen, "availableGeometryChanged").create();
+#endif
   // void physicalSizeChanged(const QSizeF &);
   bind::void_member_function<QScreen, const QSizeF &, &QScreen::physicalSizeChanged>(screen, "physicalSizeChanged").create();
   // void physicalDotsPerInchChanged(qreal);

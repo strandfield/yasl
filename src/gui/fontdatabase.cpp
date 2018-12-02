@@ -62,6 +62,7 @@ static void register_font_database_writing_system_enum(script::Class font_databa
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 static void register_font_database_system_font_enum(script::Class font_database)
 {
   using namespace script;
@@ -73,6 +74,7 @@ static void register_font_database_system_font_enum(script::Class font_database)
   system_font.addValue("TitleFont", QFontDatabase::TitleFont);
   system_font.addValue("SmallestReadableFont", QFontDatabase::SmallestReadableFont);
 }
+#endif
 
 
 static void register_font_database_class(script::Namespace ns)
@@ -82,7 +84,9 @@ static void register_font_database_class(script::Namespace ns)
   Class font_database = ns.newClass("FontDatabase").setId(script::Type::QFontDatabase).get();
 
   register_font_database_writing_system_enum(font_database);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_font_database_system_font_enum(font_database);
+#endif
 
   // static QList<int> standardSizes();
   /// TODO: static QList<int> standardSizes();

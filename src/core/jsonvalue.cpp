@@ -92,14 +92,18 @@ static void register_json_value_class(script::Namespace ns)
   // bool toBool(bool = false) const;
   bind::member_function<QJsonValue, bool, bool, &QJsonValue::toBool>(json_value, "toBool")
     .apply(bind::default_arguments(false)).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // int toInt(int = 0) const;
   bind::member_function<QJsonValue, int, int, &QJsonValue::toInt>(json_value, "toInt")
     .apply(bind::default_arguments(0)).create();
+#endif
   // double toDouble(double = double(0)) const;
   bind::member_function<QJsonValue, double, double, &QJsonValue::toDouble>(json_value, "toDouble")
     .apply(bind::default_arguments(double(0))).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QString toString() const;
   bind::member_function<QJsonValue, QString, &QJsonValue::toString>(json_value, "toString").create();
+#endif
   // QString toString(const QString & = QString()) const;
   bind::member_function<QJsonValue, QString, const QString &, &QJsonValue::toString>(json_value, "toString")
     .apply(bind::default_arguments(QString())).create();
@@ -144,8 +148,10 @@ static void register_json_value_ref_class(script::Namespace ns)
   bind::memop_assign<QJsonValueRef, const QJsonValue &>(json_value_ref);
   // QJsonValueRef & operator=(const QJsonValueRef &);
   bind::memop_assign<QJsonValueRef, const QJsonValueRef &>(json_value_ref);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVariant toVariant() const;
   bind::member_function<QJsonValueRef, QVariant, &QJsonValueRef::toVariant>(json_value_ref, "toVariant").create();
+#endif
   // QJsonValue::Type type() const;
   bind::member_function<QJsonValueRef, QJsonValue::Type, &QJsonValueRef::type>(json_value_ref, "type").create();
   // bool isNull() const;
@@ -164,8 +170,10 @@ static void register_json_value_ref_class(script::Namespace ns)
   bind::member_function<QJsonValueRef, bool, &QJsonValueRef::isUndefined>(json_value_ref, "isUndefined").create();
   // bool toBool() const;
   bind::member_function<QJsonValueRef, bool, &QJsonValueRef::toBool>(json_value_ref, "toBool").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // int toInt() const;
   bind::member_function<QJsonValueRef, int, &QJsonValueRef::toInt>(json_value_ref, "toInt").create();
+#endif
   // double toDouble() const;
   bind::member_function<QJsonValueRef, double, &QJsonValueRef::toDouble>(json_value_ref, "toDouble").create();
   // QString toString() const;
@@ -174,14 +182,22 @@ static void register_json_value_ref_class(script::Namespace ns)
   bind::member_function<QJsonValueRef, QJsonArray, &QJsonValueRef::toArray>(json_value_ref, "toArray").create();
   // QJsonObject toObject() const;
   bind::member_function<QJsonValueRef, QJsonObject, &QJsonValueRef::toObject>(json_value_ref, "toObject").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // bool toBool(bool) const;
   bind::member_function<QJsonValueRef, bool, bool, &QJsonValueRef::toBool>(json_value_ref, "toBool").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // int toInt(int) const;
   bind::member_function<QJsonValueRef, int, int, &QJsonValueRef::toInt>(json_value_ref, "toInt").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // double toDouble(double) const;
   bind::member_function<QJsonValueRef, double, double, &QJsonValueRef::toDouble>(json_value_ref, "toDouble").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
   // QString toString(const QString &) const;
   bind::member_function<QJsonValueRef, QString, const QString &, &QJsonValueRef::toString>(json_value_ref, "toString").create();
+#endif
   // bool operator==(const QJsonValue &) const;
   bind::memop_eq<QJsonValueRef, const QJsonValue &>(json_value_ref);
   // bool operator!=(const QJsonValue &) const;

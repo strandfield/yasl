@@ -18,6 +18,7 @@
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 static void register_time_zone_time_type_enum(script::Class time_zone)
 {
   using namespace script;
@@ -28,8 +29,10 @@ static void register_time_zone_time_type_enum(script::Class time_zone)
   time_type.addValue("DaylightTime", QTimeZone::DaylightTime);
   time_type.addValue("GenericTime", QTimeZone::GenericTime);
 }
+#endif
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 static void register_time_zone_name_type_enum(script::Class time_zone)
 {
   using namespace script;
@@ -41,6 +44,7 @@ static void register_time_zone_name_type_enum(script::Class time_zone)
   name_type.addValue("ShortName", QTimeZone::ShortName);
   name_type.addValue("OffsetName", QTimeZone::OffsetName);
 }
+#endif
 
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
@@ -50,8 +54,12 @@ static void register_time_zone_class(script::Namespace ns)
 
   Class time_zone = ns.newClass("TimeZone").setId(script::Type::QTimeZone).get();
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_time_zone_time_type_enum(time_zone);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_time_zone_name_type_enum(time_zone);
+#endif
 
   // QTimeZone();
   bind::default_constructor<QTimeZone>(time_zone).create();
@@ -154,13 +162,17 @@ void register_timezone_file(script::Namespace core)
   register_time_zone_class(ns);
 #endif
 
-  // void swap(QTimeZone &, QTimeZone &);
-  bind::void_function<QTimeZone &, QTimeZone &, &swap>(ns, "swap").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QDataStream & operator<<(QDataStream &, const QTimeZone &);
   bind::op_put_to<QDataStream &, const QTimeZone &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QDataStream & operator>>(QDataStream &, QTimeZone &);
   bind::op_read_from<QDataStream &, QTimeZone &>(ns);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QDebug operator<<(QDebug, const QTimeZone &);
   /// TODO: QDebug operator<<(QDebug, const QTimeZone &);
+#endif
 }
 

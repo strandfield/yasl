@@ -116,8 +116,10 @@ static void register_i_o_device_class(script::Namespace ns)
   // void startTransaction();
   bind::void_member_function<QIODevice, &QIODevice::startTransaction>(i_o_device, "startTransaction").create();
 #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void commitTransaction();
   bind::void_member_function<QIODevice, &QIODevice::commitTransaction>(i_o_device, "commitTransaction").create();
+#endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void rollbackTransaction();
   bind::void_member_function<QIODevice, &QIODevice::rollbackTransaction>(i_o_device, "rollbackTransaction").create();

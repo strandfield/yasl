@@ -26,8 +26,10 @@ static void register_vector2_d_class(script::Namespace ns)
 
   // QVector2D();
   bind::default_constructor<QVector2D>(vector2_d).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector2D(Qt::Initialization);
   bind::constructor<QVector2D, Qt::Initialization>(vector2_d).create();
+#endif
   // QVector2D(const QVector2D &);
   bind::constructor<QVector2D, const QVector2D &>(vector2_d).create();
   // ~QVector2D();

@@ -45,8 +45,10 @@ static void register_cursor_class(script::Namespace ns)
   bind::constructor<QCursor, QCursor &&>(cursor).create();
   // QCursor & operator=(QCursor &&);
   bind::memop_assign<QCursor, QCursor &&>(cursor);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void swap(QCursor &);
   bind::void_member_function<QCursor, QCursor &, &QCursor::swap>(cursor, "swap").create();
+#endif
   // Qt::CursorShape shape() const;
   bind::member_function<QCursor, Qt::CursorShape, &QCursor::shape>(cursor, "shape").create();
   // void setShape(Qt::CursorShape);
@@ -84,8 +86,6 @@ void register_cursor_file(script::Namespace gui)
 
   register_cursor_class(ns);
 
-  // void swap(QCursor &, QCursor &);
-  bind::void_function<QCursor &, QCursor &, &swap>(ns, "swap").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // bool operator==(const QCursor &, const QCursor &);
   bind::op_eq<const QCursor &, const QCursor &>(ns);

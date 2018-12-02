@@ -188,8 +188,6 @@ void register_palette_file(script::Namespace gui)
 
   register_palette_class(ns);
 
-  // void swap(QPalette &, QPalette &);
-  bind::void_function<QPalette &, QPalette &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QPalette &);
   bind::op_put_to<QDataStream &, const QPalette &>(ns);
   // QDataStream & operator>>(QDataStream &, QPalette &);

@@ -179,8 +179,6 @@ void register_region_file(script::Namespace gui)
 
   register_region_class(ns);
 
-  // void swap(QRegion &, QRegion &);
-  bind::void_function<QRegion &, QRegion &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QRegion &);
   bind::op_put_to<QDataStream &, const QRegion &>(ns);
   // QDataStream & operator>>(QDataStream &, QRegion &);

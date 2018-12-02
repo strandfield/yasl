@@ -31,6 +31,7 @@ static void register_json_document_data_validation_enum(script::Class json_docum
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 static void register_json_document_json_format_enum(script::Class json_document)
 {
   using namespace script;
@@ -40,6 +41,7 @@ static void register_json_document_json_format_enum(script::Class json_document)
   json_format.addValue("Indented", QJsonDocument::Indented);
   json_format.addValue("Compact", QJsonDocument::Compact);
 }
+#endif
 
 
 static void register_json_document_class(script::Namespace ns)
@@ -49,7 +51,9 @@ static void register_json_document_class(script::Namespace ns)
   Class json_document = ns.newClass("JsonDocument").setId(script::Type::QJsonDocument).get();
 
   register_json_document_data_validation_enum(json_document);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   register_json_document_json_format_enum(json_document);
+#endif
 
   // QJsonDocument();
   bind::default_constructor<QJsonDocument>(json_document).create();
@@ -84,8 +88,10 @@ static void register_json_document_class(script::Namespace ns)
   /// TODO: static QJsonDocument fromJson(const QByteArray &, QJsonParseError *);
   // QByteArray toJson() const;
   bind::member_function<QJsonDocument, QByteArray, &QJsonDocument::toJson>(json_document, "toJson").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QByteArray toJson(QJsonDocument::JsonFormat) const;
   bind::member_function<QJsonDocument, QByteArray, QJsonDocument::JsonFormat, &QJsonDocument::toJson>(json_document, "toJson").create();
+#endif
   // bool isEmpty() const;
   bind::member_function<QJsonDocument, bool, &QJsonDocument::isEmpty>(json_document, "isEmpty").create();
   // bool isArray() const;

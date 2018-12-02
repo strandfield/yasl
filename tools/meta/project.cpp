@@ -128,6 +128,19 @@ QString Project::toYaml() const
   ret += "\n";
 
   {
+    yaml::Array includesArray;
+    for (auto it = this->includes.begin(); it != this->includes.end(); ++it)
+      includesArray.push(it.key() + yaml::createField("v", it.value().toString()));
+
+    yaml::Object obj;
+    obj["includes"] = includesArray;
+    QString str = obj.serialize();
+    ret += str;
+  }
+
+  ret += "\n";
+
+  {
     yaml::Array modulesyaml;
     for (const auto & m : modules)
       modulesyaml.push(m->toYaml());
@@ -166,7 +179,16 @@ QSharedPointer<Project> Project::fromYaml(const yaml::Object & obj)
 
   types = obj.value("types").toObject().value("classes").toArray();
   ret->types.classes = typelistFromYaml(types);
-
+  
+  {
+    yaml::Array includes = obj.value("includes").toArray();
+    for (auto elem : includes)
+    {
+      QString item = elem.toString();
+      ret->includes[yaml::extractName(item)] = QtVersion::fromString(yaml::extractField(item, "v"));
+    }
+  }
+  
   return ret;
 }
 

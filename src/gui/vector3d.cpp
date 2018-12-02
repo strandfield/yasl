@@ -32,8 +32,10 @@ static void register_vector3_d_class(script::Namespace ns)
   bind::destructor<QVector3D>(vector3_d).create();
   // QVector3D & operator=(const QVector3D &);
   bind::memop_assign<QVector3D, const QVector3D &>(vector3_d);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector3D(Qt::Initialization);
   bind::constructor<QVector3D, Qt::Initialization>(vector3_d).create();
+#endif
   // QVector3D(float, float, float);
   bind::constructor<QVector3D, float, float, float>(vector3_d).create();
   // QVector3D(const QPoint &);

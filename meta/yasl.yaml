@@ -436,6 +436,9 @@ types:
     - {id: QWizard, name: QWizard, rename: Wizard, header: yasl/widgets/wizard.h, tag: qobject_tag}
     - {id: QWizardWizardOptions, name: QWizard::WizardOptions, rename: WizardOptions, header: yasl/widgets/wizard.h}
     - {id: QWizardPage, name: QWizardPage, rename: WizardPage, header: yasl/widgets/wizard.h, tag: qobject_tag}
+includes:
+  - QPixelFormat[v:5.4.0]
+  - QTimeZone[v:5.2.0]
 modules:
   - core:
       - file:
@@ -455,6 +458,7 @@ modules:
                         - Base64UrlEncoding
                         - KeepTrailingEquals
                         - OmitTrailingEquals
+                      version: 5.2.0
                   - constructor: QByteArray
                   - constructor: QByteArray[p:int;char]
                   - constructor: QByteArray[p:int;Qt::Initialization]
@@ -601,9 +605,9 @@ modules:
                   - function: count[r:int][specs:const]
                   - function: length[r:int][specs:const]
                   - function: isNull[r:bool][specs:const]
-            - function: operator|[r:QByteArray::Base64Options][p:QByteArray::Base64Option;QByteArray::Base64Option]
-            - function: operator|[r:QByteArray::Base64Options][p:QByteArray::Base64Option;QByteArray::Base64Options]
-            - function: operator|[r:QIncompatibleFlag][p:QByteArray::Base64Options::enum_type;int]
+            - function: operator|[r:QByteArray::Base64Options][p:QByteArray::Base64Option;QByteArray::Base64Option][v:5.2.0]
+            - function: operator|[r:QByteArray::Base64Options][p:QByteArray::Base64Option;QByteArray::Base64Options][v:5.2.0]
+            - function: operator|[r:QIncompatibleFlag][p:QByteArray::Base64Options::enum_type;int][v:5.2.0]
             - function: operator==[r:bool][p:const QByteArray &;const QByteArray &]
             - function: operator!=[r:bool][p:const QByteArray &;const QByteArray &]
             - function: operator<[r:bool][p:const QByteArray &;const QByteArray &]
@@ -1191,7 +1195,7 @@ modules:
                         - AlignTop
                         - AlignBottom
                         - AlignVCenter
-                        - AlignBaseline
+                        - AlignBaseline[v:5.2.0]
                         - AlignVertical_Mask
                         - AlignCenter
                       toEnumClass: true
@@ -1249,13 +1253,12 @@ modules:
                         - SplashScreen
                         - Desktop
                         - SubWindow
-                        - ForeignWindow
-                        - CoverWindow
+                        - ForeignWindow[v:5.1.0]
+                        - CoverWindow[v:5.2.0]
                         - WindowType_Mask
                         - MSWindowsFixedSizeDialogHint
                         - MSWindowsOwnDC
-                        - BypassWindowManagerHint
-                        - X11BypassWindowManagerHint
+                        - BypassWindowManagerHint[v:5.1.0]
                         - FramelessWindowHint
                         - WindowTitleHint
                         - WindowSystemMenuHint
@@ -1268,7 +1271,7 @@ modules:
                         - WindowTransparentForInput
                         - WindowOverridesSystemGestures
                         - WindowDoesNotAcceptFocus
-                        - MaximizeUsingFullscreenGeometryHint
+                        - MaximizeUsingFullscreenGeometryHint[v:5.5.0]
                         - CustomizeWindowHint
                         - WindowStaysOnBottomHint
                         - WindowCloseButtonHint
@@ -1294,6 +1297,7 @@ modules:
                         - ApplicationInactive
                         - ApplicationActive
                       toEnumClass: true
+                      version: 5.1.0
                   - enum:
                       name: ScreenOrientation
                       enumerators:
@@ -1416,8 +1420,8 @@ modules:
                         - WA_TouchPadAcceptSingleTouchEvents
                         - WA_X11DoNotAcceptFocus
                         - WA_MacNoShadow
-                        - WA_AlwaysStackOnTop
-                        - WA_TabletTracking
+                        - WA_AlwaysStackOnTop[v:5.4.0]
+                        - WA_TabletTracking[v:5.9.0]
                         - WA_AttributeCount
                       toEnumClass: true
                   - enum:
@@ -1430,15 +1434,14 @@ modules:
                         - AA_NativeWindows
                         - AA_DontCreateNativeWidgetSiblings
                         - AA_PluginApplication[v:5.7.0]
-                        - AA_MacPluginApplication
                         - AA_DontUseNativeMenuBar
                         - AA_MacDontSwapCtrlAndMeta
                         - AA_Use96Dpi
                         - AA_X11InitThreads
                         - AA_SynthesizeTouchForUnhandledMouseEvents
                         - AA_SynthesizeMouseForUnhandledTouchEvents
-                        - AA_UseHighDpiPixmaps
-                        - AA_ForceRasterWidgets
+                        - AA_UseHighDpiPixmaps[v:5.1.0]
+                        - AA_ForceRasterWidgets[v:5.3.0]
                         - AA_UseDesktopOpenGL[v:5.3.0]
                         - AA_UseOpenGLES[v:5.3.0]
                         - AA_UseSoftwareOpenGL[v:5.4.0]
@@ -1451,7 +1454,7 @@ modules:
                         - AA_SynthesizeMouseForUnhandledTabletEvents[v:5.7.0]
                         - AA_CompressHighFrequencyEvents[v:5.7.0]
                         - AA_DontCheckOpenGLContextThreadAffinity[v:5.8.0]
-                        - AA_DisableShaderDiskCache
+                        - AA_DisableShaderDiskCache[v:5.9.0]
                         - AA_DontShowShortcutsInContextMenus[v:5.10.0]
                         - AA_CompressTabletEvents[v:5.10.0]
                         - AA_DisableWindowContextHelpButton[v:5.10.0]
@@ -1887,23 +1890,23 @@ modules:
                         - Key_TouchpadToggle
                         - Key_TouchpadOn
                         - Key_TouchpadOff
-                        - Key_MicMute
-                        - Key_Red
-                        - Key_Green
-                        - Key_Yellow
-                        - Key_Blue
-                        - Key_ChannelUp
-                        - Key_ChannelDown
-                        - Key_Guide
-                        - Key_Info
-                        - Key_Settings
-                        - Key_MicVolumeUp
-                        - Key_MicVolumeDown
-                        - Key_New
-                        - Key_Open
-                        - Key_Find
-                        - Key_Undo
-                        - Key_Redo
+                        - Key_MicMute[v:5.1.0]
+                        - Key_Red[v:5.2.0]
+                        - Key_Green[v:5.2.0]
+                        - Key_Yellow[v:5.2.0]
+                        - Key_Blue[v:5.2.0]
+                        - Key_ChannelUp[v:5.2.0]
+                        - Key_ChannelDown[v:5.2.0]
+                        - Key_Guide[v:5.3.0]
+                        - Key_Info[v:5.3.0]
+                        - Key_Settings[v:5.3.0]
+                        - Key_MicVolumeUp[v:5.4.0]
+                        - Key_MicVolumeDown[v:5.4.0]
+                        - Key_New[v:5.4.0]
+                        - Key_Open[v:5.4.0]
+                        - Key_Find[v:5.4.0]
+                        - Key_Undo[v:5.4.0]
+                        - Key_Redo[v:5.4.0]
                         - Key_MediaLast
                         - Key_Select
                         - Key_Yes
@@ -1914,7 +1917,7 @@ modules:
                         - Key_Sleep
                         - Key_Play
                         - Key_Zoom
-                        - Key_Exit
+                        - Key_Exit[v:5.3.0]
                         - Key_Context1
                         - Key_Context2
                         - Key_Context3
@@ -2094,8 +2097,8 @@ modules:
                         - SystemLocaleLongDate
                         - DefaultLocaleShortDate
                         - DefaultLocaleLongDate
-                        - RFC2822Date
-                        - ISODateWithMs
+                        - RFC2822Date[v:5.2.0]
+                        - ISODateWithMs[v:5.8.0]
                       toEnumClass: true
                   - enum:
                       name: TimeSpec
@@ -2103,7 +2106,7 @@ modules:
                         - LocalTime
                         - UTC
                         - OffsetFromUTC
-                        - TimeZone
+                        - TimeZone[v:5.2.0]
                       toEnumClass: true
                   - enum:
                       name: DayOfWeek
@@ -2145,6 +2148,7 @@ modules:
                         - RightEdge
                         - BottomEdge
                       toEnumClass: true
+                      version: 5.1.0
                   - enum:
                       name: ConnectionType
                       enumerators:
@@ -2245,12 +2249,12 @@ modules:
                         - ImAnchorPosition
                         - ImHints
                         - ImPreferredLanguage
-                        - ImAbsolutePosition
-                        - ImTextBeforeCursor
-                        - ImTextAfterCursor
-                        - ImEnterKeyType
+                        - ImAbsolutePosition[v:5.3.0]
+                        - ImTextBeforeCursor[v:5.3.0]
+                        - ImTextAfterCursor[v:5.3.0]
+                        - ImEnterKeyType[v:5.6.0]
                         - ImAnchorRectangle[v:5.7.0]
-                        - ImInputItemClipRectangle
+                        - ImInputItemClipRectangle[v:5.7.0]
                         - ImPlatformData
                         - ImQueryInput
                         - ImQueryAll
@@ -2269,7 +2273,7 @@ modules:
                         - ImhDate
                         - ImhTime
                         - ImhPreferLatin
-                        - ImhMultiLine
+                        - ImhMultiLine[v:5.1.0]
                         - ImhDigitsOnly
                         - ImhFormattedNumbersOnly
                         - ImhUppercaseOnly
@@ -2379,9 +2383,9 @@ modules:
                         - ItemIsDropEnabled
                         - ItemIsUserCheckable
                         - ItemIsEnabled
-                        - ItemIsAutoTristate
+                        - ItemIsAutoTristate[v:5.6.0]
                         - ItemIsTristate
-                        - ItemNeverHasChildren
+                        - ItemNeverHasChildren[v:5.1.0]
                         - ItemIsUserTristate[v:5.5.0]
                       toEnumClass: true
                   - enum:
@@ -2505,6 +2509,7 @@ modules:
                         - RotateNativeGesture
                         - SwipeNativeGesture
                       toEnumClass: true
+                      version: 5.2.0
                   - enum:
                       name: NavigationMode
                       enumerators:
@@ -2535,6 +2540,7 @@ modules:
                         - ScrollUpdate
                         - ScrollEnd
                       toEnumClass: true
+                      version: 5.2.0
                   - enum:
                       name: MouseEventSource
                       enumerators:
@@ -3141,8 +3147,8 @@ modules:
                   - function: setBottom[r:void][p:int]
                   - function: operator+=[r:QMargins &][p:const QMargins &][v:5.1.0]
                   - function: operator-=[r:QMargins &][p:const QMargins &][v:5.1.0]
-                  - function: operator+=[r:QMargins &][p:int]
-                  - function: operator-=[r:QMargins &][p:int]
+                  - function: operator+=[r:QMargins &][p:int][v:5.1.0]
+                  - function: operator-=[r:QMargins &][p:int][v:5.1.0]
                   - function: operator*=[r:QMargins &][p:int][v:5.1.0]
                   - function: operator/=[r:QMargins &][p:int][v:5.1.0]
                   - function: operator*=[r:QMargins &][p:qreal][v:5.1.0]
@@ -3190,21 +3196,21 @@ modules:
                   - function: operator/=[r:QMarginsF &][p:qreal]
                   - function: toMargins[r:QMargins][specs:const]
                 version: 5.3.0
-            - function: operator<<[r:QDataStream &][p:QDataStream &;const QMarginsF &]
-            - function: operator>>[r:QDataStream &][p:QDataStream &;QMarginsF &]
-            - function: operator==[r:bool][p:const QMarginsF &;const QMarginsF &]
-            - function: operator!=[r:bool][p:const QMarginsF &;const QMarginsF &]
-            - function: operator+[r:QMarginsF][p:const QMarginsF &;const QMarginsF &]
-            - function: operator-[r:QMarginsF][p:const QMarginsF &;const QMarginsF &]
-            - function: operator+[r:QMarginsF][p:const QMarginsF &;qreal]
-            - function: operator+[r:QMarginsF][p:qreal;const QMarginsF &]
-            - function: operator-[r:QMarginsF][p:const QMarginsF &;qreal]
-            - function: operator*[r:QMarginsF][p:const QMarginsF &;qreal]
-            - function: operator*[r:QMarginsF][p:qreal;const QMarginsF &]
-            - function: operator/[r:QMarginsF][p:const QMarginsF &;qreal]
-            - function: operator+[r:QMarginsF][p:const QMarginsF &]
-            - function: operator-[r:QMarginsF][p:const QMarginsF &]
-            - function: operator<<[r:QDebug][p:QDebug;const QMarginsF &]
+            - function: operator<<[r:QDataStream &][p:QDataStream &;const QMarginsF &][v:5.3.0]
+            - function: operator>>[r:QDataStream &][p:QDataStream &;QMarginsF &][v:5.3.0]
+            - function: operator==[r:bool][p:const QMarginsF &;const QMarginsF &][v:5.3.0]
+            - function: operator!=[r:bool][p:const QMarginsF &;const QMarginsF &][v:5.3.0]
+            - function: operator+[r:QMarginsF][p:const QMarginsF &;const QMarginsF &][v:5.3.0]
+            - function: operator-[r:QMarginsF][p:const QMarginsF &;const QMarginsF &][v:5.3.0]
+            - function: operator+[r:QMarginsF][p:const QMarginsF &;qreal][v:5.3.0]
+            - function: operator+[r:QMarginsF][p:qreal;const QMarginsF &][v:5.3.0]
+            - function: operator-[r:QMarginsF][p:const QMarginsF &;qreal][v:5.3.0]
+            - function: operator*[r:QMarginsF][p:const QMarginsF &;qreal][v:5.3.0]
+            - function: operator*[r:QMarginsF][p:qreal;const QMarginsF &][v:5.3.0]
+            - function: operator/[r:QMarginsF][p:const QMarginsF &;qreal][v:5.3.0]
+            - function: operator+[r:QMarginsF][p:const QMarginsF &][v:5.3.0]
+            - function: operator-[r:QMarginsF][p:const QMarginsF &][v:5.3.0]
+            - function: operator<<[r:QDebug][p:QDebug;const QMarginsF &][v:5.3.0]
           hincludes: <QMargins>
       - file:
           name: datetime
@@ -3287,8 +3293,8 @@ modules:
                   - function: operator<=[r:bool][p:const QTime &][specs:const]
                   - function: operator>[r:bool][p:const QTime &][specs:const]
                   - function: operator>=[r:bool][p:const QTime &][specs:const]
-                  - function: fromMSecsSinceStartOfDay[r:QTime][p:int][specs:static]
-                  - function: msecsSinceStartOfDay[r:int][specs:const]
+                  - function: fromMSecsSinceStartOfDay[r:QTime][p:int][specs:static][v:5.2.0]
+                  - function: msecsSinceStartOfDay[r:int][specs:const][v:5.2.0]
                   - function: currentTime[r:QTime][specs:static]
                   - function: fromString[r:QTime][p:const QString &;Qt::DateFormat=Qt::TextDate][specs:static]
                   - function: fromString[r:QTime][p:const QString &;const QString &][specs:static]
@@ -3356,11 +3362,6 @@ modules:
                   - function: currentDateTimeUtc[r:QDateTime][specs:static]
                   - function: fromString[r:QDateTime][p:const QString &;Qt::DateFormat=Qt::TextDate][specs:static]
                   - function: fromString[r:QDateTime][p:const QString &;const QString &][specs:static]
-                  - function: toTime_t[r:uint][specs:const]
-                  - function: setTime_t[r:void][p:uint]
-                  - function: fromTime_t[r:QDateTime][p:uint][specs:static]
-                  - function: fromTime_t[r:QDateTime][p:uint;Qt::TimeSpec;int][specs:static]
-                  - function: fromTime_t[r:QDateTime][p:uint;const QTimeZone &][specs:static]
                   - function: fromMSecsSinceEpoch[r:QDateTime][p:qint64][specs:static]
                   - function: fromMSecsSinceEpoch[r:QDateTime][p:qint64;Qt::TimeSpec;int=0][specs:static][v:5.2.0]
                   - function: fromSecsSinceEpoch[r:QDateTime][p:qint64;Qt::TimeSpec=Qt::LocalTime;int=0][specs:static][v:5.8.0]
@@ -3368,7 +3369,7 @@ modules:
                   - function: fromSecsSinceEpoch[r:QDateTime][p:qint64;const QTimeZone &][specs:static][v:5.8.0]
                   - function: currentMSecsSinceEpoch[r:qint64][specs:static]
                   - function: currentSecsSinceEpoch[r:qint64][specs:static][v:5.8.0]
-            - function: swap[r:void][p:QDateTime &;QDateTime &]
+            - function: swap[r:void][p:QDateTime &;QDateTime &][unchecked]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QDate &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QDate &]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QTime &]
@@ -3499,7 +3500,7 @@ modules:
                   - function: match[r:bool][p:const QString &;const QString &][specs:static]
                   - function: cleanPath[r:QString][p:const QString &][specs:static]
                   - function: refresh[r:void][specs:const]
-            - function: swap[r:void][p:QDir &;QDir &]
+            - function: swap[r:void][p:QDir &;QDir &][unchecked]
             - function: operator|[r:QDir::Filters][p:QDir::Filter;QDir::Filter]
             - function: operator|[r:QDir::Filters][p:QDir::Filter;QDir::Filters]
             - function: operator|[r:QIncompatibleFlag][p:QDir::Filters::enum_type;int]
@@ -3577,7 +3578,7 @@ modules:
                   - function: fileTime[r:QDateTime][p:QFile::FileTime][specs:const][v:5.10.0]
                   - function: caching[r:bool][specs:const]
                   - function: setCaching[r:void][p:bool]
-            - function: swap[r:void][p:QFileInfo &;QFileInfo &]
+            - function: swap[r:void][p:QFileInfo &;QFileInfo &][unchecked]
             - function: operator<<[r:QDebug][p:QDebug;const QFileInfo &]
           hincludes: <QFileInfo>
       - file:
@@ -3672,7 +3673,7 @@ modules:
           name: url
           checkstate: partially-checked
           elements:
-            - function: qHash[r:uint][p:const QUrl &;uint]
+            - function: qHash[r:uint][p:const QUrl &;uint][v:5.2.0]
             - class:
                 name: QUrl
                 elements:
@@ -3696,8 +3697,8 @@ modules:
                         - RemoveFragment
                         - PreferLocalFile
                         - StripTrailingSlash
-                        - RemoveFilename
-                        - NormalizePathSegments
+                        - RemoveFilename[v:5.2.0]
+                        - NormalizePathSegments[v:5.2.0]
                   - enum:
                       name: ComponentFormattingOption
                       enumerators:
@@ -3783,7 +3784,7 @@ modules:
                   - function: fromStringList[r:QList<QUrl>][p:const QStringList &;QUrl::ParsingMode=QUrl::TolerantMode][specs:static][v:5.1.0]
                   - function: setIdnWhitelist[r:void][p:const QStringList &][specs:static]
                   - function: data_ptr[r:QUrl::DataPtr &]
-            - function: swap[r:void][p:QUrl &;QUrl &]
+            - function: swap[r:void][p:QUrl &;QUrl &][unchecked]
             - function: operator|[r:QUrl::ComponentFormattingOptions][p:QUrl::ComponentFormattingOption;QUrl::ComponentFormattingOption]
             - function: operator|[r:QUrl::ComponentFormattingOptions][p:QUrl::ComponentFormattingOption;QUrl::ComponentFormattingOptions]
             - function: operator|[r:QIncompatibleFlag][p:QUrl::ComponentFormattingOptions::enum_type;int]
@@ -3839,13 +3840,13 @@ modules:
                   - function: defaultQueryValueDelimiter[r:QChar][specs:static]
                   - function: defaultQueryPairDelimiter[r:QChar][specs:static]
                   - function: data_ptr[r:QUrlQuery::DataPtr &]
-            - function: swap[r:void][p:QUrlQuery &;QUrlQuery &]
+            - function: swap[r:void][p:QUrlQuery &;QUrlQuery &][unchecked]
           hincludes: <QUrlQuery>
       - file:
           name: locale
           checkstate: partially-checked
           elements:
-            - function: qHash[r:uint][p:const QLocale &;uint]
+            - function: qHash[r:uint][p:const QLocale &;uint][v:5.6.0]
             - class:
                 name: QLocale
                 checkstate: partially-checked
@@ -3982,7 +3983,7 @@ modules:
                         - Turkish
                         - Turkmen
                         - Tahitian
-                        - Uighur
+                        - Uighur[v:5.1.0]
                         - Ukrainian
                         - Urdu
                         - Uzbek
@@ -4115,57 +4116,57 @@ modules:
                         - Kako
                         - Meta
                         - Ngiemboon
-                        - Aragonese
-                        - Akkadian
-                        - AncientEgyptian
-                        - AncientGreek
-                        - Aramaic
-                        - Balinese
-                        - Bamun
-                        - BatakToba
-                        - Buginese
-                        - Buhid
-                        - Carian
-                        - Chakma
-                        - ClassicalMandaic
-                        - Coptic
-                        - Dogri
-                        - EasternCham
-                        - EasternKayah
-                        - Etruscan
-                        - Gothic
-                        - Hanunoo
-                        - Ingush
-                        - LargeFloweryMiao
-                        - Lepcha
-                        - Limbu
-                        - Lisu
-                        - Lu
-                        - Lycian
-                        - Lydian
-                        - Mandingo
-                        - Manipuri
-                        - Meroitic
-                        - NorthernThai
-                        - OldIrish
-                        - OldNorse
-                        - OldPersian
-                        - OldTurkish
-                        - Pahlavi
-                        - Parthian
-                        - Phoenician
-                        - PrakritLanguage
-                        - Rejang
-                        - Sabaean
-                        - Samaritan
-                        - Santali
-                        - Saurashtra
-                        - Sora
-                        - Sylheti
-                        - Tagbanwa
-                        - TaiDam
-                        - TaiNua
-                        - Ugaritic
+                        - Aragonese[v:5.1.0]
+                        - Akkadian[v:5.1.0]
+                        - AncientEgyptian[v:5.1.0]
+                        - AncientGreek[v:5.1.0]
+                        - Aramaic[v:5.1.0]
+                        - Balinese[v:5.1.0]
+                        - Bamun[v:5.1.0]
+                        - BatakToba[v:5.1.0]
+                        - Buginese[v:5.1.0]
+                        - Buhid[v:5.1.0]
+                        - Carian[v:5.1.0]
+                        - Chakma[v:5.1.0]
+                        - ClassicalMandaic[v:5.1.0]
+                        - Coptic[v:5.1.0]
+                        - Dogri[v:5.1.0]
+                        - EasternCham[v:5.1.0]
+                        - EasternKayah[v:5.1.0]
+                        - Etruscan[v:5.1.0]
+                        - Gothic[v:5.1.0]
+                        - Hanunoo[v:5.1.0]
+                        - Ingush[v:5.1.0]
+                        - LargeFloweryMiao[v:5.1.0]
+                        - Lepcha[v:5.1.0]
+                        - Limbu[v:5.1.0]
+                        - Lisu[v:5.1.0]
+                        - Lu[v:5.1.0]
+                        - Lycian[v:5.1.0]
+                        - Lydian[v:5.1.0]
+                        - Mandingo[v:5.1.0]
+                        - Manipuri[v:5.1.0]
+                        - Meroitic[v:5.1.0]
+                        - NorthernThai[v:5.1.0]
+                        - OldIrish[v:5.1.0]
+                        - OldNorse[v:5.1.0]
+                        - OldPersian[v:5.1.0]
+                        - OldTurkish[v:5.1.0]
+                        - Pahlavi[v:5.1.0]
+                        - Parthian[v:5.1.0]
+                        - Phoenician[v:5.1.0]
+                        - PrakritLanguage[v:5.1.0]
+                        - Rejang[v:5.1.0]
+                        - Sabaean[v:5.1.0]
+                        - Samaritan[v:5.1.0]
+                        - Santali[v:5.1.0]
+                        - Saurashtra[v:5.1.0]
+                        - Sora[v:5.1.0]
+                        - Sylheti[v:5.1.0]
+                        - Tagbanwa[v:5.1.0]
+                        - TaiDam[v:5.1.0]
+                        - TaiNua[v:5.1.0]
+                        - Ugaritic[v:5.1.0]
                         - Akoose[v:5.3.0]
                         - Lakota[v:5.3.0]
                         - StandardMoroccanTamazight[v:5.3.0]
@@ -4210,8 +4211,8 @@ modules:
                         - TokelauLanguage[v:5.7.0]
                         - TokPisin[v:5.7.0]
                         - TuvaluLanguage[v:5.7.0]
-                        - UncodedLanguages
-                        - Cantonese
+                        - UncodedLanguages[v:5.7.0]
+                        - Cantonese[v:5.7.0]
                         - Osage[v:5.7.0]
                         - Tangut[v:5.7.0]
                         - Norwegian
@@ -4268,112 +4269,112 @@ modules:
                         - SyriacScript
                         - YiScript
                         - VaiScript
-                        - AvestanScript
-                        - BalineseScript
-                        - BamumScript
-                        - BatakScript
-                        - BopomofoScript
-                        - BrahmiScript
-                        - BugineseScript
-                        - BuhidScript
-                        - CanadianAboriginalScript
-                        - CarianScript
-                        - ChakmaScript
-                        - ChamScript
-                        - CopticScript
-                        - CypriotScript
-                        - EgyptianHieroglyphsScript
-                        - FraserScript
-                        - GlagoliticScript
-                        - GothicScript
-                        - HanScript
-                        - HangulScript
-                        - HanunooScript
-                        - ImperialAramaicScript
-                        - InscriptionalPahlaviScript
-                        - InscriptionalParthianScript
-                        - JavaneseScript
-                        - KaithiScript
-                        - KatakanaScript
-                        - KayahLiScript
-                        - KharoshthiScript
-                        - LannaScript
-                        - LepchaScript
-                        - LimbuScript
-                        - LinearBScript
-                        - LycianScript
-                        - LydianScript
-                        - MandaeanScript
-                        - MeiteiMayekScript
-                        - MeroiticScript
-                        - MeroiticCursiveScript
-                        - NkoScript
-                        - NewTaiLueScript
-                        - OghamScript
-                        - OlChikiScript
-                        - OldItalicScript
-                        - OldPersianScript
-                        - OldSouthArabianScript
-                        - OrkhonScript
-                        - OsmanyaScript
-                        - PhagsPaScript
-                        - PhoenicianScript
-                        - PollardPhoneticScript
-                        - RejangScript
-                        - RunicScript
-                        - SamaritanScript
-                        - SaurashtraScript
-                        - SharadaScript
-                        - ShavianScript
-                        - SoraSompengScript
-                        - CuneiformScript
-                        - SundaneseScript
-                        - SylotiNagriScript
-                        - TagalogScript
-                        - TagbanwaScript
-                        - TaiLeScript
-                        - TaiVietScript
-                        - TakriScript
-                        - UgariticScript
-                        - BrailleScript
-                        - HiraganaScript
-                        - CaucasianAlbanianScript
-                        - BassaVahScript
-                        - DuployanScript
-                        - ElbasanScript
-                        - GranthaScript
-                        - PahawhHmongScript
-                        - KhojkiScript
-                        - LinearAScript
-                        - MahajaniScript
-                        - ManichaeanScript
-                        - MendeKikakuiScript
-                        - ModiScript
-                        - MroScript
-                        - OldNorthArabianScript
-                        - NabataeanScript
-                        - PalmyreneScript
-                        - PauCinHauScript
-                        - OldPermicScript
-                        - PsalterPahlaviScript
-                        - SiddhamScript
-                        - KhudawadiScript
-                        - TirhutaScript
-                        - VarangKshitiScript
-                        - AhomScript
-                        - AnatolianHieroglyphsScript
-                        - HatranScript
-                        - MultaniScript
-                        - OldHungarianScript
-                        - SignWritingScript
-                        - AdlamScript
-                        - BhaiksukiScript
-                        - MarchenScript
-                        - NewaScript
-                        - OsageScript
-                        - TangutScript
-                        - HanWithBopomofoScript
-                        - JamoScript
+                        - AvestanScript[v:5.1.0]
+                        - BalineseScript[v:5.1.0]
+                        - BamumScript[v:5.1.0]
+                        - BatakScript[v:5.1.0]
+                        - BopomofoScript[v:5.1.0]
+                        - BrahmiScript[v:5.1.0]
+                        - BugineseScript[v:5.1.0]
+                        - BuhidScript[v:5.1.0]
+                        - CanadianAboriginalScript[v:5.1.0]
+                        - CarianScript[v:5.1.0]
+                        - ChakmaScript[v:5.1.0]
+                        - ChamScript[v:5.1.0]
+                        - CopticScript[v:5.1.0]
+                        - CypriotScript[v:5.1.0]
+                        - EgyptianHieroglyphsScript[v:5.1.0]
+                        - FraserScript[v:5.1.0]
+                        - GlagoliticScript[v:5.1.0]
+                        - GothicScript[v:5.1.0]
+                        - HanScript[v:5.1.0]
+                        - HangulScript[v:5.1.0]
+                        - HanunooScript[v:5.1.0]
+                        - ImperialAramaicScript[v:5.1.0]
+                        - InscriptionalPahlaviScript[v:5.1.0]
+                        - InscriptionalParthianScript[v:5.1.0]
+                        - JavaneseScript[v:5.1.0]
+                        - KaithiScript[v:5.1.0]
+                        - KatakanaScript[v:5.1.0]
+                        - KayahLiScript[v:5.1.0]
+                        - KharoshthiScript[v:5.1.0]
+                        - LannaScript[v:5.1.0]
+                        - LepchaScript[v:5.1.0]
+                        - LimbuScript[v:5.1.0]
+                        - LinearBScript[v:5.1.0]
+                        - LycianScript[v:5.1.0]
+                        - LydianScript[v:5.1.0]
+                        - MandaeanScript[v:5.1.0]
+                        - MeiteiMayekScript[v:5.1.0]
+                        - MeroiticScript[v:5.1.0]
+                        - MeroiticCursiveScript[v:5.1.0]
+                        - NkoScript[v:5.1.0]
+                        - NewTaiLueScript[v:5.1.0]
+                        - OghamScript[v:5.1.0]
+                        - OlChikiScript[v:5.1.0]
+                        - OldItalicScript[v:5.1.0]
+                        - OldPersianScript[v:5.1.0]
+                        - OldSouthArabianScript[v:5.1.0]
+                        - OrkhonScript[v:5.1.0]
+                        - OsmanyaScript[v:5.1.0]
+                        - PhagsPaScript[v:5.1.0]
+                        - PhoenicianScript[v:5.1.0]
+                        - PollardPhoneticScript[v:5.1.0]
+                        - RejangScript[v:5.1.0]
+                        - RunicScript[v:5.1.0]
+                        - SamaritanScript[v:5.1.0]
+                        - SaurashtraScript[v:5.1.0]
+                        - SharadaScript[v:5.1.0]
+                        - ShavianScript[v:5.1.0]
+                        - SoraSompengScript[v:5.1.0]
+                        - CuneiformScript[v:5.1.0]
+                        - SundaneseScript[v:5.1.0]
+                        - SylotiNagriScript[v:5.1.0]
+                        - TagalogScript[v:5.1.0]
+                        - TagbanwaScript[v:5.1.0]
+                        - TaiLeScript[v:5.1.0]
+                        - TaiVietScript[v:5.1.0]
+                        - TakriScript[v:5.1.0]
+                        - UgariticScript[v:5.1.0]
+                        - BrailleScript[v:5.1.0]
+                        - HiraganaScript[v:5.1.0]
+                        - CaucasianAlbanianScript[v:5.5.0]
+                        - BassaVahScript[v:5.5.0]
+                        - DuployanScript[v:5.5.0]
+                        - ElbasanScript[v:5.5.0]
+                        - GranthaScript[v:5.5.0]
+                        - PahawhHmongScript[v:5.5.0]
+                        - KhojkiScript[v:5.5.0]
+                        - LinearAScript[v:5.5.0]
+                        - MahajaniScript[v:5.5.0]
+                        - ManichaeanScript[v:5.5.0]
+                        - MendeKikakuiScript[v:5.5.0]
+                        - ModiScript[v:5.5.0]
+                        - MroScript[v:5.5.0]
+                        - OldNorthArabianScript[v:5.5.0]
+                        - NabataeanScript[v:5.5.0]
+                        - PalmyreneScript[v:5.5.0]
+                        - PauCinHauScript[v:5.5.0]
+                        - OldPermicScript[v:5.5.0]
+                        - PsalterPahlaviScript[v:5.5.0]
+                        - SiddhamScript[v:5.5.0]
+                        - KhudawadiScript[v:5.5.0]
+                        - TirhutaScript[v:5.5.0]
+                        - VarangKshitiScript[v:5.5.0]
+                        - AhomScript[v:5.7.0]
+                        - AnatolianHieroglyphsScript[v:5.7.0]
+                        - HatranScript[v:5.7.0]
+                        - MultaniScript[v:5.7.0]
+                        - OldHungarianScript[v:5.7.0]
+                        - SignWritingScript[v:5.7.0]
+                        - AdlamScript[v:5.7.0]
+                        - BhaiksukiScript[v:5.7.0]
+                        - MarchenScript[v:5.7.0]
+                        - NewaScript[v:5.7.0]
+                        - OsageScript[v:5.7.0]
+                        - TangutScript[v:5.7.0]
+                        - HanWithBopomofoScript[v:5.7.0]
+                        - JamoScript[v:5.7.0]
                         - SimplifiedChineseScript
                         - TraditionalChineseScript
                         - LastScript
@@ -4593,14 +4594,14 @@ modules:
                         - Tanzania
                         - Thailand
                         - Togo
-                        - TokelauCountry
+                        - TokelauCountry[v:5.7.0]
                         - Tonga
                         - TrinidadAndTobago
                         - Tunisia
                         - Turkey
                         - Turkmenistan
                         - TurksAndCaicosIslands
-                        - TuvaluCountry
+                        - TuvaluCountry[v:5.7.0]
                         - Uganda
                         - Ukraine
                         - UnitedArabEmirates
@@ -4637,7 +4638,7 @@ modules:
                         - SouthSudan
                         - Bonaire
                         - SintMaarten
-                        - Kosovo
+                        - Kosovo[v:5.2.0]
                         - EuropeanUnion[v:5.7.0]
                         - OutlyingOceania[v:5.7.0]
                         - Tokelau
@@ -4665,13 +4666,13 @@ modules:
                   - enum:
                       name: NumberOption
                       enumerators:
-                        - DefaultNumberOptions
+                        - DefaultNumberOptions[v:5.7.0]
                         - OmitGroupSeparator
                         - RejectGroupSeparator
-                        - OmitLeadingZeroInExponent
-                        - RejectLeadingZeroInExponent
-                        - IncludeTrailingZeroesAfterDot
-                        - RejectTrailingZeroesAfterDot
+                        - OmitLeadingZeroInExponent[v:5.7.0]
+                        - RejectLeadingZeroInExponent[v:5.7.0]
+                        - IncludeTrailingZeroesAfterDot[v:5.9.0]
+                        - RejectTrailingZeroesAfterDot[v:5.9.0]
                   - enum:
                       name: FloatingPointPrecisionOption
                       enumerators:
@@ -4685,13 +4686,12 @@ modules:
                         - CurrencyDisplayName
                   - enum:
                       name: DataSizeFormat
-                      checkstate: unchecked
                       enumerators:
-                        - DataSizeBase1000[unchecked]
-                        - DataSizeSIQuantifiers[unchecked]
-                        - DataSizeIecFormat[unchecked]
-                        - DataSizeTraditionalFormat[unchecked]
-                        - DataSizeSIFormat[unchecked]
+                        - DataSizeBase1000
+                        - DataSizeSIQuantifiers
+                        - DataSizeIecFormat
+                        - DataSizeTraditionalFormat
+                        - DataSizeSIFormat
                       version: 5.10.0
                   - constructor: QLocale
                   - constructor: QLocale[p:const QString &]
@@ -4701,7 +4701,7 @@ modules:
                   - function: operator=[r:QLocale &][p:QLocale &&]
                   - function: operator=[r:QLocale &][p:const QLocale &]
                   - destructor: ~QLocale
-                  - function: swap[r:void][p:QLocale &]
+                  - function: swap[r:void][p:QLocale &][v:5.7.0]
                   - function: language[r:QLocale::Language][specs:const]
                   - function: script[r:QLocale::Script][specs:const]
                   - function: country[r:QLocale::Country][specs:const]
@@ -4717,22 +4717,22 @@ modules:
                   - function: toULongLong[r:qulonglong][p:const QString &;bool *][specs:const]
                   - function: toFloat[r:float][p:const QString &;bool *][specs:const]
                   - function: toDouble[r:double][p:const QString &;bool *][specs:const]
-                  - function: toShort[r:short][p:const QStringRef &;bool *][specs:const]
-                  - function: toUShort[r:ushort][p:const QStringRef &;bool *][specs:const]
-                  - function: toInt[r:int][p:const QStringRef &;bool *][specs:const]
-                  - function: toUInt[r:uint][p:const QStringRef &;bool *][specs:const]
-                  - function: toLongLong[r:qlonglong][p:const QStringRef &;bool *][specs:const]
-                  - function: toULongLong[r:qulonglong][p:const QStringRef &;bool *][specs:const]
-                  - function: toFloat[r:float][p:const QStringRef &;bool *][specs:const]
-                  - function: toDouble[r:double][p:const QStringRef &;bool *][specs:const]
-                  - function: toShort[r:short][p:QStringView;bool *][specs:const]
-                  - function: toUShort[r:ushort][p:QStringView;bool *][specs:const]
-                  - function: toInt[r:int][p:QStringView;bool *][specs:const]
-                  - function: toUInt[r:uint][p:QStringView;bool *][specs:const]
-                  - function: toLongLong[r:qlonglong][p:QStringView;bool *][specs:const]
-                  - function: toULongLong[r:qulonglong][p:QStringView;bool *][specs:const]
-                  - function: toFloat[r:float][p:QStringView;bool *][specs:const]
-                  - function: toDouble[r:double][p:QStringView;bool *][specs:const]
+                  - function: toShort[r:short][p:const QStringRef &;bool *][specs:const][v:5.1.0]
+                  - function: toUShort[r:ushort][p:const QStringRef &;bool *][specs:const][v:5.1.0]
+                  - function: toInt[r:int][p:const QStringRef &;bool *][specs:const][v:5.1.0]
+                  - function: toUInt[r:uint][p:const QStringRef &;bool *][specs:const][v:5.1.0]
+                  - function: toLongLong[r:qlonglong][p:const QStringRef &;bool *][specs:const][v:5.1.0]
+                  - function: toULongLong[r:qulonglong][p:const QStringRef &;bool *][specs:const][v:5.1.0]
+                  - function: toFloat[r:float][p:const QStringRef &;bool *][specs:const][v:5.1.0]
+                  - function: toDouble[r:double][p:const QStringRef &;bool *][specs:const][v:5.1.0]
+                  - function: toShort[r:short][p:QStringView;bool *][specs:const][v:5.10.0]
+                  - function: toUShort[r:ushort][p:QStringView;bool *][specs:const][v:5.10.0]
+                  - function: toInt[r:int][p:QStringView;bool *][specs:const][v:5.10.0]
+                  - function: toUInt[r:uint][p:QStringView;bool *][specs:const][v:5.10.0]
+                  - function: toLongLong[r:qlonglong][p:QStringView;bool *][specs:const][v:5.10.0]
+                  - function: toULongLong[r:qulonglong][p:QStringView;bool *][specs:const][v:5.10.0]
+                  - function: toFloat[r:float][p:QStringView;bool *][specs:const][v:5.10.0]
+                  - function: toDouble[r:double][p:QStringView;bool *][specs:const][v:5.10.0]
                   - function: toString[r:QString][p:qlonglong][specs:const]
                   - function: toString[r:QString][p:qulonglong][specs:const]
                   - function: toString[r:QString][p:short][specs:const]
@@ -4744,9 +4744,9 @@ modules:
                   - function: toString[r:QString][p:const QDate &;const QString &][specs:const]
                   - function: toString[r:QString][p:const QTime &;const QString &][specs:const]
                   - function: toString[r:QString][p:const QDateTime &;const QString &][specs:const]
-                  - function: toString[r:QString][p:const QDate &;QStringView][specs:const]
-                  - function: toString[r:QString][p:const QTime &;QStringView][specs:const]
-                  - function: toString[r:QString][p:const QDateTime &;QStringView][specs:const]
+                  - function: toString[r:QString][p:const QDate &;QStringView][specs:const][v:5.10.0]
+                  - function: toString[r:QString][p:const QTime &;QStringView][specs:const][v:5.10.0]
+                  - function: toString[r:QString][p:const QDateTime &;QStringView][specs:const][v:5.10.0]
                   - function: toString[r:QString][p:const QDate &;QLocale::FormatType][specs:const]
                   - function: toString[r:QString][p:const QTime &;QLocale::FormatType][specs:const]
                   - function: toString[r:QString][p:const QDateTime &;QLocale::FormatType][specs:const]
@@ -4786,10 +4786,10 @@ modules:
                   - function: toCurrencyString[r:QString][p:int;const QString &=QString()][specs:const]
                   - function: toCurrencyString[r:QString][p:uint;const QString &][specs:const]
                   - function: toCurrencyString[r:QString][p:double;const QString &=QString()][specs:const]
-                  - function: toCurrencyString[r:QString][p:double;const QString &;int][specs:const]
-                  - function: toCurrencyString[r:QString][p:float;const QString &=QString()][specs:const]
-                  - function: toCurrencyString[r:QString][p:float;const QString &;int][specs:const]
-                  - function: formattedDataSize[r:QString][p:qint64;int=2;QLocale::DataSizeFormats=QLocale::DataSizeIecFormat]
+                  - function: toCurrencyString[r:QString][p:double;const QString &;int][specs:const][v:5.7.0]
+                  - function: toCurrencyString[r:QString][p:float;const QString &=QString()][specs:const][v:5.7.0]
+                  - function: toCurrencyString[r:QString][p:float;const QString &;int][specs:const][v:5.7.0]
+                  - function: formattedDataSize[r:QString][p:qint64;int=2;QLocale::DataSizeFormats=QLocale::DataSizeIecFormat][v:5.10.0]
                   - function: uiLanguages[r:QStringList][specs:const]
                   - function: operator==[r:bool][p:const QLocale &][specs:const]
                   - function: operator!=[r:bool][p:const QLocale &][specs:const]
@@ -4811,7 +4811,7 @@ modules:
                   - function: quoteString[r:QString][p:const QString &;QLocale::QuotationStyle=QLocale::StandardQuotation][specs:const]
                   - function: quoteString[r:QString][p:const QStringRef &;QLocale::QuotationStyle=QLocale::StandardQuotation][specs:const]
                   - function: createSeparatedList[r:QString][p:const QStringList &][specs:const]
-            - function: swap[r:void][p:QLocale &;QLocale &]
+            - function: swap[r:void][p:QLocale &;QLocale &][unchecked]
             - function: operator|[r:QLocale::NumberOptions][p:QLocale::NumberOption;QLocale::NumberOption]
             - function: operator|[r:QLocale::NumberOptions][p:QLocale::NumberOption;QLocale::NumberOptions]
             - function: operator|[r:QIncompatibleFlag][p:QLocale::NumberOptions::enum_type;int]
@@ -4839,6 +4839,7 @@ modules:
                         - StandardTime
                         - DaylightTime
                         - GenericTime
+                      version: 5.2.0
                   - enum:
                       name: NameType
                       enumerators:
@@ -4846,6 +4847,7 @@ modules:
                         - LongName
                         - ShortName
                         - OffsetName
+                      version: 5.2.0
                   - constructor: QTimeZone
                   - constructor: QTimeZone[p:const QByteArray &]
                   - constructor: QTimeZone[p:int]
@@ -4887,10 +4889,10 @@ modules:
                   - function: windowsIdToIanaIds[r:QList<QByteArray>][p:const QByteArray &][specs:static]
                   - function: windowsIdToIanaIds[r:QList<QByteArray>][p:const QByteArray &;QLocale::Country][specs:static]
                 version: 5.2.0
-            - function: swap[r:void][p:QTimeZone &;QTimeZone &]
-            - function: operator<<[r:QDataStream &][p:QDataStream &;const QTimeZone &]
-            - function: operator>>[r:QDataStream &][p:QDataStream &;QTimeZone &]
-            - function: operator<<[r:QDebug][p:QDebug;const QTimeZone &]
+            - function: swap[r:void][p:QTimeZone &;QTimeZone &][unchecked]
+            - function: operator<<[r:QDataStream &][p:QDataStream &;const QTimeZone &][v:5.2.0]
+            - function: operator>>[r:QDataStream &][p:QDataStream &;QTimeZone &][v:5.2.0]
+            - function: operator<<[r:QDebug][p:QDebug;const QTimeZone &][v:5.2.0]
           hincludes: <QTimeZone>
       - file:
           name: object
@@ -5140,12 +5142,12 @@ modules:
                   - function: data[r:const void *][specs:const]
                   - function: operator==[r:bool][p:const QVariant &][specs:const]
                   - function: operator!=[r:bool][p:const QVariant &][specs:const]
-                  - function: operator<[r:bool][p:const QVariant &][specs:const]
-                  - function: operator<=[r:bool][p:const QVariant &][specs:const]
-                  - function: operator>[r:bool][p:const QVariant &][specs:const]
-                  - function: operator>=[r:bool][p:const QVariant &][specs:const]
+                  - function: operator<[r:bool][p:const QVariant &][specs:const][v:5.2.0]
+                  - function: operator<=[r:bool][p:const QVariant &][specs:const][v:5.2.0]
+                  - function: operator>[r:bool][p:const QVariant &][specs:const][v:5.2.0]
+                  - function: operator>=[r:bool][p:const QVariant &][specs:const][v:5.2.0]
                   - function: create[r:void][p:int;const void *]
-                  - function: compare[r:int][p:const QVariant &][specs:const][unchecked]
+                  - function: compare[r:int][p:const QVariant &][specs:const][v:5.2.0][unchecked]
                   - function: convert[r:bool][p:const int;void *][specs:const]
                   - function: data_ptr[r:QVariant::DataPtr &]
                   - function: data_ptr[r:const QVariant::DataPtr &][specs:const]
@@ -5155,7 +5157,7 @@ modules:
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QVariant &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QVariant::Type &]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QVariant::Type]
-            - function: swap[r:void][p:QVariant &;QVariant &]
+            - function: swap[r:void][p:QVariant &;QVariant &][unchecked]
             - function: qvariant_cast[r:QVariant][p:const QVariant &][unchecked]
             - function: operator<<[r:QDebug][p:QDebug;const QVariant &]
             - function: operator<<[r:QDebug][p:QDebug;const QVariant::Type]
@@ -5218,7 +5220,7 @@ modules:
                   - function: escape[r:QString][p:const QString &][specs:static]
                   - function: operator==[r:bool][p:const QRegularExpression &][specs:const]
                   - function: operator!=[r:bool][p:const QRegularExpression &][specs:const]
-            - function: swap[r:void][p:QRegularExpression &;QRegularExpression &]
+            - function: swap[r:void][p:QRegularExpression &;QRegularExpression &][unchecked]
             - function: operator|[r:QRegularExpression::PatternOptions][p:QRegularExpression::PatternOption;QRegularExpression::PatternOption]
             - function: operator|[r:QRegularExpression::PatternOptions][p:QRegularExpression::PatternOption;QRegularExpression::PatternOptions]
             - function: operator|[r:QIncompatibleFlag][p:QRegularExpression::PatternOptions::enum_type;int]
@@ -5232,7 +5234,7 @@ modules:
             - class:
                 name: QRegularExpressionMatch
                 elements:
-                  - constructor: QRegularExpressionMatch
+                  - constructor: QRegularExpressionMatch[v:5.1.0]
                   - destructor: ~QRegularExpressionMatch
                   - constructor: QRegularExpressionMatch[p:const QRegularExpressionMatch &]
                   - function: operator=[r:QRegularExpressionMatch &][p:const QRegularExpressionMatch &]
@@ -5263,12 +5265,12 @@ modules:
                   - function: capturedStart[r:int][p:QStringView][specs:const]
                   - function: capturedLength[r:int][p:QStringView][specs:const]
                   - function: capturedEnd[r:int][p:QStringView][specs:const]
-            - function: swap[r:void][p:QRegularExpressionMatch &;QRegularExpressionMatch &]
+            - function: swap[r:void][p:QRegularExpressionMatch &;QRegularExpressionMatch &][unchecked]
             - function: operator<<[r:QDebug][p:QDebug;const QRegularExpressionMatch &]
             - class:
                 name: QRegularExpressionMatchIterator
                 elements:
-                  - constructor: QRegularExpressionMatchIterator
+                  - constructor: QRegularExpressionMatchIterator[v:5.1.0]
                   - destructor: ~QRegularExpressionMatchIterator
                   - constructor: QRegularExpressionMatchIterator[p:const QRegularExpressionMatchIterator &]
                   - function: operator=[r:QRegularExpressionMatchIterator &][p:const QRegularExpressionMatchIterator &]
@@ -5281,7 +5283,7 @@ modules:
                   - function: regularExpression[r:QRegularExpression][specs:const]
                   - function: matchType[r:QRegularExpression::MatchType][specs:const]
                   - function: matchOptions[r:QRegularExpression::MatchOptions][specs:const]
-            - function: swap[r:void][p:QRegularExpressionMatchIterator &;QRegularExpressionMatchIterator &]
+            - function: swap[r:void][p:QRegularExpressionMatchIterator &;QRegularExpressionMatchIterator &][unchecked]
           hincludes: <QRegularExpression>
       - file:
           name: settings
@@ -5451,7 +5453,7 @@ modules:
                   - function: readLine[r:QByteArray][p:qint64]
                   - function: canReadLine[r:bool][specs:const]
                   - function: startTransaction[r:void][v:5.7.0]
-                  - function: commitTransaction[r:void]
+                  - function: commitTransaction[r:void][v:5.7.0]
                   - function: rollbackTransaction[r:void][v:5.7.0]
                   - function: isTransactionStarted[r:bool][specs:const][v:5.7.0]
                   - function: write[r:qint64][p:const char *;qint64]
@@ -5775,11 +5777,9 @@ modules:
                         - SockClose
                         - PlatformPanel
                         - StyleAnimationUpdate
-                        - ApplicationStateChange
-                        - WindowChangeInternal
-                        - ScreenChangeInternal
-                        - PlatformSurface
-                        - Pointer
+                        - ApplicationStateChange[v:5.1.0]
+                        - PlatformSurface[v:5.5.0]
+                        - Pointer[v:5.7.0]
                         - TabletTrackingChange[v:5.9.0]
                         - User
                         - MaxUser
@@ -5867,9 +5867,9 @@ modules:
                   - function: isObject[r:bool][specs:const]
                   - function: isUndefined[r:bool][specs:const]
                   - function: toBool[r:bool][p:bool=false][specs:const]
-                  - function: toInt[r:int][p:int=0][specs:const]
+                  - function: toInt[r:int][p:int=0][specs:const][v:5.2.0]
                   - function: toDouble[r:double][p:double=double(0)][specs:const]
-                  - function: toString[r:QString][specs:const]
+                  - function: toString[r:QString][specs:const][v:5.7.0]
                   - function: toString[r:QString][p:const QString &=QString()][specs:const]
                   - function: toArray[r:QJsonArray][specs:const]
                   - function: toArray[r:QJsonArray][p:const QJsonArray &=QJsonArray()][specs:const]
@@ -5887,7 +5887,7 @@ modules:
                   - constructor: QJsonValueRef[p:QJsonObject *;int]
                   - function: operator=[r:QJsonValueRef &][p:const QJsonValue &]
                   - function: operator=[r:QJsonValueRef &][p:const QJsonValueRef &]
-                  - function: toVariant[r:QVariant][specs:const]
+                  - function: toVariant[r:QVariant][specs:const][v:5.5.0]
                   - function: type[r:QJsonValue::Type][specs:const]
                   - function: isNull[r:bool][specs:const]
                   - function: isBool[r:bool][specs:const]
@@ -5897,15 +5897,15 @@ modules:
                   - function: isObject[r:bool][specs:const]
                   - function: isUndefined[r:bool][specs:const]
                   - function: toBool[r:bool][specs:const]
-                  - function: toInt[r:int][specs:const]
+                  - function: toInt[r:int][specs:const][v:5.2.0]
                   - function: toDouble[r:double][specs:const]
                   - function: toString[r:QString][specs:const]
                   - function: toArray[r:QJsonArray][specs:const]
                   - function: toObject[r:QJsonObject][specs:const]
-                  - function: toBool[r:bool][p:bool][specs:const]
-                  - function: toInt[r:int][p:int][specs:const]
-                  - function: toDouble[r:double][p:double][specs:const]
-                  - function: toString[r:QString][p:const QString &][specs:const]
+                  - function: toBool[r:bool][p:bool][specs:const][v:5.4.0]
+                  - function: toInt[r:int][p:int][specs:const][v:5.4.0]
+                  - function: toDouble[r:double][p:double][specs:const][v:5.4.0]
+                  - function: toString[r:QString][p:const QString &][specs:const][v:5.4.0]
                   - function: operator==[r:bool][p:const QJsonValue &][specs:const]
                   - function: operator!=[r:bool][p:const QJsonValue &][specs:const]
             - function: swap[r:void][p:QJsonValue &;QJsonValue &][unchecked]
@@ -6056,9 +6056,10 @@ modules:
                       enumerators:
                         - Indented
                         - Compact
+                      version: 5.1.0
                   - function: fromJson[r:QJsonDocument][p:const QByteArray &;QJsonParseError *][specs:static]
                   - function: toJson[r:QByteArray][specs:const]
-                  - function: toJson[r:QByteArray][p:QJsonDocument::JsonFormat][specs:const]
+                  - function: toJson[r:QByteArray][p:QJsonDocument::JsonFormat][specs:const][v:5.1.0]
                   - function: isEmpty[r:bool][specs:const]
                   - function: isArray[r:bool][specs:const]
                   - function: isObject[r:bool][specs:const]
@@ -6131,7 +6132,7 @@ modules:
                   - function: keys[r:QStringList][specs:const]
                   - function: insert[r:void][p:const QProcessEnvironment &]
                   - function: systemEnvironment[r:QProcessEnvironment][specs:static]
-            - function: swap[r:void][p:QProcessEnvironment &;QProcessEnvironment &]
+            - function: swap[r:void][p:QProcessEnvironment &;QProcessEnvironment &][unchecked]
             - class:
                 name: QProcess
                 base: QIODevice
@@ -6182,7 +6183,6 @@ modules:
                   - function: start[r:void][p:const QString &;QIODevice::OpenMode=QIODevice::OpenMode(QIODevice::ReadWrite)]
                   - function: start[r:void][p:QIODevice::OpenMode][v:5.1.0]
                   - function: startDetached[r:bool][p:qint64 *][v:5.10.0][unchecked]
-                  - function: open[r:bool][p:QIODevice::OpenMode=QIODevice::OpenMode(QIODevice::ReadWrite)]
                   - function: program[r:QString][specs:const]
                   - function: setProgram[r:void][p:const QString &][v:5.1.0]
                   - function: arguments[r:QStringList][specs:const]
@@ -6214,19 +6214,11 @@ modules:
                   - function: pid[r:Q_PID][specs:const]
                   - function: processId[r:qint64][specs:const][v:5.3.0]
                   - function: waitForStarted[r:bool][p:int=30000]
-                  - function: waitForReadyRead[r:bool][p:int=30000]
-                  - function: waitForBytesWritten[r:bool][p:int=30000]
                   - function: waitForFinished[r:bool][p:int=30000]
                   - function: readAllStandardOutput[r:QByteArray]
                   - function: readAllStandardError[r:QByteArray]
                   - function: exitCode[r:int][specs:const]
                   - function: exitStatus[r:QProcess::ExitStatus][specs:const]
-                  - function: bytesAvailable[r:qint64][specs:const]
-                  - function: bytesToWrite[r:qint64][specs:const]
-                  - function: isSequential[r:bool][specs:const]
-                  - function: canReadLine[r:bool][specs:const]
-                  - function: close[r:void]
-                  - function: atEnd[r:bool][specs:const]
                   - function: execute[r:int][p:const QString &;const QStringList &][specs:static]
                   - function: execute[r:int][p:const QString &][specs:static]
                   - function: startDetached[r:bool][p:const QString &;const QStringList &;const QString &;qint64 *][specs:static]
@@ -6249,7 +6241,7 @@ modules:
           name: mimetype
           checkstate: partially-checked
           elements:
-            - function: qHash[r:uint][p:const QMimeType &;uint]
+            - function: qHash[r:uint][p:const QMimeType &;uint][v:5.6.0]
             - class:
                 name: QMimeType
                 elements:
@@ -6276,7 +6268,7 @@ modules:
                   - function: preferredSuffix[r:QString][specs:const]
                   - function: inherits[r:bool][p:const QString &][specs:const]
                   - function: filterString[r:QString][specs:const]
-            - function: swap[r:void][p:QMimeType &;QMimeType &]
+            - function: swap[r:void][p:QMimeType &;QMimeType &][unchecked]
             - function: operator<<[r:QDebug][p:QDebug;const QMimeType &]
           hincludes: <QMimeType>
       - file:
@@ -6416,12 +6408,13 @@ modules:
                       enumerators:
                         - HexRgb
                         - HexArgb
+                      version: 5.2.0
                   - constructor: QColor
                   - destructor: ~QColor
                   - constructor: QColor[p:Qt::GlobalColor]
                   - constructor: QColor[p:int;int;int;int=255]
                   - constructor: QColor[p:QRgb]
-                  - constructor: QColor[p:QRgba64]
+                  - constructor: QColor[p:QRgba64][v:5.6.0]
                   - constructor: QColor[p:const QString &]
                   - constructor: QColor[p:QStringView]
                   - constructor: QColor[p:const char *]
@@ -6436,8 +6429,8 @@ modules:
                   - function: name[r:QString][specs:const]
                   - function: name[r:QString][p:QColor::NameFormat][specs:const][v:5.2.0]
                   - function: setNamedColor[r:void][p:const QString &]
-                  - function: setNamedColor[r:void][p:QStringView]
-                  - function: setNamedColor[r:void][p:QLatin1String]
+                  - function: setNamedColor[r:void][p:QStringView][v:5.10.0]
+                  - function: setNamedColor[r:void][p:QLatin1String][v:5.8.0]
                   - function: colorNames[r:QStringList][specs:static]
                   - function: spec[r:QColor::Spec][specs:const]
                   - function: alpha[r:int][specs:const]
@@ -6511,8 +6504,8 @@ modules:
                   - function: fromRgba[r:QColor][p:QRgb][specs:static]
                   - function: fromRgb[r:QColor][p:int;int;int;int=255][specs:static]
                   - function: fromRgbF[r:QColor][p:qreal;qreal;qreal;qreal=qreal(1.0)][specs:static]
-                  - function: fromRgba64[r:QColor][p:ushort;ushort;ushort;ushort][specs:static]
-                  - function: fromRgba64[r:QColor][p:QRgba64][specs:static]
+                  - function: fromRgba64[r:QColor][p:ushort;ushort;ushort;ushort][specs:static][v:5.6.0]
+                  - function: fromRgba64[r:QColor][p:QRgba64][specs:static][v:5.6.0]
                   - function: fromHsv[r:QColor][p:int;int;int;int=255][specs:static]
                   - function: fromHsvF[r:QColor][p:qreal;qreal;qreal;qreal=qreal(1.0)][specs:static]
                   - function: fromCmyk[r:QColor][p:int;int;int;int;int=255][specs:static]
@@ -6526,7 +6519,7 @@ modules:
                   - function: operator==[r:bool][p:const QColor &][specs:const]
                   - function: operator!=[r:bool][p:const QColor &][specs:const]
                   - function: isValidColor[r:bool][p:const QString &][specs:static]
-                  - function: isValidColor[r:bool][p:QStringView][specs:static]
+                  - function: isValidColor[r:bool][p:QStringView][specs:static][v:5.10.0]
                   - function: isValidColor[r:bool][p:QLatin1String][specs:static]
           hincludes: <QColor>
       - file:
@@ -6568,7 +6561,7 @@ modules:
                         - NoAntialias
                         - OpenGLCompatible
                         - ForceIntegerMetrics
-                        - NoSubpixelAntialias
+                        - NoSubpixelAntialias[v:5.4.0]
                         - PreferNoShaping[unchecked]
                         - NoFontMerging
                   - enum:
@@ -6581,14 +6574,14 @@ modules:
                   - enum:
                       name: Weight
                       enumerators:
-                        - Thin
-                        - ExtraLight
+                        - Thin[v:5.5.0]
+                        - ExtraLight[v:5.5.0]
                         - Light
                         - Normal
-                        - Medium
+                        - Medium[v:5.5.0]
                         - DemiBold
                         - Bold
-                        - ExtraBold
+                        - ExtraBold[v:5.5.0]
                         - Black
                   - enum:
                       name: Style
@@ -6721,7 +6714,7 @@ modules:
                   - function: resolve[r:QFont][p:const QFont &][specs:const]
                   - function: resolve[r:uint][specs:const]
                   - function: resolve[r:void][p:uint]
-            - function: swap[r:void][p:QFont &;QFont &]
+            - function: swap[r:void][p:QFont &;QFont &][unchecked]
             - function: qHash[r:uint][p:const QFont &;uint][v:5.3.0]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QFont &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QFont &]
@@ -6779,6 +6772,7 @@ modules:
                         - FixedFont
                         - TitleFont
                         - SmallestReadableFont
+                      version: 5.2.0
                   - function: standardSizes[r:QList<int>][specs:static]
                   - constructor: QFontDatabase
                   - function: writingSystems[r:QList<QFontDatabase::WritingSystem>][specs:const]
@@ -6836,7 +6830,7 @@ modules:
                   - function: styleHint[r:QFont::StyleHint][specs:const]
                   - function: rawMode[r:bool][specs:const]
                   - function: exactMatch[r:bool][specs:const]
-            - function: swap[r:void][p:QFontInfo &;QFontInfo &]
+            - function: swap[r:void][p:QFontInfo &;QFontInfo &][unchecked]
           hincludes: <QFontInfo>
       - file:
           name: fontmetrics
@@ -6884,7 +6878,7 @@ modules:
                   - function: lineWidth[r:int][specs:const]
                   - function: operator==[r:bool][p:const QFontMetrics &][specs:const]
                   - function: operator!=[r:bool][p:const QFontMetrics &][specs:const]
-            - function: swap[r:void][p:QFontMetrics &;QFontMetrics &]
+            - function: swap[r:void][p:QFontMetrics &;QFontMetrics &][unchecked]
             - class:
                 name: QFontMetricsF
                 elements:
@@ -6926,7 +6920,7 @@ modules:
                   - function: lineWidth[r:qreal][specs:const]
                   - function: operator==[r:bool][p:const QFontMetricsF &][specs:const]
                   - function: operator!=[r:bool][p:const QFontMetricsF &][specs:const]
-            - function: swap[r:void][p:QFontMetricsF &;QFontMetricsF &]
+            - function: swap[r:void][p:QFontMetricsF &;QFontMetricsF &][unchecked]
           hincludes: <QFontMetrics>
       - file:
           name: cursor
@@ -6944,7 +6938,7 @@ modules:
                   - function: operator=[r:QCursor &][p:const QCursor &]
                   - constructor: QCursor[p:QCursor &&]
                   - function: operator=[r:QCursor &][p:QCursor &&]
-                  - function: swap[r:void][p:QCursor &]
+                  - function: swap[r:void][p:QCursor &][v:5.7.0]
                   - function: shape[r:Qt::CursorShape][specs:const]
                   - function: setShape[r:void][p:Qt::CursorShape]
                   - function: bitmap[r:const QBitmap *][specs:const]
@@ -6957,7 +6951,7 @@ modules:
                   - function: setPos[r:void][p:QScreen *;int;int][specs:static]
                   - function: setPos[r:void][p:const QPoint &][specs:static]
                   - function: setPos[r:void][p:QScreen *;const QPoint &][specs:static]
-            - function: swap[r:void][p:QCursor &;QCursor &]
+            - function: swap[r:void][p:QCursor &;QCursor &][unchecked]
             - function: operator==[r:bool][p:const QCursor &;const QCursor &][v:5.10.0]
             - function: operator!=[r:bool][p:const QCursor &;const QCursor &][v:5.10.0]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QCursor &]
@@ -7033,7 +7027,7 @@ modules:
                   - function: operator![r:bool][specs:const]
                   - function: handle[r:QPlatformPixmap *][specs:const]
                   - function: data_ptr[r:QPixmap::DataPtr &]
-            - function: swap[r:void][p:QPixmap &;QPixmap &]
+            - function: swap[r:void][p:QPixmap &;QPixmap &][unchecked]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QPixmap &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QPixmap &]
             - function: operator<<[r:QDebug][p:QDebug;const QPixmap &]
@@ -7062,7 +7056,7 @@ modules:
                   - function: fromData[r:QBitmap][p:const QSize &;const uchar *;QImage::Format][specs:static]
                   - function: transformed[r:QBitmap][p:const QMatrix &][specs:const]
                   - function: transformed[r:QBitmap][p:const QTransform &][specs:const]
-            - function: swap[r:void][p:QBitmap &;QBitmap &]
+            - function: swap[r:void][p:QBitmap &;QBitmap &][unchecked]
           hincludes: <QBitmap>
       - file:
           name: icon
@@ -7111,7 +7105,7 @@ modules:
                   - function: availableSizes[r:QList<QSize>][p:QIcon::Mode=QIcon::Normal;QIcon::State=QIcon::Off][specs:const]
                   - function: setIsMask[r:void][p:bool][v:5.6.0]
                   - function: isMask[r:bool][specs:const][v:5.6.0]
-                  - function: fromTheme[r:QIcon][p:const QString &][specs:static]
+                  - function: fromTheme[r:QIcon][p:const QString &][specs:static][v:5.7.0]
                   - function: fromTheme[r:QIcon][p:const QString &;const QIcon &][specs:static]
                   - function: hasThemeIcon[r:bool][p:const QString &][specs:static]
                   - function: themeSearchPaths[r:QStringList][specs:static]
@@ -7119,7 +7113,7 @@ modules:
                   - function: themeName[r:QString][specs:static]
                   - function: setThemeName[r:void][p:const QString &][specs:static]
                   - function: data_ptr[r:QIcon::DataPtr &]
-            - function: swap[r:void][p:QIcon &;QIcon &]
+            - function: swap[r:void][p:QIcon &;QIcon &][unchecked]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QIcon &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QIcon &]
             - function: operator<<[r:QDebug][p:QDebug;const QIcon &]
@@ -7226,8 +7220,8 @@ modules:
                   - function: setPixel[r:void][p:const QPoint &;uint]
                   - function: pixelColor[r:QColor][p:int;int][specs:const][v:5.6.0]
                   - function: pixelColor[r:QColor][p:const QPoint &][specs:const][v:5.6.0]
-                  - function: setPixelColor[r:void][p:int;int;const QColor &]
-                  - function: setPixelColor[r:void][p:const QPoint &;const QColor &]
+                  - function: setPixelColor[r:void][p:int;int;const QColor &][v:5.6.0]
+                  - function: setPixelColor[r:void][p:const QPoint &;const QColor &][v:5.6.0]
                   - function: colorTable[r:QVector<QRgb>][specs:const]
                   - function: setColorTable[r:void][p:const QVector<QRgb>]
                   - function: devicePixelRatio[r:qreal][specs:const]
@@ -7273,11 +7267,11 @@ modules:
                   - function: textKeys[r:QStringList][specs:const]
                   - function: text[r:QString][p:const QString &][specs:const]
                   - function: setText[r:void][p:const QString &;const QString &]
-                  - function: pixelFormat[r:QPixelFormat][specs:const]
-                  - function: toPixelFormat[r:QPixelFormat][p:QImage::Format][specs:static]
-                  - function: toImageFormat[r:QImage::Format][p:QPixelFormat][specs:static]
+                  - function: pixelFormat[r:QPixelFormat][specs:const][v:5.4.0]
+                  - function: toPixelFormat[r:QPixelFormat][p:QImage::Format][specs:static][v:5.4.0]
+                  - function: toImageFormat[r:QImage::Format][p:QPixelFormat][specs:static][v:5.4.0]
                   - function: data_ptr[r:QImage::DataPtr &]
-            - function: swap[r:void][p:QImage &;QImage &]
+            - function: swap[r:void][p:QImage &;QImage &][unchecked]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QImage &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QImage &]
             - function: operator<<[r:QDebug][p:QDebug;const QImage &]
@@ -7393,7 +7387,7 @@ modules:
                 checkstate: partially-checked
                 elements:
                   - constructor: QVector2D
-                  - constructor: QVector2D[p:Qt::Initialization]
+                  - constructor: QVector2D[p:Qt::Initialization][v:5.5.0]
                   - constructor: QVector2D[p:const QVector2D &]
                   - destructor: ~QVector2D
                   - function: operator=[r:QVector2D &][p:const QVector2D &]
@@ -7453,7 +7447,7 @@ modules:
                   - constructor: QVector3D[p:const QVector3D &]
                   - destructor: ~QVector3D
                   - function: operator=[r:QVector3D &][p:const QVector3D &]
-                  - constructor: QVector3D[p:Qt::Initialization]
+                  - constructor: QVector3D[p:Qt::Initialization][v:5.5.0]
                   - constructor: QVector3D[p:float;float;float]
                   - constructor: QVector3D[p:const QPoint &]
                   - constructor: QVector3D[p:const QPointF &]
@@ -7520,7 +7514,7 @@ modules:
                   - constructor: QVector4D[p:const QVector4D &]
                   - destructor: ~QVector4D
                   - function: operator=[r:QVector4D &][p:const QVector4D &]
-                  - constructor: QVector4D[p:Qt::Initialization]
+                  - constructor: QVector4D[p:Qt::Initialization][v:5.5.0]
                   - constructor: QVector4D[p:float;float;float;float]
                   - constructor: QVector4D[p:const QPoint &]
                   - constructor: QVector4D[p:const QPointF &]
@@ -7582,7 +7576,7 @@ modules:
                   - constructor: QQuaternion[p:const QQuaternion &]
                   - destructor: ~QQuaternion
                   - function: operator=[r:QQuaternion &][p:const QQuaternion &]
-                  - constructor: QQuaternion[p:Qt::Initialization]
+                  - constructor: QQuaternion[p:Qt::Initialization][v:5.5.0]
                   - constructor: QQuaternion[p:float;float;float;float]
                   - constructor: QQuaternion[p:float;const QVector3D &]
                   - constructor: QQuaternion[p:const QVector4D &]
@@ -7711,7 +7705,7 @@ modules:
                   - function: operator^=[r:QRegion &][p:const QRegion &]
                   - function: operator==[r:bool][p:const QRegion &][specs:const]
                   - function: operator!=[r:bool][p:const QRegion &][specs:const]
-            - function: swap[r:void][p:QRegion &;QRegion &]
+            - function: swap[r:void][p:QRegion &;QRegion &][unchecked]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QRegion &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QRegion &]
             - function: operator<<[r:QDebug][p:QDebug;const QRegion &]
@@ -7756,7 +7750,7 @@ modules:
           elements:
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QKeySequence &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QKeySequence &]
-            - function: qHash[r:uint][p:const QKeySequence &;uint]
+            - function: qHash[r:uint][p:const QKeySequence &;uint][v:5.6.0]
             - class:
                 name: QKeySequence
                 elements:
@@ -7831,9 +7825,9 @@ modules:
                         - Quit
                         - FullScreen
                         - Deselect[v:5.1.0]
-                        - DeleteCompleteLine
-                        - Backspace
-                        - Cancel
+                        - DeleteCompleteLine[v:5.2.0]
+                        - Backspace[v:5.5.0]
+                        - Cancel[v:5.6.0]
                   - enum:
                       name: SequenceFormat
                       enumerators:
@@ -7872,7 +7866,7 @@ modules:
                   - function: operator>=[r:bool][p:const QKeySequence &][specs:const]
                   - function: isDetached[r:bool][specs:const]
                   - function: data_ptr[r:QKeySequence::DataPtr &]
-            - function: swap[r:void][p:QKeySequence &;QKeySequence &]
+            - function: swap[r:void][p:QKeySequence &;QKeySequence &][unchecked]
             - function: operator<<[r:QDebug][p:QDebug;const QKeySequence &]
           hincludes: <QKeySequence>
       - file:
@@ -7914,7 +7908,7 @@ modules:
                   - function: operator!=[r:bool][p:const QBrush &][specs:const]
                   - function: isDetached[r:bool][specs:const]
                   - function: data_ptr[r:QBrush::DataPtr &]
-            - function: swap[r:void][p:QBrush &;QBrush &]
+            - function: swap[r:void][p:QBrush &;QBrush &][unchecked]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QBrush &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QBrush &]
             - function: operator<<[r:QDebug][p:QDebug;const QBrush &]
@@ -8060,7 +8054,7 @@ modules:
                   - function: setBoundingRect[r:void][p:const QRectF &]
                   - function: boundingRect[r:QRectF][specs:const]
                   - function: isEmpty[r:bool][specs:const]
-            - function: swap[r:void][p:QGlyphRun &;QGlyphRun &]
+            - function: swap[r:void][p:QGlyphRun &;QGlyphRun &][unchecked]
           hincludes: <QGlyphRun>
       - file:
           name: painter
@@ -8435,14 +8429,14 @@ modules:
                   - function: operator|=[r:QPainterPath &][p:const QPainterPath &]
                   - function: operator+=[r:QPainterPath &][p:const QPainterPath &]
                   - function: operator-=[r:QPainterPath &][p:const QPainterPath &]
-            - function: swap[r:void][p:QPainterPath &;QPainterPath &]
+            - function: swap[r:void][p:QPainterPath &;QPainterPath &][unchecked]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QPainterPath &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QPainterPath &]
             - class:
                 name: QPainterPathStroker
                 elements:
                   - constructor: QPainterPathStroker
-                  - constructor: QPainterPathStroker[p:const QPen &]
+                  - constructor: QPainterPathStroker[p:const QPen &][v:5.3.0]
                   - destructor: ~QPainterPathStroker
                   - function: setWidth[r:void][p:qreal]
                   - function: width[r:qreal][specs:const]
@@ -8559,7 +8553,7 @@ modules:
                   - function: resolve[r:QPalette][p:const QPalette &][specs:const]
                   - function: resolve[r:uint][specs:const]
                   - function: resolve[r:void][p:uint]
-            - function: swap[r:void][p:QPalette &;QPalette &]
+            - function: swap[r:void][p:QPalette &;QPalette &][unchecked]
             - function: operator<<[r:QDataStream &][p:QDataStream &;const QPalette &]
             - function: operator>>[r:QDataStream &][p:QDataStream &;QPalette &]
             - function: operator<<[r:QDebug][p:QDebug;const QPalette &]
@@ -8609,7 +8603,7 @@ modules:
                   - function: operator!=[r:bool][p:const QPen &][specs:const]
                   - function: isDetached[r:bool]
                   - function: data_ptr[r:QPen::DataPtr &]
-            - function: swap[r:void][p:QPen &;QPen &]
+            - function: swap[r:void][p:QPen &;QPen &][unchecked]
             - function: operator<<[r:QDebug][p:QDebug;const QPen &]
           hincludes: <QPen>
       - file:
@@ -8646,7 +8640,7 @@ modules:
                   - function: outputFormatList[r:QStringList][specs:static]
                   - function: paintEngine[r:QPaintEngine *][specs:const]
                   - function: data_ptr[r:QPicture::DataPtr &]
-            - function: swap[r:void][p:QPicture &;QPicture &]
+            - function: swap[r:void][p:QPicture &;QPicture &][unchecked]
             - class:
                 name: QPictureIO
                 elements:
@@ -8700,21 +8694,25 @@ modules:
                         - HSV
                         - YUV
                         - Alpha[v:5.5.0]
+                      version: 5.4.0
                   - enum:
                       name: AlphaUsage
                       enumerators:
                         - UsesAlpha
                         - IgnoresAlpha
+                      version: 5.4.0
                   - enum:
                       name: AlphaPosition
                       enumerators:
                         - AtBeginning
                         - AtEnd
+                      version: 5.4.0
                   - enum:
                       name: AlphaPremultiplied
                       enumerators:
                         - NotPremultiplied
                         - Premultiplied
+                      version: 5.4.0
                   - enum:
                       name: TypeInterpretation
                       enumerators:
@@ -8722,6 +8720,7 @@ modules:
                         - UnsignedShort
                         - UnsignedByte
                         - FloatingPoint
+                      version: 5.4.0
                   - enum:
                       name: YUVLayout
                       enumerators:
@@ -8741,12 +8740,14 @@ modules:
                         - IMC4
                         - Y8
                         - Y16
+                      version: 5.4.0
                   - enum:
                       name: ByteOrder
                       enumerators:
                         - LittleEndian
                         - BigEndian
                         - CurrentSystemEndian
+                      version: 5.4.0
                   - constructor: QPixelFormat
                   - constructor: QPixelFormat[p:const QPixelFormat &]
                   - destructor: ~QPixelFormat
@@ -8774,6 +8775,7 @@ modules:
                   - function: byteOrder[r:QPixelFormat::ByteOrder][specs:const]
                   - function: yuvLayout[r:QPixelFormat::YUVLayout][specs:const]
                   - function: subEnum[r:uchar][specs:const]
+                version: 5.4.0
             - function: qPixelFormatRgba[r:QPixelFormat][p:uchar;uchar;uchar;uchar;QPixelFormat::AlphaUsage;QPixelFormat::AlphaPosition;QPixelFormat::AlphaPremultiplied;QPixelFormat::TypeInterpretation]
             - function: qPixelFormatGrayscale[r:QPixelFormat][p:uchar;QPixelFormat::TypeInterpretation]
             - function: qPixelFormatAlpha[r:QPixelFormat][p:uchar;QPixelFormat::TypeInterpretation][v:5.5.0]
@@ -8826,7 +8828,7 @@ modules:
                   - function: grabWindow[r:QPixmap][p:WId;int;int;int;int]
                   - function: refreshRate[r:qreal][specs:const]
                   - function: geometryChanged[r:void][p:const QRect &]
-                  - function: availableGeometryChanged[r:void][p:const QRect &]
+                  - function: availableGeometryChanged[r:void][p:const QRect &][v:5.4.0]
                   - function: physicalSizeChanged[r:void][p:const QSizeF &]
                   - function: physicalDotsPerInchChanged[r:void][p:qreal]
                   - function: logicalDotsPerInchChanged[r:void][p:qreal]
@@ -8868,7 +8870,7 @@ modules:
                   - function: performanceHint[r:QStaticText::PerformanceHint][specs:const]
                   - function: operator==[r:bool][p:const QStaticText &][specs:const]
                   - function: operator!=[r:bool][p:const QStaticText &][specs:const]
-            - function: swap[r:void][p:QStaticText &;QStaticText &]
+            - function: swap[r:void][p:QStaticText &;QStaticText &][unchecked]
           hincludes: <QStaticText>
       - file:
           name: textoption
@@ -9004,6 +9006,7 @@ modules:
                   - function: regularExpression[r:QRegularExpression][specs:const]
                   - function: setRegularExpression[r:void][p:const QRegularExpression &]
                   - function: regularExpressionChanged[r:void][p:const QRegularExpression &]
+                version: 5.1.0
           hincludes: <QValidator>
       - file:
           name: window
@@ -9023,6 +9026,7 @@ modules:
                         - Minimized
                         - Maximized
                         - FullScreen
+                      version: 5.1.0
                   - enum:
                       name: AncestorMode
                       enumerators:
@@ -9034,8 +9038,8 @@ modules:
                   - function: setSurfaceType[r:void][p:QSurface::SurfaceType]
                   - function: surfaceType[r:QSurface::SurfaceType][specs:const]
                   - function: isVisible[r:bool][specs:const]
-                  - function: visibility[r:QWindow::Visibility][specs:const]
-                  - function: setVisibility[r:void][p:QWindow::Visibility]
+                  - function: visibility[r:QWindow::Visibility][specs:const][v:5.1.0]
+                  - function: setVisibility[r:void][p:QWindow::Visibility][v:5.1.0]
                   - function: create[r:void]
                   - function: winId[r:WId][specs:const]
                   - function: parent[r:QWindow *][p:QWindow::AncestorMode][specs:const][v:5.9.0]
@@ -9054,9 +9058,9 @@ modules:
                   - function: type[r:Qt::WindowType][specs:const]
                   - function: title[r:QString][specs:const]
                   - function: setOpacity[r:void][p:qreal]
-                  - function: opacity[r:qreal][specs:const]
-                  - function: setMask[r:void][p:const QRegion &]
-                  - function: mask[r:QRegion][specs:const]
+                  - function: opacity[r:qreal][specs:const][v:5.1.0]
+                  - function: setMask[r:void][p:const QRegion &][v:5.1.0]
+                  - function: mask[r:QRegion][specs:const][v:5.1.0]
                   - function: isActive[r:bool][specs:const]
                   - function: reportContentOrientationChange[r:void][p:Qt::ScreenOrientation]
                   - function: contentOrientation[r:Qt::ScreenOrientation][specs:const]
@@ -9116,7 +9120,7 @@ modules:
                   - function: fromWinId[r:QWindow *][p:WId][specs:static]
                   - function: setVulkanInstance[r:void][p:QVulkanInstance *]
                   - function: vulkanInstance[r:QVulkanInstance *][specs:const]
-                  - function: requestActivate[r:void]
+                  - function: requestActivate[r:void][v:5.1.0]
                   - function: setVisible[r:void][p:bool]
                   - function: show[r:void]
                   - function: hide[r:void]
@@ -9153,11 +9157,11 @@ modules:
                   - function: maximumWidthChanged[r:void][p:int][binding:signals]
                   - function: maximumHeightChanged[r:void][p:int][binding:signals]
                   - function: visibleChanged[r:void][p:bool][binding:signals]
-                  - function: visibilityChanged[r:void][p:QWindow::Visibility][binding:signals]
-                  - function: activeChanged[r:void][binding:signals]
+                  - function: visibilityChanged[r:void][p:QWindow::Visibility][binding:signals][v:5.1.0]
+                  - function: activeChanged[r:void][binding:signals][v:5.1.0]
                   - function: contentOrientationChanged[r:void][p:Qt::ScreenOrientation][binding:signals]
                   - function: focusObjectChanged[r:void][p:QObject *][binding:signals]
-                  - function: opacityChanged[r:void][p:qreal][binding:signals]
+                  - function: opacityChanged[r:void][p:qreal][binding:signals][v:5.1.0]
             - function: operator<<[r:QDebug][p:QDebug;const QWindow *]
           hincludes: <QWindow>
       - file:
@@ -9184,9 +9188,9 @@ modules:
                   - function: screenPos[r:const QPointF &][specs:const]
                   - function: button[r:Qt::MouseButton][specs:const]
                   - function: buttons[r:Qt::MouseButtons][specs:const]
-                  - function: setLocalPos[r:void][p:const QPointF &]
-                  - function: source[r:Qt::MouseEventSource][specs:const]
-                  - function: flags[r:Qt::MouseEventFlags][specs:const]
+                  - function: setLocalPos[r:void][p:const QPointF &][v:5.8.0]
+                  - function: source[r:Qt::MouseEventSource][specs:const][v:5.3.0]
+                  - function: flags[r:Qt::MouseEventFlags][specs:const][v:5.3.0]
             - class:
                 name: QWheelEvent
                 base: QEvent
@@ -9202,7 +9206,7 @@ modules:
                   - constructor: QWheelEvent[p:const QPointF &;const QPointF &;QPoint;QPoint;int;Qt::Orientation;Qt::MouseButtons;Qt::KeyboardModifiers]
                   - constructor: QWheelEvent[p:const QPointF &;const QPointF &;QPoint;QPoint;int;Qt::Orientation;Qt::MouseButtons;Qt::KeyboardModifiers;Qt::ScrollPhase]
                   - constructor: QWheelEvent[p:const QPointF &;const QPointF &;QPoint;QPoint;int;Qt::Orientation;Qt::MouseButtons;Qt::KeyboardModifiers;Qt::ScrollPhase;Qt::MouseEventSource]
-                  - constructor: QWheelEvent[p:const QPointF &;const QPointF &;QPoint;QPoint;int;Qt::Orientation;Qt::MouseButtons;Qt::KeyboardModifiers;Qt::ScrollPhase;Qt::MouseEventSource;bool]
+                  - constructor: QWheelEvent[p:const QPointF &;const QPointF &;QPoint;QPoint;int;Qt::Orientation;Qt::MouseButtons;Qt::KeyboardModifiers;Qt::ScrollPhase;Qt::MouseEventSource;bool][v:5.7.0]
                   - destructor: ~QWheelEvent
                   - function: pixelDelta[r:QPoint][specs:const]
                   - function: angleDelta[r:QPoint][specs:const]
@@ -9217,9 +9221,9 @@ modules:
                   - function: posF[r:const QPointF &][specs:const]
                   - function: globalPosF[r:const QPointF &][specs:const]
                   - function: buttons[r:Qt::MouseButtons][specs:const]
-                  - function: phase[r:Qt::ScrollPhase][specs:const]
-                  - function: inverted[r:bool][specs:const]
-                  - function: source[r:Qt::MouseEventSource][specs:const]
+                  - function: phase[r:Qt::ScrollPhase][specs:const][v:5.2.0]
+                  - function: inverted[r:bool][specs:const][v:5.7.0]
+                  - function: source[r:Qt::MouseEventSource][specs:const][v:5.5.0]
             - class:
                 name: QKeyEvent
                 base: QEvent
@@ -9378,8 +9382,8 @@ modules:
                   - function: setMouseTracking[r:void][p:bool]
                   - function: hasMouseTracking[r:bool][specs:const]
                   - function: underMouse[r:bool][specs:const]
-                  - function: setTabletTracking[r:void][p:bool]
-                  - function: hasTabletTracking[r:bool][specs:const]
+                  - function: setTabletTracking[r:void][p:bool][v:5.9.0]
+                  - function: hasTabletTracking[r:bool][specs:const][v:5.9.0]
                   - function: setMask[r:void][p:const QBitmap &]
                   - function: setMask[r:void][p:const QRegion &]
                   - function: mask[r:QRegion][specs:const]
@@ -9805,6 +9809,7 @@ modules:
                       enumerators:
                         - LeadingPosition
                         - TrailingPosition
+                      version: 5.2.0
                   - constructor: QLineEdit[p:QWidget *=(QWidget*)nullptr]
                   - constructor: QLineEdit[p:const QString &;QWidget *=(QWidget*)nullptr]
                   - destructor: ~QLineEdit
@@ -9816,8 +9821,8 @@ modules:
                   - function: setMaxLength[r:void][p:int]
                   - function: setFrame[r:void][p:bool]
                   - function: hasFrame[r:bool][specs:const]
-                  - function: setClearButtonEnabled[r:void][p:bool]
-                  - function: isClearButtonEnabled[r:bool][specs:const]
+                  - function: setClearButtonEnabled[r:void][p:bool][v:5.2.0]
+                  - function: isClearButtonEnabled[r:bool][specs:const][v:5.2.0]
                   - enum:
                       name: EchoMode
                       enumerators:
@@ -9833,8 +9838,6 @@ modules:
                   - function: validator[r:const QValidator *][specs:const]
                   - function: setCompleter[r:void][p:QCompleter *]
                   - function: completer[r:QCompleter *][specs:const]
-                  - function: sizeHint[r:QSize][specs:const]
-                  - function: minimumSizeHint[r:QSize][specs:const]
                   - function: cursorPosition[r:int][specs:const]
                   - function: setCursorPosition[r:void][p:int]
                   - function: cursorPositionAt[r:int][p:const QPoint &]
@@ -9888,9 +9891,6 @@ modules:
                   - function: returnPressed[r:void][binding:signals]
                   - function: editingFinished[r:void][binding:signals]
                   - function: selectionChanged[r:void][binding:signals]
-                  - function: inputMethodQuery[r:QVariant][p:Qt::InputMethodQuery][specs:const]
-                  - function: inputMethodQuery[r:QVariant][p:Qt::InputMethodQuery;QVariant][specs:const]
-                  - function: event[r:bool][p:QEvent *]
             - function: newLineEdit[r:QLineEdit&][p:QWidget*][binding:newfunction]
             - function: newLineEdit[r:QLineEdit&][p:const QString &;QWidget*][binding:newfunction]
           hincludes: <QLineEdit>
@@ -10009,8 +10009,6 @@ modules:
                   - function: showPopup[r:void]
                   - function: hidePopup[r:void]
                   - function: event[r:bool][p:QEvent *]
-                  - function: inputMethodQuery[r:QVariant][p:Qt::InputMethodQuery][specs:const]
-                  - function: inputMethodQuery[r:QVariant][p:Qt::InputMethodQuery;const QVariant &][specs:const]
                   - function: clear[r:void]
                   - function: clearEditText[r:void]
                   - function: setEditText[r:void][p:const QString &]
@@ -11251,10 +11249,10 @@ modules:
                       enumerators:
                         - NoButtons
                         - DontUseNativeDialog
-                        - ScalableFonts
-                        - NonScalableFonts
-                        - MonospacedFonts
-                        - ProportionalFonts
+                        - ScalableFonts[v:5.2.0]
+                        - NonScalableFonts[v:5.2.0]
+                        - MonospacedFonts[v:5.2.0]
+                        - ProportionalFonts[v:5.2.0]
                   - constructor: QFontDialog[p:QWidget *=(QWidget*)nullptr]
                   - constructor: QFontDialog[p:const QFont &;QWidget *=(QWidget*)nullptr]
                   - destructor: ~QFontDialog
@@ -11453,7 +11451,7 @@ modules:
                         - HaveCustomButton1
                         - HaveCustomButton2
                         - HaveCustomButton3
-                        - NoCancelButtonOnLastPage
+                        - NoCancelButtonOnLastPage[v:5.3.0]
                   - constructor: QWizard[p:QWidget *=(QWidget*)nullptr;Qt::WindowFlags=Qt::WindowFlags()]
                   - destructor: ~QWizard
                   - function: addPage[r:int][p:QWizardPage *]
@@ -11608,7 +11606,7 @@ modules:
                   - function: setTextDirection[r:void][p:QProgressBar::Direction]
                   - function: textDirection[r:QProgressBar::Direction][specs:const]
                   - function: setFormat[r:void][p:const QString &]
-                  - function: resetFormat[r:void]
+                  - function: resetFormat[r:void][v:5.1.0]
                   - function: format[r:QString][specs:const]
                   - function: reset[r:void]
                   - function: setRange[r:void][p:int;int]

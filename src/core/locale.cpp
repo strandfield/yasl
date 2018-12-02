@@ -155,7 +155,9 @@ static void register_locale_language_enum(script::Class locale)
   language.addValue("Turkish", QLocale::Turkish);
   language.addValue("Turkmen", QLocale::Turkmen);
   language.addValue("Tahitian", QLocale::Tahitian);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Uighur", QLocale::Uighur);
+#endif
   language.addValue("Ukrainian", QLocale::Ukrainian);
   language.addValue("Urdu", QLocale::Urdu);
   language.addValue("Uzbek", QLocale::Uzbek);
@@ -288,57 +290,159 @@ static void register_locale_language_enum(script::Class locale)
   language.addValue("Kako", QLocale::Kako);
   language.addValue("Meta", QLocale::Meta);
   language.addValue("Ngiemboon", QLocale::Ngiemboon);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Aragonese", QLocale::Aragonese);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Akkadian", QLocale::Akkadian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("AncientEgyptian", QLocale::AncientEgyptian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("AncientGreek", QLocale::AncientGreek);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Aramaic", QLocale::Aramaic);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Balinese", QLocale::Balinese);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Bamun", QLocale::Bamun);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("BatakToba", QLocale::BatakToba);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Buginese", QLocale::Buginese);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Buhid", QLocale::Buhid);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Carian", QLocale::Carian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Chakma", QLocale::Chakma);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("ClassicalMandaic", QLocale::ClassicalMandaic);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Coptic", QLocale::Coptic);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Dogri", QLocale::Dogri);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("EasternCham", QLocale::EasternCham);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("EasternKayah", QLocale::EasternKayah);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Etruscan", QLocale::Etruscan);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Gothic", QLocale::Gothic);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Hanunoo", QLocale::Hanunoo);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Ingush", QLocale::Ingush);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("LargeFloweryMiao", QLocale::LargeFloweryMiao);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Lepcha", QLocale::Lepcha);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Limbu", QLocale::Limbu);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Lisu", QLocale::Lisu);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Lu", QLocale::Lu);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Lycian", QLocale::Lycian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Lydian", QLocale::Lydian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Mandingo", QLocale::Mandingo);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Manipuri", QLocale::Manipuri);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Meroitic", QLocale::Meroitic);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("NorthernThai", QLocale::NorthernThai);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("OldIrish", QLocale::OldIrish);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("OldNorse", QLocale::OldNorse);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("OldPersian", QLocale::OldPersian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("OldTurkish", QLocale::OldTurkish);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Pahlavi", QLocale::Pahlavi);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Parthian", QLocale::Parthian);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Phoenician", QLocale::Phoenician);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("PrakritLanguage", QLocale::PrakritLanguage);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Rejang", QLocale::Rejang);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Sabaean", QLocale::Sabaean);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Samaritan", QLocale::Samaritan);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Santali", QLocale::Santali);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Saurashtra", QLocale::Saurashtra);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Sora", QLocale::Sora);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Sylheti", QLocale::Sylheti);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Tagbanwa", QLocale::Tagbanwa);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("TaiDam", QLocale::TaiDam);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("TaiNua", QLocale::TaiNua);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   language.addValue("Ugaritic", QLocale::Ugaritic);
+#endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   language.addValue("Akoose", QLocale::Akoose);
 #endif
@@ -471,8 +575,12 @@ static void register_locale_language_enum(script::Class locale)
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   language.addValue("TuvaluLanguage", QLocale::TuvaluLanguage);
 #endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   language.addValue("UncodedLanguages", QLocale::UncodedLanguages);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   language.addValue("Cantonese", QLocale::Cantonese);
+#endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   language.addValue("Osage", QLocale::Osage);
 #endif
@@ -539,112 +647,324 @@ static void register_locale_script_enum(script::Class locale)
   script.addValue("SyriacScript", QLocale::SyriacScript);
   script.addValue("YiScript", QLocale::YiScript);
   script.addValue("VaiScript", QLocale::VaiScript);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("AvestanScript", QLocale::AvestanScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("BalineseScript", QLocale::BalineseScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("BamumScript", QLocale::BamumScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("BatakScript", QLocale::BatakScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("BopomofoScript", QLocale::BopomofoScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("BrahmiScript", QLocale::BrahmiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("BugineseScript", QLocale::BugineseScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("BuhidScript", QLocale::BuhidScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("CanadianAboriginalScript", QLocale::CanadianAboriginalScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("CarianScript", QLocale::CarianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("ChakmaScript", QLocale::ChakmaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("ChamScript", QLocale::ChamScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("CopticScript", QLocale::CopticScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("CypriotScript", QLocale::CypriotScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("EgyptianHieroglyphsScript", QLocale::EgyptianHieroglyphsScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("FraserScript", QLocale::FraserScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("GlagoliticScript", QLocale::GlagoliticScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("GothicScript", QLocale::GothicScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("HanScript", QLocale::HanScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("HangulScript", QLocale::HangulScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("HanunooScript", QLocale::HanunooScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("ImperialAramaicScript", QLocale::ImperialAramaicScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("InscriptionalPahlaviScript", QLocale::InscriptionalPahlaviScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("InscriptionalParthianScript", QLocale::InscriptionalParthianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("JavaneseScript", QLocale::JavaneseScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("KaithiScript", QLocale::KaithiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("KatakanaScript", QLocale::KatakanaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("KayahLiScript", QLocale::KayahLiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("KharoshthiScript", QLocale::KharoshthiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("LannaScript", QLocale::LannaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("LepchaScript", QLocale::LepchaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("LimbuScript", QLocale::LimbuScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("LinearBScript", QLocale::LinearBScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("LycianScript", QLocale::LycianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("LydianScript", QLocale::LydianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("MandaeanScript", QLocale::MandaeanScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("MeiteiMayekScript", QLocale::MeiteiMayekScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("MeroiticScript", QLocale::MeroiticScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("MeroiticCursiveScript", QLocale::MeroiticCursiveScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("NkoScript", QLocale::NkoScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("NewTaiLueScript", QLocale::NewTaiLueScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("OghamScript", QLocale::OghamScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("OlChikiScript", QLocale::OlChikiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("OldItalicScript", QLocale::OldItalicScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("OldPersianScript", QLocale::OldPersianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("OldSouthArabianScript", QLocale::OldSouthArabianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("OrkhonScript", QLocale::OrkhonScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("OsmanyaScript", QLocale::OsmanyaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("PhagsPaScript", QLocale::PhagsPaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("PhoenicianScript", QLocale::PhoenicianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("PollardPhoneticScript", QLocale::PollardPhoneticScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("RejangScript", QLocale::RejangScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("RunicScript", QLocale::RunicScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("SamaritanScript", QLocale::SamaritanScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("SaurashtraScript", QLocale::SaurashtraScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("SharadaScript", QLocale::SharadaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("ShavianScript", QLocale::ShavianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("SoraSompengScript", QLocale::SoraSompengScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("CuneiformScript", QLocale::CuneiformScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("SundaneseScript", QLocale::SundaneseScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("SylotiNagriScript", QLocale::SylotiNagriScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("TagalogScript", QLocale::TagalogScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("TagbanwaScript", QLocale::TagbanwaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("TaiLeScript", QLocale::TaiLeScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("TaiVietScript", QLocale::TaiVietScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("TakriScript", QLocale::TakriScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("UgariticScript", QLocale::UgariticScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("BrailleScript", QLocale::BrailleScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   script.addValue("HiraganaScript", QLocale::HiraganaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("CaucasianAlbanianScript", QLocale::CaucasianAlbanianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("BassaVahScript", QLocale::BassaVahScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("DuployanScript", QLocale::DuployanScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("ElbasanScript", QLocale::ElbasanScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("GranthaScript", QLocale::GranthaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("PahawhHmongScript", QLocale::PahawhHmongScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("KhojkiScript", QLocale::KhojkiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("LinearAScript", QLocale::LinearAScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("MahajaniScript", QLocale::MahajaniScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("ManichaeanScript", QLocale::ManichaeanScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("MendeKikakuiScript", QLocale::MendeKikakuiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("ModiScript", QLocale::ModiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("MroScript", QLocale::MroScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("OldNorthArabianScript", QLocale::OldNorthArabianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("NabataeanScript", QLocale::NabataeanScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("PalmyreneScript", QLocale::PalmyreneScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("PauCinHauScript", QLocale::PauCinHauScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("OldPermicScript", QLocale::OldPermicScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("PsalterPahlaviScript", QLocale::PsalterPahlaviScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("SiddhamScript", QLocale::SiddhamScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("KhudawadiScript", QLocale::KhudawadiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("TirhutaScript", QLocale::TirhutaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   script.addValue("VarangKshitiScript", QLocale::VarangKshitiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("AhomScript", QLocale::AhomScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("AnatolianHieroglyphsScript", QLocale::AnatolianHieroglyphsScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("HatranScript", QLocale::HatranScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("MultaniScript", QLocale::MultaniScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("OldHungarianScript", QLocale::OldHungarianScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("SignWritingScript", QLocale::SignWritingScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("AdlamScript", QLocale::AdlamScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("BhaiksukiScript", QLocale::BhaiksukiScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("MarchenScript", QLocale::MarchenScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("NewaScript", QLocale::NewaScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("OsageScript", QLocale::OsageScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("TangutScript", QLocale::TangutScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("HanWithBopomofoScript", QLocale::HanWithBopomofoScript);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   script.addValue("JamoScript", QLocale::JamoScript);
+#endif
   script.addValue("SimplifiedChineseScript", QLocale::SimplifiedChineseScript);
   script.addValue("TraditionalChineseScript", QLocale::TraditionalChineseScript);
   script.addValue("LastScript", QLocale::LastScript);
@@ -870,14 +1190,18 @@ static void register_locale_country_enum(script::Class locale)
   country.addValue("Tanzania", QLocale::Tanzania);
   country.addValue("Thailand", QLocale::Thailand);
   country.addValue("Togo", QLocale::Togo);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   country.addValue("TokelauCountry", QLocale::TokelauCountry);
+#endif
   country.addValue("Tonga", QLocale::Tonga);
   country.addValue("TrinidadAndTobago", QLocale::TrinidadAndTobago);
   country.addValue("Tunisia", QLocale::Tunisia);
   country.addValue("Turkey", QLocale::Turkey);
   country.addValue("Turkmenistan", QLocale::Turkmenistan);
   country.addValue("TurksAndCaicosIslands", QLocale::TurksAndCaicosIslands);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   country.addValue("TuvaluCountry", QLocale::TuvaluCountry);
+#endif
   country.addValue("Uganda", QLocale::Uganda);
   country.addValue("Ukraine", QLocale::Ukraine);
   country.addValue("UnitedArabEmirates", QLocale::UnitedArabEmirates);
@@ -914,7 +1238,9 @@ static void register_locale_country_enum(script::Class locale)
   country.addValue("SouthSudan", QLocale::SouthSudan);
   country.addValue("Bonaire", QLocale::Bonaire);
   country.addValue("SintMaarten", QLocale::SintMaarten);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   country.addValue("Kosovo", QLocale::Kosovo);
+#endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   country.addValue("EuropeanUnion", QLocale::EuropeanUnion);
 #endif
@@ -965,13 +1291,23 @@ static void register_locale_number_option_enum(script::Class locale)
   Enum number_option = locale.newEnum("NumberOption").setId(script::Type::QLocaleNumberOption).get();
 
   register_qflags_type<QLocale::NumberOption>(locale, "NumberOptions", script::Type::QLocaleNumberOptions);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   number_option.addValue("DefaultNumberOptions", QLocale::DefaultNumberOptions);
+#endif
   number_option.addValue("OmitGroupSeparator", QLocale::OmitGroupSeparator);
   number_option.addValue("RejectGroupSeparator", QLocale::RejectGroupSeparator);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   number_option.addValue("OmitLeadingZeroInExponent", QLocale::OmitLeadingZeroInExponent);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   number_option.addValue("RejectLeadingZeroInExponent", QLocale::RejectLeadingZeroInExponent);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   number_option.addValue("IncludeTrailingZeroesAfterDot", QLocale::IncludeTrailingZeroesAfterDot);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   number_option.addValue("RejectTrailingZeroesAfterDot", QLocale::RejectTrailingZeroesAfterDot);
+#endif
 }
 
 
@@ -997,6 +1333,22 @@ static void register_locale_currency_symbol_format_enum(script::Class locale)
   currency_symbol_format.addValue("CurrencySymbol", QLocale::CurrencySymbol);
   currency_symbol_format.addValue("CurrencyDisplayName", QLocale::CurrencyDisplayName);
 }
+
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+static void register_locale_data_size_format_enum(script::Class locale)
+{
+  using namespace script;
+
+  Enum data_size_format = locale.newEnum("DataSizeFormat").setId(script::Type::QLocaleDataSizeFormat).get();
+
+  data_size_format.addValue("DataSizeBase1000", QLocale::DataSizeBase1000);
+  data_size_format.addValue("DataSizeSIQuantifiers", QLocale::DataSizeSIQuantifiers);
+  data_size_format.addValue("DataSizeIecFormat", QLocale::DataSizeIecFormat);
+  data_size_format.addValue("DataSizeTraditionalFormat", QLocale::DataSizeTraditionalFormat);
+  data_size_format.addValue("DataSizeSIFormat", QLocale::DataSizeSIFormat);
+}
+#endif
 
 
 static void register_locale_quotation_style_enum(script::Class locale)
@@ -1028,6 +1380,9 @@ static void register_locale_class(script::Namespace ns)
   register_locale_floating_point_precision_option_enum(locale);
 #endif
   register_locale_currency_symbol_format_enum(locale);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+  register_locale_data_size_format_enum(locale);
+#endif
   register_locale_quotation_style_enum(locale);
 
   // QLocale();
@@ -1047,8 +1402,10 @@ static void register_locale_class(script::Namespace ns)
   bind::memop_assign<QLocale, const QLocale &>(locale);
   // ~QLocale();
   bind::destructor<QLocale>(locale).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // void swap(QLocale &);
   bind::void_member_function<QLocale, QLocale &, &QLocale::swap>(locale, "swap").create();
+#endif
   // QLocale::Language language() const;
   bind::member_function<QLocale, QLocale::Language, &QLocale::language>(locale, "language").create();
   // QLocale::Script script() const;
@@ -1079,38 +1436,70 @@ static void register_locale_class(script::Namespace ns)
   /// TODO: float toFloat(const QString &, bool *) const;
   // double toDouble(const QString &, bool *) const;
   /// TODO: double toDouble(const QString &, bool *) const;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // short toShort(const QStringRef &, bool *) const;
   /// TODO: short toShort(const QStringRef &, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // ushort toUShort(const QStringRef &, bool *) const;
   /// TODO: ushort toUShort(const QStringRef &, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // int toInt(const QStringRef &, bool *) const;
   /// TODO: int toInt(const QStringRef &, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // uint toUInt(const QStringRef &, bool *) const;
   /// TODO: uint toUInt(const QStringRef &, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // qlonglong toLongLong(const QStringRef &, bool *) const;
   /// TODO: qlonglong toLongLong(const QStringRef &, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // qulonglong toULongLong(const QStringRef &, bool *) const;
   /// TODO: qulonglong toULongLong(const QStringRef &, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // float toFloat(const QStringRef &, bool *) const;
   /// TODO: float toFloat(const QStringRef &, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // double toDouble(const QStringRef &, bool *) const;
   /// TODO: double toDouble(const QStringRef &, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // short toShort(QStringView, bool *) const;
   /// TODO: short toShort(QStringView, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // ushort toUShort(QStringView, bool *) const;
   /// TODO: ushort toUShort(QStringView, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // int toInt(QStringView, bool *) const;
   /// TODO: int toInt(QStringView, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // uint toUInt(QStringView, bool *) const;
   /// TODO: uint toUInt(QStringView, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // qlonglong toLongLong(QStringView, bool *) const;
   /// TODO: qlonglong toLongLong(QStringView, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // qulonglong toULongLong(QStringView, bool *) const;
   /// TODO: qulonglong toULongLong(QStringView, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // float toFloat(QStringView, bool *) const;
   /// TODO: float toFloat(QStringView, bool *) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // double toDouble(QStringView, bool *) const;
   /// TODO: double toDouble(QStringView, bool *) const;
+#endif
   // QString toString(qlonglong) const;
   /// TODO: QString toString(qlonglong) const;
   // QString toString(qulonglong) const;
@@ -1135,12 +1524,18 @@ static void register_locale_class(script::Namespace ns)
   bind::member_function<QLocale, QString, const QTime &, const QString &, &QLocale::toString>(locale, "toString").create();
   // QString toString(const QDateTime &, const QString &) const;
   bind::member_function<QLocale, QString, const QDateTime &, const QString &, &QLocale::toString>(locale, "toString").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // QString toString(const QDate &, QStringView) const;
   /// TODO: QString toString(const QDate &, QStringView) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // QString toString(const QTime &, QStringView) const;
   /// TODO: QString toString(const QTime &, QStringView) const;
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // QString toString(const QDateTime &, QStringView) const;
   /// TODO: QString toString(const QDateTime &, QStringView) const;
+#endif
   // QString toString(const QDate &, QLocale::FormatType) const;
   bind::member_function<QLocale, QString, const QDate &, QLocale::FormatType, &QLocale::toString>(locale, "toString").create();
   // QString toString(const QTime &, QLocale::FormatType) const;
@@ -1231,15 +1626,23 @@ static void register_locale_class(script::Namespace ns)
   // QString toCurrencyString(double, const QString & = QString()) const;
   bind::member_function<QLocale, QString, double, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString")
     .apply(bind::default_arguments(QString())).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QString toCurrencyString(double, const QString &, int) const;
   bind::member_function<QLocale, QString, double, const QString &, int, &QLocale::toCurrencyString>(locale, "toCurrencyString").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QString toCurrencyString(float, const QString & = QString()) const;
   bind::member_function<QLocale, QString, float, const QString &, &QLocale::toCurrencyString>(locale, "toCurrencyString")
     .apply(bind::default_arguments(QString())).create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   // QString toCurrencyString(float, const QString &, int) const;
   bind::member_function<QLocale, QString, float, const QString &, int, &QLocale::toCurrencyString>(locale, "toCurrencyString").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // QString formattedDataSize(qint64, int = 2, QLocale::DataSizeFormats = QLocale::DataSizeIecFormat);
   /// TODO: QString formattedDataSize(qint64, int = 2, QLocale::DataSizeFormats = QLocale::DataSizeIecFormat);
+#endif
   // QStringList uiLanguages() const;
   /// TODO: QStringList uiLanguages() const;
   // bool operator==(const QLocale &) const;
@@ -1286,10 +1689,10 @@ void register_locale_file(script::Namespace core)
 
   register_locale_class(ns);
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // uint qHash(const QLocale &, uint);
   bind::function<uint, const QLocale &, uint, &qHash>(ns, "qHash").create();
-  // void swap(QLocale &, QLocale &);
-  bind::void_function<QLocale &, QLocale &, &swap>(ns, "swap").create();
+#endif
   // QLocale::NumberOptions operator|(QLocale::NumberOption, QLocale::NumberOption);
   bind::op_bitor<QLocale::NumberOptions, QLocale::NumberOption, QLocale::NumberOption>(ns);
   // QLocale::NumberOptions operator|(QLocale::NumberOption, QLocale::NumberOptions);

@@ -325,8 +325,6 @@ void register_brush_file(script::Namespace gui)
   register_radial_gradient_class(ns);
   register_conical_gradient_class(ns);
 
-  // void swap(QBrush &, QBrush &);
-  bind::void_function<QBrush &, QBrush &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QBrush &);
   bind::op_put_to<QDataStream &, const QBrush &>(ns);
   // QDataStream & operator>>(QDataStream &, QBrush &);

@@ -25,6 +25,7 @@ Qt::CheckState readCheckState(const yaml::Object & obj);
 QtVersion readQtVersion(const yaml::Object & obj);
 void writeQtVersion(yaml::Object & obj, QtVersion v);
 int firstFieldIndex(const QString & str);
+QString extractName(QString str);
 } // namespace yaml
 
 namespace json

@@ -75,8 +75,10 @@ static void register_progress_bar_class(script::Namespace ns)
   bind::member_function<QProgressBar, QProgressBar::Direction, &QProgressBar::textDirection>(progress_bar, "textDirection").create();
   // void setFormat(const QString &);
   bind::void_member_function<QProgressBar, const QString &, &QProgressBar::setFormat>(progress_bar, "setFormat").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void resetFormat();
   bind::void_member_function<QProgressBar, &QProgressBar::resetFormat>(progress_bar, "resetFormat").create();
+#endif
   // QString format() const;
   bind::member_function<QProgressBar, QString, &QProgressBar::format>(progress_bar, "format").create();
   // void reset();

@@ -187,11 +187,15 @@ static void register_event_type_enum(script::Class event)
   type.addValue("SockClose", QEvent::SockClose);
   type.addValue("PlatformPanel", QEvent::PlatformPanel);
   type.addValue("StyleAnimationUpdate", QEvent::StyleAnimationUpdate);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   type.addValue("ApplicationStateChange", QEvent::ApplicationStateChange);
-  type.addValue("WindowChangeInternal", QEvent::WindowChangeInternal);
-  type.addValue("ScreenChangeInternal", QEvent::ScreenChangeInternal);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   type.addValue("PlatformSurface", QEvent::PlatformSurface);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   type.addValue("Pointer", QEvent::Pointer);
+#endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
   type.addValue("TabletTrackingChange", QEvent::TabletTrackingChange);
 #endif

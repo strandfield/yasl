@@ -218,8 +218,10 @@ static void register_painter_path_stroker_class(script::Namespace ns)
 
   // QPainterPathStroker();
   bind::default_constructor<QPainterPathStroker>(painter_path_stroker).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   // QPainterPathStroker(const QPen &);
   bind::constructor<QPainterPathStroker, const QPen &>(painter_path_stroker).create();
+#endif
   // ~QPainterPathStroker();
   bind::destructor<QPainterPathStroker>(painter_path_stroker).create();
   // void setWidth(qreal);
@@ -266,8 +268,6 @@ void register_painterpath_file(script::Namespace gui)
   register_painter_path_class(ns);
   register_painter_path_stroker_class(ns);
 
-  // void swap(QPainterPath &, QPainterPath &);
-  bind::void_function<QPainterPath &, QPainterPath &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QPainterPath &);
   bind::op_put_to<QDataStream &, const QPainterPath &>(ns);
   // QDataStream & operator>>(QDataStream &, QPainterPath &);

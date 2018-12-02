@@ -93,7 +93,9 @@ static void register_wizard_wizard_option_enum(script::Class wizard)
   wizard_option.addValue("HaveCustomButton1", QWizard::HaveCustomButton1);
   wizard_option.addValue("HaveCustomButton2", QWizard::HaveCustomButton2);
   wizard_option.addValue("HaveCustomButton3", QWizard::HaveCustomButton3);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   wizard_option.addValue("NoCancelButtonOnLastPage", QWizard::NoCancelButtonOnLastPage);
+#endif
 }
 
 

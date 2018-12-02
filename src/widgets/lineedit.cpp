@@ -13,8 +13,6 @@
 #include "yasl/core/enums.h"
 #include "yasl/core/margins.h"
 #include "yasl/core/point.h"
-#include "yasl/core/size.h"
-#include "yasl/core/variant.h"
 #include "yasl/gui/icon.h"
 #include "yasl/widgets/action.h"
 #include "yasl/widgets/lineedit.h"
@@ -24,6 +22,7 @@
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 static void register_line_edit_action_position_enum(script::Class line_edit)
 {
   using namespace script;
@@ -33,6 +32,7 @@ static void register_line_edit_action_position_enum(script::Class line_edit)
   action_position.addValue("LeadingPosition", QLineEdit::LeadingPosition);
   action_position.addValue("TrailingPosition", QLineEdit::TrailingPosition);
 }
+#endif
 
 
 static void register_line_edit_echo_mode_enum(script::Class line_edit)
@@ -55,7 +55,9 @@ static void register_line_edit_class(script::Namespace ns)
   Class line_edit = ns.newClass("LineEdit").setId(script::Type::QLineEdit)
     .setBase(script::Type::QWidget).get();
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_line_edit_action_position_enum(line_edit);
+#endif
   register_line_edit_echo_mode_enum(line_edit);
 
   // QLineEdit(QWidget * = (QWidget*)nullptr);
@@ -82,10 +84,14 @@ static void register_line_edit_class(script::Namespace ns)
   bind::void_member_function<QLineEdit, bool, &QLineEdit::setFrame>(line_edit, "setFrame").create();
   // bool hasFrame() const;
   bind::member_function<QLineEdit, bool, &QLineEdit::hasFrame>(line_edit, "hasFrame").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setClearButtonEnabled(bool);
   bind::void_member_function<QLineEdit, bool, &QLineEdit::setClearButtonEnabled>(line_edit, "setClearButtonEnabled").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // bool isClearButtonEnabled() const;
   bind::member_function<QLineEdit, bool, &QLineEdit::isClearButtonEnabled>(line_edit, "isClearButtonEnabled").create();
+#endif
   // QLineEdit::EchoMode echoMode() const;
   bind::member_function<QLineEdit, QLineEdit::EchoMode, &QLineEdit::echoMode>(line_edit, "echoMode").create();
   // void setEchoMode(QLineEdit::EchoMode);
@@ -102,10 +108,6 @@ static void register_line_edit_class(script::Namespace ns)
   /// TODO: void setCompleter(QCompleter *);
   // QCompleter * completer() const;
   /// TODO: QCompleter * completer() const;
-  // QSize sizeHint() const;
-  bind::member_function<QLineEdit, QSize, &QLineEdit::sizeHint>(line_edit, "sizeHint").create();
-  // QSize minimumSizeHint() const;
-  bind::member_function<QLineEdit, QSize, &QLineEdit::minimumSizeHint>(line_edit, "minimumSizeHint").create();
   // int cursorPosition() const;
   bind::member_function<QLineEdit, int, &QLineEdit::cursorPosition>(line_edit, "cursorPosition").create();
   // void setCursorPosition(int);
@@ -222,12 +224,6 @@ static void register_line_edit_class(script::Namespace ns)
   bind::signal<QLineEdit>(line_edit, "editingFinished", "editingFinished()");
   // void selectionChanged();
   bind::signal<QLineEdit>(line_edit, "selectionChanged", "selectionChanged()");
-  // QVariant inputMethodQuery(Qt::InputMethodQuery) const;
-  bind::member_function<QLineEdit, QVariant, Qt::InputMethodQuery, &QLineEdit::inputMethodQuery>(line_edit, "inputMethodQuery").create();
-  // QVariant inputMethodQuery(Qt::InputMethodQuery, QVariant) const;
-  bind::member_function<QLineEdit, QVariant, Qt::InputMethodQuery, QVariant, &QLineEdit::inputMethodQuery>(line_edit, "inputMethodQuery").create();
-  // bool event(QEvent *);
-  /// TODO: bool event(QEvent *);
 
   bind::link(line_edit, &QLineEdit::staticMetaObject);
 }

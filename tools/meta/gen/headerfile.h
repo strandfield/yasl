@@ -35,13 +35,15 @@ public:
 
   QMap<QString, Type> types;
 
+  QMap<QString, QtVersion> includesVersion;
+
 public:
-  HeaderFile();
+  HeaderFile(const QMap<QString, QtVersion> & incsver);
 
   void write();
 
   static void writeCopyrightMessage(QTextStream & out);
-  static void writeInclude(QTextStream & out, const QString & inc);
+  static void writeInclude(QTextStream & out, const QString & inc, const QMap<QString, QtVersion> & versions);
 
   static QByteArray readall(const QString & filepath);
   static void validate(const QFileInfo & finfo);

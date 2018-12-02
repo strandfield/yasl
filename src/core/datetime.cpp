@@ -188,10 +188,14 @@ static void register_time_class(script::Namespace ns)
   bind::memop_greater<QTime, const QTime &>(time);
   // bool operator>=(const QTime &) const;
   bind::memop_geq<QTime, const QTime &>(time);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QTime fromMSecsSinceStartOfDay(int);
   bind::static_member_function<QTime, QTime, int, &QTime::fromMSecsSinceStartOfDay>(time, "fromMSecsSinceStartOfDay").create();
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // int msecsSinceStartOfDay() const;
   bind::member_function<QTime, int, &QTime::msecsSinceStartOfDay>(time, "msecsSinceStartOfDay").create();
+#endif
   // static QTime currentTime();
   bind::static_member_function<QTime, QTime, &QTime::currentTime>(time, "currentTime").create();
   // static QTime fromString(const QString &, Qt::DateFormat = Qt::TextDate);
@@ -361,16 +365,6 @@ static void register_date_time_class(script::Namespace ns)
     .apply(bind::default_arguments(Qt::TextDate)).create();
   // static QDateTime fromString(const QString &, const QString &);
   bind::static_member_function<QDateTime, QDateTime, const QString &, const QString &, &QDateTime::fromString>(date_time, "fromString").create();
-  // uint toTime_t() const;
-  bind::member_function<QDateTime, uint, &QDateTime::toTime_t>(date_time, "toTime_t").create();
-  // void setTime_t(uint);
-  bind::void_member_function<QDateTime, uint, &QDateTime::setTime_t>(date_time, "setTime_t").create();
-  // static QDateTime fromTime_t(uint);
-  bind::static_member_function<QDateTime, QDateTime, uint, &QDateTime::fromTime_t>(date_time, "fromTime_t").create();
-  // static QDateTime fromTime_t(uint, Qt::TimeSpec, int);
-  bind::static_member_function<QDateTime, QDateTime, uint, Qt::TimeSpec, int, &QDateTime::fromTime_t>(date_time, "fromTime_t").create();
-  // static QDateTime fromTime_t(uint, const QTimeZone &);
-  bind::static_member_function<QDateTime, QDateTime, uint, const QTimeZone &, &QDateTime::fromTime_t>(date_time, "fromTime_t").create();
   // static QDateTime fromMSecsSinceEpoch(qint64);
   /// TODO: static QDateTime fromMSecsSinceEpoch(qint64);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
@@ -410,8 +404,6 @@ void register_datetime_file(script::Namespace core)
   register_time_class(ns);
   register_date_time_class(ns);
 
-  // void swap(QDateTime &, QDateTime &);
-  bind::void_function<QDateTime &, QDateTime &, &swap>(ns, "swap").create();
   // QDataStream & operator<<(QDataStream &, const QDate &);
   bind::op_put_to<QDataStream &, const QDate &>(ns);
   // QDataStream & operator>>(QDataStream &, QDate &);

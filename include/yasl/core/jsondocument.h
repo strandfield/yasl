@@ -12,7 +12,9 @@
 namespace script {
 template<> struct make_type_t<QJsonDocument> { inline static script::Type get() { return script::Type::QJsonDocument; } };
 template<> struct make_type_t<QJsonDocument::DataValidation> { inline static script::Type get() { return script::Type::QJsonDocumentDataValidation; } };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 template<> struct make_type_t<QJsonDocument::JsonFormat> { inline static script::Type get() { return script::Type::QJsonDocumentJsonFormat; } };
+#endif
 } // namespace script
 
 #endif // YASL_CORE_JSONDOCUMENT_H

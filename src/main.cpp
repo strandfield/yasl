@@ -6,6 +6,8 @@
 
 #include "script/sourcefile.h"
 
+#include <QStringList>
+
 #include <iostream>
 
 int main(int argc, char *argv[])

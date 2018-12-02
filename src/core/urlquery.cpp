@@ -99,7 +99,5 @@ void register_urlquery_file(script::Namespace core)
   // uint qHash(const QUrlQuery &, uint);
   bind::function<uint, const QUrlQuery &, uint, &qHash>(ns, "qHash").create();
 #endif
-  // void swap(QUrlQuery &, QUrlQuery &);
-  bind::void_function<QUrlQuery &, QUrlQuery &, &swap>(ns, "swap").create();
 }
 

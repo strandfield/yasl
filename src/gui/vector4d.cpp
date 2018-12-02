@@ -32,8 +32,10 @@ static void register_vector4_d_class(script::Namespace ns)
   bind::destructor<QVector4D>(vector4_d).create();
   // QVector4D & operator=(const QVector4D &);
   bind::memop_assign<QVector4D, const QVector4D &>(vector4_d);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QVector4D(Qt::Initialization);
   bind::constructor<QVector4D, Qt::Initialization>(vector4_d).create();
+#endif
   // QVector4D(float, float, float, float);
   bind::constructor<QVector4D, float, float, float, float>(vector4_d).create();
   // QVector4D(const QPoint &);

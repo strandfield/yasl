@@ -30,8 +30,10 @@ static void register_quaternion_class(script::Namespace ns)
   bind::destructor<QQuaternion>(quaternion).create();
   // QQuaternion & operator=(const QQuaternion &);
   bind::memop_assign<QQuaternion, const QQuaternion &>(quaternion);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 5, 0))
   // QQuaternion(Qt::Initialization);
   bind::constructor<QQuaternion, Qt::Initialization>(quaternion).create();
+#endif
   // QQuaternion(float, float, float, float);
   bind::constructor<QQuaternion, float, float, float, float>(quaternion).create();
   // QQuaternion(float, const QVector3D &);

@@ -109,7 +109,5 @@ void register_glyphrun_file(script::Namespace gui)
 
   register_glyph_run_class(ns);
 
-  // void swap(QGlyphRun &, QGlyphRun &);
-  bind::void_function<QGlyphRun &, QGlyphRun &, &swap>(ns, "swap").create();
 }
 

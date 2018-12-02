@@ -233,7 +233,7 @@ static const OperatorInfo static_operator_infos[]{
 void Generator::generate(ModuleRef mod)
 {
   //HeaderFile header;
-  SourceFile source;
+  SourceFile source{ mProject->includes };
   source.file = QFileInfo{ currentSourceDirectory() + "/" + mod->name + "module.cpp" };
 
   {
@@ -305,14 +305,14 @@ void Generator::generate(FileRef file)
 {
   StateGuard state{ this, nullptr };
 
-  HeaderFile header;
+  HeaderFile header{ mProject->includes };
   header.file = QFileInfo{ currentHeaderDirectory() + "/" + file->name + ".h" };
   header.moduleName = mCurrentModule;
   for (const auto & inc : file->hincludes)
     header.generalIncludes.insert(inc);
-  SourceFile source;
+  SourceFile source{ mProject->includes };
   source.file = QFileInfo{ currentSourceDirectory() + "/" + file->name + ".cpp" };
-  source.header = "yasl/" + QString{ mCurrentModule }.replace(".", "/") +"/" + file->name + ".h";
+  source.header = "yasl/" + QString{ mCurrentModule }.replace(".", "/") + "/" + file->name + ".h";
   for (const auto & inc : file->cppincludes)
     source.generalIncludes.insert(inc);
 

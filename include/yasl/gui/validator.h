@@ -16,8 +16,10 @@ template<> struct tag_resolver<QDoubleValidator> { typedef qobject_tag tag_type;
 template<> struct make_type_t<QDoubleValidator::Notation> { inline static script::Type get() { return script::Type::QDoubleValidatorNotation; } };
 template<> struct make_type_t<QIntValidator> { inline static script::Type get() { return script::Type::QIntValidator; } };
 template<> struct tag_resolver<QIntValidator> { typedef qobject_tag tag_type; };
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
 template<> struct make_type_t<QRegularExpressionValidator> { inline static script::Type get() { return script::Type::QRegularExpressionValidator; } };
 template<> struct tag_resolver<QRegularExpressionValidator> { typedef qobject_tag tag_type; };
+#endif
 template<> struct make_type_t<QValidator> { inline static script::Type get() { return script::Type::QValidator; } };
 template<> struct tag_resolver<QValidator> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QValidator::State> { inline static script::Type get() { return script::Type::QValidatorState; } };

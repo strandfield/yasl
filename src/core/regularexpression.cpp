@@ -146,8 +146,10 @@ static void register_regular_expression_match_class(script::Namespace ns)
   Class regular_expression_match = ns.newClass("RegularExpressionMatch").setId(script::Type::QRegularExpressionMatch).get();
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRegularExpressionMatch();
   bind::default_constructor<QRegularExpressionMatch>(regular_expression_match).create();
+#endif
   // ~QRegularExpressionMatch();
   bind::destructor<QRegularExpressionMatch>(regular_expression_match).create();
   // QRegularExpressionMatch(const QRegularExpressionMatch &);
@@ -218,8 +220,10 @@ static void register_regular_expression_match_iterator_class(script::Namespace n
   Class regular_expression_match_iterator = ns.newClass("RegularExpressionMatchIterator").setId(script::Type::QRegularExpressionMatchIterator).get();
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QRegularExpressionMatchIterator();
   bind::default_constructor<QRegularExpressionMatchIterator>(regular_expression_match_iterator).create();
+#endif
   // ~QRegularExpressionMatchIterator();
   bind::destructor<QRegularExpressionMatchIterator>(regular_expression_match_iterator).create();
   // QRegularExpressionMatchIterator(const QRegularExpressionMatchIterator &);
@@ -261,8 +265,6 @@ void register_regularexpression_file(script::Namespace core)
   // uint qHash(const QRegularExpression &, uint);
   bind::function<uint, const QRegularExpression &, uint, &qHash>(ns, "qHash").create();
 #endif
-  // void swap(QRegularExpression &, QRegularExpression &);
-  bind::void_function<QRegularExpression &, QRegularExpression &, &swap>(ns, "swap").create();
   // QRegularExpression::PatternOptions operator|(QRegularExpression::PatternOption, QRegularExpression::PatternOption);
   bind::op_bitor<QRegularExpression::PatternOptions, QRegularExpression::PatternOption, QRegularExpression::PatternOption>(ns);
   // QRegularExpression::PatternOptions operator|(QRegularExpression::PatternOption, QRegularExpression::PatternOptions);
@@ -283,11 +285,7 @@ void register_regularexpression_file(script::Namespace core)
   /// TODO: QDebug operator<<(QDebug, const QRegularExpression &);
   // QDebug operator<<(QDebug, QRegularExpression::PatternOptions);
   /// TODO: QDebug operator<<(QDebug, QRegularExpression::PatternOptions);
-  // void swap(QRegularExpressionMatch &, QRegularExpressionMatch &);
-  bind::void_function<QRegularExpressionMatch &, QRegularExpressionMatch &, &swap>(ns, "swap").create();
   // QDebug operator<<(QDebug, const QRegularExpressionMatch &);
   /// TODO: QDebug operator<<(QDebug, const QRegularExpressionMatch &);
-  // void swap(QRegularExpressionMatchIterator &, QRegularExpressionMatchIterator &);
-  bind::void_function<QRegularExpressionMatchIterator &, QRegularExpressionMatchIterator &, &swap>(ns, "swap").create();
 }
 

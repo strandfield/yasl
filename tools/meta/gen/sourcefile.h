@@ -20,7 +20,10 @@ public:
 
   QStringList functions;
 
+  QMap<QString, QtVersion> includesVersion;
+
 public:
+  SourceFile(const QMap<QString, QtVersion> & incsver);
   
   void write();
 };

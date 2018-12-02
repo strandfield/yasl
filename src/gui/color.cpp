@@ -31,6 +31,7 @@ static void register_color_spec_enum(script::Class color)
 }
 
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 static void register_color_name_format_enum(script::Class color)
 {
   using namespace script;
@@ -40,6 +41,7 @@ static void register_color_name_format_enum(script::Class color)
   name_format.addValue("HexRgb", QColor::HexRgb);
   name_format.addValue("HexArgb", QColor::HexArgb);
 }
+#endif
 
 
 static void register_color_class(script::Namespace ns)
@@ -49,7 +51,9 @@ static void register_color_class(script::Namespace ns)
   Class color = ns.newClass("Color").setId(script::Type::QColor).get();
 
   register_color_spec_enum(color);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_color_name_format_enum(color);
+#endif
 
   // QColor();
   bind::default_constructor<QColor>(color).create();
@@ -62,8 +66,10 @@ static void register_color_class(script::Namespace ns)
     .apply(bind::default_arguments(255)).create();
   // QColor(QRgb);
   /// TODO: QColor(QRgb);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // QColor(QRgba64);
   /// TODO: QColor(QRgba64);
+#endif
   // QColor(const QString &);
   bind::constructor<QColor, const QString &>(color).create();
   // QColor(QStringView);
@@ -94,10 +100,14 @@ static void register_color_class(script::Namespace ns)
 #endif
   // void setNamedColor(const QString &);
   bind::void_member_function<QColor, const QString &, &QColor::setNamedColor>(color, "setNamedColor").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // void setNamedColor(QStringView);
   /// TODO: void setNamedColor(QStringView);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 8, 0))
   // void setNamedColor(QLatin1String);
   /// TODO: void setNamedColor(QLatin1String);
+#endif
   // static QStringList colorNames();
   /// TODO: static QStringList colorNames();
   // QColor::Spec spec() const;
@@ -258,10 +268,14 @@ static void register_color_class(script::Namespace ns)
   // static QColor fromRgbF(qreal, qreal, qreal, qreal = qreal(1.0));
   bind::static_member_function<QColor, QColor, qreal, qreal, qreal, qreal, &QColor::fromRgbF>(color, "fromRgbF")
     .apply(bind::default_arguments(qreal(1.0))).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // static QColor fromRgba64(ushort, ushort, ushort, ushort);
   /// TODO: static QColor fromRgba64(ushort, ushort, ushort, ushort);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // static QColor fromRgba64(QRgba64);
   /// TODO: static QColor fromRgba64(QRgba64);
+#endif
   // static QColor fromHsv(int, int, int, int = 255);
   bind::static_member_function<QColor, QColor, int, int, int, int, &QColor::fromHsv>(color, "fromHsv")
     .apply(bind::default_arguments(255)).create();
@@ -295,8 +309,10 @@ static void register_color_class(script::Namespace ns)
   bind::memop_neq<QColor, const QColor &>(color);
   // static bool isValidColor(const QString &);
   bind::static_member_function<QColor, bool, const QString &, &QColor::isValidColor>(color, "isValidColor").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
   // static bool isValidColor(QStringView);
   /// TODO: static bool isValidColor(QStringView);
+#endif
   // static bool isValidColor(QLatin1String);
   /// TODO: static bool isValidColor(QLatin1String);
 

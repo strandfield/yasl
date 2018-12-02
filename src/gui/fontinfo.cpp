@@ -72,7 +72,5 @@ void register_fontinfo_file(script::Namespace gui)
 
   register_font_info_class(ns);
 
-  // void swap(QFontInfo &, QFontInfo &);
-  bind::void_function<QFontInfo &, QFontInfo &, &swap>(ns, "swap").create();
 }
 
