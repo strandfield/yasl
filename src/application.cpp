@@ -4,13 +4,17 @@
 
 #include "yasl/application.h"
 
+#include "yasl/consolelistener.h"
+
 #include "yasl/core/object.h"
 #include "yasl/common/commons.h"
 #include "yasl/common/ref.h"
 
 #include <script/class.h>
 #include <script/classbuilder.h>
+#include <script/context.h>
 #include <script/functionbuilder.h>
+#include <script/module.h>
 #include <script/namespace.h>
 #include <script/script.h>
 
@@ -18,13 +22,6 @@
 
 #include <QDebug>
 #include <QtGlobal>
-
-#ifdef Q_OS_WIN
-#include <QWinEventNotifier>
-#include <windows.h>
-#else
-#include <QSocketNotifier>
-#endif
 
 #include <iostream>
 
@@ -76,11 +73,25 @@ script::Value app_qtVersion(script::FunctionCall *c)
   return c->engine()->newString(QString(QT_VERSION_STR));
 }
 
+script::Value app_loadModule(script::FunctionCall *c)
+{
+  script::Module m = c->engine()->getModule(c->arg(0).toString().toStdString());
+  if (m.isNull())
+  {
+    qDebug() << "No such module: " << m.name().data();
+    return script::Value::Void;
+  }
+  m.load();
+  c->engine()->currentContext().use(m);
+  return script::Value::Void;
+}
+
 }
 
 Application::Application(int & argc, char **argv)
   : QApplication(argc, argv)
   , mRunEventLoop(false)
+  , mConsoleListener(nullptr)
 {
   mEngine.setup();
 
@@ -112,7 +123,9 @@ Application::Application(int & argc, char **argv)
   App.newMethod("exit", callbacks::app_exit).setStatic().create();
   App.newMethod("qtVersion", callbacks::app_qtVersion).setStatic()
     .returns(script::Type::String).create();
-
+  App.newMethod("loadModule", callbacks::app_loadModule)
+    .params(script::Type::cref(script::Type::String))
+    .setStatic().create();
 }
 
 int Application::runScript(const script::SourceFile & src)
@@ -137,26 +150,29 @@ int Application::runScript(const script::SourceFile & src)
 
 void Application::startInteractiveSession()
 {
-#ifdef Q_OS_WIN
-  mStdinNotifier = new QWinEventNotifier(GetStdHandle(STD_INPUT_HANDLE), this);
-  connect(mStdinNotifier, SIGNAL(activated(HANDLE)), this, SLOT(readCommand()));
-#else
-  mStdinNotifier = new QSocketNotifier(fileno(stdin), QSocketNotifier::Read, this);
-  connect(mStdinNotifier, SIGNAL(activated(int)), this, SLOT(readCommand()));
-#endif
+  ConsoleListener::registerEventTypes();
 
-  std::cout << ">>> " << std::flush;
+  mConsoleListener = new ConsoleListener;
+  mConsoleListener->moveToThread(&mConsoleListenerThread);
+  connect(&mConsoleListenerThread, &QThread::finished, mConsoleListener, &QObject::deleteLater);
+  connect(mConsoleListener, &ConsoleListener::commandReceived, this, &Application::execCommand);
+  mConsoleListenerThread.start();
+
+  QEvent *ev = new QEvent{ static_cast<QEvent::Type>(ConsoleListener::ListenEvent) };
+  QCoreApplication::postEvent(mConsoleListener, ev);
 }
 
-void Application::readCommand()
+void Application::execCommand(QString str)
 {
-  std::string command;
-  std::getline(std::cin, command);
+  std::string command = str.toStdString();
 
-  if (std::cin.eof() || command == ":q")
+  if (command == ":q")
   {
+    QEvent *ev = new QEvent{ static_cast<QEvent::Type>(ConsoleListener::ExitEvent) };
+    QCoreApplication::postEvent(mConsoleListener, ev);
+    mConsoleListener = nullptr;
+
     this->exit();
-    mStdinNotifier->deleteLater();
     return;
   }
   else
@@ -173,13 +189,28 @@ void Application::readCommand()
     }
   }
 
-  std::cout << ">>> " << std::flush;
+  QEvent *ev = new QEvent{ static_cast<QEvent::Type>(ConsoleListener::ListenEvent) };
+  QCoreApplication::postEvent(mConsoleListener, ev);
+}
+
+void Application::exit()
+{
+  if (mConsoleListener != nullptr)
+  {
+    QEvent *ev = new QEvent{ static_cast<QEvent::Type>(ConsoleListener::ExitEvent) };
+    QCoreApplication::postEvent(mConsoleListener, ev);
+    mConsoleListener = nullptr;
+  }
+
+  QCoreApplication::exit();
 }
 
 void Application::display(const script::Value & val)
 {
-  switch (val.type().data())
+  switch (val.type().baseType().data())
   {
+  case script::Type::Void:
+    return;
   case script::Type::Boolean:
     std::cout << (val.toBool() ? "true" : "false") << std::endl;
     return;

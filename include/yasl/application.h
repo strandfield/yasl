@@ -7,8 +7,12 @@
 
 #include <QApplication>
 
+#include <QThread>
+
 #include <script/classtemplate.h>
 #include <script/engine.h>
+
+class ConsoleListener;
 
 class Application : public QApplication
 {
@@ -24,17 +28,20 @@ public:
 
   inline bool runEventLoop() const { return mRunEventLoop; }
   inline void setRunEventLoop(bool r) { mRunEventLoop = r; }
+
+  void exit();
   
 protected:
   void display(const script::Value & val);
 
 protected Q_SLOTS:
-  void readCommand();
+  void execCommand(QString str);
 
 private:
   script::Engine mEngine;
   bool mRunEventLoop;
-  QObject *mStdinNotifier;
+  ConsoleListener *mConsoleListener;
+  QThread mConsoleListenerThread;
 };
 
 #if defined(qApp)
