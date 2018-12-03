@@ -11,4 +11,4 @@ String country = l.nativeCountryName();
 print("You are probably living in " + country);
 
 String lang = l.nativeLanguageName();
-print("So you speak " + lang + "?");
+print("Your language: " + lang);

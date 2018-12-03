@@ -19,3 +19,5 @@ protected:
 MyWidget & w = newWidget<MyWidget>();
 //w.setWindowTitle("Hello there !");
 w.show();
+
+App::start();

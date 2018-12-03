@@ -128,6 +128,11 @@ Application::Application(int & argc, char **argv)
     .setStatic().create();
 }
 
+Application::~Application()
+{
+
+}
+
 int Application::runScript(const script::SourceFile & src)
 {
   script::Script s = mEngine.newScript(src);
@@ -201,6 +206,9 @@ void Application::exit()
     QCoreApplication::postEvent(mConsoleListener, ev);
     mConsoleListener = nullptr;
   }
+
+  // Wait for the other thread to finish
+  mConsoleListenerThread.wait();
 
   QCoreApplication::exit();
 }

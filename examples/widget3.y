@@ -29,3 +29,5 @@ MyWidget & w = newWidget<MyWidget>();
 //w.setWindowTitle("Hello there !");
 w.show();
 Object::connect(w, MyWidget::sizeTreshold, w, Widget::close);
+
+App::start();

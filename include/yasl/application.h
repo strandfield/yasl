@@ -19,7 +19,7 @@ class Application : public QApplication
   Q_OBJECT
 public:
   Application(int & argc, char **argv);
-  ~Application() = default;
+  ~Application();
 
   inline script::Engine * scriptEngine() { return &mEngine; }
 
