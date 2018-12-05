@@ -16,9 +16,15 @@ set_target_properties(yasl-stats PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BI
 
 target_include_directories(yasl-stats PUBLIC "${CMAKE_SOURCE_DIR}/include")
 add_dependencies(yasl-stats libscript)
-add_dependencies(yasl-stats libyasl)
+add_dependencies(yasl-stats commons)
+add_dependencies(yasl-stats core)
+add_dependencies(yasl-stats gui)
+add_dependencies(yasl-stats widgets)
 target_link_libraries(yasl-stats libscript)
-target_link_libraries(yasl-stats libyasl)
+target_link_libraries(yasl-stats commons)
+target_link_libraries(yasl-stats core)
+target_link_libraries(yasl-stats gui)
+target_link_libraries(yasl-stats widgets)
 target_include_directories(yasl-stats PUBLIC "${LIBSCRIPT_PROJECT_DIR}/include")
 target_include_directories(yasl-stats PUBLIC "${CMAKE_SOURCE_DIR}/lib/libscript")
 
