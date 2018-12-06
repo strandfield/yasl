@@ -56,6 +56,12 @@ script::Value get(script::FunctionCall *c)
   return ptr->property("_yasl_data_").value<bind::BindingData>().value;
 }
 
+script::Value reset(script::FunctionCall *c)
+{
+  c->thisObject().setPtr(nullptr);
+  return script::Value::Void;
+}
+
 script::Value is_null(script::FunctionCall *c)
 {
   return c->engine()->newBool(c->thisObject().toQObject() == nullptr);
@@ -128,6 +134,10 @@ static void fill_ref_instance(script::Class & instance, const script::Class & qc
   instance.newConstructor(callbacks::copy_ctor).params(Type::cref(instance.id())).create();
   instance.newConstructor(callbacks::copy_ctor).params(Type::cref(qclass.id())).create();
 
+  // Ref<T>(NullType);
+  instance.newConstructor(callbacks::default_ctor)
+    .params(Type::cref(Type::NullType)).create();
+
   instance.newDestructor(callbacks::dtor).create();
 
   instance.newMethod("get", callbacks::get)
@@ -148,6 +158,23 @@ static void fill_ref_instance(script::Class & instance, const script::Class & qc
   instance.newOperator(AssignmentOperator, callbacks::assign)
     .returns(Type::ref(instance.id()))
     .params(Type::cref(instance.id())).create();
+
+  // Ref<T> & operator=(const NullType &);
+  instance.newOperator(AssignmentOperator, callbacks::reset)
+    .returns(Type::ref(instance.id()))
+    .params(Type::cref(Type::NullType)).create();
+
+  // bool operator==(const NullType &) const;
+  instance.newOperator(EqualOperator, callbacks::is_null)
+    .setConst()
+    .returns(Type::Boolean)
+    .params(Type::cref(Type::NullType)).create();
+
+  // bool operator!=(const NullType &) const;
+  instance.newOperator(InequalOperator, callbacks::is_valid)
+    .setConst()
+    .returns(Type::Boolean)
+    .params(Type::cref(Type::NullType)).create();
 
   instance.newConversion(Type::ref(qclass.id()), callbacks::get)
     .setConst()

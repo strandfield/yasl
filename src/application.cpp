@@ -100,6 +100,7 @@ Application::Application(int & argc, char **argv)
 
   register_commons_utils(&mEngine);
 
+  /// TODO: move to register_common_utils
   script::register_ref_template(mEngine.rootNamespace());
 
   register_core_module(&mEngine);
@@ -165,6 +166,8 @@ void Application::startInteractiveSession()
 
   QEvent *ev = new QEvent{ static_cast<QEvent::Type>(ConsoleListener::ListenEvent) };
   QCoreApplication::postEvent(mConsoleListener, ev);
+
+  this->setQuitOnLastWindowClosed(false);
 }
 
 void Application::execCommand(QString str)

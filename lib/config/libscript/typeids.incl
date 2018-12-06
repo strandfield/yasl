@@ -248,6 +248,7 @@ LastEnumType,
 
 /* Classes */
 FirstClassType = Type::ObjectFlag | 3,
+NullType,
 /* Qt Core */
 Proxybool,
 Proxychar,

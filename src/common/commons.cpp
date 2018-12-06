@@ -4,6 +4,8 @@
 
 #include "yasl/common/commons.h"
 
+#include "yasl/common/null.h"
+
 #include <script/engine.h>
 #include <script/functionbuilder.h>
 #include <script/functiontemplate.h>
@@ -54,5 +56,8 @@ void register_commons_utils(script::Engine *e)
       .deduce(template_type_id_deduce).substitute(template_type_id_substitute).instantiate(template_type_id_instantitate)
       .get();
   }
+
+  // null
+  script::register_null_type(e->rootNamespace());
 }
 

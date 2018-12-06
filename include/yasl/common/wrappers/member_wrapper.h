@@ -27,7 +27,7 @@ template<typename R, typename ClassType, R(ClassType::*F)()const>
 struct member_wrapper_t<R(ClassType::*)()const, F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(), c->engine());
+    return make_value(((ref).*(F))(), c->engine());
   }
 };
 
@@ -35,7 +35,7 @@ template<typename R, typename ClassType, R(ClassType::*F)()>
 struct member_wrapper_t<R(ClassType::*)(), F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(), c->engine());
+    return make_value(((ref).*(F))(), c->engine());
   }
 };
 
@@ -43,7 +43,7 @@ template<typename R, typename ClassType, typename A1, R(ClassType::*F)(A1)const>
 struct member_wrapper_t<R(ClassType::*)(A1)const, F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1))), c->engine());
   }
 };
 
@@ -51,7 +51,7 @@ template<typename R, typename ClassType, typename A1, R(ClassType::*F)(A1)>
 struct member_wrapper_t<R(ClassType::*)(A1), F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1))), c->engine());
   }
 };
 
@@ -59,7 +59,7 @@ template<typename R, typename ClassType, typename A1, typename A2, R(ClassType::
 struct member_wrapper_t<R(ClassType::*)(A1, A2)const, F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))), c->engine());
   }
 };
 
@@ -67,7 +67,7 @@ template<typename R, typename ClassType, typename A1, typename A2, R(ClassType::
 struct member_wrapper_t<R(ClassType::*)(A1, A2), F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2))), c->engine());
   }
 };
 
@@ -75,7 +75,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct member_wrapper_t<R(ClassType::*)(A1, A2, A3)const, F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))), c->engine());
   }
 };
 
@@ -83,7 +83,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct member_wrapper_t<R(ClassType::*)(A1, A2, A3), F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3))), c->engine());
   }
 };
 
@@ -91,7 +91,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct member_wrapper_t<R(ClassType::*)(A1, A2, A3, A4)const, F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))), c->engine());
   }
 };
 
@@ -99,7 +99,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct member_wrapper_t<R(ClassType::*)(A1, A2, A3, A4), F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4))), c->engine());
   }
 };
 
@@ -107,7 +107,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct member_wrapper_t<R(ClassType::*)(A1, A2, A3, A4, A5)const, F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5))), c->engine());
   }
 };
 
@@ -115,7 +115,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct member_wrapper_t<R(ClassType::*)(A1, A2, A3, A4, A5), F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5))), c->engine());
   }
 };
 
@@ -123,7 +123,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct member_wrapper_t<R(ClassType::*)(A1, A2, A3, A4, A5, A6)const, F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6))), c->engine());
   }
 };
 
@@ -131,7 +131,7 @@ template<typename R, typename ClassType, typename A1, typename A2, typename A3, 
 struct member_wrapper_t<R(ClassType::*)(A1, A2, A3, A4, A5, A6), F> {
   static script::Value wrap(script::FunctionCall *c) {
     ClassType & ref = *value_cast<ClassType*>(c->arg(0));
-    return make_value<typename std::decay<R>::type>(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6))), c->engine());
+    return make_value(((ref).*(F))(value_cast<A1>(c->arg(1)), value_cast<A2>(c->arg(2)), value_cast<A3>(c->arg(3)), value_cast<A4>(c->arg(4)), value_cast<A5>(c->arg(5)), value_cast<A6>(c->arg(6))), c->engine());
   }
 };
 
