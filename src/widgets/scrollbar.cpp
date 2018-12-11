@@ -48,4 +48,3 @@ void register_scrollbar_file(script::Namespace widgets)
   // QScrollBar& newScrollBar(Qt::Orientation, QWidget* = (QWidget*)nullptr);
   bind::new_function<QScrollBar, Qt::Orientation, QWidget*>(ns, "newScrollBar");
 }
-

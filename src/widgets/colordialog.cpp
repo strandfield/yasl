@@ -25,6 +25,7 @@ static void register_color_dialog_color_dialog_option_enum(script::Class color_d
   Enum color_dialog_option = color_dialog.newEnum("ColorDialogOption").setId(script::Type::QColorDialogColorDialogOption).get();
 
   register_qflags_type<QColorDialog::ColorDialogOption>(color_dialog, "ColorDialogOptions", script::Type::QColorDialogColorDialogOptions);
+
   color_dialog_option.addValue("ShowAlphaChannel", QColorDialog::ShowAlphaChannel);
   color_dialog_option.addValue("NoButtons", QColorDialog::NoButtons);
   color_dialog_option.addValue("DontUseNativeDialog", QColorDialog::DontUseNativeDialog);
@@ -105,4 +106,3 @@ void register_colordialog_file(script::Namespace widgets)
   // QIncompatibleFlag operator|(QColorDialog::ColorDialogOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QColorDialog::ColorDialogOptions::enum_type, int);
 }
-

@@ -27,6 +27,7 @@ static void register_font_combo_box_font_filter_enum(script::Class font_combo_bo
   Enum font_filter = font_combo_box.newEnum("FontFilter").setId(script::Type::QFontComboBoxFontFilter).get();
 
   register_qflags_type<QFontComboBox::FontFilter>(font_combo_box, "FontFilters", script::Type::QFontComboBoxFontFilters);
+
   font_filter.addValue("AllFonts", QFontComboBox::AllFonts);
   font_filter.addValue("ScalableFonts", QFontComboBox::ScalableFonts);
   font_filter.addValue("NonScalableFonts", QFontComboBox::NonScalableFonts);
@@ -87,4 +88,3 @@ void register_fontcombobox_file(script::Namespace widgets)
   // QFontComboBox& newFontComboBox(QWidget*);
   bind::new_function<QFontComboBox, QWidget*>(ns, "newFontComboBox");
 }
-

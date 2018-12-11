@@ -297,4 +297,3 @@ void register_guievent_file(script::Namespace gui)
   // bool operator==(QKeySequence::StandardKey, QKeyEvent *);
   /// TODO: bool operator==(QKeySequence::StandardKey, QKeyEvent *);
 }
-

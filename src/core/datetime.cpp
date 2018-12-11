@@ -429,4 +429,3 @@ void register_datetime_file(script::Namespace core)
   // uint qHash(const QTime &, uint);
   bind::function<uint, const QTime &, uint, &qHash>(ns, "qHash").create();
 }
-

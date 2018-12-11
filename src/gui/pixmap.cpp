@@ -188,4 +188,3 @@ void register_pixmap_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QPixmap &);
   /// TODO: QDebug operator<<(QDebug, const QPixmap &);
 }
-

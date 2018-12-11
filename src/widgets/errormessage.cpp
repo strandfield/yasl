@@ -43,4 +43,3 @@ void register_errormessage_file(script::Namespace widgets)
   register_error_message_class(ns);
 
 }
-

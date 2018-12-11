@@ -1291,6 +1291,7 @@ static void register_locale_number_option_enum(script::Class locale)
   Enum number_option = locale.newEnum("NumberOption").setId(script::Type::QLocaleNumberOption).get();
 
   register_qflags_type<QLocale::NumberOption>(locale, "NumberOptions", script::Type::QLocaleNumberOptions);
+
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
   number_option.addValue("DefaultNumberOptions", QLocale::DefaultNumberOptions);
 #endif
@@ -1706,4 +1707,3 @@ void register_locale_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QLocale &);
   /// TODO: QDebug operator<<(QDebug, const QLocale &);
 }
-

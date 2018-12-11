@@ -26,6 +26,7 @@ static void register_input_dialog_input_dialog_option_enum(script::Class input_d
   Enum input_dialog_option = input_dialog.newEnum("InputDialogOption").setId(script::Type::QInputDialogInputDialogOption).get();
 
   register_qflags_type<QInputDialog::InputDialogOption>(input_dialog, "InputDialogOptions", script::Type::QInputDialogInputDialogOptions);
+
   input_dialog_option.addValue("NoButtons", QInputDialog::NoButtons);
   input_dialog_option.addValue("UseListViewForComboBoxItems", QInputDialog::UseListViewForComboBoxItems);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
@@ -201,4 +202,3 @@ void register_inputdialog_file(script::Namespace widgets)
   // QIncompatibleFlag operator|(QInputDialog::InputDialogOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QInputDialog::InputDialogOptions::enum_type, int);
 }
-

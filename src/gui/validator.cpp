@@ -201,4 +201,3 @@ void register_validator_file(script::Namespace gui)
 #endif
 
 }
-

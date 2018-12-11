@@ -46,6 +46,7 @@ static void register_file_device_permission_enum(script::Class file_device)
   Enum permission = file_device.newEnum("Permission").setId(script::Type::QFileDevicePermission).get();
 
   register_qflags_type<QFileDevice::Permission>(file_device, "Permissions", script::Type::QFileDevicePermissions);
+
   permission.addValue("ReadOwner", QFileDevice::ReadOwner);
   permission.addValue("WriteOwner", QFileDevice::WriteOwner);
   permission.addValue("ExeOwner", QFileDevice::ExeOwner);
@@ -68,6 +69,7 @@ static void register_file_device_file_handle_flag_enum(script::Class file_device
   Enum file_handle_flag = file_device.newEnum("FileHandleFlag").setId(script::Type::QFileDeviceFileHandleFlag).get();
 
   register_qflags_type<QFileDevice::FileHandleFlag>(file_device, "FileHandleFlags", script::Type::QFileDeviceFileHandleFlags);
+
   file_handle_flag.addValue("AutoCloseHandle", QFileDevice::AutoCloseHandle);
   file_handle_flag.addValue("DontCloseHandle", QFileDevice::DontCloseHandle);
 }
@@ -156,4 +158,3 @@ void register_filedevice_file(script::Namespace core)
   // QIncompatibleFlag operator|(QFileDevice::Permissions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QFileDevice::Permissions::enum_type, int);
 }
-

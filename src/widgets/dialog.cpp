@@ -95,4 +95,3 @@ void register_dialog_file(script::Namespace widgets)
   register_dialog_class(ns);
 
 }
-

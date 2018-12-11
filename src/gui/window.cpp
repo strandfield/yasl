@@ -371,4 +371,3 @@ void register_window_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QWindow *);
   /// TODO: QDebug operator<<(QDebug, const QWindow *);
 }
-

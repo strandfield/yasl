@@ -200,4 +200,3 @@ void register_quaternion_file(script::Namespace gui)
   // QDataStream & operator>>(QDataStream &, QQuaternion &);
   bind::op_read_from<QDataStream &, QQuaternion &>(ns);
 }
-

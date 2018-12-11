@@ -22,6 +22,7 @@ static void register_i_o_device_open_mode_flag_enum(script::Class i_o_device)
   Enum open_mode_flag = i_o_device.newEnum("OpenModeFlag").setId(script::Type::QIODeviceOpenModeFlag).get();
 
   register_qflags_type<QIODevice::OpenModeFlag>(i_o_device, "OpenMode", script::Type::QIODeviceOpenMode);
+
   open_mode_flag.addValue("NotOpen", QIODevice::NotOpen);
   open_mode_flag.addValue("ReadOnly", QIODevice::ReadOnly);
   open_mode_flag.addValue("WriteOnly", QIODevice::WriteOnly);
@@ -192,4 +193,3 @@ void register_iodevice_file(script::Namespace core)
   // QDebug operator<<(QDebug, QIODevice::OpenMode);
   /// TODO: QDebug operator<<(QDebug, QIODevice::OpenMode);
 }
-

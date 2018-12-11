@@ -24,6 +24,7 @@ static void register_regular_expression_pattern_option_enum(script::Class regula
   Enum pattern_option = regular_expression.newEnum("PatternOption").setId(script::Type::QRegularExpressionPatternOption).get();
 
   register_qflags_type<QRegularExpression::PatternOption>(regular_expression, "PatternOptions", script::Type::QRegularExpressionPatternOptions);
+
   pattern_option.addValue("NoPatternOption", QRegularExpression::NoPatternOption);
   pattern_option.addValue("CaseInsensitiveOption", QRegularExpression::CaseInsensitiveOption);
   pattern_option.addValue("DotMatchesEverythingOption", QRegularExpression::DotMatchesEverythingOption);
@@ -63,6 +64,7 @@ static void register_regular_expression_match_option_enum(script::Class regular_
   Enum match_option = regular_expression.newEnum("MatchOption").setId(script::Type::QRegularExpressionMatchOption).get();
 
   register_qflags_type<QRegularExpression::MatchOption>(regular_expression, "MatchOptions", script::Type::QRegularExpressionMatchOptions);
+
   match_option.addValue("NoMatchOption", QRegularExpression::NoMatchOption);
   match_option.addValue("AnchoredMatchOption", QRegularExpression::AnchoredMatchOption);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
@@ -288,4 +290,3 @@ void register_regularexpression_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QRegularExpressionMatch &);
   /// TODO: QDebug operator<<(QDebug, const QRegularExpressionMatch &);
 }
-

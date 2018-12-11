@@ -179,4 +179,3 @@ void register_point_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QPointF &);
   /// TODO: QDebug operator<<(QDebug, const QPointF &);
 }
-

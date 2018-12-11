@@ -148,4 +148,3 @@ void register_layout_file(script::Namespace widgets)
   register_layout_class(ns);
 
 }
-

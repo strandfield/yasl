@@ -101,4 +101,3 @@ void register_cursor_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QCursor &);
   /// TODO: QDebug operator<<(QDebug, const QCursor &);
 }
-

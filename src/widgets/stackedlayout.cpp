@@ -106,4 +106,3 @@ void register_stackedlayout_file(script::Namespace widgets)
   // QStackedLayout& newStackedLayout(QLayout*);
   bind::new_function<QStackedLayout, QLayout*>(ns, "newStackedLayout");
 }
-

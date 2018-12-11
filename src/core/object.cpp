@@ -156,4 +156,3 @@ void register_object_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QObject *);
   /// TODO: QDebug operator<<(QDebug, const QObject *);
 }
-

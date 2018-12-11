@@ -77,6 +77,7 @@ static void register_wizard_wizard_option_enum(script::Class wizard)
   Enum wizard_option = wizard.newEnum("WizardOption").setId(script::Type::QWizardWizardOption).get();
 
   register_qflags_type<QWizard::WizardOption>(wizard, "WizardOptions", script::Type::QWizardWizardOptions);
+
   wizard_option.addValue("IndependentPages", QWizard::IndependentPages);
   wizard_option.addValue("IgnoreSubTitles", QWizard::IgnoreSubTitles);
   wizard_option.addValue("ExtendedWatermarkPixmap", QWizard::ExtendedWatermarkPixmap);
@@ -280,4 +281,3 @@ void register_wizard_file(script::Namespace widgets)
   // QIncompatibleFlag operator|(QWizard::WizardOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QWizard::WizardOptions::enum_type, int);
 }
-

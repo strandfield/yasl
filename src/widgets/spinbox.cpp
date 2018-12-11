@@ -147,4 +147,3 @@ void register_spinbox_file(script::Namespace widgets)
   // QDoubleSpinBox& newDoubleSpinBox(QWidget*);
   bind::new_function<QDoubleSpinBox, QWidget*>(ns, "newDoubleSpinBox");
 }
-

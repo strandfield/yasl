@@ -110,4 +110,3 @@ void register_glyphrun_file(script::Namespace gui)
   register_glyph_run_class(ns);
 
 }
-

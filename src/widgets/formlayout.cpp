@@ -184,4 +184,3 @@ void register_formlayout_file(script::Namespace widgets)
   // QFormLayout& newFormLayout(QWidget*);
   bind::new_function<QFormLayout, QWidget*>(ns, "newFormLayout");
 }
-

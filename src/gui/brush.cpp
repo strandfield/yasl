@@ -332,4 +332,3 @@ void register_brush_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QBrush &);
   /// TODO: QDebug operator<<(QDebug, const QBrush &);
 }
-

@@ -227,4 +227,3 @@ void register_transform_file(script::Namespace gui)
   // QTransform operator-(const QTransform &, qreal);
   bind::op_sub<QTransform, const QTransform &, qreal>(ns);
 }
-

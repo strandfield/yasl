@@ -73,4 +73,3 @@ void register_bitmap_file(script::Namespace gui)
   register_bitmap_class(ns);
 
 }
-

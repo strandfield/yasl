@@ -91,4 +91,3 @@ void register_progressdialog_file(script::Namespace widgets)
   register_progress_dialog_class(ns);
 
 }
-

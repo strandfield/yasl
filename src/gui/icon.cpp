@@ -164,4 +164,3 @@ void register_icon_file(script::Namespace gui)
   // QString qt_findAtNxFile(const QString &, qreal, qreal *);
   /// TODO: QString qt_findAtNxFile(const QString &, qreal, qreal *);
 }
-

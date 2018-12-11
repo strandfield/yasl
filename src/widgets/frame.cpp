@@ -112,4 +112,3 @@ void register_frame_file(script::Namespace widgets)
   register_frame_class(ns);
 
 }
-

@@ -162,4 +162,3 @@ void register_picture_file(script::Namespace gui)
   // QDataStream & operator>>(QDataStream &, QPicture &);
   bind::op_read_from<QDataStream &, QPicture &>(ns);
 }
-

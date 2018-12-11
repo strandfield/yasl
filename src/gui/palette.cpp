@@ -195,4 +195,3 @@ void register_palette_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QPalette &);
   /// TODO: QDebug operator<<(QDebug, const QPalette &);
 }
-

@@ -94,4 +94,3 @@ void register_toolbutton_file(script::Namespace widgets)
   // QToolButton& newToolButton(QWidget* = (QWidget*)nullptr);
   bind::new_function<QToolButton, QWidget*>(ns, "newToolButton");
 }
-

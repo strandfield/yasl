@@ -132,4 +132,3 @@ void register_jsonarray_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QJsonArray &);
   /// TODO: QDebug operator<<(QDebug, const QJsonArray &);
 }
-

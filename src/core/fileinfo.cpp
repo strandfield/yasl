@@ -167,4 +167,3 @@ void register_fileinfo_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QFileInfo &);
   /// TODO: QDebug operator<<(QDebug, const QFileInfo &);
 }
-

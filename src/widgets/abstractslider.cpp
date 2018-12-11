@@ -121,4 +121,3 @@ void register_abstractslider_file(script::Namespace widgets)
   register_abstract_slider_class(ns);
 
 }
-

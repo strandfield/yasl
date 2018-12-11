@@ -166,4 +166,3 @@ void register_fontdatabase_file(script::Namespace gui)
   register_font_database_class(ns);
 
 }
-

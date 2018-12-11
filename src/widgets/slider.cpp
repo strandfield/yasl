@@ -74,4 +74,3 @@ void register_slider_file(script::Namespace widgets)
   // QSlider& newSlider(Qt::Orientation, QWidget*);
   bind::new_function<QSlider, Qt::Orientation, QWidget*>(ns, "newSlider");
 }
-

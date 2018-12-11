@@ -140,4 +140,3 @@ void register_screen_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QScreen *);
   /// TODO: QDebug operator<<(QDebug, const QScreen *);
 }
-

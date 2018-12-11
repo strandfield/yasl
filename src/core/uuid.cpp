@@ -141,4 +141,3 @@ void register_uuid_file(script::Namespace core)
   bind::op_geq<const QUuid &, const QUuid &>(ns);
 #endif
 }
-

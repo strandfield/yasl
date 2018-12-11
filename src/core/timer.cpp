@@ -82,4 +82,3 @@ void register_timer_file(script::Namespace core)
   register_timer_class(ns);
 
 }
-

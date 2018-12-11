@@ -320,4 +320,3 @@ void register_event_file(script::Namespace core)
   register_deferred_delete_event_class(ns);
 
 }
-

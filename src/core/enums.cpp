@@ -50,6 +50,7 @@ static void register_qt_keyboard_modifier_enum(script::Namespace qt)
     .setEnumClass().get();
 
   register_qflags_type<Qt::KeyboardModifier>(qt, "KeyboardModifiers", script::Type::QtKeyboardModifiers);
+
   keyboard_modifier.addValue("NoModifier", Qt::NoModifier);
   keyboard_modifier.addValue("ShiftModifier", Qt::ShiftModifier);
   keyboard_modifier.addValue("ControlModifier", Qt::ControlModifier);
@@ -200,6 +201,7 @@ static void register_qt_alignment_flag_enum(script::Namespace qt)
     .setEnumClass().get();
 
   register_qflags_type<Qt::AlignmentFlag>(qt, "Alignment", script::Type::QtAlignment);
+
   alignment_flag.addValue("AlignLeft", Qt::AlignLeft);
   alignment_flag.addValue("AlignLeading", Qt::AlignLeading);
   alignment_flag.addValue("AlignRight", Qt::AlignRight);
@@ -598,6 +600,7 @@ static void register_qt_image_conversion_flag_enum(script::Namespace qt)
     .setEnumClass().get();
 
   register_qflags_type<Qt::ImageConversionFlag>(qt, "ImageConversionFlags", script::Type::QtImageConversionFlags);
+
   image_conversion_flag.addValue("ColorMode_Mask", Qt::ColorMode_Mask);
   image_conversion_flag.addValue("AutoColor", Qt::AutoColor);
   image_conversion_flag.addValue("ColorOnly", Qt::ColorOnly);
@@ -1334,6 +1337,7 @@ static void register_qt_tool_bar_area_enum(script::Namespace qt)
     .setEnumClass().get();
 
   register_qflags_type<Qt::ToolBarArea>(qt, "ToolBarAreas", script::Type::QtToolBarAreas);
+
   tool_bar_area.addValue("LeftToolBarArea", Qt::LeftToolBarArea);
   tool_bar_area.addValue("RightToolBarArea", Qt::RightToolBarArea);
   tool_bar_area.addValue("TopToolBarArea", Qt::TopToolBarArea);
@@ -2607,7 +2611,6 @@ static void register_qt_namespace(script::Namespace ns)
   // const char * qt_getEnumName(Qt::TabFocusBehavior);
   /// TODO: const char * qt_getEnumName(Qt::TabFocusBehavior);
 }
-
 void register_enums_file(script::Namespace core)
 {
   using namespace script;
@@ -2739,4 +2742,3 @@ void register_enums_file(script::Namespace core)
   // QIncompatibleFlag operator|(Qt::GestureFlags::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(Qt::GestureFlags::enum_type, int);
 }
-

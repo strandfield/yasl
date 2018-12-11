@@ -422,4 +422,3 @@ void register_rect_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QRectF &);
   /// TODO: QDebug operator<<(QDebug, const QRectF &);
 }
-

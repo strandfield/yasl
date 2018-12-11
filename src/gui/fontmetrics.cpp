@@ -207,4 +207,3 @@ void register_fontmetrics_file(script::Namespace gui)
   register_font_metrics_f_class(ns);
 
 }
-

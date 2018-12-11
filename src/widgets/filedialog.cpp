@@ -76,6 +76,7 @@ static void register_file_dialog_option_enum(script::Class file_dialog)
   Enum option = file_dialog.newEnum("Option").setId(script::Type::QFileDialogOption).get();
 
   register_qflags_type<QFileDialog::Option>(file_dialog, "Options", script::Type::QFileDialogOptions);
+
   option.addValue("ShowDirsOnly", QFileDialog::ShowDirsOnly);
   option.addValue("DontResolveSymlinks", QFileDialog::DontResolveSymlinks);
   option.addValue("DontConfirmOverwrite", QFileDialog::DontConfirmOverwrite);
@@ -296,4 +297,3 @@ void register_filedialog_file(script::Namespace widgets)
   // QIncompatibleFlag operator|(QFileDialog::Options::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QFileDialog::Options::enum_type, int);
 }
-

@@ -359,4 +359,3 @@ void register_image_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QImage &);
   /// TODO: QDebug operator<<(QDebug, const QImage &);
 }
-

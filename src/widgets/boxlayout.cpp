@@ -157,4 +157,3 @@ void register_boxlayout_file(script::Namespace widgets)
   // QVBoxLayout& newVBoxLayout(QWidget*);
   bind::new_function<QVBoxLayout, QWidget*>(ns, "newVBoxLayout");
 }
-

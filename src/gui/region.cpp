@@ -186,4 +186,3 @@ void register_region_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QRegion &);
   /// TODO: QDebug operator<<(QDebug, const QRegion &);
 }
-

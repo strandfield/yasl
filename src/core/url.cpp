@@ -64,6 +64,7 @@ static void register_url_component_formatting_option_enum(script::Class url)
   Enum component_formatting_option = url.newEnum("ComponentFormattingOption").setId(script::Type::QUrlComponentFormattingOption).get();
 
   register_qflags_type<QUrl::ComponentFormattingOption>(url, "ComponentFormattingOptions", script::Type::QUrlComponentFormattingOptions);
+
   component_formatting_option.addValue("PrettyDecoded", QUrl::PrettyDecoded);
   component_formatting_option.addValue("EncodeSpaces", QUrl::EncodeSpaces);
   component_formatting_option.addValue("EncodeUnicode", QUrl::EncodeUnicode);
@@ -83,6 +84,7 @@ static void register_url_user_input_resolution_option_enum(script::Class url)
   Enum user_input_resolution_option = url.newEnum("UserInputResolutionOption").setId(script::Type::QUrlUserInputResolutionOption).get();
 
   register_qflags_type<QUrl::UserInputResolutionOption>(url, "UserInputResolutionOptions", script::Type::QUrlUserInputResolutionOptions);
+
   user_input_resolution_option.addValue("DefaultResolution", QUrl::DefaultResolution);
   user_input_resolution_option.addValue("AssumeLocalFile", QUrl::AssumeLocalFile);
 }
@@ -325,4 +327,3 @@ void register_url_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QUrl &);
   /// TODO: QDebug operator<<(QDebug, const QUrl &);
 }
-

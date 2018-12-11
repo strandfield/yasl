@@ -124,4 +124,3 @@ void register_label_file(script::Namespace widgets)
   // QLabel& newLabel(const QString&, QWidget*);
   bind::new_function<QLabel, const QString&, QWidget*>(ns, "newLabel");
 }
-

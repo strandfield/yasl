@@ -268,4 +268,3 @@ void register_margins_file(script::Namespace core)
   /// TODO: QDebug operator<<(QDebug, const QMarginsF &);
 #endif
 }
-

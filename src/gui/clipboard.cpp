@@ -98,4 +98,3 @@ void register_clipboard_file(script::Namespace gui)
   register_clipboard_class(ns);
 
 }
-

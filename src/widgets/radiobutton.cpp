@@ -47,4 +47,3 @@ void register_radiobutton_file(script::Namespace widgets)
   // QRadioButton& newRadioButton(const QString&, QWidget* = (QWidget*)nullptr);
   bind::new_function<QRadioButton, const QString&, QWidget*>(ns, "newRadioButton");
 }
-

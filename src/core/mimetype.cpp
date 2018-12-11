@@ -82,4 +82,3 @@ void register_mimetype_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QMimeType &);
   /// TODO: QDebug operator<<(QDebug, const QMimeType &);
 }
-

@@ -60,6 +60,7 @@ static void register_message_box_standard_button_enum(script::Class message_box)
   Enum standard_button = message_box.newEnum("StandardButton").setId(script::Type::QMessageBoxStandardButton).get();
 
   register_qflags_type<QMessageBox::StandardButton>(message_box, "StandardButtons", script::Type::QMessageBoxStandardButtons);
+
   standard_button.addValue("NoButton", QMessageBox::NoButton);
   standard_button.addValue("Ok", QMessageBox::Ok);
   standard_button.addValue("Save", QMessageBox::Save);
@@ -238,4 +239,3 @@ void register_messagebox_file(script::Namespace widgets)
   // QIncompatibleFlag operator|(QMessageBox::StandardButtons::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QMessageBox::StandardButtons::enum_type, int);
 }
-

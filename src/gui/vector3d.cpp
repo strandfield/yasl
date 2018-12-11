@@ -166,4 +166,3 @@ void register_vector3d_file(script::Namespace gui)
   // QDataStream & operator>>(QDataStream &, QVector3D &);
   bind::op_read_from<QDataStream &, QVector3D &>(ns);
 }
-

@@ -241,4 +241,3 @@ void register_combobox_file(script::Namespace widgets)
   // QComboBox& newComboBox(QWidget*);
   bind::new_function<QComboBox, QWidget*>(ns, "newComboBox");
 }
-

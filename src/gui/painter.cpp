@@ -41,6 +41,7 @@ static void register_painter_render_hint_enum(script::Class painter)
   Enum render_hint = painter.newEnum("RenderHint").setId(script::Type::QPainterRenderHint).get();
 
   register_qflags_type<QPainter::RenderHint>(painter, "RenderHints", script::Type::QPainterRenderHints);
+
   render_hint.addValue("Antialiasing", QPainter::Antialiasing);
   render_hint.addValue("TextAntialiasing", QPainter::TextAntialiasing);
   render_hint.addValue("SmoothPixmapTransform", QPainter::SmoothPixmapTransform);
@@ -57,6 +58,7 @@ static void register_painter_pixmap_fragment_hint_enum(script::Class painter)
   Enum pixmap_fragment_hint = painter.newEnum("PixmapFragmentHint").setId(script::Type::QPainterPixmapFragmentHint).get();
 
   register_qflags_type<QPainter::PixmapFragmentHint>(painter, "PixmapFragmentHints", script::Type::QPainterPixmapFragmentHints);
+
   pixmap_fragment_hint.addValue("OpaqueHint", QPainter::OpaqueHint);
 }
 
@@ -563,4 +565,3 @@ void register_painter_file(script::Namespace gui)
   // QIncompatibleFlag operator|(QPainter::RenderHints::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QPainter::RenderHints::enum_type, int);
 }
-

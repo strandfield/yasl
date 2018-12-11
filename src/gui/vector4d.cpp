@@ -152,4 +152,3 @@ void register_vector4d_file(script::Namespace gui)
   // QDataStream & operator>>(QDataStream &, QVector4D &);
   bind::op_read_from<QDataStream &, QVector4D &>(ns);
 }
-

@@ -335,4 +335,3 @@ void register_color_file(script::Namespace gui)
   // QDataStream & operator>>(QDataStream &, QColor &);
   bind::op_read_from<QDataStream &, QColor &>(ns);
 }
-

@@ -179,4 +179,3 @@ void register_settings_file(script::Namespace core)
   register_settings_class(ns);
 
 }
-

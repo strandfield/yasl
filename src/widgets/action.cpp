@@ -236,4 +236,3 @@ void register_action_file(script::Namespace widgets)
   // QAction& newAction(const QIcon&, const QString&, QObject*);
   bind::new_function<QAction, const QIcon&, const QString&, QObject*>(ns, "newAction");
 }
-

@@ -609,4 +609,3 @@ void register_widget_file(script::Namespace widgets)
   void register_newwidget_file(script::Namespace n); // defined in newwidget.cpp
   register_newwidget_file(widgets);
 }
-

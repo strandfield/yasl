@@ -28,6 +28,7 @@ static void register_byte_array_base64_option_enum(script::Class byte_array)
   Enum base64_option = byte_array.newEnum("Base64Option").setId(script::Type::QByteArrayBase64Option).get();
 
   register_qflags_type<QByteArray::Base64Option>(byte_array, "Base64Options", script::Type::QByteArrayBase64Options);
+
   base64_option.addValue("Base64Encoding", QByteArray::Base64Encoding);
   base64_option.addValue("Base64UrlEncoding", QByteArray::Base64UrlEncoding);
   base64_option.addValue("KeepTrailingEquals", QByteArray::KeepTrailingEquals);
@@ -424,4 +425,3 @@ void register_bytearray_file(script::Namespace core)
   // QByteArray qUncompress(const QByteArray &);
   bind::function<QByteArray, const QByteArray &, &qUncompress>(ns, "qUncompress").create();
 }
-

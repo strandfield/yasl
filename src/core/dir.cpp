@@ -23,6 +23,7 @@ static void register_dir_filter_enum(script::Class dir)
   Enum filter = dir.newEnum("Filter").setId(script::Type::QDirFilter).get();
 
   register_qflags_type<QDir::Filter>(dir, "Filters", script::Type::QDirFilters);
+
   filter.addValue("Dirs", QDir::Dirs);
   filter.addValue("Files", QDir::Files);
   filter.addValue("Drives", QDir::Drives);
@@ -53,6 +54,7 @@ static void register_dir_sort_flag_enum(script::Class dir)
   Enum sort_flag = dir.newEnum("SortFlag").setId(script::Type::QDirSortFlag).get();
 
   register_qflags_type<QDir::SortFlag>(dir, "SortFlags", script::Type::QDirSortFlags);
+
   sort_flag.addValue("Name", QDir::Name);
   sort_flag.addValue("Time", QDir::Time);
   sort_flag.addValue("Size", QDir::Size);
@@ -256,4 +258,3 @@ void register_dir_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QDir &);
   /// TODO: QDebug operator<<(QDebug, const QDir &);
 }
-

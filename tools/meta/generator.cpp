@@ -59,7 +59,7 @@ public:
 
   ~StateGuard()
   {
-    if(node != nullptr)
+    if (node != nullptr)
       gen->mProcessingStack.pop();
     gen->mCurrentModule = current_module;
     gen->mCurrentHeader = header;
@@ -423,7 +423,7 @@ QString Generator::generateSignal(FunctionRef fun)
 
 QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
 {
-  QString out = enclosingEntity() == "Class" ? "  bind::mem"  : "  bind::";
+  QString out = enclosingEntity() == "Class" ? "  bind::mem" : "  bind::";
   out += "op_";
 
   const int implicit_param_count = isMember() ? 1 : 0;
@@ -461,7 +461,7 @@ QString Generator::generateOperator(FunctionRef fun, OperatorSymbol op)
   {
     if (op == LeftShift || op == RightShift)
     {
-      if(!isMember())
+      if (!isMember())
       {
         if (fun->returnType == fun->parameters.at(0))
         {
@@ -700,7 +700,7 @@ void Generator::generate(ClassRef cla)
   const QString enclosing_snake = enclosing_snake_name();
   const QString enclosing_entity = enclosingEntity();
   const QString qual = nameQualification();
- 
+
   StateGuard state{ this, cla };
 
 
@@ -715,32 +715,42 @@ void Generator::generate(ClassRef cla)
       generate(n);
   }
 
-  QString out;
+  QStringList lines;
 
-  if(!cla->version.isNull())
-    out += QString("#if %1").arg(HeaderFile::versionCheck(cla->version)) + endl;
+  if (!cla->version.isNull())
+    lines << QString("#if %1").arg(HeaderFile::versionCheck(cla->version));
 
-  out += "static void register_" + pre + snake + "_class(script::" + enclosing_entity + " " + enclosing_snake + ")" + endl;
-  out += "{" + endl;
-  out += "  using namespace script;" + endl;
-  out += endl;
-  out += "  Class " + snake + " = " + enclosing_snake;
-  if (enclosing_entity == "Namespace")
-    out += ".newClass";
-  else
-    out += ".newNestedClass";
-  out += "(\"" + claname + "\").setId(script::Type::" + class_info.id + ")";
-  if (!cla->base.isEmpty()) 
+  lines << QString("static void register_%1%2_class(script::%3 %4)").arg(pre, snake, enclosing_entity, enclosing_snake);
+  lines << "{";
+  lines << "  using namespace script;";
+  lines << QString();
+
   {
-    Type base_class_info = typeinfo(cla->base);
-    out += endl + "    .setBase(script::Type::" + base_class_info.id + ")";
+    QString format = "  Class %1 = %2.%3(\"%4\").setId(script::Type::%5)__BASE____FINAL__.get();";
+    QString arg3 = enclosing_entity == "Namespace" ? "newClass" : "newNestedClass";
+    QString line = format.arg(snake, enclosing_snake, arg3, claname, class_info.id);
+    if (!cla->base.isEmpty())
+    {
+      Type base_class_info = typeinfo(cla->base);
+      line.replace("__BASE__", endl + "    .setBase(script::Type::" + base_class_info.id + ")");
+    }
+    else
+    {
+      line.remove("__BASE__");
+    }
+    if (cla->isFinal)
+    {
+      line.replace("__FINAL__", endl + "    .setFinal()");
+    }
+    else
+    {
+      line.remove("__FINAL__");
+    }
+
+    lines << line;
   }
-  if (cla->isFinal)
-  {
-    out += endl + ".setFinal()";
-  }
-  out += ".get();" + endl;
-  out += endl;
+
+  lines << QString();
 
   Links links = extractLinks(class_info.links);
   for (const auto & l : links)
@@ -749,30 +759,30 @@ void Generator::generate(ClassRef cla)
     {
       Type ref_info = typeinfo(l.second);
       currentSource().bindingIncludes.insert("yasl/common/ref.h");
-      const QString format = "  register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);" + endl;
-      out += format.arg(snake, class_info.id, ref_info.id);
+      const QString format = "  register_ref_specialization(%1.engine(), script::Type::%2, script::Type::%3);";
+      lines << format.arg(snake, class_info.id, ref_info.id);
       recordGeneratedClass(ref_info.name, cla->version);
     }
     else if (l.first == "proxy")
     {
       Type proxy_info = typeinfo(l.second);
       currentHeader().bindingIncludes.insert("yasl/common/proxy.h");
-      const QString format = "  register_proxy_specialization<%1>(%2.engine()->getTemplate(Engine::ProxyTemplate), script::Type::%3);" + endl;
+      const QString format = "  register_proxy_specialization<%1>(%2.engine()->getTemplate(Engine::ProxyTemplate), script::Type::%3);";
       QString proxyelem = proxy_info.name;
       proxyelem.chop(QString(">").length());
       proxyelem.remove(0, proxyelem.indexOf('<') + 1);
-      out += format.arg(proxyelem, snake, proxy_info.id);
+      lines << format.arg(proxyelem, snake, proxy_info.id);
       recordGeneratedClass(proxy_info.name, cla->version);
     }
     else if (l.first == "list")
     {
       Type list_info = typeinfo(l.second);
       currentSource().bindingIncludes.insert("yasl/common/listspecializations.h");
-      const QString format = "  register_list_specialization<%1>(%2.engine(), script::Type::%3);" + endl;
+      const QString format = "  register_list_specialization<%1>(%2.engine(), script::Type::%3);";
       QString listelement = list_info.name;
       listelement.chop(QString(">").length());
       listelement.remove(0, QString("QList<").length());
-      out += format.arg(listelement, snake, list_info.id);
+      lines << format.arg(listelement, snake, list_info.id);
       recordGeneratedClass(list_info.name, cla->version);
     }
   }
@@ -786,15 +796,15 @@ void Generator::generate(ClassRef cla)
       continue;
 
     if (!n->version.isNull())
-      out += QString("#if %1").arg(HeaderFile::versionCheck(n->version)) + endl;
+      lines << QString("#if %1").arg(HeaderFile::versionCheck(n->version));
 
     if (n->is<Enum>())
-      out += "  register_" + prefix() + to_snake_case(n->name) + "_enum(" + snake + ");" + endl;
-    else if(n->is<Class>())
-      out += "  register_" + prefix() + to_snake_case(n->name) + "_class(" + snake + ");" + endl;
+      lines << QString("  register_%1%2_enum(%3);").arg(prefix(), to_snake_case(n->name), snake);
+    else if (n->is<Class>())
+      lines << QString("  register_%1%2_class(%3);").arg(prefix(), to_snake_case(n->name), snake);
 
     if (!n->version.isNull())
-      out += QString("#endif") + endl;
+      lines << QString("#endif");
   }
 
 
@@ -811,56 +821,58 @@ void Generator::generate(ClassRef cla)
     currentSource().bindingIncludes.insert(ClassBinderInclude);
   }
 
-  out += endl;
+  lines << QString();
 
 
   for (const auto n : cla->elements)
   {
     if (n->checkState == Qt::Unchecked || !n->is<Function>())
       continue;
-      
+
     FunctionRef fun = qSharedPointerCast<Function>(n);
 
     if (!fun->version.isNull())
-      out += QString("#if %1").arg(HeaderFile::versionCheck(fun->version)) + endl;
+      lines << QString("#if %1").arg(HeaderFile::versionCheck(fun->version));
 
-    out += "  // " + fundisplay(fun) + endl;
+    lines << ("  // " + fundisplay(fun));
     try
     {
-      out += generate(fun) + endl;
+      lines << generate(fun);
     }
     catch (...)
     {
-      out += "  /// TODO: " + fundisplay(fun) + endl;
+      lines << ("  /// TODO: " + fundisplay(fun));
     }
 
     if (!fun->version.isNull())
-      out += QString("#endif") + endl;
+      lines << QString("#endif");
   }
 
   if (is_qclass)
   {
-    out += endl;
+    lines << QString();
     //out += "  " + snake + ".engine()->registerQtType(&" + cla->name + "::staticMetaObject, " + snake + ".id());" + endl;
-    out += QString("  bind::link(%1, &%2::staticMetaObject);").arg(enclosing_snake_name(), enclosingName()) + endl;
+    lines << QString("  bind::link(%1, &%2::staticMetaObject);").arg(enclosing_snake_name(), enclosingName());
   }
 
   if (!class_info.metatype.isEmpty())
   {
-    out += endl;
+    lines << QString();
     currentSource().bindingIncludes.insert("yasl/common/genericvarianthandler.h");
-    const QString format = "  yasl::registerVariantHandler<yasl::GenericVariantHandler<%1, %2>>();" + endl;
-    out += format.arg(class_info.name, class_info.metatype);
+    const QString format = "  yasl::registerVariantHandler<yasl::GenericVariantHandler<%1, %2>>();";
+    lines << format.arg(class_info.name, class_info.metatype);
   }
 
-  out += "}" + endl;
+  lines << "}";
 
   if (!cla->version.isNull())
-    out += QString("#endif") + endl;
+    lines << QString("#endif");
 
-  out += endl;
+  lines << endl;
 
-  currentSource().functions.append(out);
+  QString body = lines.join(endl);
+
+  currentSource().functions.append(body);
   recordGeneratedClass(qual + cla->name, cla->version);
 }
 
@@ -878,21 +890,20 @@ void Generator::generate(EnumRef enm)
   Type enum_info = typeinfo(nameQualification() + enm->name);
   QString enmname = enum_info.rename.isEmpty() ? removeQualification(enum_info.name) : enum_info.rename;
 
-  QString out;
+  QStringList lines;
 
   if (!enm->version.isNull())
-    out += QString("#if %1").arg(HeaderFile::versionCheck(enm->version)) + endl;
+    lines << QString("#if %1").arg(HeaderFile::versionCheck(enm->version));
 
-  out += "static void register_" + pre + snake + "_enum(script::" + enclosingEntity() + " " + enclosing_snake_name() + ")" + endl;
-  out += "{" + endl;
-  out += "  using namespace script;" + endl;
-  out += endl;
-  out += "  Enum " + snake + " = " + enclosing_snake_name() + ".newEnum(\"" + enmname + "\").setId(script::Type::" + enum_info.id + ")";
+  lines << QString("static void register_%1%2_enum(script::%3 %4)").arg(pre, snake, enclosingEntity(), enclosing_snake_name());
+  lines << "{";
+  lines << "  using namespace script;";
+  lines << QString();
+  lines << QString("  Enum %1 = %2.newEnum(\"%3\").setId(script::Type::%4)").arg(snake, enclosing_snake_name(), enmname, enum_info.id);
   if (enm->isEnumClass)
-    out += endl + "    .setEnumClass()";
-  out += ".get();" + endl;
-  out += endl;
-
+    lines.back().append(endl + "    .setEnumClass()");
+  lines.back().append(".get();");
+  lines << QString();
 
   Links links = extractLinks(enum_info.links);
   for (const auto & l : links)
@@ -903,7 +914,7 @@ void Generator::generate(EnumRef enm)
       const QString flagname = flags_info.rename.isEmpty() ? flags_info.name : flags_info.rename;
       currentSource().bindingIncludes.insert("yasl/core/flags.h");
       const QString format = "  register_qflags_type<%1>(%2, \"%3\", script::Type::%4);" + endl;
-      out += format.arg(enum_info.name, enclosing_snake_name(), flagname, flags_info.id);
+      lines << format.arg(enum_info.name, enclosing_snake_name(), flagname, flags_info.id);
       recordGeneratedClass(flags_info.name, enm->version);
     }
   }
@@ -920,22 +931,22 @@ void Generator::generate(EnumRef enm)
       continue;
 
     if (!v->version.isNull())
-      out += QString("#if %1").arg(HeaderFile::versionCheck(v->version)) + endl;
+      lines << QString("#if %1").arg(HeaderFile::versionCheck(v->version));
 
-    out += format.arg(snake, v->name, nameQualification() + v->name) + endl;
+    lines << format.arg(snake, v->name, nameQualification() + v->name);
 
     if (!v->version.isNull())
-      out += QString("#endif") + endl;
+      lines << QString("#endif");
   }
 
-  out += "}" + endl;
+  lines << "}";
 
   if (!enm->version.isNull())
-    out += QString("#endif") + endl;
+    lines << QString("#endif");
 
-  out += endl;
+  lines << endl;
 
-  currentSource().functions.append(out);
+  currentSource().functions.append(lines.join(endl));
   recordGeneratedEnum(nameQualification() + enm->name, enm->version);
 }
 
@@ -956,32 +967,32 @@ void Generator::generate(NamespaceRef ns)
 
   for (const auto n : ns->elements)
   {
-    if(n->is<Namespace>() || n->is<Class>() || n->is<Enum>())
+    if (n->is<Namespace>() || n->is<Class>() || n->is<Enum>())
       generate(n);
   }
 
-  QString out;
-  if(ns->is<File>())
-    out +=  "void register_" + pre + to_snake_case(ns->name) + "_file(script::Namespace " + enclosing_snake + ")" + endl;
+  QStringList lines;
+  if (ns->is<File>())
+    lines << QString("void register_%1%2_file(script::Namespace %3)").arg(pre, to_snake_case(ns->name), enclosing_snake);
   else
-    out += "static void register_" + pre + snake + "_namespace(script::Namespace " + enclosing_snake + ")" + endl;
-  out += "{" + endl;
-  out += "  using namespace script;" + endl;
-  out += endl;
+    lines << QString("static void register_%1%2_namespace(script::Namespace %3)").arg(pre, snake, enclosing_snake);
+  lines << "{";
+  lines << "  using namespace script;";
+  lines << QString();
   if (ns->is<File>())
   {
-    out += "  Namespace " + snake + " = " + enclosing_snake + ";" + endl;
+    lines << QString("  Namespace %1 = %2;").arg(snake, enclosing_snake);
   }
   else
   {
     const QString name = ns->rename.isEmpty() ? ns->name : ns->rename;
 
-    if(name == "@")
-      out += "  Namespace " + snake + " = " + enclosing_snake + ";" + endl;
+    if (name == "@")
+      lines << QString("  Namespace %1 = %2;").arg(snake, enclosing_snake);
     else
-      out += "  Namespace " + snake + " = " + enclosing_snake + ".getNamespace(\"" + name + "\");" + endl;
+      lines << QString("  Namespace %1 = %2.getNamespace(\"%3\");").arg(snake, enclosing_snake, name);
   }
-  out += endl;
+  lines << QString();
 
   for (const auto n : ns->elements)
   {
@@ -992,20 +1003,20 @@ void Generator::generate(NamespaceRef ns)
       continue;
 
     if (!n->version.isNull())
-      out += QString("#if %1").arg(HeaderFile::versionCheck(n->version)) + endl;
+      lines << QString("#if %1").arg(HeaderFile::versionCheck(n->version));
 
     if (n->is<Enum>())
-      out += "  register_" + prefix() + to_snake_case(n->name) + "_enum(" + snake + ");" + endl;
+      lines << QString("  register_%1%2_enum(%3);").arg(prefix(), to_snake_case(n->name), snake);
     else if (n->is<Class>())
-      out += "  register_" + prefix() + to_snake_case(n->name) + "_class(" + snake + ");" + endl;
+      lines << QString("  register_%1%2_class(%3);").arg(prefix(), to_snake_case(n->name), snake);
     else if (n->is<Namespace>())
-      out += "  register_" + prefix() + to_snake_case(n->name) + "_namespace(" + snake + ");" + endl;
+      lines << QString("  register_%1%2_namespace(%3);").arg(prefix(), to_snake_case(n->name), snake);
 
     if (!n->version.isNull())
-      out += QString("#endif") + endl;
+      lines << QString("#endif");
   }
 
-  out += endl;
+  lines << QString();
 
   for (const auto n : ns->elements)
   {
@@ -1016,30 +1027,30 @@ void Generator::generate(NamespaceRef ns)
     {
       FunctionRef fun = qSharedPointerCast<Function>(n);
       if (!fun->version.isNull())
-        out += QString("#if %1").arg(HeaderFile::versionCheck(fun->version)) + endl;
+        lines << QString("#if %1").arg(HeaderFile::versionCheck(fun->version));
 
-      out += "  // " + fundisplay(fun) + endl;
+      lines << ("  // " + fundisplay(fun));
       try
       {
-        out += generate(fun) + endl;
+        lines << generate(fun);
       }
       catch (...)
       {
-        out += "  /// TODO: " + fundisplay(fun) + endl;
+        lines << ("  /// TODO: " + fundisplay(fun));
       }
 
       if (!fun->version.isNull())
-        out += QString("#endif") + endl;
+        lines << QString("#endif");
     }
     else if (n->is<Statement>())
     {
-      out += "  " + n->name + endl;
+      lines << ("  " + n->name);
     }
   }
 
-  out += "}" + endl;
-  
-  currentSource().functions.append(out);
+  lines << "}";
+
+  currentSource().functions.append(lines.join(endl));
 }
 
 void Generator::generate(NodeRef n)
@@ -1050,11 +1061,11 @@ void Generator::generate(NodeRef n)
     return;
   }
 
-  if(n->is<Module>())
+  if (n->is<Module>())
     generate(qSharedPointerCast<Module>(n));
   else if (n->is<Namespace>())
     generate(qSharedPointerCast<Namespace>(n));
-  else if(n->is<Class>())
+  else if (n->is<Class>())
     generate(qSharedPointerCast<Class>(n));
   else if (n->is<Enum>())
     generate(qSharedPointerCast<Enum>(n));
@@ -1203,7 +1214,7 @@ void Generator::generateInjectedTypeList()
 void Generator::buildTypeInfo()
 {
   mTypeInfos.clear();
-  
+
   for (const auto & t : mProject->types.fundamentals)
     mTypeInfos[t.name] = t;
 

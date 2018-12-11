@@ -209,4 +209,3 @@ void register_line_file(script::Namespace core)
   // QDataStream & operator>>(QDataStream &, QLineF &);
   bind::op_read_from<QDataStream &, QLineF &>(ns);
 }
-

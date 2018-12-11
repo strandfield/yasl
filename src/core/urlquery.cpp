@@ -100,4 +100,3 @@ void register_urlquery_file(script::Namespace core)
   bind::function<uint, const QUrlQuery &, uint, &qHash>(ns, "qHash").create();
 #endif
 }
-

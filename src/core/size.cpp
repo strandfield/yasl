@@ -192,4 +192,3 @@ void register_size_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QSizeF &);
   /// TODO: QDebug operator<<(QDebug, const QSizeF &);
 }
-

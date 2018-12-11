@@ -294,4 +294,3 @@ void register_variant_file(script::Namespace core)
   /// TODO: QDebug operator<<(QDebug, const QVariant::Type);
   yasl::complete_variant_class(ns.engine());
 }
-

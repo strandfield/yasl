@@ -81,4 +81,3 @@ void register_elapsedtimer_file(script::Namespace core)
   register_elapsed_timer_class(ns);
 
 }
-

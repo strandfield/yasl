@@ -188,4 +188,3 @@ void register_tabwidget_file(script::Namespace widgets)
   // QTabWidget& newTabWidget(QWidget*);
   bind::new_function<QTabWidget, QWidget*>(ns, "newTabWidget");
 }
-

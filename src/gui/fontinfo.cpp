@@ -73,4 +73,3 @@ void register_fontinfo_file(script::Namespace gui)
   register_font_info_class(ns);
 
 }
-

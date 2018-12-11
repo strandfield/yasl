@@ -27,6 +27,7 @@ static void register_date_time_edit_section_enum(script::Class date_time_edit)
   Enum section = date_time_edit.newEnum("Section").setId(script::Type::QDateTimeEditSection).get();
 
   register_qflags_type<QDateTimeEdit::Section>(date_time_edit, "Sections", script::Type::QDateTimeEditSections);
+
   section.addValue("NoSection", QDateTimeEdit::NoSection);
   section.addValue("AmPmSection", QDateTimeEdit::AmPmSection);
   section.addValue("MSecSection", QDateTimeEdit::MSecSection);
@@ -246,4 +247,3 @@ void register_datetimeedit_file(script::Namespace widgets)
   // QTimeEdit& newTimeEdit(const QTime&, QWidget*);
   bind::new_function<QTimeEdit, const QTime&, QWidget*>(ns, "newTimeEdit");
 }
-

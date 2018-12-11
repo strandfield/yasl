@@ -223,4 +223,3 @@ void register_keysequence_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QKeySequence &);
   /// TODO: QDebug operator<<(QDebug, const QKeySequence &);
 }
-

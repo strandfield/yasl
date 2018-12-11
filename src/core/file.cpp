@@ -104,4 +104,3 @@ void register_file_file(script::Namespace core)
   register_file_class(ns);
 
 }
-

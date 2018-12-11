@@ -56,4 +56,3 @@ void register_dial_file(script::Namespace widgets)
   // QDial& newDial(QWidget* = (QWidget*)nullptr);
   bind::new_function<QDial, QWidget*>(ns, "newDial");
 }
-

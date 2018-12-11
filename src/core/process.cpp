@@ -309,4 +309,3 @@ void register_process_file(script::Namespace core)
   register_process_class(ns);
 
 }
-

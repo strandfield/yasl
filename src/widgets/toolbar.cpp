@@ -126,4 +126,3 @@ void register_toolbar_file(script::Namespace widgets)
   // QToolBar& newToolBar(QWidget*);
   bind::new_function<QToolBar, QWidget*>(ns, "newToolBar");
 }
-

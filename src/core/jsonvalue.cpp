@@ -217,4 +217,3 @@ void register_jsonvalue_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QJsonValue &);
   /// TODO: QDebug operator<<(QDebug, const QJsonValue &);
 }
-

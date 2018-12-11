@@ -104,4 +104,3 @@ void register_gridlayout_file(script::Namespace widgets)
   // QGridLayout& newGridLayout();
   bind::new_function<QGridLayout>(ns, "newGridLayout");
 }
-

@@ -27,6 +27,7 @@ static void register_abstract_spin_box_step_enabled_flag_enum(script::Class abst
   Enum step_enabled_flag = abstract_spin_box.newEnum("StepEnabledFlag").setId(script::Type::QAbstractSpinBoxStepEnabledFlag).get();
 
   register_qflags_type<QAbstractSpinBox::StepEnabledFlag>(abstract_spin_box, "StepEnabled", script::Type::QAbstractSpinBoxStepEnabled);
+
   step_enabled_flag.addValue("StepNone", QAbstractSpinBox::StepNone);
   step_enabled_flag.addValue("StepUpEnabled", QAbstractSpinBox::StepUpEnabled);
   step_enabled_flag.addValue("StepDownEnabled", QAbstractSpinBox::StepDownEnabled);
@@ -166,4 +167,3 @@ void register_abstractspinbox_file(script::Namespace widgets)
   // QIncompatibleFlag operator|(QAbstractSpinBox::StepEnabled::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QAbstractSpinBox::StepEnabled::enum_type, int);
 }
-

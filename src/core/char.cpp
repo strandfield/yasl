@@ -704,4 +704,3 @@ void register_char__file(script::Namespace core)
   // QDataStream & operator>>(QDataStream &, QChar &);
   bind::op_read_from<QDataStream &, QChar &>(ns);
 }
-

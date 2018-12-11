@@ -275,4 +275,3 @@ void register_painterpath_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QPainterPath &);
   /// TODO: QDebug operator<<(QDebug, const QPainterPath &);
 }
-

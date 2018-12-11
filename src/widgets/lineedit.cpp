@@ -242,4 +242,3 @@ void register_lineedit_file(script::Namespace widgets)
   // QLineEdit& newLineEdit(const QString &, QWidget*);
   bind::new_function<QLineEdit, const QString &, QWidget*>(ns, "newLineEdit");
 }
-

@@ -249,4 +249,3 @@ void register_datastream_file(script::Namespace core)
   register_data_stream_class(ns);
 
 }
-

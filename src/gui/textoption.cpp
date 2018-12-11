@@ -49,6 +49,7 @@ static void register_text_option_flag_enum(script::Class text_option)
   Enum flag = text_option.newEnum("Flag").setId(script::Type::QTextOptionFlag).get();
 
   register_qflags_type<QTextOption::Flag>(text_option, "Flags", script::Type::QTextOptionFlags);
+
   flag.addValue("ShowTabsAndSpaces", QTextOption::ShowTabsAndSpaces);
   flag.addValue("ShowLineAndParagraphSeparators", QTextOption::ShowLineAndParagraphSeparators);
   flag.addValue("AddSpaceForLineAndParagraphSeparators", QTextOption::AddSpaceForLineAndParagraphSeparators);
@@ -138,4 +139,3 @@ void register_textoption_file(script::Namespace gui)
   // QIncompatibleFlag operator|(QTextOption::Flags::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QTextOption::Flags::enum_type, int);
 }
-

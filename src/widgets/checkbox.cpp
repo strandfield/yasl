@@ -56,4 +56,3 @@ void register_checkbox_file(script::Namespace widgets)
 
   register_newcheckbox_functions(widgets);
 }
-

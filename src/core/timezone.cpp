@@ -175,4 +175,3 @@ void register_timezone_file(script::Namespace core)
   /// TODO: QDebug operator<<(QDebug, const QTimeZone &);
 #endif
 }
-

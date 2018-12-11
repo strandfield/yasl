@@ -25,6 +25,7 @@ static void register_font_dialog_font_dialog_option_enum(script::Class font_dial
   Enum font_dialog_option = font_dialog.newEnum("FontDialogOption").setId(script::Type::QFontDialogFontDialogOption).get();
 
   register_qflags_type<QFontDialog::FontDialogOption>(font_dialog, "FontDialogOptions", script::Type::QFontDialogFontDialogOptions);
+
   font_dialog_option.addValue("NoButtons", QFontDialog::NoButtons);
   font_dialog_option.addValue("DontUseNativeDialog", QFontDialog::DontUseNativeDialog);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
@@ -106,4 +107,3 @@ void register_fontdialog_file(script::Namespace widgets)
   // QIncompatibleFlag operator|(QFontDialog::FontDialogOptions::enum_type, int);
   /// TODO: QIncompatibleFlag operator|(QFontDialog::FontDialogOptions::enum_type, int);
 }
-

@@ -384,4 +384,3 @@ void register_font_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QFont &);
   /// TODO: QDebug operator<<(QDebug, const QFont &);
 }
-

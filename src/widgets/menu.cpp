@@ -172,4 +172,3 @@ void register_menu_file(script::Namespace widgets)
   // QMenu& newMenu(const QString&, QWidget*);
   bind::new_function<QMenu, const QString&, QWidget*>(ns, "newMenu");
 }
-

@@ -98,7 +98,7 @@ types:
     - {id: QLineFIntersectType, name: QLineF::IntersectType, header: yasl/core/line.h}
     - {id: QLocaleCountry, name: QLocale::Country, header: yasl/core/locale.h}
     - {id: QLocaleCurrencySymbolFormat, name: QLocale::CurrencySymbolFormat, header: yasl/core/locale.h}
-    - {id: QLocaleDataSizeFormat, name: QLocale::DataSizeFormat}
+    - {id: QLocaleDataSizeFormat, name: QLocale::DataSizeFormat, header: yasl/core/locale.h}
     - {id: QLocaleFloatingPointPrecisionOption, name: QLocale::FloatingPointPrecisionOption, header: yasl/core/locale.h}
     - {id: QLocaleFormatType, name: QLocale::FormatType, header: yasl/core/locale.h}
     - {id: QLocaleLanguage, name: QLocale::Language, header: yasl/core/locale.h}

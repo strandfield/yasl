@@ -111,4 +111,3 @@ void register_progressbar_file(script::Namespace widgets)
   // QProgressBar& newProgressBar(QWidget* = (QWidget*)nullptr);
   bind::new_function<QProgressBar, QWidget*>(ns, "newProgressBar");
 }
-

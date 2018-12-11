@@ -99,4 +99,3 @@ void register_abstractbutton_file(script::Namespace widgets)
   register_abstract_button_class(ns);
 
 }
-

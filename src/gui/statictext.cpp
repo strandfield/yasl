@@ -93,4 +93,3 @@ void register_statictext_file(script::Namespace gui)
   register_static_text_class(ns);
 
 }
-

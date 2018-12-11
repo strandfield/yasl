@@ -124,4 +124,3 @@ void register_jsonobject_file(script::Namespace core)
   // QDebug operator<<(QDebug, const QJsonObject &);
   /// TODO: QDebug operator<<(QDebug, const QJsonObject &);
 }
-

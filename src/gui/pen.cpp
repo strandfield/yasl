@@ -119,4 +119,3 @@ void register_pen_file(script::Namespace gui)
   // QDebug operator<<(QDebug, const QPen &);
   /// TODO: QDebug operator<<(QDebug, const QPen &);
 }
-

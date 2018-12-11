@@ -74,4 +74,3 @@ void register_pushbutton_file(script::Namespace widgets)
   void register_newpushbutton_file(script::Namespace n); // defined in newpushbutton.cpp
   register_newpushbutton_file(widgets);
 }
-
