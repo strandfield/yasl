@@ -31,6 +31,18 @@ static bool check_op_eq(const script::Type & t, const script::Function & op)
   return true;
 }
 
+static bool check_op_assign(const script::Type & t, const script::Function & op)
+{
+  if (op.returnType() != script::Type::ref(t))
+    return false;
+
+  if (op.parameter(0) != script::Type::ref(t) || op.parameter(1) != script::Type::cref(t))
+    return false;
+
+  return true;
+}
+
+
 std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & t)
 {
   auto & typeinfomap = get_typeinfo_map();
@@ -46,15 +58,29 @@ std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & 
   if (t.isObjectType() || t.isFundamentalType())
   {
     auto creftype = script::Type::cref(t);
+    auto reftype = script::Type::ref(t);
 
-    std::vector<script::Function> ops = script::NameLookup::resolve(script::EqualOperator, creftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
-    auto resol = script::OverloadResolution::New(e);
-    if (!resol.process(ops, { creftype, creftype }))
-      throw std::runtime_error{ "TypeInfo::get(): type must be equality-comparable" };
+    {
+      std::vector<script::Function> ops = script::NameLookup::resolve(script::EqualOperator, creftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
+      auto resol = script::OverloadResolution::New(e);
+      if (!resol.process(ops, { creftype, creftype }))
+        throw std::runtime_error{ "TypeInfo::get(): type must be equality-comparable" };
 
-    ret->eq = resol.selectedOverload();
-    if(!check_op_eq(t.baseType(), ret->eq))
-      throw std::runtime_error{ "TypeInfo::get(): invalid operator==" };
+      ret->eq = resol.selectedOverload();
+      if (!check_op_eq(t.baseType(), ret->eq))
+        throw std::runtime_error{ "TypeInfo::get(): invalid operator==" };
+    }
+
+    {
+      std::vector<script::Function> ops = script::NameLookup::resolve(script::AssignmentOperator, reftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
+      auto resol = script::OverloadResolution::New(e);
+      if (!resol.process(ops, { reftype, creftype }))
+        throw std::runtime_error{ "TypeInfo::get(): type must be assignable" };
+
+      ret->assign = resol.selectedOverload();
+      if (!check_op_assign(t.baseType(), ret->assign))
+        throw std::runtime_error{ "TypeInfo::get(): invalid operator=" };
+    }
   }
   else
   {
@@ -79,7 +105,7 @@ Value::Value()
 Value::Value(const Value & other)
   : typeinfo_(other.typeinfo_)
 {
-  if (isValid())
+  if (other.isValid())
     value_ = engine()->copy(other.value_);
 }
 
@@ -131,6 +157,14 @@ script::Value Value::release()
   return ret;
 }
 
+void Value::assign(const script::Value & v)
+{
+  assert(isValid());
+  assert(typeinfo_->element_type == v.type());
+
+  typeinfo_->engine->invoke(typeinfo_->assign, { value_, v });
+}
+
 Value & Value::operator=(const Value & other)
 {
   if (value_ == other.value_)
@@ -169,6 +203,11 @@ bool Value::operator==(const Value & other) const
   bool result = ret.toBool();
   engine()->destroy(ret);
   return result;
+}
+
+bool Value::operator!=(const Value & other) const
+{
+  return !(*this == other);
 }
 
 ObserverValue::ObserverValue(const std::shared_ptr<TypeInfo> & ti, const script::Value & val)

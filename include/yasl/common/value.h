@@ -19,6 +19,7 @@ struct TypeInfo : public script::UserData
   script::Type element_type;
   script::Engine *engine;
   script::Function eq;
+  script::Function assign;
 
   static std::shared_ptr<TypeInfo> get(script::Engine *e, const script::Type & t);
   static std::shared_ptr<TypeInfo> get(const script::Class & cla);
@@ -44,9 +45,12 @@ public:
   inline bool isNull() const { return typeinfo_ == nullptr || value_.isNull(); }
   inline script::Engine *engine() const { return typeinfo_->engine; }
 
+  void assign(const script::Value & v);
+
   Value & operator=(const Value & other);
   Value & operator=(Value && other);
   bool operator==(const Value & other) const;
+  bool operator!=(const Value & other) const;
 
 protected:
   std::shared_ptr<TypeInfo> typeinfo_;

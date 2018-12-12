@@ -40,9 +40,13 @@ static std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserDa
 }
 
 
+extern void register_pair_template(script::Namespace n); // defined in pair.cpp
 
 void register_commons_utils(script::Engine *e)
 {
+  // Pair<T1, T2>()
+  register_pair_template(e->rootNamespace());
+
   // int type_id<T>()
   {
     using namespace script;

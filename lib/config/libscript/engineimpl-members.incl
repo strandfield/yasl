@@ -1,5 +1,6 @@
 
 public:
+  ClassTemplate pair_template_;
   ClassTemplate list_template_;
   ClassTemplate proxy_template_;
   ClassTemplate ref_template_;

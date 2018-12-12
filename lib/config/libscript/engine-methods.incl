@@ -1,6 +1,11 @@
 
 public:
 
+struct pair_template_t {};
+static const pair_template_t PairTemplate;
+ClassTemplate getTemplate(pair_template_t) const;
+void setTemplate(passkey, pair_template_t, const ClassTemplate & ct);
+
 struct list_template_t {};
 static const list_template_t ListTemplate;
 ClassTemplate getTemplate(list_template_t) const;

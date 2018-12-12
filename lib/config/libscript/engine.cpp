@@ -20,6 +20,18 @@ void BindingData::set(QObject *obj, const BindingData & d)
 } // namespace bind
 
 
+const Engine::pair_template_t Engine::PairTemplate = Engine::pair_template_t{};
+
+ClassTemplate Engine::getTemplate(pair_template_t) const
+{
+  return d->pair_template_;
+}
+
+void Engine::setTemplate(passkey, pair_template_t, const ClassTemplate & ct)
+{
+  d->pair_template_ = ct;
+}
+
 const Engine::list_template_t Engine::ListTemplate = Engine::list_template_t{};
 
 ClassTemplate Engine::getTemplate(list_template_t) const
