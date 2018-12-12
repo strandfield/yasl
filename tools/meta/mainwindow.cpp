@@ -16,6 +16,7 @@
 #include <QFileDialog>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QProgressDialog>
 #include <QSettings>
 #include <QTabWidget>
 
@@ -128,9 +129,17 @@ void MainWindow::generateBinding()
 
   mSettings->setValue("generatedir", path);
 
-  auto *gen = new Generator(path, this);
-  gen->generate(mProject);
-  gen->deleteLater();
+  QProgressDialog progress("Generating files...", "Abort", 0, mProject->fileCount(), this);
+  progress.setWindowTitle("Binding generation");
+  progress.setWindowModality(Qt::WindowModal);
+  progress.setMinimumDuration(2000);
+
+  Generator gen{ path };
+  gen.setProgressCallback([&progress](const QString & filename) -> bool {
+    progress.setValue(progress.value() + 1);
+    return !progress.wasCanceled();
+  });
+  gen.generate(mProject);
 }
 
 void MainWindow::showEvent(QShowEvent *e)

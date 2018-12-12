@@ -75,9 +75,8 @@ Generator::TypeInfo::TypeInfo(const Type & t)
 }
 
 
-Generator::Generator(const QString & dir, QObject *parent)
-  : QObject(parent)
-  , mRootDirectory(dir)
+Generator::Generator(const QString & dir)
+  : mRootDirectory(dir)
   , mCurrentHeader(nullptr)
   , mCurrentSource(nullptr)
 {
@@ -266,7 +265,11 @@ void Generator::generate(ModuleRef mod)
     {
       generate(qSharedPointerCast<File>(n));
 
-      Q_EMIT generated(qSharedPointerCast<File>(n));
+      if (mProgressCallback)
+      {
+        if (!mProgressCallback(qSharedPointerCast<File>(n)->name))
+          return;
+      }
 
       decls += "void register_" + n->name + "_file(script::Namespace n); // defined in " + n->name + ".cpp" + endl;
       load_func += "  register_" + n->name + "_file(" + mod->name + ".root());" + endl;
@@ -1232,7 +1235,10 @@ Generator::TypeInfo & Generator::typeinfo(const QString & t)
     throw UnsupportedType{ t };
 
   auto it = mTypeInfos.find(t);
-  if (it == mTypeInfos.end()) 
+  if (it == mTypeInfos.end())
+  {
+    //qDebug() << "Unsupported type: " << t;
     throw UnsupportedType{ t };
+  }
   return it.value();
 }

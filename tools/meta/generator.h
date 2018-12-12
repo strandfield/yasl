@@ -5,8 +5,6 @@
 #ifndef YASL_META_GENERATOR_H
 #define YASL_META_GENERATOR_H
 
-#include <QObject>
-
 #include "project.h"
 #include "project/class.h"
 #include "project/enum.h"
@@ -16,18 +14,22 @@
 #include <QSet>
 #include <QStack>
 
+#include <functional>
+
 class HeaderFile;
 class SourceFile;
 
 class QTextStream;
 
-class Generator : public QObject
+class Generator
 {
-  Q_OBJECT
 public:
-  Generator(const QString & dir, QObject *parent = nullptr);
+  Generator(const QString & dir);
 
   void generate(const ProjectRef & pro);
+
+  const std::function<bool(const QString &)> & progressCallback() const { return mProgressCallback; }
+  void setProgressCallback(std::function<bool(const QString &)> f) { mProgressCallback = f; }
 
   inline const ProjectRef & project() const { return mProject; }
 
@@ -36,9 +38,6 @@ public:
     TypeInfo() = default;
     TypeInfo(const Type & t);
   };
-
-Q_SIGNALS:
-  void generated(const FileRef & file);
 
 private:
   static const QString endl;
@@ -168,6 +167,8 @@ private:
     QMap<QString, QSet<QString>> classes;
   };
   GeneratedTypes mGeneratedTypes;
+
+  std::function<bool(const QString &)> mProgressCallback;
 };
 
 #endif // YASL_META_GENERATOR_H

@@ -63,6 +63,8 @@ public:
   }
 
   static void sort(QList<Type> & types);
+
+  int fileCount() const;
 };
 
 typedef QSharedPointer<Project> ProjectRef;

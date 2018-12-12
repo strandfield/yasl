@@ -6,6 +6,7 @@
 
 #include "project/class.h"
 #include "project/enum.h"
+#include "project/file.h"
 #include "project/namespace.h"
 
 #include "yaml/parser.h"
@@ -479,4 +480,20 @@ void Project::sort(QList<Type> & types)
   };
 
   qSort(types.begin(), types.end(), LessThan{});
+}
+
+int Project::fileCount() const
+{
+  int n = 0;
+
+  for (const auto & m : modules)
+  {
+    for (const auto & e : m->elements)
+    {
+      if (e->is<File>())
+        n++;
+    }
+  }
+
+  return n;
 }
