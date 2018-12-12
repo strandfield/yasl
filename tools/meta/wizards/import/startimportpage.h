@@ -8,7 +8,7 @@
 #include <QWizardPage>
 
 class StartImportPage_IncludeDirsGroupBox;
-class StartImportPage_ModuleNameGroupBox;
+class StartImportPage_PropertiesGroupBox;
 
 class StartImportPage : public QWizardPage
 {
@@ -27,10 +27,10 @@ private Q_SLOTS:
 
 private:
   typedef StartImportPage_IncludeDirsGroupBox IncludeDirsGroupBox;
-  typedef StartImportPage_ModuleNameGroupBox ModuleNameGroupBox;
+  typedef StartImportPage_PropertiesGroupBox PropertiesGroupBox;
 
   IncludeDirsGroupBox *mIncludeDirsGroupBox;
-  ModuleNameGroupBox *mModuleNameGroupBox;
+  PropertiesGroupBox *mPropertiesGroupBox;
 };
 
 #endif // YASL_META_STARTIMPORTPAGE_H

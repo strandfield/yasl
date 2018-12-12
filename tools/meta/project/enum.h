@@ -52,6 +52,8 @@ public:
 
   yaml::Value toYaml() const override;
   static QSharedPointer<Node> fromYaml(const yaml::Object & val);
+
+  void merge(const Enum & other);
 };
 typedef QSharedPointer<Enum> EnumRef;
 

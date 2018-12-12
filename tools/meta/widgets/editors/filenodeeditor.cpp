@@ -41,9 +41,8 @@ void FileNodeEditor::write()
   auto mFile = getFile();
 
   mFile->name = mName->text();
-  mFile->hincludes = mHIncludes->text().split(',');
-  mFile->cppincludes = mCppIncludes->text().split(',');
-
+  mFile->hincludes = mHIncludes->text().split(',', QString::SkipEmptyParts);
+  mFile->cppincludes = mCppIncludes->text().split(',', QString::SkipEmptyParts);
 }
 
 void FileNodeEditor::read(FileRef f)

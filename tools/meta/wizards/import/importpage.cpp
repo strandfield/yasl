@@ -27,8 +27,6 @@ ImportPage::ImportPage()
   hl->addItem(new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
 
   selectionTreeWidget = new ModuleTreeWidget(nullptr);
-  selectionTreeWidget->setColumnCount(2);
-  selectionTreeWidget->setHeaderLabels(QStringList{ QString{ "Symbol" }, "Macro" });
   l->addWidget(selectionTreeWidget);
 }
 
@@ -59,6 +57,7 @@ void ImportPage::initializePage()
 #ifdef YASL_META_HAS_LIBCLANG
   CppParser parser{ fields.importedSymbols };
   parser.setIncludeDirectories(fields.includeDirectories);
+  parser.setVersion(fields.version);
 
   for (const auto & f : fields.fileList)
     parser.parse(f, m);

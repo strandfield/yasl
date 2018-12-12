@@ -180,3 +180,23 @@ QSharedPointer<Node> Enum::fromYaml(const yaml::Object & inputobj)
 
   return ret;
 }
+
+static bool contains(const QList<EnumeratorRef> & enumerators, const EnumeratorRef & e)
+{
+  for (const auto & item : enumerators)
+  {
+    if (item->name == e->name)
+      return true;
+  }
+
+  return false;
+}
+
+void Enum::merge(const Enum & other)
+{
+  for (const auto & e : other.enumerators)
+  {
+    if (!contains(this->enumerators, e))
+      this->enumerators.append(e);
+  }
+}

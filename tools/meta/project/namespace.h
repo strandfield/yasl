@@ -29,15 +29,16 @@ public:
 
 
   template<typename T>
-  QSharedPointer<T> add(const QString & name)
+  QSharedPointer<T> add(const QString & name, const QtVersion & v = QtVersion{})
   {
     auto ret = QSharedPointer<T>::create(name);
+    ret->version = v;
     elements.append(ret);
     return ret;
   }
 
   template<typename T>
-  QSharedPointer<T> get(const QString & name)
+  QSharedPointer<T> get(const QString & name, const QtVersion v = QtVersion{})
   {
     for (const auto & e : elements)
     {
@@ -46,6 +47,7 @@ public:
     }
 
     auto ret = QSharedPointer<T>::create(name);
+    ret->version = v;
     elements.append(ret);
     return ret;
   }

@@ -231,19 +231,7 @@ int Node::compareTo(const Node & other) const
 
 bool eq(const NodeRef & lhs, const NodeRef & rhs)
 {
-  if (lhs->is<Function>() || rhs->is<Function>())
-    return false;
-
-  if (lhs->typeName() != rhs->typeName())
-    return false;
-
-  if (lhs->name != rhs->name)
-    return false;
-
-  if (lhs->display() != rhs->display())
-    return false;
-
-  return true;
+  return Node::compare(*lhs, *rhs) == 0;
 }
 
 void sort(QList<NodeRef> & list)

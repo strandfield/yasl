@@ -31,6 +31,7 @@ public:
     QStringList includeDirectories;
     QString moduleName;
     QStringList fileList;
+    QtVersion version;
     ProjectRef importedSymbols;
   };
 

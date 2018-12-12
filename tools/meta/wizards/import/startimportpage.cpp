@@ -8,6 +8,7 @@
 
 #include <QFile>
 #include <QFileDialog>
+#include <QFormLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -56,23 +57,27 @@ public:
 };
 
 
-class StartImportPage_ModuleNameGroupBox : public QGroupBox
+class StartImportPage_PropertiesGroupBox : public QGroupBox
 {
   Q_OBJECT
 public:
-  StartImportPage_ModuleNameGroupBox()
+  StartImportPage_PropertiesGroupBox()
   {
-    this->setTitle("Module name");
+    this->setTitle("Properties");
 
-    QVBoxLayout *l = new QVBoxLayout(this);
+    auto *l = new QFormLayout(this);
 
     mModuleNameLineEdit = new QLineEdit();
-    l->addWidget(mModuleNameLineEdit);
+    mVersionLineEdit = new QLineEdit();
+    
+    l->addRow("Module name: ", mModuleNameLineEdit);
+    l->addRow("Version: ", mVersionLineEdit);
   }
 
 
 public:
   QLineEdit *mModuleNameLineEdit;
+  QLineEdit *mVersionLineEdit;
 };
 
 
@@ -85,18 +90,20 @@ StartImportPage::StartImportPage()
   mIncludeDirsGroupBox = new IncludeDirsGroupBox();
   l->addWidget(mIncludeDirsGroupBox);
 
-  mModuleNameGroupBox = new ModuleNameGroupBox();
-  l->addWidget(mModuleNameGroupBox);
+  mPropertiesGroupBox = new PropertiesGroupBox();
+  l->addWidget(mPropertiesGroupBox);
 
   mIncludeDirsGroupBox->removeIncludeDirButton->setEnabled(false);
 
   connect(mIncludeDirsGroupBox->addIncludeDirButton, SIGNAL(clicked()), this, SLOT(addIncludeDir()));
   connect(mIncludeDirsGroupBox->removeIncludeDirButton, SIGNAL(clicked()), this, SLOT(removeIncludeDir()));
+  connect(mPropertiesGroupBox->mModuleNameLineEdit, SIGNAL(textChanged(const QString &)), this, SIGNAL(completeChanged()));
 }
 
 bool StartImportPage::isComplete() const
 {
-  return mIncludeDirsGroupBox->includeDirectoriesListWidget->count() > 0;
+  return mIncludeDirsGroupBox->includeDirectoriesListWidget->count() > 0 
+    && !mPropertiesGroupBox->mModuleNameLineEdit->text().isEmpty();
 }
 
 int StartImportPage::nextId() const
@@ -109,7 +116,8 @@ bool StartImportPage::validatePage()
   ImportWizard::Fields & fields = ImportWizard::get(wizard())->fields();
 
   fields.includeDirectories = mIncludeDirsGroupBox->getIncludeDirectories();
-  fields.moduleName = mModuleNameGroupBox->mModuleNameLineEdit->text();
+  fields.moduleName = mPropertiesGroupBox->mModuleNameLineEdit->text();
+  fields.version = QtVersion::fromString(mPropertiesGroupBox->mVersionLineEdit->text());
 
   return isComplete();
 }

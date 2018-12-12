@@ -487,15 +487,9 @@ void ModuleTreeWidget::updateItem(QTreeWidgetItem *item, int column)
 
   node->checkState = item->checkState(0);
 
-  if (node->is<Namespace>() || node->is<Module>() || node->is<Class>() || node->is<Enum>() || node->is<Statement>())
+  if (node->is<Module>() || node->is<Statement>())
   {
     node->name = item->text(0);
-  }
-
-  if (node->is<Namespace>())
-  {
-    Namespace & ns = node->as<Namespace>();
-    ns.rename = item->text(1);
   }
 
   updateCheckState(item);

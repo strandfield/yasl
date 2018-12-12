@@ -258,6 +258,20 @@ static void merge_recursively(QList<NodeRef> & target, const QList<NodeRef> & sr
 
       merge_recursively(targetNamespace->elements, srcNamespace->elements);
     }
+    else if (node->is<Class>())
+    {
+      ClassRef target_class = qSharedPointerCast<Class>(node);
+      ClassRef src_class = qSharedPointerCast<Class>(srcItem);
+
+      merge_recursively(target_class->elements, src_class->elements);
+    }
+    else if (node->is<Enum>())
+    {
+      EnumRef target_enum = qSharedPointerCast<Enum>(node);
+      EnumRef src_enum = qSharedPointerCast<Enum>(srcItem);
+
+      target_enum->merge(*src_enum);
+    }
     else
     {
       qDebug() << "Element already exists in project";

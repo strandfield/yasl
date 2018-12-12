@@ -20,6 +20,7 @@
 #include <QQueue>
 
 static QString gCurrentFile = QString{};
+static QtVersion gCurrentVersion = QtVersion{};
 
 static QString convert(CXString str)
 {
@@ -59,6 +60,7 @@ static CXChildVisitResult enum_visitor(CXCursor cursor, CXCursor parent, CXClien
   {
     const QString & n = getCursorSpelling(cursor);
     enm.enumerators.append(EnumeratorRef::create(n));
+    enm.enumerators.back()->version = gCurrentVersion;
   }
 
   return CXChildVisit_Continue;
@@ -77,21 +79,23 @@ static CXChildVisitResult class_visitor(CXCursor cursor, CXCursor parent, CXClie
     FunctionRef func = nullptr;
     if (kind == CXCursor_Constructor)
     {
-      func = cla.add<Constructor>(getCursorSpelling(cursor));
+      func = cla.add<Constructor>(getCursorSpelling(cursor), gCurrentVersion);
     }
     else if (kind == CXCursor_Destructor)
     {
-      func = cla.add<Destructor>(getCursorSpelling(cursor));
+      func = cla.add<Destructor>(getCursorSpelling(cursor), gCurrentVersion);
     }
     else
     {
-      func = cla.add<Function>(getCursorSpelling(cursor));
+      func = cla.add<Function>(getCursorSpelling(cursor), gCurrentVersion);
       func->isConst = clang_CXXMethod_isConst(cursor);
       func->isStatic = clang_CXXMethod_isStatic(cursor);
     }
 
     auto type = clang_getCursorType(cursor);
-    func->returnType = convert(clang_getTypeSpelling(clang_getResultType(type)));
+
+    if (kind != CXCursor_Constructor && kind != CXCursor_Destructor)
+      func->returnType = convert(clang_getTypeSpelling(clang_getResultType(type)));
 
     const int num_args = clang_Cursor_getNumArguments(cursor);
     for (int i = 0; i < num_args; ++i)
@@ -101,9 +105,20 @@ static CXChildVisitResult class_visitor(CXCursor cursor, CXCursor parent, CXClie
       func->parameters.push_back(arg_data_type);
     }
   }
+  else if (kind == CXCursor_ClassDecl || kind == CXCursor_StructDecl)
+  {
+    if (is_forward_declaration(cursor))
+      return CXChildVisit_Continue;
+
+    auto c = cla.get<Class>(getCursorSpelling(cursor), gCurrentVersion);
+    clang_visitChildren(cursor, class_visitor, (void*)c.data());
+
+    if (c->elements.isEmpty())
+      cla.remove<Class>(c->name);
+  }
   else if (clang_getCursorKind(cursor) == CXCursor_EnumDecl)
   {
-    auto e = cla.get<Enum>(getCursorSpelling(cursor));
+    auto e = cla.get<Enum>(getCursorSpelling(cursor), gCurrentVersion);
     clang_visitChildren(cursor, enum_visitor, (void*)e.data());
   }
 
@@ -127,7 +142,7 @@ static CXChildVisitResult namespace_visitor(CXCursor cursor, CXCursor parent, CX
     if (is_forward_declaration(cursor))
       return CXChildVisit_Continue;
 
-    auto c = ns->get<Class>(getCursorSpelling(cursor));
+    auto c = ns->get<Class>(getCursorSpelling(cursor), gCurrentVersion);
     clang_visitChildren(cursor, class_visitor, (void*)c.data());
 
     if (c->elements.isEmpty())
@@ -135,7 +150,7 @@ static CXChildVisitResult namespace_visitor(CXCursor cursor, CXCursor parent, CX
   }
   else if (clang_getCursorKind(cursor) == CXCursor_FunctionDecl)
   {
-    auto func = ns->add<Function>(getCursorSpelling(cursor));
+    auto func = ns->add<Function>(getCursorSpelling(cursor), gCurrentVersion);
 
     auto type = clang_getCursorType(cursor);
     func->returnType = convert(clang_getTypeSpelling(clang_getResultType(type)));
@@ -153,7 +168,7 @@ static CXChildVisitResult namespace_visitor(CXCursor cursor, CXCursor parent, CX
     if (is_forward_declaration(cursor))
       return CXChildVisit_Continue;
 
-    auto e = ns->get<Enum>(getCursorSpelling(cursor));
+    auto e = ns->get<Enum>(getCursorSpelling(cursor), gCurrentVersion);
     clang_visitChildren(cursor, enum_visitor, (void*)e.data());
   }
 
@@ -193,6 +208,7 @@ static void process_file(CppParser & parser, CXIndex index, const QString & path
   QFileInfo fileinfo{ path };
 
   auto file = FileRef::create(fileinfo.fileName());
+  file->version = parser.version();
 
   CXTranslationUnit tu;
   const int options = CXTranslationUnit_SkipFunctionBodies;
@@ -216,6 +232,7 @@ static void process_file(CppParser & parser, CXIndex index, const QString & path
   //clang_getInclusions(tu, include_visitor, nullptr);
 
   gCurrentFile = path;
+  gCurrentVersion = parser.version();
   read_content(file, tu);
 
   parser.activeModule()->elements.append(file);
