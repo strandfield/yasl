@@ -16,16 +16,17 @@ public:
   Enumerator(const QString & n, Qt::CheckState c = Qt::Checked);
   ~Enumerator() = default;
 
-  static const QString staticTypeCode;
+  QString typeName() const override { return "enumerator"; }
+  static const NodeType staticTypeCode = NodeType::Enumerator;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
   yaml::Value toYaml() const override;
   static QSharedPointer<Enumerator> fromYaml(const QString & str);
-
-  QString typeCode() const override { return staticTypeCode; }
 };
+
 typedef QSharedPointer<Enumerator> EnumeratorRef;
 
 
@@ -42,16 +43,15 @@ public:
 
   QString display() const override;
 
-  static const QString staticTypeCode;
+  QString typeName() const override { return "enum"; }
+  static const NodeType staticTypeCode = NodeType::Enum;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
   yaml::Value toYaml() const override;
   static QSharedPointer<Node> fromYaml(const yaml::Object & val);
-
-  QString typeCode() const override { return staticTypeCode; }
-
 };
 typedef QSharedPointer<Enum> EnumRef;
 

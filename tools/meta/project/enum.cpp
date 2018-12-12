@@ -9,9 +9,6 @@
 #include <QDebug>
 #include <QJsonArray>
 
-const QString Enum::staticTypeCode = "enum";
-const QString Enumerator::staticTypeCode = "enumerator";
-
 Enumerator::Enumerator(const QString & n, Qt::CheckState c)
   : Node(n, c)
 {

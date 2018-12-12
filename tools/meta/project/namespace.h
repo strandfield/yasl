@@ -17,7 +17,9 @@ public:
   Namespace(const QString & n, Qt::CheckState c = Qt::Checked);
   ~Namespace() = default;
 
-  static const QString staticTypeCode;
+  QString typeName() const override { return "namespace"; }
+  static const NodeType staticTypeCode = NodeType::Namespace;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
@@ -25,7 +27,6 @@ public:
   yaml::Value toYaml() const override;
   static QSharedPointer<Node> fromYaml(const yaml::Object & inputobj);
 
-  QString typeCode() const override { return staticTypeCode; }
 
   template<typename T>
   QSharedPointer<T> add(const QString & name)

@@ -20,24 +20,24 @@ int main(int argc, char *argv[])
 {
   QApplication app(argc, argv);
 
-  Node::registerDeserializer(Class::staticTypeCode, Class::fromJson);
-  Node::registerDeserializer(Enum::staticTypeCode, Enum::fromJson);
-  Node::registerDeserializer(File::staticTypeCode, File::fromJson);
-  Node::registerDeserializer(Function::staticTypeCode, Function::fromJson);
-  Node::registerDeserializer(Constructor::staticTypeCode, Constructor::fromJson);
-  Node::registerDeserializer(Destructor::staticTypeCode, Destructor::fromJson);
-  Node::registerDeserializer(Module::staticTypeCode, Module::fromJson);
-  Node::registerDeserializer(Namespace::staticTypeCode, Namespace::fromJson);
-  Node::registerDeserializer(Statement::staticTypeCode, Statement::fromJson);
+  Node::registerDeserializer("class", Class::fromJson);
+  Node::registerDeserializer("enum", Enum::fromJson);
+  Node::registerDeserializer("file", File::fromJson);
+  Node::registerDeserializer("function", Function::fromJson);
+  Node::registerDeserializer("constructor", Constructor::fromJson);
+  Node::registerDeserializer("destructor", Destructor::fromJson);
+  Node::registerDeserializer("module", Module::fromJson);
+  Node::registerDeserializer("namespace", Namespace::fromJson);
+  Node::registerDeserializer("statement", Statement::fromJson);
 
-  Node::registerDeserializer(Class::staticTypeCode, Class::fromYaml);
-  Node::registerDeserializer(Enum::staticTypeCode, Enum::fromYaml);
-  Node::registerDeserializer(File::staticTypeCode, File::fromYaml);
-  Node::registerDeserializer(Function::staticTypeCode, Function::fromYaml);
-  Node::registerDeserializer(Constructor::staticTypeCode, Constructor::fromYaml);
-  Node::registerDeserializer(Destructor::staticTypeCode, Destructor::fromYaml);
-  Node::registerDeserializer(Namespace::staticTypeCode, Namespace::fromYaml);
-  Node::registerDeserializer(Statement::staticTypeCode, Statement::fromYaml);
+  Node::registerDeserializer("class", Class::fromYaml);
+  Node::registerDeserializer("enum", Enum::fromYaml);
+  Node::registerDeserializer("file", File::fromYaml);
+  Node::registerDeserializer("function", Function::fromYaml);
+  Node::registerDeserializer("constructor", Constructor::fromYaml);
+  Node::registerDeserializer("destructor", Destructor::fromYaml);
+  Node::registerDeserializer("namespace", Namespace::fromYaml);
+  Node::registerDeserializer("statement", Statement::fromYaml);
 
   MainWindow w;
   w.show();

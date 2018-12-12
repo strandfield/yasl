@@ -16,8 +16,9 @@ public:
   Module(const QString & n, Qt::CheckState c = Qt::Checked);
   ~Module() = default;
 
-  static const QString staticTypeCode;
-  QString typeCode() const override { return staticTypeCode; }
+  QString typeName() const override { return "module"; }
+  static const NodeType staticTypeCode = NodeType::Module;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & obj);

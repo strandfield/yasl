@@ -8,8 +8,6 @@
 
 #include <QJsonArray>
 
-const QString Namespace::staticTypeCode = "namespace";
-
 Namespace::Namespace(const QString & n, Qt::CheckState c)
   : Node(n, c)
 {

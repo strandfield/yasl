@@ -36,6 +36,20 @@ QtVersion readQtVersion(const QJsonObject & obj);
 void writeQtVersion(QJsonObject & obj, QtVersion v);
 } //  namespace json
 
+enum class NodeType
+{
+  Module,
+  File,
+  Namespace,
+  Enum,
+  Enumerator,
+  Class,
+  Constructor,
+  Destructor,
+  Function,
+  Statement,
+};
+
 class Node
 {
 public:
@@ -65,7 +79,8 @@ public:
   static void registerDeserializer(const QString & name, YamlDeserializer func);
 
   virtual QString display() const { return name; }
-  virtual QString typeCode() const = 0;
+  virtual QString typeName() const = 0;
+  virtual NodeType typeCode() const = 0;
 
   typedef QSharedPointer<Node>(*JsonDeserializer)(const QJsonObject &);
   static QMap<QString, JsonDeserializer> staticFactory;
@@ -73,9 +88,14 @@ public:
 
   static QString nameQualification(const QStack<QSharedPointer<Node>> & nodes);
 
+  static int compare(const Node & a, const Node & b);
+
   QString name;
   Qt::CheckState checkState;
   QtVersion version;
+
+protected:
+  virtual int compareTo(const Node & other) const;
 };
 typedef QSharedPointer<Node> NodeRef;
 
@@ -99,5 +119,7 @@ inline bool neq(const NodeRef & lhs, const NodeRef & rhs)
 {
   return !eq(lhs, rhs);
 }
+
+void sort(QList<NodeRef> & list);
 
 #endif // YASL_META_NODE_H

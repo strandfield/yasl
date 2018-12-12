@@ -18,7 +18,9 @@ public:
   Class(const QString & n, Qt::CheckState c = Qt::Checked);
   ~Class() = default;
 
-  static const QString staticTypeCode;
+  QString typeName() const override { return "class"; }
+  static const NodeType staticTypeCode = NodeType::Class;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   QString display() const override;
 
@@ -27,9 +29,6 @@ public:
 
   yaml::Value toYaml() const override;
   static QSharedPointer<Node> fromYaml(const yaml::Object & val);
-
-  QString typeCode() const override { return staticTypeCode; }
-
 
   template<typename T>
   QSharedPointer<T> add(const QString & name)

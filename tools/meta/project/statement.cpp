@@ -8,8 +8,6 @@
 
 #include <QJsonArray>
 
-const QString Statement::staticTypeCode = "statement";
-
 Statement::Statement(const QString & val, Qt::CheckState c)
   : Node(val, c)
 {

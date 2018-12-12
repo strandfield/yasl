@@ -8,8 +8,6 @@
 
 #include <QJsonArray>
 
-const QString Class::staticTypeCode = "class";
-
 Class::Class(const QString & n, Qt::CheckState c)
   : Node(n, c)
   , isFinal(false)
@@ -115,3 +113,4 @@ QSharedPointer<Node> Class::fromYaml(const yaml::Object & inputobj)
 
   return ret;
 }
+

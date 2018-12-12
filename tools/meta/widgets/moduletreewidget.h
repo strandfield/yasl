@@ -63,6 +63,7 @@ private:
   QAction *mAddCopyCtorAction;
   QAction *mAddDestructorAction;
   QAction *mAddAssignmentAction;
+  QAction *mSortClassMembersAction;
   QMenu *mFileNodeMenu;
   QAction *mAddStatementAction;
 };

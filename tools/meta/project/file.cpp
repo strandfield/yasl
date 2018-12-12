@@ -9,8 +9,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-const QString File::staticTypeCode = "file";
-
 File::File(const QString & n, Qt::CheckState c)
   : Namespace(n, c)
 {
@@ -95,7 +93,7 @@ yaml::Value File::toYaml() const
   }
 
   yaml::Object ret;
-  ret[File::staticTypeCode] = content;
+  ret["file"] = content;
   return ret;
 }
 

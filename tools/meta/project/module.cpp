@@ -9,8 +9,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-const QString Module::staticTypeCode = "module";
-
 Module::Module(const QString & n, Qt::CheckState c)
   : Node(n, c)
 {

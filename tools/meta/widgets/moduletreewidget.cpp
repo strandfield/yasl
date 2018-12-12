@@ -590,6 +590,8 @@ void ModuleTreeWidget::createContextMenus()
   mAddCopyCtorAction = mClassMenu->addAction("Add copy constructor");
   mAddDestructorAction = mClassMenu->addAction("Add destructor");
   mAddAssignmentAction = mClassMenu->addAction("Add assignment");
+  mSortClassMembersAction = mClassMenu->addAction("Sort");
+
   mAddStatementAction = mFileNodeMenu->addAction("Add statement");
 }
 
@@ -616,6 +618,13 @@ void ModuleTreeWidget::execAction(QTreeWidgetItem *item, NodeRef node, QAction *
       assign->returnType = cla.name + " &";
       assign->parameters.append("const " + cla.name + " &");
       cla.elements.append(assign);
+    }
+    else if (act == mSortClassMembersAction)
+    {
+      sort(cla.elements);
+      while (item->childCount() > 0)
+        item->removeChild(item->child(item->childCount() - 1));
+      fetchNewNodes(item);
     }
   }
   else if (node->is<File>())

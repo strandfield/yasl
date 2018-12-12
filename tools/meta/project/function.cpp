@@ -8,11 +8,6 @@
 
 #include <QJsonArray>
 
-const QString Function::staticTypeCode = "function";
-const QString Constructor::staticTypeCode = "constructor";
-const QString Destructor::staticTypeCode = "destructor";
-
-
 Function::Function(const QString & n, Qt::CheckState c)
   : Node(n, c)
   , isExplicit(false)
@@ -177,6 +172,43 @@ QString Function::display() const
     result += " [" + serialize(bindingMethod) + "]";
 
   return result;
+}
+
+int Function::compareTo(const Node & o) const
+{
+  static const QString operator_str = "operator";
+
+  const Function & other = dynamic_cast<const Function &>(o);
+  
+  {
+    const bool self_is_operator = this->name.startsWith(operator_str);
+    const bool other_is_operator = other.name.startsWith(operator_str);
+    if (self_is_operator != other_is_operator)
+      return self_is_operator ? 1 : -1;
+  }
+
+  int c = this->name.compare(other.name);
+  if (c != 0)
+    return c;
+
+  if (this->parameters.size() < other.parameters.size())
+    return -1;
+  else if (this->parameters.size() > other.parameters.size())
+    return 1;
+
+  for (int i(0); i < this->parameters.size(); ++i)
+  {
+    c = this->parameters.at(i).compare(other.parameters.at(i));
+    if (c != 0)
+      return c;
+  }
+
+  c = this->returnType.compare(other.returnType);
+  if (c != 0)
+    return c;
+
+  c = this->getSpecifiers().join(QChar()).compare(other.getSpecifiers().join(QChar()));
+  return c;
 }
 
 QStringList Function::getSpecifiers() const

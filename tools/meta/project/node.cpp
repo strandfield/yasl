@@ -157,7 +157,7 @@ void Node::fillJson(QJsonObject & obj) const
 {
   obj["name"] = this->name;
   json::writeCheckState(obj, this->checkState);
-  obj["type"] = typeCode();
+  obj["type"] = typeName();
   json::writeQtVersion(obj, this->version);
 }
 
@@ -214,12 +214,27 @@ QString Node::nameQualification(const QStack<QSharedPointer<Node>> & nodes)
   return names.join("::") + "::";
 }
 
+int Node::compare(const Node & a, const Node & b)
+{
+  if (a.typeCode() < b.typeCode())
+    return -1;
+  else if (a.typeCode() > b.typeCode())
+    return 1;
+
+  return a.compareTo(b);
+}
+
+int Node::compareTo(const Node & other) const
+{
+  return this->name.compare(other.name);
+}
+
 bool eq(const NodeRef & lhs, const NodeRef & rhs)
 {
   if (lhs->is<Function>() || rhs->is<Function>())
     return false;
 
-  if (lhs->typeCode() != rhs->typeCode())
+  if (lhs->typeName() != rhs->typeName())
     return false;
 
   if (lhs->name != rhs->name)
@@ -229,4 +244,11 @@ bool eq(const NodeRef & lhs, const NodeRef & rhs)
     return false;
 
   return true;
+}
+
+void sort(QList<NodeRef> & list)
+{
+  qSort(list.begin(), list.end(), [](const NodeRef & a, const NodeRef & b) -> bool {
+    return Node::compare(*a, *b) < 0;
+  });
 }

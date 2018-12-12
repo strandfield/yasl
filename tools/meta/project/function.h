@@ -45,7 +45,9 @@ public:
   Function(const QString & n, Qt::CheckState c = Qt::Checked);
   ~Function() = default;
 
-  static const QString staticTypeCode;
+  QString typeName() const override { return "function"; }
+  static const NodeType staticTypeCode = NodeType::Function;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
@@ -54,9 +56,9 @@ public:
   yaml::Value toYaml() const override;
   static QSharedPointer<Node> fromYaml(const yaml::Object & val);
 
-  QString typeCode() const override { return staticTypeCode; }
-
   QString display() const override;
+
+  int compareTo(const Node & o) const;
 
   QStringList getSpecifiers() const;
   void setSpecifiers(const QStringList & specs);
@@ -147,15 +149,15 @@ struct Constructor : public Function
   Constructor(const QString & n, Qt::CheckState cs = Qt::Checked);
   ~Constructor() = default;
 
-  static const QString staticTypeCode;
+  QString typeName() const override { return "constructor"; }
+  static const NodeType staticTypeCode = NodeType::Constructor;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
   yaml::Value toYaml() const override;
   static QSharedPointer<Node> fromYaml(const yaml::Object & obj);
-
-  QString typeCode() const override { return staticTypeCode; }
 
   QString display() const override;
 
@@ -167,15 +169,15 @@ struct Destructor : public Function
   Destructor(const QString & n, Qt::CheckState cs = Qt::Checked);
   ~Destructor() = default;
 
-  static const QString staticTypeCode;
+  QString typeName() const override { return "destructor"; }
+  static const NodeType staticTypeCode = NodeType::Destructor;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   void fillJson(QJsonObject & obj) const override;
   static QSharedPointer<Node> fromJson(const QJsonObject & val);
 
   yaml::Value toYaml() const override;
   static QSharedPointer<Node> fromYaml(const yaml::Object & obj);
-
-  QString typeCode() const override { return staticTypeCode; }
 
   QString display() const override;
 

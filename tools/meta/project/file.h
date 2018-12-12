@@ -17,7 +17,9 @@ public:
   File(const QString & n, Qt::CheckState c = Qt::Checked);
   ~File() = default;
 
-  static const QString staticTypeCode;
+  QString typeName() const override { return "file"; }
+  static const NodeType staticTypeCode = NodeType::File;
+  NodeType typeCode() const override { return staticTypeCode; }
 
   QString display() const override;
 
@@ -26,8 +28,6 @@ public:
 
   yaml::Value toYaml() const override;
   static QSharedPointer<Node> fromYaml(const yaml::Object & inputobj);
-
-  QString typeCode() const override { return staticTypeCode; }
 
 };
 typedef QSharedPointer<File> FileRef;
