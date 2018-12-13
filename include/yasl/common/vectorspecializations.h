@@ -56,11 +56,15 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
 {
   using namespace script;
 
+  Class vector = vector_template.engine()->getClass(type_id);
+  if (!vector.isNull() && vector.id() == type_id)
+    return;
+
   std::vector<TemplateArgument> targs{
     TemplateArgument{ script::make_type<T>() }
   };
 
-  Class vector = vector_template.Specialization(std::move(targs))
+  vector = vector_template.Specialization(std::move(targs))
     .setId(type_id)
     .setFinal()
     .get();

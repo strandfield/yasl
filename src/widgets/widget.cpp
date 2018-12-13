@@ -57,8 +57,8 @@ static void register_widget_class(script::Namespace ns)
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(widget.engine(), script::Type::QWidget, script::Type::QWidgetStar);
-  register_proxy_specialization<QWidget*>(widget.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQWidget);
-  register_list_specialization<QWidget*>(widget.engine(), script::Type::QListQWidget);
+  register_proxy_specialization<QWidget*>(widget.engine());
+  register_list_specialization<QWidget*>(widget.engine());
   register_widget_render_flag_enum(widget);
 
   // QWidget(QWidget * = (QWidget*)nullptr, Qt::WindowFlags = Qt::WindowFlags());

@@ -75,6 +75,9 @@ static ConstIterator & get_const_iter(const script::Value & val)
   return *static_cast<ConstIterator*>(val.memory());
 }
 
+namespace script
+{
+
 namespace callbacks
 {
 
@@ -670,6 +673,8 @@ script::Value op_subscript(script::FunctionCall *c)
 } // namespace map
 
 } // namespace callbacks
+
+} // namespace script
 
 
 static script::Type map_template_instantiate_const_iterator(script::Class & map)

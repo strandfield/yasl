@@ -11,11 +11,18 @@
 #include "yasl/common/proxyspecialization.h"
 
 template<typename T>
-void register_list_specialization(script::Engine *e, script::Type::BuiltInType type_id)
+script::Type register_list_specialization(script::Engine *e)
 {
   using namespace script;
 
   using List = QList<T>;
+
+  register_proxy_specialization<T>(e);
+
+  script::Type type_id = make_type<QList<T>>();
+  Class list = e->getClass(type_id);
+  if (!list.isNull() && type_id == list.id())
+    return type_id;
 
   script::ClassTemplate list_template = e->getTemplate(Engine::ListTemplate);
 
@@ -23,8 +30,8 @@ void register_list_specialization(script::Engine *e, script::Type::BuiltInType t
     TemplateArgument{ script::make_type<T>() }
   };
 
-  Class list = list_template.Specialization(std::move(targs))
-    .setId(type_id)
+  list = list_template.Specialization(std::move(targs))
+    .setId(type_id.data())
     .setFinal()
     .get();
 
@@ -195,6 +202,8 @@ void register_list_specialization(script::Engine *e, script::Type::BuiltInType t
   /// TODO !!!
   // const T & operator[](int i) const
   /// TODO !!!
+
+  return list.id();
 }
 
 #endif // YASL_COMMONS_LIST_SPECIALIZATIONS_H

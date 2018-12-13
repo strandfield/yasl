@@ -773,9 +773,9 @@ void register_qlist_template(script::Namespace n)
   n.engine()->implementation()->list_template_ = list_template;
 
   // Registering full specializations
-  register_list_specialization<int>(n.engine(), Type::QListint);
-  register_list_specialization<float>(n.engine(), Type::QListfloat);
-  register_list_specialization<double>(n.engine(), Type::QListdouble);
+  register_list_specialization<int>(n.engine());
+  register_list_specialization<float>(n.engine());
+  register_list_specialization<double>(n.engine());
 }
 
 } // namespace script

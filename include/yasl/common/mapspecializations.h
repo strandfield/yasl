@@ -10,6 +10,7 @@
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/listspecializations.h"
 #include "yasl/common/proxy.h"
 
 #include <script/classtemplatespecializationbuilder.h>
@@ -17,6 +18,8 @@
 #include <script/userdata.h>
 #include <script/interpreter/executioncontext.h>
 
+namespace script
+{
 namespace callbacks
 {
 
@@ -26,7 +29,7 @@ namespace map
 } // namespace map
 
 } // namespace callbacks
-
+} // namespace script
 
 template<typename Key, typename T>
 void register_map_const_iterator(script::Class & map, script::Type::BuiltInType type_id)
@@ -127,11 +130,16 @@ void register_map_iterator(script::Class & map, script::Type::BuiltInType type_i
 }
 
 template<typename Key, typename T>
-void register_map_specialization(script::Engine *engine)
+script::Type register_map_specialization(script::Engine *engine)
 {
   using namespace script;
 
   using Map = QMap<Key, T>;
+
+  const Type type_id = script::make_type<Map>();
+  Class map = engine->getClass(type_id);
+  if (!map.isNull() && type_id == map.id())
+    return type_id;
 
   std::vector<TemplateArgument> targs{
     TemplateArgument{ script::make_type<Key>() },
@@ -140,13 +148,16 @@ void register_map_specialization(script::Engine *engine)
 
   ClassTemplate map_template = engine->getTemplate(Engine::MapTemplate);
 
-  Class map = map_template.Specialization(std::move(targs))
-    .setId(script::make_type<Map>().data())
+  map = map_template.Specialization(std::move(targs))
+    .setId(type_id.data())
     .setFinal()
     .get();
 
   register_map_const_iterator<Key, T>(map, script::make_type<Map::const_iterator>().data());
   register_map_iterator<Key, T>(map, script::make_type<Map::iterator>().data());
+
+  register_list_specialization<Key>(engine);
+  register_list_specialization<T>(engine);
 
   // QMap();
   bind::default_constructor<Map>(map).create();
@@ -256,6 +267,8 @@ void register_map_specialization(script::Engine *engine)
   bind::memop_proxy_subscript<Map, T&, const Key &>(map);
   // T operator[](const Key & k) const;
   bind::memop_subscript<Map, T, const Key &>(map);
+
+  return map.id();
 }
 
 #endif // YASL_COMMONS_MAP_SPECIALIZATIONS_H

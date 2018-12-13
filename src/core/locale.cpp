@@ -1369,8 +1369,8 @@ static void register_locale_class(script::Namespace ns)
 
   Class locale = ns.newClass("Locale").setId(script::Type::QLocale).get();
 
-  register_proxy_specialization<QLocale>(locale.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQLocale);
-  register_list_specialization<QLocale>(locale.engine(), script::Type::QListQLocale);
+  register_proxy_specialization<QLocale>(locale.engine());
+  register_list_specialization<QLocale>(locale.engine());
   register_locale_language_enum(locale);
   register_locale_script_enum(locale);
   register_locale_country_enum(locale);

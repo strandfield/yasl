@@ -51,9 +51,16 @@ script::Value assign(script::FunctionCall *c)
 
 
 template<typename T>
-void register_proxy_specialization(script::ClassTemplate proxy_template, script::Type::BuiltInType type_id)
+script::Type register_proxy_specialization(script::Engine *e)
 {
   using namespace script;
+
+  const script::Type type_id = make_type<Proxy<T>>();
+  
+  ClassTemplate proxy_template = e->getTemplate(Engine::ProxyTemplate);
+  Class proxy_type = proxy_template.engine()->getClass(type_id);
+  if (!proxy_type.isNull() && type_id == proxy_type.id())
+    return type_id;
 
   const script::Type element_type = script::make_type<T>();
 
@@ -61,8 +68,8 @@ void register_proxy_specialization(script::ClassTemplate proxy_template, script:
     TemplateArgument{ element_type },
   };
 
-  Class proxy_type = proxy_template.Specialization(std::move(targs))
-    .setId(type_id)
+  proxy_type = proxy_template.Specialization(std::move(targs))
+    .setId(type_id.data())
     .setFinal()
     .get();
 
@@ -77,6 +84,8 @@ void register_proxy_specialization(script::ClassTemplate proxy_template, script:
 
   // operator T() const;
   proxy_type.newConversion(element_type, callbacks::proxy::get<T>).setConst().create();
+
+  return proxy_type.id();
 }
 
 } // namespace script

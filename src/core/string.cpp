@@ -43,8 +43,8 @@ void register_stringlist_class(script::Namespace n)
 {
   using namespace script;
 
-  register_proxy_specialization<QString>(n.engine()->getTemplate(Engine::ProxyTemplate), Type::ProxyQString);
-  register_list_specialization<QString>(n.engine(), Type::QListQString);
+  register_proxy_specialization<QString>(n.engine());
+  register_list_specialization<QString>(n.engine());
 
   Class stringlist = n.newClass("StringList").setId(Type::QStringList).setBase(Type::QListQString).get();
 

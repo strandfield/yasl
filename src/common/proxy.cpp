@@ -61,13 +61,13 @@ void register_proxy_template(script::Namespace ns)
     .setCallback(proxy_template_instantiate)
     .get();
 
-  register_proxy_specialization<bool>(proxy, Type::Proxybool);
-  register_proxy_specialization<char>(proxy, Type::Proxychar);
-  register_proxy_specialization<int>(proxy, Type::Proxyint);
-  register_proxy_specialization<float>(proxy, Type::Proxyfloat);
-  register_proxy_specialization<double>(proxy, Type::Proxydouble);
-
   ns.engine()->implementation()->proxy_template_ = proxy;
+
+  register_proxy_specialization<bool>(ns.engine());
+  register_proxy_specialization<char>(ns.engine());
+  register_proxy_specialization<int>(ns.engine());
+  register_proxy_specialization<float>(ns.engine());
+  register_proxy_specialization<double>(ns.engine());
 }
 
 } // namespace script

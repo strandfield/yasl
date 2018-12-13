@@ -770,22 +770,22 @@ void Generator::generate(ClassRef cla)
     {
       Type proxy_info = typeinfo(l.second);
       currentHeader().bindingIncludes.insert("yasl/common/proxy.h");
-      const QString format = "  register_proxy_specialization<%1>(%2.engine()->getTemplate(Engine::ProxyTemplate), script::Type::%3);";
+      const QString format = "  register_proxy_specialization<%1>(%2.engine());";
       QString proxyelem = proxy_info.name;
       proxyelem.chop(QString(">").length());
       proxyelem.remove(0, proxyelem.indexOf('<') + 1);
-      lines << format.arg(proxyelem, snake, proxy_info.id);
+      lines << format.arg(proxyelem, snake);
       recordGeneratedClass(proxy_info.name, cla->version);
     }
     else if (l.first == "list")
     {
       Type list_info = typeinfo(l.second);
       currentSource().bindingIncludes.insert("yasl/common/listspecializations.h");
-      const QString format = "  register_list_specialization<%1>(%2.engine(), script::Type::%3);";
+      const QString format = "  register_list_specialization<%1>(%2.engine());";
       QString listelement = list_info.name;
       listelement.chop(QString(">").length());
       listelement.remove(0, QString("QList<").length());
-      lines << format.arg(listelement, snake, list_info.id);
+      lines << format.arg(listelement, snake);
       recordGeneratedClass(list_info.name, cla->version);
     }
   }

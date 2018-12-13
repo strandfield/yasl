@@ -37,6 +37,9 @@ static script::Value make_pair(const QPair<yasl::Value, yasl::Value> & val, cons
   });
 }
 
+
+namespace script
+{
 namespace callbacks
 {
 
@@ -135,6 +138,7 @@ script::Value op_neq(script::FunctionCall *c)
 } // namespace pair
 
 } // namespace callbacks
+} // namespace script
 
 script::Class pair_template_instantiate(script::ClassTemplateInstanceBuilder & builder)
 {

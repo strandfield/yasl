@@ -24,8 +24,8 @@ static void register_object_class(script::Namespace ns)
   Class object = ns.newClass("Object").setId(script::Type::QObject).get();
 
   register_ref_specialization(object.engine(), script::Type::QObject, script::Type::QObjectStar);
-  register_proxy_specialization<QObject*>(object.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQObject);
-  register_list_specialization<QObject*>(object.engine(), script::Type::QListQObject);
+  register_proxy_specialization<QObject*>(object.engine());
+  register_list_specialization<QObject*>(object.engine());
 
   // const QMetaObject * metaObject() const;
   /// TODO: const QMetaObject * metaObject() const;

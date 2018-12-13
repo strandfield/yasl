@@ -43,8 +43,8 @@ static void register_byte_array_class(script::Namespace ns)
 
   Class byte_array = ns.newClass("ByteArray").setId(script::Type::QByteArray).get();
 
-  register_proxy_specialization<QByteArray>(byte_array.engine()->getTemplate(Engine::ProxyTemplate), script::Type::ProxyQByteArray);
-  register_list_specialization<QByteArray>(byte_array.engine(), script::Type::QListQByteArray);
+  register_proxy_specialization<QByteArray>(byte_array.engine());
+  register_list_specialization<QByteArray>(byte_array.engine());
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   register_byte_array_base64_option_enum(byte_array);
 #endif

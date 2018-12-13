@@ -15,6 +15,8 @@
 #include <script/userdata.h>
 #include <script/interpreter/executioncontext.h>
 
+namespace script
+{
 namespace callbacks
 {
 
@@ -54,6 +56,7 @@ script::Value set_second(script::FunctionCall *c)
 } // namespace pair
 
 } // namespace callbacks
+} // namespace script
 
 
 template<typename T1, typename T2>
