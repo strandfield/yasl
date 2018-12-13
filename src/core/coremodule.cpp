@@ -2,8 +2,6 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/common/list.h"
-#include "yasl/common/proxyspecialization.h"
 #include "yasl/common/binding/signals.h"
 
 #include <script/engine.h>
@@ -45,7 +43,6 @@ void register_mimetype_file(script::Namespace n); // defined in mimetype.cpp
 void register_datastream_file(script::Namespace n); // defined in datastream.cpp
 
 // Start of non-generated code
-void register_vector_template(script::Namespace n); // defined in vector.cpp
 void register_newobject_file(script::Namespace n); // defined in newobject.cpp
 void register_stringlist_class(script::Namespace n); // defined in string.cpp
 // End of non-generated code
@@ -54,9 +51,6 @@ void load_core_module(script::Module core)
 {
   register_enums_file(core.root());
 
-  script::register_proxy_template(core.root());
-  script::register_qlist_template(core.root());
-  register_vector_template(core.root());
   register_stringlist_class(core.root());
 
   register_bytearray_file(core.root());

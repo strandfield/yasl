@@ -20,6 +20,9 @@ struct TypeInfo : public script::UserData
   script::Engine *engine;
   script::Function eq;
   script::Function assign;
+  script::Function less;
+
+  inline bool hasLess() const { return !less.isNull(); }
 
   static std::shared_ptr<TypeInfo> get(script::Engine *e, const script::Type & t);
   static std::shared_ptr<TypeInfo> get(const script::Class & cla);
@@ -51,6 +54,8 @@ public:
   Value & operator=(Value && other);
   bool operator==(const Value & other) const;
   bool operator!=(const Value & other) const;
+
+  bool operator<(const Value & other) const;
 
 protected:
   std::shared_ptr<TypeInfo> typeinfo_;

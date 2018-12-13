@@ -42,6 +42,17 @@ static bool check_op_assign(const script::Type & t, const script::Function & op)
   return true;
 }
 
+static bool check_op_less(const script::Type & t, const script::Function & op)
+{
+  if (op.returnType() != script::Type::Boolean)
+    return false;
+
+  if (op.parameter(0) != script::Type::cref(t) || op.parameter(1) != script::Type::cref(t))
+    return false;
+
+  return true;
+}
+
 
 std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & t)
 {
@@ -79,6 +90,17 @@ std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & 
 
       ret->assign = resol.selectedOverload();
       if (!check_op_assign(t.baseType(), ret->assign))
+        throw std::runtime_error{ "TypeInfo::get(): invalid operator=" };
+    }
+
+    {
+      std::vector<script::Function> ops = script::NameLookup::resolve(script::LessOperator, creftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
+      auto resol = script::OverloadResolution::New(e);
+      if (!resol.process(ops, { creftype, creftype }))
+        throw std::runtime_error{ "TypeInfo::get(): type must be assignable" };
+
+      ret->less = resol.selectedOverload();
+      if (!check_op_less(t.baseType(), ret->less))
         throw std::runtime_error{ "TypeInfo::get(): invalid operator=" };
     }
   }
@@ -208,6 +230,17 @@ bool Value::operator==(const Value & other) const
 bool Value::operator!=(const Value & other) const
 {
   return !(*this == other);
+}
+
+bool Value::operator<(const Value & other) const
+{
+  assert(!typeinfo_->less.isNull());
+
+  script::Engine *e = typeinfo_->engine;
+  script::Value ret = e->invoke(typeinfo_->less, { value_, other.value_ });
+  bool result = ret.toBool();
+  e->destroy(ret);
+  return result;
 }
 
 ObserverValue::ObserverValue(const std::shared_ptr<TypeInfo> & ti, const script::Value & val)

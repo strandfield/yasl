@@ -199,6 +199,32 @@ script::Value read_from_wrapper(script::FunctionCall *c)
   return c->arg(0);
 }
 
+template<typename T>
+script::Value preincr_wrapper(script::FunctionCall *c)
+{
+  ++(value_cast<T&>(c->arg(0)));
+  return c->arg(0);
+}
+
+template<typename T>
+script::Value predecr_wrapper(script::FunctionCall *c)
+{
+  --(value_cast<T&>(c->arg(0)));
+  return c->arg(0);
+}
+
+template<typename T>
+script::Value postincr_wrapper(script::FunctionCall *c)
+{
+  return make_value((value_cast<T&>(c->arg(0)))++, c->engine());
+}
+
+template<typename T>
+script::Value postdecr_wrapper(script::FunctionCall *c)
+{
+  return make_value((value_cast<T&>(c->arg(0)))--, c->engine());
+}
+
 } // namespace wrapper
 
 } // namespace script

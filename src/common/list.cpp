@@ -17,7 +17,7 @@
 namespace script
 {
 
-static script::Value make_list(const QList<yasl::Value> & val, const script::Type & list_type, script::Engine *e)
+script::Value make_list(const QList<yasl::Value> & val, const script::Type & list_type, script::Engine *e)
 {
   return e->construct(list_type, [&val](script::Value & ret) {
     new (ret.getMemory(passkey{})) QList<yasl::Value>{val};

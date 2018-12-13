@@ -9,12 +9,21 @@
 
 #include <QList>
 
+namespace yasl
+{
+class Value;
+} // namespace yasl
+
 namespace script
 {
 template<> struct make_type_t<QList<int>> { inline static script::Type get() { return script::Type::QListint; } };
 template<> struct make_type_t<QList<float>> { inline static script::Type get() { return script::Type::QListfloat; } };
 template<> struct make_type_t<QList<double>> { inline static script::Type get() { return script::Type::QListdouble; } };
 
+class Engine;
+class Value;
+
+script::Value make_list(const QList<yasl::Value> & val, const script::Type & list_type, script::Engine *e);
 
 class Namespace;
 void register_qlist_template(Namespace n);

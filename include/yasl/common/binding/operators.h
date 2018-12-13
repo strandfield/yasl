@@ -8,6 +8,7 @@
 #include "yasl/common/values.h"
 
 #include "yasl/common/wrappers/operator_wrapper.h"
+#include "yasl/common/proxy.h"
 
 #include <script/class.h>
 #include <script/namespace.h>
@@ -220,6 +221,17 @@ script::Function memop_subscript(script::Class & cla)
   return cla.newOperator(script::SubscriptOperator, wrapper::subscript_wrapper<R, T&, RHS>)
     .returns(make_type<R>())
     .params(make_type<RHS>())
+    .get();
+}
+
+template<typename T, typename R, typename Index>
+script::Function memop_proxy_subscript(script::Class & cla)
+{
+  static_assert(std::is_reference<R>::value, "Return type must be a reference");
+
+  return cla.newOperator(script::SubscriptOperator, wrapper::subscript_wrapper<Proxy<typename std::remove_reference<R>::type>, T&, Index>)
+    .returns(make_type<Proxy<typename std::remove_reference<R>::type>>())
+    .params(make_type<Index>())
     .get();
 }
 
@@ -478,6 +490,38 @@ script::Function memop_unary_minus(script::Class & cla)
 {
   return cla.newOperator(script::UnaryMinusOperator, wrapper::unary_minus_wrapper<const T &>)
     .returns(make_type<R>())
+    .get();
+}
+
+template<typename T>
+script::Function memop_preincr(script::Class & cla)
+{
+  return cla.newOperator(script::PreIncrementOperator, wrapper::preincr_wrapper<T>)
+    .returns(make_type<T&>())
+    .get();
+}
+
+template<typename T>
+script::Function memop_postincr(script::Class & cla)
+{
+  return cla.newOperator(script::PostIncrementOperator, wrapper::postincr_wrapper<T>)
+    .returns(make_type<T>())
+    .get();
+}
+
+template<typename T>
+script::Function memop_predecr(script::Class & cla)
+{
+  return cla.newOperator(script::PreDecrementOperator, wrapper::predecr_wrapper<T>)
+    .returns(make_type<T&>())
+    .get();
+}
+
+template<typename T>
+script::Function memop_postdecr(script::Class & cla)
+{
+  return cla.newOperator(script::PostDecrementOperator, wrapper::postdecr_wrapper<T>)
+    .returns(make_type<T>())
     .get();
 }
 

@@ -18,6 +18,11 @@ struct ref_template_t {};
 static const ref_template_t RefTemplate;
 ClassTemplate getTemplate(ref_template_t) const;
 
+struct map_template_t {};
+static const map_template_t MapTemplate;
+ClassTemplate getTemplate(map_template_t) const;
+void setTemplate(passkey, map_template_t, const ClassTemplate & ct);
+
 
 void registerQtType(const QMetaObject *mo, const script::Type & type);
 Value expose(QObject *obj);

@@ -5,13 +5,10 @@
 #ifndef YASL_COMMONS_PAIR_SPECIALIZATIONS_H
 #define YASL_COMMONS_PAIR_SPECIALIZATIONS_H
 
-#include "yasl/common/vector.h"
+#include "yasl/common/pair.h"
 
 #include "yasl/common/binding/class.h"
-#include "yasl/common/binding/default_arguments.h"
 #include "yasl/common/binding/namespace.h"
-
-#include "yasl/common/proxy.h"
 
 #include <script/classtemplatespecializationbuilder.h>
 #include <script/namespace.h>
@@ -60,7 +57,7 @@ script::Value set_second(script::FunctionCall *c)
 
 
 template<typename T1, typename T2>
-void register_vector_specialization(script::ClassTemplate pair_template, script::Type::BuiltInType type_id)
+void register_pair_specialization(script::ClassTemplate pair_template, script::Type::BuiltInType type_id)
 {
   using namespace script;
 
@@ -86,21 +83,21 @@ void register_vector_specialization(script::ClassTemplate pair_template, script:
   bind::destructor<Pair>(pair).create();
 
   // T1 first() const;
-  pair.newMethod("first", callbacks::pair::first)
+  pair.newMethod("first", callbacks::pair::first<T1, T2>)
     .setConst()
     .returns(make_type<T1>())
     .create();
   // T2 second() const;
-  pair.newMethod("second", callbacks::pair::second)
+  pair.newMethod("second", callbacks::pair::second<T1, T2>)
     .setConst()
     .returns(make_type<T2>())
     .create();
   // void setFirst(const T1 &);
-  pair.newMethod("setFirst", callbacks::pair::set_first)
+  pair.newMethod("setFirst", callbacks::pair::set_first<T1, T2>)
     .params(make_type<const T1 &>())
     .create();
   // void setSecond(const T2 &);
-  pair.newMethod("setSecond", callbacks::pair::set_second)
+  pair.newMethod("setSecond", callbacks::pair::set_second<T1, T2>)
     .params(make_type<const T2 &>())
     .create();
 

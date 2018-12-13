@@ -4,7 +4,10 @@
 
 #include "yasl/common/commons.h"
 
+#include "yasl/common/list.h"
 #include "yasl/common/null.h"
+#include "yasl/common/proxy.h"
+#include "yasl/common/vector.h"
 
 #include <script/engine.h>
 #include <script/functionbuilder.h>
@@ -41,11 +44,25 @@ static std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserDa
 
 
 extern void register_pair_template(script::Namespace n); // defined in pair.cpp
+extern void register_vector_template(script::Namespace n); // defined in vector.cpp
+extern void register_map_template(script::Namespace n); // defined in map.cpp
 
 void register_commons_utils(script::Engine *e)
 {
-  // Pair<T1, T2>()
+  // Proxy<T>
+  script::register_proxy_template(e->rootNamespace());
+
+  // Pair<T1, T2>
   register_pair_template(e->rootNamespace());
+
+  // List<T>
+  script::register_qlist_template(e->rootNamespace());
+
+  // Vector<T>
+  register_vector_template(e->rootNamespace());
+
+  // Map<Key, T>
+  register_map_template(e->rootNamespace());
 
   // int type_id<T>()
   {

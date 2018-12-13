@@ -181,8 +181,7 @@ script::Class pair_template_instantiate(script::ClassTemplateInstanceBuilder & b
 
 
   // QPair & operator=(const QPair &other);
-  pair.newOperator(InequalOperator, callbacks::pair::op_assign)
-    .setConst()
+  pair.newOperator(AssignmentOperator, callbacks::pair::op_assign)
     .returns(Type::ref(pair.id()))
     .params(Type::cref(pair.id())).create();
   // bool operator!=(const QPair &other) const;
