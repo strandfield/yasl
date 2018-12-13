@@ -16,6 +16,7 @@
 #include "yasl/core/point.h"
 #include "yasl/core/rect.h"
 #include "yasl/core/size.h"
+#include "yasl/core/string.h"
 #include "yasl/gui/color.h"
 #include "yasl/gui/image-functions.h"
 #include "yasl/gui/image.h"
@@ -320,7 +321,7 @@ static void register_image_class(script::Namespace ns)
   // void setOffset(const QPoint &);
   bind::void_member_function<QImage, const QPoint &, &QImage::setOffset>(image, "setOffset").create();
   // QStringList textKeys() const;
-  /// TODO: QStringList textKeys() const;
+  bind::member_function<QImage, QStringList, &QImage::textKeys>(image, "textKeys").create();
   // QString text(const QString &) const;
   bind::member_function<QImage, QString, const QString &, &QImage::text>(image, "text").create();
   // void setText(const QString &, const QString &);

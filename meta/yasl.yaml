@@ -253,6 +253,7 @@ types:
     - {id: ProxyQByteArray, name: Proxy<QByteArray>, header: yasl/core/bytearray.h}
     - {id: ProxyQLocale, name: Proxy<QLocale>, header: yasl/core/locale.h}
     - {id: ProxyQObject, name: Proxy<QObject*>, header: yasl/core/object.h}
+    - {id: ProxyQVariant, name: Proxy<QVariant>, header: yasl/core/variant.h}
     - {id: ProxyQWidget, name: Proxy<QWidget*>, header: yasl/widgets/widget.h}
     - {id: QAbstractButton, name: QAbstractButton, rename: AbstractButton, header: yasl/widgets/abstractbutton.h, tag: qobject_tag}
     - {id: QAbstractSlider, name: QAbstractSlider, rename: AbstractSlider, header: yasl/widgets/abstractslider.h, tag: qobject_tag}
@@ -344,9 +345,14 @@ types:
     - {id: QListQByteArray, name: QList<QByteArray>, header: yasl/core/bytearray.h}
     - {id: QListQLocale, name: QList<QLocale>, header: yasl/core/locale.h}
     - {id: QListQObject, name: QList<QObject*>, header: yasl/core/object.h}
+    - {id: QListQString, name: QList<QString>, header: yasl/core/string.h}
+    - {id: QListQVariant, name: QList<QVariant>, header: yasl/core/variant.h}
     - {id: QListQWidget, name: QList<QWidget*>, header: yasl/widgets/widget.h}
     - {id: QLocale, name: QLocale, rename: Locale, header: yasl/core/locale.h, links: proxy@Proxy<QLocale>;list@QList<QLocale>, metatype: QMetaType::QLocale}
     - {id: QLocaleNumberOptions, name: QLocale::NumberOptions, rename: NumberOptions, header: yasl/core/locale.h}
+    - {id: QMapQStringQVariant, name: "QMap<QString, QVariant>", header: yasl/core/variant.h}
+    - {id: QMapQStringQVariantConstIterator, name: "QMap<QString, QVariant>::const_iterator", header: yasl/core/variant.h}
+    - {id: QMapQStringQVariantIterator, name: "QMap<QString, QVariant>::iterator", header: yasl/core/variant.h}
     - {id: QMargins, name: QMargins, rename: Margins, header: yasl/core/margins.h}
     - {id: QMarginsF, name: QMarginsF, rename: MarginsF, header: yasl/core/margins.h}
     - {id: QMenu, name: QMenu, rename: Menu, header: yasl/widgets/menu.h, tag: qobject_tag, links: ref@QMenu*}
@@ -402,6 +408,7 @@ types:
     - {id: QSpinBox, name: QSpinBox, rename: SpinBox, header: yasl/widgets/spinbox.h, tag: qobject_tag}
     - {id: QStackedLayout, name: QStackedLayout, rename: StackedLayout, header: yasl/widgets/stackedlayout.h, tag: qobject_tag}
     - {id: QStaticText, name: QStaticText, rename: StaticText, header: yasl/gui/statictext.h}
+    - {id: QStringList, name: QStringList, rename: StringList, header: yasl/core/string.h}
     - {id: QtAlignment, name: Qt::Alignment, rename: Alignment, header: yasl/core/enums.h}
     - {id: QtImageConversionFlags, name: Qt::ImageConversionFlags, rename: ImageConversionFlags, header: yasl/core/enums.h}
     - {id: QtKeyboardModifiers, name: Qt::KeyboardModifiers, rename: KeyboardModifiers, header: yasl/core/enums.h}
@@ -423,7 +430,7 @@ types:
     - {id: QUrlQuery, name: QUrlQuery, rename: UrlQuery, header: yasl/core/urlquery.h}
     - {id: QUuid, name: QUuid, rename: Uuid, header: yasl/core/uuid.h, metatype: QMetaType::QUuid}
     - {id: QValidator, name: QValidator, rename: Validator, header: yasl/gui/validator.h, tag: qobject_tag}
-    - {id: QVariant, name: QVariant, rename: Variant, header: yasl/core/variant.h, tag: qvariant_tag}
+    - {id: QVariant, name: QVariant, rename: Variant, header: yasl/core/variant.h, tag: qvariant_tag, links: "proxy@Proxy<QVariant>;list@QList<QVariant>;map@QMap<QString, QVariant>"}
     - {id: QVBoxLayout, name: QVBoxLayout, rename: QVBoxLayout, header: yasl/widgets/boxlayout.h, tag: qobject_tag}
     - {id: QVector2D, name: QVector2D, rename: Vector2D, header: yasl/gui/vector2d.h, metatype: QMetaType::QVector2D}
     - {id: QVector3D, name: QVector3D, rename: Vector3D, header: yasl/gui/vector3d.h, metatype: QMetaType::QVector3D}

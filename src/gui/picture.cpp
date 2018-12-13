@@ -11,6 +11,7 @@
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
 #include "yasl/core/rect.h"
+#include "yasl/core/string.h"
 #include "yasl/gui/picture.h"
 
 #include <script/classbuilder.h>
@@ -70,9 +71,9 @@ static void register_picture_class(script::Namespace ns)
   // static QList<QByteArray> outputFormats();
   bind::static_member_function<QPicture, QList<QByteArray>, &QPicture::outputFormats>(picture, "outputFormats").create();
   // static QStringList inputFormatList();
-  /// TODO: static QStringList inputFormatList();
+  bind::static_member_function<QPicture, QStringList, &QPicture::inputFormatList>(picture, "inputFormatList").create();
   // static QStringList outputFormatList();
-  /// TODO: static QStringList outputFormatList();
+  bind::static_member_function<QPicture, QStringList, &QPicture::outputFormatList>(picture, "outputFormatList").create();
   // QPaintEngine * paintEngine() const;
   /// TODO: QPaintEngine * paintEngine() const;
   // QPicture::DataPtr & data_ptr();

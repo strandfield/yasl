@@ -788,6 +788,19 @@ void Generator::generate(ClassRef cla)
       lines << format.arg(listelement, snake);
       recordGeneratedClass(list_info.name, cla->version);
     }
+    else if (l.first == "map")
+    {
+      Type map_info = typeinfo(l.second);
+      currentSource().bindingIncludes.insert("yasl/common/mapspecializations.h");
+      const QString format = "  register_map_specialization<%1>(%2.engine());";
+      QString listelement = map_info.name;
+      listelement.chop(QString(">").length());
+      listelement.remove(0, QString("QMap<").length());
+      lines << format.arg(listelement, snake);
+      recordGeneratedClass(map_info.name, cla->version);
+      recordGeneratedClass(map_info.name + "::const_iterator", cla->version);
+      recordGeneratedClass(map_info.name + "::iterator", cla->version);
+    }
   }
 
   for (const auto n : cla->elements)

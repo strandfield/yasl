@@ -6,6 +6,8 @@
 
 #include "yasl/common/binding/class.h"
 #include "yasl/common/binding/namespace.h"
+#include "yasl/common/listspecializations.h"
+#include "yasl/common/mapspecializations.h"
 
 #include "yasl/common/variant-utils.h"
 #include "yasl/core/bytearray.h"
@@ -23,6 +25,7 @@
 #include "yasl/core/rect.h"
 #include "yasl/core/regularexpression.h"
 #include "yasl/core/size.h"
+#include "yasl/core/string.h"
 #include "yasl/core/url.h"
 #include "yasl/core/uuid.h"
 #include "yasl/core/variant-functions.h"
@@ -36,6 +39,9 @@ static void register_variant_class(script::Namespace ns)
 
   Class variant = ns.newClass("Variant").setId(script::Type::QVariant).get();
 
+  register_proxy_specialization<QVariant>(variant.engine());
+  register_list_specialization<QVariant>(variant.engine());
+  register_map_specialization<QString, QVariant>(variant.engine());
 
   // QVariant();
   bind::default_constructor<QVariant>(variant).create();
@@ -74,7 +80,7 @@ static void register_variant_class(script::Namespace ns)
   // QVariant(QLatin1String);
   /// TODO: QVariant(QLatin1String);
   // QVariant(const QStringList &);
-  /// TODO: QVariant(const QStringList &);
+  bind::constructor<QVariant, const QStringList &>(variant).create();
   // QVariant(QChar);
   bind::constructor<QVariant, QChar>(variant).create();
   // QVariant(const QDate &);
@@ -84,9 +90,9 @@ static void register_variant_class(script::Namespace ns)
   // QVariant(const QDateTime &);
   bind::constructor<QVariant, const QDateTime &>(variant).create();
   // QVariant(const QList<QVariant> &);
-  /// TODO: QVariant(const QList<QVariant> &);
+  bind::constructor<QVariant, const QList<QVariant> &>(variant).create();
   // QVariant(const QMap<QString, QVariant> &);
-  /// TODO: QVariant(const QMap<QString, QVariant> &);
+  bind::constructor<QVariant, const QMap<QString, QVariant> &>(variant).create();
   // QVariant(const QHash<QString, QVariant> &);
   /// TODO: QVariant(const QHash<QString, QVariant> &);
   // QVariant(const QSize &);
@@ -172,7 +178,7 @@ static void register_variant_class(script::Namespace ns)
   // QString toString() const;
   bind::member_function<QVariant, QString, &QVariant::toString>(variant, "toString").create();
   // QStringList toStringList() const;
-  /// TODO: QStringList toStringList() const;
+  bind::member_function<QVariant, QStringList, &QVariant::toStringList>(variant, "toStringList").create();
   // QChar toChar() const;
   bind::member_function<QVariant, QChar, &QVariant::toChar>(variant, "toChar").create();
   // QDate toDate() const;
@@ -182,9 +188,9 @@ static void register_variant_class(script::Namespace ns)
   // QDateTime toDateTime() const;
   bind::member_function<QVariant, QDateTime, &QVariant::toDateTime>(variant, "toDateTime").create();
   // QList<QVariant> toList() const;
-  /// TODO: QList<QVariant> toList() const;
+  bind::member_function<QVariant, QList<QVariant>, &QVariant::toList>(variant, "toList").create();
   // QMap<QString, QVariant> toMap() const;
-  /// TODO: QMap<QString, QVariant> toMap() const;
+  bind::member_function<QVariant, QMap<QString, QVariant>, &QVariant::toMap>(variant, "toMap").create();
   // QHash<QString, QVariant> toHash() const;
   /// TODO: QHash<QString, QVariant> toHash() const;
   // QPoint toPoint() const;

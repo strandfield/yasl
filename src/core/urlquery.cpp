@@ -9,6 +9,7 @@
 #include "yasl/common/binding/namespace.h"
 
 #include "yasl/core/char.h"
+#include "yasl/core/string.h"
 #include "yasl/core/url.h"
 #include "yasl/core/urlquery.h"
 
@@ -75,7 +76,8 @@ static void register_url_query_class(script::Namespace ns)
   bind::member_function<QUrlQuery, QString, const QString &, QUrl::ComponentFormattingOptions, &QUrlQuery::queryItemValue>(url_query, "queryItemValue")
     .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // QStringList allQueryItemValues(const QString &, QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)) const;
-  /// TODO: QStringList allQueryItemValues(const QString &, QUrl::ComponentFormattingOptions = QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded)) const;
+  bind::member_function<QUrlQuery, QStringList, const QString &, QUrl::ComponentFormattingOptions, &QUrlQuery::allQueryItemValues>(url_query, "allQueryItemValues")
+    .apply(bind::default_arguments(QUrl::ComponentFormattingOptions(QUrl::PrettyDecoded))).create();
   // void removeAllQueryItems(const QString &);
   bind::void_member_function<QUrlQuery, const QString &, &QUrlQuery::removeAllQueryItems>(url_query, "removeAllQueryItems").create();
   // static QChar defaultQueryValueDelimiter();

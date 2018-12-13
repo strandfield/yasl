@@ -11,6 +11,7 @@
 
 #include "yasl/core/object.h"
 #include "yasl/core/settings.h"
+#include "yasl/core/string.h"
 #include "yasl/core/variant.h"
 
 #include <script/classbuilder.h>
@@ -117,11 +118,11 @@ static void register_settings_class(script::Namespace ns)
   // void setArrayIndex(int);
   bind::void_member_function<QSettings, int, &QSettings::setArrayIndex>(settings, "setArrayIndex").create();
   // QStringList allKeys() const;
-  /// TODO: QStringList allKeys() const;
+  bind::member_function<QSettings, QStringList, &QSettings::allKeys>(settings, "allKeys").create();
   // QStringList childKeys() const;
-  /// TODO: QStringList childKeys() const;
+  bind::member_function<QSettings, QStringList, &QSettings::childKeys>(settings, "childKeys").create();
   // QStringList childGroups() const;
-  /// TODO: QStringList childGroups() const;
+  bind::member_function<QSettings, QStringList, &QSettings::childGroups>(settings, "childGroups").create();
   // bool isWritable() const;
   bind::member_function<QSettings, bool, &QSettings::isWritable>(settings, "isWritable").create();
   // void setValue(const QString &, const QVariant &);

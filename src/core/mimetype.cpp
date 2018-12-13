@@ -8,6 +8,7 @@
 #include "yasl/common/binding/namespace.h"
 
 #include "yasl/core/mimetype.h"
+#include "yasl/core/string.h"
 
 #include <script/classbuilder.h>
 
@@ -49,15 +50,15 @@ static void register_mime_type_class(script::Namespace ns)
   // QString iconName() const;
   bind::member_function<QMimeType, QString, &QMimeType::iconName>(mime_type, "iconName").create();
   // QStringList globPatterns() const;
-  /// TODO: QStringList globPatterns() const;
+  bind::member_function<QMimeType, QStringList, &QMimeType::globPatterns>(mime_type, "globPatterns").create();
   // QStringList parentMimeTypes() const;
-  /// TODO: QStringList parentMimeTypes() const;
+  bind::member_function<QMimeType, QStringList, &QMimeType::parentMimeTypes>(mime_type, "parentMimeTypes").create();
   // QStringList allAncestors() const;
-  /// TODO: QStringList allAncestors() const;
+  bind::member_function<QMimeType, QStringList, &QMimeType::allAncestors>(mime_type, "allAncestors").create();
   // QStringList aliases() const;
-  /// TODO: QStringList aliases() const;
+  bind::member_function<QMimeType, QStringList, &QMimeType::aliases>(mime_type, "aliases").create();
   // QStringList suffixes() const;
-  /// TODO: QStringList suffixes() const;
+  bind::member_function<QMimeType, QStringList, &QMimeType::suffixes>(mime_type, "suffixes").create();
   // QString preferredSuffix() const;
   bind::member_function<QMimeType, QString, &QMimeType::preferredSuffix>(mime_type, "preferredSuffix").create();
   // bool inherits(const QString &) const;

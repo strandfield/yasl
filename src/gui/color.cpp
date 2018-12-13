@@ -12,6 +12,7 @@
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/enums.h"
+#include "yasl/core/string.h"
 #include "yasl/gui/color.h"
 
 #include <script/classbuilder.h>
@@ -109,7 +110,7 @@ static void register_color_class(script::Namespace ns)
   /// TODO: void setNamedColor(QLatin1String);
 #endif
   // static QStringList colorNames();
-  /// TODO: static QStringList colorNames();
+  bind::static_member_function<QColor, QStringList, &QColor::colorNames>(color, "colorNames").create();
   // QColor::Spec spec() const;
   bind::member_function<QColor, QColor::Spec, &QColor::spec>(color, "spec").create();
   // int alpha() const;

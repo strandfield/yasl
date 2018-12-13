@@ -32,14 +32,14 @@ namespace map
 } // namespace script
 
 template<typename Key, typename T>
-void register_map_const_iterator(script::Class & map, script::Type::BuiltInType type_id)
+void register_map_const_iterator(script::Class & map)
 {
   using namespace script;
 
   using Map = QMap<Key, T>;
   using Iter = typename Map::const_iterator;
 
-  Class iterator = map.newNestedClass("const_iterator").setId(type_id).get();
+  Class iterator = map.newNestedClass("const_iterator").setId(make_type<Iter>().data()).get();
 
   // const_iterator()
   bind::default_constructor<Iter>(iterator).create();
@@ -78,7 +78,7 @@ void register_map_const_iterator(script::Class & map, script::Type::BuiltInType 
 }
 
 template<typename Key, typename T>
-void register_map_iterator(script::Class & map, script::Type::BuiltInType type_id)
+void register_map_iterator(script::Class & map)
 {
   using namespace script;
 
@@ -86,7 +86,7 @@ void register_map_iterator(script::Class & map, script::Type::BuiltInType type_i
   using Iter = typename Map::iterator;
   using ConstIterator = typename Map::const_iterator;
 
-  Class iterator = map.newNestedClass("iterator").setId(type_id).get();
+  Class iterator = map.newNestedClass("iterator").setId(make_type<Iter>().data()).get();
 
   // iterator()
   bind::default_constructor<Iter>(iterator).create();
@@ -135,6 +135,8 @@ script::Type register_map_specialization(script::Engine *engine)
   using namespace script;
 
   using Map = QMap<Key, T>;
+  using Iterator = typename QMap<Key, T>::iterator;
+  using ConstIterator = typename QMap<Key, T>::const_iterator;
 
   const Type type_id = script::make_type<Map>();
   Class map = engine->getClass(type_id);
@@ -153,8 +155,8 @@ script::Type register_map_specialization(script::Engine *engine)
     .setFinal()
     .get();
 
-  register_map_const_iterator<Key, T>(map, script::make_type<Map::const_iterator>().data());
-  register_map_iterator<Key, T>(map, script::make_type<Map::iterator>().data());
+  register_map_const_iterator<Key, T>(map);
+  register_map_iterator<Key, T>(map);
 
   register_list_specialization<Key>(engine);
   register_list_specialization<T>(engine);
@@ -167,21 +169,21 @@ script::Type register_map_specialization(script::Engine *engine)
   bind::destructor<Map>(map).create();
 
   // iterator begin();
-  bind::member_function<Map, Map::iterator, &Map::begin>(map, "begin").create();
+  bind::member_function<Map, Iterator, &Map::begin>(map, "begin").create();
   // const_iterator begin() const;
-  bind::member_function<Map, Map::const_iterator, &Map::begin>(map, "begin").create();
+  bind::member_function<Map, ConstIterator, &Map::begin>(map, "begin").create();
   // const_iterator cbegin() const;
-  bind::member_function<Map, Map::const_iterator, &Map::cbegin>(map, "cbegin").create();
+  bind::member_function<Map, ConstIterator, &Map::cbegin>(map, "cbegin").create();
   // const_iterator cend() const;
-  bind::member_function<Map, Map::const_iterator, &Map::cend>(map, "cend").create();
+  bind::member_function<Map, ConstIterator, &Map::cend>(map, "cend").create();
   // void clear();
   bind::void_member_function<Map, &Map::clear>(map, "clear").create();
   // const_iterator constBegin() const;
-  bind::member_function<Map, Map::const_iterator, &Map::constBegin>(map, "constBegin").create();
+  bind::member_function<Map, ConstIterator, &Map::constBegin>(map, "constBegin").create();
   // const_iterator constEnd() const;
-  bind::member_function<Map, Map::const_iterator, &Map::constEnd>(map, "constEnd").create();
+  bind::member_function<Map, ConstIterator, &Map::constEnd>(map, "constEnd").create();
   // const_iterator constFind(const Key &) const;
-  bind::member_function<Map, Map::const_iterator, const Key &, &Map::constFind>(map, "constFind").create();
+  bind::member_function<Map, ConstIterator, const Key &, &Map::constFind>(map, "constFind").create();
   // bool contains(const Key & k) const;
   bind::member_function<Map, bool, const Key &, &Map::contains>(map, "contains").create();
   // int count(const Key & k) const;
@@ -191,15 +193,15 @@ script::Type register_map_specialization(script::Engine *engine)
   // bool empty() const;
   bind::member_function<Map, bool, &Map::empty>(map, "empty").create();
   // iterator end();
-  bind::member_function<Map, Map::iterator, &Map::end>(map, "end").create();
+  bind::member_function<Map, Iterator, &Map::end>(map, "end").create();
   // const_iterator end() const;
-  bind::member_function<Map, Map::const_iterator, &Map::end>(map, "end").create();
+  bind::member_function<Map, ConstIterator, &Map::end>(map, "end").create();
   // iterator erase(iterator pos);
-  bind::member_function<Map, Map::iterator, Map::iterator, &Map::erase>(map, "erase").create();
+  bind::member_function<Map, Iterator, Iterator, &Map::erase>(map, "erase").create();
   // iterator find(const Key &);
-  bind::member_function<Map, Map::iterator, const Key &, &Map::find>(map, "find").create();
+  bind::member_function<Map, Iterator, const Key &, &Map::find>(map, "find").create();
   // const_iterator find(const Key &) const;
-  bind::member_function<Map, Map::const_iterator, const Key &, &Map::find>(map, "find").create();
+  bind::member_function<Map, ConstIterator, const Key &, &Map::find>(map, "find").create();
 #if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
   // T & first()
   bind::non_const_getter<Map, T&, &Map::first>(map, "first").create();
@@ -213,9 +215,9 @@ script::Type register_map_specialization(script::Engine *engine)
   bind::member_function<Map, const Key &, &Map::firstKey>(map, "firstKey").create();
 #endif
   // iterator insert(const Key & k, const T & value);
-  bind::member_function<Map, Map::iterator, const Key &, const T &, &Map::insert>(map, "insert").create();
+  bind::member_function<Map, Iterator, const Key &, const T &, &Map::insert>(map, "insert").create();
   // iterator insertMulti(const Key & k, const T & value);
-  bind::member_function<Map, Map::iterator, const Key &, const T &, &Map::insertMulti>(map, "insert").create();
+  bind::member_function<Map, Iterator, const Key &, const T &, &Map::insertMulti>(map, "insert").create();
   // bool isEmpty() const;
   bind::member_function<Map, bool, &Map::isEmpty>(map, "isEmpty").create();
   // const Key key(const T & value, const Key & defaultKey = Key{});

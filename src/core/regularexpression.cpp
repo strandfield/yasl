@@ -13,6 +13,7 @@
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/regularexpression.h"
+#include "yasl/core/string.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -116,7 +117,7 @@ static void register_regular_expression_class(script::Namespace ns)
   bind::member_function<QRegularExpression, int, &QRegularExpression::captureCount>(regular_expression, "captureCount").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // QStringList namedCaptureGroups() const;
-  /// TODO: QStringList namedCaptureGroups() const;
+  bind::member_function<QRegularExpression, QStringList, &QRegularExpression::namedCaptureGroups>(regular_expression, "namedCaptureGroups").create();
 #endif
   // QRegularExpressionMatch match(const QString &, int, QRegularExpression::MatchType = QRegularExpression::NormalMatch, QRegularExpression::MatchOptions = QRegularExpression::MatchOptions(QRegularExpression::NoMatchOption)) const;
   bind::member_function<QRegularExpression, QRegularExpressionMatch, const QString &, int, QRegularExpression::MatchType, QRegularExpression::MatchOptions, &QRegularExpression::match>(regular_expression, "match")
@@ -193,7 +194,7 @@ static void register_regular_expression_match_class(script::Namespace ns)
   // QStringView capturedView(QStringView) const;
   /// TODO: QStringView capturedView(QStringView) const;
   // QStringList capturedTexts() const;
-  /// TODO: QStringList capturedTexts() const;
+  bind::member_function<QRegularExpressionMatch, QStringList, &QRegularExpressionMatch::capturedTexts>(regular_expression_match, "capturedTexts").create();
   // int capturedStart(int) const;
   bind::member_function<QRegularExpressionMatch, int, int, &QRegularExpressionMatch::capturedStart>(regular_expression_match, "capturedStart").create();
   // int capturedLength(int) const;

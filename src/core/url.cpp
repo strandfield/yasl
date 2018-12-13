@@ -13,6 +13,7 @@
 
 #include "yasl/core/bytearray.h"
 #include "yasl/core/datastream.h"
+#include "yasl/core/string.h"
 #include "yasl/core/url.h"
 #include "yasl/core/urlquery.h"
 
@@ -262,7 +263,7 @@ static void register_url_class(script::Namespace ns)
   // static QByteArray toAce(const QString &);
   bind::static_member_function<QUrl, QByteArray, const QString &, &QUrl::toAce>(url, "toAce").create();
   // static QStringList idnWhitelist();
-  /// TODO: static QStringList idnWhitelist();
+  bind::static_member_function<QUrl, QStringList, &QUrl::idnWhitelist>(url, "idnWhitelist").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded));
   /// TODO: static QStringList toStringList(const QList<QUrl> &, QUrl::FormattingOptions = QUrl::FormattingOptions(QUrl::PrettyDecoded));
@@ -272,7 +273,7 @@ static void register_url_class(script::Namespace ns)
   /// TODO: static QList<QUrl> fromStringList(const QStringList &, QUrl::ParsingMode = QUrl::TolerantMode);
 #endif
   // static void setIdnWhitelist(const QStringList &);
-  /// TODO: static void setIdnWhitelist(const QStringList &);
+  bind::static_void_member_function<QUrl, const QStringList &, &QUrl::setIdnWhitelist>(url, "setIdnWhitelist").create();
   // QUrl::DataPtr & data_ptr();
   /// TODO: QUrl::DataPtr & data_ptr();
 

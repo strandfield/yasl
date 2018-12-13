@@ -12,6 +12,7 @@
 
 #include "yasl/core/object.h"
 #include "yasl/core/size.h"
+#include "yasl/core/string.h"
 #include "yasl/widgets/inputdialog.h"
 #include "yasl/widgets/lineedit.h"
 #include "yasl/widgets/widget.h"
@@ -91,9 +92,9 @@ static void register_input_dialog_class(script::Namespace ns)
   // bool isComboBoxEditable() const;
   bind::member_function<QInputDialog, bool, &QInputDialog::isComboBoxEditable>(input_dialog, "isComboBoxEditable").create();
   // void setComboBoxItems(const QStringList &);
-  /// TODO: void setComboBoxItems(const QStringList &);
+  bind::void_member_function<QInputDialog, const QStringList &, &QInputDialog::setComboBoxItems>(input_dialog, "setComboBoxItems").create();
   // QStringList comboBoxItems() const;
-  /// TODO: QStringList comboBoxItems() const;
+  bind::member_function<QInputDialog, QStringList, &QInputDialog::comboBoxItems>(input_dialog, "comboBoxItems").create();
   // void setIntValue(int);
   bind::void_member_function<QInputDialog, int, &QInputDialog::setIntValue>(input_dialog, "setIntValue").create();
   // int intValue() const;

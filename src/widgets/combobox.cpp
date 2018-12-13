@@ -12,6 +12,7 @@
 
 #include "yasl/core/enums.h"
 #include "yasl/core/size.h"
+#include "yasl/core/string.h"
 #include "yasl/core/variant.h"
 #include "yasl/gui/icon.h"
 #include "yasl/widgets/combobox.h"
@@ -165,7 +166,7 @@ static void register_combo_box_class(script::Namespace ns)
   bind::void_member_function<QComboBox, const QIcon &, const QString &, const QVariant &, &QComboBox::addItem>(combo_box, "addItem")
     .apply(bind::default_arguments(QVariant())).create();
   // void addItems(const QStringList &);
-  /// TODO: void addItems(const QStringList &);
+  bind::void_member_function<QComboBox, const QStringList &, &QComboBox::addItems>(combo_box, "addItems").create();
   // void insertItem(int, const QString &, const QVariant & = QVariant());
   bind::void_member_function<QComboBox, int, const QString &, const QVariant &, &QComboBox::insertItem>(combo_box, "insertItem")
     .apply(bind::default_arguments(QVariant())).create();
@@ -173,7 +174,7 @@ static void register_combo_box_class(script::Namespace ns)
   bind::void_member_function<QComboBox, int, const QIcon &, const QString &, const QVariant &, &QComboBox::insertItem>(combo_box, "insertItem")
     .apply(bind::default_arguments(QVariant())).create();
   // void insertItems(int, const QStringList &);
-  /// TODO: void insertItems(int, const QStringList &);
+  bind::void_member_function<QComboBox, int, const QStringList &, &QComboBox::insertItems>(combo_box, "insertItems").create();
   // void insertSeparator(int);
   bind::void_member_function<QComboBox, int, &QComboBox::insertSeparator>(combo_box, "insertSeparator").create();
   // void removeItem(int);

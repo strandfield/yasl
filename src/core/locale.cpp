@@ -17,6 +17,7 @@
 #include "yasl/core/datetime.h"
 #include "yasl/core/enums.h"
 #include "yasl/core/locale.h"
+#include "yasl/core/string.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -1645,7 +1646,7 @@ static void register_locale_class(script::Namespace ns)
   /// TODO: QString formattedDataSize(qint64, int = 2, QLocale::DataSizeFormats = QLocale::DataSizeIecFormat);
 #endif
   // QStringList uiLanguages() const;
-  /// TODO: QStringList uiLanguages() const;
+  bind::member_function<QLocale, QStringList, &QLocale::uiLanguages>(locale, "uiLanguages").create();
   // bool operator==(const QLocale &) const;
   bind::memop_eq<QLocale, const QLocale &>(locale);
   // bool operator!=(const QLocale &) const;
@@ -1676,7 +1677,7 @@ static void register_locale_class(script::Namespace ns)
   // QString quoteString(const QStringRef &, QLocale::QuotationStyle = QLocale::StandardQuotation) const;
   /// TODO: QString quoteString(const QStringRef &, QLocale::QuotationStyle = QLocale::StandardQuotation) const;
   // QString createSeparatedList(const QStringList &) const;
-  /// TODO: QString createSeparatedList(const QStringList &) const;
+  bind::member_function<QLocale, QString, const QStringList &, &QLocale::createSeparatedList>(locale, "createSeparatedList").create();
 
   yasl::registerVariantHandler<yasl::GenericVariantHandler<QLocale, QMetaType::QLocale>>();
 }

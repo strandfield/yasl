@@ -10,6 +10,7 @@
 #include "yasl/common/enums.h"
 
 #include "yasl/core/bytearray.h"
+#include "yasl/core/string.h"
 #include "yasl/gui/font.h"
 #include "yasl/gui/fontdatabase.h"
 #include "yasl/gui/fontinfo.h"
@@ -97,9 +98,10 @@ static void register_font_database_class(script::Namespace ns)
   // QList<QFontDatabase::WritingSystem> writingSystems(const QString &) const;
   /// TODO: QList<QFontDatabase::WritingSystem> writingSystems(const QString &) const;
   // QStringList families(QFontDatabase::WritingSystem = QFontDatabase::Any) const;
-  /// TODO: QStringList families(QFontDatabase::WritingSystem = QFontDatabase::Any) const;
+  bind::member_function<QFontDatabase, QStringList, QFontDatabase::WritingSystem, &QFontDatabase::families>(font_database, "families")
+    .apply(bind::default_arguments(QFontDatabase::Any)).create();
   // QStringList styles(const QString &) const;
-  /// TODO: QStringList styles(const QString &) const;
+  bind::member_function<QFontDatabase, QStringList, const QString &, &QFontDatabase::styles>(font_database, "styles").create();
   // QList<int> pointSizes(const QString &, const QString & = QString());
   /// TODO: QList<int> pointSizes(const QString &, const QString & = QString());
   // QList<int> smoothSizes(const QString &, const QString &);
@@ -143,7 +145,7 @@ static void register_font_database_class(script::Namespace ns)
   // static int addApplicationFontFromData(const QByteArray &);
   bind::static_member_function<QFontDatabase, int, const QByteArray &, &QFontDatabase::addApplicationFontFromData>(font_database, "addApplicationFontFromData").create();
   // static QStringList applicationFontFamilies(int);
-  /// TODO: static QStringList applicationFontFamilies(int);
+  bind::static_member_function<QFontDatabase, QStringList, int, &QFontDatabase::applicationFontFamilies>(font_database, "applicationFontFamilies").create();
   // static bool removeApplicationFont(int);
   bind::static_member_function<QFontDatabase, bool, int, &QFontDatabase::removeApplicationFont>(font_database, "removeApplicationFont").create();
   // static bool removeAllApplicationFonts();

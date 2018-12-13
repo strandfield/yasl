@@ -14,6 +14,7 @@
 #include "yasl/core/iodevice.h"
 #include "yasl/core/object.h"
 #include "yasl/core/process.h"
+#include "yasl/core/string.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -54,9 +55,9 @@ static void register_process_environment_class(script::Namespace ns)
   // QString value(const QString &, const QString &) const;
   bind::member_function<QProcessEnvironment, QString, const QString &, const QString &, &QProcessEnvironment::value>(process_environment, "value").create();
   // QStringList toStringList() const;
-  /// TODO: QStringList toStringList() const;
+  bind::member_function<QProcessEnvironment, QStringList, &QProcessEnvironment::toStringList>(process_environment, "toStringList").create();
   // QStringList keys() const;
-  /// TODO: QStringList keys() const;
+  bind::member_function<QProcessEnvironment, QStringList, &QProcessEnvironment::keys>(process_environment, "keys").create();
   // void insert(const QProcessEnvironment &);
   bind::void_member_function<QProcessEnvironment, const QProcessEnvironment &, &QProcessEnvironment::insert>(process_environment, "insert").create();
   // static QProcessEnvironment systemEnvironment();
@@ -166,7 +167,7 @@ static void register_process_class(script::Namespace ns)
   // ~QProcess();
   bind::destructor<QProcess>(process).create();
   // void start(const QString &, const QStringList &, QIODevice::OpenMode);
-  /// TODO: void start(const QString &, const QStringList &, QIODevice::OpenMode);
+  bind::void_member_function<QProcess, const QString &, const QStringList &, QIODevice::OpenMode, &QProcess::start>(process, "start").create();
   // void start(const QString &, QIODevice::OpenMode = QIODevice::OpenMode(QIODevice::ReadWrite));
   bind::void_member_function<QProcess, const QString &, QIODevice::OpenMode, &QProcess::start>(process, "start")
     .apply(bind::default_arguments(QIODevice::OpenMode(QIODevice::ReadWrite))).create();
@@ -181,10 +182,10 @@ static void register_process_class(script::Namespace ns)
   bind::void_member_function<QProcess, const QString &, &QProcess::setProgram>(process, "setProgram").create();
 #endif
   // QStringList arguments() const;
-  /// TODO: QStringList arguments() const;
+  bind::member_function<QProcess, QStringList, &QProcess::arguments>(process, "arguments").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
   // void setArguments(const QStringList &);
-  /// TODO: void setArguments(const QStringList &);
+  bind::void_member_function<QProcess, const QStringList &, &QProcess::setArguments>(process, "setArguments").create();
 #endif
   // QProcess::ProcessChannelMode readChannelMode() const;
   bind::member_function<QProcess, QProcess::ProcessChannelMode, &QProcess::readChannelMode>(process, "readChannelMode").create();
@@ -225,9 +226,9 @@ static void register_process_class(script::Namespace ns)
   // void setWorkingDirectory(const QString &);
   bind::void_member_function<QProcess, const QString &, &QProcess::setWorkingDirectory>(process, "setWorkingDirectory").create();
   // void setEnvironment(const QStringList &);
-  /// TODO: void setEnvironment(const QStringList &);
+  bind::void_member_function<QProcess, const QStringList &, &QProcess::setEnvironment>(process, "setEnvironment").create();
   // QStringList environment() const;
-  /// TODO: QStringList environment() const;
+  bind::member_function<QProcess, QStringList, &QProcess::environment>(process, "environment").create();
   // void setProcessEnvironment(const QProcessEnvironment &);
   bind::void_member_function<QProcess, const QProcessEnvironment &, &QProcess::setProcessEnvironment>(process, "setProcessEnvironment").create();
   // QProcessEnvironment processEnvironment() const;
@@ -257,17 +258,17 @@ static void register_process_class(script::Namespace ns)
   // QProcess::ExitStatus exitStatus() const;
   bind::member_function<QProcess, QProcess::ExitStatus, &QProcess::exitStatus>(process, "exitStatus").create();
   // static int execute(const QString &, const QStringList &);
-  /// TODO: static int execute(const QString &, const QStringList &);
+  bind::static_member_function<QProcess, int, const QString &, const QStringList &, &QProcess::execute>(process, "execute").create();
   // static int execute(const QString &);
   bind::static_member_function<QProcess, int, const QString &, &QProcess::execute>(process, "execute").create();
   // static bool startDetached(const QString &, const QStringList &, const QString &, qint64 *);
   /// TODO: static bool startDetached(const QString &, const QStringList &, const QString &, qint64 *);
   // static bool startDetached(const QString &, const QStringList &);
-  /// TODO: static bool startDetached(const QString &, const QStringList &);
+  bind::static_member_function<QProcess, bool, const QString &, const QStringList &, &QProcess::startDetached>(process, "startDetached").create();
   // static bool startDetached(const QString &);
   bind::static_member_function<QProcess, bool, const QString &, &QProcess::startDetached>(process, "startDetached").create();
   // static QStringList systemEnvironment();
-  /// TODO: static QStringList systemEnvironment();
+  bind::static_member_function<QProcess, QStringList, &QProcess::systemEnvironment>(process, "systemEnvironment").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QString nullDevice();
   bind::static_member_function<QProcess, QString, &QProcess::nullDevice>(process, "nullDevice").create();

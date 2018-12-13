@@ -5,6 +5,7 @@
 #ifndef YASL_WRAPPERS_OPERATOR_WRAPPER_H
 #define YASL_WRAPPERS_OPERATOR_WRAPPER_H
 
+#include "yasl/common/proxy.h"
 #include "yasl/common/values.h"
 
 #include <script/interpreter/executioncontext.h>
@@ -159,6 +160,12 @@ template<typename ReturnType, typename LHS, typename RHS>
 script::Value subscript_wrapper(script::FunctionCall *c)
 {
   return make_value<ReturnType>(value_cast<LHS>(c->arg(0))[value_cast<RHS>(c->arg(1))], c->engine());
+}
+
+template<typename ReturnType, typename LHS, typename RHS>
+script::Value subscript_proxy_wrapper(script::FunctionCall *c)
+{
+  return c->engine()->newPtr(make_type<Proxy<typename std::decay<ReturnType>::type>>(), &(value_cast<LHS>(c->arg(0))[value_cast<RHS>(c->arg(1))]));
 }
 
 template<typename LHS, typename RHS>

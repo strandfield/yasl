@@ -12,6 +12,7 @@
 
 #include "yasl/core/char.h"
 #include "yasl/core/dir.h"
+#include "yasl/core/string.h"
 
 #include <script/classbuilder.h>
 #include <script/enumbuilder.h>
@@ -108,11 +109,11 @@ static void register_dir_class(script::Namespace ns)
   // static void addResourceSearchPath(const QString &);
   bind::static_void_member_function<QDir, const QString &, &QDir::addResourceSearchPath>(dir, "addResourceSearchPath").create();
   // static void setSearchPaths(const QString &, const QStringList &);
-  /// TODO: static void setSearchPaths(const QString &, const QStringList &);
+  bind::static_void_member_function<QDir, const QString &, const QStringList &, &QDir::setSearchPaths>(dir, "setSearchPaths").create();
   // static void addSearchPath(const QString &, const QString &);
   bind::static_void_member_function<QDir, const QString &, const QString &, &QDir::addSearchPath>(dir, "addSearchPath").create();
   // static QStringList searchPaths(const QString &);
-  /// TODO: static QStringList searchPaths(const QString &);
+  bind::static_member_function<QDir, QStringList, const QString &, &QDir::searchPaths>(dir, "searchPaths").create();
   // QString dirName() const;
   bind::member_function<QDir, QString, &QDir::dirName>(dir, "dirName").create();
   // QString filePath(const QString &) const;
@@ -130,9 +131,9 @@ static void register_dir_class(script::Namespace ns)
   // bool cdUp();
   bind::member_function<QDir, bool, &QDir::cdUp>(dir, "cdUp").create();
   // QStringList nameFilters() const;
-  /// TODO: QStringList nameFilters() const;
+  bind::member_function<QDir, QStringList, &QDir::nameFilters>(dir, "nameFilters").create();
   // void setNameFilters(const QStringList &);
-  /// TODO: void setNameFilters(const QStringList &);
+  bind::void_member_function<QDir, const QStringList &, &QDir::setNameFilters>(dir, "setNameFilters").create();
   // QDir::Filters filter() const;
   bind::member_function<QDir, QDir::Filters, &QDir::filter>(dir, "filter").create();
   // void setFilter(QDir::Filters);
@@ -151,11 +152,13 @@ static void register_dir_class(script::Namespace ns)
   // QString operator[](int) const;
   bind::memop_const_subscript<QDir, QString, int>(dir);
   // static QStringList nameFiltersFromString(const QString &);
-  /// TODO: static QStringList nameFiltersFromString(const QString &);
+  bind::static_member_function<QDir, QStringList, const QString &, &QDir::nameFiltersFromString>(dir, "nameFiltersFromString").create();
   // QStringList entryList(QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
-  /// TODO: QStringList entryList(QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  bind::member_function<QDir, QStringList, QDir::Filters, QDir::SortFlags, &QDir::entryList>(dir, "entryList")
+    .apply(bind::default_arguments(QDir::SortFlags(QDir::NoSort), QDir::Filters(QDir::NoFilter))).create();
   // QStringList entryList(const QStringList &, QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
-  /// TODO: QStringList entryList(const QStringList &, QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
+  bind::member_function<QDir, QStringList, const QStringList &, QDir::Filters, QDir::SortFlags, &QDir::entryList>(dir, "entryList")
+    .apply(bind::default_arguments(QDir::SortFlags(QDir::NoSort), QDir::Filters(QDir::NoFilter))).create();
   // QFileInfoList entryInfoList(QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
   /// TODO: QFileInfoList entryInfoList(QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
   // QFileInfoList entryInfoList(const QStringList &, QDir::Filters = QDir::Filters(QDir::NoFilter), QDir::SortFlags = QDir::SortFlags(QDir::NoSort)) const;
@@ -223,7 +226,7 @@ static void register_dir_class(script::Namespace ns)
   // static QString tempPath();
   bind::static_member_function<QDir, QString, &QDir::tempPath>(dir, "tempPath").create();
   // static bool match(const QStringList &, const QString &);
-  /// TODO: static bool match(const QStringList &, const QString &);
+  bind::static_member_function<QDir, bool, const QStringList &, const QString &, &QDir::match>(dir, "match").create();
   // static bool match(const QString &, const QString &);
   bind::static_member_function<QDir, bool, const QString &, const QString &, &QDir::match>(dir, "match").create();
   // static QString cleanPath(const QString &);

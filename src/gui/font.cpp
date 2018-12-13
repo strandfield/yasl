@@ -11,6 +11,7 @@
 #include "yasl/common/genericvarianthandler.h"
 
 #include "yasl/core/datastream.h"
+#include "yasl/core/string.h"
 #include "yasl/gui/font.h"
 
 #include <script/classbuilder.h>
@@ -333,13 +334,13 @@ static void register_font_class(script::Namespace ns)
   // static QString substitute(const QString &);
   bind::static_member_function<QFont, QString, const QString &, &QFont::substitute>(font, "substitute").create();
   // static QStringList substitutes(const QString &);
-  /// TODO: static QStringList substitutes(const QString &);
+  bind::static_member_function<QFont, QStringList, const QString &, &QFont::substitutes>(font, "substitutes").create();
   // static QStringList substitutions();
-  /// TODO: static QStringList substitutions();
+  bind::static_member_function<QFont, QStringList, &QFont::substitutions>(font, "substitutions").create();
   // static void insertSubstitution(const QString &, const QString &);
   bind::static_void_member_function<QFont, const QString &, const QString &, &QFont::insertSubstitution>(font, "insertSubstitution").create();
   // static void insertSubstitutions(const QString &, const QStringList &);
-  /// TODO: static void insertSubstitutions(const QString &, const QStringList &);
+  bind::static_void_member_function<QFont, const QString &, const QStringList &, &QFont::insertSubstitutions>(font, "insertSubstitutions").create();
   // static void removeSubstitutions(const QString &);
   bind::static_void_member_function<QFont, const QString &, &QFont::removeSubstitutions>(font, "removeSubstitutions").create();
   // static void initialize();

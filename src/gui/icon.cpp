@@ -12,6 +12,7 @@
 
 #include "yasl/core/datastream.h"
 #include "yasl/core/size.h"
+#include "yasl/core/string.h"
 #include "yasl/gui/icon.h"
 #include "yasl/gui/pixmap.h"
 #include "yasl/gui/window.h"
@@ -133,9 +134,9 @@ static void register_icon_class(script::Namespace ns)
   // static bool hasThemeIcon(const QString &);
   bind::static_member_function<QIcon, bool, const QString &, &QIcon::hasThemeIcon>(icon, "hasThemeIcon").create();
   // static QStringList themeSearchPaths();
-  /// TODO: static QStringList themeSearchPaths();
+  bind::static_member_function<QIcon, QStringList, &QIcon::themeSearchPaths>(icon, "themeSearchPaths").create();
   // static void setThemeSearchPaths(const QStringList &);
-  /// TODO: static void setThemeSearchPaths(const QStringList &);
+  bind::static_void_member_function<QIcon, const QStringList &, &QIcon::setThemeSearchPaths>(icon, "setThemeSearchPaths").create();
   // static QString themeName();
   bind::static_member_function<QIcon, QString, &QIcon::themeName>(icon, "themeName").create();
   // static void setThemeName(const QString &);

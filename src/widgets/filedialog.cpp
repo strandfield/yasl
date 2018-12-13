@@ -12,6 +12,7 @@
 #include "yasl/core/bytearray.h"
 #include "yasl/core/dir.h"
 #include "yasl/core/object.h"
+#include "yasl/core/string.h"
 #include "yasl/core/url.h"
 #include "yasl/widgets/filedialog.h"
 #include "yasl/widgets/widget.h"
@@ -126,7 +127,7 @@ static void register_file_dialog_class(script::Namespace ns)
   // void selectFile(const QString &);
   bind::void_member_function<QFileDialog, const QString &, &QFileDialog::selectFile>(file_dialog, "selectFile").create();
   // QStringList selectedFiles() const;
-  /// TODO: QStringList selectedFiles() const;
+  bind::member_function<QFileDialog, QStringList, &QFileDialog::selectedFiles>(file_dialog, "selectedFiles").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void selectUrl(const QUrl &);
   bind::void_member_function<QFileDialog, const QUrl &, &QFileDialog::selectUrl>(file_dialog, "selectUrl").create();
@@ -142,9 +143,9 @@ static void register_file_dialog_class(script::Namespace ns)
   // void setNameFilter(const QString &);
   bind::void_member_function<QFileDialog, const QString &, &QFileDialog::setNameFilter>(file_dialog, "setNameFilter").create();
   // void setNameFilters(const QStringList &);
-  /// TODO: void setNameFilters(const QStringList &);
+  bind::void_member_function<QFileDialog, const QStringList &, &QFileDialog::setNameFilters>(file_dialog, "setNameFilters").create();
   // QStringList nameFilters() const;
-  /// TODO: QStringList nameFilters() const;
+  bind::member_function<QFileDialog, QStringList, &QFileDialog::nameFilters>(file_dialog, "nameFilters").create();
   // void selectNameFilter(const QString &);
   bind::void_member_function<QFileDialog, const QString &, &QFileDialog::selectNameFilter>(file_dialog, "selectNameFilter").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
@@ -155,11 +156,11 @@ static void register_file_dialog_class(script::Namespace ns)
   bind::member_function<QFileDialog, QString, &QFileDialog::selectedNameFilter>(file_dialog, "selectedNameFilter").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void setMimeTypeFilters(const QStringList &);
-  /// TODO: void setMimeTypeFilters(const QStringList &);
+  bind::void_member_function<QFileDialog, const QStringList &, &QFileDialog::setMimeTypeFilters>(file_dialog, "setMimeTypeFilters").create();
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // QStringList mimeTypeFilters() const;
-  /// TODO: QStringList mimeTypeFilters() const;
+  bind::member_function<QFileDialog, QStringList, &QFileDialog::mimeTypeFilters>(file_dialog, "mimeTypeFilters").create();
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // void selectMimeTypeFilter(const QString &);
@@ -206,9 +207,9 @@ static void register_file_dialog_class(script::Namespace ns)
   // QString defaultSuffix() const;
   bind::member_function<QFileDialog, QString, &QFileDialog::defaultSuffix>(file_dialog, "defaultSuffix").create();
   // void setHistory(const QStringList &);
-  /// TODO: void setHistory(const QStringList &);
+  bind::void_member_function<QFileDialog, const QStringList &, &QFileDialog::setHistory>(file_dialog, "setHistory").create();
   // QStringList history() const;
-  /// TODO: QStringList history() const;
+  bind::member_function<QFileDialog, QStringList, &QFileDialog::history>(file_dialog, "history").create();
   // void setItemDelegate(QAbstractItemDelegate *);
   /// TODO: void setItemDelegate(QAbstractItemDelegate *);
   // QAbstractItemDelegate * itemDelegate() const;
@@ -223,11 +224,11 @@ static void register_file_dialog_class(script::Namespace ns)
   bind::member_function<QFileDialog, QString, QFileDialog::DialogLabel, &QFileDialog::labelText>(file_dialog, "labelText").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // void setSupportedSchemes(const QStringList &);
-  /// TODO: void setSupportedSchemes(const QStringList &);
+  bind::void_member_function<QFileDialog, const QStringList &, &QFileDialog::setSupportedSchemes>(file_dialog, "setSupportedSchemes").create();
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // QStringList supportedSchemes() const;
-  /// TODO: QStringList supportedSchemes() const;
+  bind::member_function<QFileDialog, QStringList, &QFileDialog::supportedSchemes>(file_dialog, "supportedSchemes").create();
 #endif
   // void setProxyModel(QAbstractProxyModel *);
   /// TODO: void setProxyModel(QAbstractProxyModel *);
@@ -269,7 +270,7 @@ static void register_file_dialog_class(script::Namespace ns)
   bind::static_member_function<QFileDialog, QString, QWidget *, const QString &, const QString &, QFileDialog::Options, &QFileDialog::getExistingDirectory>(file_dialog, "getExistingDirectory").create();
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
   // static QUrl getExistingDirectoryUrl(QWidget *, const QString &, const QUrl &, QFileDialog::Options, const QStringList &);
-  /// TODO: static QUrl getExistingDirectoryUrl(QWidget *, const QString &, const QUrl &, QFileDialog::Options, const QStringList &);
+  bind::static_member_function<QFileDialog, QUrl, QWidget *, const QString &, const QUrl &, QFileDialog::Options, const QStringList &, &QFileDialog::getExistingDirectoryUrl>(file_dialog, "getExistingDirectoryUrl").create();
 #endif
   // static QStringList getOpenFileNames(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);
   /// TODO: static QStringList getOpenFileNames(QWidget *, const QString &, const QString &, const QString &, QString *, QFileDialog::Options);

@@ -10,6 +10,7 @@
 
 #include "yasl/core/jsonobject.h"
 #include "yasl/core/jsonvalue.h"
+#include "yasl/core/string.h"
 
 #include <script/classbuilder.h>
 
@@ -45,7 +46,7 @@ static void register_json_object_class(script::Namespace ns)
   /// TODO: QVariantHash toVariantHash() const;
 #endif
   // QStringList keys() const;
-  /// TODO: QStringList keys() const;
+  bind::member_function<QJsonObject, QStringList, &QJsonObject::keys>(json_object, "keys").create();
   // int size() const;
   bind::member_function<QJsonObject, int, &QJsonObject::size>(json_object, "size").create();
   // int count() const;

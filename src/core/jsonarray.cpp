@@ -10,6 +10,7 @@
 
 #include "yasl/core/jsonarray.h"
 #include "yasl/core/jsonvalue.h"
+#include "yasl/core/string.h"
 
 #include <script/classbuilder.h>
 
@@ -31,7 +32,7 @@ static void register_json_array_class(script::Namespace ns)
   // QJsonArray & operator=(const QJsonArray &);
   bind::memop_assign<QJsonArray, const QJsonArray &>(json_array);
   // static QJsonArray fromStringList(const QStringList &);
-  /// TODO: static QJsonArray fromStringList(const QStringList &);
+  bind::static_member_function<QJsonArray, QJsonArray, const QStringList &, &QJsonArray::fromStringList>(json_array, "fromStringList").create();
   // static QJsonArray fromVariantList(const QVariantList &);
   /// TODO: static QJsonArray fromVariantList(const QVariantList &);
   // QVariantList toVariantList() const;
