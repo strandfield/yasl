@@ -107,7 +107,7 @@ void Generator::generate(const ProjectRef & p)
   for (const auto & m : p->modules)
     generate(m);
 
-  generateInjectedTypeList();
+  //generateInjectedTypeList();
 
   auto elapsed = timer.elapsed();
   qDebug() << "Generation done in" << elapsed;
