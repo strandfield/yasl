@@ -667,7 +667,10 @@ script::Value op_subscript(script::FunctionCall *c)
   auto info = std::static_pointer_cast<MapData>(c->callee().memberOf().data());
   Map & self = get_map(c->thisObject());
   yasl::ObserverValue key{ info->Key, c->arg(1) };
-  return self[key].get();
+  yasl::Value & ret = self[key];
+  if (ret.isNull())
+    ret = yasl::Value{ info->T, c->engine()->construct(info->T->element_type,{}) };
+  return ret.get();
 }
 
 } // namespace map
