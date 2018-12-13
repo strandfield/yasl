@@ -54,6 +54,7 @@ static void register_widget_class(script::Namespace ns)
   using namespace script;
 
   Class widget = ns.newClass("Widget").setId(script::Type::QWidget)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(widget.engine(), script::Type::QWidget, script::Type::QWidgetStar);

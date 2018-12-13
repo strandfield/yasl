@@ -55,6 +55,7 @@ static void register_combo_box_class(script::Namespace ns)
   using namespace script;
 
   Class combo_box = ns.newClass("ComboBox").setId(script::Type::QComboBox)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
   register_combo_box_insert_policy_enum(combo_box);

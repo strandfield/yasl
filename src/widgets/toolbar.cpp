@@ -25,6 +25,7 @@ static void register_tool_bar_class(script::Namespace ns)
   using namespace script;
 
   Class tool_bar = ns.newClass("ToolBar").setId(script::Type::QToolBar)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
 

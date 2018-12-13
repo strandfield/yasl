@@ -19,6 +19,7 @@ static void register_spin_box_class(script::Namespace ns)
   using namespace script;
 
   Class spin_box = ns.newClass("SpinBox").setId(script::Type::QSpinBox)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QAbstractSpinBox).get();
 
 
@@ -77,6 +78,7 @@ static void register_double_spin_box_class(script::Namespace ns)
   using namespace script;
 
   Class double_spin_box = ns.newClass("DoubleSpinBox").setId(script::Type::QDoubleSpinBox)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QAbstractSpinBox).get();
 
 

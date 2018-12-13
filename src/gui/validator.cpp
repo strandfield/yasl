@@ -34,6 +34,7 @@ static void register_validator_class(script::Namespace ns)
   using namespace script;
 
   Class validator = ns.newClass("Validator").setId(script::Type::QValidator)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QObject).get();
 
   register_validator_state_enum(validator);

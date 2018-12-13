@@ -20,6 +20,7 @@ static void register_group_box_class(script::Namespace ns)
   using namespace script;
 
   Class group_box = ns.newClass("GroupBox").setId(script::Type::QGroupBox)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
 

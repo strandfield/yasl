@@ -4,6 +4,7 @@
 
 #include "yasl/common/commons.h"
 
+#include "yasl/common/basic-signal-mapper.h"
 #include "yasl/common/list.h"
 #include "yasl/common/null.h"
 #include "yasl/common/proxy.h"
@@ -80,5 +81,8 @@ void register_commons_utils(script::Engine *e)
 
   // null
   script::register_null_type(e->rootNamespace());
+
+  // Signals
+  yasl::SignalMapper::registerMapper<yasl::BasicSignalMapper>();
 }
 

@@ -69,6 +69,7 @@ static void register_action_class(script::Namespace ns)
   using namespace script;
 
   Class action = ns.newClass("Action").setId(script::Type::QAction)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(action.engine(), script::Type::QAction, script::Type::QActionStar);

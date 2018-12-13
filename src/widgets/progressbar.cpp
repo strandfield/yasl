@@ -34,6 +34,7 @@ static void register_progress_bar_class(script::Namespace ns)
   using namespace script;
 
   Class progress_bar = ns.newClass("ProgressBar").setId(script::Type::QProgressBar)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
   register_progress_bar_direction_enum(progress_bar);

@@ -18,6 +18,7 @@ static void register_progress_dialog_class(script::Namespace ns)
   using namespace script;
 
   Class progress_dialog = ns.newClass("ProgressDialog").setId(script::Type::QProgressDialog)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QDialog).get();
 
 

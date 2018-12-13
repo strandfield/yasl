@@ -53,6 +53,7 @@ static void register_line_edit_class(script::Namespace ns)
   using namespace script;
 
   Class line_edit = ns.newClass("LineEdit").setId(script::Type::QLineEdit)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))

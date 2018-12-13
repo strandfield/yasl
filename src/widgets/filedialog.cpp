@@ -96,6 +96,7 @@ static void register_file_dialog_class(script::Namespace ns)
   using namespace script;
 
   Class file_dialog = ns.newClass("FileDialog").setId(script::Type::QFileDialog)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QDialog).get();
 
   register_file_dialog_view_mode_enum(file_dialog);

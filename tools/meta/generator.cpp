@@ -692,6 +692,17 @@ QString Generator::fundisplay(FunctionRef fun)
   return builder.join("");
 }
 
+static bool contains_any_signal(const QList<NodeRef> & nodes)
+{
+  for (const auto & n : nodes)
+  {
+    if (n->is<Function>() && n->as<Function>().bindingMethod == Function::SignalBinding)
+      return true;
+  }
+
+  return false;
+}
+
 void Generator::generate(ClassRef cla)
 {
   if (cla->checkState == Qt::Unchecked)
@@ -729,7 +740,7 @@ void Generator::generate(ClassRef cla)
   lines << QString();
 
   {
-    QString format = "  Class %1 = %2.%3(\"%4\").setId(script::Type::%5)__BASE____FINAL__.get();";
+    QString format = "  Class %1 = %2.%3(\"%4\").setId(script::Type::%5)__DATA____BASE____FINAL__.get();";
     QString arg3 = enclosing_entity == "Namespace" ? "newClass" : "newNestedClass";
     QString line = format.arg(snake, enclosing_snake, arg3, claname, class_info.id);
     if (!cla->base.isEmpty())
@@ -749,6 +760,10 @@ void Generator::generate(ClassRef cla)
     {
       line.remove("__FINAL__");
     }
+    if (contains_any_signal(cla->elements))
+      line.replace("__DATA__", endl + "    .setData(yasl::createSignalTable())");
+    else
+      line.remove("__DATA__");
 
     lines << line;
   }

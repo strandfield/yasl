@@ -53,6 +53,7 @@ static void register_input_dialog_class(script::Namespace ns)
   using namespace script;
 
   Class input_dialog = ns.newClass("InputDialog").setId(script::Type::QInputDialog)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QDialog).get();
 
   register_input_dialog_input_dialog_option_enum(input_dialog);

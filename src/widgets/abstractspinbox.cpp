@@ -62,6 +62,7 @@ static void register_abstract_spin_box_class(script::Namespace ns)
   using namespace script;
 
   Class abstract_spin_box = ns.newClass("AbstractSpinBox").setId(script::Type::QAbstractSpinBox)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
   register_abstract_spin_box_step_enabled_flag_enum(abstract_spin_box);

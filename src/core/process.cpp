@@ -150,6 +150,7 @@ static void register_process_class(script::Namespace ns)
   using namespace script;
 
   Class process = ns.newClass("Process").setId(script::Type::QProcess)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QIODevice).get();
 
   register_process_process_error_enum(process);

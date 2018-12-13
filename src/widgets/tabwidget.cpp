@@ -48,6 +48,7 @@ static void register_tab_widget_class(script::Namespace ns)
   using namespace script;
 
   Class tab_widget = ns.newClass("TabWidget").setId(script::Type::QTabWidget)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
   register_tab_widget_tab_position_enum(tab_widget);

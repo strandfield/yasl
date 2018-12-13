@@ -19,6 +19,7 @@ static void register_check_box_class(script::Namespace ns)
   using namespace script;
 
   Class check_box = ns.newClass("CheckBox").setId(script::Type::QCheckBox)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QAbstractButton).get();
 
 

@@ -18,6 +18,7 @@ static void register_timer_class(script::Namespace ns)
   using namespace script;
 
   Class timer = ns.newClass("Timer").setId(script::Type::QTimer)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QObject).get();
 
 

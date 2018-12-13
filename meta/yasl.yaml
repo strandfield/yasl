@@ -4947,7 +4947,7 @@ modules:
                   - function: registerUserData[r:uint][specs:static][unchecked]
                   - function: setUserData[r:void][p:uint;QObjectUserData *][unchecked]
                   - function: userData[r:QObjectUserData *][p:uint][specs:const][unchecked]
-                  - function: destroyed[r:void][p:QObject *][binding:signals]
+                  - function: destroyed[r:void][p:QObject *][binding:signals][unchecked]
                   - function: objectNameChanged[r:void][p:const QString &;QObject::QPrivateSignal][unchecked]
                   - function: parent[r:QObject *][specs:const]
                   - function: inherits[r:bool][p:const char *][specs:const]

@@ -31,6 +31,7 @@ static void register_dialog_class(script::Namespace ns)
   using namespace script;
 
   Class dialog = ns.newClass("Dialog").setId(script::Type::QDialog)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
   register_dialog_dialog_code_enum(dialog);

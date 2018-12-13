@@ -105,6 +105,7 @@ static void register_wizard_class(script::Namespace ns)
   using namespace script;
 
   Class wizard = ns.newClass("Wizard").setId(script::Type::QWizard)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QDialog).get();
 
   register_wizard_wizard_button_enum(wizard);
@@ -216,6 +217,7 @@ static void register_wizard_page_class(script::Namespace ns)
   using namespace script;
 
   Class wizard_page = ns.newClass("WizardPage").setId(script::Type::QWizardPage)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
 

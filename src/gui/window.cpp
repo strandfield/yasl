@@ -57,6 +57,7 @@ static void register_window_class(script::Namespace ns)
   using namespace script;
 
   Class window = ns.newClass("Window").setId(script::Type::QWindow)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QObject).get();
 
   register_ref_specialization(window.engine(), script::Type::QWindow, script::Type::QWindowStar);

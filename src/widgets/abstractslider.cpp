@@ -38,6 +38,7 @@ static void register_abstract_slider_class(script::Namespace ns)
   using namespace script;
 
   Class abstract_slider = ns.newClass("AbstractSlider").setId(script::Type::QAbstractSlider)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QWidget).get();
 
   register_abstract_slider_slider_action_enum(abstract_slider);

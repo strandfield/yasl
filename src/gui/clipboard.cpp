@@ -34,6 +34,7 @@ static void register_clipboard_class(script::Namespace ns)
   using namespace script;
 
   Class clipboard = ns.newClass("Clipboard").setId(script::Type::QClipboard)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QObject).get();
 
   register_clipboard_mode_enum(clipboard);

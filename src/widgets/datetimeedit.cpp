@@ -47,6 +47,7 @@ static void register_date_time_edit_class(script::Namespace ns)
   using namespace script;
 
   Class date_time_edit = ns.newClass("DateTimeEdit").setId(script::Type::QDateTimeEdit)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QAbstractSpinBox).get();
 
   register_date_time_edit_section_enum(date_time_edit);
@@ -177,6 +178,7 @@ static void register_time_edit_class(script::Namespace ns)
   using namespace script;
 
   Class time_edit = ns.newClass("TimeEdit").setId(script::Type::QTimeEdit)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QDateTimeEdit).get();
 
 
@@ -198,6 +200,7 @@ static void register_date_edit_class(script::Namespace ns)
   using namespace script;
 
   Class date_edit = ns.newClass("DateEdit").setId(script::Type::QDateEdit)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QDateTimeEdit).get();
 
 

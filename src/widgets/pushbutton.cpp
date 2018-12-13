@@ -20,6 +20,7 @@ static void register_push_button_class(script::Namespace ns)
   using namespace script;
 
   Class push_button = ns.newClass("PushButton").setId(script::Type::QPushButton)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QAbstractButton).get();
 
 

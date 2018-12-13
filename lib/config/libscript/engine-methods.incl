@@ -25,6 +25,7 @@ void setTemplate(passkey, map_template_t, const ClassTemplate & ct);
 
 
 void registerQtType(const QMetaObject *mo, const script::Type & type);
+Type getQtType(const QMetaObject *mo) const;
 Value expose(QObject *obj);
 Value expose(QObject *obj, Type t);
 void bind(const script::Value & val, QObject *obj);

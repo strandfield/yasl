@@ -41,6 +41,7 @@ static void register_font_combo_box_class(script::Namespace ns)
   using namespace script;
 
   Class font_combo_box = ns.newClass("FontComboBox").setId(script::Type::QFontComboBox)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QComboBox).get();
 
   register_font_combo_box_font_filter_enum(font_combo_box);

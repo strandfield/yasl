@@ -37,6 +37,7 @@ static void register_color_dialog_class(script::Namespace ns)
   using namespace script;
 
   Class color_dialog = ns.newClass("ColorDialog").setId(script::Type::QColorDialog)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QDialog).get();
 
   register_color_dialog_color_dialog_option_enum(color_dialog);

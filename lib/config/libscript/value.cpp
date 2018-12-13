@@ -4,9 +4,10 @@
 namespace script
 {
 
-ValueImpl::ValueImpl(Type t, Engine *e) : ref(0), type(t), engine(e)
+ValueImpl::ValueImpl(Type t, Engine *e) : ref(0), type(t), engine(e), ptr(nullptr)
 {
   std::memset(data.memory, 0, ValueImpl::BufferSize);
+  which = FundamentalsField;
 }
 
 ValueImpl::Data::Data()

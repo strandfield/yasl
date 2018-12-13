@@ -37,6 +37,7 @@ static void register_tool_button_class(script::Namespace ns)
   using namespace script;
 
   Class tool_button = ns.newClass("ToolButton").setId(script::Type::QToolButton)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QAbstractButton).get();
 
   register_tool_button_tool_button_popup_mode_enum(tool_button);

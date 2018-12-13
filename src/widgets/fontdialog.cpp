@@ -48,6 +48,7 @@ static void register_font_dialog_class(script::Namespace ns)
   using namespace script;
 
   Class font_dialog = ns.newClass("FontDialog").setId(script::Type::QFontDialog)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QDialog).get();
 
   register_font_dialog_font_dialog_option_enum(font_dialog);

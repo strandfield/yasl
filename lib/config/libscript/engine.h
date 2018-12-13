@@ -21,6 +21,7 @@ struct LIBSCRIPT_API Connection
   script::Function slot;
 };
 
+// Put out of bind namespace & rename
 struct LIBSCRIPT_API BindingData
 {
   script::Value value;

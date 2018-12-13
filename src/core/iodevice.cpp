@@ -39,6 +39,7 @@ static void register_i_o_device_class(script::Namespace ns)
   using namespace script;
 
   Class i_o_device = ns.newClass("IODevice").setId(script::Type::QIODevice)
+    .setData(yasl::createSignalTable())
     .setBase(script::Type::QObject).get();
 
   register_i_o_device_open_mode_flag_enum(i_o_device);

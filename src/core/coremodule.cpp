@@ -2,7 +2,7 @@
 // This file is part of the Yasl project
 // For conditions of distribution and use, see copyright notice in LICENSE
 
-#include "yasl/common/binding/signals.h"
+#include "yasl/common/signal-utils.h"
 
 #include <script/engine.h>
 #include <script/module.h>
@@ -87,7 +87,7 @@ void load_core_module(script::Module core)
   register_datastream_file(core.root());
 
   register_newobject_file(core.root());
-  script::register_signals_file(core.root());
+  yasl::registerSignalUtils(core.root());
 }
 
 void cleanup_core_module(script::Module core)

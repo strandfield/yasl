@@ -6,16 +6,15 @@
 #define YASL_BINDING_QSIGNAL_H
 
 #include "yasl/common/types.h"
+#include "yasl/common/signal-utils.h"
 
 #include <script/class.h>
-#include <script/engine.h>
+#include <script/function.h>
 #include <script/functionbuilder.h>
 #include <script/value.h>
 
 namespace script
 {
-
-void register_signal(script::Class & cla, const QMetaObject *meta, const script::Function & f, const std::string & signature);
 
 namespace callbacks {
 script::Value signal_callback(script::FunctionCall *c);
@@ -30,7 +29,7 @@ script::Function signal(script::Class & cla, std::string &&name, const std::stri
   script::Function ret = cla.newMethod(std::move(name), callbacks::signal_callback)
     .get();
 
-  register_signal(cla, &T::staticMetaObject, ret, signature);
+  yasl::registerSignal(cla, &T::staticMetaObject, ret, signature);
 
   return ret;
 }
@@ -42,14 +41,12 @@ script::Function signal(script::Class & cla, std::string &&name, const std::stri
     .params(make_type<A>(), make_type<Rest>()...)
     .get();
 
-  register_signal(cla, &T::staticMetaObject, ret, signature);
+  yasl::registerSignal(cla, &T::staticMetaObject, ret, signature);
 
   return ret;
 }
 
 } // namespace bind
-
-void register_signals_file(script::Namespace core);
 
 } // namespace script
 

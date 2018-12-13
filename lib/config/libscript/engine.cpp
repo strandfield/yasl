@@ -87,6 +87,11 @@ static Type get_qt_type(const QMetaObject *mo, const QMap<const QMetaObject*, sc
   return get_qt_type(mo->superClass(), map);
 }
 
+Type Engine::getQtType(const QMetaObject *mo) const
+{
+  return get_qt_type(mo, d->qt_type_map);
+}
+
 Value Engine::expose(QObject *obj)
 {
   QVariant binding_data = obj->property("_yasl_data_");

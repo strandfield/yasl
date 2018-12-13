@@ -307,9 +307,13 @@ static script::Value new_widget_template(script::FunctionCall *c)
 {
   using namespace script;
   auto data = std::static_pointer_cast<NewWidgetTemplateData>(c->callee().data());
-  std::vector<Value> args{ c->args().begin(), c->args().end() };
+  Value widget = c->engine()->allocate(data->target.memberOf().id());
+  std::vector<Value> args{
+    widget
+  };
+  args.insert(args.end(), c->args().begin(), c->args().end());
   c->engine()->applyConversions(args, data->conversions);
-  Value widget = c->engine()->invoke(data->target, args);
+  c->engine()->invoke(data->target, args);
   script::value_cast<Widget*>(widget)->mCallbacks = data->callbacks;
   return widget;
 }
@@ -363,7 +367,10 @@ std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> ne
 
   Class target_type = new_widget.engine()->getClass(instance.returnType());
   
-  std::vector<Type> types = instance.prototype().parameters();
+  std::vector<Type> types{
+    Type::ref(target_type.id())
+  };
+  types.insert(types.end(), instance.prototype().begin(), instance.prototype().end());
   
   OverloadResolution resol = OverloadResolution::New(new_widget.engine());
   if (!resol.process(target_type.constructors(), types))
