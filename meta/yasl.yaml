@@ -5631,6 +5631,7 @@ modules:
           hincludes: <QFile>
       - file:
           name: event
+          cppincludes: yasl/core/event-utils.h
           elements:
             - class:
                 name: QEvent
@@ -5808,10 +5809,7 @@ modules:
                         - TabletTrackingChange[v:5.9.0]
                         - User
                         - MaxUser
-                  - constructor: QEvent[p:QEvent::Type]
-                  - constructor: QEvent[p:const QEvent &]
                   - destructor: ~QEvent
-                  - function: operator=[r:QEvent &][p:const QEvent &]
                   - function: type[r:QEvent::Type][specs:const]
                   - function: spontaneous[r:bool][specs:const]
                   - function: setAccepted[r:void][p:bool]
@@ -5846,6 +5844,7 @@ modules:
                   - constructor: QDeferredDeleteEvent
                   - destructor: ~QDeferredDeleteEvent
                   - function: loopLevel[r:int][specs:const]
+            - statement: yasl::registerEventUtils(core);
           hincludes: <QEvent>
       - file:
           name: jsonvalue

@@ -119,7 +119,7 @@ Application::Application(int & argc, char **argv)
   mEngine.rootNamespace().newFunction("print", callbacks::print_string)
     .params(script::Type::cref(script::Type::String)).create();
 
-  script::Class App = mEngine.rootNamespace().newClass("App").get();
+  script::Class App = mEngine.rootNamespace().newClass("App").setId(script::Type::App).get();
   App.newMethod("start", callbacks::app_start).setStatic().create();
   App.newMethod("exit", callbacks::app_exit).setStatic().create();
   App.newMethod("qtVersion", callbacks::app_qtVersion).setStatic()

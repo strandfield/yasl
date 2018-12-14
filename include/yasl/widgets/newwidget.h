@@ -14,6 +14,7 @@ public:
   Widget();
 
 public:
+  bool QWidgetEvent(QEvent *e);
   void QWidgetCloseEvent(QCloseEvent *e);
   void QWidgetEnterEvent(QEvent *e);
   void QWidgetHideEvent(QHideEvent *e);
@@ -34,6 +35,7 @@ private:
   script::Value self() const;
 
 private:
+  bool event(QEvent *e) override;
   void closeEvent(QCloseEvent *e) override;
   void enterEvent(QEvent *e) override;
   void hideEvent(QHideEvent *e) override;
@@ -55,6 +57,7 @@ public:
   {
     script::Function close;
     script::Function enter;
+    script::Function event;
     script::Function hide;
     script::Function keyPress;
     script::Function keyRelease;

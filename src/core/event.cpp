@@ -9,6 +9,7 @@
 #include "yasl/core/qevent-binder.h"
 
 #include "yasl/core/bytearray.h"
+#include "yasl/core/event-utils.h"
 #include "yasl/core/event.h"
 #include "yasl/core/object.h"
 
@@ -212,14 +213,8 @@ static void register_event_class(script::Namespace ns)
 
   register_event_type_enum(event);
 
-  // QEvent(QEvent::Type);
-  bind::constructor<QEvent, QEvent::Type>(event).create();
-  // QEvent(const QEvent &);
-  bind::constructor<QEvent, const QEvent &>(event).create();
   // ~QEvent();
   bind::destructor<QEvent>(event).create();
-  // QEvent & operator=(const QEvent &);
-  bind::memop_assign<QEvent, const QEvent &>(event);
   // QEvent::Type type() const;
   bind::member_function<QEvent, QEvent::Type, &QEvent::type>(event, "type").create();
   // bool spontaneous() const;
@@ -319,4 +314,5 @@ void register_event_file(script::Namespace core)
   register_dynamic_property_change_event_class(ns);
   register_deferred_delete_event_class(ns);
 
+  yasl::registerEventUtils(core);
 }

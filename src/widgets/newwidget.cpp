@@ -61,6 +61,13 @@ static script::Value new_widget_window_title(script::FunctionCall *c)
   });
 }
 
+static script::Value event_handler(script::FunctionCall *c)
+{
+  Widget *self = script::value_cast<Widget*>(c->arg(0));
+  const bool result = self->QWidgetEvent(script::value_cast<QEvent*>(c->arg(1)));
+  return c->engine()->newBool(result);
+}
+
 static script::Value close_event(script::FunctionCall *c)
 {
   Widget *self = script::value_cast<Widget*>(c->arg(0));
@@ -178,6 +185,12 @@ static void add_events_method(script::Engine *e)
   Class widget = e->getClass(Type::QWidget);
   
   /* Events */
+  widget.newMethod("event", callbacks::event_handler)
+    .setProtected()
+    .returns(Type::Boolean)
+    .params(script::make_type<QEvent &>())
+    .create();
+  
   widget.newMethod("closeEvent", callbacks::close_event)
     .setProtected()
     .params(script::make_type<QCloseEvent &>())
@@ -330,6 +343,15 @@ void assign_callback(script::Function & callback, const script::Function & candi
     callback = candidate;
 }
 
+void assign_callback_ex(script::Function & callback, const script::Function & candidate, const std::string & name, const script::Type & return_type, const script::Type & param_type)
+{
+  if (candidate.returnType() != return_type || candidate.prototype().count() != 2 || candidate.parameter(1) != param_type)
+    return;
+
+  if (candidate.name() == name)
+    callback = candidate;
+}
+
 void fill_callbacks(Widget::Callbacks & cbs, const script::Class & c)
 {
   using namespace script;
@@ -339,6 +361,7 @@ void fill_callbacks(Widget::Callbacks & cbs, const script::Class & c)
 
   for (const auto & f : c.memberFunctions())
   {
+    assign_callback_ex(cbs.event, f, "event", Type::Boolean, Type::ref(script::Type::QEvent));
     assign_callback(cbs.close, f, "closeEvent", Type::ref(script::Type::QEvent));
     assign_callback(cbs.enter, f, "enterEvent", Type::ref(script::Type::QEvent));
     assign_callback(cbs.hide, f, "hideEvent", Type::ref(script::Type::QHideEvent));
@@ -420,12 +443,19 @@ void register_newwidget_file(script::Namespace core)
     .create();
 
   register_new_widget_template(core);
+
+  add_events_method(core.engine());
 }
 
 
 Widget::Widget()
 {
 
+}
+
+bool Widget::QWidgetEvent(QEvent *e)
+{
+  return QWidget::event(e);
 }
 
 void Widget::QWidgetCloseEvent(QCloseEvent *e)
@@ -506,6 +536,21 @@ void Widget::QWidgetWheelEvent(QWheelEvent *e)
 script::Value Widget::self() const
 {
   return this->property("_yasl_data_").value<script::bind::BindingData>().value;
+}
+
+bool Widget::event(QEvent *e)
+{
+  if (mCallbacks.event.isNull())
+    return QWidget::event(e);
+
+  script::Engine *engine = mCallbacks.event.engine();
+  script::Value val = make_event(e, script::make_type<QEvent>(), engine);
+  script::Value ret = engine->invoke(mCallbacks.event, { self(), val });
+  const bool result = ret.toBool();
+  engine->destroy(ret);
+  clear_event(val);
+  engine->destroy(val);
+  return result;
 }
 
 void Widget::closeEvent(QCloseEvent *e)
