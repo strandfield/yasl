@@ -341,13 +341,31 @@ types:
     - {id: QLinearGradient, name: QLinearGradient, rename: LinearGradient, header: yasl/gui/brush.h}
     - {id: QLineEdit, name: QLineEdit, rename: LineEdit, header: yasl/widgets/lineedit.h, tag: qobject_tag}
     - {id: QLineF, name: QLineF, rename: LineF, header: yasl/core/line.h, metatype: QMetaType::QLineF}
+    - {id: QListfloatConstIterator, name: QList<float>::const_iterator}
+    - {id: QListfloatIterator, name: QList<float>::iterator}
+    - {id: QListintConstIterator, name: QList<int>::const_iterator}
+    - {id: QListintIterator, name: QList<int>::iterator}
     - {id: QListQAction, name: QList<QAction*>, header: yasl/widgets/action.h}
+    - {id: QListQActionConstIterator, name: QList<QAction*>::const_iterator, header: yasl/widgets/action.h}
+    - {id: QListQActionIterator, name: QList<QAction*>::iterator, header: yasl/widgets/action.h}
     - {id: QListQByteArray, name: QList<QByteArray>, header: yasl/core/bytearray.h}
+    - {id: QListQByteArrayConstIterator, name: QList<QByteArray>::const_iterator, header: yasl/core/bytearray.h}
+    - {id: QListQByteArrayIterator, name: QList<QByteArray>::iterator, header: yasl/core/bytearray.h}
     - {id: QListQLocale, name: QList<QLocale>, header: yasl/core/locale.h}
+    - {id: QListQLocaleConstIterator, name: QList<QLocale>::const_iterator, header: yasl/core/locale.h}
+    - {id: QListQLocaleIterator, name: QList<QLocale>::iterator, header: yasl/core/locale.h}
     - {id: QListQObject, name: QList<QObject*>, header: yasl/core/object.h}
+    - {id: QListQObjectConstIterator, name: QList<QObject*>::const_iterator, header: yasl/core/object.h}
+    - {id: QListQObjectIterator, name: QList<QObject*>::iterator, header: yasl/core/object.h}
     - {id: QListQString, name: QList<QString>, header: yasl/core/string.h}
+    - {id: QListQStringConstIterator, name: QList<QString>::const_iterator}
+    - {id: QListQStringIterator, name: QList<QString>::iterator}
     - {id: QListQVariant, name: QList<QVariant>, header: yasl/core/variant.h}
+    - {id: QListQVariantConstIterator, name: QList<QVariant>::const_iterator, header: yasl/core/variant.h}
+    - {id: QListQVariantIterator, name: QList<QVariant>::iterator, header: yasl/core/variant.h}
     - {id: QListQWidget, name: QList<QWidget*>, header: yasl/widgets/widget.h}
+    - {id: QListQWidgetConstIterator, name: QList<QWidget*>::const_iterator, header: yasl/widgets/widget.h}
+    - {id: QListQWidgetIterator, name: QList<QWidget*>::iterator, header: yasl/widgets/widget.h}
     - {id: QLocale, name: QLocale, rename: Locale, header: yasl/core/locale.h, links: proxy@Proxy<QLocale>;list@QList<QLocale>, metatype: QMetaType::QLocale}
     - {id: QLocaleNumberOptions, name: QLocale::NumberOptions, rename: NumberOptions, header: yasl/core/locale.h}
     - {id: QMapQStringQVariant, name: "QMap<QString, QVariant>", header: yasl/core/variant.h}
@@ -640,7 +658,7 @@ modules:
                   - function: operator>=[r:bool][p:char][specs:const]
                   - function: operator<[r:bool][p:char][specs:const]
                   - function: operator<=[r:bool][p:char][specs:const]
-          hincludes: <QByteArray>
+          hincludes: <QByteArray>;<QList>
       - file:
           name: char
           cppincludes: yasl/core/char-functions.h

@@ -14,6 +14,8 @@
 namespace script {
 template<> struct make_type_t<Proxy<QObject*>> { inline static script::Type get() { return script::Type::ProxyQObject; } };
 template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
+template<> struct make_type_t<QList<QObject*>::const_iterator> { inline static script::Type get() { return script::Type::QListQObjectConstIterator; } };
+template<> struct make_type_t<QList<QObject*>::iterator> { inline static script::Type get() { return script::Type::QListQObjectIterator; } };
 template<> struct make_type_t<QObject> { inline static script::Type get() { return script::Type::QObject; } };
 template<> struct tag_resolver<QObject> { typedef qobject_tag tag_type; };
 template<> struct make_type_t<QObject*> { inline static script::Type get() { return script::Type::QObjectStar; } };

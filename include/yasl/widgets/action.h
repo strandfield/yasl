@@ -20,6 +20,8 @@ template<> struct make_type_t<QAction::ActionEvent> { inline static script::Type
 template<> struct make_type_t<QAction::MenuRole> { inline static script::Type get() { return script::Type::QActionMenuRole; } };
 template<> struct make_type_t<QAction::Priority> { inline static script::Type get() { return script::Type::QActionPriority; } };
 template<> struct make_type_t<QList<QAction*>> { inline static script::Type get() { return script::Type::QListQAction; } };
+template<> struct make_type_t<QList<QAction*>::const_iterator> { inline static script::Type get() { return script::Type::QListQActionConstIterator; } };
+template<> struct make_type_t<QList<QAction*>::iterator> { inline static script::Type get() { return script::Type::QListQActionIterator; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_ACTION_H

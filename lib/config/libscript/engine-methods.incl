@@ -9,6 +9,7 @@ void setTemplate(passkey, pair_template_t, const ClassTemplate & ct);
 struct list_template_t {};
 static const list_template_t ListTemplate;
 ClassTemplate getTemplate(list_template_t) const;
+void setTemplate(passkey, list_template_t, const ClassTemplate & ct);
 
 struct proxy_template_t {};
 static const proxy_template_t ProxyTemplate;

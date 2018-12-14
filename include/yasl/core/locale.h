@@ -13,6 +13,8 @@
 namespace script {
 template<> struct make_type_t<Proxy<QLocale>> { inline static script::Type get() { return script::Type::ProxyQLocale; } };
 template<> struct make_type_t<QList<QLocale>> { inline static script::Type get() { return script::Type::QListQLocale; } };
+template<> struct make_type_t<QList<QLocale>::const_iterator> { inline static script::Type get() { return script::Type::QListQLocaleConstIterator; } };
+template<> struct make_type_t<QList<QLocale>::iterator> { inline static script::Type get() { return script::Type::QListQLocaleIterator; } };
 template<> struct make_type_t<QLocale> { inline static script::Type get() { return script::Type::QLocale; } };
 template<> struct make_type_t<QLocale::Country> { inline static script::Type get() { return script::Type::QLocaleCountry; } };
 template<> struct make_type_t<QLocale::CurrencySymbolFormat> { inline static script::Type get() { return script::Type::QLocaleCurrencySymbolFormat; } };

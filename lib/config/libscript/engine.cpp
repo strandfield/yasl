@@ -40,6 +40,11 @@ ClassTemplate Engine::getTemplate(list_template_t) const
   return d->list_template_;
 }
 
+void Engine::setTemplate(passkey, list_template_t, const ClassTemplate & ct)
+{
+  d->list_template_ = ct;
+}
+
 
 const Engine::proxy_template_t Engine::ProxyTemplate = Engine::proxy_template_t{};
 

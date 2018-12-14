@@ -13,6 +13,8 @@
 namespace script {
 template<> struct make_type_t<Proxy<QVariant>> { inline static script::Type get() { return script::Type::ProxyQVariant; } };
 template<> struct make_type_t<QList<QVariant>> { inline static script::Type get() { return script::Type::QListQVariant; } };
+template<> struct make_type_t<QList<QVariant>::const_iterator> { inline static script::Type get() { return script::Type::QListQVariantConstIterator; } };
+template<> struct make_type_t<QList<QVariant>::iterator> { inline static script::Type get() { return script::Type::QListQVariantIterator; } };
 template<> struct make_type_t<QMap<QString, QVariant>> { inline static script::Type get() { return script::Type::QMapQStringQVariant; } };
 template<> struct make_type_t<QMap<QString, QVariant>::const_iterator> { inline static script::Type get() { return script::Type::QMapQStringQVariantConstIterator; } };
 template<> struct make_type_t<QMap<QString, QVariant>::iterator> { inline static script::Type get() { return script::Type::QMapQStringQVariantIterator; } };

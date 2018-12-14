@@ -9,6 +9,7 @@
 #include "yasl/common/types.h"
 
 #include <QByteArray>
+#include <QList>
 
 namespace script {
 template<> struct make_type_t<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
@@ -21,6 +22,8 @@ template<> struct make_type_t<QByteArray::Base64Options> { inline static script:
 #endif
 template<> struct make_type_t<QByteRef> { inline static script::Type get() { return script::Type::QByteRef; } };
 template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
+template<> struct make_type_t<QList<QByteArray>::const_iterator> { inline static script::Type get() { return script::Type::QListQByteArrayConstIterator; } };
+template<> struct make_type_t<QList<QByteArray>::iterator> { inline static script::Type get() { return script::Type::QListQByteArrayIterator; } };
 } // namespace script
 
 #endif // YASL_CORE_BYTEARRAY_H

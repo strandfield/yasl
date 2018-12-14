@@ -8,7 +8,110 @@
 #include "yasl/common/list.h"
 
 #include "yasl/common/binding/class.h"
+#include "yasl/common/binding/iterators.h"
 #include "yasl/common/proxyspecialization.h"
+
+namespace script
+{
+namespace callbacks
+{
+
+namespace list
+{
+
+
+} // namespace list
+
+} // namespace callbacks
+} // namespace script
+
+template<typename T>
+void register_list_const_iterator(script::Class & map)
+{
+  using namespace script;
+
+  using List = QList<T>;
+  using Iter = typename List::const_iterator;
+
+  Class iterator = map.newNestedClass("const_iterator").setId(make_type<Iter>().data()).get();
+
+  // const_iterator()
+  bind::default_constructor<Iter>(iterator).create();
+  // const_iterator(const const_iterator &)
+  bind::copy_constructor<Iter>(iterator).create();
+  // ~const_iterator()
+  bind::destructor<Iter>(iterator).create();
+
+  // const T value() const
+  bind::const_iter_deref<Iter, T>(iterator, "value");
+
+  // const_iterator & operator=(const const_iterator &);
+  bind::memop_assign<Iter, const Iter &>(iterator);
+  // bool operator!=(const const_iterator & other) const;
+  bind::memop_neq<Iter, const Iter &>(iterator);
+  // bool operator==(const const_iterator & other) const;
+  bind::memop_eq<Iter, const Iter &>(iterator);
+  // const_iterator operator+(int n) const;
+  bind::memop_add<Iter, Iter, int>(iterator);
+  // const_iterator & operator++()
+  bind::memop_preincr<Iter>(iterator);
+  // const_iterator operator++(int)
+  bind::memop_postincr<Iter>(iterator);
+  // const_iterator & operator+=(int n);
+  bind::memop_add_assign<Iter, int>(iterator);
+  // const_iterator operator-(int n) const;
+  bind::memop_sub<Iter, Iter, int>(iterator);
+  // const_iterator & operator--()
+  bind::memop_predecr<Iter>(iterator);
+  // const_iterator operator--(int)
+  bind::memop_postdecr<Iter>(iterator);
+  // const_iterator & operator-=(int n);
+  bind::memop_sub_assign<Iter, int>(iterator);
+}
+
+template<typename T>
+void register_list_iterator(script::Class & map)
+{
+  using namespace script;
+
+  using List = QList<T>;
+  using Iter = typename List::iterator;
+
+  Class iterator = map.newNestedClass("iterator").setId(make_type<Iter>().data()).get();
+
+  // iterator()
+  bind::default_constructor<Iter>(iterator).create();
+  // iterator(const iterator &)
+  bind::copy_constructor<Iter>(iterator).create();
+  // ~iterator()
+  bind::destructor<Iter>(iterator).create();
+
+  // T & value() const
+  bind::iter_deref<Iter, T>(iterator, "value");
+
+  // iterator & operator=(const iterator &);
+  bind::memop_assign<Iter, const Iter &>(iterator);
+  // bool operator!=(const iterator & other) const;
+  bind::memop_neq<Iter, const Iter &>(iterator);
+  // bool operator==(const iterator & other) const;
+  bind::memop_eq<Iter, const Iter &>(iterator);
+  // iterator operator+(int n) const;
+  bind::memop_add<Iter, Iter, int>(iterator);
+  // iterator & operator++()
+  bind::memop_preincr<Iter>(iterator);
+  // iterator operator++(int)
+  bind::memop_postincr<Iter>(iterator);
+  // iterator & operator+=(int n);
+  bind::memop_add_assign<Iter, int>(iterator);
+  // iterator operator-(int n) const;
+  bind::memop_sub<Iter, Iter, int>(iterator);
+  // iterator & operator--()
+  bind::memop_predecr<Iter>(iterator);
+  // iterator operator--(int)
+  bind::memop_postdecr<Iter>(iterator);
+  // iterator & operator-=(int n);
+  bind::memop_sub_assign<Iter, int>(iterator);
+}
 
 template<typename T>
 script::Type register_list_specialization(script::Engine *e)
@@ -16,6 +119,8 @@ script::Type register_list_specialization(script::Engine *e)
   using namespace script;
 
   using List = QList<T>;
+  using Iterator = typename QList<T>::iterator;
+  using ConstIterator = typename QList<T>::const_iterator;
 
   register_proxy_specialization<T>(e);
 
@@ -35,6 +140,9 @@ script::Type register_list_specialization(script::Engine *e)
     .setFinal()
     .get();
 
+  register_list_const_iterator<T>(list);
+  register_list_iterator<T>(list);
+
   // QList<T>();
   bind::default_constructor<List>(list).create();
   // QList<T>(const QList<T> &);
@@ -53,19 +161,19 @@ script::Type register_list_specialization(script::Engine *e)
   // const T & back() const
   bind::member_function<List, const T &, &QList<T>::back>(list, "back").create();
   // iterator begin()
-  /// bind::member_function<List, QList<T>::iterator, &QList<T>::begin>(list, "begin").create();
+  bind::member_function<List, Iterator, &QList<T>::begin>(list, "begin").create();
   // const_iterator begin() const
-  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::begin>(list, "begin").create();
+  bind::member_function<List, ConstIterator, &QList<T>::begin>(list, "begin").create();
   // const_iterator cbegin() const
-  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::cbegin>(list, "cbegin").create();
+  bind::member_function<List, ConstIterator, &QList<T>::cbegin>(list, "cbegin").create();
   // const_iterator cend() const
-  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::cend>(list, "cend").create();
+  bind::member_function<List, ConstIterator, &QList<T>::cend>(list, "cend").create();
   // void clear()
   bind::void_member_function<List, &QList<T>::clear>(list, "clear").create();
   // const_iterator constBegin() const
-  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::constBegin>(list, "constBegin").create();
+  bind::member_function<List, ConstIterator, &QList<T>::constBegin>(list, "constBegin").create();
   // const_iterator constEnd() const
-  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::constEnd>(list, "constEnd").create();
+  bind::member_function<List, ConstIterator, &QList<T>::constEnd>(list, "constEnd").create();
 #if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   // const T & constFirst() const
   bind::member_function<List, const T &, &QList<T>::constFirst>(list, "constFirst").create();
@@ -85,17 +193,17 @@ script::Type register_list_specialization(script::Engine *e)
   // bool empty() const
   bind::member_function<List, bool, &QList<T>::empty>(list, "empty").create();
   // iterator end()
-  /// bind::member_function<List, QList<T>::iterator, &QList<T>::end>(list, "end").create();
+  bind::member_function<List, Iterator, &QList<T>::end>(list, "end").create();
   // const_iterator end() const
-  /// bind::member_function<List, QList<T>::const_iterator, &QList<T>::end>(list, "end").create();
+  bind::member_function<List, ConstIterator, &QList<T>::end>(list, "end").create();
   // bool endsWith(const T &value) const
   bind::member_function<List, bool, const T &, &QList<T>::endsWith>(list, "endsWith").create();
   // iterator erase(iterator pos)
-  /// bind::member_function<List, QList<T>::iterator, QList<T>::iterator, &QList<T>::erase>(list, "erase").create();
+  bind::member_function<List, Iterator, Iterator, &QList<T>::erase>(list, "erase").create();
   // iterator erase(iterator begin, iterator end)
-  /// bind::member_function<List, QList<T>::iterator, QList<T>::iterator, QList<T>::iterator, &QList<T>::erase>(list, "erase").create();
+  bind::member_function<List, Iterator, Iterator, Iterator, &QList<T>::erase>(list, "erase").create();
   // T & first()
-  /// TODO !!!
+  bind::non_const_getter<List, T&, &List::first>(list, "first");
   // const T & first() const
   bind::member_function<List, const T &, &QList<T>::first>(list, "first").create();
   // T & front()
@@ -107,11 +215,11 @@ script::Type register_list_specialization(script::Engine *e)
   // void insert(int i, const T &value)
   bind::void_member_function<List, int, const T &, &QList<T>::insert>(list, "insert").create();
   // iterator insert(iterator before, const T &value)
-  /// bind::member_function<List, QList<T>::iterator, QList<T>::iterator, const T &, &QList<T>::insert>(list, "insert").create();
+  bind::member_function<List, Iterator, Iterator, const T &, &QList<T>::insert>(list, "insert").create();
   // bool isEmpty() const
   bind::member_function<List, bool, &QList<T>::isEmpty>(list, "isEmpty").create();
   // T & last()
-  /// TODO !!!
+  bind::non_const_getter<List, T&, &QList<T>::last>(list, "last").create();
   // const T & last() const
   bind::member_function<List, const T &, &QList<T>::last>(list, "last").create();
   // int lastIndexOf(const T &value, int from = -1) const
@@ -199,7 +307,7 @@ script::Type register_list_specialization(script::Engine *e)
   // bool operator==(const QList<T> &other) const
   bind::memop_eq<List, const QList<T> &>(list);
   // T & operator[](int i)
-  /// TODO !!!
+  bind::memop_proxy_subscript<List, T&, int>(list);
   // const T & operator[](int i) const
   /// TODO !!!
 

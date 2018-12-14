@@ -802,6 +802,8 @@ void Generator::generate(ClassRef cla)
       listelement.remove(0, QString("QList<").length());
       lines << format.arg(listelement, snake);
       recordGeneratedClass(list_info.name, cla->version);
+      recordGeneratedClass(list_info.name + "::const_iterator", cla->version);
+      recordGeneratedClass(list_info.name + "::iterator", cla->version);
     }
     else if (l.first == "map")
     {

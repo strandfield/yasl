@@ -9,7 +9,6 @@
 
 #include <script/classtemplate.h>
 #include <script/classtemplateinstancebuilder.h>
-#include <script/private/engine_p.h>
 #include <script/templatebuilder.h>
 
 #include <cstring>
@@ -770,7 +769,7 @@ void register_qlist_template(script::Namespace n)
     .setCallback(list_template_instantiate)
     .get();
 
-  n.engine()->implementation()->list_template_ = list_template;
+  n.engine()->setTemplate(passkey{}, Engine::ListTemplate, list_template);
 
   // Registering full specializations
   register_list_specialization<int>(n.engine());
