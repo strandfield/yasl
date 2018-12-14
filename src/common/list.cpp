@@ -13,6 +13,25 @@
 
 #include <cstring>
 
+using List = QList<yasl::Value>;
+using ConstIterator = List::const_iterator;
+using Iterator = List::iterator;
+
+static List & get_list(const script::Value & val)
+{
+  return *static_cast<List*>(val.memory());
+}
+
+static Iterator & get_iter(const script::Value & val)
+{
+  return *static_cast<Iterator*>(val.memory());
+}
+
+static ConstIterator & get_const_iter(const script::Value & val)
+{
+  return *static_cast<ConstIterator*>(val.memory());
+}
+
 namespace script
 {
 
@@ -23,8 +42,277 @@ script::Value make_list(const QList<yasl::Value> & val, const script::Type & lis
   });
 }
 
+static script::Value make_iter(const Iterator & val, const script::Type & iter_type, script::Engine *e)
+{
+  return e->construct(iter_type, [&val](script::Value & ret) {
+    new (ret.getMemory(script::passkey{})) Iterator{ val };
+  });
+}
+
+static script::Value make_const_iter(const ConstIterator & val, const script::Type & iter_type, script::Engine *e)
+{
+  return e->construct(iter_type, [&val](script::Value & ret) {
+    new (ret.getMemory(script::passkey{})) ConstIterator{ val };
+  });
+}
+
 namespace callbacks
 {
+
+namespace list
+{
+
+namespace const_iterator
+{
+
+// const_iterator()
+script::Value default_ctor(script::FunctionCall *c)
+{
+  new (c->thisObject().getMemory(script::passkey{})) ConstIterator{};
+  return c->thisObject();
+}
+
+// const_iterator(const const_iterator &)
+script::Value copy_ctor(script::FunctionCall *c)
+{
+  const ConstIterator & other = get_const_iter(c->arg(1));
+  new (c->thisObject().getMemory(script::passkey{})) ConstIterator{ other };
+  return c->thisObject();
+}
+
+// ~const_iterator()
+script::Value dtor(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->thisObject());
+  self.~const_iterator();
+  c->thisObject().releaseMemory(script::passkey{});
+  return script::Value::Void;
+}
+
+// const T & value() const
+script::Value value(script::FunctionCall *c)
+{
+  const ConstIterator & self = get_const_iter(c->thisObject());
+  return (*self).get();
+}
+
+// const_iterator & operator=(const const_iterator &);
+script::Value op_assign(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->thisObject());
+  const ConstIterator & other = get_const_iter(c->arg(1));
+  self = other;
+  return c->thisObject();
+}
+
+// bool operator!=(const const_iterator & other) const;
+script::Value op_neq(script::FunctionCall *c)
+{
+  const ConstIterator & self = get_const_iter(c->arg(0));
+  const ConstIterator & other = get_const_iter(c->arg(1));
+  return c->engine()->newBool(self != other);
+}
+
+// bool operator==(const const_iterator & other) const;
+script::Value op_eq(script::FunctionCall *c)
+{
+  const ConstIterator & self = get_const_iter(c->arg(0));
+  const ConstIterator & other = get_const_iter(c->arg(1));
+  return c->engine()->newBool(self == other);
+}
+
+// const_iterator operator+(int n) const;
+script::Value op_add(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->arg(0));
+  int n = c->arg(1).toInt();
+  return make_const_iter(self + n, c->callee().returnType(), c->engine());
+}
+
+// const_iterator & operator++()
+script::Value op_preincr(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->arg(0));
+  ++self;
+  return c->thisObject();
+}
+
+// const_iterator operator++(int)
+script::Value op_postincr(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->arg(0));
+  return make_const_iter(self++, c->callee().returnType(), c->engine());
+}
+
+// const_iterator & operator+=(int n);
+script::Value op_addassign(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->arg(0));
+  int n = c->arg(1).toInt();
+  self += n;
+  return c->thisObject();
+}
+
+// const_iterator operator-(int n) const;
+script::Value op_sub(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->arg(0));
+  int n = c->arg(1).toInt();
+  return make_const_iter(self - n, c->callee().returnType(), c->engine());
+}
+
+// const_iterator & operator--()
+script::Value op_predecr(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->arg(0));
+  --self;
+  return c->thisObject();
+}
+
+// const_iterator operator--(int)
+script::Value op_postdecr(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->arg(0));
+  return make_const_iter(self--, c->callee().returnType(), c->engine());
+}
+
+// const_iterator & operator-=(int n);
+script::Value op_subassign(script::FunctionCall *c)
+{
+  ConstIterator & self = get_const_iter(c->arg(0));
+  int n = c->arg(1).toInt();
+  self -= n;
+  return c->thisObject();
+}
+
+} // namespace const_iterator
+
+namespace iterator
+{
+
+// iterator()
+script::Value default_ctor(script::FunctionCall *c)
+{
+  new (c->thisObject().getMemory(script::passkey{})) Iterator{};
+  return c->thisObject();
+}
+
+// iterator(const iterator &)
+script::Value copy_ctor(script::FunctionCall *c)
+{
+  const Iterator & other = get_iter(c->arg(1));
+  new (c->thisObject().getMemory(script::passkey{})) Iterator{ other };
+  return c->thisObject();
+}
+
+// ~iterator()
+script::Value dtor(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->thisObject());
+  self.~iterator();
+  c->thisObject().releaseMemory(script::passkey{});
+  return script::Value::Void;
+}
+
+// T & value() const
+script::Value value(script::FunctionCall *c)
+{
+  const Iterator & self = get_iter(c->thisObject());
+  return (*self).get();
+}
+
+// iterator & operator=(const iterator &);
+script::Value op_assign(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->thisObject());
+  const Iterator & other = get_iter(c->arg(1));
+  self = other;
+  return c->thisObject();
+}
+
+// bool operator!=(const iterator & other) const;
+script::Value op_neq(script::FunctionCall *c)
+{
+  const Iterator & self = get_iter(c->arg(0));
+  const Iterator & other = get_iter(c->arg(1));
+  return c->engine()->newBool(self != other);
+}
+
+// bool operator==(const iterator & other) const;
+script::Value op_eq(script::FunctionCall *c)
+{
+  const Iterator & self = get_iter(c->arg(0));
+  const Iterator & other = get_iter(c->arg(1));
+  return c->engine()->newBool(self == other);
+}
+
+// iterator operator+(int n) const;
+script::Value op_add(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->arg(0));
+  int n = c->arg(1).toInt();
+  return make_const_iter(self + n, c->callee().returnType(), c->engine());
+}
+
+// iterator & operator++()
+script::Value op_preincr(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->arg(0));
+  ++self;
+  return c->thisObject();
+}
+
+// iterator operator++(int)
+script::Value op_postincr(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->arg(0));
+  return make_const_iter(self++, c->callee().returnType(), c->engine());
+}
+
+// iterator & operator+=(int n);
+script::Value op_addassign(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->arg(0));
+  int n = c->arg(1).toInt();
+  self += n;
+  return c->thisObject();
+}
+
+// iterator operator-(int n) const;
+script::Value op_sub(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->arg(0));
+  int n = c->arg(1).toInt();
+  return make_const_iter(self - n, c->callee().returnType(), c->engine());
+}
+
+// iterator & operator--()
+script::Value op_predecr(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->arg(0));
+  --self;
+  return c->thisObject();
+}
+
+// iterator operator--(int)
+script::Value op_postdecr(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->arg(0));
+  return make_const_iter(self--, c->callee().returnType(), c->engine());
+}
+
+// iterator & operator-=(int n);
+script::Value op_subassign(script::FunctionCall *c)
+{
+  Iterator & self = get_iter(c->arg(0));
+  int n = c->arg(1).toInt();
+  self -= n;
+  return c->thisObject();
+}
+
+} // namespace iterator
+
+} // namespace list
 
 // QList<T>();
 static script::Value default_ctor(script::FunctionCall *c)
@@ -89,13 +377,29 @@ static script::Value back(script::FunctionCall *c)
 }
 
 // iterator begin()
-/// TODO !!!
+static script::Value begin(script::FunctionCall *c)
+{
+  QList<yasl::Value> & self = get_list(c->thisObject());
+  return make_iter(self.begin(), c->callee().returnType(), c->engine());
+}
+
 // const_iterator begin() const
-/// TODO !!!
 // const_iterator cbegin() const
-/// TODO !!!
+// const_iterator constBegin() const
+static script::Value cbegin(script::FunctionCall *c)
+{
+  const QList<yasl::Value> & self = get_list(c->thisObject());
+  return make_const_iter(self.cbegin(), c->callee().returnType(), c->engine());
+}
+
 // const_iterator cend() const
-/// TODO !!!
+// const_iterator constEnd() const
+// const_iterator end() const
+static script::Value cend(script::FunctionCall *c)
+{
+  const QList<yasl::Value> & self = get_list(c->thisObject());
+  return make_const_iter(self.cend(), c->callee().returnType(), c->engine());
+}
 
 // void clear()
 static script::Value clear(script::FunctionCall *c)
@@ -104,11 +408,6 @@ static script::Value clear(script::FunctionCall *c)
   self.clear();
   return script::Value::Void;
 }
-
-// const_iterator constBegin() const
-/// TODO !!!
-// const_iterator constEnd() const
-/// TODO !!!
 
 // bool contains(const T &value) const
 static script::Value contains(script::FunctionCall *c)
@@ -150,7 +449,11 @@ static script::Value empty(script::FunctionCall *c)
 }
 
 // iterator end()
-// const_iterator end() const
+static script::Value end(script::FunctionCall *c)
+{
+  QList<yasl::Value> & self = get_list(c->thisObject());
+  return make_iter(self.end(), c->callee().returnType(), c->engine());
+}
 
 // bool endsWith(const T &value) const
 static script::Value ends_with(script::FunctionCall *c)
@@ -162,7 +465,21 @@ static script::Value ends_with(script::FunctionCall *c)
 }
 
 // iterator erase(iterator pos)
+static script::Value erase(script::FunctionCall *c)
+{
+  QList<yasl::Value> & self = get_list(c->thisObject());
+  const Iterator & pos = get_iter(c->arg(1));
+  return make_iter(self.erase(pos), c->callee().returnType(), c->engine());
+}
+
 // iterator erase(iterator begin, iterator end)
+static script::Value erase_range(script::FunctionCall *c)
+{
+  QList<yasl::Value> & self = get_list(c->thisObject());
+  const Iterator & begin = get_iter(c->arg(1));
+  const Iterator & end = get_iter(c->arg(2));
+  return make_iter(self.erase(begin, end), c->callee().returnType(), c->engine());
+}
 
 // T & first()
 // const T & first() const
@@ -196,6 +513,14 @@ static script::Value insert(script::FunctionCall *c)
 }
 
 // iterator insert(iterator before, const T &value)
+static script::Value insert_iterator(script::FunctionCall *c)
+{
+  auto info = yasl::TypeInfo::get(c->callee().memberOf());
+  QList<yasl::Value> & self = get_list(c->thisObject());
+  const Iterator & before = get_iter(c->arg(1));
+  yasl::Value value{ info, c->arg(2) };
+  return make_iter(self.insert(before, value), c->callee().returnType(), c->engine());
+}
 
 // T & last()
 // const T & last() const
@@ -480,6 +805,148 @@ static script::Value op_subscript(script::FunctionCall *c)
 
 } // namespace callbacks
 
+
+static script::Type list_template_instantiate_const_iterator(script::Class & list)
+{
+  using namespace script;
+
+  const Type T = list.arguments().front().type;
+
+  Class iterator = list.newNestedClass("const_iterator").get();
+
+  // const_iterator();
+  iterator.newConstructor(callbacks::list::const_iterator::default_ctor).create();
+  // const_iterator(const const_iterator &)
+  iterator.newConstructor(callbacks::list::const_iterator::copy_ctor)
+    .params(Type::cref(iterator.id())).create();
+  // ~const_iterator();
+  iterator.newDestructor(callbacks::list::const_iterator::dtor).create();
+
+  // const T & value() const
+  iterator.newMethod("value", callbacks::list::const_iterator::value)
+    .setConst()
+    .returns(Type::cref(T))
+    .create();
+
+  // const_iterator & operator=(const const_iterator &)
+  iterator.newOperator(AssignmentOperator, callbacks::list::const_iterator::op_assign)
+    .returns(Type::ref(iterator.id()))
+    .params(Type::cref(iterator.id())).create();
+  // bool operator!=(const const_iterator & other) const
+  iterator.newOperator(InequalOperator, callbacks::list::const_iterator::op_neq)
+    .setConst()
+    .returns(Type::Boolean)
+    .params(Type::cref(iterator.id())).create();
+  // bool operator==(const const_iterator & other) const
+  iterator.newOperator(EqualOperator, callbacks::list::const_iterator::op_eq)
+    .setConst()
+    .returns(Type::Boolean)
+    .params(Type::cref(iterator.id())).create();
+  // const_iterator operator+(int n) const;
+  iterator.newOperator(AdditionOperator, callbacks::list::const_iterator::op_add)
+    .setConst()
+    .returns(iterator.id())
+    .params(Type::Int).create();
+  // const_iterator & operator++()
+  iterator.newOperator(PreIncrementOperator, callbacks::list::const_iterator::op_preincr)
+    .returns(Type::ref(iterator.id())).create();
+  // const_iterator operator++(int)
+  iterator.newOperator(PostIncrementOperator, callbacks::list::const_iterator::op_postincr)
+    .returns(iterator.id()).create();
+  // const_iterator & operator+=(int n)
+  iterator.newOperator(AdditionAssignmentOperator, callbacks::list::const_iterator::op_addassign)
+    .returns(Type::ref(iterator.id()))
+    .params(Type::Int).create();
+  // const_iterator operator-(int n) const;
+  iterator.newOperator(SubstractionOperator, callbacks::list::const_iterator::op_sub)
+    .setConst()
+    .returns(iterator.id())
+    .params(Type::Int).create();
+  // const_iterator & operator--()
+  iterator.newOperator(PreDecrementOperator, callbacks::list::const_iterator::op_predecr)
+    .returns(Type::ref(iterator.id())).create();
+  // const_iterator operator--(int)
+  iterator.newOperator(PostDecrementOperator, callbacks::list::const_iterator::op_postdecr)
+    .returns(iterator.id()).create();
+  // const_iterator & operator-=(int n)
+  iterator.newOperator(AdditionAssignmentOperator, callbacks::list::const_iterator::op_subassign)
+    .returns(Type::ref(iterator.id()))
+    .params(Type::Int).create();
+
+  return iterator.id();
+}
+
+static script::Type list_template_instantiate_iterator(script::Class & list)
+{
+  using namespace script;
+
+  const Type T = list.arguments().front().type;
+
+  Class iterator = list.newNestedClass("iterator").get();
+
+  // iterator();
+  iterator.newConstructor(callbacks::list::iterator::default_ctor).create();
+  // iterator(const iterator &)
+  iterator.newConstructor(callbacks::list::iterator::copy_ctor)
+    .params(Type::cref(iterator.id())).create();
+  // ~iterator();
+  iterator.newDestructor(callbacks::list::iterator::dtor).create();
+
+  // T & value() const
+  iterator.newMethod("value", callbacks::list::iterator::value)
+    .setConst()
+    .returns(Type::cref(T))
+    .create();
+
+  // iterator & operator=(const iterator &)
+  iterator.newOperator(AssignmentOperator, callbacks::list::iterator::op_assign)
+    .returns(Type::ref(iterator.id()))
+    .params(Type::cref(iterator.id())).create();
+  // bool operator!=(const iterator & other) const
+  iterator.newOperator(InequalOperator, callbacks::list::iterator::op_neq)
+    .setConst()
+    .returns(Type::Boolean)
+    .params(Type::cref(iterator.id())).create();
+  // bool operator==(const iterator & other) const
+  iterator.newOperator(EqualOperator, callbacks::list::iterator::op_eq)
+    .setConst()
+    .returns(Type::Boolean)
+    .params(Type::cref(iterator.id())).create();
+  // iterator operator+(int n) const;
+  iterator.newOperator(AdditionOperator, callbacks::list::iterator::op_add)
+    .setConst()
+    .returns(iterator.id())
+    .params(Type::Int).create();
+  // iterator & operator++()
+  iterator.newOperator(PreIncrementOperator, callbacks::list::iterator::op_preincr)
+    .returns(Type::ref(iterator.id())).create();
+  // iterator operator++(int)
+  iterator.newOperator(PostIncrementOperator, callbacks::list::iterator::op_postincr)
+    .returns(iterator.id()).create();
+  // iterator & operator+=(int n)
+  iterator.newOperator(AdditionAssignmentOperator, callbacks::list::iterator::op_addassign)
+    .returns(Type::ref(iterator.id()))
+    .params(Type::Int).create();
+  // iterator operator-(int n) const;
+  iterator.newOperator(SubstractionOperator, callbacks::list::iterator::op_sub)
+    .setConst()
+    .returns(iterator.id())
+    .params(Type::Int).create();
+  // iterator & operator--()
+  iterator.newOperator(PreDecrementOperator, callbacks::list::iterator::op_predecr)
+    .returns(Type::ref(iterator.id())).create();
+  // iterator operator--(int)
+  iterator.newOperator(PostDecrementOperator, callbacks::list::iterator::op_postdecr)
+    .returns(iterator.id()).create();
+  // iterator & operator-=(int n)
+  iterator.newOperator(AdditionAssignmentOperator, callbacks::list::iterator::op_subassign)
+    .returns(Type::ref(iterator.id()))
+    .params(Type::Int).create();
+
+  return iterator.id();
+}
+
+
 script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & builder)
 {
   using namespace script;
@@ -490,6 +957,10 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
   builder.setData(yasl::TypeInfo::get(builder.getTemplate().engine(), element_type));
 
   Class list = builder.get();
+
+  const Type T = element_type;
+  const Type const_iterator = list_template_instantiate_const_iterator(list);
+  const Type iterator = list_template_instantiate_iterator(list);
 
   // QList<T>();
   list.newConstructor(callbacks::default_ctor).create();
@@ -518,19 +989,30 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
     .setConst()
     .returns(Type::cref(element_type)).create();
   // iterator begin()
-  /// TODO !!!
+  list.newMethod("begin", callbacks::begin)
+    .returns(iterator).create();
   // const_iterator begin() const
-  /// TODO !!!
+  list.newMethod("begin", callbacks::cbegin)
+    .setConst()
+    .returns(const_iterator).create();
   // const_iterator cbegin() const
-  /// TODO !!!
+  list.newMethod("cbegin", callbacks::cbegin)
+    .setConst()
+    .returns(const_iterator).create();
   // const_iterator cend() const
-  /// TODO !!!
+  list.newMethod("cend", callbacks::cend)
+    .setConst()
+    .returns(const_iterator).create();
   // void clear()
   list.newMethod("clear", callbacks::clear).create();
   // const_iterator constBegin() const
-  /// TODO !!!
+  list.newMethod("constBegin", callbacks::cbegin)
+    .setConst()
+    .returns(const_iterator).create();
   // const_iterator constEnd() const
-  /// TODO !!!
+  list.newMethod("constEnd", callbacks::cend)
+    .setConst()
+    .returns(const_iterator).create();
   // const T & constFirst() const
   list.newMethod("constFirst", callbacks::first)
     .returns(Type::cref(element_type)).create();
@@ -560,18 +1042,25 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
     .setConst()
     .returns(Type::Boolean).create();
   // iterator end()
-  /// TODO !!!
+  list.newMethod("end", callbacks::end)
+    .returns(iterator).create();
   // const_iterator end() const
-  /// TODO !!!
+  list.newMethod("end", callbacks::cend)
+    .setConst()
+    .returns(const_iterator).create();
   // bool endsWith(const T &value) const
   list.newMethod("endsWith", callbacks::ends_with)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(element_type)).create();
   // iterator erase(iterator pos)
-  /// TODO !!!
+  list.newMethod("erase", callbacks::erase)
+    .returns(iterator)
+    .params(iterator).create();
   // iterator erase(iterator begin, iterator end)
-  /// TODO !!!
+  list.newMethod("erase", callbacks::erase_range)
+    .returns(iterator)
+    .params(iterator, iterator).create();
   // T & first()
   list.newMethod("first", callbacks::first)
     .returns(Type::ref(element_type)).create();
@@ -595,7 +1084,9 @@ script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & b
   list.newMethod("insert", callbacks::insert)
     .params(Type::Int, Type::cref(element_type)).create();
   // iterator insert(iterator before, const T &value)
-  /// l.fun<QList<T>::iterator, QList<T>::iterator, const T &, &QList<T>::insert>("insert").create();
+  list.newMethod("insert", callbacks::insert_iterator)
+    .returns(iterator)
+    .params(iterator, Type::cref(T)).create();
   // bool isEmpty() const
   list.newMethod("isEmpty", callbacks::empty)
     .setConst()

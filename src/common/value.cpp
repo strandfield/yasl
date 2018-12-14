@@ -97,11 +97,11 @@ std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & 
       std::vector<script::Function> ops = script::NameLookup::resolve(script::LessOperator, creftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
       auto resol = script::OverloadResolution::New(e);
       if (!resol.process(ops, { creftype, creftype }))
-        throw std::runtime_error{ "TypeInfo::get(): type must be assignable" };
+        throw std::runtime_error{ "TypeInfo::get(): type must have operator<" };
 
       ret->less = resol.selectedOverload();
       if (!check_op_less(t.baseType(), ret->less))
-        throw std::runtime_error{ "TypeInfo::get(): invalid operator=" };
+        throw std::runtime_error{ "TypeInfo::get(): invalid operator<" };
     }
   }
   else
