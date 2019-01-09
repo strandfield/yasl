@@ -174,6 +174,12 @@ Value number_double(FunctionCall *c)
   return c->engine()->newString(String::number(c->arg(0).toDouble()));
 }
 
+// int hash(const String & str);
+Value hash(FunctionCall *c)
+{
+  return c->engine()->newInt(qHash(c->arg(0).toString()));
+}
+
 namespace operators
 {
 
@@ -407,6 +413,8 @@ void register_string_type(Class string)
 
   const Type charref = register_charref_type(string.engine());
   string.newOperator(SubscriptOperator, callbacks::string::operators::subscript).returns(charref).params(Type::Int).create();
+
+  string.engine()->rootNamespace().newFunction("hash", callbacks::string::hash).returns(Type::Int).params(Type::cref(Type::String)).create();
 }
 
 } // namespace script

@@ -6,6 +6,7 @@ public:
   ClassTemplate ref_template_;
   ClassTemplate vector_template_;
   ClassTemplate map_template_;
+  ClassTemplate set_template_;
 
 public:
   QMap<const QMetaObject*, script::Type> qt_type_map;

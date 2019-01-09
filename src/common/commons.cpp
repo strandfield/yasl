@@ -5,6 +5,7 @@
 #include "yasl/common/commons.h"
 
 #include "yasl/common/basic-signal-mapper.h"
+#include "yasl/common/hash.h"
 #include "yasl/common/list.h"
 #include "yasl/common/null.h"
 #include "yasl/common/proxy.h"
@@ -47,9 +48,13 @@ static std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserDa
 extern void register_pair_template(script::Namespace n); // defined in pair.cpp
 extern void register_vector_template(script::Namespace n); // defined in vector.cpp
 extern void register_map_template(script::Namespace n); // defined in map.cpp
+extern void register_set_template(script::Namespace n); // defined in set.cpp
 
 void register_commons_utils(script::Engine *e)
 {
+  // hash()
+  script::register_hash_functions(e);
+
   // Proxy<T>
   script::register_proxy_template(e->rootNamespace());
 
@@ -64,6 +69,9 @@ void register_commons_utils(script::Engine *e)
 
   // Map<Key, T>
   register_map_template(e->rootNamespace());
+
+  // Set<T>
+  register_set_template(e->rootNamespace());
 
   // int type_id<T>()
   {

@@ -24,6 +24,10 @@ static const map_template_t MapTemplate;
 ClassTemplate getTemplate(map_template_t) const;
 void setTemplate(passkey, map_template_t, const ClassTemplate & ct);
 
+struct set_template_t {};
+static const set_template_t SetTemplate;
+ClassTemplate getTemplate(set_template_t) const;
+void setTemplate(passkey, set_template_t, const ClassTemplate & ct);
 
 void registerQtType(const QMetaObject *mo, const script::Type & type);
 Type getQtType(const QMetaObject *mo) const;

@@ -75,6 +75,19 @@ void Engine::setTemplate(passkey, map_template_t, const ClassTemplate & ct)
 }
 
 
+const Engine::set_template_t Engine::SetTemplate = Engine::set_template_t{};
+
+ClassTemplate Engine::getTemplate(set_template_t) const
+{
+  return d->set_template_;
+}
+
+void Engine::setTemplate(passkey, set_template_t, const ClassTemplate & ct)
+{
+  d->set_template_ = ct;
+}
+
+
 void Engine::registerQtType(const QMetaObject *mo, const script::Type & type)
 {
   d->qt_type_map.insert(mo, type);

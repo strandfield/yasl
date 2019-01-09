@@ -53,6 +53,23 @@ static bool check_op_less(const script::Type & t, const script::Function & op)
   return true;
 }
 
+static void get_hash(TypeInfo & info)
+{
+  script::Engine *e = info.engine;
+
+  script::Scope scp{ e->enclosingNamespace(info.element_type) };
+  std::vector<script::Function> funcs = script::NameLookup::resolve("hash", scp).functions();
+  auto resol = script::OverloadResolution::New(e);
+  if (!resol.process(funcs, { script::Type::cref(info.element_type) }))
+    return;
+
+  if (resol.selectedOverload().returnType() != script::Type::Int)
+    return;
+  else if (resol.selectedOverload().parameter(0) != script::Type::cref(info.element_type))
+    return;
+
+  info.hash = resol.selectedOverload();
+}
 
 std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & t)
 {
@@ -103,6 +120,8 @@ std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & 
       if (!check_op_less(t.baseType(), ret->less))
         throw std::runtime_error{ "TypeInfo::get(): invalid operator<" };
     }
+
+    get_hash(*ret);
   }
   else
   {
@@ -185,6 +204,14 @@ void Value::assign(const script::Value & v)
   assert(typeinfo_->element_type == v.type());
 
   typeinfo_->engine->invoke(typeinfo_->assign, { value_, v });
+}
+
+int Value::hash() const
+{
+  script::Value result = engine()->invoke(typeinfo_->hash, { value_ });
+  int ret = result.toInt();
+  engine()->destroy(result);
+  return ret;
 }
 
 Value & Value::operator=(const Value & other)
