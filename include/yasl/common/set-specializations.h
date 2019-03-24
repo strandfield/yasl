@@ -202,8 +202,10 @@ script::Type register_set_specialization(script::Engine *engine)
   bind::member_function<Set, Iterator, const T &, &Set::insert>(set, "insert").create();
   // QSet<T> & intersect(const QSet<T> & other);
   bind::chainable_memfn<Set, const QSet<T> &, &Set::intersect>(set, "intersect").create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // bool intersects(const QSet<T> & other) const;
   bind::member_function<Set, bool, const QSet<T> &, &Set::intersects>(set, "intersects").create();
+#endif
   // bool isEmpty() const;
   bind::member_function<Set, bool, &Set::isEmpty>(set, "isEmpty").create();
   // bool remove(const T & value);

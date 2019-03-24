@@ -473,6 +473,7 @@ script::Value intersect(script::FunctionCall *c)
   return c->thisObject();
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
 // bool intersects(const QSet<T> & other) const;
 script::Value intersects(script::FunctionCall *c)
 {
@@ -480,6 +481,7 @@ script::Value intersects(script::FunctionCall *c)
   const Set & other = get_set(c->arg(1));
   return c->engine()->newBool(self.intersects(other));
 }
+#endif
 
 // bool remove(const T & value);
 script::Value remove(script::FunctionCall *c)
@@ -894,11 +896,13 @@ script::Class set_template_instantiate(script::ClassTemplateInstanceBuilder & bu
   set.newMethod("intersect", callbacks::set::intersect)
     .returns(Type::ref(set.id()))
     .params(Type::cref(set.id())).create();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
   // bool intersects(const Set &) const;
   set.newMethod("intersects", callbacks::set::intersects)
     .setConst()
     .returns(Type::Boolean)
     .params(Type::cref(set.id())).create();
+#endif
   // bool isEmpty() const;
   set.newMethod("isEmpty", callbacks::set::empty)
     .setConst()
