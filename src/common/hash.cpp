@@ -34,12 +34,22 @@ script::Value hash_int(script::FunctionCall *c)
 
 script::Value hash_float(script::FunctionCall *c)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   return c->engine()->newInt(qHash(c->arg(0).toFloat()));
+#else
+  /// TODO: find better alternative
+  return c->engine()->newInt(qHash(static_cast<int>(100 * c->arg(0).toFloat())));
+#endif
 }
 
 script::Value hash_double(script::FunctionCall *c)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
   return c->engine()->newInt(qHash(c->arg(0).toDouble()));
+#else
+  /// TODO: find better alternative
+  return c->engine()->newInt(qHash(static_cast<int>(100 * c->arg(0).toDouble())));
+#endif
 }
 
 } // namespace callbacks
