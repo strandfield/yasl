@@ -73,9 +73,9 @@ public:
   ~ObserverValue();
 };
 
-} // namespace yasl
+inline uint qHash(const yasl::Value & val) { return static_cast<uint>(val.hash()); }
 
-inline uint qHash(const yasl::Value & val) { return val.hash(); }
+} // namespace yasl
 
 Q_DECLARE_METATYPE(yasl::Value)
 
