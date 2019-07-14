@@ -10,8 +10,8 @@
 #include <QElapsedTimer>
 
 namespace script {
-template<> struct make_type_t<QElapsedTimer> { inline static script::Type get() { return script::Type::QElapsedTimer; } };
-template<> struct make_type_t<QElapsedTimer::ClockType> { inline static script::Type get() { return script::Type::QElapsedTimerClockType; } };
+template<> struct make_type_helper<QElapsedTimer> { inline static script::Type get() { return script::Type::QElapsedTimer; } };
+template<> struct make_type_helper<QElapsedTimer::ClockType> { inline static script::Type get() { return script::Type::QElapsedTimerClockType; } };
 } // namespace script
 
 #endif // YASL_CORE_ELAPSEDTIMER_H

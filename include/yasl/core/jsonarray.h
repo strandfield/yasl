@@ -10,7 +10,7 @@
 #include <QJsonArray>
 
 namespace script {
-template<> struct make_type_t<QJsonArray> { inline static script::Type get() { return script::Type::QJsonArray; } };
+template<> struct make_type_helper<QJsonArray> { inline static script::Type get() { return script::Type::QJsonArray; } };
 } // namespace script
 
 #endif // YASL_CORE_JSONARRAY_H

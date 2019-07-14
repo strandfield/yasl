@@ -11,10 +11,10 @@
 #include <QSpinBox>
 
 namespace script {
-template<> struct make_type_t<QDoubleSpinBox> { inline static script::Type get() { return script::Type::QDoubleSpinBox; } };
-template<> struct tag_resolver<QDoubleSpinBox> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QSpinBox> { inline static script::Type get() { return script::Type::QSpinBox; } };
-template<> struct tag_resolver<QSpinBox> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QDoubleSpinBox> { inline static script::Type get() { return script::Type::QDoubleSpinBox; } };
+template<> struct details::tag_resolver<QDoubleSpinBox> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QSpinBox> { inline static script::Type get() { return script::Type::QSpinBox; } };
+template<> struct details::tag_resolver<QSpinBox> { typedef qobject_tag tag_type; };
 } // namespace script
 
 #endif // YASL_WIDGETS_SPINBOX_H

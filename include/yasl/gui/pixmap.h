@@ -10,7 +10,7 @@
 #include <QPixmap>
 
 namespace script {
-template<> struct make_type_t<QPixmap> { inline static script::Type get() { return script::Type::QPixmap; } };
+template<> struct make_type_helper<QPixmap> { inline static script::Type get() { return script::Type::QPixmap; } };
 } // namespace script
 
 #endif // YASL_GUI_PIXMAP_H

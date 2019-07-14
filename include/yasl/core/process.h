@@ -11,17 +11,17 @@
 #include <QProcess>
 
 namespace script {
-template<> struct make_type_t<QProcess> { inline static script::Type get() { return script::Type::QProcess; } };
-template<> struct tag_resolver<QProcess> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QProcess::ExitStatus> { inline static script::Type get() { return script::Type::QProcessExitStatus; } };
+template<> struct make_type_helper<QProcess> { inline static script::Type get() { return script::Type::QProcess; } };
+template<> struct details::tag_resolver<QProcess> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QProcess::ExitStatus> { inline static script::Type get() { return script::Type::QProcessExitStatus; } };
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-template<> struct make_type_t<QProcess::InputChannelMode> { inline static script::Type get() { return script::Type::QProcessInputChannelMode; } };
+template<> struct make_type_helper<QProcess::InputChannelMode> { inline static script::Type get() { return script::Type::QProcessInputChannelMode; } };
 #endif
-template<> struct make_type_t<QProcess::ProcessChannel> { inline static script::Type get() { return script::Type::QProcessProcessChannel; } };
-template<> struct make_type_t<QProcess::ProcessChannelMode> { inline static script::Type get() { return script::Type::QProcessProcessChannelMode; } };
-template<> struct make_type_t<QProcess::ProcessError> { inline static script::Type get() { return script::Type::QProcessProcessError; } };
-template<> struct make_type_t<QProcess::ProcessState> { inline static script::Type get() { return script::Type::QProcessProcessState; } };
-template<> struct make_type_t<QProcessEnvironment> { inline static script::Type get() { return script::Type::QProcessEnvironment; } };
+template<> struct make_type_helper<QProcess::ProcessChannel> { inline static script::Type get() { return script::Type::QProcessProcessChannel; } };
+template<> struct make_type_helper<QProcess::ProcessChannelMode> { inline static script::Type get() { return script::Type::QProcessProcessChannelMode; } };
+template<> struct make_type_helper<QProcess::ProcessError> { inline static script::Type get() { return script::Type::QProcessProcessError; } };
+template<> struct make_type_helper<QProcess::ProcessState> { inline static script::Type get() { return script::Type::QProcessProcessState; } };
+template<> struct make_type_helper<QProcessEnvironment> { inline static script::Type get() { return script::Type::QProcessEnvironment; } };
 } // namespace script
 
 #endif // YASL_CORE_PROCESS_H

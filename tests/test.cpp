@@ -85,8 +85,8 @@ int point_y(const Point & pt)
 
 namespace script
 {
-template<> struct make_type_t<Point> { inline static script::Type get() { return script::Type::QPoint; } };
-template<> struct make_type_t<long unsigned int> { inline static script::Type get() { return script::Type::Int; } };
+template<> struct make_type_helper<Point> { inline static script::Type get() { return script::Type::QPoint; } };
+template<> struct make_type_helper<long unsigned int> { inline static script::Type get() { return script::Type::Int; } };
 } // namespace script
 void test_simple_bindind()
 {
@@ -202,9 +202,9 @@ void test_simple_bindind()
 
 namespace script
 {
-template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
-template<> struct make_type_t<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
-template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
+template<> struct make_type_helper<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
+template<> struct make_type_helper<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
+template<> struct make_type_helper<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
 } // namespace script
 
 void bytearray_binding()
@@ -250,7 +250,7 @@ void bytearray_binding()
 
 namespace script
 {
-template<> struct make_type_t<QList<int>> { inline static script::Type get() { return script::Type::QListint; } };
+template<> struct make_type_helper<QList<int>> { inline static script::Type get() { return script::Type::QListint; } };
 } // namespace script
 
 template<typename T>

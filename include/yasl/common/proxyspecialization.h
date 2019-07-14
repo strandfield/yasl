@@ -33,14 +33,14 @@ script::Value dtor(script::FunctionCall *c);
 template<typename T>
 script::Value get(script::FunctionCall *c)
 {
-  T* ptr = static_cast<T*>(c->thisObject().getPtr());
+  T* ptr = static_cast<T*>(script::get<details::PtrWrapper>(c->arg(0)).value);
   return script::make_value(*ptr, c->engine());
 }
 
 template<typename T>
 script::Value assign(script::FunctionCall *c)
 {
-  T* ptr = static_cast<T*>(c->thisObject().getPtr());
+  T* ptr = static_cast<T*>(script::get<details::PtrWrapper>(c->arg(0)).value);
   *ptr = script::value_cast<const T &>(c->arg(1));
   return script::Value::Void;
 }
@@ -57,8 +57,8 @@ script::Type register_proxy_specialization(script::Engine *e)
 
   const script::Type type_id = make_type<Proxy<T>>();
   
-  ClassTemplate proxy_template = e->getTemplate(Engine::ProxyTemplate);
-  Class proxy_type = proxy_template.engine()->getClass(type_id);
+  ClassTemplate proxy_template = ClassTemplate::get<ProxyTemplate>(e);
+  Class proxy_type = proxy_template.engine()->typeSystem()->getClass(type_id);
   if (!proxy_type.isNull() && type_id == proxy_type.id())
     return type_id;
 

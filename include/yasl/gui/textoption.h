@@ -10,11 +10,11 @@
 #include <QTextOption>
 
 namespace script {
-template<> struct make_type_t<QTextOption> { inline static script::Type get() { return script::Type::QTextOption; } };
-template<> struct make_type_t<QTextOption::Flag> { inline static script::Type get() { return script::Type::QTextOptionFlag; } };
-template<> struct make_type_t<QTextOption::Flags> { inline static script::Type get() { return script::Type::QTextOptionFlags; } };
-template<> struct make_type_t<QTextOption::TabType> { inline static script::Type get() { return script::Type::QTextOptionTabType; } };
-template<> struct make_type_t<QTextOption::WrapMode> { inline static script::Type get() { return script::Type::QTextOptionWrapMode; } };
+template<> struct make_type_helper<QTextOption> { inline static script::Type get() { return script::Type::QTextOption; } };
+template<> struct make_type_helper<QTextOption::Flag> { inline static script::Type get() { return script::Type::QTextOptionFlag; } };
+template<> struct make_type_helper<QTextOption::Flags> { inline static script::Type get() { return script::Type::QTextOptionFlags; } };
+template<> struct make_type_helper<QTextOption::TabType> { inline static script::Type get() { return script::Type::QTextOptionTabType; } };
+template<> struct make_type_helper<QTextOption::WrapMode> { inline static script::Type get() { return script::Type::QTextOptionWrapMode; } };
 } // namespace script
 
 #endif // YASL_GUI_TEXTOPTION_H

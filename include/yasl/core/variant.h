@@ -8,18 +8,17 @@
 #include "yasl/common/proxy.h"
 #include "yasl/common/types.h"
 
-#include "yasl/core/qvariant-values.h"
+#include <QVariant>
 
 namespace script {
-template<> struct make_type_t<Proxy<QVariant>> { inline static script::Type get() { return script::Type::ProxyQVariant; } };
-template<> struct make_type_t<QList<QVariant>> { inline static script::Type get() { return script::Type::QListQVariant; } };
-template<> struct make_type_t<QList<QVariant>::const_iterator> { inline static script::Type get() { return script::Type::QListQVariantConstIterator; } };
-template<> struct make_type_t<QList<QVariant>::iterator> { inline static script::Type get() { return script::Type::QListQVariantIterator; } };
-template<> struct make_type_t<QMap<QString, QVariant>> { inline static script::Type get() { return script::Type::QMapQStringQVariant; } };
-template<> struct make_type_t<QMap<QString, QVariant>::const_iterator> { inline static script::Type get() { return script::Type::QMapQStringQVariantConstIterator; } };
-template<> struct make_type_t<QMap<QString, QVariant>::iterator> { inline static script::Type get() { return script::Type::QMapQStringQVariantIterator; } };
-template<> struct make_type_t<QVariant> { inline static script::Type get() { return script::Type::QVariant; } };
-template<> struct tag_resolver<QVariant> { typedef qvariant_tag tag_type; };
+template<> struct make_type_helper<Proxy<QVariant>> { inline static script::Type get() { return script::Type::ProxyQVariant; } };
+template<> struct make_type_helper<QList<QVariant>> { inline static script::Type get() { return script::Type::QListQVariant; } };
+template<> struct make_type_helper<QList<QVariant>::const_iterator> { inline static script::Type get() { return script::Type::QListQVariantConstIterator; } };
+template<> struct make_type_helper<QList<QVariant>::iterator> { inline static script::Type get() { return script::Type::QListQVariantIterator; } };
+template<> struct make_type_helper<QMap<QString, QVariant>> { inline static script::Type get() { return script::Type::QMapQStringQVariant; } };
+template<> struct make_type_helper<QMap<QString, QVariant>::const_iterator> { inline static script::Type get() { return script::Type::QMapQStringQVariantConstIterator; } };
+template<> struct make_type_helper<QMap<QString, QVariant>::iterator> { inline static script::Type get() { return script::Type::QMapQStringQVariantIterator; } };
+template<> struct make_type_helper<QVariant> { inline static script::Type get() { return script::Type::QVariant; } };
 } // namespace script
 
 #endif // YASL_CORE_VARIANT_H

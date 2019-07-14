@@ -44,7 +44,7 @@ void register_null_type(script::Namespace ns)
     .returns(Type::ref(Type::NullType))
     .params(Type::cref(Type::NullType)).create();
 
-  Value nullinstance = ns.engine()->construct(Type::NullType, [](Value &) {});
+  Value nullinstance = ns.engine()->construct(Type::NullType, {});
   ns.engine()->manage(nullinstance);
   ns.addValue("null", nullinstance);
 }

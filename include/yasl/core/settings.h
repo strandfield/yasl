@@ -11,11 +11,11 @@
 #include <QSettings>
 
 namespace script {
-template<> struct make_type_t<QSettings> { inline static script::Type get() { return script::Type::QSettings; } };
-template<> struct tag_resolver<QSettings> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QSettings::Format> { inline static script::Type get() { return script::Type::QSettingsFormat; } };
-template<> struct make_type_t<QSettings::Scope> { inline static script::Type get() { return script::Type::QSettingsScope; } };
-template<> struct make_type_t<QSettings::Status> { inline static script::Type get() { return script::Type::QSettingsStatus; } };
+template<> struct make_type_helper<QSettings> { inline static script::Type get() { return script::Type::QSettings; } };
+template<> struct details::tag_resolver<QSettings> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QSettings::Format> { inline static script::Type get() { return script::Type::QSettingsFormat; } };
+template<> struct make_type_helper<QSettings::Scope> { inline static script::Type get() { return script::Type::QSettingsScope; } };
+template<> struct make_type_helper<QSettings::Status> { inline static script::Type get() { return script::Type::QSettingsStatus; } };
 } // namespace script
 
 #endif // YASL_CORE_SETTINGS_H

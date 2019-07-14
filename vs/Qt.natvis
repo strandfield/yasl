@@ -13,4 +13,21 @@
       </ArrayItems>
     </Expand>
   </Type>
+
+  <Type Name="QList&lt;*&gt;">
+    <AlternativeType Name="QStringList"></AlternativeType>
+    <AlternativeType Name="QQueue&lt;*&gt;"></AlternativeType>
+    <DisplayString>{{ size = {d-&gt;end - d-&gt;begin} }}</DisplayString>
+    <Expand>
+      <Item Name="[referenced]">d-&gt;ref.atomic._q_value</Item>
+      <IndexListItems>
+        <Size>d-&gt;end - d-&gt;begin</Size>
+        <ValueNode>
+          *reinterpret_cast&lt;$T1*&gt;((sizeof($T1) &gt; sizeof(void*))
+          ? reinterpret_cast&lt;Node*&gt;(d->array + d->begin + $i)->v
+          : reinterpret_cast&lt;$T1*&gt;(d->array + d->begin + $i))
+        </ValueNode>
+      </IndexListItems>
+    </Expand>
+  </Type>
 </AutoVisualizer>

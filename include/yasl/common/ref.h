@@ -6,6 +6,7 @@
 #define YASL_COMMONS_REF_H
 
 #include <script/types.h>
+#include <script/classtemplatenativebackend.h>
 
 namespace script
 {
@@ -26,6 +27,11 @@ void register_ref_template(script::Namespace ns);
 script::Class register_ref_specialization(script::Engine *e, script::Type object_type, script::Type::BuiltInType type_id);
 script::Value make_ref(script::Engine *e, const script::Type & ref_type, QObject *value);
 script::Class get_ref_type(script::Engine *e, const script::Type & object_type);
+
+class RefTemplate : public ClassTemplateNativeBackend
+{
+  Class instantiate(ClassTemplateInstanceBuilder& builder) override;
+};
 
 } // namespace script
 

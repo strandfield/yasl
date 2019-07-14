@@ -7,13 +7,16 @@
 #include <script/class.h>
 #include <script/engine.h>
 #include <script/functionbuilder.h>
+#include <script/functiontemplatenativebackend.h>
 #include <script/functiontype.h>
 #include <script/interpreter/executioncontext.h>
 #include <script/namespace.h>
+#include <script/qt.h>
 #include <script/scope.h>
 #include <script/symbol.h>
 #include <script/templateargumentdeduction.h>
 #include <script/templatebuilder.h>
+#include <script/typesystem.h>
 #include <script/value.h>
 
 #include <QMetaMethod>
@@ -146,7 +149,7 @@ void SignalMapper::invoke(std::initializer_list<script::Value> && args)
   script::Engine *e = slot_.engine();
   std::vector<script::Value> invoke_args{ e->expose(receiver_) };
   invoke_args.insert(invoke_args.end(), args.begin(), args.end());
-  script::Value result = e->invoke(slot_, invoke_args);
+  script::Value result = slot_.invoke(invoke_args);
   if (!slot_.returnType().isReference())
     e->destroy(result);
 }
@@ -205,9 +208,8 @@ bool connect(const script::Value & sender, const script::Function & sig, const s
   else
   {
     // We connect a user-defined signal to a script::Function slot
-    auto data = script::bind::BindingData::get(sender_object);
-    data.connections.append(script::bind::Connection{ sig, QPointer<QObject>{receiver_object}, slot });
-    script::bind::BindingData::set(sender_object, data);
+    auto data = script::qt::BindingData::get(sender_object);
+    data->connections.push_back(script::qt::Connection{ sig, QPointer<QObject>{receiver_object}, slot });
   }
 
   return true;
@@ -234,8 +236,8 @@ bool connect(const script::Value & sender, const std::string & signal, const scr
 {
   script::Engine *e = sender.engine();
 
-  script::Class sender_class = e->getClass(e->getQtType(sender.toQObject()->metaObject()));
-  const script::Class receiver_class = e->getClass(e->getQtType(receiver.toQObject()->metaObject()));
+  script::Class sender_class = e->typeSystem()->getClass(e->getQtType(sender.toQObject()->metaObject()));
+  const script::Class receiver_class = e->typeSystem()->getClass(e->getQtType(receiver.toQObject()->metaObject()));
 
   while (!sender_class.isNull())
   {
@@ -275,8 +277,9 @@ void emitSignal(const script::Value & object, const script::Function & sig, cons
   std::vector<script::Value> invoke_args{ script::Value{} };
   invoke_args.insert(invoke_args.end(), begin, end);
 
-  QList<script::bind::Connection> connections = script::bind::BindingData::get(object.toQObject()).connections;
-  for (const script::bind::Connection & c : connections)
+  std::vector<script::qt::Connection>& connections = script::qt::BindingData::get(object.toQObject())->connections;
+
+  for (const script::qt::Connection & c : connections)
   {
     if (c.signal != sig)
       continue;
@@ -285,143 +288,148 @@ void emitSignal(const script::Value & object, const script::Function & sig, cons
       continue;
 
     invoke_args[0] = e->expose(c.receiver.data());
-    script::Value result = e->invoke(c.slot, invoke_args);
+    script::Value result = c.slot.invoke(invoke_args);
     if (!c.slot.returnType().isReference())
       e->destroy(result);
   }
 }
 
-
-void connect_template_deduce(script::TemplateArgumentDeduction &deduc, const script::FunctionTemplate & connect_template, const std::vector<script::TemplateArgument> & targs, const std::vector<script::Type> & itypes)
+class ConnectTemplate : public script::FunctionTemplateNativeBackend
 {
-  using namespace script;
-
-  if (targs.size() != 0)
-    return deduc.fail();
-  if (itypes.size() != 4)
-    return deduc.fail();
-
-  if (!itypes.at(0).isObjectType() || !itypes.at(2).isObjectType())
-    return deduc.fail();
-  if (!itypes.at(1).isFunctionType() || !itypes.at(3).isFunctionType())
-    return deduc.fail();
-
-  Engine *e = connect_template.engine();
-  Class sender_type = e->getClass(itypes.at(0));
-  Class receiver_type = e->getClass(itypes.at(2));
-  FunctionType signal_type = e->getFunctionType(itypes.at(1));
-  FunctionType slot_type = e->getFunctionType(itypes.at(3));
-
-  if (signal_type.prototype().returnType() != Type::Void)
-    return deduc.fail();
-
-  if (signal_type.prototype().count() == 0 || slot_type.prototype().count() == 0)
-    return deduc.fail();
-
-  if (signal_type.prototype().count() != slot_type.prototype().count())
-    return deduc.fail();
-
-  if (!signal_type.prototype().at(0).isObjectType() || !slot_type.prototype().at(0).isObjectType())
-    return deduc.fail();
-
-  Class signal_class = e->getClass(signal_type.prototype().at(0));
-  Class slot_class = e->getClass(slot_type.prototype().at(0));
-
-  if (!sender_type.inherits(signal_class))
-    return deduc.fail();
-  if (!receiver_type.inherits(slot_class))
-    return deduc.fail();
-
-  deduc.record_deduction(0, TemplateArgument{ signal_type.type() });
-  deduc.record_deduction(1, TemplateArgument{ slot_type.type() });
-
-  for (int i(1); i < signal_type.prototype().count(); ++i)
+public:
+  void deduce(script::TemplateArgumentDeduction& deduc, const std::vector<script::TemplateArgument>& targs, const std::vector<script::Type>& itypes) override
   {
-    if (signal_type.prototype().at(i) != slot_type.prototype().at(i))
+    using namespace script;
+
+    if (targs.size() != 0)
       return deduc.fail();
+    if (itypes.size() != 4)
+      return deduc.fail();
+
+    if (!itypes.at(0).isObjectType() || !itypes.at(2).isObjectType())
+      return deduc.fail();
+    if (!itypes.at(1).isFunctionType() || !itypes.at(3).isFunctionType())
+      return deduc.fail();
+
+    Engine * e = functionTemplate().engine();
+    Class sender_type = e->typeSystem()->getClass(itypes.at(0));
+    Class receiver_type = e->typeSystem()->getClass(itypes.at(2));
+    FunctionType signal_type = e->typeSystem()->getFunctionType(itypes.at(1));
+    FunctionType slot_type = e->typeSystem()->getFunctionType(itypes.at(3));
+
+    if (signal_type.prototype().returnType() != Type::Void)
+      return deduc.fail();
+
+    if (signal_type.prototype().count() == 0 || slot_type.prototype().count() == 0)
+      return deduc.fail();
+
+    if (signal_type.prototype().count() != slot_type.prototype().count())
+      return deduc.fail();
+
+    if (!signal_type.prototype().at(0).isObjectType() || !slot_type.prototype().at(0).isObjectType())
+      return deduc.fail();
+
+    Class signal_class = e->typeSystem()->getClass(signal_type.prototype().at(0));
+    Class slot_class = e->typeSystem()->getClass(slot_type.prototype().at(0));
+
+    if (!sender_type.inherits(signal_class))
+      return deduc.fail();
+    if (!receiver_type.inherits(slot_class))
+      return deduc.fail();
+
+    deduc.record_deduction(0, TemplateArgument{ signal_type.type() });
+    deduc.record_deduction(1, TemplateArgument{ slot_type.type() });
+
+    for (int i(1); i < signal_type.prototype().count(); ++i)
+    {
+      if (signal_type.prototype().at(i) != slot_type.prototype().at(i))
+        return deduc.fail();
+    }
   }
-}
 
-void connect_template_substitute(script::FunctionBuilder & builder, script::FunctionTemplate connect_template, const std::vector<script::TemplateArgument> & targs)
-{
-  using namespace script;
-
-  Engine *e = connect_template.engine();
-  FunctionType signal_type = e->getFunctionType(targs.front().type);
-  FunctionType slot_type = e->getFunctionType(targs.back().type);
-
-  builder.returns(Type::Void);
-  builder.addParam(Type::ref(signal_type.prototype().at(0).baseType()));
-  builder.addParam(signal_type.type());
-  builder.addParam(Type::ref(slot_type.prototype().at(0).baseType()));
-  builder.addParam(slot_type.type());
-}
-
-std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> connect_template_instantiate(script::FunctionTemplate connect_template, script::Function instance)
-{
-  return { script::callbacks::generic_connect, nullptr };
-}
-
-
-
-void emit_template_deduce(script::TemplateArgumentDeduction &deduc, const script::FunctionTemplate & emit_template, const std::vector<script::TemplateArgument> & targs, const std::vector<script::Type> & itypes)
-{
-  using namespace script;
-
-  if (targs.size() != 0)
-    return deduc.fail();
-
-  if (itypes.size() < 1) /// TODO : handle the implicit object, note: it is not in itypes
-    return deduc.fail();
-
-  if (!itypes.at(0).isFunctionType())
-    return deduc.fail();
-
-  Engine *e = emit_template.engine();
-  //Class sender_type = e->getClass(itypes.at(0));
-  FunctionType signal_type = e->getFunctionType(itypes.at(0));
-
-  if (signal_type.prototype().returnType() != Type::Void)
-    return deduc.fail();
-
-  if (signal_type.prototype().count() == 0)
-    return deduc.fail();
-
-  //if (signal_type.prototype().argc() != itypes.size() - 1)
-  //  return deduc.fail();
-  if (signal_type.prototype().count() != itypes.size())
-    return deduc.fail();
-
-  if (!signal_type.prototype().at(0).isObjectType())
-    return deduc.fail();
-
-  Class signal_class = e->getClass(signal_type.prototype().at(0));
-
-  //if (!sender_type.inherits(signal_class))
-  //  return deduc.fail();
-
-  deduc.record_deduction(0, TemplateArgument{ signal_type.type() });
-}
-
-void emit_template_substitute(script::FunctionBuilder & builder, script::FunctionTemplate emit_template, const std::vector<script::TemplateArgument> & targs)
-{
-  using namespace script;
-
-  Engine *e = emit_template.engine();
-  FunctionType signal_type = e->getFunctionType(targs.front().type);
-
-  builder.returns(Type::Void);
-  builder.addParam(signal_type.type());
-  for (int i(1); i < signal_type.prototype().count(); ++i)
+  void substitute(script::FunctionBuilder& builder, const std::vector<script::TemplateArgument>& targs) override
   {
-    builder.addParam(signal_type.prototype().at(i));
-  }
-}
+    using namespace script;
 
-std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> emit_template_instantiate(script::FunctionTemplate emit_template, script::Function instance)
+    Engine* e = functionTemplate().engine();
+    FunctionType signal_type = e->typeSystem()->getFunctionType(targs.front().type);
+    FunctionType slot_type = e->typeSystem()->getFunctionType(targs.back().type);
+
+    builder.returns(Type::Void);
+    builder.addParam(Type::ref(signal_type.prototype().at(0).baseType()));
+    builder.addParam(signal_type.type());
+    builder.addParam(Type::ref(slot_type.prototype().at(0).baseType()));
+    builder.addParam(slot_type.type());
+  }
+
+  std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> instantiate(script::Function& function) override
+  {
+    return { script::callbacks::generic_connect, nullptr };
+  }
+};
+
+class EmitTemplate : public script::FunctionTemplateNativeBackend
 {
-  return { script::callbacks::emit_callback, nullptr };
-}
+public:
+  void deduce(script::TemplateArgumentDeduction& deduc, const std::vector<script::TemplateArgument>& targs, const std::vector<script::Type>& itypes) override
+  {
+    using namespace script;
+
+    if (targs.size() != 0)
+      return deduc.fail();
+
+    if (itypes.size() < 1) /// TODO : handle the implicit object, note: it is not in itypes
+      return deduc.fail();
+
+    if (!itypes.at(0).isFunctionType())
+      return deduc.fail();
+
+    Engine * e = functionTemplate().engine();
+    //Class sender_type = e->getClass(itypes.at(0));
+    FunctionType signal_type = e->typeSystem()->getFunctionType(itypes.at(0));
+
+    if (signal_type.prototype().returnType() != Type::Void)
+      return deduc.fail();
+
+    if (signal_type.prototype().count() == 0)
+      return deduc.fail();
+
+    //if (signal_type.prototype().argc() != itypes.size() - 1)
+    //  return deduc.fail();
+    if (signal_type.prototype().count() != itypes.size())
+      return deduc.fail();
+
+    if (!signal_type.prototype().at(0).isObjectType())
+      return deduc.fail();
+
+    Class signal_class = e->typeSystem()->getClass(signal_type.prototype().at(0));
+
+    //if (!sender_type.inherits(signal_class))
+    //  return deduc.fail();
+
+    deduc.record_deduction(0, TemplateArgument{ signal_type.type() });
+  }
+
+  void substitute(script::FunctionBuilder & builder, const std::vector<script::TemplateArgument> & targs) override
+  {
+    using namespace script;
+
+    Engine* e = functionTemplate().engine();
+    FunctionType signal_type = e->typeSystem()->getFunctionType(targs.front().type);
+
+    builder.returns(Type::Void);
+    builder.addParam(signal_type.type());
+    for (int i(1); i < signal_type.prototype().count(); ++i)
+    {
+      builder.addParam(signal_type.prototype().at(i));
+    }
+  }
+
+  std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> instantiate(script::Function & function) override
+  {
+    return { script::callbacks::emit_callback, nullptr };
+  }
+};
 
 void registerSignalUtils(script::Namespace core)
 {
@@ -432,12 +440,12 @@ void registerSignalUtils(script::Namespace core)
       script::TemplateParameter{ script::TemplateParameter::TypeParameter{}, "SignalType" },
     };
 
-    script::Class object = core.engine()->getClass(script::Type::QObject);
+    script::Class object = core.engine()->typeSystem()->getClass(script::Type::QObject);
 
     script::Symbol{ object }.newFunctionTemplate("emit")
       .setParams(std::move(params))
       .setScope(script::Scope{ object })
-      .deduce(emit_template_deduce).substitute(emit_template_substitute).instantiate(emit_template_instantiate)
+      .withBackend<EmitTemplate>()
       .create();
   }
 
@@ -452,7 +460,7 @@ void registerSignalUtils(script::Namespace core)
     script::Symbol{ core }.newFunctionTemplate("connect")
       .setParams(std::move(params))
       .setScope(script::Scope{ core })
-      .deduce(connect_template_deduce).substitute(connect_template_substitute).instantiate(connect_template_instantiate)
+      .withBackend<ConnectTemplate>()
       .create();
   }
 

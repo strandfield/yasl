@@ -25,52 +25,52 @@ struct SetData : public script::UserData
 
   std::shared_ptr<yasl::TypeInfo> T;
 
-  static std::shared_ptr<SetData> get(script::Engine *e, const script::Type & T)
+  static std::shared_ptr<SetData> get(script::Engine* e, const script::Type& T)
   {
     auto ret = std::make_shared<SetData>();
     ret->T = yasl::TypeInfo::get(e, T);
 
     if (!ret->T->supportsHashing())
-      throw script::TemplateInstantiationError{"Set element must support hashing"};
+      throw script::TemplateInstantiationError{ "Set element must support hashing" };
 
     return ret;
   }
 };
 
-static script::Value make_set(const QSet<yasl::Value> & val, const script::Type & set_type, script::Engine *e)
+static script::Value make_set(const QSet<yasl::Value>& val, const script::Type& set_type, script::Engine* e)
 {
-  return e->construct(set_type, [&val](script::Value & ret) {
-    new (ret.getMemory(script::passkey{})) QSet<yasl::Value>{val};
-  });
+  script::Value ret = e->allocate(set_type);
+  script::ThisObject(ret).init<Set>(val);
+  return ret;
 }
 
-static script::Value make_iter(const Iterator & val, const script::Type & iter_type, script::Engine *e)
+static script::Value make_iter(const Iterator& val, const script::Type& iter_type, script::Engine* e)
 {
-  return e->construct(iter_type, [&val](script::Value & ret) {
-    new (ret.getMemory(script::passkey{})) Iterator{ val };
-  });
+  script::Value ret = e->allocate(iter_type);
+  script::ThisObject(ret).init<Iterator>(val);
+  return ret;
 }
 
-static script::Value make_const_iter(const ConstIterator & val, const script::Type & iter_type, script::Engine *e)
+static script::Value make_const_iter(const ConstIterator& val, const script::Type& iter_type, script::Engine* e)
 {
-  return e->construct(iter_type, [&val](script::Value & ret) {
-    new (ret.getMemory(script::passkey{})) ConstIterator{val};
-  });
+  script::Value ret = e->allocate(iter_type);
+  script::ThisObject(ret).init<ConstIterator>(val);
+  return ret;
 }
 
-static Set & get_set(const script::Value & val)
+static Set& get_set(const script::Value& val)
 {
-  return *static_cast<Set*>(val.memory());
+  return script::get<Set>(val);
 }
 
-static Iterator & get_iter(const script::Value & val)
+static Iterator& get_iter(const script::Value& val)
 {
-  return *static_cast<Iterator*>(val.memory());
+  return script::get<Iterator>(val);
 }
 
-static ConstIterator & get_const_iter(const script::Value & val)
+static ConstIterator& get_const_iter(const script::Value& val)
 {
-  return *static_cast<ConstIterator*>(val.memory());
+  return script::get<ConstIterator>(val);
 }
 
 namespace script
@@ -86,120 +86,118 @@ namespace const_iterator
 {
 
 // const_iterator()
-script::Value default_ctor(script::FunctionCall *c)
+script::Value default_ctor(script::FunctionCall* c)
 {
-  new (c->thisObject().getMemory(script::passkey{})) ConstIterator{};
+  c->thisObject().init<ConstIterator>();
   return c->thisObject();
 }
 
 // const_iterator(const const_iterator &)
-script::Value copy_ctor(script::FunctionCall *c)
+script::Value copy_ctor(script::FunctionCall* c)
 {
-  const ConstIterator & other = get_const_iter(c->arg(1));
-  new (c->thisObject().getMemory(script::passkey{})) ConstIterator{ other };
+  const ConstIterator& other = get_const_iter(c->arg(1));
+  c->thisObject().init<ConstIterator>(other);
   return c->thisObject();
 }
 
 // ~const_iterator()
-script::Value dtor(script::FunctionCall *c)
+script::Value dtor(script::FunctionCall* c)
 {
-  ConstIterator & self = get_const_iter(c->thisObject());
-  self.~const_iterator();
-  c->thisObject().releaseMemory(script::passkey{});
+  c->thisObject().destroy<ConstIterator>();
   return script::Value::Void;
 }
 
 // const T & value() const
-script::Value value(script::FunctionCall *c)
+script::Value value(script::FunctionCall* c)
 {
-  const ConstIterator & self = get_const_iter(c->thisObject());
+  const ConstIterator& self = get_const_iter(c->thisObject());
   return (*self).get();
 }
 
 // const_iterator & operator=(const const_iterator &);
-script::Value op_assign(script::FunctionCall *c)
+script::Value op_assign(script::FunctionCall* c)
 {
-  ConstIterator & self = get_const_iter(c->thisObject());
-  const ConstIterator & other = get_const_iter(c->arg(1));
+  ConstIterator& self = get_const_iter(c->thisObject());
+  const ConstIterator& other = get_const_iter(c->arg(1));
   self = other;
   return c->thisObject();
 }
 
 // bool operator!=(const const_iterator & other) const;
-script::Value op_neq(script::FunctionCall *c)
+script::Value op_neq(script::FunctionCall* c)
 {
-  const ConstIterator & self = get_const_iter(c->arg(0));
-  const ConstIterator & other = get_const_iter(c->arg(1));
+  const ConstIterator& self = get_const_iter(c->arg(0));
+  const ConstIterator& other = get_const_iter(c->arg(1));
   return c->engine()->newBool(self != other);
 }
 
 // bool operator==(const const_iterator & other) const;
-script::Value op_eq(script::FunctionCall *c)
+script::Value op_eq(script::FunctionCall * c)
 {
-  const ConstIterator & self = get_const_iter(c->arg(0));
-  const ConstIterator & other = get_const_iter(c->arg(1));
+  const ConstIterator& self = get_const_iter(c->arg(0));
+  const ConstIterator& other = get_const_iter(c->arg(1));
   return c->engine()->newBool(self == other);
 }
 
 // const_iterator operator+(int n) const;
-script::Value op_add(script::FunctionCall *c)
+script::Value op_add(script::FunctionCall * c)
 {
-  ConstIterator & self = get_const_iter(c->arg(0));
+  ConstIterator& self = get_const_iter(c->arg(0));
   int n = c->arg(1).toInt();
   return make_const_iter(self + n, c->callee().returnType(), c->engine());
 }
 
 // const_iterator & operator++()
-script::Value op_preincr(script::FunctionCall *c)
+script::Value op_preincr(script::FunctionCall * c)
 {
-  ConstIterator & self = get_const_iter(c->arg(0));
+  ConstIterator& self = get_const_iter(c->arg(0));
   ++self;
   return c->thisObject();
 }
 
 // const_iterator operator++(int)
-script::Value op_postincr(script::FunctionCall *c)
+script::Value op_postincr(script::FunctionCall * c)
 {
-  ConstIterator & self = get_const_iter(c->arg(0));
+  ConstIterator& self = get_const_iter(c->arg(0));
   return make_const_iter(self++, c->callee().returnType(), c->engine());
 }
 
 // const_iterator & operator+=(int n);
-script::Value op_addassign(script::FunctionCall *c)
+script::Value op_addassign(script::FunctionCall * c)
 {
-  ConstIterator & self = get_const_iter(c->arg(0));
+  ConstIterator& self = get_const_iter(c->arg(0));
   int n = c->arg(1).toInt();
   self += n;
   return c->thisObject();
 }
 
 // const_iterator operator-(int n) const;
-script::Value op_sub(script::FunctionCall *c)
+script::Value op_sub(script::FunctionCall * c)
 {
-  ConstIterator & self = get_const_iter(c->arg(0));
+  ConstIterator& self = get_const_iter(c->arg(0));
   int n = c->arg(1).toInt();
   return make_const_iter(self - n, c->callee().returnType(), c->engine());
 }
 
 // const_iterator & operator--()
-script::Value op_predecr(script::FunctionCall *c)
+script::Value op_predecr(script::FunctionCall * c)
 {
-  ConstIterator & self = get_const_iter(c->arg(0));
+  ConstIterator& self = get_const_iter(c->arg(0));
   --self;
   return c->thisObject();
 }
 
 // const_iterator operator--(int)
-script::Value op_postdecr(script::FunctionCall *c)
+script::Value op_postdecr(script::FunctionCall * c)
 {
-  ConstIterator & self = get_const_iter(c->arg(0));
+  ConstIterator& self = get_const_iter(c->arg(0));
   return make_const_iter(self--, c->callee().returnType(), c->engine());
 }
 
 // const_iterator & operator-=(int n);
-script::Value op_subassign(script::FunctionCall *c)
+script::Value op_subassign(script::FunctionCall * c)
 {
-  ConstIterator & self = get_const_iter(c->arg(0));
+  ConstIterator& self = get_const_iter(c->arg(0));
   int n = c->arg(1).toInt();
   self -= n;
   return c->thisObject();
@@ -211,120 +209,118 @@ namespace iterator
 {
 
 // iterator()
-script::Value default_ctor(script::FunctionCall *c)
+script::Value default_ctor(script::FunctionCall* c)
 {
-  new (c->thisObject().getMemory(script::passkey{})) Iterator{};
+  c->thisObject().init<Iterator>();
   return c->thisObject();
 }
 
 // iterator(const iterator &)
-script::Value copy_ctor(script::FunctionCall *c)
+script::Value copy_ctor(script::FunctionCall* c)
 {
-  const Iterator & other = get_iter(c->arg(1));
-  new (c->thisObject().getMemory(script::passkey{})) Iterator{ other };
+  const Iterator& other = get_iter(c->arg(1));
+  c->thisObject().init<Iterator>(other);
   return c->thisObject();
 }
 
 // ~iterator()
-script::Value dtor(script::FunctionCall *c)
+script::Value dtor(script::FunctionCall* c)
 {
-  Iterator & self = get_iter(c->thisObject());
-  self.~iterator();
-  c->thisObject().releaseMemory(script::passkey{});
+  c->thisObject().destroy<Iterator>();
   return script::Value::Void;
 }
 
 // T & value() const
-script::Value value(script::FunctionCall *c)
+script::Value value(script::FunctionCall* c)
 {
-  const Iterator & self = get_iter(c->thisObject());
+  const Iterator& self = get_iter(c->thisObject());
   return (*self).get();
 }
 
 // iterator & operator=(const iterator &);
-script::Value op_assign(script::FunctionCall *c)
+script::Value op_assign(script::FunctionCall* c)
 {
-  Iterator & self = get_iter(c->thisObject());
-  const Iterator & other = get_iter(c->arg(1));
+  Iterator& self = get_iter(c->thisObject());
+  const Iterator& other = get_iter(c->arg(1));
   self = other;
   return c->thisObject();
 }
 
 // bool operator!=(const iterator & other) const;
-script::Value op_neq(script::FunctionCall *c)
+script::Value op_neq(script::FunctionCall* c)
 {
-  const Iterator & self = get_iter(c->arg(0));
-  const Iterator & other = get_iter(c->arg(1));
+  const Iterator& self = get_iter(c->arg(0));
+  const Iterator& other = get_iter(c->arg(1));
   return c->engine()->newBool(self != other);
 }
 
 // bool operator==(const iterator & other) const;
-script::Value op_eq(script::FunctionCall *c)
+script::Value op_eq(script::FunctionCall * c)
 {
-  const Iterator & self = get_iter(c->arg(0));
-  const Iterator & other = get_iter(c->arg(1));
+  const Iterator& self = get_iter(c->arg(0));
+  const Iterator& other = get_iter(c->arg(1));
   return c->engine()->newBool(self == other);
 }
 
 // iterator operator+(int n) const;
-script::Value op_add(script::FunctionCall *c)
+script::Value op_add(script::FunctionCall * c)
 {
-  Iterator & self = get_iter(c->arg(0));
+  Iterator& self = get_iter(c->arg(0));
   int n = c->arg(1).toInt();
   return make_const_iter(self + n, c->callee().returnType(), c->engine());
 }
 
 // iterator & operator++()
-script::Value op_preincr(script::FunctionCall *c)
+script::Value op_preincr(script::FunctionCall * c)
 {
-  Iterator & self = get_iter(c->arg(0));
+  Iterator& self = get_iter(c->arg(0));
   ++self;
   return c->thisObject();
 }
 
 // iterator operator++(int)
-script::Value op_postincr(script::FunctionCall *c)
+script::Value op_postincr(script::FunctionCall * c)
 {
-  Iterator & self = get_iter(c->arg(0));
+  Iterator& self = get_iter(c->arg(0));
   return make_const_iter(self++, c->callee().returnType(), c->engine());
 }
 
 // iterator & operator+=(int n);
-script::Value op_addassign(script::FunctionCall *c)
+script::Value op_addassign(script::FunctionCall * c)
 {
-  Iterator & self = get_iter(c->arg(0));
+  Iterator& self = get_iter(c->arg(0));
   int n = c->arg(1).toInt();
   self += n;
   return c->thisObject();
 }
 
 // iterator operator-(int n) const;
-script::Value op_sub(script::FunctionCall *c)
+script::Value op_sub(script::FunctionCall * c)
 {
-  Iterator & self = get_iter(c->arg(0));
+  Iterator& self = get_iter(c->arg(0));
   int n = c->arg(1).toInt();
   return make_const_iter(self - n, c->callee().returnType(), c->engine());
 }
 
 // iterator & operator--()
-script::Value op_predecr(script::FunctionCall *c)
+script::Value op_predecr(script::FunctionCall * c)
 {
-  Iterator & self = get_iter(c->arg(0));
+  Iterator& self = get_iter(c->arg(0));
   --self;
   return c->thisObject();
 }
 
 // iterator operator--(int)
-script::Value op_postdecr(script::FunctionCall *c)
+script::Value op_postdecr(script::FunctionCall * c)
 {
-  Iterator & self = get_iter(c->arg(0));
+  Iterator& self = get_iter(c->arg(0));
   return make_const_iter(self--, c->callee().returnType(), c->engine());
 }
 
 // iterator & operator-=(int n);
-script::Value op_subassign(script::FunctionCall *c)
+script::Value op_subassign(script::FunctionCall * c)
 {
-  Iterator & self = get_iter(c->arg(0));
+  Iterator& self = get_iter(c->arg(0));
   int n = c->arg(1).toInt();
   self -= n;
   return c->thisObject();
@@ -334,168 +330,166 @@ script::Value op_subassign(script::FunctionCall *c)
 
 
 // QSet()
-script::Value default_ctor(script::FunctionCall *c)
+script::Value default_ctor(script::FunctionCall * c)
 {
-  new (c->thisObject().getMemory(script::passkey{})) Set{};
+  c->thisObject().init<Set>();
   return c->thisObject();
 }
 
 // QSet(const QSet &)
-script::Value copy_ctor(script::FunctionCall *c)
+script::Value copy_ctor(script::FunctionCall * c)
 {
-  auto & other = get_set(c->arg(1));
-  new (c->thisObject().getMemory(script::passkey{})) Set{other};
+  auto& other = get_set(c->arg(1));
+  c->thisObject().init<Set>(other);
   return c->thisObject();
 }
 
 // ~QSet()
-script::Value dtor(script::FunctionCall *c)
+script::Value dtor(script::FunctionCall * c)
 {
-  auto & self = get_set(c->thisObject());
-  self.~QSet<yasl::Value>();
-  c->thisObject().releaseMemory(script::passkey{});
+  c->thisObject().destroy<Set>();
   return script::Value::Void;
 }
 
 // iterator begin();
-script::Value begin(script::FunctionCall *c)
+script::Value begin(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   return make_iter(self.begin(), c->callee().returnType(), c->engine());
 }
 
 // int capacity() const;
-script::Value capacity(script::FunctionCall *c)
+script::Value capacity(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   return c->engine()->newInt(self.capacity());
 }
 
 // const_iterator cbegin();
 // const_iterator constBegin() const;
-script::Value cbegin(script::FunctionCall *c)
+script::Value cbegin(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   return make_const_iter(self.cbegin(), c->callee().returnType(), c->engine());
 }
 
 // const_iterator cend();
 // const_iterator constEnd() const;
 // const_iterator end() const;
-script::Value cend(script::FunctionCall *c)
+script::Value cend(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   return make_const_iter(self.cend(), c->callee().returnType(), c->engine());
 }
 
 // void clear();
-script::Value clear(script::FunctionCall *c)
+script::Value clear(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   self.clear();
   return script::Value::Void;
 }
 
 // const_iterator constFind(const T &) const;
 // const_iterator find(const T &) const;
-script::Value constFind(script::FunctionCall *c)
+script::Value constFind(script::FunctionCall * c)
 {
   auto info = std::static_pointer_cast<SetData>(c->callee().memberOf().data());
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   yasl::ObserverValue key{ info->T, c->arg(1) };
   return make_const_iter(self.constFind(key), c->callee().returnType(), c->engine());
 }
 
 // bool contains(const T & value) const;
-script::Value contains_value(script::FunctionCall *c)
+script::Value contains_value(script::FunctionCall * c)
 {
   auto info = std::static_pointer_cast<SetData>(c->callee().memberOf().data());
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   yasl::ObserverValue value{ info->T, c->arg(1) };
   return c->engine()->newBool(self.contains(value));
 }
 
 // bool contains(const T & value) const;
-script::Value contains_other(script::FunctionCall *c)
+script::Value contains_other(script::FunctionCall * c)
 {
-  const Set & self = get_set(c->thisObject());
-  Set & other = get_set(c->arg(1));
+  const Set& self = get_set(c->thisObject());
+  Set& other = get_set(c->arg(1));
   return c->engine()->newBool(self.contains(other));
 }
 
 // bool empty() const;
 // bool isEmpty() const;
-script::Value empty(script::FunctionCall *c)
+script::Value empty(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   return c->engine()->newBool(self.empty());
 }
 
 // iterator end();
-script::Value end(script::FunctionCall *c)
+script::Value end(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   return make_iter(self.end(), c->callee().returnType(), c->engine());
 }
 
 // iterator erase(iterator pos);
-script::Value erase(script::FunctionCall *c)
+script::Value erase(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
-  const Iterator & iter = get_iter(c->arg(1));
+  Set& self = get_set(c->thisObject());
+  const Iterator& iter = get_iter(c->arg(1));
   return make_iter(self.erase(iter), c->callee().returnType(), c->engine());
 }
 
 // iterator find(const T & value);
-script::Value find(script::FunctionCall *c)
+script::Value find(script::FunctionCall * c)
 {
   auto info = std::static_pointer_cast<SetData>(c->callee().memberOf().data());
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   yasl::ObserverValue key{ info->T, c->arg(1) };
   return make_iter(self.find(key), c->callee().returnType(), c->engine());
 }
 
 // iterator insert(const T & value);
-script::Value insert(script::FunctionCall *c)
+script::Value insert(script::FunctionCall * c)
 {
   auto info = std::static_pointer_cast<SetData>(c->callee().memberOf().data());
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   yasl::ObserverValue value{ info->T, c->arg(1) };
   return make_iter(self.insert(value), c->callee().returnType(), c->engine());
 }
 
 // Set<T> & intersect(const QSet<T> & other);
-script::Value intersect(script::FunctionCall *c)
+script::Value intersect(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
-  const Set & other = get_set(c->arg(1));
+  Set& self = get_set(c->thisObject());
+  const Set& other = get_set(c->arg(1));
   self.intersect(other);
   return c->thisObject();
 }
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
 // bool intersects(const QSet<T> & other) const;
-script::Value intersects(script::FunctionCall *c)
+script::Value intersects(script::FunctionCall * c)
 {
-  const Set & self = get_set(c->thisObject());
-  const Set & other = get_set(c->arg(1));
+  const Set& self = get_set(c->thisObject());
+  const Set& other = get_set(c->arg(1));
   return c->engine()->newBool(self.intersects(other));
 }
 #endif
 
 // bool remove(const T & value);
-script::Value remove(script::FunctionCall *c)
+script::Value remove(script::FunctionCall * c)
 {
   auto info = std::static_pointer_cast<SetData>(c->callee().memberOf().data());
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   yasl::ObserverValue value{ info->T, c->arg(1) };
   return c->engine()->newBool(self.remove(value));
 }
 
 // void reserve(int size)
-static script::Value reserve(script::FunctionCall *c)
+static script::Value reserve(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   const int i = c->arg(1).toInt();
   self.reserve(i);
   return script::Value::Void;
@@ -503,129 +497,129 @@ static script::Value reserve(script::FunctionCall *c)
 
 // int count() const;
 // int size() const;
-script::Value size(script::FunctionCall *c)
+script::Value size(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   return c->engine()->newInt(self.size());
 }
 
 // void squeeze();
-script::Value squeeze(script::FunctionCall *c)
+script::Value squeeze(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   self.squeeze();
   return script::Value::Void;
 }
 
 // Set & subtract(const Set &);
-script::Value subtract(script::FunctionCall *c)
+script::Value subtract(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
-  const Set & other = get_set(c->arg(1));
+  Set& self = get_set(c->thisObject());
+  const Set& other = get_set(c->arg(1));
   self.subtract(other);
   return c->thisObject();
 }
 
 // void swap(Set & other);
-script::Value swap(script::FunctionCall *c)
+script::Value swap(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
-  Set & other = get_set(c->arg(1));
+  Set& self = get_set(c->thisObject());
+  Set& other = get_set(c->arg(1));
   self.swap(other);
   return script::Value::Void;
 }
 
 // Set & unite(const Set &);
-script::Value unite(script::FunctionCall *c)
+script::Value unite(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
-  const Set & other = get_set(c->arg(1));
+  Set& self = get_set(c->thisObject());
+  const Set& other = get_set(c->arg(1));
   self.unite(other);
   return c->thisObject();
 }
 
 // QList<T> values() const;
-script::Value values(script::FunctionCall *c)
+script::Value values(script::FunctionCall * c)
 {
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   QList<yasl::Value> result = self.values();
   return script::make_list(result, c->callee().returnType(), c->engine());
 }
 
 // QSet & operator=(const QSet<T> &)
-script::Value op_assign(script::FunctionCall *c)
+script::Value op_assign(script::FunctionCall * c)
 {
-  auto & self = get_set(c->thisObject());
-  const auto & other = get_set(c->arg(1));
+  auto& self = get_set(c->thisObject());
+  const auto& other = get_set(c->arg(1));
   self = other;
   return c->thisObject();
 }
 
 // bool operator==(const QSet<T> &) const
-script::Value op_eq(script::FunctionCall *c)
+script::Value op_eq(script::FunctionCall * c)
 {
-  auto & self = get_set(c->thisObject());
-  const auto & other = get_set(c->arg(1));
+  auto& self = get_set(c->thisObject());
+  const auto& other = get_set(c->arg(1));
   return c->engine()->newBool(self == other);
 }
 
 // bool operator!=(const QSet<T> &) const
-script::Value op_neq(script::FunctionCall *c)
+script::Value op_neq(script::FunctionCall * c)
 {
-  auto & self = get_set(c->thisObject());
-  const auto & other = get_set(c->arg(1));
+  auto& self = get_set(c->thisObject());
+  const auto& other = get_set(c->arg(1));
   return c->engine()->newBool(self != other);
 }
 
 // QSet<T> operator&(const QSet<T> &) const
-script::Value op_bitand(script::FunctionCall *c)
+script::Value op_bitand(script::FunctionCall * c)
 {
-  const auto & self = get_set(c->thisObject());
-  const auto & other = get_set(c->arg(1));
+  const auto& self = get_set(c->thisObject());
+  const auto& other = get_set(c->arg(1));
   return make_set(self & other, c->callee().returnType(), c->engine());
 }
 
 // QSet<T> & operator&=(const T & value)
-script::Value op_bitand_assign_value(script::FunctionCall *c)
+script::Value op_bitand_assign_value(script::FunctionCall * c)
 {
   auto info = std::static_pointer_cast<SetData>(c->callee().memberOf().data());
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   yasl::ObserverValue value{ info->T, c->arg(1) };
   self &= value;
   return c->thisObject();
 }
 
 // QSet<T> operator|(const QSet<T> &) const
-script::Value op_bitor(script::FunctionCall *c)
+script::Value op_bitor(script::FunctionCall * c)
 {
-  const auto & self = get_set(c->thisObject());
-  const auto & other = get_set(c->arg(1));
+  const auto& self = get_set(c->thisObject());
+  const auto& other = get_set(c->arg(1));
   return make_set(self | other, c->callee().returnType(), c->engine());
 }
 
 // QSet<T> & operator|=(const T & value)
-script::Value op_bitor_assign_value(script::FunctionCall *c)
+script::Value op_bitor_assign_value(script::FunctionCall * c)
 {
   auto info = std::static_pointer_cast<SetData>(c->callee().memberOf().data());
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   yasl::ObserverValue value{ info->T, c->arg(1) };
   self |= value;
   return c->thisObject();
 }
 
 // QSet<T> operator-(const QSet<T> &) const
-script::Value op_sub(script::FunctionCall *c)
+script::Value op_sub(script::FunctionCall * c)
 {
-  const auto & self = get_set(c->thisObject());
-  const auto & other = get_set(c->arg(1));
+  const auto& self = get_set(c->thisObject());
+  const auto& other = get_set(c->arg(1));
   return make_set(self - other, c->callee().returnType(), c->engine());
 }
 
 // QSet<T> & operator-=(const T & value)
-script::Value op_subassign_value(script::FunctionCall *c)
+script::Value op_subassign_value(script::FunctionCall * c)
 {
   auto info = std::static_pointer_cast<SetData>(c->callee().memberOf().data());
-  Set & self = get_set(c->thisObject());
+  Set& self = get_set(c->thisObject());
   yasl::ObserverValue value{ info->T, c->arg(1) };
   self -= value;
   return c->thisObject();
@@ -635,10 +629,8 @@ script::Value op_subassign_value(script::FunctionCall *c)
 
 } // namespace callbacks
 
-} // namespace script
 
-
-static script::Type map_template_instantiate_const_iterator(script::Class & set)
+static script::Type set_template_instantiate_const_iterator(script::Class& set)
 {
   using namespace script;
 
@@ -708,7 +700,7 @@ static script::Type map_template_instantiate_const_iterator(script::Class & set)
   return iterator.id();
 }
 
-static script::Type map_template_instantiate_iterator(script::Class & set)
+static script::Type set_template_instantiate_iterator(script::Class& set)
 {
   using namespace script;
 
@@ -778,11 +770,11 @@ static script::Type map_template_instantiate_iterator(script::Class & set)
   return iterator.id();
 }
 
-static script::Type get_list_type(script::Engine *e, const script::Type & T)
+static script::Type get_list_type(script::Engine* e, const script::Type& T)
 {
   using namespace script;
 
-  ClassTemplate list = e->getTemplate(Engine::ListTemplate);
+  ClassTemplate list = ClassTemplate::get<ListTemplate>(e);
 
   std::vector<TemplateArgument> targs{
     TemplateArgument{T}
@@ -792,10 +784,8 @@ static script::Type get_list_type(script::Engine *e, const script::Type & T)
   return list_T.id();
 }
 
-script::Class set_template_instantiate(script::ClassTemplateInstanceBuilder & builder)
+Class SetTemplate::instantiate(ClassTemplateInstanceBuilder& builder)
 {
-  using namespace script;
-
   builder.setFinal();
   const Type T = builder.arguments().front().type;
 
@@ -803,8 +793,8 @@ script::Class set_template_instantiate(script::ClassTemplateInstanceBuilder & bu
 
   Class set = builder.get();
 
-  const Type const_iterator = map_template_instantiate_const_iterator(set);
-  const Type iterator = map_template_instantiate_iterator(set);
+  const Type const_iterator = set_template_instantiate_const_iterator(set);
+  const Type iterator = set_template_instantiate_iterator(set);
 
   const Type list_T = get_list_type(set.engine(), T);
 
@@ -1014,6 +1004,8 @@ script::Class set_template_instantiate(script::ClassTemplateInstanceBuilder & bu
   return set;
 }
 
+} // namespace script
+
 void register_set_template(script::Namespace n)
 {
   using namespace script;
@@ -1025,10 +1017,8 @@ void register_set_template(script::Namespace n)
   ClassTemplate set_template = Symbol{ n }.newClassTemplate("Set")
     .setParams(std::move(params))
     .setScope(Scope{ n })
-    .setCallback(set_template_instantiate)
+    .withBackend<SetTemplate>()
     .get();
-
-  n.engine()->setTemplate(script::passkey{}, Engine::SetTemplate, set_template);
 
   // Registering full specializations
 

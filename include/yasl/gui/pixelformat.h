@@ -13,28 +13,28 @@
 
 namespace script {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-template<> struct make_type_t<QPixelFormat> { inline static script::Type get() { return script::Type::QPixelFormat; } };
+template<> struct make_type_helper<QPixelFormat> { inline static script::Type get() { return script::Type::QPixelFormat; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-template<> struct make_type_t<QPixelFormat::AlphaPosition> { inline static script::Type get() { return script::Type::QPixelFormatAlphaPosition; } };
+template<> struct make_type_helper<QPixelFormat::AlphaPosition> { inline static script::Type get() { return script::Type::QPixelFormatAlphaPosition; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-template<> struct make_type_t<QPixelFormat::AlphaPremultiplied> { inline static script::Type get() { return script::Type::QPixelFormatAlphaPremultiplied; } };
+template<> struct make_type_helper<QPixelFormat::AlphaPremultiplied> { inline static script::Type get() { return script::Type::QPixelFormatAlphaPremultiplied; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-template<> struct make_type_t<QPixelFormat::AlphaUsage> { inline static script::Type get() { return script::Type::QPixelFormatAlphaUsage; } };
+template<> struct make_type_helper<QPixelFormat::AlphaUsage> { inline static script::Type get() { return script::Type::QPixelFormatAlphaUsage; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-template<> struct make_type_t<QPixelFormat::ByteOrder> { inline static script::Type get() { return script::Type::QPixelFormatByteOrder; } };
+template<> struct make_type_helper<QPixelFormat::ByteOrder> { inline static script::Type get() { return script::Type::QPixelFormatByteOrder; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-template<> struct make_type_t<QPixelFormat::ColorModel> { inline static script::Type get() { return script::Type::QPixelFormatColorModel; } };
+template<> struct make_type_helper<QPixelFormat::ColorModel> { inline static script::Type get() { return script::Type::QPixelFormatColorModel; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-template<> struct make_type_t<QPixelFormat::TypeInterpretation> { inline static script::Type get() { return script::Type::QPixelFormatTypeInterpretation; } };
+template<> struct make_type_helper<QPixelFormat::TypeInterpretation> { inline static script::Type get() { return script::Type::QPixelFormatTypeInterpretation; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 4, 0))
-template<> struct make_type_t<QPixelFormat::YUVLayout> { inline static script::Type get() { return script::Type::QPixelFormatYUVLayout; } };
+template<> struct make_type_helper<QPixelFormat::YUVLayout> { inline static script::Type get() { return script::Type::QPixelFormatYUVLayout; } };
 #endif
 } // namespace script
 

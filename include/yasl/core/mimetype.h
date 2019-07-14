@@ -10,7 +10,7 @@
 #include <QMimeType>
 
 namespace script {
-template<> struct make_type_t<QMimeType> { inline static script::Type get() { return script::Type::QMimeType; } };
+template<> struct make_type_helper<QMimeType> { inline static script::Type get() { return script::Type::QMimeType; } };
 } // namespace script
 
 #endif // YASL_CORE_MIMETYPE_H

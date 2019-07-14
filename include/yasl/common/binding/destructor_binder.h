@@ -19,27 +19,21 @@ template<typename T, typename Tag>
 struct destructor_binder;
 
 template<typename T>
-struct destructor_binder<T, small_object_tag>
+struct destructor_binder<T, details::small_object_tag>
 {
   static script::Value destructor(script::FunctionCall *c) 
   {
-    script::Value self = c->thisObject();
-    T *ptr = reinterpret_cast<T*>(self.memory());
-    ptr->~T();
-    self.releaseMemory(passkey{});
+    c->thisObject().destroy<T>();
     return script::Value::Void;
   }
 };
 
 template<typename T>
-struct destructor_binder<T, large_object_tag>
+struct destructor_binder<T, details::large_object_tag>
 {
   static script::Value destructor(script::FunctionCall *c)
   {
-    script::Value self = c->thisObject();
-    T *ptr = static_cast<T*>(self.getPtr());
-    delete ptr;
-    self.setPtr(nullptr);
+    c->thisObject().destroy<T>();
     return script::Value::Void;
   }
 };

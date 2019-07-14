@@ -4,13 +4,14 @@
 
 #include "yasl/core/event-utils.h"
 
-#include "yasl/core/qvariant-values.h"
+#include "yasl/core/variant.h"
 
 #include <script/class.h>
 #include <script/constructorbuilder.h>
 #include <script/destructorbuilder.h>
 #include <script/engine.h>
 #include <script/functionbuilder.h>
+#include <script/typesystem.h>
 #include <script/interpreter/executioncontext.h>
 
 #include <QCoreApplication>
@@ -24,35 +25,31 @@ namespace callbacks
 script::Value user_event_ctor(script::FunctionCall *c)
 {
   int type = c->arg(1).toInt();
-  c->thisObject().setPtr(new yasl::UserEvent{ type });
+  c->arg(0).setQEvent(new yasl::UserEvent{ type });
   return c->thisObject();
 }
 
 script::Value user_event_data(script::FunctionCall *c)
 {
-  QEvent *ev = static_cast<QEvent*>(c->thisObject().getPtr());
+  QEvent *ev = c->arg(0).toQEvent();
   yasl::UserEvent *uev = dynamic_cast<yasl::UserEvent*>(ev);
   if (uev == nullptr)
   {
-    return c->engine()->construct(script::Type::QVariant, [](script::Value & ret) -> void {
-      ret.setVariant(QVariant());
-    });
+    return c->engine()->construct<QVariant>();
   }
   else
   {
-    return c->engine()->construct(script::Type::QVariant, [uev](script::Value & ret) -> void {
-      ret.setVariant(uev->data);
-    });
+    return c->engine()->construct<QVariant>(uev->data);
   }
 }
 
 script::Value user_event_set_data(script::FunctionCall *c)
 {
-  QEvent *ev = static_cast<QEvent*>(c->thisObject().getPtr());
+  QEvent* ev = c->arg(0).toQEvent();
   yasl::UserEvent *uev = dynamic_cast<yasl::UserEvent*>(ev);
   if (uev != nullptr)
   {
-    uev->data = c->arg(1).toVariant();
+    uev->data = script::get<QVariant>(c->arg(1));
   }
   return script::Value::Void;
 }
@@ -60,7 +57,7 @@ script::Value user_event_set_data(script::FunctionCall *c)
 script::Value app_sendevent(script::FunctionCall *c)
 {
   QObject *obj = c->arg(0).toQObject();
-  QEvent *ev = static_cast<QEvent*>(c->arg(1).getPtr());
+  QEvent* ev = c->arg(1).toQEvent();
   QCoreApplication::sendEvent(obj, ev);
   return script::Value::Void;
 }
@@ -68,9 +65,9 @@ script::Value app_sendevent(script::FunctionCall *c)
 script::Value app_postevent(script::FunctionCall *c)
 {
   QObject *obj = c->arg(0).toQObject();
-  QEvent *ev = static_cast<QEvent*>(c->arg(1).getPtr());
+  QEvent *ev = c->arg(1).toQEvent();
   QCoreApplication::postEvent(obj, ev);
-  c->arg(0).setPtr(nullptr); // QCoreApplication takes ownership of the event
+  c->arg(0).setQEvent(nullptr); // QCoreApplication takes ownership of the event
   return script::Value::Void;
 }
 
@@ -94,7 +91,7 @@ UserEvent::~UserEvent()
 
 void registerEventUtils(script::Namespace core)
 {
-  script::Class ev = core.engine()->getClass(script::Type::QEvent);
+  script::Class ev = core.engine()->typeSystem()->getClass(script::Type::QEvent);
   
   ev.newConstructor(script::callbacks::user_event_ctor)
     .params(script::Type::Int)
@@ -107,7 +104,7 @@ void registerEventUtils(script::Namespace core)
   ev.newMethod("setData", script::callbacks::user_event_set_data)
     .params(script::Type::cref(script::Type::QVariant)).create();
 
-  script::Class app = core.engine()->getClass(script::Type::App);
+  script::Class app = core.engine()->typeSystem()->getClass(script::Type::App);
 
   app.newMethod("sendEvent", script::callbacks::app_sendevent)
     .setStatic()

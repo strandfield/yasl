@@ -10,12 +10,12 @@
 #include <QPainter>
 
 namespace script {
-template<> struct make_type_t<QPainter> { inline static script::Type get() { return script::Type::QPainter; } };
-template<> struct make_type_t<QPainter::CompositionMode> { inline static script::Type get() { return script::Type::QPainterCompositionMode; } };
-template<> struct make_type_t<QPainter::PixmapFragmentHint> { inline static script::Type get() { return script::Type::QPainterPixmapFragmentHint; } };
-template<> struct make_type_t<QPainter::PixmapFragmentHints> { inline static script::Type get() { return script::Type::QPainterPixmapFragmentHints; } };
-template<> struct make_type_t<QPainter::RenderHint> { inline static script::Type get() { return script::Type::QPainterRenderHint; } };
-template<> struct make_type_t<QPainter::RenderHints> { inline static script::Type get() { return script::Type::QPainterRenderHints; } };
+template<> struct make_type_helper<QPainter> { inline static script::Type get() { return script::Type::QPainter; } };
+template<> struct make_type_helper<QPainter::CompositionMode> { inline static script::Type get() { return script::Type::QPainterCompositionMode; } };
+template<> struct make_type_helper<QPainter::PixmapFragmentHint> { inline static script::Type get() { return script::Type::QPainterPixmapFragmentHint; } };
+template<> struct make_type_helper<QPainter::PixmapFragmentHints> { inline static script::Type get() { return script::Type::QPainterPixmapFragmentHints; } };
+template<> struct make_type_helper<QPainter::RenderHint> { inline static script::Type get() { return script::Type::QPainterRenderHint; } };
+template<> struct make_type_helper<QPainter::RenderHints> { inline static script::Type get() { return script::Type::QPainterRenderHints; } };
 } // namespace script
 
 #endif // YASL_GUI_PAINTER_H

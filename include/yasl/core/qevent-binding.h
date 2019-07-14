@@ -25,14 +25,17 @@ struct make_value_t<T, qevent_tag>
 };
 
 template<typename T>
-struct storage_type_default_impl<T, qevent_tag> : heap_storage<T> { };
+struct storage_type_default_impl<T, qevent_tag> : pointer_storage<T> { };
 
 template<typename T>
 struct get_helper<T, qevent_tag>
 {
+  typedef T* type;
+
   static T* get(const script::Value & val)
   {
-    return static_cast<T*>(val.getPtr());
+    return static_cast<T*>(script::get<QEventWrapper>(val).p);
+    //return static_cast<T*>(val.getPtr());
   }
 };
 

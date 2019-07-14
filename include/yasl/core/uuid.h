@@ -10,9 +10,9 @@
 #include <QUuid>
 
 namespace script {
-template<> struct make_type_t<QUuid> { inline static script::Type get() { return script::Type::QUuid; } };
-template<> struct make_type_t<QUuid::Variant> { inline static script::Type get() { return script::Type::QUuidVariant; } };
-template<> struct make_type_t<QUuid::Version> { inline static script::Type get() { return script::Type::QUuidVersion; } };
+template<> struct make_type_helper<QUuid> { inline static script::Type get() { return script::Type::QUuid; } };
+template<> struct make_type_helper<QUuid::Variant> { inline static script::Type get() { return script::Type::QUuidVariant; } };
+template<> struct make_type_helper<QUuid::Version> { inline static script::Type get() { return script::Type::QUuidVersion; } };
 } // namespace script
 
 #endif // YASL_CORE_UUID_H

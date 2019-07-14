@@ -11,9 +11,9 @@
 #include <QMenu>
 
 namespace script {
-template<> struct make_type_t<QMenu> { inline static script::Type get() { return script::Type::QMenu; } };
-template<> struct tag_resolver<QMenu> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QMenu*> { inline static script::Type get() { return script::Type::QMenuStar; } };
+template<> struct make_type_helper<QMenu> { inline static script::Type get() { return script::Type::QMenu; } };
+template<> struct details::tag_resolver<QMenu> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QMenu*> { inline static script::Type get() { return script::Type::QMenuStar; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_MENU_H

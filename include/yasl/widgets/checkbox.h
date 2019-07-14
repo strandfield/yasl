@@ -11,8 +11,8 @@
 #include <QCheckBox>
 
 namespace script {
-template<> struct make_type_t<QCheckBox> { inline static script::Type get() { return script::Type::QCheckBox; } };
-template<> struct tag_resolver<QCheckBox> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QCheckBox> { inline static script::Type get() { return script::Type::QCheckBox; } };
+template<> struct details::tag_resolver<QCheckBox> { typedef qobject_tag tag_type; };
 } // namespace script
 
 #endif // YASL_WIDGETS_CHECKBOX_H

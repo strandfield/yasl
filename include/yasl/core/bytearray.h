@@ -12,18 +12,18 @@
 #include <QList>
 
 namespace script {
-template<> struct make_type_t<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
-template<> struct make_type_t<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
+template<> struct make_type_helper<Proxy<QByteArray>> { inline static script::Type get() { return script::Type::ProxyQByteArray; } };
+template<> struct make_type_helper<QByteArray> { inline static script::Type get() { return script::Type::QByteArray; } };
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-template<> struct make_type_t<QByteArray::Base64Option> { inline static script::Type get() { return script::Type::QByteArrayBase64Option; } };
+template<> struct make_type_helper<QByteArray::Base64Option> { inline static script::Type get() { return script::Type::QByteArrayBase64Option; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-template<> struct make_type_t<QByteArray::Base64Options> { inline static script::Type get() { return script::Type::QByteArrayBase64Options; } };
+template<> struct make_type_helper<QByteArray::Base64Options> { inline static script::Type get() { return script::Type::QByteArrayBase64Options; } };
 #endif
-template<> struct make_type_t<QByteRef> { inline static script::Type get() { return script::Type::QByteRef; } };
-template<> struct make_type_t<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
-template<> struct make_type_t<QList<QByteArray>::const_iterator> { inline static script::Type get() { return script::Type::QListQByteArrayConstIterator; } };
-template<> struct make_type_t<QList<QByteArray>::iterator> { inline static script::Type get() { return script::Type::QListQByteArrayIterator; } };
+template<> struct make_type_helper<QByteRef> { inline static script::Type get() { return script::Type::QByteRef; } };
+template<> struct make_type_helper<QList<QByteArray>> { inline static script::Type get() { return script::Type::QListQByteArray; } };
+template<> struct make_type_helper<QList<QByteArray>::const_iterator> { inline static script::Type get() { return script::Type::QListQByteArrayConstIterator; } };
+template<> struct make_type_helper<QList<QByteArray>::iterator> { inline static script::Type get() { return script::Type::QListQByteArrayIterator; } };
 } // namespace script
 
 #endif // YASL_CORE_BYTEARRAY_H

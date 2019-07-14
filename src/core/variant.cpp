@@ -21,7 +21,6 @@
 #include "yasl/core/line.h"
 #include "yasl/core/locale.h"
 #include "yasl/core/point.h"
-#include "yasl/core/qvariant-binder.h"
 #include "yasl/core/rect.h"
 #include "yasl/core/regularexpression.h"
 #include "yasl/core/size.h"

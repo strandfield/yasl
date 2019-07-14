@@ -10,9 +10,9 @@
 #include <QPainterPath>
 
 namespace script {
-template<> struct make_type_t<QPainterPath> { inline static script::Type get() { return script::Type::QPainterPath; } };
-template<> struct make_type_t<QPainterPath::ElementType> { inline static script::Type get() { return script::Type::QPainterPathElementType; } };
-template<> struct make_type_t<QPainterPathStroker> { inline static script::Type get() { return script::Type::QPainterPathStroker; } };
+template<> struct make_type_helper<QPainterPath> { inline static script::Type get() { return script::Type::QPainterPath; } };
+template<> struct make_type_helper<QPainterPath::ElementType> { inline static script::Type get() { return script::Type::QPainterPathElementType; } };
+template<> struct make_type_helper<QPainterPathStroker> { inline static script::Type get() { return script::Type::QPainterPathStroker; } };
 } // namespace script
 
 #endif // YASL_GUI_PAINTERPATH_H

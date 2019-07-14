@@ -7,13 +7,22 @@
 
 #include "yasl/common/types.h"
 
+#include <script/classtemplatenativebackend.h>
+
 #include <QVector>
 
 namespace script
 {
-template<> struct make_type_t<QVector<int>> { inline static script::Type get() { return script::Type::QVectorInt; } };
-template<> struct make_type_t<QVector<float>> { inline static script::Type get() { return script::Type::QVectorFloat; } };
-template<> struct make_type_t<QVector<double>> { inline static script::Type get() { return script::Type::QVectorDouble; } };
+
+template<> struct make_type_helper<QVector<int>> { inline static script::Type get() { return script::Type::QVectorInt; } };
+template<> struct make_type_helper<QVector<float>> { inline static script::Type get() { return script::Type::QVectorFloat; } };
+template<> struct make_type_helper<QVector<double>> { inline static script::Type get() { return script::Type::QVectorDouble; } };
+
+class VectorTemplate : public ClassTemplateNativeBackend
+{
+  Class instantiate(ClassTemplateInstanceBuilder& builder) override;
+};
+
 } // namespace script
 
 #endif // YASL_COMMONS_VECTOR_H

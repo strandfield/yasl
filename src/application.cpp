@@ -95,9 +95,6 @@ Application::Application(int & argc, char **argv)
 {
   mEngine.setup();
 
-  mEngine.reserveTypeRange(script::Type::FirstEnumType, script::Type::LastEnumType);
-  mEngine.reserveTypeRange(script::Type::FirstClassType, script::Type::LastClassType);
-
   register_commons_utils(&mEngine);
 
   /// TODO: move to register_common_utils
@@ -195,6 +192,10 @@ void Application::execCommand(QString str)
     {
       std::cout << ex.what() << std::endl;
     }
+    catch (const script::EvaluationError & ex)
+    {
+      std::cout << ex.message << std::endl;
+    }
   }
 
   QEvent *ev = new QEvent{ static_cast<QEvent::Type>(ConsoleListener::ListenEvent) };
@@ -245,5 +246,5 @@ void Application::display(const script::Value & val)
   }
 
   /// TODO: better print
-  std::cout << mEngine.typeName(val.type()) << "@" << (void*)(val.impl()) << std::endl;
+  std::cout << mEngine.typeSystem()->typeName(val.type()) << "@" << (void*)(val.impl()) << std::endl;
 }

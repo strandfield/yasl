@@ -12,14 +12,14 @@
 #include "yasl/core/iodevice.h"
 
 namespace script {
-template<> struct make_type_t<QFileDevice> { inline static script::Type get() { return script::Type::QFileDevice; } };
-template<> struct tag_resolver<QFileDevice> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QFileDevice::FileError> { inline static script::Type get() { return script::Type::QFileDeviceFileError; } };
-template<> struct make_type_t<QFileDevice::FileHandleFlag> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlag; } };
-template<> struct make_type_t<QFileDevice::FileHandleFlags> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlags; } };
-template<> struct make_type_t<QFileDevice::MemoryMapFlags> { inline static script::Type get() { return script::Type::QFileDeviceMemoryMapFlags; } };
-template<> struct make_type_t<QFileDevice::Permission> { inline static script::Type get() { return script::Type::QFileDevicePermission; } };
-template<> struct make_type_t<QFileDevice::Permissions> { inline static script::Type get() { return script::Type::QFileDevicePermissions; } };
+template<> struct make_type_helper<QFileDevice> { inline static script::Type get() { return script::Type::QFileDevice; } };
+template<> struct details::tag_resolver<QFileDevice> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QFileDevice::FileError> { inline static script::Type get() { return script::Type::QFileDeviceFileError; } };
+template<> struct make_type_helper<QFileDevice::FileHandleFlag> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlag; } };
+template<> struct make_type_helper<QFileDevice::FileHandleFlags> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlags; } };
+template<> struct make_type_helper<QFileDevice::MemoryMapFlags> { inline static script::Type get() { return script::Type::QFileDeviceMemoryMapFlags; } };
+template<> struct make_type_helper<QFileDevice::Permission> { inline static script::Type get() { return script::Type::QFileDevicePermission; } };
+template<> struct make_type_helper<QFileDevice::Permissions> { inline static script::Type get() { return script::Type::QFileDevicePermissions; } };
 } // namespace script
 
 #endif // YASL_CORE_FILEDEVICE_H

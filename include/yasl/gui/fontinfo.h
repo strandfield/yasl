@@ -10,7 +10,7 @@
 #include <QFontInfo>
 
 namespace script {
-template<> struct make_type_t<QFontInfo> { inline static script::Type get() { return script::Type::QFontInfo; } };
+template<> struct make_type_helper<QFontInfo> { inline static script::Type get() { return script::Type::QFontInfo; } };
 } // namespace script
 
 #endif // YASL_GUI_FONTINFO_H

@@ -10,8 +10,8 @@
 #include <QStaticText>
 
 namespace script {
-template<> struct make_type_t<QStaticText> { inline static script::Type get() { return script::Type::QStaticText; } };
-template<> struct make_type_t<QStaticText::PerformanceHint> { inline static script::Type get() { return script::Type::QStaticTextPerformanceHint; } };
+template<> struct make_type_helper<QStaticText> { inline static script::Type get() { return script::Type::QStaticText; } };
+template<> struct make_type_helper<QStaticText::PerformanceHint> { inline static script::Type get() { return script::Type::QStaticTextPerformanceHint; } };
 } // namespace script
 
 #endif // YASL_GUI_STATICTEXT_H

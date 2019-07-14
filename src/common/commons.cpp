@@ -26,24 +26,25 @@ script::Value callback_type_id(script::FunctionCall *c)
   return c->engine()->newInt(ret);
 }
 
-static void template_type_id_deduce(script::TemplateArgumentDeduction &deduc, const script::FunctionTemplate & variant_value, const std::vector<script::TemplateArgument> & targs, const std::vector<script::Type> & itypes)
+class TypeIdTemplate : public script::FunctionTemplateNativeBackend
 {
-  if (targs.size() != 1)
-    return deduc.fail();
-}
+public:
+  void deduce(script::TemplateArgumentDeduction& deduc, const std::vector<script::TemplateArgument>& targs, const std::vector<script::Type>& itypes) override
+  {
+    if (targs.size() != 1)
+      return deduc.fail();
+  }
 
-static void template_type_id_substitute(script::FunctionBuilder & builder, script::FunctionTemplate type_id, const std::vector<script::TemplateArgument> & targs)
-{
-  builder.returns(script::Type::Int);
-}
+  void substitute(script::FunctionBuilder & builder, const std::vector<script::TemplateArgument> & targs) override
+  {
+    builder.returns(script::Type::Int);
+  }
 
-static std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> template_type_id_instantitate(script::FunctionTemplate type_id, script::Function instance)
-{
-  using namespace script;
-
-  return { callback_type_id, nullptr };
-}
-
+  std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> instantiate(script::Function & function) override
+  {
+    return { callback_type_id, nullptr };
+  }
+};
 
 extern void register_pair_template(script::Namespace n); // defined in pair.cpp
 extern void register_vector_template(script::Namespace n); // defined in vector.cpp
@@ -83,7 +84,7 @@ void register_commons_utils(script::Engine *e)
     FunctionTemplate variant_value = Symbol{ e->rootNamespace() }.newFunctionTemplate("type_id")
       .setParams(std::move(params))
       .setScope(Scope{ e->rootNamespace() })
-      .deduce(template_type_id_deduce).substitute(template_type_id_substitute).instantiate(template_type_id_instantitate)
+      .withBackend<TypeIdTemplate>()
       .get();
   }
 

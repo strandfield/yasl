@@ -11,14 +11,14 @@
 #include <QFileDialog>
 
 namespace script {
-template<> struct make_type_t<QFileDialog> { inline static script::Type get() { return script::Type::QFileDialog; } };
-template<> struct tag_resolver<QFileDialog> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QFileDialog::AcceptMode> { inline static script::Type get() { return script::Type::QFileDialogAcceptMode; } };
-template<> struct make_type_t<QFileDialog::DialogLabel> { inline static script::Type get() { return script::Type::QFileDialogDialogLabel; } };
-template<> struct make_type_t<QFileDialog::FileMode> { inline static script::Type get() { return script::Type::QFileDialogFileMode; } };
-template<> struct make_type_t<QFileDialog::Option> { inline static script::Type get() { return script::Type::QFileDialogOption; } };
-template<> struct make_type_t<QFileDialog::Options> { inline static script::Type get() { return script::Type::QFileDialogOptions; } };
-template<> struct make_type_t<QFileDialog::ViewMode> { inline static script::Type get() { return script::Type::QFileDialogViewMode; } };
+template<> struct make_type_helper<QFileDialog> { inline static script::Type get() { return script::Type::QFileDialog; } };
+template<> struct details::tag_resolver<QFileDialog> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QFileDialog::AcceptMode> { inline static script::Type get() { return script::Type::QFileDialogAcceptMode; } };
+template<> struct make_type_helper<QFileDialog::DialogLabel> { inline static script::Type get() { return script::Type::QFileDialogDialogLabel; } };
+template<> struct make_type_helper<QFileDialog::FileMode> { inline static script::Type get() { return script::Type::QFileDialogFileMode; } };
+template<> struct make_type_helper<QFileDialog::Option> { inline static script::Type get() { return script::Type::QFileDialogOption; } };
+template<> struct make_type_helper<QFileDialog::Options> { inline static script::Type get() { return script::Type::QFileDialogOptions; } };
+template<> struct make_type_helper<QFileDialog::ViewMode> { inline static script::Type get() { return script::Type::QFileDialogViewMode; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_FILEDIALOG_H

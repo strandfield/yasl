@@ -21,7 +21,7 @@ namespace bind
 template<typename T>
 script::DestructorBuilder destructor(Class & c)
 {
-  return c.newDestructor(destructor_binder<T, typename tag_resolver<T>::tag_type>::destructor);
+  return c.newDestructor(destructor_binder<T, typename details::tag_resolver<T>::tag_type>::destructor);
 }
 
 } // namespace bind

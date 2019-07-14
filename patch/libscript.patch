@@ -1,0 +1,1460 @@
+diff --git a/include/script/engine.h b/include/script/engine.h
+index 170cf1c..d9ecdb2 100644
+--- a/include/script/engine.h
++++ b/include/script/engine.h
+@@ -18,6 +18,9 @@
+ 
+ #include "script/modulecallbacks.h"
+ 
++struct QMetaObject;
++class QObject;
++
+ namespace script
+ {
+ 
+@@ -182,6 +185,16 @@ public:
+ 
+   const std::vector<Script> & scripts() const;
+ 
++  /* Qt */
++
++  void registerQtType(const QMetaObject* mo, const script::Type& type);
++  Type getQtType(const QMetaObject* mo) const;
++  Value expose(QObject* obj);
++  Value expose(QObject* obj, const Type& t);
++  static void bind(Value& v, QObject* obj);
++
++  Value newPtr(const script::Type& t, void* p);
++
+   EngineImpl * implementation() const;
+ 
+   Engine & operator=(const Engine & other) = delete;
+diff --git a/include/script/private/engine_p.h b/include/script/private/engine_p.h
+index 91bd93f..42f7f9f 100644
+--- a/include/script/private/engine_p.h
++++ b/include/script/private/engine_p.h
+@@ -19,6 +19,8 @@
+ 
+ #include "script/interpreter/interpreter.h"
+ 
++struct QMetaObject;
++
+ namespace script
+ {
+ 
+@@ -57,6 +59,8 @@ public:
+     std::map<std::type_index, Template> dict;
+   }templates;
+ 
++  std::map<const QMetaObject*, script::Type> qt_type_map;
++
+ public:
+   /// TODO: move elsewhere, perhaps a namespace 'optimisation'
+   Value default_construct(const Type & t, const Function & ctor);
+diff --git a/include/script/private/value_p.h b/include/script/private/value_p.h
+index 3ec7b7a..495869b 100644
+--- a/include/script/private/value_p.h
++++ b/include/script/private/value_p.h
+@@ -13,6 +13,8 @@
+ #include "script/object.h"
+ #include "script/string.h"
+ 
++class QEvent;
++
+ namespace script
+ {
+ 
+@@ -58,6 +60,7 @@ struct LIBSCRIPT_API ValueImpl
+     CharRef charref;
+ #endif // defined(LIBSCRIPT_USE_BUILTIN_STRING_BACKEND)
+     InitializerList initializer_list;
++    QEvent* qevent;
+     char memory[LIBSCRIPT_BUILTIN_MEMBUF_SIZE];
+ 
+     Data();
+@@ -77,6 +80,7 @@ struct LIBSCRIPT_API ValueImpl
+     CharrefField,
+ #endif // defined(LIBSCRIPT_USE_BUILTIN_STRING_BACKEND)
+     InitListField,
++    EventField,
+     MemoryField,
+   };
+   char which;
+@@ -125,6 +129,9 @@ struct LIBSCRIPT_API ValueImpl
+   InitializerList get_initializer_list() const;
+   void set_initializer_list(const InitializerList& il);
+ 
++  QEvent* get_qevent() const;
++  void set_qevent(QEvent* e);
++
+   void clear();
+ 
+   void* acquire_memory();
+diff --git a/include/script/string.h b/include/script/string.h
+index b19bed4..4466491 100644
+--- a/include/script/string.h
++++ b/include/script/string.h
+@@ -7,9 +7,7 @@
+ 
+ #include "libscriptdefs.h"
+ 
+-#define LIBSCRIPT_USE_BUILTIN_STRING_BACKEND
+-
+-#include <string>
++#include <QString>
+ 
+ namespace script
+ {
+@@ -31,14 +29,14 @@ public:
+    * \typedef string_type
+    * \brief Typedef for the C++ string type that is going to be used in the scripting language.
+    */
+-  typedef std::string string_type;
++  typedef QString string_type;
+ 
+ public:
+   /*!
+-   * \fn static const string_type& convert(const std::string& str)
++   * \fn static string_type convert(const std::string& str)
+    * \brief Provides conversion from std::string to \t string_type.
+    */
+-  static const string_type& convert(const std::string& str) { return str; }
++  static string_type convert(const std::string& str) { return QString::fromStdString(str); }
+ 
+   /*!
+    * \fn static std::string class_name()
+diff --git a/include/script/types.h b/include/script/types.h
+index 51142db..a511a01 100644
+--- a/include/script/types.h
++++ b/include/script/types.h
+@@ -57,8 +57,505 @@ public:
+     Auto = 9,
+     FirstClassType = ObjectFlag | 1,
+     String = FirstClassType,
++    CharRef,
++    NullType,
++    App,
++    /* Qt Core */
++    Proxybool,
++    Proxychar,
++    Proxydouble,
++    Proxyfloat,
++    Proxyint,
++    ProxyQByteArray,
++    ProxyQLocale,
++    ProxyQObject,
++    ProxyQString,
++    ProxyQVariant,
++    ProxyQWidget,
++    QByteArray,
++    QByteArrayBase64Options,
++    QByteRef,
++    QChar,
++    QChildEvent,
++    QCloseEvent,
++    QDataStream,
++    QDate,
++    QDateTime,
++    QDeferredDeleteEvent,
++    QDir,
++    QDirFilters,
++    QDirSortFlags,
++    QDynamicPropertyChangeEvent,
++    QElapsedTimer,
++    QEvent,
++    QFile,
++    QFileDevice,
++    QFileDeviceFileHandleFlags,
++    QFileDevicePermissions,
++    QFileInfo,
++    QHideEvent,
++    QIODevice,
++    QIODeviceOpenMode,
++    QJsonArray,
++    QJsonDocument,
++    QJsonObject,
++    QJsonValue,
++    QJsonValueRef,
++    QKeyEvent,
++    QLine,
++    QLineF,
++    QListdouble,
++    QListdoubleIterator,
++    QListdoubleConstIterator,
++    QListfloat,
++    QListfloatIterator,
++    QListfloatConstIterator,
++    QListint,
++    QListintIterator,
++    QListintConstIterator,
++    QListQByteArray,
++    QListQByteArrayIterator,
++    QListQByteArrayConstIterator,
++    QListQLocale,
++    QListQLocaleIterator,
++    QListQLocaleConstIterator,
++    QListQObject,
++    QListQObjectIterator,
++    QListQObjectConstIterator,
++    QListQString,
++    QListQStringIterator,
++    QListQStringConstIterator,
++    QListQVariant,
++    QListQVariantIterator,
++    QListQVariantConstIterator,
++    QListQWidget,
++    QListQWidgetIterator,
++    QListQWidgetConstIterator,
++    QLocale,
++    QLocaleDataSizeFormats,
++    QLocaleNumberOptions,
++    QMapQStringQVariant,
++    QMapQStringQVariantIterator,
++    QMapQStringQVariantConstIterator,
++    QMargins,
++    QMarginsF,
++    QMimeType,
++    QMouseEvent,
++    QMoveEvent,
++    QObject,
++    QObjectStar,
++    QPaintEvent,
++    QPoint,
++    QPointF,
++    QPushButton,
++    QProcess,
++    QProcessEnvironment,
++    QRect,
++    QRectF,
++    QRegularExpression,
++    QRegularExpressionMatch,
++    QRegularExpressionMatchIterator,
++    QRegularExpressionMatchOptions,
++    QRegularExpressionPatternOptions,
++    QResizeEvent,
++    QSettings,
++    QShowEvent,
++    QSignalBlocker,
++    QSize,
++    QSizeF,
++    QStringList,
++    QtAlignment,
++    QtApplicationStates,
++    QtDockWidgetAreas,
++    QtDropActions,
++    QtEdges,
++    QtFindChildOptions,
++    QtGestureFlags,
++    QtImageConversionFlags,
++    QtInputMethodHints,
++    QtInputMethodQueries,
++    QtItemFlags,
++    QtKeyboardModifiers,
++    QtMatchFlags,
++    QtMouseButtons,
++    QtMouseEventFlags,
++    QtOrientations,
++    QtScreenOrientations,
++    QtTextInteractionFlags,
++    QtToolBarAreas,
++    QtTouchPointStates,
++    QtWindowStates,
++    QtWindowFlags,
++    QTime,
++    QTimer,
++    QTimerEvent,
++    QTimeZone,
++    QUrl,
++    QUrlComponentFormattingOptions,
++    QUrlFormattingOptions,
++    QUrlUserInputResolutionOptions,
++    QUrlQuery,
++    QUuid,
++    QVariant,
++    QVectorInt,
++    QVectorFloat,
++    QVectorDouble,
++    /* Qt Gui */
++    QAbstractButton,
++    QBitmap,
++    QBrush,
++    QClipboard,
++    QColor,
++    QConicalGradient,
++    QCursor,
++    QDoubleValidator,
++    QFont,
++    QFontDatabase,
++    QFontInfo,
++    QFontMetrics,
++    QFontMetricsF,
++    QGlyphRun,
++    QGradient,
++    QIcon,
++    QImage,
++    QIntValidator,
++    QKeySequence,
++    QLinearGradient,
++    QPainter,
++    QPainterPath,
++    QPainterPathStroker,
++    QPainterPixmapFragmentHints,
++    QPainterRenderHints,
++    QPalette,
++    QPen,
++    QPicture,
++    QPictureIO,
++    QPixelFormat,
++    QPixmap,
++    QQuaternion,
++    QRadialGradient,
++    QRegularExpressionValidator,
++    QRegion,
++    QScreen,
++    QStaticText,
++    QTextOption,
++    QTextOptionFlags,
++    QTransform,
++    QValidator,
++    QVector2D,
++    QVector3D,
++    QVector4D,
++    QWheelEvent,
++    QWidget,
++    QWidgetStar,
++    QWindow,
++    QWindowStar,
++    /* Qt Widgets */
++    QAbstractSlider,
++    QAbstractSpinBox,
++    QAbstractSpinBoxStepEnabled,
++    QAction,
++    QActionStar,
++    ProxyQAction,
++    QListQAction,
++    QListQActionConstIterator,
++    QListQActionIterator,
++    QBoxLayout,
++    QCheckBox,
++    QColorDialog,
++    QColorDialogColorDialogOptions,
++    QComboBox,
++    QDateEdit,
++    QDateTimeEdit,
++    QDateTimeEditSections,
++    QDial,
++    QDialog,
++    QDoubleSpinBox,
++    QErrorMessage,
++    QFileDialog,
++    QFileDialogOptions,
++    QFontComboBox,
++    QFontComboBoxFontFilters,
++    QFontDialog,
++    QFontDialogFontDialogOptions,
++    QFormLayout,
++    QFormLayoutTakeRowResult,
++    QFrame,
++    QGridLayout,
++    QGroupBox,
++    QHBoxLayout,
++    QInputDialog,
++    QInputDialogInputDialogOptions,
++    QLabel,
++    QLayout,
++    QLayoutItem,
++    QLayoutStar,
++    QLineEdit,
++    QMenu,
++    QMenuStar,
++    QMessageBox,
++    QMessageBoxStandardButtons,
++    QProgressBar,
++    QProgressDialog,
++    QRadioButton,
++    QScrollBar,
++    QSlider,
++    QSpinBox,
++    QStackedLayout,
++    QTabWidget,
++    QTimeEdit,
++    QToolBar,
++    QToolButton,
++    QVBoxLayout,
++    QWizard,
++    QWizardPage,
++    QWizardWizardOptions,
+     LastClassType,
+     FirstEnumType = EnumFlag | 1,
++    /** Qt Core **/
++    QByteArrayBase64Option = FirstEnumType,
++    QCharCategory,
++    QCharCombiningClass,
++    QCharDecomposition,
++    QCharDirection,
++    QCharJoining,
++    QCharJoiningType,
++    QCharScript,
++    QCharSpecialCharacter,
++    QCharUnicodeVersion,
++    QDataStreamVersion,
++    QDataStreamByteOrder,
++    QDataStreamStatus,
++    QDataStreamFloatingPointPrecision,
++    QDateMonthNameType,
++    QDirFilter,
++    QDirSortFlag,
++    QRegularExpressionMatchOption,
++    QRegularExpressionMatchType,
++    QRegularExpressionPatternOption,
++    QtAlignmentFlag,
++    QtAnchorPoint,
++    QtApplicationAttribute,
++    QtApplicationState,
++    QtArrowType,
++    QtAspectRatioMode,
++    QtAxis,
++    QtBGMode,
++    QtBrushStyle,
++    QtCaseSensitivity,
++    QtCheckState,
++    QtChecksumType,
++    QtClipOperation,
++    QtConnectionType,
++    QtContextMenuPolicy,
++    QtCoordinateSystem,
++    QtCorner,
++    QtCursorMoveStyle,
++    QtCursorShape,
++    QtDateFormat,
++    QtDayOfWeek,
++    QtDockWidgetArea,
++    QtDockWidgetAreaSizes,
++    QtDropAction,
++    QtEdge,
++    QtEnterKeyType,
++    QtEventPriority,
++    QtFillRule,
++    QtFindChildOption,
++    QtFocusPolicy,
++    QtFocusReason,
++    QtGestureFlag,
++    QtGestureState,
++    QtGestureType,
++    QtGlobalColor,
++    QtHitTestAccuracy,
++    QtImageConversionFlag,
++    QtInputMethodHint,
++    QtInputMethodQuery,
++    QtItemDataRole,
++    QtItemFlag,
++    QtItemSelectionMode,
++    QtItemSelectionOperation,
++    QtInitialization,
++    QtKey,
++    QtKeyboardModifier,
++    QtLayoutDirection,
++    QtMaskMode,
++    QtMatchFlag,
++    QtModifier,
++    QtMouseButton,
++    QtMouseEventFlag,
++    QtMouseEventSource,
++    QtNativeGestureType,
++    QtNavigationMode,
++    QtOrientation,
++    QtPenCapStyle,
++    QtPenJoinStyle,
++    QtPenStyle,
++    QtScreenOrientation,
++    QtScrollBarPolicy,
++    QtScrollPhase,
++    QtShortcutContext,
++    QtSizeHint,
++    QtSizeMode,
++    QtSortOrder,
++    QtTabFocusBehavior,
++    QtTextElideMode,
++    QtTextFlag,
++    QtTextFormat,
++    QtTextInteractionFlag,
++    QtTileRule,
++    QtTimeSpec,
++    QtTimerType,
++    QtToolBarArea,
++    QtToolBarAreaSizes,
++    QtToolButtonStyle,
++    QtTouchPointState,
++    QtTransformationMode,
++    QtUIEffect,
++    QtWhiteSpaceMode,
++    QtWidgetAttribute,
++    QtWindowFrameSection,
++    QtWindowModality,
++    QtWindowState,
++    QtWindowType,
++    QElapsedTimerClockType,
++    QEventType,
++    QFileDeviceFileError,
++    QFileDeviceFileHandleFlag,
++    QFileDeviceFileTime,
++    QFileDeviceMemoryMapFlags,
++    QFileDevicePermission,
++    QIODeviceOpenModeFlag,
++    QJsonDocumentDataValidation,
++    QJsonDocumentJsonFormat,
++    QJsonValueType,
++    QLineFIntersectType,
++    QLocaleCountry,
++    QLocaleCurrencySymbolFormat,
++    QLocaleDataSizeFormat,
++    QLocaleFloatingPointPrecisionOption,
++    QLocaleFormatType,
++    QLocaleLanguage,
++    QLocaleMeasurementSystem,
++    QLocaleNumberOption,
++    QLocaleQuotationStyle,
++    QLocaleScript,
++    QProcessProcessError,
++    QProcessProcessState,
++    QProcessProcessChannel,
++    QProcessProcessChannelMode,
++    QProcessInputChannelMode,
++    QProcessExitStatus,
++    QSettingsFormat,
++    QSettingsScope,
++    QSettingsStatus,
++    QTimeZoneNameType,
++    QTimeZoneTimeType,
++    QTimeZoneMinUtcOffsetSecs,
++    QUrlComponentFormattingOption,
++    QUrlParsingMode,
++    QUrlUrlFormattingOption,
++    QUrlUserInputResolutionOption,
++    QUuidVariant,
++    QUuidVersion,
++    QVariantType,
++    /* Qt Gui */
++    QClipboardMode,
++    QColorNameFormat,
++    QColorSpec,
++    QDoubleValidatorNotation,
++    QFontCapitalization,
++    QFontDatabaseSystemFont,
++    QFontDatabaseWritingSystem,
++    QFontHintingPreference,
++    QFontResolveProperties,
++    QFontSpacingType,
++    QFontStretch,
++    QFontStyle,
++    QFontStyleHint,
++    QFontStyleStrategy,
++    QFontWeight,
++    QGlyphRunGlyphRunFlag,
++    QGradientCoordinateMode,
++    QGradientInterpolationMode,
++    QGradientSpread,
++    QGradientType,
++    QIconMode,
++    QIconState,
++    QImageFormat,
++    QImageInvertMode,
++    QKeySequenceSequenceFormat,
++    QKeySequenceSequenceMatch,
++    QKeySequenceStandardKey,
++    QPainterCompositionMode,
++    QPainterPathElementType,
++    QPainterPixmapFragmentHint,
++    QPainterRenderHint,
++    QPaletteColorGroup,
++    QPaletteColorRole,
++    QPixelFormatAlphaPosition,
++    QPixelFormatAlphaPremultiplied,
++    QPixelFormatAlphaUsage,
++    QPixelFormatByteOrder,
++    QPixelFormatColorModel,
++    QPixelFormatTypeInterpretation,
++    QPixelFormatYUVLayout,
++    QRegionRegionType,
++    QStaticTextPerformanceHint,
++    QTextOptionFlag,
++    QTextOptionTabType,
++    QTextOptionWrapMode,
++    QTransformTransformationType,
++    QValidatorState,
++    QWidgetRenderFlag,
++    QWindowAncestorMode,
++    QWindowVisibility,
++    /* Qt Widgets */
++    QAbstractSliderSliderAction,
++    QAbstractSpinBoxButtonSymbols,
++    QAbstractSpinBoxCorrectionMode,
++    QAbstractSpinBoxStepEnabledFlag,
++    QActionActionEvent,
++    QActionMenuRole,
++    QActionPriority,
++    QBoxLayoutDirection,
++    QColorDialogColorDialogOption,
++    QComboBoxInsertPolicy,
++    QComboBoxSizeAdjustPolicy,
++    QDateTimeEditSection,
++    QDialogDialogCode,
++    QFileDialogAcceptMode,
++    QFileDialogDialogLabel,
++    QFileDialogFileMode,
++    QFileDialogOption,
++    QFileDialogViewMode,
++    QFontComboBoxFontFilter,
++    QFontDialogFontDialogOption,
++    QFormLayoutFieldGrowthPolicy,
++    QFormLayoutItemRole,
++    QFormLayoutRowWrapPolicy,
++    QFrameShadow,
++    QFrameShape,
++    QFrameStyleMask,
++    QInputDialogInputDialogOption,
++    QInputDialogInputMode,
++    QLayoutSizeConstraint,
++    QLineEditActionPosition,
++    QLineEditEchoMode,
++    QMessageBoxButtonRole,
++    QMessageBoxIcon,
++    QMessageBoxStandardButton,
++    QProgressBarDirection,
++    QSliderTickPosition,
++    QStackedLayoutStackingMode,
++    QTabWidgetTabPosition,
++    QTabWidgetTabShape,
++    QToolButtonToolButtonPopupMode,
++    QWizardWizardButton,
++    QWizardWizardOption,
++    QWizardWizardPixmap,
++    QWizardWizardStyle,
+     LastEnumType,
+   };
+ 
+diff --git a/include/script/value.h b/include/script/value.h
+index 65d6584..22df7d1 100644
+--- a/include/script/value.h
++++ b/include/script/value.h
+@@ -12,6 +12,10 @@
+ #define LIBSCRIPT_BUILTIN_MEMBUF_SIZE 24
+ #endif
+ 
++class QEvent;
++class QObject;
++class QVariant;
++
+ namespace script
+ {
+ 
+@@ -69,6 +73,13 @@ public:
+   Lambda toLambda() const;
+   InitializerList toInitializerList() const;
+ 
++  QEvent* toQEvent() const;
++  void setQEvent(QEvent* e);
++
++  QObject* toQObject() const;
++
++  const QVariant& toVariant() const;
++
+   static constexpr size_t MemoryBufferSize = LIBSCRIPT_BUILTIN_MEMBUF_SIZE;
+ 
+   void* memory() const;
+diff --git a/src/engine.cpp b/src/engine.cpp
+index 33a7fbd..537f45b 100644
+--- a/src/engine.cpp
++++ b/src/engine.cpp
+@@ -50,6 +50,10 @@
+ #include "script/private/typesystem_p.h"
+ #include "script/private/value_p.h"
+ 
++#include "script/qt.h"
++
++#include <QVariant>
++
+ namespace script
+ {
+ 
+@@ -917,6 +921,87 @@ const std::vector<Script> & Engine::scripts() const
+   return d->scripts;
+ }
+ 
++
++void Engine::registerQtType(const QMetaObject* mo, const script::Type& type)
++{
++  d->qt_type_map[mo] = type;
++}
++
++static Type get_qt_type(const QMetaObject* mo, const std::map<const QMetaObject*, script::Type>& map)
++{
++  if (mo == nullptr)
++    return script::Type::Null; /// TODO : throw ?
++
++  auto it = map.find(mo);
++
++  if (it != map.end())
++  {
++    return it->second;
++  }
++  else
++  {
++    return get_qt_type(mo->superClass(), map);
++  }
++}
++
++Type Engine::getQtType(const QMetaObject * mo) const
++{
++  return get_qt_type(mo, d->qt_type_map);
++}
++
++Value Engine::expose(QObject * obj)
++{
++  QVariant binding_data = obj->property("_yasl_data_");
++  if (binding_data.isValid())
++    return binding_data.value<qt::BindingDataPtr>()->value;
++
++  script::Type t = get_qt_type(obj->metaObject(), d->qt_type_map);
++
++  Value ret = allocate(t);
++  ThisObject(ret).init();
++
++  bind(ret, obj);
++
++  return ret;
++}
++
++Value Engine::expose(QObject* obj, const Type& t)
++{
++  QVariant binding_data = obj->property("_yasl_data_");
++  if (binding_data.isValid())
++    return binding_data.value<qt::BindingDataPtr>()->value;
++
++  Value ret = allocate(t);
++  ThisObject(ret).init();
++
++  bind(ret, obj);
++
++  return ret;
++}
++
++std::shared_ptr<qt::BindingData> qt::BindingData::get(const QObject* obj)
++{
++  return obj->property("_yasl_data_").value<qt::BindingDataPtr>();
++}
++
++void Engine::bind(Value& v, QObject* obj)
++{
++  auto data = std::make_shared<qt::BindingData>();
++  data->value = v;
++  obj->setProperty("_yasl_data_", QVariant::fromValue(data));
++
++  qt::QObjectStar star;
++  star.p = obj;
++  v.toObject().setUserData<qt::QObjectStar>(star);
++}
++
++Value Engine::newPtr(const script::Type& t, void* p)
++{
++  Value ret = allocate(t);
++  ThisObject(ret).init<details::PtrWrapper>(p);
++  return ret;
++}
++
+ EngineImpl * Engine::implementation() const
+ {
+   return d.get();
+diff --git a/src/string.cpp b/src/string.cpp
+index a5f515d..0a9ff24 100644
+--- a/src/string.cpp
++++ b/src/string.cpp
+@@ -4,8 +4,6 @@
+ 
+ #include "script/string.h"
+ 
+-#if defined(LIBSCRIPT_USE_BUILTIN_STRING_BACKEND)
+-
+ #include "script/engine.h"
+ #include "script/private/engine_p.h"
+ #include "script/castbuilder.h"
+@@ -20,14 +18,279 @@
+ #include "script/interpreter/executioncontext.h"
+ #include "script/private/value_p.h"
+ 
++#include <QHash>
++
+ namespace script
+ {
+ 
+-static int charref_id = 0;
++struct CharRef
++{
++  QString* str;
++  int index;
++
++  CharRef(QString* s, int i)
++    : str(s), index(i)
++  {
++
++  }
++};
++
++template<> struct make_type_helper<CharRef> { static Type get() { return Type::CharRef; } };
++template<> struct make_type_helper<QChar> { static Type get() { return Type::QChar; } };
+ 
+ namespace callbacks
+ {
+ 
++namespace qchar
++{
++
++/*!
++ * \class Char
++ * \brief Represents a unicode character
++ */
++
++/*!
++ * \fn Char()
++ */
++Value default_ctor(FunctionCall* c)
++{
++  c->thisObject().init<QChar>();
++  return c->thisObject();
++}
++
++/*!
++ * \fn Char(const Char&)
++ */
++Value copy_ctor(FunctionCall* c)
++{
++  QChar& ch = get<QChar>(c->arg(1));
++  c->thisObject().init<QChar>(ch);
++  return c->thisObject();
++}
++
++/*!
++ * \fn Char(const char& ch)
++ */
++Value char_ctor(FunctionCall* c)
++{
++  char ch = get<char>(c->arg(1));
++  c->thisObject().init<QChar>(ch);
++  return c->thisObject();
++}
++
++/*!
++ * \fn ~Char()
++ */
++Value dtor(FunctionCall* c)
++{
++  c->thisObject().destroy<QChar>();
++  return script::Value::Void;
++}
++
++/*!
++ * \fn int digitValue() const
++ */
++Value digit_value(FunctionCall* c)
++{
++  return c->engine()->newInt(get<QChar>(c->arg(0)).digitValue());
++}
++
++/*!
++ * \fn bool isDigit() const
++ */
++Value is_digit(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isDigit());
++}
++
++/*!
++ * \fn bool isLetter() const
++ */
++Value is_letter(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isLetter());
++}
++
++/*!
++ * \fn bool isLetterOrNumber() const
++ */
++Value is_letter_or_number(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isLetterOrNumber());
++}
++
++/*!
++ * \fn bool isLower() const
++ */
++Value is_lower(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isLower());
++}
++
++/*!
++ * \fn bool isNonCharacter() const
++ */
++Value is_non_character(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isNonCharacter());
++}
++
++/*!
++ * \fn bool isNull() const
++ */
++Value is_null(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isNull());
++}
++
++/*!
++ * \fn bool isNumber() const
++ */
++Value is_number(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isNumber());
++}
++
++/*!
++ * \fn bool isPunct() const
++ */
++Value is_punct(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isPunct());
++}
++
++/*!
++ * \fn bool isSpace() const
++ */
++Value is_space(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isSpace());
++}
++
++/*!
++ * \fn bool isTitleCase() const
++ */
++Value is_title_case(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isTitleCase());
++}
++
++/*!
++ * \fn bool isUpper() const
++ */
++Value is_upper(FunctionCall* c)
++{
++  return c->engine()->newBool(get<QChar>(c->arg(0)).isUpper());
++}
++
++/*!
++ * \fn char toLatin1() const
++ */
++Value to_latin1(FunctionCall* c)
++{
++  return c->engine()->newChar(get<QChar>(c->arg(0)).toLatin1());
++}
++
++/*!
++ * \fn Char toLower() const
++ */
++Value to_lower(FunctionCall* c)
++{
++  return c->engine()->construct<QChar>(get<QChar>(c->arg(0)).toLower());
++}
++
++/*!
++ * \fn Char toTitleCase() const
++ */
++Value to_title_case(FunctionCall* c)
++{
++  return c->engine()->construct<QChar>(get<QChar>(c->arg(0)).toTitleCase());
++}
++
++/*!
++ * \fn Char toUpper() const
++ */
++Value to_upper(FunctionCall* c)
++{
++  return c->engine()->construct<QChar>(get<QChar>(c->arg(0)).toUpper());
++}
++
++/*!
++ * \fn Char& operator=(const Char&)
++ */
++Value op_assign(FunctionCall* c)
++{
++  QChar& self = get<QChar>(c->arg(0));
++  QChar& other = get<QChar>(c->arg(1));
++  self = other;
++  return c->arg(0);
++}
++
++/*!
++ * \fn bool operator==(const Char& other) const;
++ */
++Value op_eq(FunctionCall* c)
++{
++  QChar& self = get<QChar>(c->arg(0));
++  QChar& other = get<QChar>(c->arg(1));
++  return c->engine()->newBool(self == other);
++}
++
++/*!
++ * \fn bool operator!=(const Char& other) const;
++ */
++Value op_neq(FunctionCall* c)
++{
++  QChar& self = get<QChar>(c->arg(0));
++  QChar& other = get<QChar>(c->arg(1));
++  return c->engine()->newBool(self != other);
++}
++
++} // namespace qchar
++
++namespace charref
++{
++
++/*!
++ * \fn CharRef(const CharRef& other)
++ */
++Value copy_ctor(FunctionCall* c)
++{
++  CharRef& other = get<CharRef>(c->arg(1));
++  c->thisObject().init<CharRef>(other);
++  return c->thisObject();
++}
++
++/*!
++ * \fn ~CharRef()
++ */
++Value dtor(FunctionCall* c)
++{
++  c->thisObject().destroy<CharRef>();
++  return script::Value::Void;
++}
++
++/*!
++ * \fn CharRef& operator=(const Char& c)
++ */
++Value op_assign(FunctionCall* c)
++{
++  CharRef& self = get<CharRef>(c->arg(0));
++  self.str[self.index] = get<QChar>(c->arg(1));
++  return c->arg(0);
++}
++
++/*!
++ * \fn operator Char() const
++ */
++Value to_char(FunctionCall* c)
++{
++  CharRef& self = get<CharRef>(c->arg(0));
++  return c->engine()->construct<QChar>(self.str->at(self.index));
++}
++
++} // namespace charref
++
+ namespace string
+ {
+ 
+@@ -63,7 +326,7 @@ Value dtor(FunctionCall *c)
+   return that;
+ }
+ 
+-// char String::at(int index) const;
++// Char String::at(int index) const;
+ Value at(FunctionCall *c)
+ {
+   Value that = c->thisObject();
+@@ -71,7 +334,7 @@ Value at(FunctionCall *c)
+ 
+   const int position = c->arg(1).toInt();
+ 
+-  return c->engine()->newChar(self.at(position));
++  return c->engine()->construct<QChar>(self.at(position));
+ }
+ 
+ // int String::capacity() const;
+@@ -89,25 +352,11 @@ Value clear(FunctionCall *c)
+   return Value::Void;
+ }
+ 
+-// bool empty() const;
++// bool isEmpty() const;
+ Value empty(FunctionCall *c)
+ {
+   Value that = c->thisObject();
+-  return c->engine()->newBool(that.impl()->get_string().empty());
+-}
+-
+-// String & erase(int position, int n);
+-Value erase(FunctionCall *c)
+-{
+-  Value that = c->thisObject();
+-  auto & self = that.impl()->get_string();
+-
+-  const int position = c->arg(1).toInt();
+-  const int n = c->arg(2).toInt();
+-
+-  self.erase(position, n);
+-
+-  return that;
++  return c->engine()->newBool(that.impl()->get_string().isEmpty());
+ }
+ 
+ // String & String::insert(int position, const String & str);
+@@ -133,6 +382,20 @@ Value length(FunctionCall *c)
+   return c->engine()->newInt(self.size());
+ }
+ 
++// String & remove(int position, int n);
++Value remove(FunctionCall* c)
++{
++  Value that = c->thisObject();
++  auto& self = that.impl()->get_string();
++
++  const int position = c->arg(1).toInt();
++  const int n = c->arg(2).toInt();
++
++  self.remove(position, n);
++
++  return that;
++}
++
+ // String & String::replace(int position, int n, const String & after);
+ Value replace(FunctionCall *c)
+ {
+@@ -161,6 +424,30 @@ Value swap(FunctionCall *c)
+   return Value::Void;
+ }
+ 
++// static String number(int n);
++Value number_int(FunctionCall* c)
++{
++  return c->engine()->newString(String::number(c->arg(0).toInt()));
++}
++
++// static String number(int n, int base);
++Value number_int_base(FunctionCall* c)
++{
++  return c->engine()->newString(String::number(c->arg(0).toInt(), c->arg(1).toInt()));
++}
++
++// static String number(double x);
++Value number_double(FunctionCall* c)
++{
++  return c->engine()->newString(String::number(c->arg(0).toDouble()));
++}
++
++// int hash(const String & str);
++Value hash(FunctionCall* c)
++{
++  return c->engine()->newInt(qHash(c->arg(0).toString()));
++}
++
+ namespace operators
+ {
+ 
+@@ -254,99 +541,124 @@ Value add(FunctionCall *c)
+   return c->engine()->newString(self + other);
+ }
+ 
++// String& String::operator+=(const String & other);
++Value add_assign(FunctionCall* c)
++{
++  Value that = c->thisObject();
++  auto& self = that.impl()->get_string();
++
++  const auto& other = c->arg(1).impl()->get_string();
++
++  self += other;
++
++  return c->arg(0);
++}
++
+ // charref String::operator[](int index);
+ Value subscript(FunctionCall *c)
+ {
+   Value that = c->thisObject();
+-  auto & self = that.impl()->get_string();
++  auto& self = that.impl()->get_string();
+ 
+   const int pos = c->arg(1).toInt();
+ 
+-  Value ret = c->engine()->allocate(charref_id);
+-  ret.impl()->set_charref(CharRef{ &self, (size_t)pos });
+-  return ret;
++  return c->engine()->construct<CharRef>(&self, pos);
+ }
+ 
+ } // namespace operators
+ 
+ } // namespace string
+ 
+-namespace charref
+-{
++} // namespace callbacks
+ 
+-// charref(String & str, int pos);
+-Value ctor(FunctionCall *c)
++Type register_charref_type(Engine *e)
+ {
+-  Value that = c->thisObject();
++  Class charref = Symbol{ e->rootNamespace() }.newClass("CharRef").setId(Type::CharRef).get();
+ 
+-  auto & str = c->arg(0).impl()->get_string();
+-  const int pos = c->arg(1).toInt();
++  charref.newConstructor(callbacks::charref::copy_ctor).params(Type::cref(charref.id())).create();
+ 
+-  that.impl()->set_charref(CharRef{ &str, (size_t)pos });
++  charref.newDestructor(callbacks::charref::dtor).create();
+ 
+-  return that;
++  charref.newOperator(AssignmentOperator, callbacks::charref::op_assign).returns(Type::ref(charref.id())).params(Type::Char).create();
++
++  charref.newConversion(Type{ Type::Char, Type::ConstFlag }, callbacks::charref::to_char).setConst().create();
++
++  return charref.id();
+ }
+ 
+-// charref(const charref & other);
+-Value copy_ctor(FunctionCall *c)
++static void register_char_type(script::Namespace& ns)
+ {
+-  Value that = c->thisObject();
+-  const CharRef & other = c->arg(0).impl()->get_charref();
++  Class unichar = Symbol{ ns }.newClass("Char").setId(Type::QChar).get();
+ 
+-  that.impl()->set_charref(other);
++  unichar.newConstructor(callbacks::qchar::default_ctor).create();
+ 
+-  return that;
+-}
++  unichar.newConstructor(callbacks::qchar::copy_ctor)
++    .params(Type::cref(unichar.id())).create();
+ 
+-// ~charref();
+-Value dtor(FunctionCall *c)
+-{
+-  Value that = c->thisObject();
++  unichar.newConstructor(callbacks::qchar::char_ctor)
++    .params(Type::cref(Type::QChar)).create();
+ 
+-  that.impl()->set_charref(CharRef{ nullptr, (size_t)0 });
++  unichar.newDestructor(callbacks::qchar::dtor).create();
+ 
+-  return that;
+-}
++  unichar.newMethod("digitValue", callbacks::qchar::digit_value)
++    .returns(Type::Int).setConst().create();
+ 
+-// operator const char();
+-Value operator_char(FunctionCall *c)
+-{
+-  Value that = c->thisObject();
+-  CharRef value = that.impl()->get_charref();
+-  return c->engine()->newChar(value.string->at(value.pos));
+-}
++  unichar.newMethod("isDigit", callbacks::qchar::is_digit)
++    .returns(Type::Boolean).setConst().create();
+ 
+-// charref & operator=(char c);
+-Value assign(FunctionCall *c)
+-{
+-  Value that = c->thisObject();
+-  CharRef value = that.impl()->get_charref();
+-  (*value.string)[value.pos] = c->arg(1).toChar();
++  unichar.newMethod("isLetter", callbacks::qchar::is_letter)
++    .returns(Type::Boolean).setConst().create();
+ 
+-  return that;
+-}
++  unichar.newMethod("isLetterOrNumber", callbacks::qchar::is_letter_or_number)
++    .returns(Type::Boolean).setConst().create();
+ 
+-} // namespace charref
++  unichar.newMethod("isLower", callbacks::qchar::is_lower)
++    .returns(Type::Boolean).setConst().create();
+ 
+-} // namespace callbacks
++  unichar.newMethod("isNonCharacter", callbacks::qchar::is_non_character)
++    .returns(Type::Boolean).setConst().create();
+ 
+-Type register_charref_type(Engine *e)
+-{
+-  Class charref = Symbol{ e->rootNamespace() }.newClass("charref").get();
++  unichar.newMethod("isNull", callbacks::qchar::is_null)
++    .returns(Type::Boolean).setConst().create();
+ 
+-  charref_id = charref.id();
++  unichar.newMethod("isNumber", callbacks::qchar::is_number)
++    .returns(Type::Boolean).setConst().create();
+ 
+-  charref.newConstructor(callbacks::charref::ctor).params(Type::ref(Type::String), Type::Int).create();
++  unichar.newMethod("isPunct", callbacks::qchar::is_punct)
++    .returns(Type::Boolean).setConst().create();
+ 
+-  charref.newConstructor(callbacks::charref::copy_ctor).params(Type::cref(charref.id())).create();
++  unichar.newMethod("isSpace", callbacks::qchar::is_space)
++    .returns(Type::Boolean).setConst().create();
+ 
+-  charref.newDestructor(callbacks::charref::dtor).create();
++  unichar.newMethod("isTitleCase", callbacks::qchar::is_title_case)
++    .returns(Type::Boolean).setConst().create();
+ 
+-  charref.newOperator(AssignmentOperator, callbacks::charref::assign).returns(Type::ref(charref.id())).params(Type::Char).create();
++  unichar.newMethod("isUpper", callbacks::qchar::is_upper)
++    .returns(Type::Boolean).setConst().create();
+ 
+-  charref.newConversion(Type{ Type::Char, Type::ConstFlag }, callbacks::charref::operator_char).setConst().create();
++  unichar.newMethod("toLatin1", callbacks::qchar::to_latin1)
++    .returns(Type::Char).setConst().create();
+ 
+-  return charref.id();
++  unichar.newMethod("toLower", callbacks::qchar::to_lower)
++    .returns(Type::QChar).setConst().create();
++
++  unichar.newMethod("toTitleCase", callbacks::qchar::to_title_case)
++    .returns(Type::QChar).setConst().create();
++
++  unichar.newMethod("toUpper", callbacks::qchar::to_upper)
++    .returns(Type::QChar).setConst().create();
++
++  unichar.newOperator(AssignmentOperator, callbacks::qchar::op_assign)
++    .returns(Type::ref(unichar.id()))
++    .params(Type::cref(unichar.id())).create();
++
++  unichar.newOperator(EqualOperator, callbacks::qchar::op_eq)
++    .returns(Type::Boolean)
++    .params(Type::cref(unichar.id())).setConst().create();
++
++  unichar.newOperator(InequalOperator, callbacks::qchar::op_neq)
++    .returns(Type::Boolean)
++    .params(Type::cref(unichar.id())).setConst().create();
+ }
+ 
+ void StringBackend::register_string_type(Class& string)
+@@ -360,14 +672,18 @@ void StringBackend::register_string_type(Class& string)
+   string.newMethod("at", callbacks::string::at).setConst().returns(Type::Char).params(Type::Int).create();
+   string.newMethod("capacity", callbacks::string::capacity).setConst().returns(Type::Int).create();
+   string.newMethod("clear", callbacks::string::clear).create();
+-  string.newMethod("empty", callbacks::string::empty).setConst().returns(Type::Boolean).create();
+-  string.newMethod("erase", callbacks::string::erase).returns(Type::ref(string.id())).params(Type::Int, Type::Int).create();
++  string.newMethod("isEmpty", callbacks::string::empty).setConst().returns(Type::Boolean).create();
+   string.newMethod("insert", callbacks::string::insert).returns(Type::ref(string.id())).params(Type::Int, Type::cref(string.id())).create();
+   string.newMethod("length", callbacks::string::length).setConst().returns(Type::Int).create();
+   string.newMethod("size", callbacks::string::length).setConst().returns(Type::Int).create();
++  string.newMethod("remove", callbacks::string::remove).returns(Type::ref(string.id())).params(Type::Int, Type::Int).create();
+   string.newMethod("replace", callbacks::string::replace).returns(Type::ref(string.id())).params(Type::Int, Type::Int, Type::cref(string.id())).create();
+   string.newMethod("swap", callbacks::string::swap).params(Type::ref(string.id())).create();
+ 
++  string.newMethod("number", callbacks::string::number_int).setStatic().returns(Type::String).params(Type::Int).create();
++  string.newMethod("number", callbacks::string::number_int_base).setStatic().returns(Type::String).params(Type::Int, Type::Int).create();
++  string.newMethod("number", callbacks::string::number_double).setStatic().returns(Type::String).params(Type::Double).create();
++
+   string.newOperator(EqualOperator, callbacks::string::operators::eq).setConst().returns(Type::Boolean).params(Type::cref(string.id())).create();
+   string.newOperator(InequalOperator, callbacks::string::operators::neq).setConst().returns(Type::Boolean).params(Type::cref(string.id())).create();
+   string.newOperator(GreaterOperator, callbacks::string::operators::greater).setConst().returns(Type::Boolean).params(Type::cref(string.id())).create();
+@@ -378,13 +694,14 @@ void StringBackend::register_string_type(Class& string)
+   string.newOperator(AssignmentOperator, callbacks::string::operators::assign).returns(Type::ref(string.id())).params(Type::cref(string.id())).create();
+ 
+   string.newOperator(AdditionOperator, callbacks::string::operators::add).setConst().returns(string.id()).params(Type::cref(string.id())).create();
++  string.newOperator(AdditionAssignmentOperator, callbacks::string::operators::add_assign).returns(Type::ref(string.id())).params(Type::cref(string.id())).create();
+ 
+-  string.newOperator(SubscriptOperator, callbacks::string::at).setConst().returns(Type::Char).params(Type::Int).create();
++  string.newOperator(SubscriptOperator, callbacks::string::at).setConst().returns(Type::QChar).params(Type::Int).create();
+ 
+   const Type charref = register_charref_type(string.engine());
+   string.newOperator(SubscriptOperator, callbacks::string::operators::subscript).returns(charref).params(Type::Int).create();
++
++  string.engine()->rootNamespace().newFunction("hash", callbacks::string::hash).returns(Type::Int).params(Type::cref(Type::String)).create();
+ }
+ 
+ } // namespace script
+-
+-#endif // defined(LIBSCRIPT_USE_BUILTIN_STRING_BACKEND)
+diff --git a/src/value.cpp b/src/value.cpp
+index cc10be7..b666677 100644
+--- a/src/value.cpp
++++ b/src/value.cpp
+@@ -16,6 +16,10 @@
+ #include "script/private/engine_p.h"
+ #include "script/private/object_p.h"
+ 
++#include "script/qt.h"
++
++#include <QVariant>
++
+ #include <cstring>
+ 
+ namespace script
+@@ -297,6 +301,29 @@ void ValueImpl::set_initializer_list(const InitializerList & il)
+   }
+ }
+ 
++QEvent* ValueImpl::get_qevent() const
++{
++  assert(which == EventField);
++
++  return data.qevent;
++}
++
++void ValueImpl::set_qevent(QEvent* e)
++{
++  if (which != EventField)
++  {
++    clear();
++
++    data.qevent = e;
++
++    which = EventField;
++  }
++  else
++  {
++    data.qevent = e;
++  }
++}
++
+ void ValueImpl::clear()
+ {
+   assert(which != MemoryField);
+@@ -331,6 +358,9 @@ void ValueImpl::clear()
+   case InitListField:
+     data.initializer_list.~InitializerList();
+     break;
++  case EventField:
++    data.qevent = nullptr;
++    break;
+   }
+ 
+   data.fundamentals.boolean = false;
+@@ -521,6 +551,27 @@ InitializerList Value::toInitializerList() const
+   return d->get_initializer_list();
+ }
+ 
++QEvent* Value::toQEvent() const
++{
++  return d->get_qevent();
++}
++
++void Value::setQEvent(QEvent* e)
++{
++  d->set_qevent(e);
++}
++
++QObject* Value::toQObject() const
++{
++  return toObject().getUserData<qt::QObjectStar>().p;
++}
++
++const QVariant& Value::toVariant() const
++{
++  assert(d->type == script::Type::QVariant);
++  return script::get<QVariant>(*this);
++}
++
+ void* Value::memory() const
+ {
+   assert(d->which == ValueImpl::MemoryField);

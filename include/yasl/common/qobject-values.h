@@ -24,9 +24,8 @@ struct make_value_t<T, qobject_tag>
   }
 };
 
-
 template<typename T>
-struct qobject_storage : heap_storage<T> { };
+struct qobject_storage : pointer_storage<T> { };
 
 template<typename T>
 struct storage_type_default_impl<T, qobject_tag> : qobject_storage<T> { };
@@ -34,6 +33,8 @@ struct storage_type_default_impl<T, qobject_tag> : qobject_storage<T> { };
 template<typename T>
 struct get_helper<T, qobject_tag>
 {
+  typedef T* type;
+
   static T* get(const script::Value & val)
   {
     return qobject_cast<T*>(val.toQObject());

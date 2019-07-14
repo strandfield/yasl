@@ -11,10 +11,10 @@
 #include <QIODevice>
 
 namespace script {
-template<> struct make_type_t<QIODevice> { inline static script::Type get() { return script::Type::QIODevice; } };
-template<> struct tag_resolver<QIODevice> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QIODevice::OpenMode> { inline static script::Type get() { return script::Type::QIODeviceOpenMode; } };
-template<> struct make_type_t<QIODevice::OpenModeFlag> { inline static script::Type get() { return script::Type::QIODeviceOpenModeFlag; } };
+template<> struct make_type_helper<QIODevice> { inline static script::Type get() { return script::Type::QIODevice; } };
+template<> struct details::tag_resolver<QIODevice> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QIODevice::OpenMode> { inline static script::Type get() { return script::Type::QIODeviceOpenMode; } };
+template<> struct make_type_helper<QIODevice::OpenModeFlag> { inline static script::Type get() { return script::Type::QIODeviceOpenModeFlag; } };
 } // namespace script
 
 #endif // YASL_CORE_IODEVICE_H

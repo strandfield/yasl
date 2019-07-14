@@ -10,8 +10,8 @@
 #include <QTransform>
 
 namespace script {
-template<> struct make_type_t<QTransform> { inline static script::Type get() { return script::Type::QTransform; } };
-template<> struct make_type_t<QTransform::TransformationType> { inline static script::Type get() { return script::Type::QTransformTransformationType; } };
+template<> struct make_type_helper<QTransform> { inline static script::Type get() { return script::Type::QTransform; } };
+template<> struct make_type_helper<QTransform::TransformationType> { inline static script::Type get() { return script::Type::QTransformTransformationType; } };
 } // namespace script
 
 #endif // YASL_GUI_TRANSFORM_H

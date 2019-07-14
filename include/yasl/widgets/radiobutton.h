@@ -11,8 +11,8 @@
 #include <QRadioButton>
 
 namespace script {
-template<> struct make_type_t<QRadioButton> { inline static script::Type get() { return script::Type::QRadioButton; } };
-template<> struct tag_resolver<QRadioButton> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QRadioButton> { inline static script::Type get() { return script::Type::QRadioButton; } };
+template<> struct details::tag_resolver<QRadioButton> { typedef qobject_tag tag_type; };
 } // namespace script
 
 #endif // YASL_WIDGETS_RADIOBUTTON_H

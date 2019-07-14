@@ -135,7 +135,7 @@ script::Type register_set_specialization(script::Engine *engine)
   using ConstIterator = typename Set::const_iterator;
 
   const Type type_id = script::make_type<Set>();
-  Class set = engine->getClass(type_id);
+  Class set = engine->typeSystem()->getClass(type_id);
   if (!set.isNull() && type_id == set.id())
     return type_id;
 

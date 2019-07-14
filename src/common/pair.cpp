@@ -32,9 +32,9 @@ struct PairData : public script::UserData
 
 static script::Value make_pair(const QPair<yasl::Value, yasl::Value> & val, const script::Type & pair_type, script::Engine *e)
 {
-  return e->construct(pair_type, [&val](script::Value & ret) {
-    new (ret.getMemory(script::passkey{})) QPair<yasl::Value, yasl::Value>{val};
-  });
+  script::Value ret = e->allocate(pair_type);
+  script::ThisObject(ret).init<QPair<yasl::Value, yasl::Value>>(val);
+  return ret;
 }
 
 
@@ -49,15 +49,15 @@ namespace pair
 // QPair()
 script::Value default_ctor(script::FunctionCall *c)
 {
-  new (c->thisObject().getMemory(script::passkey{})) QPair<yasl::Value, yasl::Value>{};
+  c->thisObject().init<QPair<yasl::Value, yasl::Value>>();
   return c->thisObject();
 }
 
 // QPair(const QPair &)
 script::Value copy_ctor(script::FunctionCall *c)
 {
-  auto & other = script::value_cast<QPair<yasl::Value, yasl::Value> &>(c->arg(1));
-  new (c->thisObject().getMemory(script::passkey{})) QPair<yasl::Value, yasl::Value>{other};
+  auto & other = script::get<QPair<yasl::Value, yasl::Value>>(c->arg(1));
+  c->thisObject().init<QPair<yasl::Value, yasl::Value>>(other);
   return c->thisObject();
 }
 
@@ -67,16 +67,14 @@ script::Value value_ctor(script::FunctionCall *c)
   auto info = std::static_pointer_cast<PairData>(c->callee().memberOf().data());
   yasl::Value v1{ info->T1, c->arg(1) };
   yasl::Value v2{ info->T2, c->arg(2) };
-  new (c->thisObject().getMemory(script::passkey{})) QPair<yasl::Value, yasl::Value>{std::move(v1), std::move(v2)};
+  c->thisObject().init<QPair<yasl::Value, yasl::Value>>(std::move(v1), std::move(v2));
   return c->thisObject();
 }
 
 // ~QPair()
 script::Value dtor(script::FunctionCall *c)
 {
-  auto & self = script::value_cast<QPair<yasl::Value, yasl::Value> &>(c->thisObject());
-  self.~QPair<yasl::Value, yasl::Value>();
-  c->thisObject().releaseMemory(script::passkey{});
+  c->thisObject().destroy<QPair<yasl::Value, yasl::Value>>();
   return script::Value::Void;
 }
 
@@ -138,12 +136,9 @@ script::Value op_neq(script::FunctionCall *c)
 } // namespace pair
 
 } // namespace callbacks
-} // namespace script
 
-script::Class pair_template_instantiate(script::ClassTemplateInstanceBuilder & builder)
+Class PairTemplate::instantiate(ClassTemplateInstanceBuilder& builder)
 {
-  using namespace script;
-
   builder.setFinal();
   const Type T1 = builder.arguments().front().type;
   const Type T2 = builder.arguments().back().type;
@@ -202,6 +197,8 @@ script::Class pair_template_instantiate(script::ClassTemplateInstanceBuilder & b
   return pair;
 }
 
+} // namespace script
+
 void register_pair_template(script::Namespace n)
 {
   using namespace script;
@@ -214,10 +211,8 @@ void register_pair_template(script::Namespace n)
   ClassTemplate pair_template = Symbol{ n }.newClassTemplate("Pair")
     .setParams(std::move(params))
     .setScope(Scope{ n })
-    .setCallback(pair_template_instantiate)
+    .withBackend<PairTemplate>()
     .get();
-
-  n.engine()->setTemplate(script::passkey{}, Engine::PairTemplate, pair_template);
 
   // Registering full specializations
 

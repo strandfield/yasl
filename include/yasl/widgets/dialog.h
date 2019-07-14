@@ -11,9 +11,9 @@
 #include <QDialog>
 
 namespace script {
-template<> struct make_type_t<QDialog> { inline static script::Type get() { return script::Type::QDialog; } };
-template<> struct tag_resolver<QDialog> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QDialog::DialogCode> { inline static script::Type get() { return script::Type::QDialogDialogCode; } };
+template<> struct make_type_helper<QDialog> { inline static script::Type get() { return script::Type::QDialog; } };
+template<> struct details::tag_resolver<QDialog> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QDialog::DialogCode> { inline static script::Type get() { return script::Type::QDialogDialogCode; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_DIALOG_H

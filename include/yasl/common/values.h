@@ -16,89 +16,35 @@
 namespace script
 {
 
-struct large_object_tag {};
-struct small_object_tag {};
-struct enum_tag {};
-
-template<bool isSmall, bool isEnum>
-struct tag_resolver_impl;
-
-template<bool isSmall>
-struct tag_resolver_impl<isSmall, true>
-{
-  typedef enum_tag type;
-};
-
-template<>
-struct tag_resolver_impl<true, false>
-{
-  typedef small_object_tag type;
-};
-
-template<>
-struct tag_resolver_impl<false, false>
-{
-  typedef large_object_tag type;
-};
-
-template<typename T>
-struct tag_resolver
-{
-  typedef typename tag_resolver_impl<(sizeof(T) <= 40), std::is_enum<T>::value>::type tag_type;
-};
-
-} // namespace script
-
-
-namespace script
-{
-
-#if defined(YASL_BINDING_COMPILE_TIME_CHECK)
-template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
+template<typename T, typename Tag = typename details::tag_resolver<T>::tag_type>
 struct make_value_t;
-#else
-template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
-struct make_value_t
-{
-  static script::Value make(const T & input, script::Engine *e)
-  {
-    throw std::runtime_error{ "Cannot create value of an unknown type..." };
-  }
-};
-#endif // defined(YASL_BINDING_COMPILE_TIME_CHECK)
 
 template<typename T>
-struct make_value_t<T, small_object_tag>
+struct make_value_t<T, details::small_object_tag>
 {
   static script::Value make(const T & input, script::Engine *e)
   {
-    return e->construct(make_type<T>(), [&input](script::Value & ret) {
-      new (ret.getMemory(passkey{})) T(input);
-    });
+    return e->construct<T>(input);
   }
 };
 
 template<typename T>
-struct make_value_t<T, large_object_tag>
+struct make_value_t<T, details::large_object_tag>
 {
   static script::Value make(const T & input, script::Engine *e)
   {
-    return e->construct(make_type<T>(), [&input](script::Value & ret) {
-      ret.setPtr(new T(input));
-    });
+    return e->construct<T>(input);
   }
 };
 
 template<typename T>
-struct make_value_t<T, enum_tag>
+struct make_value_t<T, details::enum_tag>
 {
   static script::Value make(const T & input, script::Engine *e)
   {
     return make_enum(e, make_type<T>(), input);
   }
 };
-
-
 
 template<typename T>
 script::Value make_value(const T & val, script::Engine *e)
@@ -127,33 +73,39 @@ template<> inline script::Value make_value<qint64>(const qint64 & x, script::Eng
 namespace script
 {
 
+struct value_storage_tag {};
+struct reference_storage_tag {};
+struct pointer_storage_tag {};
+
 template<typename T>
-struct buffer_storage
+struct value_storage
 {
-  typedef T& type;
+  typedef value_storage_tag type;
 };
 
 template<typename T>
-struct heap_storage
+struct reference_storage
 {
-  typedef T* type;
+  typedef reference_storage_tag type;
 };
 
-template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
+template<typename T>
+struct pointer_storage
+{
+  typedef pointer_storage_tag type;
+};
+
+template<typename T, typename Tag = typename details::tag_resolver<T>::tag_type>
 struct storage_type_default_impl;
 
 template<typename T>
-struct storage_type_default_impl<T, small_object_tag> : buffer_storage<T> { };
+struct storage_type_default_impl<T, details::small_object_tag> : reference_storage<T> { };
 
 template<typename T>
-struct storage_type_default_impl<T, large_object_tag> : heap_storage<T> { };
+struct storage_type_default_impl<T, details::large_object_tag> : reference_storage<T> { };
 
 template<typename T>
-struct storage_type_default_impl<T, enum_tag>
-{
-  typedef T type;
-};
-
+struct storage_type_default_impl<T, details::enum_tag> : value_storage<T> { };
 
 template<typename T>
 struct storage_type
@@ -161,89 +113,17 @@ struct storage_type
   typedef typename storage_type_default_impl<T>::type type;
 };
 
-
-template<typename T, typename Tag = typename tag_resolver<T>::tag_type>
-struct get_helper;
-
-template<typename T>
-struct get_helper<T, small_object_tag>
-{
-  static T& get(const script::Value & val)
-  {
-    return *reinterpret_cast<T*>(val.memory());
-  }
-};
-
-template<typename T>
-struct get_helper<T, large_object_tag>
-{
-  static T* get(const script::Value & val)
-  {
-    return static_cast<T*>(val.getPtr());
-  }
-};
-
-template<typename T>
-struct get_helper<T, enum_tag>
-{
-  static T get(const script::Value & val)
-  {
-    return static_cast<T>(val.toEnumerator().value());
-  }
-};
-
-
-template<typename T>
-typename storage_type<T>::type get(const script::Value & val)
-{
-  return get_helper<T>::get(val);
-}
-
-template<> inline bool& get<bool>(const script::Value & val) { return val.getBoolField(passkey{}); }
-template<> inline char& get<char>(const script::Value & val) { return val.getCharField(passkey{}); }
-template<> inline int& get<int>(const script::Value & val) { return val.getIntField(passkey{}); }
-template<> inline float& get<float>(const script::Value & val) { return val.getFloatField(passkey{}); }
-template<> inline double& get<double>(const script::Value & val) { return val.getDoubleField(passkey{}); }
-template<> inline script::String& get<script::String>(const script::Value & v) { return v.getStringField(passkey{}); }
-
-template<> struct storage_type<qint64> { typedef qint64 type; };
-template<> inline qint64 get<qint64>(const script::Value & v) { return v.toInt(); }
-
-template<> struct storage_type<qulonglong> { typedef qulonglong type; };
-template<> inline qulonglong get<qulonglong>(const script::Value & v) { return v.toInt(); }
-
-template<> struct storage_type<short> { typedef short type; };
-template<> inline short get<short>(const script::Value & v) { return v.toInt(); }
-
-template<> struct storage_type<uint> { typedef uint type; };
-template<> inline uint get<uint>(const script::Value & v) { return v.toInt(); }
-
-template<> struct storage_type<ushort> { typedef ushort type; };
-template<> inline ushort get<ushort>(const script::Value & v) { return v.toInt(); }
-
 template<typename T>
 struct decay
 {
   typedef typename std::decay<typename std::remove_pointer<T>::type>::type type;
 };
 
-
-#if defined(YASL_BINDING_COMPILE_TIME_CHECK)
 template<typename T, typename StorageType = typename storage_type<typename decay<T>::type>::type>
 struct value_cast_helper;
-#else
-template<typename T, typename StorageType = typename storage_type<typename decay<T>::type>::type>
-struct value_cast_helper
-{
-  static T impl(const script::Value & val)
-  {
-    throw std::runtime_error{ "Could not convert from actual type to desired type" };
-  }
-};
-#endif // defined(YASL_BINDING_COMPILE_TIME_CHECK)
 
 template<typename T>
-struct value_cast_helper<T, T>
+struct value_cast_helper<T, value_storage_tag>
 {
   static T impl(const script::Value & val)
   {
@@ -252,7 +132,7 @@ struct value_cast_helper<T, T>
 };
 
 template<typename T>
-struct value_cast_helper<T, T&>
+struct value_cast_helper<T, reference_storage_tag>
 {
   static T impl(const script::Value & val)
   {
@@ -261,7 +141,16 @@ struct value_cast_helper<T, T&>
 };
 
 template<typename T>
-struct value_cast_helper<T*, T&>
+struct value_cast_helper<T&, reference_storage_tag>
+{
+  static T& impl(const script::Value& val)
+  {
+    return get<T>(val);
+  }
+};
+
+template<typename T>
+struct value_cast_helper<T*, reference_storage_tag>
 {
   static T* impl(const script::Value & val)
   {
@@ -270,7 +159,7 @@ struct value_cast_helper<T*, T&>
 };
 
 template<typename T>
-struct value_cast_helper<const T*, T&>
+struct value_cast_helper<const T*, reference_storage_tag>
 {
   static const T* impl(const script::Value & val)
   {
@@ -278,18 +167,8 @@ struct value_cast_helper<const T*, T&>
   }
 };
 
-
 template<typename T>
-struct value_cast_helper<const T, T>
-{
-  static const T impl(const script::Value & val)
-  {
-    return get<T>(val);
-  }
-};
-
-template<typename T>
-struct value_cast_helper<T&&, T&>
+struct value_cast_helper<T&&, reference_storage_tag>
 {
   static T&& impl(const script::Value & val)
   {
@@ -298,7 +177,7 @@ struct value_cast_helper<T&&, T&>
 };
 
 template<typename T>
-struct value_cast_helper<const T&, T&>
+struct value_cast_helper<const T&, reference_storage_tag>
 {
   static const T& impl(const script::Value & val)
   {
@@ -307,7 +186,7 @@ struct value_cast_helper<const T&, T&>
 };
 
 template<typename T>
-struct value_cast_helper<T&, T*>
+struct value_cast_helper<T&, pointer_storage_tag>
 {
   static T& impl(const script::Value & val)
   {
@@ -316,14 +195,31 @@ struct value_cast_helper<T&, T*>
 };
 
 template<typename T>
-struct value_cast_helper<const T*, T*>
+struct value_cast_helper<const T&, pointer_storage_tag>
+{
+  static const T& impl(const script::Value& val)
+  {
+    return *get<T>(val);
+  }
+};
+
+template<typename T>
+struct value_cast_helper<T*, pointer_storage_tag>
+{
+  static T* impl(const script::Value& val)
+  {
+    return get<T>(val);
+  }
+};
+
+template<typename T>
+struct value_cast_helper<const T*, pointer_storage_tag>
 {
   static const T* impl(const script::Value & val)
   {
     return get<T>(val);
   }
 };
-
 
 template<typename T>
 T value_cast(const script::Value & val)

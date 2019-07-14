@@ -11,12 +11,12 @@
 #include <QWindow>
 
 namespace script {
-template<> struct make_type_t<QWindow> { inline static script::Type get() { return script::Type::QWindow; } };
-template<> struct tag_resolver<QWindow> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QWindow*> { inline static script::Type get() { return script::Type::QWindowStar; } };
-template<> struct make_type_t<QWindow::AncestorMode> { inline static script::Type get() { return script::Type::QWindowAncestorMode; } };
+template<> struct make_type_helper<QWindow> { inline static script::Type get() { return script::Type::QWindow; } };
+template<> struct details::tag_resolver<QWindow> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QWindow*> { inline static script::Type get() { return script::Type::QWindowStar; } };
+template<> struct make_type_helper<QWindow::AncestorMode> { inline static script::Type get() { return script::Type::QWindowAncestorMode; } };
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-template<> struct make_type_t<QWindow::Visibility> { inline static script::Type get() { return script::Type::QWindowVisibility; } };
+template<> struct make_type_helper<QWindow::Visibility> { inline static script::Type get() { return script::Type::QWindowVisibility; } };
 #endif
 } // namespace script
 

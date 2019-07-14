@@ -10,7 +10,7 @@
 #include <QCursor>
 
 namespace script {
-template<> struct make_type_t<QCursor> { inline static script::Type get() { return script::Type::QCursor; } };
+template<> struct make_type_helper<QCursor> { inline static script::Type get() { return script::Type::QCursor; } };
 } // namespace script
 
 #endif // YASL_GUI_CURSOR_H

@@ -125,11 +125,11 @@ script::Type register_list_specialization(script::Engine *e)
   register_proxy_specialization<T>(e);
 
   script::Type type_id = make_type<QList<T>>();
-  Class list = e->getClass(type_id);
+  Class list = e->typeSystem()->getClass(type_id);
   if (!list.isNull() && type_id == list.id())
     return type_id;
 
-  script::ClassTemplate list_template = e->getTemplate(Engine::ListTemplate);
+  script::ClassTemplate list_template = ClassTemplate::get<ListTemplate>(e);
 
   std::vector<TemplateArgument> targs{
     TemplateArgument{ script::make_type<T>() }

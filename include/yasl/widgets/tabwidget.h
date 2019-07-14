@@ -11,10 +11,10 @@
 #include <QTabWidget>
 
 namespace script {
-template<> struct make_type_t<QTabWidget> { inline static script::Type get() { return script::Type::QTabWidget; } };
-template<> struct tag_resolver<QTabWidget> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QTabWidget::TabPosition> { inline static script::Type get() { return script::Type::QTabWidgetTabPosition; } };
-template<> struct make_type_t<QTabWidget::TabShape> { inline static script::Type get() { return script::Type::QTabWidgetTabShape; } };
+template<> struct make_type_helper<QTabWidget> { inline static script::Type get() { return script::Type::QTabWidget; } };
+template<> struct details::tag_resolver<QTabWidget> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QTabWidget::TabPosition> { inline static script::Type get() { return script::Type::QTabWidgetTabPosition; } };
+template<> struct make_type_helper<QTabWidget::TabShape> { inline static script::Type get() { return script::Type::QTabWidgetTabShape; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_TABWIDGET_H

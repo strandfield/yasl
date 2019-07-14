@@ -10,7 +10,7 @@
 #include <QQuaternion>
 
 namespace script {
-template<> struct make_type_t<QQuaternion> { inline static script::Type get() { return script::Type::QQuaternion; } };
+template<> struct make_type_helper<QQuaternion> { inline static script::Type get() { return script::Type::QQuaternion; } };
 } // namespace script
 
 #endif // YASL_GUI_QUATERNION_H

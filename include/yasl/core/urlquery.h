@@ -10,7 +10,7 @@
 #include <QUrlQuery>
 
 namespace script {
-template<> struct make_type_t<QUrlQuery> { inline static script::Type get() { return script::Type::QUrlQuery; } };
+template<> struct make_type_helper<QUrlQuery> { inline static script::Type get() { return script::Type::QUrlQuery; } };
 } // namespace script
 
 #endif // YASL_CORE_URLQUERY_H

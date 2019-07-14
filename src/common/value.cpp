@@ -57,7 +57,7 @@ static void get_hash(TypeInfo & info)
 {
   script::Engine *e = info.engine;
 
-  script::Scope scp{ e->enclosingNamespace(info.element_type) };
+  script::Scope scp{ script::Scope::enclosingNamespace(info.element_type, e) };
   std::vector<script::Function> funcs = script::NameLookup::resolve("hash", scp).functions();
   auto resol = script::OverloadResolution::New(e);
   if (!resol.process(funcs, { script::Type::cref(info.element_type) }))
@@ -89,7 +89,7 @@ std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & 
     auto reftype = script::Type::ref(t);
 
     {
-      std::vector<script::Function> ops = script::NameLookup::resolve(script::EqualOperator, creftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
+      std::vector<script::Function> ops = script::NameLookup::resolve(script::EqualOperator, creftype, creftype, script::Scope{ e->rootNamespace() });
       auto resol = script::OverloadResolution::New(e);
       if (!resol.process(ops, { creftype, creftype }))
         throw std::runtime_error{ "TypeInfo::get(): type must be equality-comparable" };
@@ -100,7 +100,7 @@ std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & 
     }
 
     {
-      std::vector<script::Function> ops = script::NameLookup::resolve(script::AssignmentOperator, reftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
+      std::vector<script::Function> ops = script::NameLookup::resolve(script::AssignmentOperator, reftype, creftype, script::Scope{ e->rootNamespace() });
       auto resol = script::OverloadResolution::New(e);
       if (!resol.process(ops, { reftype, creftype }))
         throw std::runtime_error{ "TypeInfo::get(): type must be assignable" };
@@ -111,7 +111,7 @@ std::shared_ptr<TypeInfo> TypeInfo::get(script::Engine *e, const script::Type & 
     }
 
     {
-      std::vector<script::Function> ops = script::NameLookup::resolve(script::LessOperator, creftype, creftype, script::Scope{ e->rootNamespace() }, script::OperatorLookup::ConsiderCurrentScope);
+      std::vector<script::Function> ops = script::NameLookup::resolve(script::LessOperator, creftype, creftype, script::Scope{ e->rootNamespace() });
       auto resol = script::OverloadResolution::New(e);
       if (!resol.process(ops, { creftype, creftype }))
         throw std::runtime_error{ "TypeInfo::get(): type must have operator<" };
@@ -203,12 +203,12 @@ void Value::assign(const script::Value & v)
   assert(isValid());
   assert(typeinfo_->element_type == v.type());
 
-  typeinfo_->engine->invoke(typeinfo_->assign, { value_, v });
+  typeinfo_->assign.invoke({ value_, v });
 }
 
 int Value::hash() const
 {
-  script::Value result = engine()->invoke(typeinfo_->hash, { value_ });
+  script::Value result = typeinfo_->hash.invoke({ value_ });
   int ret = result.toInt();
   engine()->destroy(result);
   return ret;
@@ -248,7 +248,7 @@ bool Value::operator==(const Value & other) const
   if (other.isNull() != isNull())
     return false;
 
-  auto ret = engine()->invoke(typeinfo_->eq, { value_, other.value_ });
+  auto ret = typeinfo_->eq.invoke({ value_, other.value_ });
   bool result = ret.toBool();
   engine()->destroy(ret);
   return result;
@@ -264,7 +264,7 @@ bool Value::operator<(const Value & other) const
   assert(!typeinfo_->less.isNull());
 
   script::Engine *e = typeinfo_->engine;
-  script::Value ret = e->invoke(typeinfo_->less, { value_, other.value_ });
+  script::Value ret = typeinfo_->less.invoke({ value_, other.value_ });
   bool result = ret.toBool();
   e->destroy(ret);
   return result;

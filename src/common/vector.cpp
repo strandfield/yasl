@@ -15,11 +15,13 @@
 
 #include <cstring>
 
+using Vec = QVector<yasl::Value>;
+
 static script::Value make_vector(const QVector<yasl::Value> & val, const script::Type & vector_type, script::Engine *e)
 {
-  return e->construct(vector_type, [&val](script::Value & ret) {
-    new (ret.getMemory(script::passkey{})) QVector<yasl::Value>{val};
-  });
+  script::Value ret = e->allocate(vector_type);
+  script::ThisObject(ret).init<Vec>(val);
+  return ret;
 }
 
 namespace callbacks
@@ -29,7 +31,7 @@ namespace callbacks
 static script::Value default_ctor(script::FunctionCall *c)
 {
   using namespace script;
-  new (c->thisObject().getMemory(passkey{})) QVector<yasl::Value>{};
+  c->thisObject().init<Vec>();
   return c->thisObject();
 }
 
@@ -37,8 +39,8 @@ static script::Value default_ctor(script::FunctionCall *c)
 static script::Value copy_ctor(script::FunctionCall *c)
 {
   using namespace script;
-  QVector<yasl::Value> & other = script::value_cast<QVector<yasl::Value> &>(c->arg(1));
-  new (c->thisObject().getMemory(passkey{})) QVector<yasl::Value>{other};
+  QVector<yasl::Value> & other = script::get<QVector<yasl::Value>>(c->arg(1));
+  c->thisObject().init<Vec>(other);
   return c->thisObject();
 }
 
@@ -46,9 +48,7 @@ static script::Value copy_ctor(script::FunctionCall *c)
 static script::Value dtor(script::FunctionCall *c)
 {
   using namespace script;
-  QVector<yasl::Value> & self = script::value_cast<QVector<yasl::Value> &>(c->thisObject());
-  self.~QVector<yasl::Value>();
-  c->thisObject().releaseMemory(passkey{});
+  c->thisObject().destroy<Vec>();
   return script::Value::Void;
 }
 
@@ -57,7 +57,7 @@ static script::Value size_ctor(script::FunctionCall *c)
 {
   using namespace script;
   const int size = script::value_cast<int>(c->arg(1));
-  new (c->thisObject().getMemory(passkey{})) QVector<yasl::Value>(size);
+  c->thisObject().init<Vec>(size);
   return c->thisObject();
 }
 
@@ -67,7 +67,7 @@ static script::Value size_value_ctor(script::FunctionCall *c)
   using namespace script;
   const int size = script::value_cast<int>(c->arg(1));
   auto ti = yasl::TypeInfo::get(c->callee().memberOf());
-  new (c->thisObject().getMemory(passkey{})) QVector<yasl::Value>(size, yasl::Value{ ti, c->arg(2) });
+  c->thisObject().init<Vec>(size, yasl::Value{ ti, c->arg(2) });
   return c->thisObject();
 }
 
@@ -581,7 +581,10 @@ static script::Value op_subscript(script::FunctionCall *c)
 } // namespace callbacks
 
 
-script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder & builder)
+namespace script
+{
+
+Class VectorTemplate::instantiate(ClassTemplateInstanceBuilder& builder)
 {
   using namespace script;
 
@@ -921,6 +924,8 @@ script::Class vector_template_instantiate(script::ClassTemplateInstanceBuilder &
   return vector;
 }
 
+} // namespace script
+
 void register_vector_template(script::Namespace n)
 {
   using namespace script;
@@ -932,10 +937,8 @@ void register_vector_template(script::Namespace n)
   ClassTemplate vector_template = Symbol{ n }.newClassTemplate("Vector")
     .setParams(std::move(params))
     .setScope(Scope{ n })
-    .setCallback(vector_template_instantiate)
+    .withBackend<VectorTemplate>()
     .get();
-
-  n.engine()->implementation()->vector_template_ = vector_template;
 
   // Registering full specializations
   register_vector_specialization<int>(vector_template, Type::QVectorInt);

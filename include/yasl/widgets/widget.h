@@ -12,14 +12,14 @@
 #include <QWidget>
 
 namespace script {
-template<> struct make_type_t<Proxy<QWidget*>> { inline static script::Type get() { return script::Type::ProxyQWidget; } };
-template<> struct make_type_t<QList<QWidget*>> { inline static script::Type get() { return script::Type::QListQWidget; } };
-template<> struct make_type_t<QList<QWidget*>::const_iterator> { inline static script::Type get() { return script::Type::QListQWidgetConstIterator; } };
-template<> struct make_type_t<QList<QWidget*>::iterator> { inline static script::Type get() { return script::Type::QListQWidgetIterator; } };
-template<> struct make_type_t<QWidget> { inline static script::Type get() { return script::Type::QWidget; } };
-template<> struct tag_resolver<QWidget> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QWidget*> { inline static script::Type get() { return script::Type::QWidgetStar; } };
-template<> struct make_type_t<QWidget::RenderFlag> { inline static script::Type get() { return script::Type::QWidgetRenderFlag; } };
+template<> struct make_type_helper<Proxy<QWidget*>> { inline static script::Type get() { return script::Type::ProxyQWidget; } };
+template<> struct make_type_helper<QList<QWidget*>> { inline static script::Type get() { return script::Type::QListQWidget; } };
+template<> struct make_type_helper<QList<QWidget*>::const_iterator> { inline static script::Type get() { return script::Type::QListQWidgetConstIterator; } };
+template<> struct make_type_helper<QList<QWidget*>::iterator> { inline static script::Type get() { return script::Type::QListQWidgetIterator; } };
+template<> struct make_type_helper<QWidget> { inline static script::Type get() { return script::Type::QWidget; } };
+template<> struct details::tag_resolver<QWidget> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QWidget*> { inline static script::Type get() { return script::Type::QWidgetStar; } };
+template<> struct make_type_helper<QWidget::RenderFlag> { inline static script::Type get() { return script::Type::QWidgetRenderFlag; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_WIDGET_H

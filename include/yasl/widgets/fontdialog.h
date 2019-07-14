@@ -11,10 +11,10 @@
 #include <QFontDialog>
 
 namespace script {
-template<> struct make_type_t<QFontDialog> { inline static script::Type get() { return script::Type::QFontDialog; } };
-template<> struct tag_resolver<QFontDialog> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QFontDialog::FontDialogOption> { inline static script::Type get() { return script::Type::QFontDialogFontDialogOption; } };
-template<> struct make_type_t<QFontDialog::FontDialogOptions> { inline static script::Type get() { return script::Type::QFontDialogFontDialogOptions; } };
+template<> struct make_type_helper<QFontDialog> { inline static script::Type get() { return script::Type::QFontDialog; } };
+template<> struct details::tag_resolver<QFontDialog> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QFontDialog::FontDialogOption> { inline static script::Type get() { return script::Type::QFontDialogFontDialogOption; } };
+template<> struct make_type_helper<QFontDialog::FontDialogOptions> { inline static script::Type get() { return script::Type::QFontDialogFontDialogOptions; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_FONTDIALOG_H

@@ -13,6 +13,7 @@
 #include <script/name.h>
 #include <script/namespace.h>
 #include <script/operator.h>
+#include <script/typesystem.h>
 
 #include <QDebug>
 #include <QJsonArray>
@@ -52,8 +53,8 @@ QString get_class_name(const script::Class & cla)
 QString get_type_name(const script::Type & t, const script::Engine *e)
 {
   if (t.isObjectType())
-    return get_class_name(e->getClass(t));
-  return e->typeName(t).data();
+    return get_class_name(e->typeSystem()->getClass(t));
+  return e->typeSystem()->typeName(t).data();
 }
 
 

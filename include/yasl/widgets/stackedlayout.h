@@ -11,9 +11,9 @@
 #include <QStackedLayout>
 
 namespace script {
-template<> struct make_type_t<QStackedLayout> { inline static script::Type get() { return script::Type::QStackedLayout; } };
-template<> struct tag_resolver<QStackedLayout> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QStackedLayout::StackingMode> { inline static script::Type get() { return script::Type::QStackedLayoutStackingMode; } };
+template<> struct make_type_helper<QStackedLayout> { inline static script::Type get() { return script::Type::QStackedLayout; } };
+template<> struct details::tag_resolver<QStackedLayout> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QStackedLayout::StackingMode> { inline static script::Type get() { return script::Type::QStackedLayoutStackingMode; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_STACKEDLAYOUT_H

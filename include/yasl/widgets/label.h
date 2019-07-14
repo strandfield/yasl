@@ -11,8 +11,8 @@
 #include <QLabel>
 
 namespace script {
-template<> struct make_type_t<QLabel> { inline static script::Type get() { return script::Type::QLabel; } };
-template<> struct tag_resolver<QLabel> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QLabel> { inline static script::Type get() { return script::Type::QLabel; } };
+template<> struct details::tag_resolver<QLabel> { typedef qobject_tag tag_type; };
 } // namespace script
 
 #endif // YASL_WIDGETS_LABEL_H

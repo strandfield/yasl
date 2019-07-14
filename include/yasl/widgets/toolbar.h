@@ -11,8 +11,8 @@
 #include <QToolBar>
 
 namespace script {
-template<> struct make_type_t<QToolBar> { inline static script::Type get() { return script::Type::QToolBar; } };
-template<> struct tag_resolver<QToolBar> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QToolBar> { inline static script::Type get() { return script::Type::QToolBar; } };
+template<> struct details::tag_resolver<QToolBar> { typedef qobject_tag tag_type; };
 } // namespace script
 
 #endif // YASL_WIDGETS_TOOLBAR_H

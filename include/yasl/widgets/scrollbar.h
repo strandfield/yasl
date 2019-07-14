@@ -11,8 +11,8 @@
 #include <QScrollBar>
 
 namespace script {
-template<> struct make_type_t<QScrollBar> { inline static script::Type get() { return script::Type::QScrollBar; } };
-template<> struct tag_resolver<QScrollBar> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QScrollBar> { inline static script::Type get() { return script::Type::QScrollBar; } };
+template<> struct details::tag_resolver<QScrollBar> { typedef qobject_tag tag_type; };
 } // namespace script
 
 #endif // YASL_WIDGETS_SCROLLBAR_H

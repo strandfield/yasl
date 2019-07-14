@@ -10,9 +10,9 @@
 #include <QIcon>
 
 namespace script {
-template<> struct make_type_t<QIcon> { inline static script::Type get() { return script::Type::QIcon; } };
-template<> struct make_type_t<QIcon::Mode> { inline static script::Type get() { return script::Type::QIconMode; } };
-template<> struct make_type_t<QIcon::State> { inline static script::Type get() { return script::Type::QIconState; } };
+template<> struct make_type_helper<QIcon> { inline static script::Type get() { return script::Type::QIcon; } };
+template<> struct make_type_helper<QIcon::Mode> { inline static script::Type get() { return script::Type::QIconMode; } };
+template<> struct make_type_helper<QIcon::State> { inline static script::Type get() { return script::Type::QIconState; } };
 } // namespace script
 
 #endif // YASL_GUI_ICON_H

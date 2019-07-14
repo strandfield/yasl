@@ -10,10 +10,10 @@
 #include <QKeySequence>
 
 namespace script {
-template<> struct make_type_t<QKeySequence> { inline static script::Type get() { return script::Type::QKeySequence; } };
-template<> struct make_type_t<QKeySequence::SequenceFormat> { inline static script::Type get() { return script::Type::QKeySequenceSequenceFormat; } };
-template<> struct make_type_t<QKeySequence::SequenceMatch> { inline static script::Type get() { return script::Type::QKeySequenceSequenceMatch; } };
-template<> struct make_type_t<QKeySequence::StandardKey> { inline static script::Type get() { return script::Type::QKeySequenceStandardKey; } };
+template<> struct make_type_helper<QKeySequence> { inline static script::Type get() { return script::Type::QKeySequence; } };
+template<> struct make_type_helper<QKeySequence::SequenceFormat> { inline static script::Type get() { return script::Type::QKeySequenceSequenceFormat; } };
+template<> struct make_type_helper<QKeySequence::SequenceMatch> { inline static script::Type get() { return script::Type::QKeySequenceSequenceMatch; } };
+template<> struct make_type_helper<QKeySequence::StandardKey> { inline static script::Type get() { return script::Type::QKeySequenceStandardKey; } };
 } // namespace script
 
 #endif // YASL_GUI_KEYSEQUENCE_H

@@ -11,12 +11,12 @@
 #include <QLineEdit>
 
 namespace script {
-template<> struct make_type_t<QLineEdit> { inline static script::Type get() { return script::Type::QLineEdit; } };
-template<> struct tag_resolver<QLineEdit> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QLineEdit> { inline static script::Type get() { return script::Type::QLineEdit; } };
+template<> struct details::tag_resolver<QLineEdit> { typedef qobject_tag tag_type; };
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-template<> struct make_type_t<QLineEdit::ActionPosition> { inline static script::Type get() { return script::Type::QLineEditActionPosition; } };
+template<> struct make_type_helper<QLineEdit::ActionPosition> { inline static script::Type get() { return script::Type::QLineEditActionPosition; } };
 #endif
-template<> struct make_type_t<QLineEdit::EchoMode> { inline static script::Type get() { return script::Type::QLineEditEchoMode; } };
+template<> struct make_type_helper<QLineEdit::EchoMode> { inline static script::Type get() { return script::Type::QLineEditEchoMode; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_LINEEDIT_H

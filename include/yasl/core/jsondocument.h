@@ -10,10 +10,10 @@
 #include <QJsonDocument>
 
 namespace script {
-template<> struct make_type_t<QJsonDocument> { inline static script::Type get() { return script::Type::QJsonDocument; } };
-template<> struct make_type_t<QJsonDocument::DataValidation> { inline static script::Type get() { return script::Type::QJsonDocumentDataValidation; } };
+template<> struct make_type_helper<QJsonDocument> { inline static script::Type get() { return script::Type::QJsonDocument; } };
+template<> struct make_type_helper<QJsonDocument::DataValidation> { inline static script::Type get() { return script::Type::QJsonDocumentDataValidation; } };
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
-template<> struct make_type_t<QJsonDocument::JsonFormat> { inline static script::Type get() { return script::Type::QJsonDocumentJsonFormat; } };
+template<> struct make_type_helper<QJsonDocument::JsonFormat> { inline static script::Type get() { return script::Type::QJsonDocumentJsonFormat; } };
 #endif
 } // namespace script
 

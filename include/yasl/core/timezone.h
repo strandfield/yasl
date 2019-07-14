@@ -13,13 +13,13 @@
 
 namespace script {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-template<> struct make_type_t<QTimeZone> { inline static script::Type get() { return script::Type::QTimeZone; } };
+template<> struct make_type_helper<QTimeZone> { inline static script::Type get() { return script::Type::QTimeZone; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-template<> struct make_type_t<QTimeZone::NameType> { inline static script::Type get() { return script::Type::QTimeZoneNameType; } };
+template<> struct make_type_helper<QTimeZone::NameType> { inline static script::Type get() { return script::Type::QTimeZoneNameType; } };
 #endif
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
-template<> struct make_type_t<QTimeZone::TimeType> { inline static script::Type get() { return script::Type::QTimeZoneTimeType; } };
+template<> struct make_type_helper<QTimeZone::TimeType> { inline static script::Type get() { return script::Type::QTimeZoneTimeType; } };
 #endif
 } // namespace script
 

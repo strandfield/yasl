@@ -15,6 +15,7 @@
 #include <script/namespace.h>
 #include <script/templateargumentdeduction.h>
 #include <script/templatebuilder.h>
+#include <script/typesystem.h>
 
 #include <map>
 #include <memory>
@@ -139,96 +140,97 @@ script::Type get_variant_value_type(const QVariant & v)
   return vaeng->typemap.at(v.userType());
 }
 
-
-
 static script::Value variant_value_callback(script::FunctionCall *c)
 {
   using namespace script;
   const Type & rt = c->callee().returnType();
-  QVariant v = c->thisObject().toVariant();
+  QVariant v = c->arg(0).toVariant();
   if (get_variant_value_type(v) == rt)
     return get_variant_value(c->engine(), v);
   else
     return c->engine()->construct(rt, {});
 }
 
-static void variant_value_deduce(script::TemplateArgumentDeduction &deduc, const script::FunctionTemplate & variant_value, const std::vector<script::TemplateArgument> & targs, const std::vector<script::Type> & itypes)
+class VariantValueTemplate : public script::FunctionTemplateNativeBackend
 {
-  using namespace script;
+public:
+  void deduce(script::TemplateArgumentDeduction& deduc, const std::vector<script::TemplateArgument>& targs, const std::vector<script::Type>& itypes) override
+  {
+    using namespace script;
 
-  if (targs.size() != 1)
-    return deduc.fail();
+    if (targs.size() != 1)
+      return deduc.fail();
 
-  /// TODO: check targs.front() is copy constructible
-}
+    /// TODO: check targs.front() is copy constructible
+  }
 
-static void variant_value_substitute(script::FunctionBuilder & builder, script::FunctionTemplate variant_value, const std::vector<script::TemplateArgument> & targs)
-{
-  using namespace script;
+  void substitute(script::FunctionBuilder & builder, const std::vector<script::TemplateArgument> & targs) override
+  {
+    using namespace script;
 
-  builder.returns(targs.front().type.baseType());
-  builder.setConst();
-}
+    builder.returns(targs.front().type.baseType());
+    builder.setConst();
+  }
 
-static std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> variant_value_instantitate(script::FunctionTemplate variant_value, script::Function instance)
-{
-  using namespace script;
+  std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> instantiate(script::Function & function) override
+  {
+    using namespace script;
 
-  return { variant_value_callback, nullptr };
-}
-
-
+    return { variant_value_callback, nullptr };
+  }
+};
 
 static script::Value variant_fromvalue_callback(script::FunctionCall *c)
 {
-  using namespace script;
-  return c->engine()->construct(Type::QVariant, [&](script::Value & val) {
-    val.setVariant(make_qvariant(c->arg(0)));
-  });
+  script::Value ret = c->engine()->allocate(script::Type::QVariant);
+  script::ThisObject(ret).init<QVariant>(make_qvariant(c->arg(0)));
+  return ret;
 }
 
-static void variant_fromvalue_deduce(script::TemplateArgumentDeduction &deduc, const script::FunctionTemplate & variant_fromvalue, const std::vector<script::TemplateArgument> & targs, const std::vector<script::Type> & itypes)
+class VariantFromValueTemplate : public script::FunctionTemplateNativeBackend
 {
-  using namespace script;
+public:
+  void deduce(script::TemplateArgumentDeduction& deduc, const std::vector<script::TemplateArgument>& targs, const std::vector<script::Type>& itypes) override
+  {
+    using namespace script;
 
-  if (targs.size() == 1)
-    return;
+    if (targs.size() == 1)
+      return;
 
-  if (itypes.size() != 1)
-    return deduc.fail();
+    if (itypes.size() != 1)
+      return deduc.fail();
 
-  deduc.record_deduction(0, TemplateArgument{ itypes.front() });
-}
+    deduc.record_deduction(0, TemplateArgument{ itypes.front() });
+  }
 
-static void variant_fromvalue_substitute(script::FunctionBuilder & builder, script::FunctionTemplate variant_fromvalue, const std::vector<script::TemplateArgument> & targs)
-{
-  using namespace script;
+  void substitute(script::FunctionBuilder & builder, const std::vector<script::TemplateArgument> & targs) override
+  {
+    using namespace script;
 
-  builder.setStatic();
-  builder.returns(Type::QVariant);
-  builder.params(Type::cref(targs.front().type));
-}
+    builder.setStatic();
+    builder.returns(Type::QVariant);
+    builder.params(Type::cref(targs.front().type));
+  }
 
-static std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> variant_fromvalue_instantitate(script::FunctionTemplate variant_fromvalue, script::Function instance)
-{
-  using namespace script;
+  std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> instantiate(script::Function & function) override
+  {
+    using namespace script;
 
-  return { variant_fromvalue_callback, nullptr };
-}
-
+    return { variant_fromvalue_callback, nullptr };
+  }
+};
 
 
 static script::Value variant_type_callback(script::FunctionCall *c)
 {
-  return c->engine()->newInt(get_variant_value_type(c->thisObject().toVariant()).data());
+  return c->engine()->newInt(get_variant_value_type(c->arg(0).toVariant()).data());
 }
-
 
 void complete_variant_class(script::Engine *e)
 {
   using namespace script;
   
-  Class variant = e->getClass(script::Type::QVariant);
+  Class variant = e->typeSystem()->getClass(script::Type::QVariant);
 
   // T value() const; 
   {
@@ -238,7 +240,7 @@ void complete_variant_class(script::Engine *e)
     FunctionTemplate variant_value = Symbol{ variant }.newFunctionTemplate("value")
       .setParams(std::move(params))
       .setScope(Scope{ variant })
-      .deduce(variant_value_deduce).substitute(variant_value_substitute).instantiate(variant_value_instantitate)
+      .withBackend<VariantValueTemplate>()
       .get();
   }
 
@@ -250,7 +252,7 @@ void complete_variant_class(script::Engine *e)
     FunctionTemplate variant_fromvalue = Symbol{ variant }.newFunctionTemplate("fromValue")
       .setParams(std::move(params))
       .setScope(Scope{ variant })
-      .deduce(variant_fromvalue_deduce).substitute(variant_fromvalue_substitute).instantiate(variant_fromvalue_instantitate)
+      .withBackend<VariantFromValueTemplate>()
       .get();
   }
 

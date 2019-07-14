@@ -25,13 +25,13 @@ namespace proxy
 script::Value copy_ctor(script::FunctionCall *c)
 {
   script::Value other = c->arg(1);
-  c->thisObject().setPtr(other.getPtr());
+  c->thisObject().init<details::PtrWrapper>(script::get<details::PtrWrapper>(other));
   return c->thisObject();
 }
 
 script::Value dtor(script::FunctionCall *c)
 {
-  c->thisObject().setPtr(nullptr);
+  c->thisObject().destroy<details::PtrWrapper>();
   return c->thisObject();
 }
 
@@ -41,11 +41,11 @@ script::Value dtor(script::FunctionCall *c)
 
 
 
-script::Class proxy_template_instantiate(script::ClassTemplateInstanceBuilder &)
+Class ProxyTemplate::instantiate(ClassTemplateInstanceBuilder& builder)
 {
   throw script::TemplateInstantiationError{ "Proxy template cannot be instantiated" };
-}
 
+}
 
 void register_proxy_template(script::Namespace ns)
 {
@@ -58,10 +58,8 @@ void register_proxy_template(script::Namespace ns)
   ClassTemplate proxy = Symbol{ ns }.newClassTemplate("Proxy")
     .setParams(std::move(params))
     .setScope(Scope{ ns })
-    .setCallback(proxy_template_instantiate)
+    .withBackend<ProxyTemplate>()
     .get();
-
-  ns.engine()->implementation()->proxy_template_ = proxy;
 
   register_proxy_specialization<bool>(ns.engine());
   register_proxy_specialization<char>(ns.engine());

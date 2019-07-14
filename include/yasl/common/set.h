@@ -7,10 +7,17 @@
 
 #include "yasl/common/types.h"
 
+#include <script/classtemplatenativebackend.h>
+
 #include <QSet>
 
 namespace script
 {
+
+class SetTemplate : public ClassTemplateNativeBackend
+{
+  Class instantiate(ClassTemplateInstanceBuilder& builder) override;
+};
 
 } // namespace script
 

@@ -19,17 +19,17 @@ using Iterator = List::iterator;
 
 static List & get_list(const script::Value & val)
 {
-  return *static_cast<List*>(val.memory());
+  return script::get<List>(val);
 }
 
 static Iterator & get_iter(const script::Value & val)
 {
-  return *static_cast<Iterator*>(val.memory());
+  return script::get<Iterator>(val);
 }
 
 static ConstIterator & get_const_iter(const script::Value & val)
 {
-  return *static_cast<ConstIterator*>(val.memory());
+  return script::get<ConstIterator>(val);
 }
 
 namespace script
@@ -37,23 +37,23 @@ namespace script
 
 script::Value make_list(const QList<yasl::Value> & val, const script::Type & list_type, script::Engine *e)
 {
-  return e->construct(list_type, [&val](script::Value & ret) {
-    new (ret.getMemory(passkey{})) QList<yasl::Value>{val};
-  });
+  script::Value ret = e->allocate(list_type);
+  script::ThisObject(ret).init<QList<yasl::Value>>(val);
+  return ret;
 }
 
 static script::Value make_iter(const Iterator & val, const script::Type & iter_type, script::Engine *e)
 {
-  return e->construct(iter_type, [&val](script::Value & ret) {
-    new (ret.getMemory(script::passkey{})) Iterator{ val };
-  });
+  script::Value ret = e->allocate(iter_type);
+  script::ThisObject(ret).init<Iterator>(val);
+  return ret;
 }
 
 static script::Value make_const_iter(const ConstIterator & val, const script::Type & iter_type, script::Engine *e)
 {
-  return e->construct(iter_type, [&val](script::Value & ret) {
-    new (ret.getMemory(script::passkey{})) ConstIterator{ val };
-  });
+  script::Value ret = e->allocate(iter_type);
+  script::ThisObject(ret).init<ConstIterator>(val);
+  return ret;
 }
 
 namespace callbacks
@@ -68,24 +68,22 @@ namespace const_iterator
 // const_iterator()
 script::Value default_ctor(script::FunctionCall *c)
 {
-  new (c->thisObject().getMemory(script::passkey{})) ConstIterator{};
+  c->thisObject().init<ConstIterator>();
   return c->thisObject();
 }
 
 // const_iterator(const const_iterator &)
 script::Value copy_ctor(script::FunctionCall *c)
 {
-  const ConstIterator & other = get_const_iter(c->arg(1));
-  new (c->thisObject().getMemory(script::passkey{})) ConstIterator{ other };
+  const ConstIterator & other = script::get<ConstIterator>(c->arg(1));
+  c->thisObject().init<ConstIterator>(other);
   return c->thisObject();
 }
 
 // ~const_iterator()
 script::Value dtor(script::FunctionCall *c)
 {
-  ConstIterator & self = get_const_iter(c->thisObject());
-  self.~const_iterator();
-  c->thisObject().releaseMemory(script::passkey{});
+  c->thisObject().destroy<ConstIterator>();
   return script::Value::Void;
 }
 
@@ -193,24 +191,22 @@ namespace iterator
 // iterator()
 script::Value default_ctor(script::FunctionCall *c)
 {
-  new (c->thisObject().getMemory(script::passkey{})) Iterator{};
+  c->thisObject().init<Iterator>();
   return c->thisObject();
 }
 
 // iterator(const iterator &)
 script::Value copy_ctor(script::FunctionCall *c)
 {
-  const Iterator & other = get_iter(c->arg(1));
-  new (c->thisObject().getMemory(script::passkey{})) Iterator{ other };
+  const Iterator& other = script::get<Iterator>(c->arg(1));
+  c->thisObject().init<Iterator>(other);
   return c->thisObject();
 }
 
 // ~iterator()
 script::Value dtor(script::FunctionCall *c)
 {
-  Iterator & self = get_iter(c->thisObject());
-  self.~iterator();
-  c->thisObject().releaseMemory(script::passkey{});
+  c->thisObject().destroy<Iterator>();
   return script::Value::Void;
 }
 
@@ -317,27 +313,22 @@ script::Value op_subassign(script::FunctionCall *c)
 // QList<T>();
 static script::Value default_ctor(script::FunctionCall *c)
 {
-  using namespace script;
-  new (c->thisObject().getMemory(passkey{})) QList<yasl::Value>{};
+  c->thisObject().init<QList<yasl::Value>>();
   return c->thisObject();
 }
 
 // QList<T>(const QList<T> &);
 static script::Value copy_ctor(script::FunctionCall *c)
 {
-  using namespace script;
-  QList<yasl::Value> & other = script::value_cast<QList<yasl::Value> &>(c->arg(1));
-  new (c->thisObject().getMemory(passkey{})) QList<yasl::Value>{other};
+  const QList<yasl::Value>& other = script::get<QList<yasl::Value>>(c->arg(1));
+  c->thisObject().init<QList<yasl::Value>>(other);
   return c->thisObject();
 }
 
 // ~QList<T>();
 static script::Value dtor(script::FunctionCall *c)
 {
-  using namespace script;
-  QList<yasl::Value> & self = script::value_cast<QList<yasl::Value> &>(c->thisObject());
-  self.~QList<yasl::Value>();
-  c->thisObject().releaseMemory(passkey{});
+  c->thisObject().destroy<QList<yasl::Value>>();
   return script::Value::Void;
 }
 
@@ -947,7 +938,7 @@ static script::Type list_template_instantiate_iterator(script::Class & list)
 }
 
 
-script::Class list_template_instantiate(script::ClassTemplateInstanceBuilder & builder)
+Class ListTemplate::instantiate(ClassTemplateInstanceBuilder& builder)
 {
   using namespace script;
 
@@ -1257,10 +1248,8 @@ void register_qlist_template(script::Namespace n)
   ClassTemplate list_template = Symbol{ n }.newClassTemplate("List")
     .setParams(std::move(params))
     .setScope(Scope{ n })
-    .setCallback(list_template_instantiate)
+    .withBackend<ListTemplate>()
     .get();
-
-  n.engine()->setTemplate(passkey{}, Engine::ListTemplate, list_template);
 
   // Registering full specializations
   register_list_specialization<int>(n.engine());

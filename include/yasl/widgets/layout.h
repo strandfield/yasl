@@ -11,10 +11,10 @@
 #include <QLayout>
 
 namespace script {
-template<> struct make_type_t<QLayout> { inline static script::Type get() { return script::Type::QLayout; } };
-template<> struct tag_resolver<QLayout> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QLayout*> { inline static script::Type get() { return script::Type::QLayoutStar; } };
-template<> struct make_type_t<QLayout::SizeConstraint> { inline static script::Type get() { return script::Type::QLayoutSizeConstraint; } };
+template<> struct make_type_helper<QLayout> { inline static script::Type get() { return script::Type::QLayout; } };
+template<> struct details::tag_resolver<QLayout> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QLayout*> { inline static script::Type get() { return script::Type::QLayoutStar; } };
+template<> struct make_type_helper<QLayout::SizeConstraint> { inline static script::Type get() { return script::Type::QLayoutSizeConstraint; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_LAYOUT_H

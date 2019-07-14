@@ -10,9 +10,9 @@
 #include <QPalette>
 
 namespace script {
-template<> struct make_type_t<QPalette> { inline static script::Type get() { return script::Type::QPalette; } };
-template<> struct make_type_t<QPalette::ColorGroup> { inline static script::Type get() { return script::Type::QPaletteColorGroup; } };
-template<> struct make_type_t<QPalette::ColorRole> { inline static script::Type get() { return script::Type::QPaletteColorRole; } };
+template<> struct make_type_helper<QPalette> { inline static script::Type get() { return script::Type::QPalette; } };
+template<> struct make_type_helper<QPalette::ColorGroup> { inline static script::Type get() { return script::Type::QPaletteColorGroup; } };
+template<> struct make_type_helper<QPalette::ColorRole> { inline static script::Type get() { return script::Type::QPaletteColorRole; } };
 } // namespace script
 
 #endif // YASL_GUI_PALETTE_H

@@ -9,6 +9,18 @@
 
 #include <QEvent>
 
+namespace script
+{
+
+struct QEventWrapper
+{
+  QEvent* p;
+
+  QEventWrapper(QEvent* ev = nullptr) : p(ev) { }
+};
+
+} // namespace script
+
 script::Value make_event(QEvent *event, script::Engine *engine);
 script::Value make_event(QEvent *event, const script::Type & event_type, script::Engine *engine);
 void clear_event(script::Value & value);

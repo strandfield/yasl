@@ -56,7 +56,7 @@ void register_vector_specialization(script::ClassTemplate vector_template, scrip
 {
   using namespace script;
 
-  Class vector = vector_template.engine()->getClass(type_id);
+  Class vector = vector_template.engine()->typeSystem()->getClass(type_id);
   if (!vector.isNull() && vector.id() == type_id)
     return;
 

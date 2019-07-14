@@ -10,8 +10,8 @@
 #include <QFontMetrics>
 
 namespace script {
-template<> struct make_type_t<QFontMetrics> { inline static script::Type get() { return script::Type::QFontMetrics; } };
-template<> struct make_type_t<QFontMetricsF> { inline static script::Type get() { return script::Type::QFontMetricsF; } };
+template<> struct make_type_helper<QFontMetrics> { inline static script::Type get() { return script::Type::QFontMetrics; } };
+template<> struct make_type_helper<QFontMetricsF> { inline static script::Type get() { return script::Type::QFontMetricsF; } };
 } // namespace script
 
 #endif // YASL_GUI_FONTMETRICS_H

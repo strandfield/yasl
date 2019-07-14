@@ -139,7 +139,7 @@ script::Type register_map_specialization(script::Engine *engine)
   using ConstIterator = typename QMap<Key, T>::const_iterator;
 
   const Type type_id = script::make_type<Map>();
-  Class map = engine->getClass(type_id);
+  Class map = engine->typeSystem()->getClass(type_id);
   if (!map.isNull() && type_id == map.id())
     return type_id;
 
@@ -148,7 +148,7 @@ script::Type register_map_specialization(script::Engine *engine)
     TemplateArgument{ script::make_type<T>() }
   };
 
-  ClassTemplate map_template = engine->getTemplate(Engine::MapTemplate);
+  ClassTemplate map_template = ClassTemplate::get<MapTemplate>(engine);
 
   map = map_template.Specialization(std::move(targs))
     .setId(type_id.data())

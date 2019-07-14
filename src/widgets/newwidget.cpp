@@ -24,6 +24,8 @@
 #include <script/userdata.h>
 #include <script/value.h>
 
+#include <script/qt.h>
+
 namespace script
 {
 
@@ -56,9 +58,7 @@ static script::Value new_widget_window_title(script::FunctionCall *c)
 
   Type widget_type = c->callee().returnType().baseType();
 
-  return c->engine()->construct(widget_type, [c, widget](Value & ret) {
-    c->engine()->bind(ret, widget);
-  });
+  return c->engine()->expose(widget, widget_type);
 }
 
 static script::Value event_handler(script::FunctionCall *c)
@@ -182,7 +182,7 @@ static void add_events_method(script::Engine *e)
 {
   using namespace script;
 
-  Class widget = e->getClass(Type::QWidget);
+  Class widget = e->typeSystem()->getClass(Type::QWidget);
   
   /* Events */
   widget.newMethod("event", callbacks::event_handler)
@@ -267,39 +267,6 @@ static void add_events_method(script::Engine *e)
     .create();
 }
 
-
-void new_widget_deduce(script::TemplateArgumentDeduction &deduc, const script::FunctionTemplate & new_widget, const std::vector<script::TemplateArgument> & targs, const std::vector<script::Type> & itypes)
-{
-  using namespace script;
-
-  if (targs.size() != 1)
-    return deduc.fail();
-
-  std::vector<TemplateArgument> args;
-  for (const auto & t : itypes)
-  {
-    if (t.isConst())
-      args.push_back(TemplateArgument{ Type::cref(t.baseType()) });
-    else
-      args.push_back(TemplateArgument{ Type::ref(t.baseType()) });
-  }
-
-  deduc.record_deduction(1, TemplateArgument{ std::move(args) });
-}
-
-void new_widget_substitute(script::FunctionBuilder & builder, script::FunctionTemplate new_widget, const std::vector<script::TemplateArgument> & targs)
-{
-  using namespace script;
-
-  builder.returns(Type::ref(targs.front().type));
-
-  for (const auto & p : targs.back().pack->args())
-  {
-    builder.addParam(p.type);
-  }
-}
-
-
 class NewWidgetTemplateData : public script::UserData
 {
 public:
@@ -325,8 +292,8 @@ static script::Value new_widget_template(script::FunctionCall *c)
     widget
   };
   args.insert(args.end(), c->args().begin(), c->args().end());
-  c->engine()->applyConversions(args, data->conversions);
-  c->engine()->invoke(data->target, args);
+  Conversion::apply(data->conversions, args);
+  data->target.invoke(args);
   script::value_cast<Widget*>(widget)->mCallbacks = data->callbacks;
   return widget;
 }
@@ -382,33 +349,68 @@ void fill_callbacks(Widget::Callbacks & cbs, const script::Class & c)
   fill_callbacks(cbs, c.parent());
 }
 
-std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> new_widget_instantitate(script::FunctionTemplate new_widget, script::Function instance)
+class NewWidgetTemplate : public script::FunctionTemplateNativeBackend
 {
-  using namespace script;
+public:
+  void deduce(script::TemplateArgumentDeduction& deduc, const std::vector<script::TemplateArgument>& targs, const std::vector<script::Type>& itypes) override
+  {
+    using namespace script;
 
-  auto data = std::make_shared<NewWidgetTemplateData>();
+    if (targs.size() != 1)
+      return deduc.fail();
 
-  Class target_type = new_widget.engine()->getClass(instance.returnType());
-  
-  std::vector<Type> types{
-    Type::ref(target_type.id())
-  };
-  types.insert(types.end(), instance.prototype().begin(), instance.prototype().end());
-  
-  OverloadResolution resol = OverloadResolution::New(new_widget.engine());
-  if (!resol.process(target_type.constructors(), types))
-    throw TemplateInstantiationError{ "newWidget() : Could not find valid constructor" };
+    std::vector<TemplateArgument> args;
+    for (const auto& t : itypes)
+    {
+      if (t.isConst())
+        args.push_back(TemplateArgument{ Type::cref(t.baseType()) });
+      else
+        args.push_back(TemplateArgument{ Type::ref(t.baseType()) });
+    }
 
-  data->target = resol.selectedOverload();
-  /// TODO: should we use Initialization instead ?
-  for (const auto & init : resol.initializations())
-    data->conversions.push_back(init.conversion());
-  data->types = data->target.prototype().parameters();
+    deduc.record_deduction(1, TemplateArgument{ std::move(args) });
+  }
 
-  fill_callbacks(data->callbacks, target_type);
+  void substitute(script::FunctionBuilder & builder, const std::vector<script::TemplateArgument> & targs) override
+  {
+    using namespace script;
 
-  return { callbacks::new_widget_template, data };
-}
+    builder.returns(Type::ref(targs.front().type));
+
+    for (const auto& p : targs.back().pack->args())
+    {
+      builder.addParam(p.type);
+    }
+  }
+
+  std::pair<script::NativeFunctionSignature, std::shared_ptr<script::UserData>> instantiate(script::Function & instance) override
+  {
+    using namespace script;
+
+    auto data = std::make_shared<NewWidgetTemplateData>();
+
+    Class target_type = functionTemplate().engine()->typeSystem()->getClass(instance.returnType());
+
+    std::vector<Type> types{
+      Type::ref(target_type.id())
+    };
+    types.insert(types.end(), instance.prototype().begin(), instance.prototype().end());
+
+    OverloadResolution resol = OverloadResolution::New(instance.engine());
+    if (!resol.process(target_type.constructors(), types))
+      throw TemplateInstantiationError{ "newWidget() : Could not find valid constructor" };
+
+    data->target = resol.selectedOverload();
+    /// TODO: should we use Initialization instead ?
+    for (const auto& init : resol.initializations())
+      data->conversions.push_back(init.conversion());
+    data->types = data->target.prototype().parameters();
+
+    fill_callbacks(data->callbacks, target_type);
+
+    return { callbacks::new_widget_template, data };
+  }
+};
 
 static void register_new_widget_template(script::Namespace n)
 {
@@ -421,7 +423,7 @@ static void register_new_widget_template(script::Namespace n)
   FunctionTemplate new_widget = Symbol{ n }.newFunctionTemplate("newWidget")
     .setParams(std::move(params))
     .setScope(Scope{ n })
-    .deduce(new_widget_deduce).substitute(new_widget_substitute).instantiate(new_widget_instantitate)
+    .withBackend<NewWidgetTemplate>()
     .get();
 }
 
@@ -430,7 +432,7 @@ void register_newwidget_file(script::Namespace core)
   using namespace script;
 
   /// TODO : maybe move elsewhere
-  Class widget = core.engine()->getClass(Type::QWidget);
+  Class widget = core.engine()->typeSystem()->getClass(Type::QWidget);
   widget.newConstructor(callbacks::widget_ctor).create();
 
   core.newFunction("newWidget", callbacks::new_widget)
@@ -535,7 +537,7 @@ void Widget::QWidgetWheelEvent(QWheelEvent *e)
 
 script::Value Widget::self() const
 {
-  return this->property("_yasl_data_").value<script::bind::BindingData>().value;
+  return script::qt::BindingData::get(this)->value;
 }
 
 bool Widget::event(QEvent *e)
@@ -545,7 +547,7 @@ bool Widget::event(QEvent *e)
 
   script::Engine *engine = mCallbacks.event.engine();
   script::Value val = make_event(e, script::make_type<QEvent>(), engine);
-  script::Value ret = engine->invoke(mCallbacks.event, { self(), val });
+  script::Value ret = mCallbacks.event.invoke({ self(), val });
   const bool result = ret.toBool();
   engine->destroy(ret);
   clear_event(val);
@@ -560,7 +562,7 @@ void Widget::closeEvent(QCloseEvent *e)
 
   script::Engine *engine = mCallbacks.close.engine();
   script::Value val = make_event(e, script::make_type<QCloseEvent>(), engine);
-  engine->invoke(mCallbacks.close, { self(), val });
+  mCallbacks.close.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -572,7 +574,7 @@ void Widget::enterEvent(QEvent *e)
 
   script::Engine *engine = mCallbacks.enter.engine();
   script::Value val = make_event(e, script::make_type<QEvent>(), engine);
-  engine->invoke(mCallbacks.enter, { self(), val });
+  mCallbacks.enter.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -584,7 +586,7 @@ void Widget::hideEvent(QHideEvent *e)
 
   script::Engine *engine = mCallbacks.hide.engine();
   script::Value val = make_event(e, script::make_type<QHideEvent>(), engine);
-  engine->invoke(mCallbacks.hide, { self(), val });
+  mCallbacks.hide.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -596,7 +598,7 @@ void Widget::keyPressEvent(QKeyEvent *e)
 
   script::Engine *engine = mCallbacks.keyPress.engine();
   script::Value val = make_event(e, script::make_type<QKeyEvent>(), engine);
-  engine->invoke(mCallbacks.keyPress, { self(), val });
+  mCallbacks.keyPress.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -608,7 +610,7 @@ void Widget::keyReleaseEvent(QKeyEvent *e)
 
   script::Engine *engine = mCallbacks.keyRelease.engine();
   script::Value val = make_event(e, script::make_type<QKeyEvent>(), engine);
-  engine->invoke(mCallbacks.keyRelease, { self(), val });
+  mCallbacks.keyRelease.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -620,7 +622,7 @@ void Widget::leaveEvent(QEvent *e)
 
   script::Engine *engine = mCallbacks.leave.engine();
   script::Value val = make_event(e, script::make_type<QEvent>(), engine);
-  engine->invoke(mCallbacks.leave, { self(), val });
+  mCallbacks.leave.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -632,7 +634,7 @@ void Widget::mouseDoubleClickEvent(QMouseEvent *e)
 
   script::Engine *engine = mCallbacks.mouseDoubleClick.engine();
   script::Value val = make_event(e, script::make_type<QMouseEvent>(), engine);
-  engine->invoke(mCallbacks.mouseDoubleClick, { self(), val });
+  mCallbacks.mouseDoubleClick.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -644,7 +646,7 @@ void Widget::mouseMoveEvent(QMouseEvent *e)
 
   script::Engine *engine = mCallbacks.mouseMove.engine();
   script::Value val = make_event(e, script::make_type<QMouseEvent>(), engine);
-  engine->invoke(mCallbacks.mouseMove, { self(), val });
+  mCallbacks.mouseMove.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -656,7 +658,7 @@ void Widget::mousePressEvent(QMouseEvent *e)
 
   script::Engine *engine = mCallbacks.mousePress.engine();
   script::Value val = make_event(e, script::make_type<QMouseEvent>(), engine);
-  engine->invoke(mCallbacks.mousePress, { self(), val });
+  mCallbacks.mousePress.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -668,7 +670,7 @@ void Widget::mouseReleaseEvent(QMouseEvent *e)
 
   script::Engine *engine = mCallbacks.mouseRelease.engine();
   script::Value val = make_event(e, script::make_type<QMouseEvent>(), engine);
-  engine->invoke(mCallbacks.mouseRelease, { self(), val });
+  mCallbacks.mouseRelease.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -680,7 +682,7 @@ void Widget::moveEvent(QMoveEvent *e)
 
   script::Engine *engine = mCallbacks.move.engine();
   script::Value val = make_event(e, script::make_type<QMoveEvent>(), engine);
-  engine->invoke(mCallbacks.move, { self(), val });
+  mCallbacks.move.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -692,7 +694,7 @@ void Widget::paintEvent(QPaintEvent *e)
 
   script::Engine *engine = mCallbacks.paint.engine();
   script::Value val = make_event(e, script::make_type<QPaintEvent>(), engine);
-  engine->invoke(mCallbacks.paint, { self(), val });
+  mCallbacks.paint.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -704,7 +706,7 @@ void Widget::resizeEvent(QResizeEvent *e)
 
   script::Engine *engine = mCallbacks.resize.engine();
   script::Value val = make_event(e, script::make_type<QResizeEvent>(), engine);
-  engine->invoke(mCallbacks.resize, { self(), val });
+  mCallbacks.resize.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -716,7 +718,7 @@ void Widget::showEvent(QShowEvent *e)
 
   script::Engine *engine = mCallbacks.show.engine();
   script::Value val = make_event(e, script::make_type<QShowEvent>(), engine);
-  engine->invoke(mCallbacks.show, { self(), val });
+  mCallbacks.show.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }
@@ -728,7 +730,7 @@ void Widget::wheelEvent(QWheelEvent *e)
 
   script::Engine *engine = mCallbacks.wheel.engine();
   script::Value val = make_event(e, script::make_type<QWheelEvent>(), engine);
-  engine->invoke(mCallbacks.wheel, { self(), val });
+  mCallbacks.wheel.invoke({ self(), val });
   clear_event(val);
   engine->destroy(val);
 }

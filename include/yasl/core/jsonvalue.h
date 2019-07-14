@@ -10,9 +10,9 @@
 #include <QJsonValue>
 
 namespace script {
-template<> struct make_type_t<QJsonValue> { inline static script::Type get() { return script::Type::QJsonValue; } };
-template<> struct make_type_t<QJsonValue::Type> { inline static script::Type get() { return script::Type::QJsonValueType; } };
-template<> struct make_type_t<QJsonValueRef> { inline static script::Type get() { return script::Type::QJsonValueRef; } };
+template<> struct make_type_helper<QJsonValue> { inline static script::Type get() { return script::Type::QJsonValue; } };
+template<> struct make_type_helper<QJsonValue::Type> { inline static script::Type get() { return script::Type::QJsonValueType; } };
+template<> struct make_type_helper<QJsonValueRef> { inline static script::Type get() { return script::Type::QJsonValueRef; } };
 } // namespace script
 
 #endif // YASL_CORE_JSONVALUE_H

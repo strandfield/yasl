@@ -15,17 +15,20 @@ script::Value make_event(QEvent *event, const script::Type & event_type, script:
 {
   using namespace script;
 
-  return engine->construct(event_type, [event](script::Value & val) {
-    val.setPtr(event);
-  });
+  script::Value ret = engine->allocate(event_type);
+
+  script::ThisObject self{ ret };
+  self.init<script::QEventWrapper>(event);
+
+  return ret;
 }
 
 void clear_event(script::Value & value)
 {
-  value.setPtr(nullptr);
+  script::get<script::QEventWrapper>(value).p = nullptr;
 }
 
-QEvent * get_event(const script::Value & val)
+QEvent* get_event(const script::Value & val)
 {
-  return static_cast<QEvent*>(val.getPtr());
+  return script::get<script::QEventWrapper>(val).p;
 }

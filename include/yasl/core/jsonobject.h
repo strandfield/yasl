@@ -10,7 +10,7 @@
 #include <QJsonObject>
 
 namespace script {
-template<> struct make_type_t<QJsonObject> { inline static script::Type get() { return script::Type::QJsonObject; } };
+template<> struct make_type_helper<QJsonObject> { inline static script::Type get() { return script::Type::QJsonObject; } };
 } // namespace script
 
 #endif // YASL_CORE_JSONOBJECT_H

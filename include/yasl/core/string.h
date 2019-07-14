@@ -12,11 +12,11 @@
 
 namespace script 
 {
-template<> struct make_type_t<Proxy<QString>> { inline static script::Type get() { return script::Type::ProxyQString; } };
-template<> struct make_type_t<QList<QString>> { inline static script::Type get() { return script::Type::QListQString; } };
-template<> struct make_type_t<QList<QString>::iterator> { inline static script::Type get() { return script::Type::QListQStringIterator; } };
-template<> struct make_type_t<QList<QString>::const_iterator> { inline static script::Type get() { return script::Type::QListQStringConstIterator; } };
-template<> struct make_type_t<QStringList> { inline static script::Type get() { return script::Type::QStringList; } };
+template<> struct make_type_helper<Proxy<QString>> { inline static script::Type get() { return script::Type::ProxyQString; } };
+template<> struct make_type_helper<QList<QString>> { inline static script::Type get() { return script::Type::QListQString; } };
+template<> struct make_type_helper<QList<QString>::iterator> { inline static script::Type get() { return script::Type::QListQStringIterator; } };
+template<> struct make_type_helper<QList<QString>::const_iterator> { inline static script::Type get() { return script::Type::QListQStringConstIterator; } };
+template<> struct make_type_helper<QStringList> { inline static script::Type get() { return script::Type::QStringList; } };
 }
 
 #endif // YASL_CORE_STRING_H

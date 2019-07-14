@@ -10,8 +10,8 @@
 #include <QSize>
 
 namespace script {
-template<> struct make_type_t<QSize> { inline static script::Type get() { return script::Type::QSize; } };
-template<> struct make_type_t<QSizeF> { inline static script::Type get() { return script::Type::QSizeF; } };
+template<> struct make_type_helper<QSize> { inline static script::Type get() { return script::Type::QSize; } };
+template<> struct make_type_helper<QSizeF> { inline static script::Type get() { return script::Type::QSizeF; } };
 } // namespace script
 
 #endif // YASL_CORE_SIZE_H

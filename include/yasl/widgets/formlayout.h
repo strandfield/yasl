@@ -11,11 +11,11 @@
 #include <QFormLayout>
 
 namespace script {
-template<> struct make_type_t<QFormLayout> { inline static script::Type get() { return script::Type::QFormLayout; } };
-template<> struct tag_resolver<QFormLayout> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QFormLayout::FieldGrowthPolicy> { inline static script::Type get() { return script::Type::QFormLayoutFieldGrowthPolicy; } };
-template<> struct make_type_t<QFormLayout::ItemRole> { inline static script::Type get() { return script::Type::QFormLayoutItemRole; } };
-template<> struct make_type_t<QFormLayout::RowWrapPolicy> { inline static script::Type get() { return script::Type::QFormLayoutRowWrapPolicy; } };
+template<> struct make_type_helper<QFormLayout> { inline static script::Type get() { return script::Type::QFormLayout; } };
+template<> struct details::tag_resolver<QFormLayout> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QFormLayout::FieldGrowthPolicy> { inline static script::Type get() { return script::Type::QFormLayoutFieldGrowthPolicy; } };
+template<> struct make_type_helper<QFormLayout::ItemRole> { inline static script::Type get() { return script::Type::QFormLayoutItemRole; } };
+template<> struct make_type_helper<QFormLayout::RowWrapPolicy> { inline static script::Type get() { return script::Type::QFormLayoutRowWrapPolicy; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_FORMLAYOUT_H

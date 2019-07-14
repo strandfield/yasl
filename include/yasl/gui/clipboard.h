@@ -11,9 +11,9 @@
 #include <QClipboard>
 
 namespace script {
-template<> struct make_type_t<QClipboard> { inline static script::Type get() { return script::Type::QClipboard; } };
-template<> struct tag_resolver<QClipboard> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QClipboard::Mode> { inline static script::Type get() { return script::Type::QClipboardMode; } };
+template<> struct make_type_helper<QClipboard> { inline static script::Type get() { return script::Type::QClipboard; } };
+template<> struct details::tag_resolver<QClipboard> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QClipboard::Mode> { inline static script::Type get() { return script::Type::QClipboardMode; } };
 } // namespace script
 
 #endif // YASL_GUI_CLIPBOARD_H

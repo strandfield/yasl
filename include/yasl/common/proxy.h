@@ -7,6 +7,8 @@
 
 #include "yasl/common/types.h"
 
+#include <script/classtemplatenativebackend.h>
+
 namespace script
 {
 
@@ -26,13 +28,18 @@ struct Proxy
   void operator=(const T & val) { *value = val; }
 };
 
-template<> struct make_type_t<Proxy<bool>> { inline static script::Type get() { return script::Type::Proxybool; } };
-template<> struct make_type_t<Proxy<char>> { inline static script::Type get() { return script::Type::Proxychar; } };
-template<> struct make_type_t<Proxy<int>> { inline static script::Type get() { return script::Type::Proxyint; } };
-template<> struct make_type_t<Proxy<float>> { inline static script::Type get() { return script::Type::Proxyfloat; } };
-template<> struct make_type_t<Proxy<double>> { inline static script::Type get() { return script::Type::Proxydouble; } };
+template<> struct make_type_helper<Proxy<bool>> { inline static script::Type get() { return script::Type::Proxybool; } };
+template<> struct make_type_helper<Proxy<char>> { inline static script::Type get() { return script::Type::Proxychar; } };
+template<> struct make_type_helper<Proxy<int>> { inline static script::Type get() { return script::Type::Proxyint; } };
+template<> struct make_type_helper<Proxy<float>> { inline static script::Type get() { return script::Type::Proxyfloat; } };
+template<> struct make_type_helper<Proxy<double>> { inline static script::Type get() { return script::Type::Proxydouble; } };
 
 void register_proxy_template(script::Namespace ns);
+
+class ProxyTemplate : public ClassTemplateNativeBackend
+{
+  Class instantiate(ClassTemplateInstanceBuilder& builder) override;
+};
 
 } // namespace script
 

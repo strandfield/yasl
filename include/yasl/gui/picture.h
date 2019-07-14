@@ -10,8 +10,8 @@
 #include <QPicture>
 
 namespace script {
-template<> struct make_type_t<QPicture> { inline static script::Type get() { return script::Type::QPicture; } };
-template<> struct make_type_t<QPictureIO> { inline static script::Type get() { return script::Type::QPictureIO; } };
+template<> struct make_type_helper<QPicture> { inline static script::Type get() { return script::Type::QPicture; } };
+template<> struct make_type_helper<QPictureIO> { inline static script::Type get() { return script::Type::QPictureIO; } };
 } // namespace script
 
 #endif // YASL_GUI_PICTURE_H

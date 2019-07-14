@@ -10,8 +10,8 @@
 #include <QRect>
 
 namespace script {
-template<> struct make_type_t<QRect> { inline static script::Type get() { return script::Type::QRect; } };
-template<> struct make_type_t<QRectF> { inline static script::Type get() { return script::Type::QRectF; } };
+template<> struct make_type_helper<QRect> { inline static script::Type get() { return script::Type::QRect; } };
+template<> struct make_type_helper<QRectF> { inline static script::Type get() { return script::Type::QRectF; } };
 } // namespace script
 
 #endif // YASL_CORE_RECT_H

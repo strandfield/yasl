@@ -11,9 +11,9 @@
 #include <QSlider>
 
 namespace script {
-template<> struct make_type_t<QSlider> { inline static script::Type get() { return script::Type::QSlider; } };
-template<> struct tag_resolver<QSlider> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QSlider::TickPosition> { inline static script::Type get() { return script::Type::QSliderTickPosition; } };
+template<> struct make_type_helper<QSlider> { inline static script::Type get() { return script::Type::QSlider; } };
+template<> struct details::tag_resolver<QSlider> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QSlider::TickPosition> { inline static script::Type get() { return script::Type::QSliderTickPosition; } };
 } // namespace script
 
 #endif // YASL_WIDGETS_SLIDER_H

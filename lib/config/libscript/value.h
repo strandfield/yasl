@@ -1,3 +1,0 @@
-
-class QObject;
-class QVariant;

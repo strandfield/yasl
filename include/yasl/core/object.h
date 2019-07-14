@@ -12,15 +12,15 @@
 #include <QObject>
 
 namespace script {
-template<> struct make_type_t<Proxy<QObject*>> { inline static script::Type get() { return script::Type::ProxyQObject; } };
-template<> struct make_type_t<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
-template<> struct make_type_t<QList<QObject*>::const_iterator> { inline static script::Type get() { return script::Type::QListQObjectConstIterator; } };
-template<> struct make_type_t<QList<QObject*>::iterator> { inline static script::Type get() { return script::Type::QListQObjectIterator; } };
-template<> struct make_type_t<QObject> { inline static script::Type get() { return script::Type::QObject; } };
-template<> struct tag_resolver<QObject> { typedef qobject_tag tag_type; };
-template<> struct make_type_t<QObject*> { inline static script::Type get() { return script::Type::QObjectStar; } };
+template<> struct make_type_helper<Proxy<QObject*>> { inline static script::Type get() { return script::Type::ProxyQObject; } };
+template<> struct make_type_helper<QList<QObject*>> { inline static script::Type get() { return script::Type::QListQObject; } };
+template<> struct make_type_helper<QList<QObject*>::const_iterator> { inline static script::Type get() { return script::Type::QListQObjectConstIterator; } };
+template<> struct make_type_helper<QList<QObject*>::iterator> { inline static script::Type get() { return script::Type::QListQObjectIterator; } };
+template<> struct make_type_helper<QObject> { inline static script::Type get() { return script::Type::QObject; } };
+template<> struct details::tag_resolver<QObject> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QObject*> { inline static script::Type get() { return script::Type::QObjectStar; } };
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
-template<> struct make_type_t<QSignalBlocker> { inline static script::Type get() { return script::Type::QSignalBlocker; } };
+template<> struct make_type_helper<QSignalBlocker> { inline static script::Type get() { return script::Type::QSignalBlocker; } };
 #endif
 } // namespace script
 

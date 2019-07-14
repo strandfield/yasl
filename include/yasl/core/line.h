@@ -10,9 +10,9 @@
 #include <QLine>
 
 namespace script {
-template<> struct make_type_t<QLine> { inline static script::Type get() { return script::Type::QLine; } };
-template<> struct make_type_t<QLineF> { inline static script::Type get() { return script::Type::QLineF; } };
-template<> struct make_type_t<QLineF::IntersectType> { inline static script::Type get() { return script::Type::QLineFIntersectType; } };
+template<> struct make_type_helper<QLine> { inline static script::Type get() { return script::Type::QLine; } };
+template<> struct make_type_helper<QLineF> { inline static script::Type get() { return script::Type::QLineF; } };
+template<> struct make_type_helper<QLineF::IntersectType> { inline static script::Type get() { return script::Type::QLineFIntersectType; } };
 } // namespace script
 
 #endif // YASL_CORE_LINE_H

@@ -11,8 +11,8 @@
 #include <QScreen>
 
 namespace script {
-template<> struct make_type_t<QScreen> { inline static script::Type get() { return script::Type::QScreen; } };
-template<> struct tag_resolver<QScreen> { typedef qobject_tag tag_type; };
+template<> struct make_type_helper<QScreen> { inline static script::Type get() { return script::Type::QScreen; } };
+template<> struct details::tag_resolver<QScreen> { typedef qobject_tag tag_type; };
 } // namespace script
 
 #endif // YASL_GUI_SCREEN_H

@@ -10,7 +10,7 @@
 #include <QPen>
 
 namespace script {
-template<> struct make_type_t<QPen> { inline static script::Type get() { return script::Type::QPen; } };
+template<> struct make_type_helper<QPen> { inline static script::Type get() { return script::Type::QPen; } };
 } // namespace script
 
 #endif // YASL_GUI_PEN_H

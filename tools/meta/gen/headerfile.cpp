@@ -161,23 +161,23 @@ QStringList HeaderFile::generateBindingDefinitions()
     if (!t.version.isNull())
       out << QString("#if %1").arg(versionCheck(t.version));
 
-    out << ("template<> struct make_type_t<" + t.name + "> { inline static script::Type get() { return script::Type::" + t.id + "; } };");
+    out << ("template<> struct make_type_helper<" + t.name + "> { inline static script::Type get() { return script::Type::" + t.id + "; } };");
 
     if (!t.tag.isEmpty())
     {
       if (t.tag == "qobject_tag")
       {
         bindingIncludes.insert("yasl/common/qobject-values.h");
-        out << ("template<> struct tag_resolver<" + t.name + "> { typedef qobject_tag tag_type; };");
+        out << ("template<> struct details::tag_resolver<" + t.name + "> { typedef qobject_tag tag_type; };");
       }
       else if (t.tag == "qevent_tag")
       {
         bindingIncludes.insert("yasl/core/qevent-binding.h");
-        out << ("template<> struct tag_resolver<" + t.name + "> { typedef qevent_tag tag_type; };");
+        out << ("template<> struct details::tag_resolver<" + t.name + "> { typedef qevent_tag tag_type; };");
       }
       else
       {
-        out << ("template<> struct tag_resolver<" + t.name + "> { typedef " + t.tag + " tag_type; };");
+        out << ("template<> struct details::tag_resolver<" + t.name + "> { typedef " + t.tag + " tag_type; };");
       }
     }
 

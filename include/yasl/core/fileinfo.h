@@ -10,7 +10,7 @@
 #include <QFileInfo>
 
 namespace script {
-template<> struct make_type_t<QFileInfo> { inline static script::Type get() { return script::Type::QFileInfo; } };
+template<> struct make_type_helper<QFileInfo> { inline static script::Type get() { return script::Type::QFileInfo; } };
 } // namespace script
 
 #endif // YASL_CORE_FILEINFO_H

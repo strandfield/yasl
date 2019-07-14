@@ -5049,7 +5049,7 @@ modules:
       - file:
           name: variant
           checkstate: partially-checked
-          cppincludes: yasl/core/variant-functions.h;yasl/common/variant-utils.h;yasl/core/qvariant-binder.h
+          cppincludes: yasl/core/variant-functions.h;yasl/common/variant-utils.h
           elements:
             - class:
                 name: QVariant
@@ -5187,7 +5187,7 @@ modules:
             - function: operator<<[r:QDebug][p:QDebug;const QVariant &]
             - function: operator<<[r:QDebug][p:QDebug;const QVariant::Type]
             - statement: yasl::complete_variant_class(ns.engine());
-          hincludes: yasl/core/qvariant-values.h
+          hincludes: yasl/core/variant.h
       - file:
           name: regularexpression
           checkstate: partially-checked
