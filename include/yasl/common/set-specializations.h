@@ -143,7 +143,7 @@ script::Type register_set_specialization(script::Engine *engine)
     TemplateArgument{ script::make_type<T>() }
   };
 
-  ClassTemplate set_template = engine->getTemplate(Engine::SetTemplate);
+  auto set_template = ClassTemplate::get<SetTemplate>(engine);
 
   set = set_template.Specialization(std::move(targs))
     .setId(type_id.data())
