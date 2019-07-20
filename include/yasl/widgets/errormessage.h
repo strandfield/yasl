@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QErrorMessage> { inline static script::Type get() { return script::Type::QErrorMessage; } };
-template<> struct details::tag_resolver<QErrorMessage> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QErrorMessage> { typedef qobject_tag tag_type; }; }
 } // namespace script
 
 #endif // YASL_WIDGETS_ERRORMESSAGE_H

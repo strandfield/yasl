@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QDial> { inline static script::Type get() { return script::Type::QDial; } };
-template<> struct details::tag_resolver<QDial> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QDial> { typedef qobject_tag tag_type; }; }
 } // namespace script
 
 #endif // YASL_WIDGETS_DIAL_H

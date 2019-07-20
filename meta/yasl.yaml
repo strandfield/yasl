@@ -448,7 +448,7 @@ types:
     - {id: QUrlQuery, name: QUrlQuery, rename: UrlQuery, header: yasl/core/urlquery.h}
     - {id: QUuid, name: QUuid, rename: Uuid, header: yasl/core/uuid.h, metatype: QMetaType::QUuid}
     - {id: QValidator, name: QValidator, rename: Validator, header: yasl/gui/validator.h, tag: qobject_tag}
-    - {id: QVariant, name: QVariant, rename: Variant, header: yasl/core/variant.h, tag: qvariant_tag, links: "proxy@Proxy<QVariant>;list@QList<QVariant>;map@QMap<QString, QVariant>"}
+    - {id: QVariant, name: QVariant, rename: Variant, header: yasl/core/variant.h, links: "proxy@Proxy<QVariant>;list@QList<QVariant>;map@QMap<QString, QVariant>"}
     - {id: QVBoxLayout, name: QVBoxLayout, rename: QVBoxLayout, header: yasl/widgets/boxlayout.h, tag: qobject_tag}
     - {id: QVector2D, name: QVector2D, rename: Vector2D, header: yasl/gui/vector2d.h, metatype: QMetaType::QVector2D}
     - {id: QVector3D, name: QVector3D, rename: Vector3D, header: yasl/gui/vector3d.h, metatype: QMetaType::QVector3D}
@@ -5187,7 +5187,7 @@ modules:
             - function: operator<<[r:QDebug][p:QDebug;const QVariant &]
             - function: operator<<[r:QDebug][p:QDebug;const QVariant::Type]
             - statement: yasl::complete_variant_class(ns.engine());
-          hincludes: yasl/core/variant.h
+          hincludes: <QVariant>
       - file:
           name: regularexpression
           checkstate: partially-checked

@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QPushButton> { inline static script::Type get() { return script::Type::QPushButton; } };
-template<> struct details::tag_resolver<QPushButton> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QPushButton> { typedef qobject_tag tag_type; }; }
 } // namespace script
 
 #endif // YASL_WIDGETS_PUSHBUTTON_H

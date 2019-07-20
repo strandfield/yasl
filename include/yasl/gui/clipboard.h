@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QClipboard> { inline static script::Type get() { return script::Type::QClipboard; } };
-template<> struct details::tag_resolver<QClipboard> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QClipboard> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QClipboard::Mode> { inline static script::Type get() { return script::Type::QClipboardMode; } };
 } // namespace script
 

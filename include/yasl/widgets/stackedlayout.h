@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QStackedLayout> { inline static script::Type get() { return script::Type::QStackedLayout; } };
-template<> struct details::tag_resolver<QStackedLayout> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QStackedLayout> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QStackedLayout::StackingMode> { inline static script::Type get() { return script::Type::QStackedLayoutStackingMode; } };
 } // namespace script
 

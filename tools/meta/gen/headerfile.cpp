@@ -168,16 +168,16 @@ QStringList HeaderFile::generateBindingDefinitions()
       if (t.tag == "qobject_tag")
       {
         bindingIncludes.insert("yasl/common/qobject-values.h");
-        out << ("template<> struct details::tag_resolver<" + t.name + "> { typedef qobject_tag tag_type; };");
+        out << ("namespace details { template<> struct tag_resolver<" + t.name + "> { typedef qobject_tag tag_type; }; }");
       }
       else if (t.tag == "qevent_tag")
       {
         bindingIncludes.insert("yasl/core/qevent-binding.h");
-        out << ("template<> struct details::tag_resolver<" + t.name + "> { typedef qevent_tag tag_type; };");
+        out << ("namespace details { template<> struct tag_resolver<" + t.name + "> { typedef qevent_tag tag_type; }; }");
       }
       else
       {
-        out << ("template<> struct details::tag_resolver<" + t.name + "> { typedef " + t.tag + " tag_type; };");
+        out << ("namespace details { template<> struct tag_resolver<" + t.name + "> { typedef " + t.tag + " tag_type; }; }");
       }
     }
 

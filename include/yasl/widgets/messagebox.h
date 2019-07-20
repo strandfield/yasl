@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QMessageBox> { inline static script::Type get() { return script::Type::QMessageBox; } };
-template<> struct details::tag_resolver<QMessageBox> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QMessageBox> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QMessageBox::ButtonRole> { inline static script::Type get() { return script::Type::QMessageBoxButtonRole; } };
 template<> struct make_type_helper<QMessageBox::Icon> { inline static script::Type get() { return script::Type::QMessageBoxIcon; } };
 template<> struct make_type_helper<QMessageBox::StandardButton> { inline static script::Type get() { return script::Type::QMessageBoxStandardButton; } };

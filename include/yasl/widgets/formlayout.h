@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QFormLayout> { inline static script::Type get() { return script::Type::QFormLayout; } };
-template<> struct details::tag_resolver<QFormLayout> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QFormLayout> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QFormLayout::FieldGrowthPolicy> { inline static script::Type get() { return script::Type::QFormLayoutFieldGrowthPolicy; } };
 template<> struct make_type_helper<QFormLayout::ItemRole> { inline static script::Type get() { return script::Type::QFormLayoutItemRole; } };
 template<> struct make_type_helper<QFormLayout::RowWrapPolicy> { inline static script::Type get() { return script::Type::QFormLayoutRowWrapPolicy; } };

@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QProgressDialog> { inline static script::Type get() { return script::Type::QProgressDialog; } };
-template<> struct details::tag_resolver<QProgressDialog> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QProgressDialog> { typedef qobject_tag tag_type; }; }
 } // namespace script
 
 #endif // YASL_WIDGETS_PROGRESSDIALOG_H

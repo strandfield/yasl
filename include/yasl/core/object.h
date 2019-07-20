@@ -17,7 +17,7 @@ template<> struct make_type_helper<QList<QObject*>> { inline static script::Type
 template<> struct make_type_helper<QList<QObject*>::const_iterator> { inline static script::Type get() { return script::Type::QListQObjectConstIterator; } };
 template<> struct make_type_helper<QList<QObject*>::iterator> { inline static script::Type get() { return script::Type::QListQObjectIterator; } };
 template<> struct make_type_helper<QObject> { inline static script::Type get() { return script::Type::QObject; } };
-template<> struct details::tag_resolver<QObject> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QObject> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QObject*> { inline static script::Type get() { return script::Type::QObjectStar; } };
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
 template<> struct make_type_helper<QSignalBlocker> { inline static script::Type get() { return script::Type::QSignalBlocker; } };

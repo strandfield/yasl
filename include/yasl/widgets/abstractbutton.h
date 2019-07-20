@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QAbstractButton> { inline static script::Type get() { return script::Type::QAbstractButton; } };
-template<> struct details::tag_resolver<QAbstractButton> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QAbstractButton> { typedef qobject_tag tag_type; }; }
 } // namespace script
 
 #endif // YASL_WIDGETS_ABSTRACTBUTTON_H

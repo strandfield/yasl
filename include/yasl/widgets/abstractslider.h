@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QAbstractSlider> { inline static script::Type get() { return script::Type::QAbstractSlider; } };
-template<> struct details::tag_resolver<QAbstractSlider> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QAbstractSlider> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QAbstractSlider::SliderAction> { inline static script::Type get() { return script::Type::QAbstractSliderSliderAction; } };
 } // namespace script
 

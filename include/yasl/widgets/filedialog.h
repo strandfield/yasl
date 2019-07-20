@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QFileDialog> { inline static script::Type get() { return script::Type::QFileDialog; } };
-template<> struct details::tag_resolver<QFileDialog> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QFileDialog> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QFileDialog::AcceptMode> { inline static script::Type get() { return script::Type::QFileDialogAcceptMode; } };
 template<> struct make_type_helper<QFileDialog::DialogLabel> { inline static script::Type get() { return script::Type::QFileDialogDialogLabel; } };
 template<> struct make_type_helper<QFileDialog::FileMode> { inline static script::Type get() { return script::Type::QFileDialogFileMode; } };

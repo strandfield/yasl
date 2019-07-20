@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QGridLayout> { inline static script::Type get() { return script::Type::QGridLayout; } };
-template<> struct details::tag_resolver<QGridLayout> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QGridLayout> { typedef qobject_tag tag_type; }; }
 } // namespace script
 
 #endif // YASL_WIDGETS_GRIDLAYOUT_H

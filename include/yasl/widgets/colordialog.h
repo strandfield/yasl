@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QColorDialog> { inline static script::Type get() { return script::Type::QColorDialog; } };
-template<> struct details::tag_resolver<QColorDialog> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QColorDialog> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QColorDialog::ColorDialogOption> { inline static script::Type get() { return script::Type::QColorDialogColorDialogOption; } };
 template<> struct make_type_helper<QColorDialog::ColorDialogOptions> { inline static script::Type get() { return script::Type::QColorDialogColorDialogOptions; } };
 } // namespace script

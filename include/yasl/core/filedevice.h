@@ -13,7 +13,7 @@
 
 namespace script {
 template<> struct make_type_helper<QFileDevice> { inline static script::Type get() { return script::Type::QFileDevice; } };
-template<> struct details::tag_resolver<QFileDevice> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QFileDevice> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QFileDevice::FileError> { inline static script::Type get() { return script::Type::QFileDeviceFileError; } };
 template<> struct make_type_helper<QFileDevice::FileHandleFlag> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlag; } };
 template<> struct make_type_helper<QFileDevice::FileHandleFlags> { inline static script::Type get() { return script::Type::QFileDeviceFileHandleFlags; } };

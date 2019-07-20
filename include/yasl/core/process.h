@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QProcess> { inline static script::Type get() { return script::Type::QProcess; } };
-template<> struct details::tag_resolver<QProcess> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QProcess> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QProcess::ExitStatus> { inline static script::Type get() { return script::Type::QProcessExitStatus; } };
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_helper<QProcess::InputChannelMode> { inline static script::Type get() { return script::Type::QProcessInputChannelMode; } };

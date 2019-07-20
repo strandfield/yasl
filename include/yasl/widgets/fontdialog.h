@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QFontDialog> { inline static script::Type get() { return script::Type::QFontDialog; } };
-template<> struct details::tag_resolver<QFontDialog> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QFontDialog> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QFontDialog::FontDialogOption> { inline static script::Type get() { return script::Type::QFontDialogFontDialogOption; } };
 template<> struct make_type_helper<QFontDialog::FontDialogOptions> { inline static script::Type get() { return script::Type::QFontDialogFontDialogOptions; } };
 } // namespace script

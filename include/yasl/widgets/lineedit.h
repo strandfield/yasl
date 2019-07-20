@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QLineEdit> { inline static script::Type get() { return script::Type::QLineEdit; } };
-template<> struct details::tag_resolver<QLineEdit> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QLineEdit> { typedef qobject_tag tag_type; }; }
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 template<> struct make_type_helper<QLineEdit::ActionPosition> { inline static script::Type get() { return script::Type::QLineEditActionPosition; } };
 #endif

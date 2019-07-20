@@ -12,14 +12,14 @@
 
 namespace script {
 template<> struct make_type_helper<QWizard> { inline static script::Type get() { return script::Type::QWizard; } };
-template<> struct details::tag_resolver<QWizard> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QWizard> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QWizard::WizardButton> { inline static script::Type get() { return script::Type::QWizardWizardButton; } };
 template<> struct make_type_helper<QWizard::WizardOption> { inline static script::Type get() { return script::Type::QWizardWizardOption; } };
 template<> struct make_type_helper<QWizard::WizardOptions> { inline static script::Type get() { return script::Type::QWizardWizardOptions; } };
 template<> struct make_type_helper<QWizard::WizardPixmap> { inline static script::Type get() { return script::Type::QWizardWizardPixmap; } };
 template<> struct make_type_helper<QWizard::WizardStyle> { inline static script::Type get() { return script::Type::QWizardWizardStyle; } };
 template<> struct make_type_helper<QWizardPage> { inline static script::Type get() { return script::Type::QWizardPage; } };
-template<> struct details::tag_resolver<QWizardPage> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QWizardPage> { typedef qobject_tag tag_type; }; }
 } // namespace script
 
 #endif // YASL_WIDGETS_WIZARD_H

@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QInputDialog> { inline static script::Type get() { return script::Type::QInputDialog; } };
-template<> struct details::tag_resolver<QInputDialog> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QInputDialog> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QInputDialog::InputDialogOption> { inline static script::Type get() { return script::Type::QInputDialogInputDialogOption; } };
 template<> struct make_type_helper<QInputDialog::InputDialogOptions> { inline static script::Type get() { return script::Type::QInputDialogInputDialogOptions; } };
 template<> struct make_type_helper<QInputDialog::InputMode> { inline static script::Type get() { return script::Type::QInputDialogInputMode; } };

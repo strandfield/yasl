@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QMenu> { inline static script::Type get() { return script::Type::QMenu; } };
-template<> struct details::tag_resolver<QMenu> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QMenu> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QMenu*> { inline static script::Type get() { return script::Type::QMenuStar; } };
 } // namespace script
 

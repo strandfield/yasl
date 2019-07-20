@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QFile> { inline static script::Type get() { return script::Type::QFile; } };
-template<> struct details::tag_resolver<QFile> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QFile> { typedef qobject_tag tag_type; }; }
 } // namespace script
 
 #endif // YASL_CORE_FILE_H

@@ -12,7 +12,7 @@
 
 namespace script {
 template<> struct make_type_helper<QProgressBar> { inline static script::Type get() { return script::Type::QProgressBar; } };
-template<> struct details::tag_resolver<QProgressBar> { typedef qobject_tag tag_type; };
+namespace details { template<> struct tag_resolver<QProgressBar> { typedef qobject_tag tag_type; }; }
 template<> struct make_type_helper<QProgressBar::Direction> { inline static script::Type get() { return script::Type::QProgressBarDirection; } };
 } // namespace script
 
