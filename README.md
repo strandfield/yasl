@@ -1,10 +1,17 @@
-
-
+﻿
 # `Yasl` - A scripting language written in C++/Qt
 
-[![Build Status](https://api.travis-ci.org/bandicode/yasl.svg?branch=master)](https://travis-ci.org/bandicode/yasl)
+⚠️⚠️⚠️
 
-`Yasl` is a small scripting language written using [libscript](https://github.com/bandicode/libscript)
+> Disclaimer: This project is no longer maintained and has been archived.
+> Development of [libscript](https://github.com/strandfield/libscript) 
+> is now driven by [gonk](https://github.com/strandfield/gonk), which provides 
+> a better module system, is not limited to Qt and has a debugger (albeit a 
+> basic one).
+
+⚠️⚠️⚠️
+
+`Yasl` is a small scripting language written using [libscript](https://github.com/strandfield/libscript)
 that provides a wrapper to the Qt framework, allowing you to create nice graphical user 
 interfaces (GUI) or powerful console application.
 
@@ -17,7 +24,7 @@ Currently no binaries are provided, you need to clone and build the project your
 `Yasl` uses `libscript`, but it is included as a submodule so you don't need 
 to clone it separetely, just take care to add `--recursive` when cloning.
 ```bash
-git clone --recursive http://github.com/bandicode/yasl.git
+git clone --recursive http://github.com/strandfield/yasl.git
 ```
 
 Then, you can generate the project files for your favorite build system 
@@ -54,9 +61,9 @@ On my computer, this prints:
 
 ```
 First day of the week is: lundi
-Second month of the year is: f�vrier
+Second month of the year is: février
 You are probably living in France
-Your language: fran�ais
+Your language: français
 ```
 
 That should give you a decent hint at how my computer is configured. :wink:
@@ -106,13 +113,13 @@ Label@0390E2F8
 
 This loads the "widgets" module and creates a QLabel that displays "Hello World!"
 
-![Picture: Hello World](https://raw.githubusercontent.com/bandicode/yasl/master/doc/assets/label-hello-world.png)
+![Picture: Hello World](https://raw.githubusercontent.com/strandfield/yasl/master/doc/assets/label-hello-world.png)
 
 
 ## Features
 
 All features from the `libscript` library are available in `Yasl`. 
-You are invited to consult the project's repository [here](https://github.com/bandicode/libscript) 
+You are invited to consult the project's repository [here](https://github.com/strandfield/libscript) 
 to learn more about it.
 
 Not all classes from Qt are exposed yet, nor is there any plan to expose all of them.
@@ -139,4 +146,4 @@ A dedicated tool, called `yasl-meta`, was developed to manage which functions
 of the Qt framework are available.
 This tool can work with `libclang` to import C++ code.
 
-![Picture: Yasl meta](https://raw.githubusercontent.com/bandicode/yasl/master/doc/assets/yasl-meta.png)
+![Picture: Yasl meta](https://raw.githubusercontent.com/strandfield/yasl/master/doc/assets/yasl-meta.png)
